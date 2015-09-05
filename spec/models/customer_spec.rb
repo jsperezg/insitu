@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Customer, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'name is mandatory' do
+    customer = Customer.new
+    customer.save
+
+    expect(customer.errors).to satisfy { |errors| !errors.empty? && errors.key?( :name )}
+  end
 end

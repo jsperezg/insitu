@@ -6,11 +6,22 @@ en:
       service:
         code: Code
         price: Price
+      customer:
+        name: Name
+        tax_id: TAX Id.
+        billing_serie: Billing serie
+        billing_tax: Tax
+        contact_name: Contact name
+        contact_phone: Phone
+        contact_email: E-mail
     errors:
       models:
         service:
           attributes:
             code:
               taken: "already been taken."
-              price:
-                greater_than: " must be greater than %{count}"
+            price:
+              greater_than: " must be greater than %{count}"
+        customer:
+            name:
+              presence: 'is mandatory.'

@@ -6,6 +6,14 @@ es:
       service:
         code: Código
         price: Precio
+      customer:
+        name: Nombre
+        tax_id: CIF
+        billing_serie: Serie de facturación
+        billing_tax: Retención
+        contact_name: Persona de contacto
+        contact_phone: Teléfono
+        contact_email: Correo electrónico
     errors:
       models:
         service:
@@ -13,4 +21,7 @@ es:
             code:
               taken: ": El código seleccionado está en uso."
             price:
-              greater_than: ": El precio debe ser mayor que %{count}"
+              greater_than: ": El precio debe ser mayor que %{count}."
+        customer:
+            name:
+              presence: 'es obligatorio.'

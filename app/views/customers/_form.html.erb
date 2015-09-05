@@ -1,9 +1,9 @@
-<%= form_for @customer, :html => { :class => "form-horizontal customer" } do |f| %>
 
-    <% if @customer.errors.any? %>
+
+  <% if @customer.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@customer.errors.count, "error") %> prohibited this customer from being saved:</h3>
+        <h3 class="panel-title"><%=t :validation_error_header %></h3>
       </div>
       <div class="panel-body">
         <ul>
@@ -64,10 +64,7 @@
     </div>
     <%= error_span(@customer[:contact_email]) %>
   </div>
-
-
-  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <br>
+  <%= f.submit t(:save), :class => 'btn btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            customers_path, :class => 'btn btn-default' %>
-
-<% end %>
+            user_customers_path(current_user), :class => 'btn btn-default' %>

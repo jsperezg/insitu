@@ -18,12 +18,12 @@
         <td><%= payment_method.name %></td>
         <td><%= payment_method.note_for_invoice %></td>
         <td>
-          <%= link_to t(:edit),
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_user_payment_method_path(current_user.id, payment_method), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t(:destroy),
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       user_payment_method_path(current_user.id, payment_method),
                       :method => :delete,
-                      :data => { :confirm => t(:are_you_sure) },
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
         </td>
       </tr>
@@ -31,6 +31,6 @@
   </tbody>
 </table>
 
-<%= link_to t(:new),
+<%= link_to t('.new', :default => t("helpers.links.new")),
             new_user_payment_method_path(current_user.id),
             :class => 'btn btn-default' %>

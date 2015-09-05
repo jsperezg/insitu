@@ -2,6 +2,7 @@ en:
   time:
     formats:
       default: "%Y-%m-%d"
+
   log_in: "Log in"
   sign_up: Sign up
   forgot_password: Forgot password?
@@ -20,12 +21,10 @@ en:
   password_confirmation: Password confirmation
   help_current_password: (we need your current password to confirm your changes)
   current_password: Current Password
-  new: New
   edit:  Edit
   update: Update
   destroy: Destroy
   save: Save
-  cancel: Cancel
   waiting_confirmation_email: "Currently waiting confirmation for: %{email}"
   cancel_account: Cancel my account
   unhappy: Unhappy?
@@ -55,13 +54,25 @@ en:
   successfully_destroyed: "%{item} was successfully destroyed."
   field_mandatory: Field %{field_name} is mandatory.
 
-services:
-  service: Service
-  title: Services
-  code: Code
-  description: Description
-  vat: VAT
-  unit: Units
-  price: Price
-  create_title: Create Service
-  edit_title: Edit Service
+  helpers:
+    links:
+      new: New
+      edit: Edit
+      destroy: Destroy
+      confirm: Are you sure?
+      cancel: Cancel
+
+  services:
+    service: Service
+    title: Services
+    code: Code
+    description: Description
+    vat: VAT
+    unit: Units
+    price: Price
+    create_title: Create Service
+    edit_title: Edit Service
+
+  customers:
+    title: Customers
+    create_title: New customer

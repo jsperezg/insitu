@@ -30,5 +30,5 @@
 
 <br>
   <%= f.submit t(:save), :class => 'btn btn-primary' %>
-  <%= link_to t(:cancel),
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
           user_payment_methods_path(current_user.id), :class => 'btn btn-default' %>

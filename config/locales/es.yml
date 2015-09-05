@@ -20,12 +20,8 @@ es:
   password_confirmation: Confirmar contraseña
   help_current_password: (Necesitamos tu contraseña actual para confirmar tus cambios)
   current_password: Contraseña actual
-  new: Nuevo
-  edit: Editar
   update: Actualizar
-  destroy: Borrar
   save: Guardar
-  cancel: Cancelar
   waiting_confirmation_email: "Actualmente esperando confirmación para: %{email}"
   cancel_account: Cancelar mi cuenta
   unhappy: ¿No te gusta?
@@ -35,7 +31,6 @@ es:
   general: General
   payment_methods: Métodos de pago
   vat: IVA
-  customers: Clientes
   minimum_length: (Mínimo %{len} carácteres)
   time_tracker: Gestion de tiempos
   projects: Projectos
@@ -55,6 +50,14 @@ es:
   successfully_destroyed: "%{item} borrado con éxito."
   field_mandatory: El campo %{field_name} es obligatorio.
 
+  helpers:
+    links:
+      new: Nuevo
+      edit: Editar
+      destroy: Borrar
+      confirm: ¿Estas seguro?
+      cancel: Cancelar
+
   services:
     service: Servicio
     title: Servicios
@@ -65,3 +68,7 @@ es:
     price: Precio
     create_title: Crear Servicio
     edit_title: Editar Servicio
+
+  customers:
+    title: Clientes
+    create_title: Nuevo cliente

@@ -1,5 +1,7 @@
 <%- model_class = Customer -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
+  <h1><%=t 'customers.create_title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
 </div>
-<%= render :partial => 'form' %>
+<%= form_for @customer,  url: user_customers_path(current_user), :html => { :class => "form-horizontal customer" } do |f| %>
+  <%= render :partial => 'form', locals: { f: f } %>
+<% end %>
