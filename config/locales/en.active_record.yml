@@ -5,9 +5,12 @@ en:
     attributes:
       service:
         code: Code
+        price: Price
     errors:
       models:
         service:
           attributes:
             code:
               taken: "already been taken."
+              price:
+                greater_than: " must be greater than %{count}"

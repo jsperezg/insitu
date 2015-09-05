@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :vat do
-    label "MyString"
-rate ""
+    label "21 %"
+    rate 21
   end
 
 end

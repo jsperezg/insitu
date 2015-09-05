@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :unit do
-    label_short "MyString"
-label_long "MyString"
+    label_short "PCS"
+    label_long "Piezas"
   end
 
 end

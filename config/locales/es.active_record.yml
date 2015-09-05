@@ -5,9 +5,12 @@ es:
     attributes:
       service:
         code: Código
+        price: Precio
     errors:
       models:
         service:
           attributes:
             code:
               taken: ": El código seleccionado está en uso."
+            price:
+              greater_than: ": El precio debe ser mayor que %{count}"

@@ -4,7 +4,7 @@ class Service < ActiveRecord::Base
 
   validates :code, presence: true, uniqueness: { case_sensitive: false }
   validates :description, presence: true
-  validates :price, presence: true
+  validates_numericality_of :price, allow_nil: false, greater_than: 0
   validates :vat, presence: true
   validates :unit, presence: true
 end
