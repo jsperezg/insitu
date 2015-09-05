@@ -1,0 +1,45 @@
+<%= form_for @delivery_note_detail, :html => { :class => "form-horizontal delivery_note_detail" } do |f| %>
+
+    <% if @delivery_note_detail.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@delivery_note_detail.errors.count, "error") %> prohibited this delivery_note_detail from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @delivery_note_detail.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :delivery_note_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :delivery_note_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@delivery_note_detail[:delivery_note_id]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :service_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :service_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@delivery_note_detail[:service_id]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :quantity, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :quantity, :class => 'form-control' %>
+    </div>
+    <%= error_span(@delivery_note_detail[:quantity]) %>
+  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            delivery_note_details_path, :class => 'btn btn-default' %>
+
+<% end %>

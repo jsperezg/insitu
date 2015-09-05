@@ -1,0 +1,42 @@
+<%- model_class = Service -%>
+<div class="page-header">
+  <h1><%=t 'services.title' %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%=t 'services.code' %></th>
+      <th><%=t 'services.description' %></th>
+      <th><%=t 'services.vat' %></th>
+      <th><%=t 'services.unit' %></th>
+      <th><%=t 'services.price' %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @services.each do |service| %>
+      <tr>
+        <td><%= link_to service.id, edit_user_service_path(current_user.id, service) %></td>
+        <td><%= service.code %></td>
+        <td><%= service.description %></td>
+        <td><%= service.vat.rate %> %</td>
+        <td><%= service.unit.label_short %></td>
+        <td><%= service.price %></td>
+        <td>
+          <%= link_to t(:edit),
+                      edit_user_service_path(current_user.id, service), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t(:destroy),
+                      user_service_path(current_user.id, service),
+                      :method => :delete,
+                      :data => { :confirm => t(:are_you_sure) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t(:new),
+            new_user_service_path(current_user.id),
+            :class => 'btn btn-default' %>

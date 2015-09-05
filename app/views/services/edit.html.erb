@@ -1,0 +1,7 @@
+<%- model_class = Service -%>
+<div class="page-header">
+  <h1><%=t 'services.edit_title' %></h1>
+</div>
+<%= form_for @service, url: user_service_path(current_user.id, @service), :html => { :class => "form-horizontal service" } do |f| %>
+  <%= render :partial => 'form', locals: { f: f } %>
+<% end %>

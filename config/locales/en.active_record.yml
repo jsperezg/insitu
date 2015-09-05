@@ -1,0 +1,13 @@
+en:
+  activerecord:
+    models:
+      service: Service
+    attributes:
+      service:
+        code: Code
+    errors:
+      models:
+        service:
+          attributes:
+            code:
+              taken: "already been taken."

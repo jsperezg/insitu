@@ -1,0 +1,7 @@
+<%- model_class = PaymentMethod -%>
+<div class="page-header">
+  <h1><%=t :update_payment_method %></h1>
+</div>
+<%= form_for @payment_method, url: user_payment_method_path(current_user.id, @payment_method), :html => { :class => "form-horizontal payment_method" } do |f| %>
+  <%= render :partial => 'form', locals: { f: f } %>
+<% end %>

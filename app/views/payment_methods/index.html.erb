@@ -1,0 +1,36 @@
+<%- model_class = PaymentMethod -%>
+<div class="page-header">
+  <h1><%=t :payment_methods %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%=t :description %></th>
+      <th><%=t :note_for_invoice %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @payment_methods.each do |payment_method| %>
+      <tr>
+        <td><%= link_to payment_method.id, edit_user_payment_method_path(current_user.id, payment_method) %></td>
+        <td><%= payment_method.name %></td>
+        <td><%= payment_method.note_for_invoice %></td>
+        <td>
+          <%= link_to t(:edit),
+                      edit_user_payment_method_path(current_user.id, payment_method), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t(:destroy),
+                      user_payment_method_path(current_user.id, payment_method),
+                      :method => :delete,
+                      :data => { :confirm => t(:are_you_sure) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t(:new),
+            new_user_payment_method_path(current_user.id),
+            :class => 'btn btn-default' %>

@@ -1,0 +1,54 @@
+<% if @service.errors.any? %>
+  <div id="error_expl" class="panel panel-danger">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%=t :validation_error_header %></h3>
+    </div>
+    <div class="panel-body">
+      <ul>
+      <% @service.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<div class="control-group">
+  <%= f.label :code, t('services.code'), :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :code, :class => 'form-control', required: true %>
+  </div>
+  <%= error_span(@service[:code]) %>
+</div>
+<div class="control-group">
+  <%= f.label :description, t('services.description'), :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :description, :class => 'form-control', required: true %>
+  </div>
+  <%= error_span(@service[:description]) %>
+</div>
+<div class="control-group">
+  <%= f.label :vat_id, t('services.vat'), :class => 'control-label' %>
+  <div class="controls">
+    <%= f.collection_select :vat_id, Vat.order(rate: :asc), :id, :label ,prompt: true, class: 'form-control', required: true%>
+  </div>
+  <%= error_span(@service[:vat_id]) %>
+</div>
+<div class="control-group">
+  <%= f.label :unit_id, t('services.unit'), :class => 'control-label' %>
+  <div class="controls">
+    <%= f.collection_select :unit_id, Unit.order(label_long: :asc), :id, :label_long ,prompt: true, class: 'form-control', required: true%>
+  </div>
+  <%= error_span(@service[:unit_id]) %>
+</div>
+<div class="control-group">
+  <%= f.label :price, t('services.price'), :class => 'control-label' %>
+  <div class="controls">
+    <%= f.text_field :price, :class => 'form-control', required: true %>
+  </div>
+  <%= error_span(@service[:price]) %>
+</div>
+<br>
+<%= f.submit t(:save), :class => 'btn btn-primary' %>
+<%= link_to t(:cancel),
+          user_services_path(current_user.id), :class => 'btn btn-default' %>

@@ -1,0 +1,67 @@
+es:
+  time:
+    formats:
+      default: "%d/%m/%Y"
+
+  log_in: Acceso al sistema
+  sign_up: Crear cuenta
+  forgot_password: ¿Has olvidado tu contraseña?
+  didn_received_confirmation_instructions: ¿No has recibido las instrucciones para validar la cuenta?
+  sign_in_with: Acceder con %{provider}
+  email: Correo electrónico
+  fill_email: Introduce tu dirección de correo electrónico
+  password: Contraseña
+  remember_me: Mantener la sesión abierta
+  change_password: Cambiar contraseña
+  log_out: Cerrar sesión
+  send_me_reset_password_instructions: Enviame las instrucciones para restablecer mi contraseña
+  edit_account: Editar cuenta
+  leave_password_blank: (Dejar en blanco para conservar la contraseña)
+  password_confirmation: Confirmar contraseña
+  help_current_password: (Necesitamos tu contraseña actual para confirmar tus cambios)
+  current_password: Contraseña actual
+  new: Nuevo
+  edit: Editar
+  update: Actualizar
+  destroy: Borrar
+  save: Guardar
+  cancel: Cancelar
+  waiting_confirmation_email: "Actualmente esperando confirmación para: %{email}"
+  cancel_account: Cancelar mi cuenta
+  unhappy: ¿No te gusta?
+  cancel_account: Cancelar mi cuenta
+  are_you_sure: ¿Estás seguro?
+  my_office: Tu oficina
+  general: General
+  payment_methods: Métodos de pago
+  vat: IVA
+  customers: Clientes
+  minimum_length: (Mínimo %{len} carácteres)
+  time_tracker: Gestion de tiempos
+  projects: Projectos
+  tasks: Tareas
+  production: Producción
+  invoices: Facturas
+  delivery_notes: Albaranes
+  new_payment_method: Crear método de pago
+  update_payment_method: Editar método de pago
+  name: Nombre
+  description: Descripción
+  note_for_invoice: Anotación en factura
+  validation_error_header: La operación falló. Comprueba estos errores e intentalo de nuevo
+  payment_method: Método de pago
+  successfully_created: "%{item} creado con éxito."
+  successfully_updated: "%{item} actualizado con éxito."
+  successfully_destroyed: "%{item} borrado con éxito."
+  field_mandatory: El campo %{field_name} es obligatorio.
+
+  services:
+    service: Servicio
+    title: Servicios
+    code: Código
+    description: Descripción
+    vat: IVA
+    unit: Unidades
+    price: Precio
+    create_title: Crear Servicio
+    edit_title: Editar Servicio

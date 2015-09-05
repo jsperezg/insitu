@@ -1,0 +1,13 @@
+es:
+  activerecord:
+    models:
+      service: Servicio
+    attributes:
+      service:
+        code: Código
+    errors:
+      models:
+        service:
+          attributes:
+            code:
+              taken: ": El código seleccionado está en uso."

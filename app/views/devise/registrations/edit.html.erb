@@ -1,0 +1,45 @@
+<div class="page-header">
+  <h1><%=t :edit_account %></h1>
+</div>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="form-group">
+    <%= f.label :email, t(:email) %><br />
+    <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: t(:fill_email) %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div><%=t :waiting_confirmation_email, email: resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :password, t(:password) %>
+    <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+    <p class="help-block"><%=t :leave_password_blank %></p>
+  </div>
+
+  <div class="field-group">
+    <%= f.label :password_confirmation, t(:password_confirmation) %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+  </div>
+
+  <div class="field-group">
+    <%= f.label :current_password, t(:current_password) %>
+    <%= f.password_field :current_password, autocomplete: "off", class: 'form-control' %>
+    <p class="help-block"><%=t :help_current_password %></p>
+  </div>
+
+  <div class="field-group">
+    <%= f.submit t(:update), class: 'btn btn-default' %>
+  </div>
+<% end %>
+
+<% has_role?('Usuario') do %>
+  <h2><%=t :cancel_account %></h2>
+  <p>
+    <%=t :unhappy %>
+    <%= button_to t(:cancel_account), registration_path(resource_name), data: { confirm: t(:are_you_sure) }, method: :delete %>
+  </p>
+<% end %>

@@ -1,0 +1,48 @@
+<%- model_class = Customer -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:tax_id) %></th>
+      <th><%= model_class.human_attribute_name(:billing_serie) %></th>
+      <th><%= model_class.human_attribute_name(:billing_tax) %></th>
+      <th><%= model_class.human_attribute_name(:contact_name) %></th>
+      <th><%= model_class.human_attribute_name(:contact_phone) %></th>
+      <th><%= model_class.human_attribute_name(:contact_email) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= link_to customer.id, customer_path(customer) %></td>
+        <td><%= customer.name %></td>
+        <td><%= customer.tax_id %></td>
+        <td><%= customer.billing_serie %></td>
+        <td><%= customer.billing_tax %></td>
+        <td><%= customer.contact_name %></td>
+        <td><%= customer.contact_phone %></td>
+        <td><%= customer.contact_email %></td>
+        <td><%=l customer.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_customer_path(customer), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      customer_path(customer),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_customer_path,
+            :class => 'btn btn-primary' %>
