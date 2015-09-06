@@ -17,6 +17,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'devise'
 gem 'apartment'
 gem "twitter-bootstrap-rails"
+gem 'email_validator'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

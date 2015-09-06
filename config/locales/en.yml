@@ -74,5 +74,6 @@ en:
     edit_title: Edit Service
 
   customers:
+    customer: Customer
     title: Customers
     create_title: New customer

@@ -70,5 +70,6 @@ es:
     edit_title: Editar Servicio
 
   customers:
+    customer: Cliente
     title: Clientes
     create_title: Nuevo cliente

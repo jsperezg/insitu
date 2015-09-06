@@ -23,5 +23,10 @@ es:
             price:
               greater_than: ": El precio debe ser mayor que %{count}."
         customer:
+          attributes:
             name:
               presence: 'es obligatorio.'
+            contact_email:
+              invalid: 'tiene un formato incorrecto.'
+            tax_id:
+              taken: ': Ya está asociado a otro cliente.'

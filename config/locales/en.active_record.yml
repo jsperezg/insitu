@@ -22,6 +22,11 @@ en:
               taken: "already been taken."
             price:
               greater_than: " must be greater than %{count}"
-        customer:
-            name:
-              presence: 'is mandatory.'
+          customer:
+            attributes:
+              name:
+                presence: 'is mandatory.'
+              contact_email:
+                invalid: 'seems to be invalid.'
+              tax_id:
+                taken: ': Is already associated to another customer.'

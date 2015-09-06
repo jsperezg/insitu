@@ -7,7 +7,7 @@ class CreateCustomers < ActiveRecord::Migration
       t.integer :billing_tax
       t.string :contact_name
       t.string :contact_phone
-      t.string :contact_email, length: 25
+      t.string :contact_email, length: 250
 
       t.timestamps null: false
     end
