@@ -18,6 +18,10 @@ en:
         name: Name
         project_status_id: Status
         customer_id: Customer
+      task:
+        description: Description
+        project_id: Project
+        finished: Finished
     errors:
       models:
         service:
@@ -41,4 +45,10 @@ en:
               project_status_id:
                 blank: 'is mandatory.'
               customer_id:
+                blank: 'is mandatory.'
+          task:
+            attributes:
+              description:
+                presence: 'is mandatory.'
+              project_id:
                 blank: 'is mandatory.'

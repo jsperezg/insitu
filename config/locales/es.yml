@@ -33,7 +33,6 @@ es:
   vat: IVA
   minimum_length: (Mínimo %{len} carácteres)
   time_tracker: Gestion de tiempos
-  tasks: Tareas
   production: Producción
   invoices: Facturas
   delivery_notes: Albaranes
@@ -79,3 +78,9 @@ es:
     title: Proyectos
     create_title: Nuevo proyecto
     edit_title: Editar proyecto
+
+  tasks:
+    task: Tarea
+    title: Tareas
+    create_title: Nueva tarea
+    edit_title: Editar tarea

@@ -1,6 +1,6 @@
 <%- model_class = Task -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <h1><%=t 'tasks.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 <table class="table table-striped">
   <thead>
@@ -9,23 +9,21 @@
       <th><%= model_class.human_attribute_name(:description) %></th>
       <th><%= model_class.human_attribute_name(:project_id) %></th>
       <th><%= model_class.human_attribute_name(:finished) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
-        <td><%= link_to task.id, task_path(task) %></td>
+        <td><%= link_to task.id, edit_user_task_path(current_user, task) %></td>
         <td><%= task.description %></td>
-        <td><%= task.project_id %></td>
+        <td><%= task.project.try(:name) %></td>
         <td><%= task.finished %></td>
-        <td><%=l task.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_task_path(task), :class => 'btn btn-default btn-xs' %>
+                      edit_user_task_path(current_user, task), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      task_path(task),
+                      user_task_path(current_user, task),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
@@ -36,5 +34,5 @@
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_task_path,
-            :class => 'btn btn-primary' %>
+            new_user_task_path(current_user),
+            :class => 'btn btn-default' %>
