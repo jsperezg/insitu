@@ -33,7 +33,6 @@ es:
   vat: IVA
   minimum_length: (Mínimo %{len} carácteres)
   time_tracker: Gestion de tiempos
-  projects: Projectos
   tasks: Tareas
   production: Producción
   invoices: Facturas
@@ -73,3 +72,10 @@ es:
     customer: Cliente
     title: Clientes
     create_title: Nuevo cliente
+    edit_title: Editar cliente
+
+  projects:
+    project: Proyecto
+    title: Proyectos
+    create_title: Nuevo proyecto
+    edit_title: Editar proyecto

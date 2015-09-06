@@ -1,8 +1,11 @@
 FactoryGirl.define do
   factory :project do
-    name "MyString"
-project_status nil
-customer nil
+    sequence :name do |n|
+      "Project #{n}"
+    end
+
+    project_status_id { ProjectStatus.first.try(:id) || create(:project_status).id  }
+    customer_id { Customer.first.try(:id) || create(:customer).id }
   end
 
 end

@@ -37,7 +37,6 @@ en:
   customers: Customers
   minimum_length: (%{len} characters minimum)
   time_tracker: Time tracker
-  projects: Projects
   tasks: Tasks
   production: Production
   invoices: Invoices
@@ -77,3 +76,10 @@ en:
     customer: Customer
     title: Customers
     create_title: New customer
+    edit_title: Edit customer
+
+  projects:
+    project: Project
+    title: Projects
+    create_title: New project
+    edit_title: Edit project

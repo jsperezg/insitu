@@ -1,9 +1,7 @@
-<%= form_for @project, :html => { :class => "form-horizontal project" } do |f| %>
-
-    <% if @project.errors.any? %>
+  <% if @project.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h3>
+        <h3 class="panel-title"><%=t :validation_error_header %></h3>
       </div>
       <div class="panel-body">
         <ul>
@@ -18,28 +16,26 @@
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :name, :class => 'form-control' %>
+      <%= f.text_field :name, :class => 'form-control', required: true %>
     </div>
     <%= error_span(@project[:name]) %>
   </div>
   <div class="control-group">
     <%= f.label :project_status_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :project_status_id, :class => 'form-control' %>
+      <%= f.collection_select :project_status_id, ProjectStatus.order(name: :asc), :id, :name ,prompt: true, class: 'form-control', required: true %>
     </div>
     <%= error_span(@project[:project_status_id]) %>
   </div>
   <div class="control-group">
     <%= f.label :customer_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :customer_id, :class => 'form-control' %>
+      <%= f.collection_select :customer_id, Customer.order(name: :asc), :id, :name ,prompt: true, class: 'form-control', required: true %>
     </div>
     <%= error_span(@project[:customer_id]) %>
   </div>
+  <br>
 
-
-  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= f.submit t(:save), :class => 'btn btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            projects_path, :class => 'btn btn-default' %>
-
-<% end %>
+            user_projects_path(current_user), :class => 'btn btn-default' %>

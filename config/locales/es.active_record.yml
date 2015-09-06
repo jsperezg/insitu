@@ -14,6 +14,10 @@ es:
         contact_name: Persona de contacto
         contact_phone: Teléfono
         contact_email: Correo electrónico
+      project:
+        name: Nombre
+        project_status_id: Estado
+        customer_id: Cliente
     errors:
       models:
         service:
@@ -30,3 +34,11 @@ es:
               invalid: 'tiene un formato incorrecto.'
             tax_id:
               taken: ': Ya está asociado a otro cliente.'
+        project:
+          attributes:
+            name:
+              presence: 'es obligatorio.'
+            project_status_id:
+              blank: 'es obligatorio.'
+            customer_id:
+              blank: 'es obligatorio.'

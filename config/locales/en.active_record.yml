@@ -14,6 +14,10 @@ en:
         contact_name: Contact name
         contact_phone: Phone
         contact_email: E-mail
+      project:
+        name: Name
+        project_status_id: Status
+        customer_id: Customer
     errors:
       models:
         service:
@@ -30,3 +34,11 @@ en:
                 invalid: 'seems to be invalid.'
               tax_id:
                 taken: ': Is already associated to another customer.'
+          project:
+            attributes:
+              name:
+                presence: 'is mandatory.'
+              project_status_id:
+                blank: 'is mandatory.'
+              customer_id:
+                blank: 'is mandatory.'

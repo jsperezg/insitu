@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.includes(:project_status, :customer).all
   end
 
   # GET /projects/1
@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = Project.new
+    @project = Project.new(project_status: ProjectStatus.find_by(name: 'Activo'))
   end
 
   # GET /projects/1/edit
@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        format.html { redirect_to user_projects_path(current_user), notice: t(:successfully_created, item: t('projects.project')) }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+        format.html { redirect_to user_projects_path(current_user), notice: t(:successfully_updated, item: t('projects.project')) }
         format.json { render :show, status: :ok, location: @project }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project.destroy
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
+      format.html { redirect_to user_projects_url(current_user), notice: t(:successfully_destroyed, item: t('projects.project')) }
       format.json { head :no_content }
     end
   end
