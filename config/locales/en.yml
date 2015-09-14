@@ -88,3 +88,9 @@ en:
     title: Tasks
     create_title: New task
     edit_title: Edit task
+
+  invoices:
+    invoice: Invoice
+    title: Invoices
+    create_title: New invoice
+    edit_title: Edit invoice

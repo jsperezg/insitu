@@ -34,7 +34,6 @@ es:
   minimum_length: (Mínimo %{len} carácteres)
   time_tracker: Gestion de tiempos
   production: Producción
-  invoices: Facturas
   delivery_notes: Albaranes
   new_payment_method: Crear método de pago
   update_payment_method: Editar método de pago
@@ -84,3 +83,9 @@ es:
     title: Tareas
     create_title: Nueva tarea
     edit_title: Editar tarea
+
+  invoices:
+    invoice: Factura
+    title: Facturas
+    create_title: Nueva factura
+    edit_title: Editar factura

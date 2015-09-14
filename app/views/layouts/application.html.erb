@@ -80,7 +80,7 @@
               </ul>
               <ul class="nav nav-list">
                 <li class="nav-header"><%=t :production %></li>
-                  <li><%= link_to t(:invoices), user_invoices_path(current_user.id) %></li>
+                  <li><%= link_to t('invoices.invoices'), user_invoices_path(current_user.id) %></li>
                   <li><%= link_to t(:delivery_notes), user_delivery_notes_path(current_user.id) %></li>
               </ul>
             </div><!--/.well -->
