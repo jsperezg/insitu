@@ -5,11 +5,10 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:project_status_id) %></th>
-      <th><%= model_class.human_attribute_name(:customer_id) %></th>
-      <th></th>
+      <th class=col-xs-1><%= model_class.human_attribute_name(:id) %></th>
+      <th class=col-xs-6><%= model_class.human_attribute_name(:name) %></th>
+      <th class=col-xs-1><%= model_class.human_attribute_name(:project_status_id) %></th>
+      <th class=col-xs-4></th>
     </tr>
   </thead>
   <tbody>
@@ -17,16 +16,28 @@
       <tr>
         <td><%= link_to project.id, edit_user_project_path(current_user, project) %></td>
         <td><%= project.name %></td>
-        <td><%= project.project_status.name %></td>
-        <td><%= project.customer.name %></td>
+        <td><%= project.project_status.name %></td>        
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_user_project_path(current_user, project), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      user_project_path(current_user, project),
+          <%= link_to edit_user_project_path(current_user, project), class: 'btn btn-default btn-xs' do %>
+            <i class="fa fa-pencil-square-o" aria-hidden="true">
+              <%=t 'helpers.links.edit' %>
+            </i>
+          <% end %>
+
+          <%= link_to user_project_tasks_path(current_user, project), class: 'btn btn-default btn-xs' do %>
+            <i class="fa fa-tasks" aria-hidden="true">
+              <%=t 'tasks.title' %>
+            </i>
+          <% end %>
+
+          <%= link_to user_project_path(current_user, project),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
+                      :class => 'btn btn-xs btn-danger' do %>
+            <i class="fa fa-trash-o" aria-hidden="true">
+              <%=t 'helpers.links.destroy' %>
+            </i>
+          <% end %>
         </td>
       </tr>
     <% end %>

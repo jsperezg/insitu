@@ -3,6 +3,18 @@ es:
     models:
       service: Servicio
     attributes:
+      user:
+        tax_id: NIE
+        email: Correo electrónico
+        name: Nombre
+        address: Dirección
+        city: Población
+        country: País
+        postal_code: Código Postal
+        state: Provincia
+        password: Contraseña
+        password_confirmation: Repetir contraseña
+        current_password: Contraseña actual
       service:
         code: Código
         price: Precio
@@ -33,7 +45,7 @@ es:
         customer:
           attributes:
             name:
-              presence: 'es obligatorio.'
+              blank: 'es obligatorio.'
             contact_email:
               invalid: 'tiene un formato incorrecto.'
             tax_id:
@@ -41,7 +53,7 @@ es:
         project:
           attributes:
             name:
-              presence: 'es obligatorio.'
+              blank: 'es obligatorio.'
             project_status_id:
               blank: 'es obligatorio.'
             customer_id:
@@ -49,6 +61,6 @@ es:
         task:
           attributes:
             description:
-              presence: 'es obligatorio.'
+              blank: 'es obligatorio.'
             project_id:
               blank: 'es obligatorio.'

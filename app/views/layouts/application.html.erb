@@ -49,7 +49,7 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
-              <li><%= link_to t(:change_password), edit_user_registration_path %></li>
+              <li><%= link_to t(:my_profile), edit_user_registration_path %></li>
               <li><%= link_to t(:log_out), destroy_user_session_path, method: :delete  %></li>
             <% end %>
           </ul>
@@ -74,14 +74,10 @@
                 <li><%= link_to t('customers.title'), user_customers_path(current_user.id) %></li>
               </ul>
               <ul class="nav nav-list">
-                <li class="nav-header"><%=t :time_tracker %></li>
-                <li><%= link_to t('projects.title'), user_projects_path(current_user.id)%></li>
-                <li><%= link_to t('tasks.title'), user_tasks_path(current_user.id) %></li>
-              </ul>
-              <ul class="nav nav-list">
                 <li class="nav-header"><%=t :production %></li>
-                  <li><%= link_to t('invoices.invoices'), user_invoices_path(current_user.id) %></li>
-                  <li><%= link_to t(:delivery_notes), user_delivery_notes_path(current_user.id) %></li>
+                <li><%= link_to t('projects.title'), user_projects_path(current_user.id)%></li>
+                <li><%= link_to t('invoices.title'), user_invoices_path(current_user.id) %></li>
+                <li><%= link_to t(:delivery_notes), user_delivery_notes_path(current_user.id) %></li>
               </ul>
             </div><!--/.well -->
           </div><!--/span-->

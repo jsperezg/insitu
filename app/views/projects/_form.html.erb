@@ -13,28 +13,24 @@
     </div>
   <% end %>
 
-  <div class="control-group">
+  <div class="form-group">
     <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'form-control', required: true %>
-    </div>
-    <%= error_span(@project[:name]) %>
+    <%= f.text_field :name, :class => 'form-control input-sm' %>
   </div>
-  <div class="control-group">
-    <%= f.label :project_status_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.collection_select :project_status_id, ProjectStatus.order(name: :asc), :id, :name ,prompt: true, class: 'form-control', required: true %>
+
+  <div class=row>
+    <div class="form-group pull-left col-xs-6">
+      <%= f.label :project_status_id, :class => 'control-label' %>
+      <%= f.collection_select :project_status_id, ProjectStatus.order(name: :asc), :id, :name,
+        { prompt: true }, { class: 'form-control input-sm', required: true } %>
     </div>
-    <%= error_span(@project[:project_status_id]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :customer_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.collection_select :customer_id, Customer.order(name: :asc), :id, :name ,prompt: true, class: 'form-control', required: true %>
+
+    <div class="form-group pull-left col-xs-6">
+      <%= f.label :customer_id, :class => 'control-label' %>
+      <%= f.collection_select :customer_id, Customer.order(name: :asc), :id, :name,
+        { prompt: true }, { class: 'form-control input-sm', required: true } %>
     </div>
-    <%= error_span(@project[:customer_id]) %>
   </div>
-  <br>
 
   <%= f.submit t(:save), :class => 'btn btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

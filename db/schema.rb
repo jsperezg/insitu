@@ -172,8 +172,10 @@ ActiveRecord::Schema.define(version: 20150914171851) do
     t.string   "tenant",                 limit: 255
     t.string   "tax_id",                 limit: 255
     t.string   "name",                   limit: 255
-    t.string   "addess",                 limit: 255
+    t.string   "address",                limit: 255
     t.string   "city",                   limit: 255
+    t.string   "postal_code",            limit: 25
+    t.string   "state",                  limit: 255
     t.string   "country",                limit: 255
   end
 

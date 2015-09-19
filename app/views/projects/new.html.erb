@@ -3,6 +3,6 @@
   <h1><%=t 'projects.create_title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
 </div>
 
-<%= form_for @project, url: user_projects_path(current_user), :html => { :class => "form-horizontal project" } do |f| %>
+<%= form_for @project, url: user_projects_path(current_user) do |f| %>
   <%= render :partial => 'form',  locals: { f: f } %>
 <% end %>

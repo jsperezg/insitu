@@ -3,6 +3,18 @@ en:
     models:
       service: Service
     attributes:
+      user:
+        tax_id: TAX Id.
+        name: Name
+        address: Billing Address
+        city: City
+        country: Country
+        postal_code: Post code
+        state: State
+        email: E-mail address
+        password: Password
+        password_confirmation: Repeat password
+        current_password: Current password
       service:
         code: Code
         price: Price
@@ -33,7 +45,7 @@ en:
           customer:
             attributes:
               name:
-                presence: 'is mandatory.'
+                blank: 'is mandatory.'
               contact_email:
                 invalid: 'seems to be invalid.'
               tax_id:
@@ -41,7 +53,7 @@ en:
           project:
             attributes:
               name:
-                presence: 'is mandatory.'
+                blank: 'is mandatory.'
               project_status_id:
                 blank: 'is mandatory.'
               customer_id:
@@ -49,6 +61,6 @@ en:
           task:
             attributes:
               description:
-                presence: 'is mandatory.'
+                blank: 'is mandatory.'
               project_id:
                 blank: 'is mandatory.'

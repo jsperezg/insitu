@@ -1,5 +1,4 @@
 class TimeLogsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_time_log, only: [:show, :edit, :update, :destroy]
 
   # GET /time_logs
@@ -70,6 +69,6 @@ class TimeLogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def time_log_params
-      params.require(:time_log).permit(:description, :start_time, :end_time, :project_id)
+      params[:time_log]
     end
 end

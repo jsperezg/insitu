@@ -5,16 +5,23 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :dashboard
-    resources :invoice_details
-    resources :invoices
     resources :payment_methods
-    resources :delivery_note_details
-    resources :delivery_notes
     resources :services
-    resources :time_logs
-    resources :tasks
-    resources :projects
     resources :customers
+
+    resources :invoices do
+        resources :invoice_details
+    end
+
+    resources :delivery_notes do
+        resources :delivery_note_details
+    end
+
+    resources :projects do
+      resources :tasks do
+        resources :time_logs
+      end
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

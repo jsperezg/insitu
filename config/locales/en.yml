@@ -9,18 +9,14 @@ en:
   didnt_received_confirmation_instructions: Didn't receive confirmation instructions?
   didnt_received_unlock_instructions: Didn't receive unlock instructions?
   sign_in_with: Sign in with %{provider}
-  email: E-Mail
   fill_email: Type  your e-mail address
-  password: password
   remember_me: Remember  me
-  change_password: Change password
+  my_profile: My profile
   log_out: Log out
   send_me_reset_password_instructions: Send me reset password instructions
   edit_account: Edit User
   leave_password_blank: (leave blank if you don't want to change it)
-  password_confirmation: Password confirmation
   help_current_password: (we need your current password to confirm your changes)
-  current_password: Current Password
   edit:  Edit
   update: Update
   destroy: Destroy
@@ -36,7 +32,6 @@ en:
   vat: VAT
   customers: Customers
   minimum_length: (%{len} characters minimum)
-  time_tracker: Time tracker
   production: Production
   invoices: Invoices
   delivery_notes: Delivery notes

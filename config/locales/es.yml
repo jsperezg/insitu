@@ -8,18 +8,14 @@ es:
   forgot_password: ¿Has olvidado tu contraseña?
   didn_received_confirmation_instructions: ¿No has recibido las instrucciones para validar la cuenta?
   sign_in_with: Acceder con %{provider}
-  email: Correo electrónico
   fill_email: Introduce tu dirección de correo electrónico
-  password: Contraseña
   remember_me: Mantener la sesión abierta
-  change_password: Cambiar contraseña
+  my_profile: Mi perfil
   log_out: Cerrar sesión
   send_me_reset_password_instructions: Enviame las instrucciones para restablecer mi contraseña
   edit_account: Editar cuenta
   leave_password_blank: (Dejar en blanco para conservar la contraseña)
-  password_confirmation: Confirmar contraseña
   help_current_password: (Necesitamos tu contraseña actual para confirmar tus cambios)
-  current_password: Contraseña actual
   update: Actualizar
   save: Guardar
   waiting_confirmation_email: "Actualmente esperando confirmación para: %{email}"
@@ -32,7 +28,6 @@ es:
   payment_methods: Métodos de pago
   vat: IVA
   minimum_length: (Mínimo %{len} carácteres)
-  time_tracker: Gestion de tiempos
   production: Producción
   delivery_notes: Albaranes
   new_payment_method: Crear método de pago
