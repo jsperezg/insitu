@@ -2,6 +2,6 @@
 <div class="page-header">
   <h1><%=t 'tasks.create_title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
 </div>
-<%= form_for @task, url: user_tasks_path(current_user), :html => { :class => "form-horizontal task" } do |f| %>
+<%= form_for @task, url: user_project_tasks_path(current_user, @project), :html => { :class => "task" } do |f| %>
   <%= render :partial => 'form',  locals: { f: f } %>
 <% end %>

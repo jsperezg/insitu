@@ -41,6 +41,8 @@ es:
   successfully_updated: "%{item} actualizado con éxito."
   successfully_destroyed: "%{item} borrado con éxito."
   field_mandatory: El campo %{field_name} es obligatorio.
+  checkbox_true: "Si"
+  checkbox_false: "No"
 
   helpers:
     links:
@@ -53,11 +55,6 @@ es:
   services:
     service: Servicio
     title: Servicios
-    code: Código
-    description: Descripción
-    vat: IVA
-    unit: Unidades
-    price: Precio
     create_title: Crear Servicio
     edit_title: Editar Servicio
 
@@ -78,6 +75,12 @@ es:
     title: Tareas
     create_title: Nueva tarea
     edit_title: Editar tarea
+
+  time_logs:
+    time_log: Registro de tiempo
+    title: Registros de tiempo
+    create_title: Nuevo registro de tiempo
+    edit_title: Editar registro de tiempo
 
   invoices:
     invoice: Factura

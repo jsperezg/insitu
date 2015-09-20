@@ -44,10 +44,10 @@ class CustomersController < ApplicationController
     respond_to do |format|
       if @customer.update(customer_params)
         format.html { redirect_to user_customers_url(current_user), notice: t(:successfully_updated, item: t('customers.customer')) }
-        format.json { render :show, status: :ok, location: @customer }
+        format.json { respond_with_bip @customer }
       else
         format.html { render :edit }
-        format.json { render json: @customer.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip @customer }
       end
     end
   end

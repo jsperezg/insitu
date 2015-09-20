@@ -35,6 +35,7 @@ RSpec.describe TasksController, type: :controller do
 
   before(:each) do
     @user = create(:user)
+    @project = Project.first || create(:project)
     sign_in @user
   end
 
@@ -45,7 +46,7 @@ RSpec.describe TasksController, type: :controller do
   describe "GET #index" do
     it "assigns all tasks as @tasks" do
       task = Task.create! valid_attributes
-      get :index, { user_id: @user }
+      get :index, { user_id: @user, project_id: @project }
       expect(assigns(:tasks)).to eq([task])
     end
   end
@@ -53,7 +54,7 @@ RSpec.describe TasksController, type: :controller do
   describe "GET #show" do
     it "assigns the requested task as @task" do
       task = Task.create! valid_attributes
-      get :show, {user_id: @user, :id => task.to_param}
+      get :show, {user_id: @user, project_id: @project, :id => task.to_param}
       expect(assigns(:task)).to eq(task)
     end
   end
@@ -68,7 +69,7 @@ RSpec.describe TasksController, type: :controller do
   describe "GET #edit" do
     it "assigns the requested task as @task" do
       task = Task.create! valid_attributes
-      get :edit, {user_id: @user, :id => task.to_param}
+      get :edit, {user_id: @user, project_id: @project, :id => task.to_param}
       expect(assigns(:task)).to eq(task)
     end
   end
@@ -77,30 +78,30 @@ RSpec.describe TasksController, type: :controller do
     context "with valid params" do
       it "creates a new Task" do
         expect {
-          post :create, {user_id: @user, :task => valid_attributes}
+          post :create, {user_id: @user, project_id: @project, :task => valid_attributes}
         }.to change(Task, :count).by(1)
       end
 
       it "assigns a newly created task as @task" do
-        post :create, {user_id: @user, :task => valid_attributes}
+        post :create, {user_id: @user, project_id: @project, :task => valid_attributes}
         expect(assigns(:task)).to be_a(Task)
         expect(assigns(:task)).to be_persisted
       end
 
       it "redirects to the tasks list" do
-        post :create, {user_id: @user, :task => valid_attributes}
-        expect(response).to redirect_to(user_tasks_url(@user))
+        post :create, {user_id: @user, project_id: @project, :task => valid_attributes}
+        expect(response).to redirect_to(user_project_tasks_url(@user, @project))
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved task as @task" do
-        post :create, {user_id: @user, :task => invalid_attributes}
+        post :create, {user_id: @user, project_id: @project, :task => invalid_attributes}
         expect(assigns(:task)).to be_a_new(Task)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {user_id: @user, :task => invalid_attributes}
+        post :create, {user_id: @user, project_id: @project, :task => invalid_attributes}
         expect(response).to render_template("new")
       end
     end
@@ -114,7 +115,7 @@ RSpec.describe TasksController, type: :controller do
 
       it "updates the requested task" do
         task = Task.create! valid_attributes
-        put :update, {user_id: @user, :id => task.to_param, :task => new_attributes}
+        put :update, {user_id: @user, project_id: @project, :id => task.to_param, :task => new_attributes}
         task.reload
 
         new_attributes.each do |key, value|
@@ -124,27 +125,27 @@ RSpec.describe TasksController, type: :controller do
 
       it "assigns the requested task as @task" do
         task = Task.create! valid_attributes
-        put :update, {user_id: @user, :id => task.to_param, :task => valid_attributes}
+        put :update, {user_id: @user, project_id: @project, :id => task.to_param, :task => valid_attributes}
         expect(assigns(:task)).to eq(task)
       end
 
       it "redirects to the tasks list" do
         task = Task.create! valid_attributes
-        put :update, {user_id: @user, :id => task.to_param, :task => valid_attributes}
-        expect(response).to redirect_to(user_tasks_url(@user))
+        put :update, {user_id: @user, project_id: @project, :id => task.to_param, :task => valid_attributes}
+        expect(response).to redirect_to(user_project_tasks_url(@user, @project))
       end
     end
 
     context "with invalid params" do
       it "assigns the task as @task" do
         task = Task.create! valid_attributes
-        put :update, {user_id: @user, :id => task.to_param, :task => invalid_attributes}
+        put :update, {user_id: @user, project_id: @project, :id => task.to_param, :task => invalid_attributes}
         expect(assigns(:task)).to eq(task)
       end
 
       it "re-renders the 'edit' template" do
         task = Task.create! valid_attributes
-        put :update, {user_id: @user, :id => task.to_param, :task => invalid_attributes}
+        put :update, {user_id: @user, project_id: @project, :id => task.to_param, :task => invalid_attributes}
         expect(response).to render_template("edit")
       end
     end
@@ -154,14 +155,14 @@ RSpec.describe TasksController, type: :controller do
     it "destroys the requested task" do
       task = Task.create! valid_attributes
       expect {
-        delete :destroy, {user_id: @user, :id => task.to_param}
+        delete :destroy, {user_id: @user, project_id: @project, :id => task.to_param}
       }.to change(Task, :count).by(-1)
     end
 
     it "redirects to the tasks list" do
       task = Task.create! valid_attributes
-      delete :destroy, {user_id: @user, :id => task.to_param}
-      expect(response).to redirect_to(user_tasks_url(@user))
+      delete :destroy, {user_id: @user, project_id: @project, :id => task.to_param}
+      expect(response).to redirect_to(user_project_tasks_url(@user, @project))
     end
   end
 

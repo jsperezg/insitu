@@ -15,8 +15,11 @@
     <% @projects.each do |project| %>
       <tr>
         <td><%= link_to project.id, edit_user_project_path(current_user, project) %></td>
-        <td><%= project.name %></td>
-        <td><%= project.project_status.name %></td>        
+        <td>
+          <%= best_in_place project, :name,
+                url: user_project_path(current_user, project, format: :json)%>
+        </td>
+        <td><%= project.project_status.name %></td>
         <td>
           <%= link_to edit_user_project_path(current_user, project), class: 'btn btn-default btn-xs' do %>
             <i class="fa fa-pencil-square-o" aria-hidden="true">

@@ -17,18 +17,24 @@
     <% @customers.each do |customer| %>
       <tr>
         <td><%= link_to customer.id, edit_user_customer_path(current_user, customer) %></td>
-        <td><%= customer.name %></td>
-        <td><%= customer.contact_name %></td>
-        <td><%= customer.contact_phone %></td>
-        <td><%= customer.contact_email %></td>
+        <td><%= best_in_place customer, :name, url: user_customer_path(current_user, customer, format: :json) %></td>
+        <td><%= best_in_place customer, :contact_name, url: user_customer_path(current_user, customer, format: :json) %></td>
+        <td><%= best_in_place customer, :contact_phone, url: user_customer_path(current_user, customer, format: :json) %></td>
+        <td><%= best_in_place customer, :contact_email, url: user_customer_path(current_user, customer, format: :json) %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_user_customer_path(current_user, customer), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      user_customer_path(current_user, customer),
+          <%= link_to edit_user_customer_path(current_user, customer), :class => 'btn btn-default btn-xs' do %>
+            <i class="fa fa-pencil-square-o" aria-hidden="true">
+              <%=t 'helpers.links.edit' %>
+            </i>
+          <% end %>
+          <%= link_to user_customer_path(current_user, customer),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
+                      :class => 'btn btn-xs btn-danger' do %>
+            <i class="fa fa-trash-o" aria-hidden="true">
+              <%=t 'helpers.links.destroy' %>
+            </i>
+          <% end %>
         </td>
       </tr>
     <% end %>

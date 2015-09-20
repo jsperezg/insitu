@@ -17,6 +17,9 @@ es:
         current_password: Contraseña actual
       service:
         code: Código
+        description: Descripción
+        vat: IVA
+        unit: Unidades
         price: Precio
       customer:
         name: Nombre

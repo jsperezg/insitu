@@ -13,22 +13,15 @@
   </div>
 <% end %>
 
-<div class="control-group">
+<div class="form-group">
   <%= f.label :name, t(:description), :class => 'control-label' %>
-  <div class="controls">
-    <%= f.text_field :name, :class => 'form-control', required: true %>
-  </div>
-  <%= error_span(@payment_method[:name]) %>
+  <%= f.text_field :name, :class => 'form-control input-sm', required: true %>
 </div>
-<div class="control-group">
+<div class="form-group">
   <%= f.label :note_for_invoice, t(:note_for_invoice), :class => 'control-label' %>
-  <div class="controls">
-    <%= f.text_field :note_for_invoice, :class => 'form-control' %>
-  </div>
-  <%= error_span(@payment_method[:note_for_invoice]) %>
+  <%= f.text_field :note_for_invoice, :class => 'form-control input-sm' %>
 </div>
 
-<br>
-  <%= f.submit t(:save), :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+<%= f.submit t(:save), :class => 'btn btn-primary' %>
+<%= link_to t('.cancel', :default => t("helpers.links.cancel")),
           user_payment_methods_path(current_user.id), :class => 'btn btn-default' %>

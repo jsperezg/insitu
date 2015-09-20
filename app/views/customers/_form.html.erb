@@ -15,56 +15,45 @@
     </div>
   <% end %>
 
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'form-control', required: true %>
+  <div class=row>
+    <div class="form-group col-xs-3 pull-left">
+      <%= f.label :tax_id, :class => 'control-label' %>
+      <%= f.text_field :tax_id, :class => 'form-control input-sm' %>
     </div>
-    <%= error_span(@customer[:name]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :tax_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :tax_id, :class => 'form-control' %>
+
+    <div class="form-group col-xs-9 pull-left">
+      <%= f.label :name, :class => 'control-label' %>
+      <%= f.text_field :name, :class => 'form-control input-sm', required: true %>
     </div>
-    <%= error_span(@customer[:tax_id]) %>
   </div>
-  <div class="control-group">
-    <%= f.label :billing_serie, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :billing_serie, :class => 'form-control' %>
+
+  <div class=row>
+    <div class="form-group col-xs-3 pull-left">
+      <%= f.label :billing_serie, :class => 'control-label' %>
+      <%= f.text_field :billing_serie, :class => 'form-control input-sm' %>
     </div>
-    <%= error_span(@customer[:billing_serie]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :billing_tax, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :billing_tax, :class => 'form-control' %>
+
+    <div class="form-group col-xs-3 pull-left">
+      <%= f.label :billing_tax, :class => 'control-label' %>
+      <%= f.text_field :billing_tax, :class => 'form-control input-sm' %>
     </div>
-    <%= error_span(@customer[:billing_tax]) %>
   </div>
-  <div class="control-group">
+
+  <div class="form-group">
     <%= f.label :contact_name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :contact_name, :class => 'form-control' %>
-    </div>
-    <%= error_span(@customer[:contact_name]) %>
+    <%= f.text_field :contact_name, :class => 'form-control input-sm' %>
   </div>
-  <div class="control-group">
-    <%= f.label :contact_phone, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :contact_phone, :class => 'form-control' %>
+
+  <div class=row>
+    <div class="form-group col-xs-3 pull-left">
+      <%= f.label :contact_phone, :class => 'control-label' %>
+      <%= f.text_field :contact_phone, :class => 'form-control input-sm' %>
     </div>
-    <%= error_span(@customer[:contact_phone]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :contact_email, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :contact_email, :class => 'form-control' %>
+    <div class="form-group col-xs-9 pull-left">
+      <%= f.label :contact_email, :class => 'control-label' %>
+      <%= f.text_field :contact_email, :class => 'form-control input-sm' %>
     </div>
-    <%= error_span(@customer[:contact_email]) %>
   </div>
-  <br>
   <%= f.submit t(:save), :class => 'btn btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
             user_customers_path(current_user), :class => 'btn btn-default' %>

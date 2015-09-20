@@ -3,6 +3,6 @@
   <h1><%=t 'tasks.edit_title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
 </div>
 
-<%= form_for @task, url: user_task_path(current_user, @task), :html => { :class => "form-horizontal task" } do |f| %>
+<%= form_for @task, url: user_project_task_url(current_user, @project, @task), :html => { :class => "task" } do |f| %>
   <%= render :partial => 'form',  locals: { f: f } %>
 <% end %>

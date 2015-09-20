@@ -18,6 +18,8 @@ gem 'devise'
 gem 'apartment'
 gem "twitter-bootstrap-rails"
 gem 'email_validator'
+gem 'best_in_place', '~> 3.0.1'
+gem 'jquery-ui-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

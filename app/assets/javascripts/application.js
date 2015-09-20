@@ -14,4 +14,14 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
+//= require best_in_place
+//= require jquery-ui
+//= require best_in_place.jquery-ui
 //= require_tree .
+
+if (typeof jQuery !== 'undefined') {
+  $(document).on("page:change", function () {
+    /* Activating Best In Place */
+    $(".best_in_place").best_in_place();
+  });
+}

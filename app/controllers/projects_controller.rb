@@ -44,10 +44,10 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to user_projects_path(current_user), notice: t(:successfully_updated, item: t('projects.project')) }
-        format.json { render :show, status: :ok, location: @project }
+        format.json { respond_with_bip @project }
       else
         format.html { render :edit }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip @project }
       end
     end
   end

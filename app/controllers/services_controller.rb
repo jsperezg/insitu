@@ -44,10 +44,10 @@ class ServicesController < ApplicationController
     respond_to do |format|
       if @service.update(service_params)
         format.html { redirect_to user_services_path(current_user.id), notice: t(:successfully_updated, item: t('services.service')) }
-        format.json { render :show, status: :ok, location: @service }
+        format.json { respond_with_bip @service }
       else
         format.html { render :edit }
-        format.json { render json: @service.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip @service }
       end
     end
   end

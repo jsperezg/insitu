@@ -17,6 +17,9 @@ en:
         current_password: Current password
       service:
         code: Code
+        description: Description
+        vat: VAT
+        unit: Unit
         price: Price
       customer:
         name: Name

@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_project
 
   # GET /tasks
   # GET /tasks.json
@@ -15,7 +16,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   def new
-    @task = Task.new
+    @task = Task.new(project_id: @project.id)
   end
 
   # GET /tasks/1/edit
@@ -29,7 +30,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to user_tasks_url(current_user), notice: t(:successfully_created, item: t('tasks.task')) }
+        format.html { redirect_to user_project_tasks_url(current_user, @project), notice: t(:successfully_created, item: t('tasks.task')) }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
@@ -43,11 +44,11 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to user_tasks_url(current_user), notice: t(:successfully_updated, item: t('tasks.task')) }
-        format.json { render :show, status: :ok, location: @task }
+        format.html { redirect_to user_project_tasks_url(current_user, @project), notice: t(:successfully_updated, item: t('tasks.task')) }
+        format.json { respond_with_bip @task }
       else
         format.html { render :edit }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip @task }
       end
     end
   end
@@ -57,7 +58,7 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to user_tasks_url(current_user), notice: t(:successfully_destroyed, item: t('tasks.task')) }
+      format.html { redirect_to user_project_tasks_url(current_user, @project), notice: t(:successfully_destroyed, item: t('tasks.task')) }
       format.json { head :no_content }
     end
   end
@@ -66,6 +67,10 @@ class TasksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = Task.find(params[:id])
+    end
+
+    def set_project
+      @project = Project.find(params[:project_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

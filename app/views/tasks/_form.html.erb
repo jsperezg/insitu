@@ -14,35 +14,21 @@
     </div>
   <% end %>
 
-  <div class="control-group">
+  <%= f.hidden_field :project_id %>
+
+  <div class="form-group">
     <%= f.label :description, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :description, :class => 'form-control', required: true %>
-    </div>
-    <%= error_span(@task[:description]) %>
+    <%= f.text_field :description, :class => 'form-control input-sm', required: true %>
   </div>
-  <div class="control-group">
-    <%= f.label :project_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.collection_select :project_id,
-                              Project.where(project_status_id: ProjectStatus.find_by(name: 'Activo')).order(name: :asc),
-                              :id,
-                              :name,
-                              prompt: true, class: 'form-control',
-                              required: true %>
-    </div>
-    <%= error_span(@task[:project_id]) %>
-  </div>
-  <div class="control-group">
+
+  <div class="form-group">
     <div class="checkbox">
       <label>
         <%= f.check_box :finished %> <%= model_class.human_attribute_name(:finished) %>
       </label>
-      <%= error_span(@task[:finished]) %>
     </div>
   </div>
-  <br>
 
-  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= f.submit t(:save), :class => 'btn btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            user_tasks_path(current_user), :class => 'btn btn-default' %>
+            user_project_tasks_path(current_user, @project), :class => 'btn btn-default' %>

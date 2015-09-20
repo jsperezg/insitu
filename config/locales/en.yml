@@ -46,6 +46,8 @@ en:
   successfully_updated: "%{item} was successfully updated."
   successfully_destroyed: "%{item} was successfully destroyed."
   field_mandatory: Field %{field_name} is mandatory.
+  checkbox_true: "Yes"
+  checkbox_false: "No"
 
   helpers:
     links:
@@ -58,11 +60,6 @@ en:
   services:
     service: Service
     title: Services
-    code: Code
-    description: Description
-    vat: VAT
-    unit: Units
-    price: Price
     create_title: Create Service
     edit_title: Edit Service
 
@@ -83,6 +80,12 @@ en:
     title: Tasks
     create_title: New task
     edit_title: Edit task
+
+  time_logs:
+    time_log: Time record
+    title: Time tracker
+    create_title: New time record
+    edit_title: Edit time record
 
   invoices:
     invoice: Invoice
