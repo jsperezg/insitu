@@ -136,15 +136,15 @@ ActiveRecord::Schema.define(version: 20150914171851) do
   create_table "time_logs", force: :cascade do |t|
     t.string   "description", limit: 255, null: false
     t.datetime "start_time",              null: false
-    t.datetime "end_time",                null: false
-    t.integer  "project_id",  limit: 4,   null: false
+    t.datetime "end_time"
+    t.integer  "task_id",     limit: 4,   null: false
+    t.integer  "service_id",  limit: 4,   null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-    t.integer  "service_id",  limit: 4
   end
 
-  add_index "time_logs", ["project_id"], name: "index_time_logs_on_project_id", using: :btree
   add_index "time_logs", ["service_id"], name: "index_time_logs_on_service_id", using: :btree
+  add_index "time_logs", ["task_id"], name: "index_time_logs_on_task_id", using: :btree
 
   create_table "units", force: :cascade do |t|
     t.string   "label_short", limit: 255, null: false
@@ -200,7 +200,7 @@ ActiveRecord::Schema.define(version: 20150914171851) do
   add_foreign_key "invoices", "customers"
   add_foreign_key "invoices", "payment_methods"
   add_foreign_key "tasks", "projects"
-  add_foreign_key "time_logs", "projects"
   add_foreign_key "time_logs", "services"
+  add_foreign_key "time_logs", "tasks"
   add_foreign_key "users", "roles"
 end

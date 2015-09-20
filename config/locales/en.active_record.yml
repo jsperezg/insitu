@@ -37,6 +37,13 @@ en:
         description: Description
         project_id: Project
         finished: Finished
+      time_log:
+        description: Description
+        start_time: Start time
+        end_time: End time
+        task_id: Task
+        service_id: Service
+        
     errors:
       models:
         service:
@@ -66,4 +73,18 @@ en:
               description:
                 blank: 'is mandatory.'
               project_id:
+                blank: 'is mandatory.'
+
+          time_log:
+            attributes:
+              description:
+                blank: 'is mandatory.'
+              start_time:
+                blank: 'is mandatory.'
+                invalid_value: 'must be before the end time.'
+              end_time:
+                blank: 'is mandatory.'
+              task_id:
+                blank: 'is mandatory.'
+              service_id:
                 blank: 'is mandatory.'

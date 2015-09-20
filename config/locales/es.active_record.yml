@@ -37,6 +37,12 @@ es:
         description: Descripción
         project_id: Proyecto
         finished: Finalizado
+      time_log:
+        description: Descripción
+        start_time: Inicio
+        end_time: Fin
+        task_id: Tarea
+        service_id: Servicio
     errors:
       models:
         service:
@@ -64,6 +70,17 @@ es:
         task:
           attributes:
             description:
-              blank: 'es obligatorio.'
+              blank: 'es obligatoria.'
             project_id:
+              blank: 'es obligatorio.'
+        time_log:
+          attributes:
+            description:
+              blank: 'es obligatoria.'
+            start_time:
+              blank: 'es obligatoria.'
+              invalid_value: 'debe ser anterior a la fecha de fin.'            
+            task_id:
+              blank: 'es obligatoria.'
+            service_id:
               blank: 'es obligatorio.'

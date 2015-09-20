@@ -1,9 +1,13 @@
 FactoryGirl.define do
   factory :time_log do
-    description "MyString"
-start_time "2015-08-29 11:17:31"
-end_time ""
-project nil
+    sequence :description do |n|
+      "Time log #{ n }"
+    end
+
+    start_time { DateTime.now - 2.hours }
+    end_time  { DateTime.now }
+    task_id { Task.first.try(:id) || create(:task).id }
+    service_id { Service.first.try(:id) || create(:service).id }
   end
 
 end

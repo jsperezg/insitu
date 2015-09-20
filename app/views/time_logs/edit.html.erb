@@ -1,6 +1,8 @@
-<h1>Editing Time Log</h1>
+<%- model_class = TimeLog -%>
+<div class="page-header">
+  <h1><%=t 'time_logs.edit_title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @time_log %> |
-<%= link_to 'Back', time_logs_path %>
+<%= form_for @time_log, url: user_project_task_time_log_url(current_user, params[:project_id], params[:task_id], @time_log), :html => { :class => "task" } do |f| %>
+  <%= render :partial => 'form',  locals: { f: f } %>
+<% end %>
