@@ -17,11 +17,17 @@
 //= require best_in_place
 //= require jquery-ui
 //= require best_in_place.jquery-ui
-//= require_tree .
+//= require moment
+//= require bootstrap-datetimepicker
+//= require_tree ./autoload
 
 if (typeof jQuery !== 'undefined') {
   $(document).on("page:change", function () {
-    /* Activating Best In Place */
-    $(".best_in_place").best_in_place();
+    var bestInPlace = $(".best_in_place");
+
+    if (bestInPlace.length) {
+      /* Activating Best In Place */
+      bestInPlace.best_in_place();
+    }
   });
 }

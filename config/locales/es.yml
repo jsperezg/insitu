@@ -30,7 +30,6 @@ es:
   vat: IVA
   minimum_length: (Mínimo %{len} carácteres)
   production: Producción
-  delivery_notes: Albaranes
   new_payment_method: Crear método de pago
   update_payment_method: Editar método de pago
   name: Nombre
@@ -88,3 +87,9 @@ es:
     title: Facturas
     create_title: Nueva factura
     edit_title: Editar factura
+
+  delivery_notes:
+    deliver_note: Albarán
+    title: Albaranes
+    create_title: Nuevo albarán
+    edit_title: Editar albarán

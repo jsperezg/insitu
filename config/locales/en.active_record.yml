@@ -43,7 +43,11 @@ en:
         end_time: End time
         task_id: Task
         service_id: Service
-        
+      delivery_note:
+        number: Number
+        date: Date
+        customer_id: Customer
+
     errors:
       models:
         service:
@@ -74,7 +78,6 @@ en:
                 blank: 'is mandatory.'
               project_id:
                 blank: 'is mandatory.'
-
           time_log:
             attributes:
               description:
@@ -87,4 +90,12 @@ en:
               task_id:
                 blank: 'is mandatory.'
               service_id:
+                blank: 'is mandatory.'
+          delivery_note:
+            attributes:
+              number:
+                blank: 'is mandatory.'
+              date:
+                blank: 'is mandatory.'
+              customer_id:
                 blank: 'is mandatory.'

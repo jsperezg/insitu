@@ -34,8 +34,6 @@ en:
   customers: Customers
   minimum_length: (%{len} characters minimum)
   production: Production
-  invoices: Invoices
-  delivery_notes: Delivery notes
   new_payment_method: Create payment method
   update_payment_method: Update payment method
   name: Name
@@ -93,3 +91,9 @@ en:
     title: Invoices
     create_title: New invoice
     edit_title: Edit invoice
+
+  delivery_notes:
+    deliver_note: Delivery note
+    title: Delivery notes
+    create_title: New delivery note
+    edit_title: Edit delivery note

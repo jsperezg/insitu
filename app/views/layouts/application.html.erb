@@ -76,8 +76,8 @@
               <ul class="nav nav-list">
                 <li class="nav-header"><%=t :production %></li>
                 <li><%= link_to t('projects.title'), user_projects_path(current_user.id)%></li>
+                <li><%= link_to t('delivery_notes.title'), user_delivery_notes_path(current_user.id) %></li>
                 <li><%= link_to t('invoices.title'), user_invoices_path(current_user.id) %></li>
-                <li><%= link_to t(:delivery_notes), user_delivery_notes_path(current_user.id) %></li>
               </ul>
             </div><!--/.well -->
           </div><!--/span-->

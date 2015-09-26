@@ -43,6 +43,10 @@ es:
         end_time: Fin
         task_id: Tarea
         service_id: Servicio
+      delivery_note:
+        number: Número
+        date: Fecha
+        customer_id: Cliente
     errors:
       models:
         service:
@@ -79,8 +83,16 @@ es:
               blank: 'es obligatoria.'
             start_time:
               blank: 'es obligatoria.'
-              invalid_value: 'debe ser anterior a la fecha de fin.'            
+              invalid_value: 'debe ser anterior a la fecha de fin.'
             task_id:
               blank: 'es obligatoria.'
             service_id:
               blank: 'es obligatorio.'
+        delivery_note:
+          attributes:
+            number:
+              blank: 'es obligatorio.'
+            date:
+              blank: 'es obligatorio.'
+            customer_id:
+              blank: 'es obligatorio.'                

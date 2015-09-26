@@ -1,9 +1,7 @@
-<%= form_for @delivery_note, :html => { :class => "form-horizontal delivery_note" } do |f| %>
-
-    <% if @delivery_note.errors.any? %>
+  <% if @delivery_note.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@delivery_note.errors.count, "error") %> prohibited this delivery_note from being saved:</h3>
+        <h3 class="panel-title"><%=t :validation_error_header %></h3>
       </div>
       <div class="panel-body">
         <ul>
@@ -15,31 +13,31 @@
     </div>
   <% end %>
 
-  <div class="control-group">
-    <%= f.label :number, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :number, :class => 'form-control' %>
+  <div class=row>
+    <% unless @delivery_note.new_record? %>
+      <div class="form-group pull-left col-xs-3">
+        <%= f.label :number, :class => 'control-label' %>
+        <p class="form-control-static"><%= @delivery_note[:number] %></p>
+      </div>
+    <% end %>
+
+    <div class="form-group pull-left col-xs-6">
+      <%= f.label :customer_id, :class => 'control-label' %>
+      <%= f.collection_select :customer_id, Customer.order(name: :asc), :id, :name,
+        { prompt: true }, { class: 'form-control input-sm', required: true } %>
     </div>
-    <%= error_span(@delivery_note[:number]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :customer_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :customer_id, :class => 'form-control' %>
+
+    <div class="form-group pull-left col-xs-3">
+      <%= f.label :date, :class => 'control-label' %>
+      <div class="input-group date">
+        <%= f.text_field :date, :class => 'form-control input-sm', required: true %>
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
     </div>
-    <%= error_span(@delivery_note[:customer_id]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :date, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :date, :class => 'form-control' %>
-    </div>
-    <%= error_span(@delivery_note[:date]) %>
   </div>
 
-
-  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= f.submit t(:save), :class => 'btn btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            delivery_notes_path, :class => 'btn btn-default' %>
-
-<% end %>
+            user_delivery_notes_path(current_user), :class => 'btn btn-default' %>

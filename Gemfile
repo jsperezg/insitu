@@ -21,6 +21,10 @@ gem 'email_validator'
 gem 'best_in_place', '~> 3.0.1'
 gem 'jquery-ui-rails'
 
+# Date pickers
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.15.35'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
