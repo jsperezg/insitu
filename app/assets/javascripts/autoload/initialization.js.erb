@@ -1,0 +1,17 @@
+if (typeof jQuery !== 'undefined') {
+  $(document).on("page:change", function () {
+    var datePicker = $(".date"),
+        locale = '<%= I18n.locale  %>',
+        dateFormat = "YYYY-MM-DD";
+
+    if (datePicker.length) {
+      switch (locale) {
+        case "es":
+          dateFormat = "DD/MM/YYYY";
+          break;
+      }
+
+      datePicker.datetimepicker({ format: dateFormat });
+    }
+  });
+}
