@@ -31,4 +31,16 @@ module Settings
 
 		value
 	end
+
+	def init_default_settings_for(user)
+		year = DateTime.now.year
+
+		[DeliveryNote.model_name, Invoice.model_name].each do |model|
+			key = find_or_create_key("#{model}.serie", SettingKey.data_types[:string])
+			find_or_create_value(user, key, model[0].capitalize)
+
+			key = find_or_create_key("#{ model }.#{ year }", SettingKey.data_types[:integer])
+			find_or_create_value(user, key, 1)
+		end
+	end
 end

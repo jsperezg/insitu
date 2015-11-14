@@ -30,7 +30,8 @@
     <div class="form-group pull-left col-xs-3">
       <%= f.label :date, :class => 'control-label' %>
       <div class="input-group date">
-        <%= f.text_field :date, :class => 'form-control input-sm', required: true %>
+        <input type=text id=date name="delivery_note[date]" class="form-control input-sm" value="<%=l @delivery_note.date %>" required>
+        
         <span class="input-group-addon">
           <span class="glyphicon glyphicon-calendar"></span>
         </span>

@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"delivery",
+				"delivery_note"
+			],
+			[
+				"find_o",
+				"find_or_create_value"
+			],
+			[
+				"Sett",
+				"SettingKey"
+			],
+			[
 				"competi",
 				"competitorClass"
 			],
@@ -123,7 +135,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 467.0
+		"width": 449.0
 	},
 	"console":
 	{
@@ -140,6 +152,34 @@
 	},
 	"file_history":
 	[
+		"/home/jsperezg/NetBeansProjects/fges/app/controllers/delivery_notes_controller.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/controllers/customers_controller.rb",
+		"/home/jsperezg/NetBeansProjects/fges/config/locales/es.yml",
+		"/home/jsperezg/NetBeansProjects/fges/app/models/delivery_note.rb",
+		"/home/jsperezg/NetBeansProjects/fges/lib/sequence_generator.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/edit.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/new.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/lib/settings.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/_form.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/models/user.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/projects/index.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/payment_methods/index.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/services/index.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/customers/index.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/tasks/index.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/time_logs/index.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/index.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/controllers/projects_controller.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/models/setting_value.rb",
+		"/home/jsperezg/NetBeansProjects/fges/config/application.rb",
+		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20151114113220_create_setting_values.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/models/invoice.rb",
+		"/home/jsperezg/NetBeansProjects/fges/config/initializers/apartment.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/controllers/application_controller.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/models/setting_key.rb",
+		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20151114112339_create_setting_keys.rb",
+		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20151114112121_add_project_defaults.rb",
+		"/home/jsperezg/NetBeansProjects/fges/fges.sublime-project",
 		"/home/jsperezg/Documentos/TracTrac/html-viewer/test/calculation/data/ResultListSpec.js",
 		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/calculation/data/ResultList.js",
 		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/prov/leaderboard/Leaderboard.js",
@@ -239,35 +279,7 @@
 		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/filter/GPSFilterDirAndSpeed.js",
 		"/home/juan/NetBeansProjects/html-viewer/test/calculation/filter/GPSFilterDirAndSpeedSpec.js",
 		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/sailing/ColumnCompetitorBoatSpeedSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/sailing/ColumnCompetitorBoatSpeed.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/sailing/ColumnCompetitorBoatNextCPDistSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/sailing/ColumnCompetitorBoatNextCPDist.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/sailing/ColumnCompetitorBoatDistFinishSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorOffsetAfterSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorTime.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorTimeSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorSpeedAvgSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorSpeedSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/model/data/Position.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorLatitudeSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorLatitude.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorOffset.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorOffsetTimeAfterSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorOffsetTimeAfter.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorOffsetAfter.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorOffsetSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorIndicator.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorIndicatorSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorColorMarkerSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/model/util/Color.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnRowNumberSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnRowNumber.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorTeamSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnEmpty.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnEmptySpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorNationalitySpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorNameSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorLongitudeSpec.js"
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/sailing/ColumnCompetitorBoatSpeed.js"
 	],
 	"find":
 	{
@@ -275,9 +287,10 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
+			"<open folders>",
 			"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app",
 			"/home/juan/NetBeansProjects/html-viewer/src/",
 			"/home/juan/NetBeansProjects/html-viewer/src/subscription",
@@ -291,6 +304,8 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"deliver_notes",
+			"current_user",
 			"raceStartTime",
 			"startTime",
 			".startTime =",
@@ -416,9 +431,7 @@
 			"finishTime)",
 			"JSUtil.HasValue(",
 			"finishTime !==",
-			"finishTime.",
-			"startTime.",
-			"startTime !== null"
+			"finishTime."
 		],
 		"highlight": true,
 		"in_selection": false,
