@@ -5,19 +5,19 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th class=col-xs-1><%= model_class.human_attribute_name(:number) %></th>
+      <th class=col-xs-2><%= model_class.human_attribute_name(:number) %></th>
       <th class=col-xs-6><%= model_class.human_attribute_name(:customer_id) %></th>
-      <th class=col-xs-1><%= model_class.human_attribute_name(:date) %></th>
-      <th class=col-xs-4></th>
+      <th class="col-xs-1 text-center"><%= model_class.human_attribute_name(:date) %></th>
+      <th class=col-xs-3></th>
     </tr>
   </thead>
   <tbody>
     <% @delivery_notes.each do |delivery_note| %>
       <tr>
-        <td><%= link_to delivery_note.number, delivery_note_path(delivery_note) %></td>
-        <td><%= delivery_note.customer_id %></td>
-        <td><%= delivery_note.date %></td>
-        <td>
+        <td><%= link_to delivery_note.number, edit_user_delivery_note_path(current_user, delivery_note) %></td>
+        <td><%= delivery_note.customer.name %></td>
+        <td class="text-center"><%=l delivery_note.date %></td>
+        <td class="text-right">
           <%= link_to edit_user_delivery_note_path(current_user, delivery_note), class: 'btn btn-default btn-xs' do %>
             <i class="fa fa-pencil-square-o" aria-hidden="true">
               <%=t 'helpers.links.edit' %>

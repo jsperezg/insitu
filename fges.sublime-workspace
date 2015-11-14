@@ -1,0 +1,508 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"competi",
+				"competitorClass"
+			],
+			[
+				"mapP",
+				"mapProj"
+			],
+			[
+				"proto",
+				"prototype"
+			],
+			[
+				"ma",
+				"mapProj"
+			],
+			[
+				"short",
+				"shortNameIdx"
+			],
+			[
+				"result",
+				"resultTable"
+			],
+			[
+				"btnFilter",
+				"btnFilterSelected"
+			],
+			[
+				"lead",
+				"leaderboardWidget"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"lea",
+				"leaderboardWidget"
+			],
+			[
+				"comp",
+				"competitorClass"
+			],
+			[
+				"Co",
+				"ColumnCompetitorBoatAfterHandicap"
+			],
+			[
+				"Colum",
+				"ColumnCompetitorRowingAfter"
+			],
+			[
+				"speed",
+				"speedAvg"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 96.0,
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"jshint",
+				"JSHint"
+			],
+			[
+				"PRETTY",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"jsh",
+				"JSHint"
+			],
+			[
+				"js",
+				"JSHint"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"JSHi",
+				"JSHint"
+			],
+			[
+				"install p",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 139.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/test/calculation/data/ResultListSpec.js",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/calculation/data/ResultList.js",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/prov/leaderboard/Leaderboard.js",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/model/event/CompetitorFactory.js",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/test/resources/21bbbb20-1bab-0132-514f-10b11c4ed8fd.json",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/model/event/EventFactory.js",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/test/resources/7dc3fae0-fc7b-0132-9f7a-10bf48d758ce.json",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/test/test-main.js",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/calculation/data/ResultItem.js",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/test/resources/7dc3fae0-fc7b-0132-9f7a-10bf48d758ce_markpassings.json",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/prov/leaderboard/ResultRow.js",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/test-apps/cesium/sailing handicap.html",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/subscription/gms/CompetitorReceiver.js",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/util/Observable.js",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/calculation/data/RaceData.js",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/subscription/gms/OnlineMessagesManager.js",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/Main.js",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/calculation/subscription/CalculationSubscriptionListener.js",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/timer/Timer.js",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/test/calculation/column/ColumnCompetitorOffsetAfterSpec.js",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/README",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/cesium/layer/CompetitorsLayer.js",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/cesium/layer/MapLayers.js",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/calculation/map/SailingLinesCalculator.js",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/model/event/Event.js",
+		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/subscription/Subscriber.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/subscription/websocket/WebSocketSubscriberAdapter.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/data/ResultItem.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/Main.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/prov/leaderboard/progresspanel/ProgressPanel.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/model/route/ControlRoute.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/model/route/Control.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/model/event/EventFactory.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/model/event/Race.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/data/RaceData.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/route/MovingRoute.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/route/Leg.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/map/MapProj.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/model/event/Event.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/model/route/Leg.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/model/route/Route.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/layer/LinesLayer.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/layer/LayLinesLayer.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/layer/LadderLinesLayer.js",
+		"/home/juan/NetBeansProjects/html-viewer/test-apps/cesium/sailing.html",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/prov/leaderboard/Leaderboard.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/style/bootstrap-theme.css",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/prov/leaderboard/ResultTable.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/prov/leaderboard/ResultRow.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/data/TableRowComparator.js",
+		"/home/juan/NetBeansProjects/html-viewer/test-apps/common.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/config.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/data/ResultList.js",
+		"/home/juan/NetBeansProjects/html-viewer/test-apps/cesium/offshore-sailing.html",
+		"/home/juan/NetBeansProjects/html-viewer/test-apps/cesium/orienteering.html",
+		"/home/juan/NetBeansProjects/html-viewer/test-apps/cesium/routesports.html",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorSpeedAvg.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorSpeed.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/AbstractColumnData.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/util/JSUtil.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/marker/TailMarkerFactory.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/labeling/CompetitorLabelFactory.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/AbstractMap.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/layer/CompetitorsLayer.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/labeling/LabelFactory.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/Map.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/MapObjectsManager.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/marker/AbstractMarkerFactory.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/marker/CompetitorDrawingState.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/layer/LeaderLineLayer.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/MiniMap.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/layer/MapLayers.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/marker/RGBMarkerFactory.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/layer/AbstractLayer.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/model/event/Competitor.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/map/BearingCalculation.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/viewer-interface/MinimizableComponent.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/util/Observable.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/util/ClassUtils.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorIni.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/model/event/CompetitorFactory.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/model/util/ParameterSet.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorColorMarker.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/sailing/ColumnCompetitorBoatDistFinish.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/sailing/ColumnCompetitorBoatAfterHandicap.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/sailing/ColumnCompetitorBoatAfter.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/sailing/ColumnCompetitorBoatAfterHandicapSpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/sailing/ColumnCompetitorCurrentLap.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/sailing/ColumnCompetitorBoatAfterSpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/resources/ESS2015-Cardiff-Race20.json",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/sailing/ColumnCompetitorCurrentLapSpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/data/ResultListSpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/sailing/ColumnCompetitorRowingAfter.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/sailing/ColumnCompetitorRowingAfterSpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/sailing/ColumnCompetitorHeadingSpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/sailing/ColumnCompetitorHeading.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/filter/GPSFilterDirAndSpeed.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/filter/GPSFilterDirAndSpeedSpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/sailing/ColumnCompetitorBoatSpeedSpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/sailing/ColumnCompetitorBoatSpeed.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/sailing/ColumnCompetitorBoatNextCPDistSpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/sailing/ColumnCompetitorBoatNextCPDist.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/sailing/ColumnCompetitorBoatDistFinishSpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorOffsetAfterSpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorTime.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorTimeSpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorSpeedAvgSpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorSpeedSpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/model/data/Position.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorLatitudeSpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorLatitude.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorOffset.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorOffsetTimeAfterSpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorOffsetTimeAfter.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorOffsetAfter.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorOffsetSpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorIndicator.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorIndicatorSpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorColorMarkerSpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/model/util/Color.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnRowNumberSpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnRowNumber.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorTeamSpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnEmpty.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnEmptySpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorNationalitySpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorNameSpec.js",
+		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/ColumnCompetitorLongitudeSpec.js"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app",
+			"/home/juan/NetBeansProjects/html-viewer/src/",
+			"/home/juan/NetBeansProjects/html-viewer/src/subscription",
+			"/home/juan/NetBeansProjects/html-viewer/src",
+			"/home/juan/NetBeansProjects/html-viewer/",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"raceStartTime",
+			"startTime",
+			".startTime =",
+			"timeChangedPL",
+			"raceStartTime === 0",
+			"NULL",
+			"'",
+			"handicapSystem",
+			"RaceHandicapSystem",
+			"handicapSystem",
+			"getRenderCellValue",
+			"delete this.resultList",
+			"addCompetitor",
+			"gotRouteChange",
+			"remove",
+			".addTimeUpdateListener",
+			"Timer.getInstance().addTimeUpdateListener",
+			"new RaceData",
+			"RaceData.getInstance",
+			".SAILING",
+			"CalculationSubscriptionListener",
+			"gotRouteChange",
+			"createControlRoute",
+			"new ControlRoute",
+			"timeChanged",
+			"courseLayoutPosition",
+			"updateCourseLayoutPosition",
+			"getCourseLayoutPosition",
+			"timechanged",
+			"updateRoute",
+			"NAUTICAL_MILLE_METERS",
+			"getLegDist",
+			"new LinesLayer",
+			"jQuery._data",
+			"_data",
+			"refresh",
+			"resultTable",
+			"parent",
+			"column",
+			"resultList",
+			"resultTable",
+			"parent",
+			"maxWidth",
+			"resultCount",
+			"NOTDRAWING",
+			"createNewEntity",
+			"competitorMapObjects",
+			"createCompetitorMapObjects",
+			"addMapObjects",
+			"addMapObject",
+			"TailMarkerFactory",
+			"NOTDRAWING",
+			"visible",
+			"addDefaultLayers",
+			"new CompetitorsLayer",
+			"createMapObject",
+			"body",
+			"tableRowComparator.compare",
+			"TableRowComparator",
+			"createEvent",
+			".subscribe(",
+			"subscribe",
+			"isColorized =",
+			"'",
+			"addCustomProperty",
+			"'",
+			".getTotalTime",
+			"getTotalTime",
+			"setDirection",
+			".direction =",
+			".heading =",
+			"heading",
+			"formaSpeed",
+			".resultList =",
+			"new ColumnCompetitorIndicator",
+			"color =",
+			".equals",
+			"'",
+			".toFixed(0)",
+			"'",
+			".toFixed(0)",
+			"getPosition",
+			"return",
+			"'",
+			"oldTime",
+			".startTime",
+			"'",
+			"Timer",
+			".raceStartTime",
+			"timer.startTime",
+			"timer.raceStartTime",
+			"race.startTime",
+			"getPos",
+			".newPosition",
+			"race.startTime",
+			"console",
+			"'",
+			"\"Fin\"",
+			"Fin",
+			".passingTime =",
+			".finishTime =",
+			"finishTime =",
+			"finishTime",
+			".finishTime =",
+			"startTime === null",
+			"startTime !== null",
+			"finishTime !== null",
+			"finishTime === null",
+			"new RaceCompetitor",
+			".startTime =",
+			"startTime",
+			".startTime)",
+			"startTime)",
+			"finishTime)",
+			"finishTIme.",
+			"finishTIme",
+			".finishTime.",
+			".finish",
+			"JSUtil",
+			"finishTime.",
+			"startTime.",
+			"finishTime.",
+			"finishTime)",
+			"JSUtil.HasValue(",
+			"finishTime !==",
+			"finishTime.",
+			"startTime.",
+			"startTime !== null"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"null",
+			"\""
+		],
+		"reverse": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 118.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 295.0,
+	"status_bar_visible": true
+}

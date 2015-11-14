@@ -1,6 +1,16 @@
 class DeliveryNote < ActiveRecord::Base
-  belongs_to :customer
+	include SequenceGenerator
 
-  validates :customer_id, presence: true
-  validates :date, presence: true
+  	belongs_to :customer
+
+  	validates :customer_id, presence: true
+  	validates :date, presence: true
+
+  	before_create :set_number
+
+  	private 
+
+  	def set_number
+  		self.number = generate_id(Thread.current[:user], self.model_name.human, date.year)
+  	end
 end

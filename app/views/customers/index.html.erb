@@ -21,7 +21,7 @@
         <td><%= best_in_place customer, :contact_name, url: user_customer_path(current_user, customer, format: :json) %></td>
         <td><%= best_in_place customer, :contact_phone, url: user_customer_path(current_user, customer, format: :json) %></td>
         <td><%= best_in_place customer, :contact_email, url: user_customer_path(current_user, customer, format: :json) %></td>
-        <td>
+        <td class=text-right>
           <%= link_to edit_user_customer_path(current_user, customer), :class => 'btn btn-default btn-xs' do %>
             <i class="fa fa-pencil-square-o" aria-hidden="true">
               <%=t 'helpers.links.edit' %>

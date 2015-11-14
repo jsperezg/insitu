@@ -22,7 +22,7 @@
           <%= best_in_place payment_method, :note_for_invoice,
                 url: user_payment_method_path(current_user, payment_method, format: :json) %>
         </td>
-        <td>
+        <td class=text-right>
           <%= link_to edit_user_payment_method_path(current_user.id, payment_method), :class => 'btn btn-default btn-xs' do %>
             <i class="fa fa-pencil-square-o" aria-hidden="true">
               <%=t 'helpers.links.edit' %>

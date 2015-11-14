@@ -10,7 +10,7 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:finished) %></th>
+      <th class=text-center><%= model_class.human_attribute_name(:finished) %></th>
       <th></th>
     </tr>
   </thead>
@@ -24,7 +24,7 @@
           <%= best_in_place task, :description,
               url: user_project_task_url(current_user, params[:project_id], task, format: :json) %>
         </td>
-        <td>
+        <td class=text-center>
           <%= best_in_place task, :finished, as: :checkbox,
               collection: {
                 false: t('checkbox_false', default: 'No'),
@@ -32,7 +32,7 @@
               },
               url: user_project_task_url(current_user, params[:project_id], task, format: :json) %>
         </td>
-        <td>
+        <td class=text-right>
           <%= link_to edit_user_project_task_path(current_user, params[:project_id], task), :class => 'btn btn-default btn-xs' do %>
             <i class="fa fa-pencil-square-o" aria-hidden="true">
               <%=t 'helpers.links.edit' %>

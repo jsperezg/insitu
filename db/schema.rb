@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914171851) do
+ActiveRecord::Schema.define(version: 20151114113220) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "name",          limit: 255, null: false
@@ -123,6 +123,29 @@ ActiveRecord::Schema.define(version: 20150914171851) do
   add_index "services", ["unit_id"], name: "index_services_on_unit_id", using: :btree
   add_index "services", ["vat_id"], name: "index_services_on_vat_id", using: :btree
 
+  create_table "setting_keys", force: :cascade do |t|
+    t.string   "name",       limit: 255, null: false
+    t.integer  "data_type",  limit: 4,   null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "setting_keys", ["name"], name: "index_setting_keys_on_name", using: :btree
+
+  create_table "setting_values", force: :cascade do |t|
+    t.integer  "value_i",        limit: 4
+    t.string   "value_s",        limit: 255
+    t.boolean  "value_b"
+    t.date     "value_d"
+    t.integer  "user_id",        limit: 4,   null: false
+    t.integer  "setting_key_id", limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "setting_values", ["setting_key_id"], name: "index_setting_values_on_setting_key_id", using: :btree
+  add_index "setting_values", ["user_id"], name: "index_setting_values_on_user_id", using: :btree
+
   create_table "tasks", force: :cascade do |t|
     t.string   "description", limit: 255,                 null: false
     t.integer  "project_id",  limit: 4,                   null: false
@@ -199,6 +222,7 @@ ActiveRecord::Schema.define(version: 20150914171851) do
   add_foreign_key "invoice_details", "services"
   add_foreign_key "invoices", "customers"
   add_foreign_key "invoices", "payment_methods"
+  add_foreign_key "setting_values", "setting_keys"
   add_foreign_key "tasks", "projects"
   add_foreign_key "time_logs", "services"
   add_foreign_key "time_logs", "tasks"

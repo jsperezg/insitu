@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :set_locale, :switch_tenant
+  before_action :set_locale, :switch_tenant, :store_user
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   # Prevent CSRF attacks by raising an exception.
@@ -36,5 +36,9 @@ class ApplicationController < ActionController::Base
     unless Rails.env.test?
       Apartment::Tenant.switch! current_user.try(:tenant)
     end
+  end
+
+  def store_user
+    Thread.current[:user] = current_user
   end
 end

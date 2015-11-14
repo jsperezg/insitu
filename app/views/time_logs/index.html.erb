@@ -10,8 +10,8 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:start_time) %></th>
-      <th><%= model_class.human_attribute_name(:end_time) %></th>
+      <th class=text-center><%= model_class.human_attribute_name(:start_time) %></th>
+      <th class=text-center><%= model_class.human_attribute_name(:end_time) %></th>
       <th></th>
     </tr>
   </thead>
@@ -25,10 +25,10 @@
           <%= best_in_place time_log, :description, url:
               user_project_task_time_log_path(current_user, params[:project_id], params[:task_id], time_log, format: :json) %>
         </td>
-        <td><%=l time_log[:start_time], format: :long %></td>
-        <td><% unless time_log[:end_time].nil? %><%=l time_log[:end_time], format: :long %><% end %></td>
+        <td class=text-center><%=l time_log[:start_time], format: :long %></td>
+        <td class=text-center><% unless time_log[:end_time].nil? %><%=l time_log[:end_time], format: :long %><% end %></td>
 
-        <td>
+        <td class=text-right>
           <%= link_to edit_user_project_task_time_log_path(current_user, params[:project_id], params[:task_id], time_log),
                       :class => 'btn btn-default btn-xs' do %>
             <i class="fa fa-pencil-square-o" aria-hidden="true">

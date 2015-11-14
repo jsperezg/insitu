@@ -23,7 +23,7 @@
         <td><%= service.vat.rate %> %</td>
         <td><%= service.unit.label_short %></td>
         <td><%= best_in_place service, :price, path: user_service_path(current_user, service, format: :json) %></td>
-        <td>
+        <td class=text-right>
           <%= link_to edit_user_service_path(current_user.id, service), :class => 'btn btn-default btn-xs' do %>
             <i class="fa fa-pencil-square-o" aria-hidden="true">
               <%=t 'helpers.links.edit' %>
