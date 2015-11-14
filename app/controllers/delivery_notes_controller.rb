@@ -29,7 +29,7 @@ class DeliveryNotesController < ApplicationController
 
     respond_to do |format|
       if @delivery_note.save
-        format.html { redirect_to @delivery_note, notice: 'Delivery note was successfully created.' }
+        format.html { redirect_to user_delivery_notes_url(current_user), notice: 'Delivery note was successfully created.' }
         format.json { render :show, status: :created, location: @delivery_note }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class DeliveryNotesController < ApplicationController
   def update
     respond_to do |format|
       if @delivery_note.update(delivery_note_params)
-        format.html { redirect_to @delivery_note, notice: 'Delivery note was successfully updated.' }
+        format.html { redirect_to user_delivery_notes_url(current_user), notice: 'Delivery note was successfully updated.' }
         format.json { render :show, status: :ok, location: @delivery_note }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class DeliveryNotesController < ApplicationController
   def destroy
     @delivery_note.destroy
     respond_to do |format|
-      format.html { redirect_to delivery_notes_url, notice: 'Delivery note was successfully destroyed.' }
+      format.html { redirect_to user_delivery_notes_url(current_user), notice: 'Delivery note was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -70,6 +70,6 @@ class DeliveryNotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def delivery_note_params
-      params.require(:delivery_note).permit(:number, :customer_id, :date)
+      params.require(:delivery_note).permit(:customer_id, :date)
     end
 end

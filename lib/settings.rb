@@ -4,6 +4,8 @@ module Settings
 		if key.nil?
 			key = SettingKey.create(name: name, data_type: data_type)
 		end
+
+		key
 	end
 
 	def find_or_create_value(user, key, default)		
@@ -26,5 +28,7 @@ module Settings
 				value = SettingValue.create(user_id: user.id, setting_key_id: key.id, value_s: default.to_s)
 			end
 		end
+
+		value
 	end
 end
