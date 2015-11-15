@@ -1,0 +1,38 @@
+<%- model_class = DeliveryNoteDetail -%>
+<hr>
+<table class="table table-striped">
+  <thead>
+    <tr>          
+      <th class=col-xs-8><%= model_class.human_attribute_name(:service_id) %></th>
+      <th class="col-xs-1 text-right"><%= model_class.human_attribute_name(:quantity) %></th>      
+      <th class="col-xs-1 text-right"><%= model_class.human_attribute_name(:price) %></th>
+      <th class="col-xs-1 text-right"><%= model_class.human_attribute_name(:total) %></th>
+      <th class=col-xs-1></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @delivery_note.delivery_note_details.each do |delivery_note_detail| %>
+      <tr>              
+        <td><%= delivery_note_detail.service.description %></td>
+        <td>
+          <%= delivery_note_detail.quantity %>
+          <%= delivery_note_detail.service.unit.label_short %>
+        </td>
+        <td><%= delivery_note_detail.price %></td>
+        <td><%= delivery_note_detail.total %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_delivery_note_detail_path(delivery_note_detail), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      delivery_note_detail_path(delivery_note_detail),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+
+    <%= render partial: '/delivery_note_details/new' %>
+  </tbody>
+</table>
+

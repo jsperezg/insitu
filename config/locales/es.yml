@@ -43,12 +43,13 @@ es:
   field_mandatory: El campo %{field_name} es obligatorio.
   checkbox_true: "Si"
   checkbox_false: "No"
+  custom_value: Valor personalizado
 
   helpers:
     links:
       new: Nuevo
       edit: Editar
-      destroy: Borrar
+      destroy: Borrar      
       confirm: ¿Estas seguro?
       cancel: Cancelar
 
@@ -93,3 +94,7 @@ es:
     title: Albaranes
     create_title: Nuevo albarán
     edit_title: Editar albarán
+
+  delivery_note_details:
+    delivery_note_detail: Detalle albarán
+    title: Detalle albarán

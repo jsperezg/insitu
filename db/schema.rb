@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151114113220) do
+ActiveRecord::Schema.define(version: 20151115071122) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "name",          limit: 255, null: false
@@ -26,12 +26,13 @@ ActiveRecord::Schema.define(version: 20151114113220) do
   end
 
   create_table "delivery_note_details", force: :cascade do |t|
-    t.integer  "delivery_note_id", limit: 4,                         null: false
-    t.integer  "service_id",       limit: 4,                         null: false
-    t.decimal  "quantity",                   precision: 7, scale: 2, null: false
-    t.decimal  "price",                      precision: 7, scale: 2, null: false
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
+    t.integer  "delivery_note_id",   limit: 4,                           null: false
+    t.integer  "service_id",         limit: 4,                           null: false
+    t.decimal  "quantity",                       precision: 7, scale: 2, null: false
+    t.decimal  "price",                          precision: 7, scale: 2, null: false
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+    t.string   "custom_description", limit: 255
   end
 
   add_index "delivery_note_details", ["delivery_note_id"], name: "index_delivery_note_details_on_delivery_note_id", using: :btree

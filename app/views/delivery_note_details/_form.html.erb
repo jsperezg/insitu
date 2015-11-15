@@ -1,5 +1,38 @@
-<%= form_for @delivery_note_detail, :html => { :class => "form-horizontal delivery_note_detail" } do |f| %>
+<%- model_class = DeliveryNoteDetail -%>
+<tr>
+  <td>
+    <div class=row>
+      <div class="form-group pull-left col-xs-4">
+        <%= f.collection_select :service_id, Service.order(description: :asc), :id, :description,
+          { prompt: true }, { class: 'form-control input-sm', required: true } %>
+      </div>
 
+      <div class="form-group pull-left col-xs-8">
+        <%= f.text_field :custom_description, { class: 'form-control input-sm', placeholder: model_class.human_attribute_name(:custom_description) } %>
+      </div>
+    </div>
+  </td>
+  <td class=text-right>
+    <div class="form-group">
+      <%= f.text_field :quantity, { class: 'form-control input-sm', required: true } %>
+    </div>
+  </td>
+  <td class=text-right>
+    <div class="form-group">
+      <%= f.text_field :price, { class: 'form-control input-sm', required: true } %>
+    </div>
+  </td>
+  <td></td>
+  <td class=text-right>
+    <%= button_tag type: 'submit', class: 'btn btn-primary btn-sm' do %>
+      <i class="fa fa-floppy-o" aria-hidden="true">
+        <%=t 'save' %>
+      </i>
+    <% end %>
+  </td>
+</tr>
+
+<!--
     <% if @delivery_note_detail.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
@@ -38,8 +71,6 @@
   </div>
 
 
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            delivery_note_details_path, :class => 'btn btn-default' %>
+  
 
-<% end %>
+-->

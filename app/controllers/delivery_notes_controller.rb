@@ -5,7 +5,7 @@ class DeliveryNotesController < ApplicationController
   # GET /delivery_notes
   # GET /delivery_notes.json
   def index
-    @delivery_notes = DeliveryNote.order(date: :desc)
+    @delivery_notes = DeliveryNote.order(date: :desc)    
   end
 
   # GET /delivery_notes/1
@@ -20,6 +20,7 @@ class DeliveryNotesController < ApplicationController
 
   # GET /delivery_notes/1/edit
   def edit
+    @delivery_note_detail = DeliveryNoteDetail.new
   end
 
   # POST /delivery_notes

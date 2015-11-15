@@ -47,6 +47,13 @@ es:
         number: Número
         date: Fecha
         customer_id: Cliente
+      delivery_note_detail:
+        service_id: Concepto
+        quantity: Cantidad
+        price: Precio
+        total: Total
+        custom_description: Personalizado
+
     errors:
       models:
         service:

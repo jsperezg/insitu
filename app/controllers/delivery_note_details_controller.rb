@@ -70,6 +70,6 @@ class DeliveryNoteDetailsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def delivery_note_detail_params
-      params.require(:delivery_note_detail).permit(:delivery_note_id, :service_id, :quantity)
+      params.require(:delivery_note_detail).permit(:service_id, :quantity, :price, :custom_description)
     end
 end

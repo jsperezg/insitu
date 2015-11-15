@@ -2,9 +2,10 @@ class DeliveryNote < ActiveRecord::Base
 	include SequenceGenerator
 
   	belongs_to :customer
+    has_many :delivery_note_details
 
   	validates :customer_id, presence: true
-  	validates :date, presence: true
+  	validates :date, presence: true    
 
   	before_create :set_number
   	

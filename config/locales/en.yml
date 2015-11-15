@@ -47,6 +47,7 @@ en:
   field_mandatory: Field %{field_name} is mandatory.
   checkbox_true: "Yes"
   checkbox_false: "No"
+  custom_value: Custom value
 
   helpers:
     links:
@@ -97,3 +98,7 @@ en:
     title: Delivery notes
     create_title: New delivery note
     edit_title: Edit delivery note
+
+  delivery_notes_details:
+    delivery_note_detail: Delivery note details
+    title: Delivery note details
