@@ -24,22 +24,28 @@ RSpec.describe DeliveryNotesController, type: :controller do
   # DeliveryNote. As you add validations to DeliveryNote, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    attributes_for :delivery_note
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { customer_id: nil, date: nil }
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # DeliveryNotesController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  before(:example) do
+    @user = create(:user)    
+    sign_in @user
+
+    Thread.current[:user] = @user
+  end
+
+  after(:example) do
+    sign_out @user
+  end
 
   describe "GET #index" do
     it "assigns all delivery_notes as @delivery_notes" do
       delivery_note = DeliveryNote.create! valid_attributes
-      get :index, {}, valid_session
+      get :index, { user_id: @user.id }
       expect(assigns(:delivery_notes)).to eq([delivery_note])
     end
   end
@@ -47,14 +53,14 @@ RSpec.describe DeliveryNotesController, type: :controller do
   describe "GET #show" do
     it "assigns the requested delivery_note as @delivery_note" do
       delivery_note = DeliveryNote.create! valid_attributes
-      get :show, {:id => delivery_note.to_param}, valid_session
+      get :show, { :id => delivery_note.to_param, user_id: @user.id }
       expect(assigns(:delivery_note)).to eq(delivery_note)
     end
   end
 
   describe "GET #new" do
     it "assigns a new delivery_note as @delivery_note" do
-      get :new, {}, valid_session
+      get :new, { user_id: @user.id }
       expect(assigns(:delivery_note)).to be_a_new(DeliveryNote)
     end
   end
@@ -62,7 +68,7 @@ RSpec.describe DeliveryNotesController, type: :controller do
   describe "GET #edit" do
     it "assigns the requested delivery_note as @delivery_note" do
       delivery_note = DeliveryNote.create! valid_attributes
-      get :edit, {:id => delivery_note.to_param}, valid_session
+      get :edit, {:id => delivery_note.to_param, user_id: @user.id }
       expect(assigns(:delivery_note)).to eq(delivery_note)
     end
   end
@@ -71,30 +77,30 @@ RSpec.describe DeliveryNotesController, type: :controller do
     context "with valid params" do
       it "creates a new DeliveryNote" do
         expect {
-          post :create, {:delivery_note => valid_attributes}, valid_session
+          post :create, {:delivery_note => valid_attributes, user_id: @user.id}
         }.to change(DeliveryNote, :count).by(1)
       end
 
       it "assigns a newly created delivery_note as @delivery_note" do
-        post :create, {:delivery_note => valid_attributes}, valid_session
+        post :create, {:delivery_note => valid_attributes, user_id: @user.id}
         expect(assigns(:delivery_note)).to be_a(DeliveryNote)
         expect(assigns(:delivery_note)).to be_persisted
       end
 
       it "redirects to the created delivery_note" do
-        post :create, {:delivery_note => valid_attributes}, valid_session
-        expect(response).to redirect_to(DeliveryNote.last)
+        post :create, {:delivery_note => valid_attributes, user_id: @user.id}
+        expect(response).to redirect_to(edit_user_delivery_note_path(@user, DeliveryNote.last))
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved delivery_note as @delivery_note" do
-        post :create, {:delivery_note => invalid_attributes}, valid_session
+        post :create, {:delivery_note => invalid_attributes, user_id: @user.id }
         expect(assigns(:delivery_note)).to be_a_new(DeliveryNote)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:delivery_note => invalid_attributes}, valid_session
+        post :create, {:delivery_note => invalid_attributes, user_id: @user.id}
         expect(response).to render_template("new")
       end
     end
@@ -103,39 +109,43 @@ RSpec.describe DeliveryNotesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        delivery_note = attributes_for :delivery_note
+        delivery_note[:date] = DateTime.now.utc.beginning_of_day - 7.days
+
+        delivery_note
       }
 
       it "updates the requested delivery_note" do
         delivery_note = DeliveryNote.create! valid_attributes
-        put :update, {:id => delivery_note.to_param, :delivery_note => new_attributes}, valid_session
-        delivery_note.reload
-        skip("Add assertions for updated state")
+        put :update, {:id => delivery_note.to_param, :delivery_note => new_attributes, user_id: @user.id}
+        delivery_note.reload        
+
+        expect(delivery_note.date.strftime('%Y-%m-%d')).to eq((DateTime.now.utc.beginning_of_day - 7.days).strftime('%Y-%m-%d'))
       end
 
       it "assigns the requested delivery_note as @delivery_note" do
         delivery_note = DeliveryNote.create! valid_attributes
-        put :update, {:id => delivery_note.to_param, :delivery_note => valid_attributes}, valid_session
+        put :update, {:id => delivery_note.to_param, :delivery_note => valid_attributes, user_id: @user.id}
         expect(assigns(:delivery_note)).to eq(delivery_note)
       end
 
       it "redirects to the delivery_note" do
         delivery_note = DeliveryNote.create! valid_attributes
-        put :update, {:id => delivery_note.to_param, :delivery_note => valid_attributes}, valid_session
-        expect(response).to redirect_to(delivery_note)
+        put :update, {:id => delivery_note.to_param, :delivery_note => valid_attributes, user_id: @user.id}
+        expect(response).to redirect_to(user_delivery_notes_url(@user))
       end
     end
 
     context "with invalid params" do
       it "assigns the delivery_note as @delivery_note" do
         delivery_note = DeliveryNote.create! valid_attributes
-        put :update, {:id => delivery_note.to_param, :delivery_note => invalid_attributes}, valid_session
+        put :update, {:id => delivery_note.to_param, :delivery_note => invalid_attributes, user_id: @user.id}
         expect(assigns(:delivery_note)).to eq(delivery_note)
       end
 
       it "re-renders the 'edit' template" do
         delivery_note = DeliveryNote.create! valid_attributes
-        put :update, {:id => delivery_note.to_param, :delivery_note => invalid_attributes}, valid_session
+        put :update, {:id => delivery_note.to_param, :delivery_note => invalid_attributes, user_id: @user.id}
         expect(response).to render_template("edit")
       end
     end
@@ -145,15 +155,14 @@ RSpec.describe DeliveryNotesController, type: :controller do
     it "destroys the requested delivery_note" do
       delivery_note = DeliveryNote.create! valid_attributes
       expect {
-        delete :destroy, {:id => delivery_note.to_param}, valid_session
+        delete :destroy, {:id => delivery_note.to_param, user_id: @user.id}
       }.to change(DeliveryNote, :count).by(-1)
     end
 
     it "redirects to the delivery_notes list" do
       delivery_note = DeliveryNote.create! valid_attributes
-      delete :destroy, {:id => delivery_note.to_param}, valid_session
-      expect(response).to redirect_to(delivery_notes_url)
+      delete :destroy, {:id => delivery_note.to_param, user_id: @user.id}
+      expect(response).to redirect_to(user_delivery_notes_url(@user))
     end
   end
-
 end

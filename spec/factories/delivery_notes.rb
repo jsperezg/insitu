@@ -1,8 +1,6 @@
 FactoryGirl.define do
-  factory :delivery_note do
-    number "MyString"
-customer nil
-date "2015-08-29 11:40:23"
+  factory :delivery_note do    
+	customer_id { Customer.first.try(:id) || create(:customer).id }
+	date { DateTime.now }
   end
-
 end

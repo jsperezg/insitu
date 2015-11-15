@@ -44,9 +44,9 @@ RSpec.describe TasksController, type: :controller do
   end
 
   describe "GET #index" do
-    it "assigns all tasks as @tasks" do
+    it "assigns all tasks as @tasks" do      
       task = Task.create! valid_attributes
-      get :index, { user_id: @user, project_id: @project }
+      get :index, { user_id: @user.id, project_id: @project.id }
       expect(assigns(:tasks)).to eq([task])
     end
   end
@@ -61,7 +61,7 @@ RSpec.describe TasksController, type: :controller do
 
   describe "GET #new" do
     it "assigns a new task as @task" do
-      get :new, { user_id: @user }
+      get :new, { user_id: @user, project_id: @project }
       expect(assigns(:task)).to be_a_new(Task)
     end
   end

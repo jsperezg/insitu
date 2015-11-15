@@ -8,8 +8,8 @@ module Settings
 		key
 	end
 
-	def find_or_create_value(user, key, default)		
-		value = SettingValue.find_by(user: user.id, setting_key: key.id)		
+	def find_or_create_value(user, key, default)
+		value = SettingValue.find_by(user: user.id, setting_key: key.id)
 		if value.nil? and !default.nil?
 			case key[:data_type]
 			when SettingKey.data_types[:string]
