@@ -1,6 +1,6 @@
 <%- model_class = DeliveryNoteDetail -%>
 <tr>
-  <td>
+  <td>  
     <div class=row>
       <div class="form-group pull-left col-xs-4">
         <%= f.collection_select :service_id, Service.order(description: :asc), :id, :description,

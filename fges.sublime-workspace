@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"delivery_",
+				"delivery_note_details"
+			],
+			[
 				"delivery",
 				"delivery_note"
 			],
@@ -152,15 +156,33 @@
 	},
 	"file_history":
 	[
+		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_note_details/_index.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/controllers/delivery_notes_controller.rb",
-		"/home/jsperezg/NetBeansProjects/fges/app/controllers/customers_controller.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_note_details/_form.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_note_details/_new.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/config/locales/es.active_record.yml",
+		"/home/jsperezg/NetBeansProjects/fges/config/locales/en.active_record.yml",
 		"/home/jsperezg/NetBeansProjects/fges/config/locales/es.yml",
-		"/home/jsperezg/NetBeansProjects/fges/app/models/delivery_note.rb",
-		"/home/jsperezg/NetBeansProjects/fges/lib/sequence_generator.rb",
-		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/edit.html.erb",
-		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/new.html.erb",
-		"/home/jsperezg/NetBeansProjects/fges/lib/settings.rb",
+		"/home/jsperezg/NetBeansProjects/fges/config/locales/en.yml",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/_form.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/controllers/delivery_note_details_controller.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/models/service.rb",
+		"/home/jsperezg/NetBeansProjects/fges/db/schema.rb",
+		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20151115071122_add_custom_description_delivery_note_detail.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/models/delivery_note_detail.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/models/delivery_note.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/edit.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/index.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/invoice_details/index.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/factories/delivery_notes.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/controllers/delivery_notes_controller_spec.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/controllers/payment_methods_controller_spec.rb",
+		"/home/jsperezg/NetBeansProjects/fges/lib/settings.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/controllers/tasks_controller.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/controllers/tasks_controller_spec.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/controllers/customers_controller.rb",
+		"/home/jsperezg/NetBeansProjects/fges/lib/sequence_generator.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/new.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/models/user.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/projects/index.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/payment_methods/index.html.erb",
@@ -168,7 +190,6 @@
 		"/home/jsperezg/NetBeansProjects/fges/app/views/customers/index.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/tasks/index.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/time_logs/index.html.erb",
-		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/index.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/controllers/projects_controller.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/models/setting_value.rb",
 		"/home/jsperezg/NetBeansProjects/fges/config/application.rb",
@@ -262,24 +283,7 @@
 		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorIni.js",
 		"/home/juan/NetBeansProjects/html-viewer/src/app/model/event/CompetitorFactory.js",
 		"/home/juan/NetBeansProjects/html-viewer/src/app/model/util/ParameterSet.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorColorMarker.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/sailing/ColumnCompetitorBoatDistFinish.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/sailing/ColumnCompetitorBoatAfterHandicap.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/sailing/ColumnCompetitorBoatAfter.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/sailing/ColumnCompetitorBoatAfterHandicapSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/sailing/ColumnCompetitorCurrentLap.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/sailing/ColumnCompetitorBoatAfterSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/resources/ESS2015-Cardiff-Race20.json",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/sailing/ColumnCompetitorCurrentLapSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/data/ResultListSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/sailing/ColumnCompetitorRowingAfter.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/sailing/ColumnCompetitorRowingAfterSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/sailing/ColumnCompetitorHeadingSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/sailing/ColumnCompetitorHeading.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/filter/GPSFilterDirAndSpeed.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/filter/GPSFilterDirAndSpeedSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/test/calculation/column/sailing/ColumnCompetitorBoatSpeedSpec.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/sailing/ColumnCompetitorBoatSpeed.js"
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorColorMarker.js"
 	],
 	"find":
 	{
@@ -287,7 +291,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 93.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"<open folders>",
@@ -304,6 +308,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"DeliveryNoteDetail",
 			"deliver_notes",
 			"current_user",
 			"raceStartTime",
@@ -430,8 +435,7 @@
 			"finishTime.",
 			"finishTime)",
 			"JSUtil.HasValue(",
-			"finishTime !==",
-			"finishTime."
+			"finishTime !=="
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -516,6 +520,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 295.0,
+	"side_bar_width": 603.0,
 	"status_bar_visible": true
 }
