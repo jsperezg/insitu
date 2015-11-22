@@ -4,12 +4,12 @@
 		"selected_items":
 		[
 			[
-				"delivery_",
-				"delivery_note_details"
+				"delivery",
+				"delivery_note_detail"
 			],
 			[
-				"delivery",
-				"delivery_note"
+				"delivery_",
+				"delivery_note_details"
 			],
 			[
 				"find_o",
@@ -79,6 +79,38 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "app/views/delivery_note_details/_new.html.erb",
+			"settings":
+			{
+				"buffer_size": 214,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/delivery_note_details/_form.html.erb",
+			"settings":
+			{
+				"buffer_size": 2407,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/controllers/delivery_note_details_controller.rb",
+			"settings":
+			{
+				"buffer_size": 2899,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/delivery_note_details/_index.html.erb",
+			"settings":
+			{
+				"buffer_size": 1853,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -156,6 +188,10 @@
 	},
 	"file_history":
 	[
+		"/home/jsperezg/NetBeansProjects/fges/app/views/invoice_details/_form.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/invoice_details/new.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/config/initializers/assets.rb",
+		"/home/jsperezg/NetBeansProjects/fges/config/environments/production.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_note_details/_index.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/controllers/delivery_notes_controller.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_note_details/_form.html.erb",
@@ -279,11 +315,7 @@
 		"/home/juan/NetBeansProjects/html-viewer/src/app/map/BearingCalculation.js",
 		"/home/juan/NetBeansProjects/html-viewer/src/app/viewer-interface/MinimizableComponent.js",
 		"/home/juan/NetBeansProjects/html-viewer/src/app/util/Observable.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/util/ClassUtils.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorIni.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/model/event/CompetitorFactory.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/model/util/ParameterSet.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorColorMarker.js"
+		"/home/juan/NetBeansProjects/html-viewer/src/app/util/ClassUtils.js"
 	],
 	"find":
 	{
@@ -455,8 +487,119 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "app/views/delivery_note_details/_new.html.erb",
+					"settings":
+					{
+						"buffer_size": 214,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								86,
+								86
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/views/delivery_note_details/_form.html.erb",
+					"settings":
+					{
+						"buffer_size": 2407,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								52,
+								52
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/controllers/delivery_note_details_controller.rb",
+					"settings":
+					{
+						"buffer_size": 2899,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1356,
+								1356
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 432.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/views/delivery_note_details/_index.html.erb",
+					"settings":
+					{
+						"buffer_size": 1853,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								734,
+								734
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],

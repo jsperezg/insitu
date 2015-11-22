@@ -54,6 +54,6 @@
       <%= f.text_field :contact_email, :class => 'form-control input-sm' %>
     </div>
   </div>
-  <%= f.submit t(:save), :class => 'btn btn-primary' %>
+  <%= f.submit t(:save), :class => 'btn btn-primary', data: { disable_with: t('please_wait')} %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
             user_customers_path(current_user), :class => 'btn btn-default' %>

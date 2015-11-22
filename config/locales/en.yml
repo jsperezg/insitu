@@ -48,6 +48,8 @@ en:
   checkbox_true: "Yes"
   checkbox_false: "No"
   custom_value: Custom value
+  record: Record
+  please_wait: Please wait
 
   helpers:
     links:

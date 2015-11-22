@@ -41,6 +41,6 @@
   </div>
 </div>
 
-<%= f.submit t(:save), :class => 'btn btn-primary' %>
+<%= f.submit t(:save), :class => 'btn btn-primary', data: { disable_with: t('please_wait')} %>
 <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
           user_project_task_time_logs_path(current_user, params[:project_id], params[:task_id]), :class => 'btn btn-default' %>

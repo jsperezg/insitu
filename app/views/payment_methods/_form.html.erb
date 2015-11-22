@@ -22,6 +22,6 @@
   <%= f.text_field :note_for_invoice, :class => 'form-control input-sm' %>
 </div>
 
-<%= f.submit t(:save), :class => 'btn btn-primary' %>
+<%= f.submit t(:save), :class => 'btn btn-primary', data: { disable_with: t('please_wait')} %>
 <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
           user_payment_methods_path(current_user.id), :class => 'btn btn-default' %>

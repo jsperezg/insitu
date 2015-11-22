@@ -13,9 +13,7 @@ Rails.application.routes.draw do
         resources :invoice_details
     end
 
-    resources :delivery_notes do
-        resources :delivery_note_details
-    end
+    resources :delivery_notes
 
     resources :projects do
       resources :tasks do

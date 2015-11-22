@@ -47,7 +47,7 @@ en:
         number: Number
         date: Date
         customer_id: Customer
-      delivery_note_detail:
+      delivery_note/delivery_note_details:
         service_id: Description
         quantity: Quantity
         price: Price
@@ -61,7 +61,7 @@ en:
             code:
               taken: "already been taken."
             price:
-              greater_than: " must be greater than %{count}"
+              greater_than: "must be greater than %{count}"
           customer:
             attributes:
               name:
@@ -105,3 +105,15 @@ en:
                 blank: 'is mandatory.'
               customer_id:
                 blank: 'is mandatory.'
+          delivery_note_detail:
+            attributes:
+              service_id:
+                blank: 'is mandatory.'                
+              quantity:
+                blank: 'is mandatory.'
+                greater_than: "must be greater than %{count}."
+                not_a_number: "must be a number."
+              price:
+                blank: 'is mandatory.'
+                greater_than: "must be greater than %{count}."
+                not_a_number: "must be a number."

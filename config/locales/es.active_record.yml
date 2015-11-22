@@ -47,7 +47,7 @@ es:
         number: Número
         date: Fecha
         customer_id: Cliente
-      delivery_note_detail:
+      delivery_note/delivery_note_details:
         service_id: Concepto
         quantity: Cantidad
         price: Precio
@@ -61,7 +61,7 @@ es:
             code:
               taken: ": El código seleccionado está en uso."
             price:
-              greater_than: ": El precio debe ser mayor que %{count}."
+              greater_than: " debe ser mayor que %{count}."
         customer:
           attributes:
             name:
@@ -102,4 +102,16 @@ es:
             date:
               blank: 'es obligatorio.'
             customer_id:
+              blank: 'es obligatorio.'
+        delivery_note_detail:          
+          attributes:
+            service_id:
               blank: 'es obligatorio.'                
+            quantity:
+              blank: 'es obligatorio.'
+              greater_than: "debe ser mayor que %{count}."
+              not_a_number: "debe ser un número."
+            price:
+              blank: 'es obligatorio.'
+              greater_than: "debe ser mayor que %{count}."
+              not_a_number: "debe ser un número."

@@ -132,7 +132,7 @@ RSpec.describe DeliveryNotesController, type: :controller do
       it "redirects to the delivery_note" do
         delivery_note = DeliveryNote.create! valid_attributes
         put :update, {:id => delivery_note.to_param, :delivery_note => valid_attributes, user_id: @user.id}
-        expect(response).to redirect_to(user_delivery_notes_url(@user))
+        expect(response).to redirect_to(edit_user_delivery_note_path(@user, DeliveryNote.last))
       end
     end
 

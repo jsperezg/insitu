@@ -44,6 +44,8 @@ es:
   checkbox_true: "Si"
   checkbox_false: "No"
   custom_value: Valor personalizado
+  record: Registro
+  please_wait: Procesando
 
   helpers:
     links:
