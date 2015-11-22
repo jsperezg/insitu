@@ -24,7 +24,10 @@ RSpec.describe DeliveryNotesController, type: :controller do
   # DeliveryNote. As you add validations to DeliveryNote, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    attributes_for :delivery_note
+    delivery_note = attributes_for :delivery_note
+    delivery_note.merge(delivery_note_details_attributes: [ attributes_for(:delivery_note_detail) ])
+
+    delivery_note
   }
 
   let(:invalid_attributes) {
