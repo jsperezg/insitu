@@ -4,11 +4,27 @@
 		"selected_items":
 		[
 			[
-				"delivery",
-				"delivery_note_detail"
+				"payme",
+				"payment_method_id"
+			],
+			[
+				"pay",
+				"payment_method_id"
+			],
+			[
+				"paym",
+				"payment_date"
+			],
+			[
+				"attri",
+				"attributes_for"
 			],
 			[
 				"delivery_",
+				"delivery_note"
+			],
+			[
+				"delivery",
 				"delivery_note_details"
 			],
 			[
@@ -79,38 +95,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "app/views/delivery_note_details/_new.html.erb",
-			"settings":
-			{
-				"buffer_size": 214,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/delivery_note_details/_form.html.erb",
-			"settings":
-			{
-				"buffer_size": 2407,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/controllers/delivery_note_details_controller.rb",
-			"settings":
-			{
-				"buffer_size": 2899,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/delivery_note_details/_index.html.erb",
-			"settings":
-			{
-				"buffer_size": 1853,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -188,30 +172,58 @@
 	},
 	"file_history":
 	[
+		"/home/jsperezg/NetBeansProjects/fges/spec/factories/delivery_notes.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/factories/invoices.rb",
+		"/home/jsperezg/NetBeansProjects/fges/config/locales/es.active_record.yml",
+		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20150829095157_create_invoices.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/models/invoice.rb",
+		"/home/jsperezg/NetBeansProjects/fges/config/locales/en.active_record.yml",
+		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20151127204330_remove_issue_date.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/models/delivery_note.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/models/project.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/models/task.rb",
+		"/home/jsperezg/NetBeansProjects/fges/config/routes.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/controllers/invoice_details_controller.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/controllers/delivery_notes_controller_spec.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/factories/delivery_note_details.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/services/_form.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/payment_methods/_form.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/time_logs/_form.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/tasks/_form.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/projects/_form.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/invoices/_form.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/invoice_details/_form.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/devise/sessions/new.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/devise/registrations/edit.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/devise/unlocks/new.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/devise/registrations/new.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/devise/passwords/new.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/devise/passwords/edit.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/devise/confirmations/new.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/_form.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/customers/_form.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/_delivery_note_details.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/controllers/delivery_notes_controller.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/models/delivery_note_detail.rb",
+		"/home/jsperezg/NetBeansProjects/fges/config/locales/en.yml",
+		"/home/jsperezg/NetBeansProjects/fges/config/locales/es.yml",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/edit.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/models/delivery_note_detail_spec.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_note_details/_form.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/helpers/application_helper.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/controllers/delivery_note_details_controller.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_note_details/_index.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_note_details/_new.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20150829094209_create_delivery_note_details.rb",
+		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20151115071122_add_custom_description_delivery_note_detail.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/models/delivery_note_spec.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/invoice_details/new.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/config/initializers/assets.rb",
 		"/home/jsperezg/NetBeansProjects/fges/config/environments/production.rb",
-		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_note_details/_index.html.erb",
-		"/home/jsperezg/NetBeansProjects/fges/app/controllers/delivery_notes_controller.rb",
-		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_note_details/_form.html.erb",
-		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_note_details/_new.html.erb",
-		"/home/jsperezg/NetBeansProjects/fges/config/locales/es.active_record.yml",
-		"/home/jsperezg/NetBeansProjects/fges/config/locales/en.active_record.yml",
-		"/home/jsperezg/NetBeansProjects/fges/config/locales/es.yml",
-		"/home/jsperezg/NetBeansProjects/fges/config/locales/en.yml",
-		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/_form.html.erb",
-		"/home/jsperezg/NetBeansProjects/fges/app/controllers/delivery_note_details_controller.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/models/service.rb",
 		"/home/jsperezg/NetBeansProjects/fges/db/schema.rb",
-		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20151115071122_add_custom_description_delivery_note_detail.rb",
-		"/home/jsperezg/NetBeansProjects/fges/app/models/delivery_note_detail.rb",
-		"/home/jsperezg/NetBeansProjects/fges/app/models/delivery_note.rb",
-		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/edit.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/index.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/invoice_details/index.html.erb",
-		"/home/jsperezg/NetBeansProjects/fges/spec/factories/delivery_notes.rb",
-		"/home/jsperezg/NetBeansProjects/fges/spec/controllers/delivery_notes_controller_spec.rb",
 		"/home/jsperezg/NetBeansProjects/fges/spec/controllers/payment_methods_controller_spec.rb",
 		"/home/jsperezg/NetBeansProjects/fges/lib/settings.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/controllers/tasks_controller.rb",
@@ -230,7 +242,6 @@
 		"/home/jsperezg/NetBeansProjects/fges/app/models/setting_value.rb",
 		"/home/jsperezg/NetBeansProjects/fges/config/application.rb",
 		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20151114113220_create_setting_values.rb",
-		"/home/jsperezg/NetBeansProjects/fges/app/models/invoice.rb",
 		"/home/jsperezg/NetBeansProjects/fges/config/initializers/apartment.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/controllers/application_controller.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/models/setting_key.rb",
@@ -288,34 +299,7 @@
 		"/home/juan/NetBeansProjects/html-viewer/src/app/prov/leaderboard/ResultRow.js",
 		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/data/TableRowComparator.js",
 		"/home/juan/NetBeansProjects/html-viewer/test-apps/common.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/config.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/data/ResultList.js",
-		"/home/juan/NetBeansProjects/html-viewer/test-apps/cesium/offshore-sailing.html",
-		"/home/juan/NetBeansProjects/html-viewer/test-apps/cesium/orienteering.html",
-		"/home/juan/NetBeansProjects/html-viewer/test-apps/cesium/routesports.html",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorSpeedAvg.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/ColumnCompetitorSpeed.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/column/AbstractColumnData.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/util/JSUtil.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/marker/TailMarkerFactory.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/labeling/CompetitorLabelFactory.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/AbstractMap.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/layer/CompetitorsLayer.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/labeling/LabelFactory.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/Map.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/MapObjectsManager.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/marker/AbstractMarkerFactory.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/marker/CompetitorDrawingState.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/layer/LeaderLineLayer.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/MiniMap.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/layer/MapLayers.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/marker/RGBMarkerFactory.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/layer/AbstractLayer.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/model/event/Competitor.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/map/BearingCalculation.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/viewer-interface/MinimizableComponent.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/util/Observable.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/util/ClassUtils.js"
+		"/home/juan/NetBeansProjects/html-viewer/src/app/config.js"
 	],
 	"find":
 	{
@@ -340,6 +324,8 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"f.submit",
+			"wait",
 			"DeliveryNoteDetail",
 			"deliver_notes",
 			"current_user",
@@ -465,9 +451,7 @@
 			"finishTime.",
 			"startTime.",
 			"finishTime.",
-			"finishTime)",
-			"JSUtil.HasValue(",
-			"finishTime !=="
+			"finishTime)"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -487,119 +471,8 @@
 	"groups":
 	[
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/views/delivery_note_details/_new.html.erb",
-					"settings":
-					{
-						"buffer_size": 214,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								86,
-								86
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/views/delivery_note_details/_form.html.erb",
-					"settings":
-					{
-						"buffer_size": 2407,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								52,
-								52
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/controllers/delivery_note_details_controller.rb",
-					"settings":
-					{
-						"buffer_size": 2899,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1356,
-								1356
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 432.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/views/delivery_note_details/_index.html.erb",
-					"settings":
-					{
-						"buffer_size": 1853,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								734,
-								734
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -663,6 +536,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 603.0,
+	"side_bar_width": 339.0,
 	"status_bar_visible": true
 }

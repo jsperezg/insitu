@@ -8,11 +8,7 @@ Rails.application.routes.draw do
     resources :payment_methods
     resources :services
     resources :customers
-
-    resources :invoices do
-        resources :invoice_details
-    end
-
+    resources :invoices
     resources :delivery_notes
 
     resources :projects do

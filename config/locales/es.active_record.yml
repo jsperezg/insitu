@@ -53,6 +53,13 @@ es:
         price: Precio
         total: Total
         custom_description: Personalizado
+      invoice:
+        number: Número
+        date: Fecha de emisión
+        payment_method_id: Forma de pago
+        customer_id: Cliente
+        payment_date: Fecha de vencimiento
+        paid_on: Pagado
 
     errors:
       models:
@@ -115,3 +122,12 @@ es:
               blank: 'es obligatorio.'
               greater_than: "debe ser mayor que %{count}."
               not_a_number: "debe ser un número."
+        invoice:
+          attributes:
+            date:
+              blank: 'es obligatoria.'
+            payment_method_id:
+              blank: 'es obligatoria.'
+            customer_id:
+              blank: 'es obligatorio'.
+              

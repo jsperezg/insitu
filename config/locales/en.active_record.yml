@@ -53,6 +53,13 @@ en:
         price: Price
         total: Total
         custom_description: Custom description
+      invoice:
+        number: Invoice number
+        date: Invoice date
+        payment_method_id: Payment method
+        customer_id: Customer
+        payment_date: Due date
+        paid_on: Paid on
 
     errors:
       models:
@@ -117,3 +124,11 @@ en:
                 blank: 'is mandatory.'
                 greater_than: "must be greater than %{count}."
                 not_a_number: "must be a number."
+          invoice:
+            attributes:
+              date:
+                blank: 'is mandatory.'
+              payment_method_id:
+                blank: 'is mandatory.'
+              customer_id:
+                blank: 'is mandatory'.
