@@ -41,12 +41,13 @@ ActiveRecord::Schema.define(version: 20151127204330) do
   create_table "delivery_notes", force: :cascade do |t|
     t.string   "number",      limit: 255, null: false
     t.integer  "customer_id", limit: 4,   null: false
-    t.datetime "date",                    null: false
+    t.date     "date",                    null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
 
   add_index "delivery_notes", ["customer_id"], name: "index_delivery_notes_on_customer_id", using: :btree
+  add_index "delivery_notes", ["number"], name: "index_delivery_notes_on_number", using: :btree
 
   create_table "invoice_details", force: :cascade do |t|
     t.integer  "invoice_id",  limit: 4,                           null: false
