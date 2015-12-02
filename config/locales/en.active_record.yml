@@ -63,6 +63,14 @@ en:
 
     errors:
       models:
+        user:
+          attributes:
+            password:
+              too_short: is too short.
+            password_confirmation:
+              confirmation: is mandatory.  
+            current_password:
+              blank: is mandatory.
         service:
           attributes:
             code:
@@ -131,4 +139,4 @@ en:
               payment_method_id:
                 blank: 'is mandatory.'
               customer_id:
-                blank: 'is mandatory'.
+                blank: 'is mandatory.'
