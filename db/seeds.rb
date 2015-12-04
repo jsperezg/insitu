@@ -27,19 +27,19 @@ else
     init_default_settings_for(user)
   end
 
-  # [
-  #   {label_short: 'H', label_long:  'Horas'},
-  #   {label_short: 'UDS', label_long: 'Unidades'}
-  # ].each do |unit|
-  #     Unit.find_by(label_short: unit[:label_short]) || Unit.create(unit)
-  # end
+  [
+    {label_short: 'H', label_long:  'Horas'},
+    {label_short: 'UDS', label_long: 'Unidades'}
+  ].each do |unit|
+      Unit.find_by(label_short: unit[:label_short]) || Unit.create(unit)
+  end
 
-  # [
-  #   { label: '0%', rate: 0 },
-  #   { label: '4%', rate: 4 },
-  #   { label: '10%', rate: 10 },
-  #   { label: '21%', rate: 21 }
-  # ].each do |vat|
-  #   Vat.find_by(rate: vat[:rate]) || Vat.create(vat)
-  # end
+  [
+    { label: '0%', rate: 0 },
+    { label: '4%', rate: 4 },
+    { label: '10%', rate: 10 },
+    { label: '21%', rate: 21 }
+  ].each do |vat|
+    Vat.find_by(rate: vat[:rate]) || Vat.create(vat)
+  end
 end
