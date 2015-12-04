@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :dashboard
     resources :payment_methods
     resources :services
+    resources :vats
+    resources :units
     resources :customers
     resources :invoices
     resources :delivery_notes

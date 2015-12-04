@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  include Settings
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -8,18 +6,22 @@ class User < ActiveRecord::Base
 
    belongs_to :role
 
+   after_save :init_tenant_name, on: :create
    after_commit :init_tenant, on: :create
-   after_commit :initialize_settings, on: :create
    after_commit :destroy_tenant, on: :destroy
 
   private
 
-  def init_tenant
-   unless Rails.env.test?
-     self[:tenant] = "user_#{ self[:id] }"
-     save
+  def init_tenant_name
+    if self[:tenant].blank?
+      self[:tenant] = "user_#{ self[:id] }"
+      save!
+    end  
+  end
 
-     Apartment::Tenant.create(self[:tenant])
+  def init_tenant
+    unless Rails.env.test?
+      Apartment::Tenant.create(self[:tenant])
    end
   end
 
@@ -27,15 +29,5 @@ class User < ActiveRecord::Base
    unless Rails.env.test?
      Apartment::Tenant.drop(self[:tenant])
    end
-  end
-
-  def initialize_settings
-    begin
-      Apartment::Tenant.switch! self[:tenant]
-
-      init_default_settings_for(self)
-    ensure
-      Apartment::Tenant.switch! Thread.current[:user].tenant
-    end
   end
 end

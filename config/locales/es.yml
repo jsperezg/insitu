@@ -100,3 +100,9 @@ es:
   delivery_note_details:
     delivery_note_detail: Detalle albarán
     title: Detalle albarán
+
+  vats:
+    title: Tipos de IVA
+
+  units:
+    title: Medidas

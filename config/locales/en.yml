@@ -104,3 +104,9 @@ en:
   delivery_notes_details:
     delivery_note_detail: Delivery note details
     title: Delivery note details
+
+  vats:
+    title: VAT rates
+
+  units:
+    title: Measurement units
