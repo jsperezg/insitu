@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"valid",
+				"valid_attributes"
+			],
+			[
 				"admin",
 				"admin_role"
 			],
@@ -100,26 +104,18 @@
 	"buffers":
 	[
 		{
-			"file": "app/models/user.rb",
+			"file": "spec/controllers/services_controller_spec.rb",
 			"settings":
 			{
-				"buffer_size": 767,
+				"buffer_size": 5796,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "db/seeds.rb",
+			"file": "spec/controllers/units_controller_spec.rb",
 			"settings":
 			{
-				"buffer_size": 1351,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/settings.rb",
-			"settings":
-			{
-				"buffer_size": 1441,
+				"buffer_size": 5518,
 				"line_ending": "Unix"
 			}
 		}
@@ -200,15 +196,33 @@
 	},
 	"file_history":
 	[
-		"/home/jsperezg/NetBeansProjects/fges/config/initializers/apartment.rb",
-		"/home/jsperezg/NetBeansProjects/fges/app/views/layouts/application.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/services/new.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/units/new.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/units/edit.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/controllers/units_controller_spec.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/units/_form.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/config/locales/es.yml",
 		"/home/jsperezg/NetBeansProjects/fges/config/locales/en.yml",
-		"/home/jsperezg/NetBeansProjects/fges/config/routes.rb",
-		"/home/jsperezg/NetBeansProjects/fges/lib/settings.rb",
-		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20150829094208_create_delivery_note.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/units/index.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/controllers/units_controller.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/controllers/services_controller.rb",
 		"/home/jsperezg/NetBeansProjects/fges/config/locales/es.active_record.yml",
 		"/home/jsperezg/NetBeansProjects/fges/config/locales/en.active_record.yml",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/services/index.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/app/models/unit.rb",
+		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20150829092028_create_units.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/models/unit_spec.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/models/customer_spec.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/models/user.rb",
+		"/home/jsperezg/NetBeansProjects/fges/db/seeds.rb",
+		"/home/jsperezg/NetBeansProjects/fges/lib/settings.rb",
+		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20150828181844_add_role_to_users.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/factories/vats.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/factories/units.rb",
+		"/home/jsperezg/NetBeansProjects/fges/config/initializers/apartment.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/layouts/application.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/config/routes.rb",
+		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20150829094208_create_delivery_note.rb",
 		"/home/jsperezg/NetBeansProjects/fges/spec/factories/delivery_notes.rb",
 		"/home/jsperezg/NetBeansProjects/fges/spec/factories/invoices.rb",
 		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20150829095157_create_invoices.rb",
@@ -262,10 +276,8 @@
 		"/home/jsperezg/NetBeansProjects/fges/app/controllers/customers_controller.rb",
 		"/home/jsperezg/NetBeansProjects/fges/lib/sequence_generator.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/new.html.erb",
-		"/home/jsperezg/NetBeansProjects/fges/app/models/user.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/projects/index.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/payment_methods/index.html.erb",
-		"/home/jsperezg/NetBeansProjects/fges/app/views/services/index.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/customers/index.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/tasks/index.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/time_logs/index.html.erb",
@@ -311,23 +323,7 @@
 		"/home/juan/NetBeansProjects/html-viewer/src/app/model/route/ControlRoute.js",
 		"/home/juan/NetBeansProjects/html-viewer/src/app/model/route/Control.js",
 		"/home/juan/NetBeansProjects/html-viewer/src/app/model/event/EventFactory.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/model/event/Race.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/data/RaceData.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/route/MovingRoute.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/route/Leg.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/map/MapProj.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/model/event/Event.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/model/route/Leg.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/model/route/Route.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/layer/LinesLayer.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/layer/LayLinesLayer.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/cesium/layer/LadderLinesLayer.js",
-		"/home/juan/NetBeansProjects/html-viewer/test-apps/cesium/sailing.html",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/prov/leaderboard/Leaderboard.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/style/bootstrap-theme.css",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/prov/leaderboard/ResultTable.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/prov/leaderboard/ResultRow.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/data/TableRowComparator.js"
+		"/home/juan/NetBeansProjects/html-viewer/src/app/model/event/Race.js"
 	],
 	"find":
 	{
@@ -499,22 +495,23 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/models/user.rb",
+					"file": "spec/controllers/services_controller_spec.rb",
 					"settings":
 					{
-						"buffer_size": 767,
+						"buffer_size": 5796,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								284,
-								284
+								1741,
+								1741
 							]
 						],
 						"settings":
@@ -531,18 +528,18 @@
 				},
 				{
 					"buffer": 1,
-					"file": "db/seeds.rb",
+					"file": "spec/controllers/units_controller_spec.rb",
 					"settings":
 					{
-						"buffer_size": 1351,
+						"buffer_size": 5518,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								645,
-								645
+								3993,
+								3993
 							]
 						],
 						"settings":
@@ -552,34 +549,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "lib/settings.rb",
-					"settings":
-					{
-						"buffer_size": 1441,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1399.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
