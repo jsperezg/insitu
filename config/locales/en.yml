@@ -110,3 +110,6 @@ en:
 
   units:
     title: Measurement units
+    unit: Measurement unit
+    edit_title: Edit measurement unit
+    create_title: Create measurement unit

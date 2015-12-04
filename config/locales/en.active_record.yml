@@ -60,6 +60,9 @@ en:
         customer_id: Customer
         payment_date: Due date
         paid_on: Paid on
+      unit:
+        label_short: Label
+        label_long: Description  
 
     errors:
       models:
@@ -142,3 +145,7 @@ en:
                 blank: 'is mandatory.'
               customer_id:
                 blank: 'is mandatory.'
+          unit:
+            attributes:
+              label_short:
+                blank: is mandatory.

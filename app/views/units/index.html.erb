@@ -1,25 +1,42 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Units</h1>
-
-<table>
+<%- model_class = Unit -%>
+<div class="page-header">
+  <h1><%=t 'units.title' %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:label_short) %></th>
+      <th><%= model_class.human_attribute_name(:label_long) %></th>
+      <th></th>
     </tr>
   </thead>
-
   <tbody>
     <% @units.each do |unit| %>
       <tr>
-        <td><%= link_to 'Show', unit %></td>
-        <td><%= link_to 'Edit', edit_unit_path(unit) %></td>
-        <td><%= link_to 'Destroy', unit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to unit.id, edit_user_unit_path(current_user.id, unit) %></td>
+        <td><%= best_in_place unit, :label_short, path: user_unit_path(current_user, unit, format: :json) %></td>
+        <td><%= best_in_place unit, :label_long, path: user_unit_path(current_user, unit, format: :json) %></td>
+        <td class=text-right>
+          <%= link_to edit_user_unit_path(current_user.id, unit), :class => 'btn btn-default btn-xs' do %>
+            <i class="fa fa-pencil-square-o" aria-hidden="true">
+              <%=t 'helpers.links.edit' %>
+            </i>
+          <% end %>
+          <%= link_to user_unit_path(current_user.id, unit),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' do %>
+            <i class="fa fa-trash-o" aria-hidden="true">
+              <%=t 'helpers.links.destroy' %>
+            </i>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Unit', new_unit_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_user_unit_path(current_user.id),
+            :class => 'btn btn-default' %>

@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Unit, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'short label is mandatory' do
+  	unit = Unit.new
+  	unit.save
+
+  	expect(unit.errors).to satisfy { |errors| !errors.empty? && errors.key?( :label_short )}
+  end
 end

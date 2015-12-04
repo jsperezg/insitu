@@ -60,6 +60,9 @@ es:
         customer_id: Cliente
         payment_date: Fecha de vencimiento
         paid_on: Pagado
+      unit:
+        label_short: Etiqueta
+        label_long: Descripción
 
     errors:
       models:
@@ -140,4 +143,7 @@ es:
               blank: 'es obligatoria.'
             customer_id:
               blank: 'es obligatorio.'
-              
+        unit:
+          attributes:
+            label_short:
+              blank: 'es obligatoria.'

@@ -28,7 +28,7 @@ class UnitsController < ApplicationController
 
     respond_to do |format|
       if @unit.save
-        format.html { redirect_to @unit, notice: 'Unit was successfully created.' }
+        format.html { redirect_to user_units_path(current_user.id), notice: t(:successfully_created, item: t('units.unit')) }
         format.json { render :show, status: :created, location: @unit }
       else
         format.html { render :new }
@@ -38,15 +38,15 @@ class UnitsController < ApplicationController
   end
 
   # PATCH/PUT /units/1
-  # PATCH/PUT /units/1.json
+  # PATCH/PUT /units/1.jsonservice
   def update
     respond_to do |format|
       if @unit.update(unit_params)
-        format.html { redirect_to @unit, notice: 'Unit was successfully updated.' }
-        format.json { render :show, status: :ok, location: @unit }
+        format.html { redirect_to user_units_path(current_user.id), notice: t(:successfully_updated, item: t('units.unit')) }
+        format.json { respond_with_bip @unit }
       else
         format.html { render :edit }
-        format.json { render json: @unit.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip @unit }
       end
     end
   end
@@ -56,7 +56,7 @@ class UnitsController < ApplicationController
   def destroy
     @unit.destroy
     respond_to do |format|
-      format.html { redirect_to units_url, notice: 'Unit was successfully destroyed.' }
+      format.html { redirect_to user_units_path(current_user.id), notice: t(:successfully_destroyed, item: t('units.unit')) }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class UnitsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def unit_params
-      params[:unit]
+      params.require(:unit).permit(:label_short, :label_long)
     end
 end
