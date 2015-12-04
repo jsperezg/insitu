@@ -4,13 +4,18 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-   belongs_to :role
+  belongs_to :role
 
-   after_save :init_tenant_name, on: :create
-   after_commit :init_tenant, on: :create
-   after_commit :destroy_tenant, on: :destroy
+  before_save :init_role, on: :create
+  after_save :init_tenant_name, on: :create
+  after_commit :init_tenant, on: :create
+  after_commit :destroy_tenant, on: :destroy
 
   private
+
+  def init_role
+    self[:role_id] = Role.find_by(description: 'Usuario').try(:id) if self[:role_id].nil?
+  end
 
   def init_tenant_name
     if self[:tenant].blank?

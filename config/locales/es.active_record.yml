@@ -65,6 +65,8 @@ es:
       models:
         user:
           attributes:
+            email:
+              taken: ya está registrado en el sistema.
             password:
               too_short: es demasiado corta.
             password_confirmation:

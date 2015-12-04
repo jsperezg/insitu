@@ -65,6 +65,8 @@ en:
       models:
         user:
           attributes:
+            email:
+              taken: is already registered.
             password:
               too_short: is too short.
             password_confirmation:

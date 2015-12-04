@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"admin",
+				"admin_role"
+			],
+			[
 				"payme",
 				"payment_method_id"
 			],
@@ -96,42 +100,18 @@
 	"buffers":
 	[
 		{
-			"file": "app/views/layouts/application.html.erb",
-			"settings":
-			{
-				"buffer_size": 4391,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "config/locales/es.yml",
-			"settings":
-			{
-				"buffer_size": 2981,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "config/locales/en.yml",
-			"settings":
-			{
-				"buffer_size": 2936,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "config/routes.rb",
-			"settings":
-			{
-				"buffer_size": 1985,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "app/models/user.rb",
 			"settings":
 			{
-				"buffer_size": 1003,
+				"buffer_size": 767,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "db/seeds.rb",
+			"settings":
+			{
+				"buffer_size": 1351,
 				"line_ending": "Unix"
 			}
 		},
@@ -220,6 +200,12 @@
 	},
 	"file_history":
 	[
+		"/home/jsperezg/NetBeansProjects/fges/config/initializers/apartment.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/layouts/application.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/config/locales/es.yml",
+		"/home/jsperezg/NetBeansProjects/fges/config/locales/en.yml",
+		"/home/jsperezg/NetBeansProjects/fges/config/routes.rb",
+		"/home/jsperezg/NetBeansProjects/fges/lib/settings.rb",
 		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20150829094208_create_delivery_note.rb",
 		"/home/jsperezg/NetBeansProjects/fges/config/locales/es.active_record.yml",
 		"/home/jsperezg/NetBeansProjects/fges/config/locales/en.active_record.yml",
@@ -231,7 +217,6 @@
 		"/home/jsperezg/NetBeansProjects/fges/app/models/delivery_note.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/models/project.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/models/task.rb",
-		"/home/jsperezg/NetBeansProjects/fges/config/routes.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/controllers/invoice_details_controller.rb",
 		"/home/jsperezg/NetBeansProjects/fges/spec/controllers/delivery_notes_controller_spec.rb",
 		"/home/jsperezg/NetBeansProjects/fges/spec/factories/delivery_note_details.rb",
@@ -254,8 +239,6 @@
 		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/_delivery_note_details.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/controllers/delivery_notes_controller.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/models/delivery_note_detail.rb",
-		"/home/jsperezg/NetBeansProjects/fges/config/locales/en.yml",
-		"/home/jsperezg/NetBeansProjects/fges/config/locales/es.yml",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/edit.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/spec/models/delivery_note_detail_spec.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_note_details/_form.html.erb",
@@ -274,7 +257,6 @@
 		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/index.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/invoice_details/index.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/spec/controllers/payment_methods_controller_spec.rb",
-		"/home/jsperezg/NetBeansProjects/fges/lib/settings.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/controllers/tasks_controller.rb",
 		"/home/jsperezg/NetBeansProjects/fges/spec/controllers/tasks_controller_spec.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/controllers/customers_controller.rb",
@@ -291,7 +273,6 @@
 		"/home/jsperezg/NetBeansProjects/fges/app/models/setting_value.rb",
 		"/home/jsperezg/NetBeansProjects/fges/config/application.rb",
 		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20151114113220_create_setting_values.rb",
-		"/home/jsperezg/NetBeansProjects/fges/config/initializers/apartment.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/controllers/application_controller.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/models/setting_key.rb",
 		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20151114112339_create_setting_keys.rb",
@@ -346,8 +327,7 @@
 		"/home/juan/NetBeansProjects/html-viewer/src/style/bootstrap-theme.css",
 		"/home/juan/NetBeansProjects/html-viewer/src/app/prov/leaderboard/ResultTable.js",
 		"/home/juan/NetBeansProjects/html-viewer/src/app/prov/leaderboard/ResultRow.js",
-		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/data/TableRowComparator.js",
-		"/home/juan/NetBeansProjects/html-viewer/test-apps/common.js"
+		"/home/juan/NetBeansProjects/html-viewer/src/app/calculation/data/TableRowComparator.js"
 	],
 	"find":
 	{
@@ -372,6 +352,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"seed",
 			"f.submit",
 			"wait",
 			"DeliveryNoteDetail",
@@ -498,8 +479,7 @@
 			"JSUtil",
 			"finishTime.",
 			"startTime.",
-			"finishTime.",
-			"finishTime)"
+			"finishTime."
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -519,151 +499,66 @@
 	"groups":
 	[
 		{
-			"selected": 4,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/views/layouts/application.html.erb",
+					"file": "app/models/user.rb",
 					"settings":
 					{
-						"buffer_size": 4391,
+						"buffer_size": 767,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3395,
-								3395
+								284,
+								284
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Rails/HTML (Rails).tmLanguage",
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 756.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "config/locales/es.yml",
+					"file": "db/seeds.rb",
 					"settings":
 					{
-						"buffer_size": 2981,
+						"buffer_size": 1351,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2956,
-								2956
+								645,
+								645
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/YAML/YAML.tmLanguage",
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1026.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "config/locales/en.yml",
-					"settings":
-					{
-						"buffer_size": 2936,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2936,
-								2936
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/YAML/YAML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1458.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "config/routes.rb",
-					"settings":
-					{
-						"buffer_size": 1985,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								229,
-								229
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/models/user.rb",
-					"settings":
-					{
-						"buffer_size": 1003,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								473,
-								473
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
 					"file": "lib/settings.rb",
 					"settings":
 					{
@@ -674,8 +569,8 @@
 						"selection":
 						[
 							[
-								1156,
-								1156
+								0,
+								0
 							]
 						],
 						"settings":
