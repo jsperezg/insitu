@@ -107,6 +107,9 @@ en:
 
   vats:
     title: VAT rates
+    create_title: Create VAT rate
+    edit_title: Edit VAT rate
+    vat: VAT
 
   units:
     title: Measurement units

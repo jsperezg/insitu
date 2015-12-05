@@ -62,7 +62,10 @@ en:
         paid_on: Paid on
       unit:
         label_short: Label
-        label_long: Description  
+        label_long: Description 
+      vat:
+        label: Label
+        rate: Value 
 
     errors:
       models:
@@ -149,3 +152,11 @@ en:
             attributes:
               label_short:
                 blank: is mandatory.
+          vat:
+            attributes:
+              label:
+                blank: is mandatory.                
+              rate:
+                blank: is mandatory.
+                greater_than_or_equal_to: "must be greater or equal to %{count}%."
+                not_a_number: isn't a number.

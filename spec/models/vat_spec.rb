@@ -1,5 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe Vat, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'label is required' do
+  	vat = Vat.create(rate: 0)
+  	vat.save
+
+  	expect(vat.errors).to satisfy { |errors| !errors.empty? && errors.key?( :label )}
+  end
+
+  it 'rate is required' do
+  	vat = Vat.create(label: '16%')
+  	vat.save
+
+  	expect(vat.errors).to satisfy { |errors| !errors.empty? && errors.key?( :rate )}
+  end
+
+  it 'rate is greater or equal to zero' do
+  	vat = Vat.create(rate: -1, label: 'wrong')
+  	vat.save
+
+  	expect(vat.errors).to satisfy { |errors| !errors.empty? && errors.key?( :rate )}
+  end
 end

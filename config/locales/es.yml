@@ -103,6 +103,9 @@ es:
 
   vats:
     title: Tipos de IVA
+    create_title: Crear tipo de IVA
+    edit_title: Editar tipo de IVA
+    vat: IVA
 
   units:
     title: Medidas

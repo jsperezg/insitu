@@ -28,7 +28,7 @@ class VatsController < ApplicationController
 
     respond_to do |format|
       if @vat.save
-        format.html { redirect_to @vat, notice: 'Vat was successfully created.' }
+        format.html { redirect_to user_vats_path(current_user.id), notice: t(:successfully_created, item: t('vats.vat')) }
         format.json { render :show, status: :created, location: @vat }
       else
         format.html { render :new }
@@ -42,11 +42,11 @@ class VatsController < ApplicationController
   def update
     respond_to do |format|
       if @vat.update(vat_params)
-        format.html { redirect_to @vat, notice: 'Vat was successfully updated.' }
-        format.json { render :show, status: :ok, location: @vat }
+        format.html { redirect_to user_vats_path(current_user.id), notice: t(:successfully_updated, item: t('vats.vat')) }
+        format.json { respond_with_bip @vat }
       else
         format.html { render :edit }
-        format.json { render json: @vat.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip @vat }
       end
     end
   end
@@ -56,7 +56,7 @@ class VatsController < ApplicationController
   def destroy
     @vat.destroy
     respond_to do |format|
-      format.html { redirect_to vats_url, notice: 'Vat was successfully destroyed.' }
+      format.html { redirect_to user_vats_path(current_user.id), notice: t(:successfully_destroyed, item: t('vats.vat')) }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class VatsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vat_params
-      params[:vat]
+      params.require(:vat).permit(:label, :rate)
     end
 end
