@@ -59,7 +59,15 @@ es:
         payment_method_id: Forma de pago
         customer_id: Cliente
         payment_date: Fecha de vencimiento
-        paid_on: Pagado
+        paid_on: Fecha de cobro
+      invoice/invoice_details:
+        invoice_id: Factura
+        service_id: Concepto
+        description: Descripción
+        vat_rate: IVA
+        price: Precio
+        quantity: Cantidad
+        discount: Descuento
       unit:
         label_short: Etiqueta
         label_long: Descripción
@@ -146,6 +154,11 @@ es:
               blank: 'es obligatoria.'
             customer_id:
               blank: 'es obligatorio.'
+            payment_date:
+              blank: es obligatoria.
+              invalid_value: es inválida.
+            paid_on:
+              invalid_value: es inválida.
         unit:
           attributes:
             label_short:

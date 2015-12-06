@@ -3,8 +3,7 @@ require "rails_helper"
 RSpec.describe CustomersController, type: :routing do
   describe "routing" do
 
-    it "routes to #index" do
-      puts "users/1/customers"
+    it "routes to #index" do      
       expect(:get => "/users/1/customers").to route_to("customers#index", user_id: '1')
     end
 

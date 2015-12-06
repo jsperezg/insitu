@@ -2,21 +2,28 @@ require 'rails_helper'
 
 RSpec.describe "payment_methods/index", type: :view do
   before(:each) do
-    assign(:payment_methods, [
-      PaymentMethod.create!(
-        :name => "Name",
-        :note_for_invoice => "Note For Invoice"
-      ),
-      PaymentMethod.create!(
-        :name => "Name",
-        :note_for_invoice => "Note For Invoice"
-      )
-    ])
+    @user = create(:user)
+    sign_in @user
+
+    @payment_methods = []
+
+    2.times do
+      @payment_methods << create(:payment_method)
+    end
+
+    assign(:payment_methods, @payment_methods)    
+  end
+
+  after(:each) do
+    sign_out @user
   end
 
   it "renders a list of payment_methods" do
     render
-    assert_select "tr>td", :text => "Name".to_s, :count => 2
-    assert_select "tr>td", :text => "Note For Invoice".to_s, :count => 2
+
+    @payment_methods.each do |i|
+      assert_select "tr>td", :text => i[:id].to_s, :count => 1
+      assert_select "tr>td", :text => i[:name], count: 1
+    end
   end
 end

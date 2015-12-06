@@ -15,8 +15,8 @@
     <% @vats.each do |vat| %>
       <tr>
         <td><%= link_to vat.id, edit_user_vat_path(current_user.id, vat) %></td>
-        <td><%= best_in_place vat, :label, path: user_vat_path(current_user, vat, format: :json) %></td>
-        <td><%= best_in_place vat, :rate, path: user_vat_path(current_user, vat, format: :json) %></td>
+        <td><%= best_in_place vat, :label, url: user_vat_path(current_user, vat, format: :json) %></td>
+        <td><%= best_in_place vat, :rate, url: user_vat_path(current_user, vat, format: :json) %></td>
         <td class=text-right>
           <%= link_to edit_user_vat_path(current_user.id, vat), :class => 'btn btn-default btn-xs' do %>
             <i class="fa fa-pencil-square-o" aria-hidden="true">

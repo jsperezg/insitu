@@ -21,4 +21,11 @@ RSpec.describe Vat, type: :model do
 
   	expect(vat.errors).to satisfy { |errors| !errors.empty? && errors.key?( :rate )}
   end
+
+  it 'rate is a integer number' do
+      vat = Vat.new(rate: 1.1)
+      vat.save
+
+      expect(vat.errors).to satisfy { |errors| !errors.empty? && errors.key?( :rate )}
+    end
 end

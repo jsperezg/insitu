@@ -60,6 +60,14 @@ en:
         customer_id: Customer
         payment_date: Due date
         paid_on: Paid on
+      invoice/invoice_details:
+        invoice_id: Invoice
+        service_id: Item
+        description: Description
+        vat_rate: VAT
+        price: Price
+        quantity: Quantity
+        discount: Discount
       unit:
         label_short: Label
         label_long: Description 
@@ -148,6 +156,11 @@ en:
                 blank: 'is mandatory.'
               customer_id:
                 blank: 'is mandatory.'
+              payment_date:
+                blank: is mandatory.
+                invalid_value: is invalid.
+              paid_on:
+                invalid_value: is invalid.
           unit:
             attributes:
               label_short:

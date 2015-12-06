@@ -2,16 +2,17 @@ require 'rails_helper'
 
 RSpec.describe "delivery_notes/index", type: :view do
   before(:each) do
+    @user = create(:user)
+    sign_in @user
+
     assign(:delivery_notes, [
-      DeliveryNote.create!(
-        :number => "Number",
-        :customer => nil
-      ),
-      DeliveryNote.create!(
-        :number => "Number",
-        :customer => nil
-      )
+      create(:delivery_note),
+      create(:delivery_note)      
     ])
+  end
+
+  after(:each) do
+    sign_out @user
   end
 
   it "renders a list of delivery_notes" do
