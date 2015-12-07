@@ -4,6 +4,10 @@ es:
       default: "%d/%m/%Y"
       long: "%d/%m/%Y %H:%M"
 
+  date:
+    formats:
+      default: "%d/%m/%Y"
+
   log_in: Acceso al sistema
   sign_up: Crear cuenta
   forgot_password: ¿Has olvidado tu contraseña?
@@ -51,7 +55,7 @@ es:
     links:
       new: Nuevo
       edit: Editar
-      destroy: Borrar      
+      destroy: Borrar
       confirm: ¿Estas seguro?
       cancel: Cancelar
 

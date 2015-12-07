@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"pa",
+				"payment_methods"
+			],
+			[
+				"pay",
+				"payment_method"
+			],
+			[
+				"payment",
+				"payment_date"
+			],
+			[
 				"new",
 				"new_attributes"
 			],
@@ -21,10 +33,6 @@
 			],
 			[
 				"payme",
-				"payment_method_id"
-			],
-			[
-				"pay",
 				"payment_method_id"
 			],
 			[
@@ -111,6 +119,22 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "spec/views/vats/new.html.erb_spec.rb",
+			"settings":
+			{
+				"buffer_size": 466,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "spec/views/vats/edit.html.erb_spec.rb",
+			"settings":
+			{
+				"buffer_size": 487,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -171,7 +195,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 449.0
+		"width": 530.0
 	},
 	"console":
 	{
@@ -188,6 +212,35 @@
 	},
 	"file_history":
 	[
+		"/home/jsperezg/NetBeansProjects/fges/spec/factories/vats.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/views/payment_methods/new.html.erb_spec.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/views/vats/index.html.erb_spec.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/views/vats/index.html.erb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/views/payment_methods/edit.html.erb_spec.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/views/vats/show.html.erb_spec.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/views/payment_methods/index.html.erb_spec.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/views/customers/edit.html.erb_spec.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/views/delivery_notes/index.html.erb_spec.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/views/customers/index.html.erb_spec.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/views/customers/new.html.erb_spec.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/views/customers/show.html.erb_spec.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/support/devise.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/models/invoice.rb",
+		"/home/jsperezg/NetBeansProjects/fges/config/locales/es.active_record.yml",
+		"/home/jsperezg/NetBeansProjects/fges/config/locales/en.active_record.yml",
+		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20150829095504_create_invoice_details.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/models/invoice_spec.rb",
+		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20150829095157_create_invoices.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/factories/invoices.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/models/delivery_note_detail.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/models/invoice_detail.rb",
+		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20151127204330_remove_issue_date.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/models/invoice_detail_spec.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/routing/customers_routing_spec.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/models/vat_spec.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/factories/invoice_details.rb",
+		"/home/jsperezg/NetBeansProjects/fges/spec/factories/delivery_note_details.rb",
+		"/home/jsperezg/NetBeansProjects/fges/app/models/vat.rb",
 		"/home/jsperezg/NetBeansProjects/fges/spec/routing/units_routing_spec.rb",
 		"/home/jsperezg/NetBeansProjects/fges/spec/routing/vats_routing_spec.rb",
 		"/home/jsperezg/NetBeansProjects/fges/spec/routing/tasks_routing_spec.rb",
@@ -197,14 +250,11 @@
 		"/home/jsperezg/NetBeansProjects/fges/spec/routing/payment_methods_routing_spec.rb",
 		"/home/jsperezg/NetBeansProjects/fges/spec/routing/projects_routing_spec.rb",
 		"/home/jsperezg/NetBeansProjects/fges/spec/routing/services_routing_spec.rb",
-		"/home/jsperezg/NetBeansProjects/fges/spec/routing/customers_routing_spec.rb",
 		"/home/jsperezg/NetBeansProjects/fges/spec/routing/delivery_notes_routing_spec.rb",
 		"/home/jsperezg/NetBeansProjects/fges/spec/controllers/vats_controller_spec.rb",
 		"/home/jsperezg/NetBeansProjects/fges/spec/controllers/units_controller_spec.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/controllers/vats_controller.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/controllers/units_controller.rb",
-		"/home/jsperezg/NetBeansProjects/fges/config/locales/es.active_record.yml",
-		"/home/jsperezg/NetBeansProjects/fges/config/locales/en.active_record.yml",
 		"/home/jsperezg/NetBeansProjects/fges/config/locales/es.yml",
 		"/home/jsperezg/NetBeansProjects/fges/config/locales/en.yml",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/vats/_form.html.erb",
@@ -213,12 +263,8 @@
 		"/home/jsperezg/NetBeansProjects/fges/app/views/vats/edit.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/units/new.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/vats/new.html.erb",
-		"/home/jsperezg/NetBeansProjects/fges/app/views/vats/index.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/units/index.html.erb",
-		"/home/jsperezg/NetBeansProjects/fges/app/models/vat.rb",
 		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20150829092618_create_vats.rb",
-		"/home/jsperezg/NetBeansProjects/fges/spec/models/vat_spec.rb",
-		"/home/jsperezg/NetBeansProjects/fges/spec/factories/vats.rb",
 		"/home/jsperezg/NetBeansProjects/fges/spec/controllers/services_controller_spec.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/services/new.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/controllers/services_controller.rb",
@@ -237,16 +283,11 @@
 		"/home/jsperezg/NetBeansProjects/fges/config/routes.rb",
 		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20150829094208_create_delivery_note.rb",
 		"/home/jsperezg/NetBeansProjects/fges/spec/factories/delivery_notes.rb",
-		"/home/jsperezg/NetBeansProjects/fges/spec/factories/invoices.rb",
-		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20150829095157_create_invoices.rb",
-		"/home/jsperezg/NetBeansProjects/fges/app/models/invoice.rb",
-		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20151127204330_remove_issue_date.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/models/delivery_note.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/models/project.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/models/task.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/controllers/invoice_details_controller.rb",
 		"/home/jsperezg/NetBeansProjects/fges/spec/controllers/delivery_notes_controller_spec.rb",
-		"/home/jsperezg/NetBeansProjects/fges/spec/factories/delivery_note_details.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/services/_form.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/payment_methods/_form.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/time_logs/_form.html.erb",
@@ -265,7 +306,6 @@
 		"/home/jsperezg/NetBeansProjects/fges/app/views/customers/_form.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/_delivery_note_details.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/app/controllers/delivery_notes_controller.rb",
-		"/home/jsperezg/NetBeansProjects/fges/app/models/delivery_note_detail.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_notes/edit.html.erb",
 		"/home/jsperezg/NetBeansProjects/fges/spec/models/delivery_note_detail_spec.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/views/delivery_note_details/_form.html.erb",
@@ -299,23 +339,7 @@
 		"/home/jsperezg/NetBeansProjects/fges/config/application.rb",
 		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20151114113220_create_setting_values.rb",
 		"/home/jsperezg/NetBeansProjects/fges/app/controllers/application_controller.rb",
-		"/home/jsperezg/NetBeansProjects/fges/app/models/setting_key.rb",
-		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20151114112339_create_setting_keys.rb",
-		"/home/jsperezg/NetBeansProjects/fges/db/migrate/20151114112121_add_project_defaults.rb",
-		"/home/jsperezg/NetBeansProjects/fges/fges.sublime-project",
-		"/home/jsperezg/Documentos/TracTrac/html-viewer/test/calculation/data/ResultListSpec.js",
-		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/calculation/data/ResultList.js",
-		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/prov/leaderboard/Leaderboard.js",
-		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/model/event/CompetitorFactory.js",
-		"/home/jsperezg/Documentos/TracTrac/html-viewer/test/resources/21bbbb20-1bab-0132-514f-10b11c4ed8fd.json",
-		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/model/event/EventFactory.js",
-		"/home/jsperezg/Documentos/TracTrac/html-viewer/test/resources/7dc3fae0-fc7b-0132-9f7a-10bf48d758ce.json",
-		"/home/jsperezg/Documentos/TracTrac/html-viewer/test/test-main.js",
-		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/calculation/data/ResultItem.js",
-		"/home/jsperezg/Documentos/TracTrac/html-viewer/test/resources/7dc3fae0-fc7b-0132-9f7a-10bf48d758ce_markpassings.json",
-		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/prov/leaderboard/ResultRow.js",
-		"/home/jsperezg/Documentos/TracTrac/html-viewer/test-apps/cesium/sailing handicap.html",
-		"/home/jsperezg/Documentos/TracTrac/html-viewer/src/app/subscription/gms/CompetitorReceiver.js"
+		"/home/jsperezg/NetBeansProjects/fges/app/models/setting_key.rb"
 	],
 	"find":
 	{
@@ -340,6 +364,10 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"deliver_note_detail",
+			"invoide",
+			"deliver_note_detail",
+			" !",
 			"seed",
 			"f.submit",
 			"wait",
@@ -463,11 +491,7 @@
 			"finishTIme.",
 			"finishTIme",
 			".finishTime.",
-			".finish",
-			"JSUtil",
-			"finishTime.",
-			"startTime.",
-			"finishTime."
+			".finish"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -487,8 +511,61 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "spec/views/vats/new.html.erb_spec.rb",
+					"settings":
+					{
+						"buffer_size": 466,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								335,
+								447
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "spec/views/vats/edit.html.erb_spec.rb",
+					"settings":
+					{
+						"buffer_size": 487,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								482,
+								482
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],

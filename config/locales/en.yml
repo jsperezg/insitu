@@ -4,6 +4,11 @@ en:
       default: "%Y-%m-%d"
       long: "%Y-%m-%d %H:%M"
 
+
+    date:
+      formats:
+        default: "%Y-%m-%d"
+
   log_in: "Log in"
   sign_up: Sign up
   forgot_password: Forgot password?
