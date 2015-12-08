@@ -14,31 +14,31 @@
 <% end %>
 
 <div class="form-group">
-  <%= f.label :code, t('services.code'), :class => 'control-label' %>
+  <%= f.label :code, :class => 'control-label' %>
   <%= f.text_field :code, :class => 'form-control input-sm', required: true %>
 </div>
 
 <div class="form-group">
-  <%= f.label :description, t('services.description'), :class => 'control-label' %>
+  <%= f.label :description, :class => 'control-label' %>
   <%= f.text_field :description, :class => 'form-control input-sm', required: true %>
 </div>
 <div class=row>
   <div class="form-group col-xs-4 pull-left">
-    <%= f.label :vat_id, t('services.vat'), :class => 'control-label' %>
+    <%= f.label :vat_id, :class => 'control-label' %>
     <%= f.collection_select :vat_id, Vat.order(rate: :asc), :id, :label,
       { prompt: true },
       { class: 'form-control input-sm', required: true } %>
   </div>
 
   <div class="form-group col-xs-4 pull-left">
-    <%= f.label :unit_id, t('services.unit'), :class => 'control-label' %>
+    <%= f.label :unit_id, :class => 'control-label' %>
     <%= f.collection_select :unit_id, Unit.order(label_long: :asc), :id, :label_long,
       { prompt: true },
       { class: 'form-control input-sm', required: true } %>
   </div>
 
   <div class="form-group col-xs-4 pull-left">
-    <%= f.label :price, t('services.price'), :class => 'control-label' %>
+    <%= f.label :price, :class => 'control-label' %>
     <%= f.text_field :price, :class => 'form-control input-sm', required: true %>
   </div>
 </div>

@@ -6,5 +6,7 @@ class CreateVats < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    add_index :vats, :rate
   end
 end

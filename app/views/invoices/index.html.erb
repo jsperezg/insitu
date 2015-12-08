@@ -15,7 +15,7 @@
   </thead>
   <tbody>
     <% @invoices.each do |invoice| %>
-      <tr>
+      <tr class="<%=payment_status invoice %>">
         <td><%= link_to invoice.id, user_invoice_path(current_user, invoice) %></td>
         <td><%= invoice.number %></td>
         <td><%=ldate invoice.date %></td>

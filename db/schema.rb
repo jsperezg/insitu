@@ -217,6 +217,7 @@ ActiveRecord::Schema.define(version: 20151115071122) do
   end
 
   add_index "vats", ["label"], name: "index_vats_on_label", using: :btree
+  add_index "vats", ["rate"], name: "index_vats_on_rate", using: :btree
 
   add_foreign_key "delivery_note_details", "delivery_notes"
   add_foreign_key "delivery_note_details", "services"

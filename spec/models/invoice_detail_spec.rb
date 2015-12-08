@@ -106,4 +106,11 @@ RSpec.describe InvoiceDetail, type: :model do
 			expect(invoice_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :discount )}
 		end
 	end
+
+  describe 'totals' do
+    it 'total includes discount, vat, price and quantity' do
+      r = InvoiceDetail.new(quantity: 1.0, price: 100.0, vat_rate: 21.0, discount: 10.0)
+      expect(r.total).to eq(108.9)
+    end
+  end
 end
