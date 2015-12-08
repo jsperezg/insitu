@@ -33,9 +33,10 @@ class InvoicesController < ApplicationController
     respond_to do |format|
       if @invoice.save
         format.html {
-          redirect_to edit_user_invoice_path(current_user, @invoice),
-          t(:successfully_created, item: t('invoices.invoice'))
+          redirect_to edit_user_invoice_url(current_user, @invoice),
+          notice: t(:successfully_created, item: t('invoices.invoice'))
         }
+            
         format.json { render :show, status: :created, location: @invoice }
       else
         format.html { render :new }

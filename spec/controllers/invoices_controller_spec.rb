@@ -24,22 +24,31 @@ RSpec.describe InvoicesController, type: :controller do
   # Invoice. As you add validations to Invoice, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    invoice = attributes_for(:invoice)
+
+    invoice.merge(invoice_details_attributes: [ attributes_for(:invoice_detail) ])
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    attributes_for(:invoice, date: nil)
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # InvoicesController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  before(:example) do
+    @user = create(:user)
+    sign_in @user
+
+    Thread.current[:user] = @user
+  end
+
+  after(:example) do
+    sign_out @user
+  end
 
   describe "GET #index" do
     it "assigns all invoices as @invoices" do
       invoice = Invoice.create! valid_attributes
-      get :index, {}, valid_session
+      get :index, {user_id: @user.id}
+
       expect(assigns(:invoices)).to eq([invoice])
     end
   end
@@ -47,14 +56,14 @@ RSpec.describe InvoicesController, type: :controller do
   describe "GET #show" do
     it "assigns the requested invoice as @invoice" do
       invoice = Invoice.create! valid_attributes
-      get :show, {:id => invoice.to_param}, valid_session
+      get :show, {:id => invoice.to_param, user_id: @user.id}
       expect(assigns(:invoice)).to eq(invoice)
     end
   end
 
   describe "GET #new" do
     it "assigns a new invoice as @invoice" do
-      get :new, {}, valid_session
+      get :new, {user_id: @user.id}
       expect(assigns(:invoice)).to be_a_new(Invoice)
     end
   end
@@ -62,7 +71,7 @@ RSpec.describe InvoicesController, type: :controller do
   describe "GET #edit" do
     it "assigns the requested invoice as @invoice" do
       invoice = Invoice.create! valid_attributes
-      get :edit, {:id => invoice.to_param}, valid_session
+      get :edit, {:id => invoice.to_param, user_id: @user.id}
       expect(assigns(:invoice)).to eq(invoice)
     end
   end
@@ -71,30 +80,30 @@ RSpec.describe InvoicesController, type: :controller do
     context "with valid params" do
       it "creates a new Invoice" do
         expect {
-          post :create, {:invoice => valid_attributes}, valid_session
+          post :create, {:invoice => valid_attributes, user_id: @user.id}
         }.to change(Invoice, :count).by(1)
       end
 
       it "assigns a newly created invoice as @invoice" do
-        post :create, {:invoice => valid_attributes}, valid_session
+        post :create, {:invoice => valid_attributes, user_id: @user.id}
         expect(assigns(:invoice)).to be_a(Invoice)
         expect(assigns(:invoice)).to be_persisted
       end
 
       it "redirects to the created invoice" do
-        post :create, {:invoice => valid_attributes}, valid_session
-        expect(response).to redirect_to(Invoice.last)
+        post :create, {:invoice => valid_attributes, user_id: @user.id}
+        expect(response).to redirect_to(edit_user_invoice_url(@user, Invoice.last))
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved invoice as @invoice" do
-        post :create, {:invoice => invalid_attributes}, valid_session
+        post :create, {:invoice => invalid_attributes, user_id: @user.id}
         expect(assigns(:invoice)).to be_a_new(Invoice)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:invoice => invalid_attributes}, valid_session
+        post :create, {:invoice => invalid_attributes, user_id: @user.id}
         expect(response).to render_template("new")
       end
     end
@@ -103,39 +112,42 @@ RSpec.describe InvoicesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        attributes_for(:invoice)
       }
 
       it "updates the requested invoice" do
         invoice = Invoice.create! valid_attributes
-        put :update, {:id => invoice.to_param, :invoice => new_attributes}, valid_session
+        put :update, {:id => invoice.to_param, :invoice => new_attributes, user_id: @user.id}
         invoice.reload
-        skip("Add assertions for updated state")
+
+        new_attributes.each do |key, value|
+          expect(invoice[key]).to eq(new_attributes[key])
+        end
       end
 
       it "assigns the requested invoice as @invoice" do
         invoice = Invoice.create! valid_attributes
-        put :update, {:id => invoice.to_param, :invoice => valid_attributes}, valid_session
+        put :update, {:id => invoice.to_param, :invoice => valid_attributes, user_id: @user.id}
         expect(assigns(:invoice)).to eq(invoice)
       end
 
       it "redirects to the invoice" do
         invoice = Invoice.create! valid_attributes
-        put :update, {:id => invoice.to_param, :invoice => valid_attributes}, valid_session
-        expect(response).to redirect_to(invoice)
+        put :update, {:id => invoice.to_param, :invoice => valid_attributes, user_id: @user.id}
+        expect(response).to redirect_to(edit_user_invoice_url(@user, invoice))
       end
     end
 
     context "with invalid params" do
       it "assigns the invoice as @invoice" do
         invoice = Invoice.create! valid_attributes
-        put :update, {:id => invoice.to_param, :invoice => invalid_attributes}, valid_session
+        put :update, {:id => invoice.to_param, :invoice => invalid_attributes, user_id: @user.id}
         expect(assigns(:invoice)).to eq(invoice)
       end
 
       it "re-renders the 'edit' template" do
         invoice = Invoice.create! valid_attributes
-        put :update, {:id => invoice.to_param, :invoice => invalid_attributes}, valid_session
+        put :update, {:id => invoice.to_param, :invoice => invalid_attributes, user_id: @user.id}
         expect(response).to render_template("edit")
       end
     end
@@ -145,15 +157,14 @@ RSpec.describe InvoicesController, type: :controller do
     it "destroys the requested invoice" do
       invoice = Invoice.create! valid_attributes
       expect {
-        delete :destroy, {:id => invoice.to_param}, valid_session
+        delete :destroy, {:id => invoice.to_param, user_id: @user.id}
       }.to change(Invoice, :count).by(-1)
     end
 
     it "redirects to the invoices list" do
       invoice = Invoice.create! valid_attributes
-      delete :destroy, {:id => invoice.to_param}, valid_session
-      expect(response).to redirect_to(invoices_url)
+      delete :destroy, {:id => invoice.to_param, user_id: @user.id}
+      expect(response).to redirect_to(user_invoices_url(@user.id))
     end
   end
-
 end
