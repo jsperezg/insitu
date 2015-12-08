@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151115071122) do
+ActiveRecord::Schema.define(version: 20151208174856) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "name",          limit: 255, null: false
@@ -48,6 +48,32 @@ ActiveRecord::Schema.define(version: 20151115071122) do
 
   add_index "delivery_notes", ["customer_id"], name: "index_delivery_notes_on_customer_id", using: :btree
   add_index "delivery_notes", ["number"], name: "index_delivery_notes_on_number", using: :btree
+
+  create_table "estimate_details", force: :cascade do |t|
+    t.integer  "estimate_id", limit: 4,                           null: false
+    t.integer  "service_id",  limit: 4,                           null: false
+    t.string   "description", limit: 255
+    t.decimal  "quantity",                precision: 7, scale: 2, null: false
+    t.decimal  "price",                   precision: 7, scale: 2, null: false
+    t.decimal  "discount",                precision: 7, scale: 2, null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+  end
+
+  add_index "estimate_details", ["estimate_id"], name: "index_estimate_details_on_estimate_id", using: :btree
+  add_index "estimate_details", ["service_id"], name: "index_estimate_details_on_service_id", using: :btree
+
+  create_table "estimates", force: :cascade do |t|
+    t.string   "number",      limit: 255, null: false
+    t.integer  "customer_id", limit: 4,   null: false
+    t.date     "date",                    null: false
+    t.date     "valid_until"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "estimates", ["customer_id"], name: "index_estimates_on_customer_id", using: :btree
+  add_index "estimates", ["number"], name: "index_estimates_on_number", using: :btree
 
   create_table "invoice_details", force: :cascade do |t|
     t.integer  "invoice_id",  limit: 4,                           null: false
@@ -222,6 +248,9 @@ ActiveRecord::Schema.define(version: 20151115071122) do
   add_foreign_key "delivery_note_details", "delivery_notes"
   add_foreign_key "delivery_note_details", "services"
   add_foreign_key "delivery_notes", "customers"
+  add_foreign_key "estimate_details", "estimates"
+  add_foreign_key "estimate_details", "services"
+  add_foreign_key "estimates", "customers"
   add_foreign_key "invoice_details", "invoices"
   add_foreign_key "invoice_details", "services"
   add_foreign_key "invoices", "customers"

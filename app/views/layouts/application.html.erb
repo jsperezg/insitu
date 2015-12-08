@@ -57,34 +57,40 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <% if user_signed_in? %>
-          <div class="col-lg-9">
+          <div class="col-lg-2 col-sm-3">
+            <div class="well sidebar-nav">
+              <h3><%=t :my_office %></h3>
+              <ul class="nav nav-pills nav-stacked">
+                <li class="nav-header">
+                  <i class="fa fa-database"></i>
+                  <%=t :general %>
+                </li>
+                <li class="<%=c 'payment_methods' %>"><%= link_to t(:payment_methods), user_payment_methods_path(current_user.id)  %></li>
+                <li class="<%=c 'vats' %>"><%= link_to t('vats.title'), user_vats_path(current_user.id) %></li>
+                <li class="<%=c 'units' %>"><%= link_to t('units.title'), user_units_path(current_user.id) %></li>
+                <li class="<%=c 'services' %>"><%= link_to t('services.title'), user_services_path(current_user.id)  %></li>
+                <li class="<%=c 'customers' %>"><%= link_to t('customers.title'), user_customers_path(current_user.id) %></li>
+              </ul>
+              <ul class="nav nav-pills nav-stacked">
+                <li class="nav-header">
+                  <i class="fa fa-cog"></i>
+                  <%=t :production %>
+                </li>
+                <li class="<%=c 'projects' %>"><%= link_to t('projects.title'), user_projects_path(current_user.id)%></li>
+                <li class="<%=c 'delivery_notes' %>"><%= link_to t('delivery_notes.title'), user_delivery_notes_path(current_user.id) %></li>
+                <li class="<%=c 'invoices' %>"><%= link_to t('invoices.title'), user_invoices_path(current_user.id) %></li>
+              </ul>
+            </div><!--/.well -->
+          </div>
+          <div class="col-lg-10 col-sm-9">
             <%= bootstrap_flash %>
             <%= yield %>
           </div>
-          <div class="col-lg-3">
-            <div class="well sidebar-nav">
-              <h3><%=t :my_office %></h3>
-              <ul class="nav nav-list">
-                <li class="nav-header"><%=t :general %></li>
-                <li><%= link_to t(:payment_methods), user_payment_methods_path(current_user.id)  %></li>
-                <li><%= link_to t('vats.title'), user_vats_path(current_user.id) %></li>
-                <li><%= link_to t('units.title'), user_units_path(current_user.id) %></li>
-                <li><%= link_to t('services.title'), user_services_path(current_user.id)  %></li>		            
-                <li><%= link_to t('customers.title'), user_customers_path(current_user.id) %></li>
-              </ul>
-              <ul class="nav nav-list">
-                <li class="nav-header"><%=t :production %></li>
-                <li><%= link_to t('projects.title'), user_projects_path(current_user.id)%></li>
-                <li><%= link_to t('delivery_notes.title'), user_delivery_notes_path(current_user.id) %></li>
-                <li><%= link_to t('invoices.title'), user_invoices_path(current_user.id) %></li>
-              </ul>
-            </div><!--/.well -->
-          </div><!--/span-->
         <% else %>
-          <div class="col-lg-12">
+          <div class="col-xs-12">
             <%= bootstrap_flash %>
             <%= yield %>
           </div>

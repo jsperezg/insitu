@@ -8,4 +8,9 @@ module ApplicationHelper
 	def ldate object, options = {}
 		object.present? ? localize(object, options) : ''
 	end
+
+	# Returns the class active if the current controller is equals to option.
+	def c option
+		'active' if controller_name == option
+	end
 end
