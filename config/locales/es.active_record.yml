@@ -4,7 +4,7 @@ es:
       service: Servicio
     attributes:
       user:
-        tax_id: NIE
+        tax_id: NIF/CIF
         email: Correo electrónico
         name: Nombre
         address: Dirección
@@ -68,6 +68,7 @@ es:
         price: Precio
         quantity: Cantidad
         discount: Descuento
+        total: Total
       unit:
         label_short: Etiqueta
         label_long: Descripción
@@ -134,10 +135,10 @@ es:
               blank: 'es obligatorio.'
             customer_id:
               blank: 'es obligatorio.'
-        delivery_note_detail:          
+        delivery_note_detail:
           attributes:
             service_id:
-              blank: 'es obligatorio.'                
+              blank: 'es obligatorio.'
             quantity:
               blank: 'es obligatorio.'
               greater_than: "debe ser mayor que %{count}."
@@ -166,7 +167,7 @@ es:
         vat:
             attributes:
               label:
-                blank: es obligatoria.                
+                blank: es obligatoria.
               rate:
                 blank: es obligatorio.
                 greater_than_or_equal_to: "debe ser mayor o igual que %{count}%."

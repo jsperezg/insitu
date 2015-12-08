@@ -68,12 +68,13 @@ en:
         price: Price
         quantity: Quantity
         discount: Discount
+        total: Total
       unit:
         label_short: Label
-        label_long: Description 
+        label_long: Description
       vat:
         label: Label
-        rate: Value 
+        rate: Value
 
     errors:
       models:
@@ -84,7 +85,7 @@ en:
             password:
               too_short: is too short.
             password_confirmation:
-              confirmation: is mandatory.  
+              confirmation: is mandatory.
             current_password:
               blank: is mandatory.
         service:
@@ -139,7 +140,7 @@ en:
           delivery_note_detail:
             attributes:
               service_id:
-                blank: 'is mandatory.'                
+                blank: 'is mandatory.'
               quantity:
                 blank: 'is mandatory.'
                 greater_than: "must be greater than %{count}."
@@ -168,7 +169,7 @@ en:
           vat:
             attributes:
               label:
-                blank: is mandatory.                
+                blank: is mandatory.
               rate:
                 blank: is mandatory.
                 greater_than_or_equal_to: "must be greater or equal to %{count}%."

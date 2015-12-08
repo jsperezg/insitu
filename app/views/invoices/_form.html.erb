@@ -1,9 +1,7 @@
-<%= form_for @invoice, :html => { :class => "form-horizontal invoice" } do |f| %>
-
-    <% if @invoice.errors.any? %>
+  <% if @invoice.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h3>
+        <h3 class="panel-title"><%=t :validation_error_header %></h3>
       </div>
       <div class="panel-body">
         <ul>
@@ -15,59 +13,94 @@
     </div>
   <% end %>
 
-  <div class="control-group">
-    <%= f.label :number, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :number, :class => 'form-control' %>
+  <div class=row>
+    <% unless @invoice.new_record? %>
+      <div class="form-group pull-left col-xs-3">
+        <%= f.label :number, :class => 'control-label' %>
+        <p class="form-control-static"><%= @invoice[:number] %></p>
+      </div>
+    <% end %>
+
+    <div class="form-group pull-left col-xs-6">
+      <%= f.label :customer_id, :class => 'control-label' %>
+      <%= f.collection_select :customer_id, Customer.order(name: :asc), :id, :name,
+        { prompt: true }, { class: 'form-control input-sm', required: true } %>
     </div>
-    <%= error_span(@invoice[:number]) %>
+
+    <div class="form-group pull-left col-xs-3">
+      <%= f.label :date, :class => 'control-label' %>
+      <div class="input-group date">
+        <input type=text id=date name="invoice[date]" class="form-control input-sm" value="<%=l @invoice.date %>" required>
+
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
+    </div>
   </div>
-  <div class="control-group">
-    <%= f.label :date, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :date, :class => 'form-control' %>
+  <div class=row>
+    <div class="form-group pull-left col-xs-6">
+      <%= f.label :payment_method_id, :class => 'control-label' %>
+      <%= f.collection_select :payment_method_id, PaymentMethod.order(name: :asc), :id, :name,
+        { prompt: true }, { class: 'form-control input-sm', required: true } %>
     </div>
-    <%= error_span(@invoice[:date]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :payment_method_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :payment_method_id, :class => 'form-control' %>
+
+    <div class="form-group pull-left col-xs-3">
+      <%= f.label :payment_date, :class => 'control-label' %>
+      <div class="input-group date">
+        <input type=text id=payment_date name="invoice[payment_date]" class="form-control input-sm" value="<%=ldate @invoice.payment_date %>" required>
+
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
     </div>
-    <%= error_span(@invoice[:payment_method_id]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :customer_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :customer_id, :class => 'form-control' %>
+
+    <div class="form-group pull-left col-xs-3">
+      <%= f.label :paid_on, :class => 'control-label' %>
+      <div class="input-group date">
+        <input type=text id=paid_on name="invoice[paid_on]" class="form-control input-sm" value="<%=ldate @invoice.paid_on %>">
+
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+      </div>
     </div>
-    <%= error_span(@invoice[:customer_id]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :issue_date, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :issue_date, :class => 'form-control' %>
-    </div>
-    <%= error_span(@invoice[:issue_date]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :payment_date, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :payment_date, :class => 'form-control' %>
-    </div>
-    <%= error_span(@invoice[:payment_date]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :paid_on, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :paid_on, :class => 'form-control' %>
-    </div>
-    <%= error_span(@invoice[:paid_on]) %>
   </div>
 
+  <hr>
+  <table class="table table-striped" data-no-turbolink>
+    <thead>
+      <tr>
+        <th class=col-xs-1><%=t 'helpers.links.destroy' %></th>
+        <th class=col-xs-5>
+          <%=t 'activerecord.attributes.invoice/invoice_details.service_id'%>
+        </th>
+        <th class="col-xs-1 text-right">
+          <%=t 'activerecord.attributes.invoice/invoice_details.quantity'%>
+        </th>
+        <th class="col-xs-1 text-right">
+          <%=t 'activerecord.attributes.invoice/invoice_details.price'%>
+        </th>
+        <th class="col-xs-1">
+          <%=t 'activerecord.attributes.invoice/invoice_details.discount'%>
+        </th>
+        <th class="col-xs-1 text-right">
+          <%=t 'activerecord.attributes.invoice/invoice_details.vat_rate'%>
+        </th>
+        <th class="col-xs-2 text-right">
+          <%=t 'activerecord.attributes.invoice/invoice_details.total'%>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= f.fields_for :invoice_details do |builder| %>
+        <%= render 'invoice_details', f: builder %>
+      <% end %>
+    </tbody>
+  </table>
 
-  <%= f.submit nil, :class => 'btn btn-primary', data: { disable_with: t('please_wait')} %>
+
+  <%= f.submit t(:save), :class => 'btn btn-primary', data: { disable_with: t('please_wait')} %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            invoices_path, :class => 'btn btn-default' %>
-
-<% end %>
+            user_invoices_path(current_user), :class => 'btn btn-default' %>

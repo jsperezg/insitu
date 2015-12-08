@@ -16,11 +16,11 @@
   <tbody>
     <% @invoices.each do |invoice| %>
       <tr>
-        <td><%= link_to invoice.id, user_invoice_path(current_invoice, invoice) %></td>
+        <td><%= link_to invoice.id, user_invoice_path(current_user, invoice) %></td>
         <td><%= invoice.number %></td>
-        <td><%=l invoice.date %></td>
+        <td><%=ldate invoice.date %></td>
         <td><%= invoice.customer.try(:name) %></td>
-        <td><%=l invoice.paid_on %></td>
+        <td><%=ldate invoice.paid_on %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_user_invoice_path(current_user, invoice), :class => 'btn btn-default btn-xs' %>

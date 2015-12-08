@@ -1,8 +1,10 @@
 class Invoice < ActiveRecord::Base
+    include SequenceGenerator
+
     belongs_to :payment_method
     belongs_to :customer
     has_many :invoice_details, :dependent => :destroy
-    
+
     validates :date, presence: true
     validates :payment_method_id, presence: true
     validates :customer_id, presence: true
@@ -11,11 +13,13 @@ class Invoice < ActiveRecord::Base
     validate :validate_paid_on
 
     accepts_nested_attributes_for :invoice_details, reject_if: proc { |attr|
-      [:date, :payment_method_id, :customer_id, :payment_date, :vat_rate, :price, :quantity, :discount].each do |attr_id|
-        return false unless attr[attr_id].blank?
+      result = true
+
+      [:date, :payment_method_id, :customer_id, :payment_date, :price, :quantity, :discount].each do |attr_id|
+        result = false unless attr[attr_id].blank?
       end
 
-      true
+      result
     }, :allow_destroy => true
 
     before_create :set_number
@@ -24,7 +28,7 @@ class Invoice < ActiveRecord::Base
       increase_id(Thread.current[:user], self.model_name.human, self.date.year)
     end
 
-  	private 
+  	private
 
   	def set_number
   		self.number = generate_id(Thread.current[:user], self.model_name.human, date.year)

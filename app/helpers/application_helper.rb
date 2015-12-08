@@ -5,16 +5,7 @@ module ApplicationHelper
 		end
 	end
 
-  	def form_group(attribute, model, css_class = nil)
-  		css_class = css_class || []
-  		css_class << 'form-group'
-
-  		if model.errors.key? model
-  			css_class << 'has_error'
-		end
-
-  		content_tag(:div, class: css_class) do
-  			yield
-  		end	
+	def ldate object, options = {}
+		object.present? ? localize(object, options) : ''
 	end
 end

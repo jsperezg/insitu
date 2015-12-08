@@ -7,6 +7,6 @@ class DeliveryNoteDetail < ActiveRecord::Base
   	validates :price, presence: true, numericality: { greater_than: 0 }
 
 	def total
-		price * quantity if !price.nil? && !quantity.nil?
+		price * quantity if price.present? && quantity.present?
 	end
 end

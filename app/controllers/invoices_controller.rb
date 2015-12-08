@@ -15,7 +15,7 @@ class InvoicesController < ApplicationController
 
   # GET /invoices/new
   def new
-    @invoice = Invoice.new
+    @invoice = Invoice.new(date: Date.today)
     detail = @invoice.invoice_details.build
   end
 
@@ -33,7 +33,7 @@ class InvoicesController < ApplicationController
     respond_to do |format|
       if @invoice.save
         format.html {
-          redirect_to user_edit_invoice_path(current_user, @invoice),
+          redirect_to edit_user_invoice_path(current_user, @invoice),
           t(:successfully_created, item: t('invoices.invoice'))
         }
         format.json { render :show, status: :created, location: @invoice }
@@ -50,7 +50,7 @@ class InvoicesController < ApplicationController
     respond_to do |format|
       if @invoice.update(invoice_params)
         format.html {
-          redirect_to user_edit_invoice_path(current_user, @invoice),
+          redirect_to edit_user_invoice_path(current_user, @invoice),
           notice: t(:successfully_updated, item: t('invoices.invoice'))
         }
         format.json { render :show, status: :ok, location: @invoice }
