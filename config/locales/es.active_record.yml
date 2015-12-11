@@ -160,6 +160,26 @@ es:
               invalid_value: es inválida.
             paid_on:
               invalid_value: es inválida.
+        invoice_detail:
+          attributes:
+            service_id:
+              blank: 'es obligatorio.'
+            quantity:
+              blank: 'es obligatorio.'
+              greater_than: "debe ser mayor que %{count}."
+              not_a_number: "debe ser un número."
+            price:
+              blank: 'es obligatorio.'
+              greater_than: "debe ser mayor que %{count}."
+              not_a_number: "debe ser un número."
+            discount:
+              blank: 'es obligatorio.'
+              greater_than_or_equal_to: "debe ser mayor o igual que %{count}%."
+              not_a_number: "debe ser un número."
+            vat_rate:
+              blank: 'es obligatorio.'
+              greater_than_or_equal_to: "debe ser mayor o igual que %{count}%."
+              not_a_number: "debe ser un número."
         unit:
           attributes:
             label_short:
@@ -172,3 +192,27 @@ es:
                 blank: es obligatorio.
                 greater_than_or_equal_to: "debe ser mayor o igual que %{count}%."
                 not_a_number: No es un número.
+        estimate:
+          attributes:
+            valid_until:
+              invalid_value: es incorrecta.
+            date:
+              blank: 'es obligatoria.'
+            customer_id:
+              blank: 'es obligatorio.'
+        estimate_detail:
+          attributes:
+            service_id:
+              blank: 'es obligatorio.'
+            quantity:
+              blank: 'es obligatorio.'
+              greater_than: "debe ser mayor que %{count}."
+              not_a_number: "debe ser un número."
+            price:
+              blank: 'es obligatorio.'
+              greater_than: "debe ser mayor que %{count}."
+              not_a_number: "debe ser un número."
+            discount:
+              blank: 'es obligatorio.'
+              greater_than_or_equal_to: "debe ser mayor o igual que %{count}%."
+              not_a_number: "debe ser un número."

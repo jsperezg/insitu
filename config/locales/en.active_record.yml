@@ -162,6 +162,26 @@ en:
                 invalid_value: is invalid.
               paid_on:
                 invalid_value: is invalid.
+          invoice_detail:
+            attributes:
+              service_id:
+                blank: is mandatory.
+              quantity:
+                blank: is mandatory.
+                greater_than: "must be greater than %{count}."
+                not_a_number: "must be a number."
+              price:
+                blank: is mandatory.
+                greater_than: "must be greater than %{count}."
+                not_a_number: "must be a number."
+              discount:
+                blank: is mandatory.
+                greater_than_or_equal_to: "must be greater or equal to %{count}%."
+                not_a_number: "must be a number."
+              vat_rate:
+                blank: is mandatory.
+                greater_than_or_equal_to: "must be greater or equal to %{count}%."
+                not_a_number: "must be a number."
           unit:
             attributes:
               label_short:
@@ -174,3 +194,28 @@ en:
                 blank: is mandatory.
                 greater_than_or_equal_to: "must be greater or equal to %{count}%."
                 not_a_number: isn't a number.
+
+          estimate:
+            attributes:
+              valid_until:
+                invalid_value: is invalid.
+              date:
+                blank: 'is mandatory.'
+              customer_id:
+                blank: 'is mandatory.'
+          estimate_detail:
+            attributes:
+              service_id:
+                blank: is mandatory.
+              quantity:
+                blank: is mandatory.
+                greater_than: "must be greater than %{count}."
+                not_a_number: "must be a number."
+              price:
+                blank: is mandatory.
+                greater_than: "must be greater than %{count}."
+                not_a_number: "must be a number."
+              discount:
+                blank: is mandatory.
+                greater_than_or_equal_to: "must be greater or equal to %{count}%."
+                not_a_number: "must be a number."
