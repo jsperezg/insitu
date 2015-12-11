@@ -1,5 +1,5 @@
 module Settings
-	def find_or_create_key(name, data_type) 
+	def find_or_create_key(name, data_type)
 		key = SettingKey.find_by(name: name)
 		if key.nil?
 			key = SettingKey.create(name: name, data_type: data_type)
@@ -35,7 +35,7 @@ module Settings
 	def init_default_settings_for(user)
 		year = DateTime.now.year
 
-		[DeliveryNote.model_name, Invoice.model_name].each do |model|			
+		[DeliveryNote.model_name, Invoice.model_name, Estimate.model_name].each do |model|			
 			key = find_or_create_key("#{model}.serie", SettingKey.data_types[:string])
 			find_or_create_value(user, key, model.singular.capitalize[0])
 
