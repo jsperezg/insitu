@@ -22,6 +22,13 @@ RSpec.describe Invoice, type: :model do
   	expect(invoice.errors).to satisfy { |errors| !errors.empty? && errors.key?( :customer_id )}
   end
 
+  it 'status is mandatory' do
+  	invoice = Invoice.new
+  	invoice.save
+
+  	expect(invoice.errors).to satisfy { |errors| !errors.empty? && errors.key?( :invoice_status_id )}
+  end
+
   describe 'payment date' do
   	it 'is mandatory' do
   		invoice = Invoice.new

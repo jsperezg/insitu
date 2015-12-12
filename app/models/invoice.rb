@@ -3,12 +3,14 @@ class Invoice < ActiveRecord::Base
 
     belongs_to :payment_method
     belongs_to :customer
+    belongs_to :invoice_status
     has_many :invoice_details, :dependent => :destroy
 
     validates :date, presence: true
     validates :payment_method_id, presence: true
     validates :customer_id, presence: true
     validates :payment_date, presence: true
+    validates :invoice_status_id, presence: true
     validate :validate_payment_date
     validate :validate_paid_on
 
@@ -22,7 +24,7 @@ class Invoice < ActiveRecord::Base
       result
     }, :allow_destroy => true
 
-    before_create :set_number
+    before_create :set_default_values
 
     after_commit(on: :create) do
       increase_id(Thread.current[:user], self.model_name.human, self.date.year)
@@ -30,8 +32,14 @@ class Invoice < ActiveRecord::Base
 
   	private
 
-  	def set_number
-  		self.number = generate_id(Thread.current[:user], self.model_name.human, date.year)
+  	def set_default_values
+      if self.invoice_status_id.nil?
+        self.invoice_status_id = InvoiceStatus.find_by(name: 'invoice_status.created').try(:id)
+      end
+
+      if (self.number.blank?)
+        self.number = generate_id(Thread.current[:user], self.model_name.human, date.year)
+      end
   	end
 
     def validate_payment_date

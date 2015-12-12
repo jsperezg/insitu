@@ -60,6 +60,7 @@ es:
         customer_id: Cliente
         payment_date: Fecha de vencimiento
         paid_on: Fecha de cobro
+        invoice_status_id: Estado
       invoice/invoice_details:
         invoice_id: Factura
         service_id: Concepto
@@ -172,6 +173,8 @@ es:
               invalid_value: es inválida.
             paid_on:
               invalid_value: es inválida.
+            invoice_status_id:
+              blank: es obligatorio.
         invoice_detail:
           attributes:
             service_id:

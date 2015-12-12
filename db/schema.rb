@@ -30,9 +30,9 @@ ActiveRecord::Schema.define(version: 20151208174856) do
     t.integer  "service_id",         limit: 4,                           null: false
     t.decimal  "quantity",                       precision: 7, scale: 2, null: false
     t.decimal  "price",                          precision: 7, scale: 2, null: false
+    t.string   "custom_description", limit: 255
     t.datetime "created_at",                                             null: false
     t.datetime "updated_at",                                             null: false
-    t.string   "custom_description", limit: 255
   end
 
   add_index "delivery_note_details", ["delivery_note_id"], name: "index_delivery_note_details_on_delivery_note_id", using: :btree
@@ -90,11 +90,18 @@ ActiveRecord::Schema.define(version: 20151208174856) do
   add_index "invoice_details", ["invoice_id"], name: "index_invoice_details_on_invoice_id", using: :btree
   add_index "invoice_details", ["service_id"], name: "index_invoice_details_on_service_id", using: :btree
 
+  create_table "invoice_statuses", force: :cascade do |t|
+    t.string   "name",       limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "invoices", force: :cascade do |t|
     t.string   "number",            limit: 255, null: false
     t.date     "date",                          null: false
     t.integer  "payment_method_id", limit: 4,   null: false
     t.integer  "customer_id",       limit: 4,   null: false
+    t.integer  "invoice_status_id", limit: 4,   null: false
     t.date     "payment_date",                  null: false
     t.date     "paid_on"
     t.datetime "created_at",                    null: false
@@ -102,6 +109,7 @@ ActiveRecord::Schema.define(version: 20151208174856) do
   end
 
   add_index "invoices", ["customer_id"], name: "index_invoices_on_customer_id", using: :btree
+  add_index "invoices", ["invoice_status_id"], name: "index_invoices_on_invoice_status_id", using: :btree
   add_index "invoices", ["number"], name: "index_invoices_on_number", using: :btree
   add_index "invoices", ["payment_method_id"], name: "index_invoices_on_payment_method_id", using: :btree
 
@@ -218,17 +226,17 @@ ActiveRecord::Schema.define(version: 20151208174856) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
-    t.integer  "role_id",                limit: 4
     t.string   "tenant",                 limit: 255
     t.string   "tax_id",                 limit: 255
     t.string   "name",                   limit: 255
     t.string   "address",                limit: 255
     t.string   "city",                   limit: 255
-    t.string   "postal_code",            limit: 25
+    t.string   "postal_code",            limit: 255
     t.string   "state",                  limit: 255
     t.string   "country",                limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.integer  "role_id",                limit: 4
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

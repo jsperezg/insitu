@@ -60,6 +60,7 @@ en:
         customer_id: Customer
         payment_date: Due date
         paid_on: Paid on
+        invoice_status_id: Status
       invoice/invoice_details:
         invoice_id: Invoice
         service_id: Item
@@ -174,6 +175,8 @@ en:
                 invalid_value: is invalid.
               paid_on:
                 invalid_value: is invalid.
+              invoice_status_id:
+                blank: is mandatory.
           invoice_detail:
             attributes:
               service_id:

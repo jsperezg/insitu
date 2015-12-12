@@ -7,6 +7,10 @@ if Apartment::Tenant.current_tenant.blank? or Apartment::Tenant.current_tenant =
       ProjectStatus.find_by(name: state) || ProjectStatus.create(name: state)
   end
 
+  ['invoice_status.created', 'invoice_status.planed', 'invoice_status.sent'].each do |status|
+    InvoiceStatus.find_by(name: status) || InvoiceStatus.create(name: status)
+  end
+
   %w(Administrador Usuario).each do |role|
     Role.find_by(description: role) || Role.create(description: role)
   end

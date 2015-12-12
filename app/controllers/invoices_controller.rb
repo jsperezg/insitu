@@ -90,6 +90,7 @@ class InvoicesController < ApplicationController
         :customer_id,
         :payment_date,
         :paid_on,
+        :invoice_status_id,
         invoice_details_attributes: [
           :id, :invoice_id, :service_id, :vat_rate, :quantity, :price,
           :discount, :description, :_destroy
