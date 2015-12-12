@@ -87,6 +87,7 @@ class EstimatesController < ApplicationController
         :number,
         :customer_id,
         :valid_until,
+        :estimate_status_id,
         estimate_details_attributes: [
           :id, :estimate_id, :service_id, :quantity, :price,
           :discount, :description, :_destroy

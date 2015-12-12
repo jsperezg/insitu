@@ -63,16 +63,24 @@ ActiveRecord::Schema.define(version: 20151208174856) do
   add_index "estimate_details", ["estimate_id"], name: "index_estimate_details_on_estimate_id", using: :btree
   add_index "estimate_details", ["service_id"], name: "index_estimate_details_on_service_id", using: :btree
 
+  create_table "estimate_statuses", force: :cascade do |t|
+    t.string   "name",       limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "estimates", force: :cascade do |t|
-    t.string   "number",      limit: 255, null: false
-    t.integer  "customer_id", limit: 4,   null: false
-    t.date     "date",                    null: false
+    t.string   "number",             limit: 255, null: false
+    t.integer  "customer_id",        limit: 4,   null: false
+    t.integer  "estimate_status_id", limit: 4,   null: false
+    t.date     "date",                           null: false
     t.date     "valid_until"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_index "estimates", ["customer_id"], name: "index_estimates_on_customer_id", using: :btree
+  add_index "estimates", ["estimate_status_id"], name: "index_estimates_on_estimate_status_id", using: :btree
   add_index "estimates", ["number"], name: "index_estimates_on_number", using: :btree
 
   create_table "invoice_details", force: :cascade do |t|

@@ -81,6 +81,7 @@ es:
         customer_id: Cliente
         date: Fecha
         valid_until: Valido hasta
+        estimate_status_id: Estado
       estimate/estimate_details:
         service_id: Concepto
         description: Descripción
@@ -215,6 +216,8 @@ es:
               blank: 'es obligatoria.'
             customer_id:
               blank: 'es obligatorio.'
+            estimate_status_id:
+              blank: es obligatorio.
         estimate_detail:
           attributes:
             service_id:

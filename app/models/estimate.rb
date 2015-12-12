@@ -6,6 +6,7 @@ class Estimate < ActiveRecord::Base
 
   validates :customer_id, presence: true
   validates :date, presence: true
+  validates :estimate_status_id, presence: true
   validate :validate_valid_until
 
   accepts_nested_attributes_for :estimate_details, reject_if: proc { |attr|
@@ -18,7 +19,7 @@ class Estimate < ActiveRecord::Base
     result
   }, :allow_destroy => true
 
-  before_create :set_number
+  before_create :set_default_values
 
   after_commit(on: :create) do
     increase_id(Thread.current[:user], self.model_name.human, self.date.year)
@@ -26,8 +27,14 @@ class Estimate < ActiveRecord::Base
 
   private
 
-  def set_number
-    self.number = generate_id(Thread.current[:user], self.model_name.human, date.year)
+  def set_default_values
+    if self.estimate_status_id.nil?
+      self.estimate_status_id = EstimateStatus.find_by(name: 'estimate_status.created').try(:id)
+    end
+    
+    if self.number.blank?
+      self.number = generate_id(Thread.current[:user], self.model_name.human, date.year)
+    end
   end
 
   def validate_valid_until

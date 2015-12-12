@@ -14,6 +14,12 @@ es:
     cancelled: Cancelado
     closed: Cerrado
 
+  estimate_status:
+    created: Creado
+    sent: Enviado
+    accepted: Aceptado
+    rejected: Rechazado
+
   log_in: Acceso al sistema
   sign_up: Crear cuenta
   forgot_password: ¿Has olvidado tu contraseña?

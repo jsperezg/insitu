@@ -81,6 +81,7 @@ en:
         customer_id: Customer
         date: Date
         valid_until: Valid until
+        estimate_status_id: Status
       estimate/estimate_details:
         service_id: Item
         description: Description
@@ -218,6 +219,8 @@ en:
                 blank: 'is mandatory.'
               customer_id:
                 blank: 'is mandatory.'
+              estimate_status_id:
+                blank: is mandatory.                  
           estimate_detail:
             attributes:
               service_id:

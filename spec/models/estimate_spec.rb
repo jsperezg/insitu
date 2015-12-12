@@ -21,4 +21,11 @@ RSpec.describe Estimate, type: :model do
 
     expect(estimate.errors).to satisfy { |errors| !errors.empty? && errors.key?( :valid_until )}
   end
+
+  it "status is mandatory" do
+    estimate = Estimate.new
+    estimate.save
+
+    expect(estimate.errors).to satisfy { |errors| !errors.empty? && errors.key?( :estimate_status_id )}
+  end
 end
