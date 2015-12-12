@@ -1,10 +1,11 @@
 class EstimatesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_estimate, only: [:show, :edit, :update, :destroy]
 
   # GET /estimates
   # GET /estimates.json
   def index
-    @estimates = Estimate.all
+    @estimates = Estimate.order(date: :desc)
   end
 
   # GET /estimates/1
@@ -14,11 +15,14 @@ class EstimatesController < ApplicationController
 
   # GET /estimates/new
   def new
-    @estimate = Estimate.new
+    @estimate = Estimate.new(date: Date.today)
+    detail = @estimate.estimate_details.build
   end
 
   # GET /estimates/1/edit
   def edit
+    @estimate_detail = EstimateDetail.new
+    detail = @estimate_detail.estimate_details.build
   end
 
   # POST /estimates
@@ -28,7 +32,10 @@ class EstimatesController < ApplicationController
 
     respond_to do |format|
       if @estimate.save
-        format.html { redirect_to @estimate, notice: 'Estimate was successfully created.' }
+        format.html {
+          redirect_to edit_user_estimate_url(current_user, @estimate),
+          notice: t(:successfully_created, item: t('estimates.estimate'))
+        }
         format.json { render :show, status: :created, location: @estimate }
       else
         format.html { render :new }
@@ -42,7 +49,10 @@ class EstimatesController < ApplicationController
   def update
     respond_to do |format|
       if @estimate.update(estimate_params)
-        format.html { redirect_to @estimate, notice: 'Estimate was successfully updated.' }
+        format.html {
+          redirect_to edit_user_estimate_url(current_user, @estimate),
+          notice: t(:successfully_updated, item: t('estimates.estimate'))
+        }
         format.json { render :show, status: :ok, location: @estimate }
       else
         format.html { render :edit }
@@ -56,7 +66,10 @@ class EstimatesController < ApplicationController
   def destroy
     @estimate.destroy
     respond_to do |format|
-      format.html { redirect_to estimates_url, notice: 'Estimate was successfully destroyed.' }
+      format.html {
+        redirect_to user_estimates_url(current_user),
+        notice: t(:successfully_destroyed, item: t('estimates.estimate'))
+      }
       format.json { head :no_content }
     end
   end
@@ -69,6 +82,15 @@ class EstimatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def estimate_params
-      params[:estimate]
+      params.require(:estimate).permit(
+        :date,
+        :number,
+        :customer_id,
+        :valid_until,
+        estimate_details_attributes: [
+          :id, :estimate_id, :service_id, :quantity, :price,
+          :discount, :description, :_destroy
+        ]
+      )
     end
 end

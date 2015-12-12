@@ -3,11 +3,14 @@ en:
     formats:
       default: "%Y-%m-%d"
       long: "%Y-%m-%d %H:%M"
-
-
     date:
       formats:
         default: "%Y-%m-%d"
+  project_status:
+    active: Active
+    suspended: Suspended
+    cancelled: Canceled
+    closed: Closed
 
   log_in: "Log in"
   sign_up: Sign up
@@ -121,3 +124,9 @@ en:
     unit: Measurement unit
     edit_title: Edit measurement unit
     create_title: Create measurement unit
+
+  estimates:
+    title: Estimates
+    estimate: Estimate
+    edit_title: Edit estimate
+    create_title: Crate estimate

@@ -8,6 +8,12 @@ es:
     formats:
       default: "%d/%m/%Y"
 
+  project_status:
+    active: Activo
+    suspended: Suspendido
+    cancelled: Cancelado
+    closed: Cerrado
+
   log_in: Acceso al sistema
   sign_up: Crear cuenta
   forgot_password: ¿Has olvidado tu contraseña?
@@ -116,3 +122,9 @@ es:
     unit: Medida
     edit_title: Editar medida
     create_title: Crear medida
+
+  estimates:
+    title: Presupuestos
+    estimate: Presupuestos
+    edit_title: Editar presupuesto
+    create_title: Crear presupuesto

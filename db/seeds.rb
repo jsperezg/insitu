@@ -3,13 +3,13 @@ include Settings
 config = Rails.configuration.database_configuration
 
 if Apartment::Tenant.current_tenant.blank? or Apartment::Tenant.current_tenant == config[Rails.env]["database"]
-  ['Activo', 'Suspendido', 'Cancelado', 'Cerrado'].each do |state|
+  ['project_status.active', 'project_status.suspended', 'project_status.cancelled', 'project_status.closed'].each do |state|
       ProjectStatus.find_by(name: state) || ProjectStatus.create(name: state)
   end
 
   %w(Administrador Usuario).each do |role|
     Role.find_by(description: role) || Role.create(description: role)
-  end  
+  end
 
   admin = User.find_by(email: 'jsperezg@gmail.com')
   if admin.nil?
@@ -21,7 +21,7 @@ if Apartment::Tenant.current_tenant.blank? or Apartment::Tenant.current_tenant =
     admin.role = admin_role
     admin.save!
   end
-else 
+else
   user = User.find_by(tenant: Apartment::Tenant.current_tenant)
   unless user.nil?
     init_default_settings_for(user)

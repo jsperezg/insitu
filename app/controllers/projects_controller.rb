@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = Project.new(project_status: ProjectStatus.find_by(name: 'Activo'))
+    @project = Project.new(project_status: ProjectStatus.find_by(name: 'project_status.active'))
   end
 
   # GET /projects/1/edit

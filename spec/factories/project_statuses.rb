@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :project_status do
-    name "Active"
+    name "project_status.active"
   end
 
 end

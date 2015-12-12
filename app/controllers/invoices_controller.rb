@@ -36,7 +36,7 @@ class InvoicesController < ApplicationController
           redirect_to edit_user_invoice_url(current_user, @invoice),
           notice: t(:successfully_created, item: t('invoices.invoice'))
         }
-            
+
         format.json { render :show, status: :created, location: @invoice }
       else
         format.html { render :new }
@@ -85,6 +85,7 @@ class InvoicesController < ApplicationController
     def invoice_params
       params.require(:invoice).permit(
         :date,
+        :number,
         :payment_method_id,
         :customer_id,
         :payment_date,

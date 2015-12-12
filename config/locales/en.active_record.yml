@@ -75,6 +75,18 @@ en:
       vat:
         label: Label
         rate: Value
+      estimate:
+        number: Number
+        customer_id: Customer
+        date: Date
+        valid_until: Valid until
+      estimate/estimate_details:
+        service_id: Item
+        description: Description
+        price: Precio
+        quantity: Quantity
+        discount: Discount
+        total: Total
 
     errors:
       models:

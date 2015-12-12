@@ -75,6 +75,18 @@ es:
       vat:
         label: Etiqueta
         rate: Valor
+      estimate:
+        number: Número
+        customer_id: Cliente
+        date: Fecha
+        valid_until: Valido hasta
+      estimate/estimate_details:
+        service_id: Concepto
+        description: Descripción
+        price: Precio
+        quantity: Cantidad
+        discount: Descuento
+        total: Total
 
     errors:
       models:

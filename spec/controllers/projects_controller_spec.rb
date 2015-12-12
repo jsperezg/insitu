@@ -60,7 +60,7 @@ RSpec.describe ProjectsController, type: :controller do
 
   describe "GET #new" do
     before(:each) do
-      ProjectStatus.find_by(name: 'Activo') || ProjectStatus.create!(name: 'Activo')
+      ProjectStatus.find_by(name: 'project_status.active') || ProjectStatus.create!(name: 'project_status.active')
     end
 
     it "assigns a new project as @project" do
@@ -70,7 +70,7 @@ RSpec.describe ProjectsController, type: :controller do
 
     it "Has a default status" do
       get :new, {user_id: @user.id}
-      expect(assigns(:project).project_status.try(:name)).to eq('Activo')
+      expect(assigns(:project).project_status.try(:name)).to eq('project_status.active')
     end
   end
 

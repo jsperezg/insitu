@@ -80,6 +80,7 @@
                   <%=t :production %>
                 </li>
                 <li class="<%=c 'projects' %>"><%= link_to t('projects.title'), user_projects_path(current_user.id)%></li>
+                <li class="<%= c 'estimates' %>"><%= link_to t('estimates.title'), user_estimates_path(current_user.id) %></li>
                 <li class="<%=c 'delivery_notes' %>"><%= link_to t('delivery_notes.title'), user_delivery_notes_path(current_user.id) %></li>
                 <li class="<%=c 'invoices' %>"><%= link_to t('invoices.title'), user_invoices_path(current_user.id) %></li>
               </ul>
