@@ -19,7 +19,7 @@ class Estimate < ActiveRecord::Base
     result
   }, :allow_destroy => true
 
-  before_create :set_default_values
+  before_validation :set_default_values
 
   after_commit(on: :create) do
     increase_id(Thread.current[:user], self.model_name.human, self.date.year)
@@ -28,13 +28,8 @@ class Estimate < ActiveRecord::Base
   private
 
   def set_default_values
-    if self.estimate_status_id.nil?
-      self.estimate_status_id = EstimateStatus.find_by(name: 'estimate_status.created').try(:id)
-    end
-    
-    if self.number.blank?
-      self.number = generate_id(Thread.current[:user], self.model_name.human, date.year)
-    end
+    self.estimate_status_id ||= EstimateStatus.find_by(name: 'estimate_status.created').try(:id)
+    self.number ||= generate_id(Thread.current[:user], self.model_name.human, date.year)
   end
 
   def validate_valid_until
