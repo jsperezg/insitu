@@ -1,5 +1,8 @@
-<h1>New Estimate</h1>
+<%- model_class = Estimate -%>
+<div class="page-header">
+  <h1><%=t 'estimates.create_title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', estimates_path %>
+<%= form_for @estimate, url: user_estimates_path(current_user) do |f| %>
+    <%= render :partial => 'form',  locals: { f: f } %>
+<% end %>

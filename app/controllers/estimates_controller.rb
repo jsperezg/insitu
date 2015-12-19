@@ -22,7 +22,7 @@ class EstimatesController < ApplicationController
   # GET /estimates/1/edit
   def edit
     @estimate_detail = EstimateDetail.new
-    detail = @estimate_detail.estimate_details.build
+    detail = @estimate.estimate_details.build
   end
 
   # POST /estimates

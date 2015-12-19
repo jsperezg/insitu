@@ -1,0 +1,44 @@
+<%- model_class = EstimateDetail -%>
+<tr>
+  <td class=text-center>
+    <% unless f.object.id.blank? %>
+        <%= f.check_box :_destroy %>
+    <% end %>
+  </td>
+  <td>
+    <%= f.hidden_field :id %>
+    <%= f.hidden_field :estimate_id %>
+    <div class=row>
+      <div class="form-group pull-left col-xs-4">
+        <%= f.collection_select :service_id, Service.order(description: :asc), :id, :description,
+                                { prompt: true }, { class: 'form-control input-sm' } %>
+      </div>
+
+      <div class="form-group pull-left col-xs-8">
+        <%= f.text_field :description, { class: 'form-control input-sm', placeholder: model_class.human_attribute_name(:description) } %>
+      </div>
+    </div>
+  </td>
+  <td class=text-right>
+    <div class="form-group">
+      <%= f.text_field :quantity, { class: 'form-control input-sm' } %>
+    </div>
+  </td>
+  <td class=text-right>
+    <div class="form-group">
+      <%= f.text_field :price, { class: 'form-control input-sm' } %>
+    </div>
+  </td>
+  <td class=text-right>
+    <div class="form-group">
+      <%= f.text_field :discount, { class: 'form-control input-sm' } %>
+    </div>
+  </td>
+  <td class=text-right>
+    <div class="form-group">
+      <p class="form-control-static">
+        <%= f.object.total %>
+      </p>
+    </div>
+  </td>
+</tr>

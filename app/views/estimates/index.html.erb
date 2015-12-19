@@ -22,12 +22,12 @@
         <td><%= estimate.customer.try(:name) %></td>
         <td><%=ldate estimate.valid_until %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+          <%= link_to t('.edit', :default => t('helpers.links.edit')),
                       edit_user_estimate_path(current_user, estimate), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      user_estimate_path(current_user, invoice),
+                      user_estimate_path(current_user, estimate),
                       :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :data => { :confirm => t('.confirm', :default => t('helpers.links.confirm', :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
         </td>
       </tr>

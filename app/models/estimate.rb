@@ -29,7 +29,7 @@ class Estimate < ActiveRecord::Base
 
   def set_default_values
     self.estimate_status_id ||= EstimateStatus.find_by(name: 'estimate_status.created').try(:id)
-    self.number ||= generate_id(Thread.current[:user], self.model_name.human, date.year)
+    self.number ||= generate_id(Thread.current[:user], self.model_name.human, self.date.year)
   end
 
   def validate_valid_until
