@@ -32,8 +32,10 @@ RSpec.describe TimeLogsController, type: :controller do
   }
 
   before(:each) do
-    @user = create(:user)
+    @user = User.first || create(:user)
     sign_in @user
+
+    Thread.current[:user] = @user
   end
 
   after(:each) do

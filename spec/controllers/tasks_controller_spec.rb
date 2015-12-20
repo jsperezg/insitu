@@ -34,7 +34,7 @@ RSpec.describe TasksController, type: :controller do
   }
 
   before(:each) do
-    @user = create(:user)
+    @user = User.first || create(:user)
     @project = Project.first || create(:project)
     sign_in @user
   end

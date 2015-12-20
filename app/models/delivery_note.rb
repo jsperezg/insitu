@@ -14,12 +14,16 @@ class DeliveryNote < ActiveRecord::Base
   	before_validation :set_number
 
   	after_commit(on: :create) do
-  		increase_id(Thread.current[:user], self.model_name.human, self.date.year)
+			unless self.date.nil?
+  		  increase_id(Thread.current[:user], self.model_name.human, self.date.year)
+      end
   	end
 
   	private
 
   	def set_number
-  		self.number ||= generate_id(Thread.current[:user], self.model_name.human, self.date.year)
+      unless self.date.nil?
+  		  self.number ||= generate_id(Thread.current[:user], self.model_name.human, self.date.year)
+      end
   	end
 end

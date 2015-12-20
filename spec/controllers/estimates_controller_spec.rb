@@ -24,22 +24,35 @@ RSpec.describe EstimatesController, type: :controller do
   # Estimate. As you add validations to Estimate, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    estimate = attributes_for(:estimate)
+
+    estimate.merge(estimate_details_attributes: [ attributes_for(:estimate_detail) ])
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    attributes_for(:estimate, customer_id: nil)
   }
+
+  before(:each) do
+    @user = User.first || create(:user)
+    sign_in @user
+
+    Thread.current[:user] = @user
+  end
+
+  after(:each) do
+    sign_out @user
+  end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # EstimatesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET #index" do
-    it "assigns all estimates as @estimates" do
+  describe 'GET #index' do
+    it 'assigns all estimates as @estimates' do
       estimate = Estimate.create! valid_attributes
-      get :index, {}, valid_session
+      get :index, { user_id: @user.id }
       expect(assigns(:estimates)).to eq([estimate])
     end
   end
@@ -47,14 +60,14 @@ RSpec.describe EstimatesController, type: :controller do
   describe "GET #show" do
     it "assigns the requested estimate as @estimate" do
       estimate = Estimate.create! valid_attributes
-      get :show, {:id => estimate.to_param}, valid_session
+      get :show, {user_id: @user.id, :id => estimate.to_param}
       expect(assigns(:estimate)).to eq(estimate)
     end
   end
 
   describe "GET #new" do
     it "assigns a new estimate as @estimate" do
-      get :new, {}, valid_session
+      get :new, { user_id: @user.id }
       expect(assigns(:estimate)).to be_a_new(Estimate)
     end
   end
@@ -62,7 +75,7 @@ RSpec.describe EstimatesController, type: :controller do
   describe "GET #edit" do
     it "assigns the requested estimate as @estimate" do
       estimate = Estimate.create! valid_attributes
-      get :edit, {:id => estimate.to_param}, valid_session
+      get :edit, {user_id: @user.id, :id => estimate.to_param}
       expect(assigns(:estimate)).to eq(estimate)
     end
   end
@@ -71,30 +84,30 @@ RSpec.describe EstimatesController, type: :controller do
     context "with valid params" do
       it "creates a new Estimate" do
         expect {
-          post :create, {:estimate => valid_attributes}, valid_session
+          post :create, {user_id: @user.id, :estimate => valid_attributes}
         }.to change(Estimate, :count).by(1)
       end
 
       it "assigns a newly created estimate as @estimate" do
-        post :create, {:estimate => valid_attributes}, valid_session
+        post :create, {user_id: @user.id, :estimate => valid_attributes}
         expect(assigns(:estimate)).to be_a(Estimate)
         expect(assigns(:estimate)).to be_persisted
       end
 
       it "redirects to the created estimate" do
-        post :create, {:estimate => valid_attributes}, valid_session
-        expect(response).to redirect_to(Estimate.last)
+        post :create, {user_id: @user.id, :estimate => valid_attributes}
+        expect(response).to redirect_to(edit_user_estimate_url(@user, Estimate.last))
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved estimate as @estimate" do
-        post :create, {:estimate => invalid_attributes}, valid_session
+        post :create, {user_id: @user.id, :estimate => invalid_attributes}
         expect(assigns(:estimate)).to be_a_new(Estimate)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:estimate => invalid_attributes}, valid_session
+        post :create, {user_id: @user.id, :estimate => invalid_attributes}
         expect(response).to render_template("new")
       end
     end
@@ -103,39 +116,42 @@ RSpec.describe EstimatesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        attributes_for(:estimate, date: Date.today + 10.days)
       }
 
       it "updates the requested estimate" do
         estimate = Estimate.create! valid_attributes
-        put :update, {:id => estimate.to_param, :estimate => new_attributes}, valid_session
+        put :update, {user_id: @user.id, :id => estimate.to_param, :estimate => new_attributes}
         estimate.reload
-        skip("Add assertions for updated state")
+
+        new_attributes.each do |key, value|
+          expect(estimate[key]).to eq(value)
+        end
       end
 
       it "assigns the requested estimate as @estimate" do
         estimate = Estimate.create! valid_attributes
-        put :update, {:id => estimate.to_param, :estimate => valid_attributes}, valid_session
+        put :update, {user_id: @user.id, :id => estimate.to_param, :estimate => valid_attributes}
         expect(assigns(:estimate)).to eq(estimate)
       end
 
       it "redirects to the estimate" do
         estimate = Estimate.create! valid_attributes
-        put :update, {:id => estimate.to_param, :estimate => valid_attributes}, valid_session
-        expect(response).to redirect_to(estimate)
+        put :update, {user_id: @user.id, :id => estimate.to_param, :estimate => valid_attributes}
+        expect(response).to redirect_to(edit_user_estimate_url(@user, Estimate.last))
       end
     end
 
     context "with invalid params" do
       it "assigns the estimate as @estimate" do
         estimate = Estimate.create! valid_attributes
-        put :update, {:id => estimate.to_param, :estimate => invalid_attributes}, valid_session
+        put :update, {user_id: @user.id, :id => estimate.to_param, :estimate => invalid_attributes}
         expect(assigns(:estimate)).to eq(estimate)
       end
 
       it "re-renders the 'edit' template" do
         estimate = Estimate.create! valid_attributes
-        put :update, {:id => estimate.to_param, :estimate => invalid_attributes}, valid_session
+        put :update, {user_id: @user.id, :id => estimate.to_param, :estimate => invalid_attributes}
         expect(response).to render_template("edit")
       end
     end
@@ -145,14 +161,14 @@ RSpec.describe EstimatesController, type: :controller do
     it "destroys the requested estimate" do
       estimate = Estimate.create! valid_attributes
       expect {
-        delete :destroy, {:id => estimate.to_param}, valid_session
+        delete :destroy, {user_id: @user.id, :id => estimate.to_param}
       }.to change(Estimate, :count).by(-1)
     end
 
     it "redirects to the estimates list" do
       estimate = Estimate.create! valid_attributes
-      delete :destroy, {:id => estimate.to_param}, valid_session
-      expect(response).to redirect_to(estimates_url)
+      delete :destroy, {user_id: @user.id, :id => estimate.to_param}
+      expect(response).to redirect_to(user_estimates_url(@user))
     end
   end
 

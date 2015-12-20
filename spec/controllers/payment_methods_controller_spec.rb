@@ -31,12 +31,14 @@ RSpec.describe PaymentMethodsController, type: :controller do
     { name: nil, note_for_invoice: nil }
   }
 
-  before(:example) do
-    @user = create(:user)
+  before(:each) do
+    @user = User.first || create(:user)
     sign_in @user
+
+    Thread.current[:user] = @user
   end
 
-  after(:example) do
+  after(:each) do
     sign_out @user
   end
 

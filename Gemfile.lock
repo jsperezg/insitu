@@ -66,6 +66,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
+    docile (1.1.5)
     email_validator (1.6.0)
       activemodel
     erubis (2.7.0)
@@ -160,6 +161,11 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    simplecov (0.11.1)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     spring (1.3.6)
     sprockets (3.3.3)
       rack (~> 1.0)
@@ -211,6 +217,7 @@ DEPENDENCIES
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  simplecov
   spring
   turbolinks
   twitter-bootstrap-rails

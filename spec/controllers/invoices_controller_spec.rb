@@ -33,14 +33,14 @@ RSpec.describe InvoicesController, type: :controller do
     attributes_for(:invoice, date: nil)
   }
 
-  before(:example) do
-    @user = create(:user)
+  before(:each) do
+    @user = User.first || create(:user)
     sign_in @user
 
     Thread.current[:user] = @user
   end
 
-  after(:example) do
+  after(:each) do
     sign_out @user
   end
 

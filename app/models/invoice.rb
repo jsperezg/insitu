@@ -34,7 +34,10 @@ class Invoice < ActiveRecord::Base
 
   	def set_default_values
       self.invoice_status_id ||= InvoiceStatus.find_by(name: 'invoice_status.created').try(:id)
-      self.number ||= generate_id(Thread.current[:user], self.model_name.human, date.year)
+
+      unless self.date.nil?
+        self.number ||= generate_id(Thread.current[:user], self.model_name.human, self.date.year)
+      end
   	end
 
     def validate_payment_date
