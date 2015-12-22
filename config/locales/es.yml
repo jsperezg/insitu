@@ -62,6 +62,8 @@ es:
   custom_value: Valor personalizado
   record: Registro
   please_wait: Procesando
+  toggle_navigation: Mostrar/Ocultar navegación
+  sign_in_at: Acceso el
 
   helpers:
     links:

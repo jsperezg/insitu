@@ -1,7 +1,4 @@
 <%- model_class = DeliveryNote -%>
-<div class="page-header">
-  <h1><%=t 'delivery_notes.create_title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
-</div>
 
 <%= form_for @delivery_note, url: user_delivery_notes_path(current_user) do |f| %>
   <%= render :partial => 'form',  locals: { f: f } %>

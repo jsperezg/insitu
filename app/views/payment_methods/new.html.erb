@@ -1,7 +1,4 @@
 <%- model_class = PaymentMethod -%>
-<div class="page-header">
-  <h1><%=t :new_payment_method %></h1>
-</div>
 
 <%= form_for @payment_method, url: user_payment_methods_path(current_user.id), :html => { :class => "payment_method" } do |f| %>
   <%= render :partial => 'form', locals: { f: f } %>

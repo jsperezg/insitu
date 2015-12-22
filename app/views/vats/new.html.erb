@@ -1,7 +1,5 @@
 <%- model_class = Vat -%>
-<div class="page-header">
-  <h1><%=t 'vats.create_title' %></h1>
-</div>
+
 <%= form_for @vat, url: user_vats_path(current_user.id), :html => { :class => "vat" } do |f| %>
   <%= render :partial => 'form', locals: { f: f } %>
 <% end %>

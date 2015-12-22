@@ -63,6 +63,8 @@ en:
   custom_value: Custom value
   record: Record
   please_wait: Please wait
+  toggle_navigation: Toggle navigation
+  sign_in_at: Sign in at
 
   helpers:
     links:
@@ -109,7 +111,7 @@ en:
     edit_title: Edit invoice
 
   delivery_notes:
-    deliver_note: Delivery note
+    delivery_note: Delivery note
     title: Delivery notes
     create_title: New delivery note
     edit_title: Edit delivery note

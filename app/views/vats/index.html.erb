@@ -1,7 +1,5 @@
 <%- model_class = Vat -%>
-<div class="page-header">
-  <h1><%=t 'vats.title' %></h1>
-</div>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -18,7 +16,7 @@
         <td><%= best_in_place vat, :label, url: user_vat_path(current_user, vat, format: :json) %></td>
         <td><%= best_in_place vat, :rate, url: user_vat_path(current_user, vat, format: :json) %></td>
         <td class=text-right>
-          <%= link_to edit_user_vat_path(current_user.id, vat), :class => 'btn btn-default btn-xs' do %>
+          <%= link_to edit_user_vat_path(current_user.id, vat), :class => 'btn btn-default btn-xs btn-flat' do %>
             <i class="fa fa-pencil-square-o" aria-hidden="true">
               <%=t 'helpers.links.edit' %>
             </i>
@@ -26,7 +24,7 @@
           <%= link_to user_vat_path(current_user.id, vat),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' do %>
+                      :class => 'btn btn-xs btn-danger btn-flat' do %>
             <i class="fa fa-trash-o" aria-hidden="true">
               <%=t 'helpers.links.destroy' %>
             </i>
