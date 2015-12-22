@@ -1,170 +1,185 @@
 # This rules are used to create page titles and navigation bar.
 NAVIGATION_RULES = {
+    # Root categories.
+    my_profile: {
+        icon: 'fa fa-user',
+        title: :my_profile
+    },
+    general: {
+        icon: 'fa fa-database',
+        title: :general
+    },
+    production: {
+        icon: 'fa fa-cog',
+        title: :production
+    },
+
+    dashboard: {
+        index: {
+            title: :general
+        }
+    },
+
+    # Navigation inside categories.
     registrations: {
-        root: {
-              icon: 'fa fa-user',
-              title: :my_profile
-        },
         edit: {
+            parent: :my_profile,
             title: :edit_account
         }
     },
-    dashboard: {
-      index: {
-          title: :general
-      }
-    },
+
     payment_methods: {
-        root: {
-            icon: 'fa fa-database',
-            title: :general
-        },
         index: {
+            parent: :general,
             title: :payment_methods
         },
         new: {
-            parent: :index,
+            parent: { controller: :payment_methods, action: :index, params: [ :user_id ] },
             title: :new_payment_method
         },
         edit: {
-            parent: :index,
+            parent: { controller: :payment_methods, action: :index, params: [ :user_id ] },
             title: :update_payment_method
         }
     },
     vats: {
-        root: {
-            icon: 'fa fa-database',
-            title: :general
-        },
         index: {
+            parent: :general,
             title: 'vats.title'
         },
         new: {
-            parent: :index,
+            parent: { controller: :vats, action: :index, params: [ :user_id ] },
             title: 'vats.create_title'
         },
         edit: {
-            parent: :index,
+            parent: { controller: :vats, action: :index, params: [ :user_id ] },
             title: 'vats.edit_title'
         }
     },
     units: {
-        root: {
-            icon: 'fa fa-database',
-            title: :general
-        },
         index: {
+            parent: :general,
             title: 'units.title'
         },
         new: {
-            parent: :index,
+            parent: { controller: :units, action: :index, params: [ :user_id ] },
             title: 'units.create_title'
         },
         edit: {
-            parent: :index,
+            parent: { controller: :units, action: :index, params: [ :user_id ] },
             title: 'units.edit_title'
         }
     },
     services: {
-        root: {
-            icon: 'fa fa-database',
-            title: :general
-        },
         index: {
+            parent: :general,
             title: 'services.title'
         },
         new: {
-            parent: :index,
+            parent: { controller: :services, action: :index, params: [ :user_id ] },
             title: 'services.create_title'
         },
         edit: {
-            parent: :index,
+            parent: { controller: :services, action: :index, params: [ :user_id ] },
             title: 'services.edit_title'
         }
     },
     customers: {
-        root: {
-            icon: 'fa fa-database',
-            title: :general
-        },
         index: {
+            parent: :general,
             title: 'customers.title'
         },
         new: {
-            parent: :index,
+            parent: { controller: :customers, action: :index, params: [ :user_id ] },
             title: 'customers.create_title'
         },
         edit: {
-            parent: :index,
+            parent: { controller: :customers, action: :index, params: [ :user_id ] },
             title: 'customers.edit_title'
         }
     },
     estimates: {
-        root: {
-            icon: 'fa fa-cog',
-            title: :production
-        },
         index: {
+            parent: :production,
             title: 'estimates.title'
         },
         new: {
-            parent: :index,
+            parent: { controller: :estimates, action: :index, params: [ :user_id ] },
             title: 'estimates.create_title'
         },
         edit: {
-            parent: :index,
+            parent: { controller: :estimates, action: :index, params: [ :user_id ] },
             title: 'estimates.edit_title'
         }
     },
     delivery_notes: {
-        root: {
-            icon: 'fa fa-cog',
-            title: :production
-        },
         index: {
+            parent: :production,
             title: 'delivery_notes.title'
         },
         new: {
-            parent: :index,
+            parent: { controller: :delivery_notes, action: :index, params: [ :user_id ] },
             title: 'delivery_notes.create_title'
         },
         edit: {
-            parent: :index,
+            parent: { controller: :delivery_notes, action: :index, params: [ :user_id ] },
             title: 'delivery_notes.edit_title'
         }
     },
     invoices: {
-        root: {
-            icon: 'fa fa-cog',
-            title: :production
-        },
         index: {
+            parent: :production,
             title: 'invoices.title'
         },
         new: {
-            parent: :index,
+            parent: { controller: :invoices, action: :index, params: [ :user_id ] },
             title: 'invoices.create_title'
         },
         edit: {
-            parent: :index,
+            parent: { controller: :invoices, action: :index, params: [ :user_id ] },
             title: 'invoices.edit_title'
         }
     },
     projects: {
-        root: {
-            icon: 'fa fa-cog',
-            title: :production
-        },
         index: {
+            parent: :production,
             title: 'projects.title'
         },
         new: {
-            parent: :index,
+            parent: { controller: :projects, action: :index, params: [ :user_id ] },
             title: 'projects.create_title'
         },
         edit: {
-            parent: :index,
+            parent: { controller: :projects, action: :index, params: [ :user_id ] },
             title: 'projects.edit_title'
+        }
+    },
+    tasks: {
+        index: {
+            parent: { controller: :projects, action: :index, params: [ :user_id ] },
+            title: 'tasks.title'
+        },
+        new: {
+            parent: { controller: :tasks, action: :index, params: [ :user_id, :project_id ] },
+            title: 'tasks.create_title'
+        },
+        edit: {
+            parent: { controller: :tasks, action: :index, params: [ :user_id, :project_id ] },
+            title: 'tasks.edit_title'
+        }
+    },
+    time_logs: {
+        index: {
+            parent: { controller: :tasks, action: :index, params: [ :user_id, :project_id ] },
+            title: 'time_logs.title'
+        },
+        new: {
+            parent: { controller: :time_logs, action: :index, params: [ :user_id, :project_id, :task_id ] },
+            title: 'time_logs.create_title'
+        },
+        edit: {
+            parent: { controller: :time_logs, action: :index, params: [ :user_id, :project_id, :task_id ] },
+            title: 'time_logs.edit_title'
         }
     }
 }

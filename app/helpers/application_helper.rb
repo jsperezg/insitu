@@ -15,9 +15,9 @@ module ApplicationHelper
     action_name_sym = action_name.to_sym
     tag_content = []
     nav_content = []
-    current_content = []
 
     content_tag(:section, class: 'content-header') do
+      # Generate the tittle.
       tag_content << content_tag(:h1) do
         begin
           I18n.t(NAVIGATION_RULES[controller_name_sym][action_name_sym][:title])
@@ -27,42 +27,63 @@ module ApplicationHelper
         end
       end
 
+      # Generate the navigation bar: Only for elements with > 1 level depth
       begin
-        if NAVIGATION_RULES[controller_name_sym].key? :root
+        if NAVIGATION_RULES[controller_name_sym][action_name_sym].key? :parent
           tag_content << content_tag(:ol, class: 'breadcrumb') do
-            begin
-              nav_content << content_tag(:li) do
-                link_to(user_dashboard_index_path(current_user)) do
-                  content_tag(:i, nil, class: NAVIGATION_RULES[controller_name_sym][:root][:icon]) +
-                  I18n.t(NAVIGATION_RULES[controller_name_sym][:root][:title])
-                end
-              end
 
-              if NAVIGATION_RULES[controller_name_sym][action_name_sym].key? :parent
-                parent = NAVIGATION_RULES[controller_name_sym][action_name_sym][:parent]
-
-                nav_content << content_tag(:li) do
-                  link_to(controller: controller_name, action: parent, user_id: current_user.id) do
-                    I18n.t(NAVIGATION_RULES[controller_name_sym][parent.to_sym][:title])
-                  end
-                end
-              end
-            rescue => e
-              Rails.logger.error e
-            end
-
+            # Active element.
             nav_content << content_tag(:li, class: 'active') do
               begin
-                current_content << I18n.t(NAVIGATION_RULES[controller_name_sym][action_name_sym][:title])
-
-                raw(current_content.join(''))
+                I18n.t(NAVIGATION_RULES[controller_name_sym][action_name_sym][:title])
               rescue => e
                 Rails.logger.error e
                 "#{controller_name}.#{action_name}"
               end
             end
 
-            raw(nav_content.join(''))
+            # Iterate over parents
+            parent_key = NAVIGATION_RULES[controller_name_sym][action_name_sym][:parent]
+
+            if parent_key.is_a? Symbol
+              element = NAVIGATION_RULES[parent_key]
+            elsif parent_key.is_a? Hash
+              element = NAVIGATION_RULES[parent_key[:controller]][parent_key[:action]]
+            else
+              element = nil
+            end
+
+            until element.nil?
+              current_content = []
+
+              begin
+                nav_content << content_tag(:li) do
+                  link_to(link_details(parent_key)) do
+                    unless element[:icon].blank?
+                      current_content << content_tag(:i, nil, class: element[:icon])
+                    end
+
+                    current_content << I18n.t(element[:title])
+
+                    raw(current_content.join(''))
+                  end
+                end
+              rescue => e
+                Rails.logger.error e
+              end
+
+              parent_key = element[:parent]
+
+              if parent_key.is_a? Symbol
+                element = NAVIGATION_RULES[parent_key]
+              elsif parent_key.is_a? Hash
+                element = NAVIGATION_RULES[parent_key[:controller]][parent_key[:action]]
+              else
+                element = nil
+              end
+            end
+
+            raw(nav_content.reverse.join(''))
           end
         end
       rescue => e
@@ -71,5 +92,24 @@ module ApplicationHelper
 
       raw(tag_content.join(''))
     end
-	end
+  end
+
+  def link_details(parent_key)
+    if parent_key.is_a? Hash
+      link_parameters = {
+        controller: parent_key[:controller],
+        action: parent_key[:action]
+      }
+
+      unless parent_key[:params].nil?
+        parent_key[:params].each do |param_key|
+          link_parameters[param_key] = params[param_key]
+        end
+      end
+
+      return  link_parameters
+    end
+
+    '#'
+  end
 end

@@ -387,8 +387,12 @@ function _init() {
    * @Usage: $.AdminLTE.tree('.sidebar')
    */
   $.AdminLTE.tree = function (menu) {
-    var _this = this;
-    var animationSpeed = $.AdminLTE.options.animationSpeed;
+    var _this = this,
+        animationSpeed = $.AdminLTE.options.animationSpeed;
+
+    // Dettach the event. When the page is loaded by turbolinks the event is attached twice
+    $(document).off('click', menu + ' li a');
+
     $(document).on('click', menu + ' li a', function (e) {
       //Get the clicked link and the next element
       var $this = $(this);
