@@ -1,0 +1,24 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/home/jsperezg/NetBeansProjects/fges/spec/support/factory_girl.rb": [
+        1,
+        1,
+        null
+      ],
+      "/home/jsperezg/NetBeansProjects/fges/spec/support/devise.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/home/jsperezg/NetBeansProjects/fges/app/models/vat.rb": [
+        1,
+        1,
+        1,
+        null
+      ]
+    },
+    "timestamp": 1450857750
+  }
+}
