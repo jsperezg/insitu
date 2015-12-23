@@ -1,5 +1,5 @@
-<%- model_class = Vat -%>
-
-<%= form_for @vat, url: user_vat_path(current_user.id, @vat), :html => { :class => "vat" } do |f| %>
-  <%= render :partial => 'form', locals: { f: f } %>
-<% end %>
+<div class="box box-primary">
+  <%= form_for @vat, url: user_vat_path(current_user.id, @vat), :html => { :class => "vat", role: 'form' } do |f| %>
+    <%= render :partial => 'form', locals: { f: f } %>
+  <% end %>
+</div>

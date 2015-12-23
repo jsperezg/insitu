@@ -44,10 +44,10 @@ class PaymentMethodsController < ApplicationController
     respond_to do |format|
       if @payment_method.update(payment_method_params)
         format.html { redirect_to user_payment_methods_path(current_user.id), notice: t(:successfully_updated, item: t(:payment_method)) }
-        format.json { render :show, status: :ok, location: @payment_method }
+        format.json { respond_with_bip @payment_method }
       else
         format.html { render :edit }
-        format.json { render json: @payment_method.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip @payment_method }
       end
     end
   end

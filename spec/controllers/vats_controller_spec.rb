@@ -49,7 +49,7 @@ RSpec.describe VatsController, type: :controller do
     it "assigns all vats as @vats" do
       vat = Vat.create! valid_attributes
       get :index, { user_id: @user.id }
-      expect(assigns(:vats)).to include(vat)
+      expect(assigns(:customers)).to include(vat)
     end
   end
 

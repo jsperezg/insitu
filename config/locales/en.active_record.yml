@@ -198,6 +198,7 @@ en:
                 blank: is mandatory.
                 greater_than_or_equal_to: "must be greater or equal to %{count}%."
                 not_a_number: "must be a number."
+                taken: already registered.
           unit:
             attributes:
               label_short:
@@ -210,6 +211,7 @@ en:
                 blank: is mandatory.
                 greater_than_or_equal_to: "must be greater or equal to %{count}%."
                 not_a_number: isn't a number.
+                not_an_integer: must be an integer value.
 
           estimate:
             attributes:

@@ -94,6 +94,7 @@ module ApplicationHelper
     end
   end
 
+  # This method generates a hash with all required elements for a navigation bar's link.
   def link_details(parent_key)
     if parent_key.is_a? Hash
       link_parameters = {

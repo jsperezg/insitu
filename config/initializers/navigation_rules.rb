@@ -37,7 +37,15 @@ NAVIGATION_RULES = {
             parent: { controller: :payment_methods, action: :index, params: [ :user_id ] },
             title: :new_payment_method
         },
+        create: {
+            parent: { controller: :payment_methods, action: :index, params: [ :user_id ] },
+            title: :new_payment_method
+        },
         edit: {
+            parent: { controller: :payment_methods, action: :index, params: [ :user_id ] },
+            title: :update_payment_method
+        },
+        update: {
             parent: { controller: :payment_methods, action: :index, params: [ :user_id ] },
             title: :update_payment_method
         }
@@ -51,7 +59,15 @@ NAVIGATION_RULES = {
             parent: { controller: :vats, action: :index, params: [ :user_id ] },
             title: 'vats.create_title'
         },
+        create: {
+            parent: { controller: :vats, action: :index, params: [ :user_id ] },
+            title: 'vats.create_title'
+        },
         edit: {
+            parent: { controller: :vats, action: :index, params: [ :user_id ] },
+            title: 'vats.edit_title'
+        },
+        update: {
             parent: { controller: :vats, action: :index, params: [ :user_id ] },
             title: 'vats.edit_title'
         }

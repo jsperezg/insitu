@@ -1,5 +1,5 @@
-<%- model_class = PaymentMethod -%>
-
-<%= form_for @payment_method, url: user_payment_methods_path(current_user.id), :html => { :class => "payment_method" } do |f| %>
-  <%= render :partial => 'form', locals: { f: f } %>
-<% end %>
+<div class="box box-primary">
+  <%= form_for @payment_method, url: user_payment_methods_path(current_user.id), :html => { class: 'payment_method', role: 'form' } do |f| %>
+    <%= render :partial => 'form', locals: { f: f } %>
+  <% end %>
+</div>
