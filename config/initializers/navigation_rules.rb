@@ -81,7 +81,15 @@ NAVIGATION_RULES = {
             parent: { controller: :units, action: :index, params: [ :user_id ] },
             title: 'units.create_title'
         },
+        create: {
+            parent: { controller: :units, action: :index, params: [ :user_id ] },
+            title: 'units.create_title'
+        },
         edit: {
+            parent: { controller: :units, action: :index, params: [ :user_id ] },
+            title: 'units.edit_title'
+        },
+        update: {
             parent: { controller: :units, action: :index, params: [ :user_id ] },
             title: 'units.edit_title'
         }
@@ -95,7 +103,15 @@ NAVIGATION_RULES = {
             parent: { controller: :services, action: :index, params: [ :user_id ] },
             title: 'services.create_title'
         },
+        create: {
+            parent: { controller: :services, action: :index, params: [ :user_id ] },
+            title: 'services.create_title'
+        },
         edit: {
+            parent: { controller: :services, action: :index, params: [ :user_id ] },
+            title: 'services.edit_title'
+        },
+        update: {
             parent: { controller: :services, action: :index, params: [ :user_id ] },
             title: 'services.edit_title'
         }
@@ -165,7 +181,15 @@ NAVIGATION_RULES = {
             parent: { controller: :projects, action: :index, params: [ :user_id ] },
             title: 'projects.create_title'
         },
+        create: {
+            parent: { controller: :projects, action: :index, params: [ :user_id ] },
+            title: 'projects.create_title'
+        },
         edit: {
+            parent: { controller: :projects, action: :index, params: [ :user_id ] },
+            title: 'projects.edit_title'
+        },
+        update: {
             parent: { controller: :projects, action: :index, params: [ :user_id ] },
             title: 'projects.edit_title'
         }

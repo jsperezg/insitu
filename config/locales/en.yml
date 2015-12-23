@@ -50,8 +50,6 @@ en:
   new_payment_method: Create payment method
   update_payment_method: Update payment method
   name: Name
-  description: Description
-  note_for_invoice: Note in invoice
   validation_error_header: Validation failed. Check this errors and try again
   payment_method: Payment method
   successfully_created: "%{item} was successfully created."
@@ -73,6 +71,10 @@ en:
       destroy: Destroy
       confirm: Are you sure?
       cancel: Cancel
+
+  will_paginate:
+    previous_label: "&#8592; Previous"
+    next_label: "Next &#8594;"
 
   services:
     service: Service

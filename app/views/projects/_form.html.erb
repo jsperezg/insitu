@@ -1,3 +1,4 @@
+<div class="box-body">
   <% if @project.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
@@ -15,7 +16,7 @@
 
   <div class="form-group">
     <%= f.label :name, :class => 'control-label' %>
-    <%= f.text_field :name, :class => 'form-control input-sm', required: true %>
+    <%= f.text_field :name, :class => 'form-control input-sm', required: true, autofocus: true %>
   </div>
 
   <div class=row>
@@ -31,7 +32,9 @@
         { prompt: true }, { class: 'form-control input-sm', required: true } %>
     </div>
   </div>
-
-  <%= f.submit t(:save), :class => 'btn btn-primary', data: { disable_with: t('please_wait')} %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            user_projects_path(current_user), :class => 'btn btn-default' %>
+</div>
+<div class="box-footer">
+  <%= f.submit t(:save), :class => 'btn btn-primary btn-flat', data: { disable_with: t('please_wait')} %>
+  <%= link_to t("helpers.links.cancel"),
+            user_projects_path(current_user), :class => 'btn btn-default btn-flat' %>
+</div>

@@ -5,7 +5,7 @@ class ServicesController < ApplicationController
   # GET /services
   # GET /services.json
   def index
-    @services = Service.includes(:vat, :unit).all
+    @services = Service.includes(:vat, :unit).paginate(page: params[:page], per_page: DEFAULT_ITEMS_PER_PAGE).order(code: :asc)
   end
 
   # GET /services/1

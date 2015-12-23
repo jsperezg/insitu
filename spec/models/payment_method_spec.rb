@@ -14,4 +14,13 @@ RSpec.describe PaymentMethod, type: :model do
 
     expect(payment_method.errors).to satisfy { |errors| !errors.empty? && errors.key?( :name )}
   end
+
+  it 'name is unique' do
+    PaymentMethod.create(name: 'one payment method')
+
+    r = PaymentMethod.new(name: 'one payment method')
+    r.save
+
+    expect(r.errors).to satisfy { |errors| errors.key? :name }
+  end
 end

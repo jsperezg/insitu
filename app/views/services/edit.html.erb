@@ -1,5 +1,5 @@
-<%- model_class = Service -%>
-
-<%= form_for @service, url: user_service_path(current_user.id, @service), :html => { :class => "service" } do |f| %>
-  <%= render :partial => 'form', locals: { f: f } %>
-<% end %>
+<div class="box box-primary">
+  <%= form_for @service, url: user_service_path(current_user.id, @service), html: { class: 'service', role: 'form' } do |f| %>
+    <%= render :partial => 'form', locals: { f: f } %>
+  <% end %>
+</div>

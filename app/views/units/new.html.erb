@@ -1,5 +1,5 @@
-<%- model_class = Unit -%>
-
-<%= form_for @unit, url: user_units_path(current_user.id), :html => { :class => "unit" } do |f| %>
-  <%= render :partial => 'form', locals: { f: f } %>
-<% end %>
+<div class="box box-primary">
+  <%= form_for @unit, url: user_units_path(current_user.id), html: { class: 'unit', role: 'form' } do |f| %>
+    <%= render :partial => 'form', locals: { f: f } %>
+  <% end %>
+</div>

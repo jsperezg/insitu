@@ -49,8 +49,6 @@ es:
   new_payment_method: Crear método de pago
   update_payment_method: Editar método de pago
   name: Nombre
-  description: Descripción
-  note_for_invoice: Anotación en factura
   validation_error_header: La operación falló. Comprueba estos errores e intentalo de nuevo
   payment_method: Método de pago
   successfully_created: "%{item} creado con éxito."
@@ -64,6 +62,10 @@ es:
   please_wait: Procesando
   toggle_navigation: Mostrar/Ocultar navegación
   sign_in_at: Acceso el
+
+  will_paginate:
+    previous_label: "&#8592; Anterior"
+    next_label: "Siguiente &#8594;"
 
   helpers:
     links:

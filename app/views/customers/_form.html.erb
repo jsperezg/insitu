@@ -1,5 +1,4 @@
-
-
+<div class="box-body">
   <% if @customer.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
@@ -18,7 +17,7 @@
   <div class=row>
     <div class="form-group col-xs-3 pull-left">
       <%= f.label :tax_id, :class => 'control-label' %>
-      <%= f.text_field :tax_id, :class => 'form-control input-sm' %>
+      <%= f.text_field :tax_id, :class => 'form-control input-sm', autofocus: true %>
     </div>
 
     <div class="form-group col-xs-9 pull-left">
@@ -35,7 +34,10 @@
 
     <div class="form-group col-xs-3 pull-left">
       <%= f.label :billing_tax, :class => 'control-label' %>
-      <%= f.text_field :billing_tax, :class => 'form-control input-sm' %>
+      <div class="input-group">
+        <%= f.text_field :billing_tax, :class => 'form-control input-sm' %>
+        <span class="input-group-addon">%</span>
+      </div>
     </div>
   </div>
 
@@ -51,9 +53,15 @@
     </div>
     <div class="form-group col-xs-9 pull-left">
       <%= f.label :contact_email, :class => 'control-label' %>
-      <%= f.text_field :contact_email, :class => 'form-control input-sm' %>
+      <div class="input-group">
+        <span class="input-group-addon">@</span>
+        <%= f.text_field :contact_email, :class => 'form-control input-sm' %>
+      </div>
     </div>
   </div>
-  <%= f.submit t(:save), :class => 'btn btn-primary', data: { disable_with: t('please_wait')} %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            user_customers_path(current_user), :class => 'btn btn-default' %>
+</div>
+<div class="box-footer">
+  <%= f.submit t(:save), :class => 'btn btn-primary btn-flat', data: { disable_with: t('please_wait')} %>
+  <%= link_to t("helpers.links.cancel"),
+            user_customers_path(current_user), :class => 'btn btn-default btn-flat' %>
+</div>

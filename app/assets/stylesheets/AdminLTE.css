@@ -4735,3 +4735,7 @@ table.text-center th {
 a.btn-primary:visited {
     color: #fff;
 }
+
+.pagination {
+    margin: 0 !important;
+}

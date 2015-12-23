@@ -1,54 +1,60 @@
 <%- model_class = PaymentMethod -%>
 <div class="box box-primary">
   <div class="box-body">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th class="col-xs-2"><%=t :description %></th>
-          <th class="col-xs-8"><%=t :note_for_invoice %></th>
-          <th class="col-xs-1"></th>
-          <th class="col-xs-1"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @payment_methods.each do |payment_method| %>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
           <tr>
-            <td>
-              <%= best_in_place payment_method, :name, url: user_payment_method_path(current_user, payment_method, format: :json)  %>
-            </td>
-            <td>
-              <%= best_in_place payment_method, :note_for_invoice,
-                    url: user_payment_method_path(current_user, payment_method, format: :json) %>
-            </td>
-            <td>
-              <%= button_to edit_user_payment_method_path(current_user.id, payment_method),
-                            method: :get,
-                            class: 'btn btn-default btn-xs btn-block btn-flat' do %>
-                <i class="fa fa-pencil-square-o" aria-hidden="true">
-                  <%=t 'helpers.links.edit' %>
-                </i>
-              <% end %>
-            </td>
-            <td>
-              <%= button_to user_payment_method_path(current_user.id, payment_method),
-                          method: :delete,
-                          data: { :confirm => t('helpers.links.confirm', default: 'Are you sure?') },
-                          class: 'btn btn-xs btn-danger btn-block btn-flat' do %>
-                <i class="fa fa-trash-o" aria-hidden="true">
-                  <%=t 'helpers.links.destroy' %>
-                </i>
-              <% end %>
-            </td>
+            <th class="col-xs-2"><%=t model_class.human_attribute_name(:name) %></th>
+            <th class="col-xs-8"><%=t model_class.human_attribute_name(:note_for_invoice) %></th>
+            <th class="col-xs-1"></th>
+            <th class="col-xs-1"></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @payment_methods.each do |payment_method| %>
+            <tr>
+              <td>
+                <%= best_in_place payment_method, :name, url: user_payment_method_path(current_user, payment_method, format: :json)  %>
+              </td>
+              <td>
+                <%= best_in_place payment_method, :note_for_invoice,
+                      url: user_payment_method_path(current_user, payment_method, format: :json) %>
+              </td>
+              <td>
+                <%= button_to edit_user_payment_method_path(current_user.id, payment_method),
+                              method: :get,
+                              class: 'btn btn-default btn-xs btn-block btn-flat' do %>
+                  <i class="fa fa-pencil-square-o" aria-hidden="true">
+                    <%=t 'helpers.links.edit' %>
+                  </i>
+                <% end %>
+              </td>
+              <td>
+                <%= button_to user_payment_method_path(current_user.id, payment_method),
+                            method: :delete,
+                            data: { :confirm => t('helpers.links.confirm', default: 'Are you sure?') },
+                            class: 'btn btn-xs btn-danger btn-block btn-flat' do %>
+                  <i class="fa fa-trash-o" aria-hidden="true">
+                    <%=t 'helpers.links.destroy' %>
+                  </i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <div class="box-footer">
-    <%= button_to t('helpers.links.new'),
+    <div class="row">
+      <div class="col-xs-2">
+        <%= button_to t('helpers.links.new'),
             new_user_payment_method_path(current_user.id),
             method: :get,
             class: 'btn btn-primary btn-block btn-flat' %>
+      </div>
+    </div>
   </div>
 </div>

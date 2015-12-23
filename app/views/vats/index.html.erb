@@ -1,46 +1,52 @@
 <%- model_class = Vat -%>
 <div class="box box-primary">
   <div class="box-body">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th><%= model_class.human_attribute_name(:label) %></th>
-          <th><%= model_class.human_attribute_name(:rate) %></th>
-          <th class="col-xs-1"></th>
-          <th class="col-xs-1"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @vats.each do |vat| %>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
           <tr>
-            <td><%= best_in_place vat, :label, url: user_vat_path(current_user, vat, format: :json) %></td>
-            <td><%= best_in_place vat, :rate, url: user_vat_path(current_user, vat, format: :json) %></td>
-            <td>
-              <%= button_to edit_user_vat_path(current_user.id, vat), class: 'btn btn-default btn-xs btn-flat btn-block', method: :get do %>
-                <i class="fa fa-pencil-square-o" aria-hidden="true">
-                  <%=t 'helpers.links.edit' %>
-                </i>
-              <% end %>
-            </td>
-            <td>
-              <%= button_to user_vat_path(current_user.id, vat),
-                          :method => :delete,
-                          :data => { :confirm => t('helpers.links.confirm', default: 'Are you sure?') },
-                          :class => 'btn btn-xs btn-danger btn-flat btn-block' do %>
-                <i class="fa fa-trash-o" aria-hidden="true">
-                  <%=t 'helpers.links.destroy' %>
-                </i>
-              <% end %>
-            </td>
+            <th><%= model_class.human_attribute_name(:label) %></th>
+            <th><%= model_class.human_attribute_name(:rate) %></th>
+            <th class="col-xs-1"></th>
+            <th class="col-xs-1"></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @vats.each do |vat| %>
+            <tr>
+              <td><%= best_in_place vat, :label, url: user_vat_path(current_user, vat, format: :json) %></td>
+              <td><%= best_in_place vat, :rate, url: user_vat_path(current_user, vat, format: :json) %></td>
+              <td>
+                <%= button_to edit_user_vat_path(current_user.id, vat), class: 'btn btn-default btn-xs btn-flat btn-block', method: :get do %>
+                  <i class="fa fa-pencil-square-o" aria-hidden="true">
+                    <%=t 'helpers.links.edit' %>
+                  </i>
+                <% end %>
+              </td>
+              <td>
+                <%= button_to user_vat_path(current_user.id, vat),
+                            :method => :delete,
+                            :data => { :confirm => t('helpers.links.confirm', default: 'Are you sure?') },
+                            :class => 'btn btn-xs btn-danger btn-flat btn-block' do %>
+                  <i class="fa fa-trash-o" aria-hidden="true">
+                    <%=t 'helpers.links.destroy' %>
+                  </i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
   <div class="box-footer">
-    <%= button_to t('helpers.links.new'),
+    <div class="row">
+      <div class="col-xs-2">
+        <%= button_to t('helpers.links.new'),
                 new_user_vat_path(current_user.id),
                 method: :get,
                 class: 'btn btn-primary btn-block btn-flat' %>
+      </div>
+    </div>
   </div>
 </div>

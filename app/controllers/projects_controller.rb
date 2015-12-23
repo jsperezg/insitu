@@ -5,7 +5,10 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.includes(:project_status, :customer).all
+    @projects = Project
+                    .includes(:project_status, :customer)
+                    .paginate(page: params[:page], per_page: DEFAULT_ITEMS_PER_PAGE)
+                    .order(created_at: :desc)
   end
 
   # GET /projects/1

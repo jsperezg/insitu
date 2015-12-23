@@ -15,6 +15,9 @@ en:
         password: Password
         password_confirmation: Repeat password
         current_password: Current password
+      payment_method:
+        name: Name
+        note_for_invoice: Note for invoice
       service:
         code: Code
         description: Description
@@ -108,6 +111,7 @@ en:
               taken: "already been taken."
             price:
               greater_than: "must be greater than %{count}"
+              not_a_number: is not a number.
           customer:
             attributes:
               name:
@@ -116,6 +120,10 @@ en:
                 invalid: 'seems to be invalid.'
               tax_id:
                 taken: ': Is already associated to another customer.'
+              billing_tax:
+                not_a_number: is not a number.
+                not_an_integer: is not an integer value.
+                greater_than_or_equal_to: must be greater than %{count}.
           project:
             attributes:
               name:
@@ -203,6 +211,7 @@ en:
             attributes:
               label_short:
                 blank: is mandatory.
+                taken: is already defined.
           vat:
             attributes:
               label:
@@ -239,3 +248,7 @@ en:
                 blank: is mandatory.
                 greater_than_or_equal_to: "must be greater or equal to %{count}%."
                 not_a_number: "must be a number."
+          payment_method:
+            attributes:
+              name:
+                taken: is already registered.

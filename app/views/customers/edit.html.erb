@@ -1,5 +1,5 @@
-<%- model_class = Customer -%>
-
-<%= form_for @customer, url: user_customer_path(current_user.id, @customer), :html => { :class => "customer" } do |f| %>
-  <%= render :partial => 'form', locals: { f: f } %>
-<% end %>
+<div class="box box-primary">
+  <%= form_for @customer, url: user_customer_path(current_user.id, @customer), html: { class: 'customer', role: 'form' } do |f| %>
+    <%= render :partial => 'form', locals: { f: f } %>
+  <% end %>
+</div>

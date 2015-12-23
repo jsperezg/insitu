@@ -1,5 +1,5 @@
-<%- model_class = Project -%>
-
-<%= form_for @project, url: user_projects_path(current_user) do |f| %>
-  <%= render :partial => 'form',  locals: { f: f } %>
-<% end %>
+<div class="box box-primary">
+  <%= form_for @project, url: user_projects_path(current_user), html: { class: 'project', role: 'form' } do |f| %>
+    <%= render :partial => 'form',  locals: { f: f } %>
+  <% end %>
+</div>

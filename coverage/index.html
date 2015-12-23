@@ -14,7 +14,7 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2015-12-23T09:02:30+01:00">2015-12-23T09:02:30+01:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2015-12-23T16:17:33+01:00">2015-12-23T16:17:33+01:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -32,8 +32,8 @@
   <a name="AllFiles"></a>
   <div>
     <b>3</b> files in total.
-    <b>8</b> relevant lines. 
-    <span class="green"><b>8</b> lines covered</span> and
+    <b>10</b> relevant lines. 
+    <span class="green"><b>10</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -51,11 +51,11 @@
     <tbody>
       
       <tr>
-        <td class="strong"><a href="#25e45db3c28494f8bb26237ba591c26c814879d4" class="src_link" title="app/models/vat.rb">app/models/vat.rb</a></td>
+        <td class="strong"><a href="#3eed47fe8e5af16b26b513b5c7ef3a26602840d9" class="src_link" title="app/models/customer.rb">app/models/customer.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>4</td>
-        <td>3</td>
-        <td>3</td>
+        <td>6</td>
+        <td>5</td>
+        <td>5</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -96,13 +96,13 @@
     
       <div class="source_files">
       
-        <div class="source_table" id="25e45db3c28494f8bb26237ba591c26c814879d4">
+        <div class="source_table" id="3eed47fe8e5af16b26b513b5c7ef3a26602840d9">
   <div class="header">
-    <h3>app/models/vat.rb</h3>
+    <h3>app/models/customer.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>3</b> relevant lines. 
-      <span class="green"><b>3</b> lines covered</span> and
+      <b>5</b> relevant lines. 
+      <span class="green"><b>5</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -113,22 +113,34 @@
         <li class="covered" data-hits="1" data-linenumber="1">
           <span class="hits">1</span>
           
-          <code class="ruby">class Vat &lt; ActiveRecord::Base</code>
+          <code class="ruby">class Customer &lt; ActiveRecord::Base</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="2">
           <span class="hits">1</span>
           
-          <code class="ruby">	validates :label, presence: true</code>
+          <code class="ruby">  validates :name, presence: true</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="3">
           <span class="hits">1</span>
           
-          <code class="ruby">	validates :rate, presence: true, numericality: { greater_than_or_equal_to: 0, only_integer: true }, uniqueness: true</code>
+          <code class="ruby">  validates :contact_email, email: { allow_blank: true }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="4">
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  validates :tax_id, uniqueness: { case_sensitive: false, allow_blank: true}</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="5">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  validates :billing_tax, numericality: { greater_than_or_equal_to: 0, only_integer: true, allow_blank: true }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="6">
           
           
           <code class="ruby">end</code>
