@@ -203,7 +203,15 @@ NAVIGATION_RULES = {
             parent: { controller: :tasks, action: :index, params: [ :user_id, :project_id ] },
             title: 'tasks.create_title'
         },
+        create: {
+            parent: { controller: :tasks, action: :index, params: [ :user_id, :project_id ] },
+            title: 'tasks.create_title'
+        },
         edit: {
+            parent: { controller: :tasks, action: :index, params: [ :user_id, :project_id ] },
+            title: 'tasks.edit_title'
+        },
+        update: {
             parent: { controller: :tasks, action: :index, params: [ :user_id, :project_id ] },
             title: 'tasks.edit_title'
         }

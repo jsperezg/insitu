@@ -192,11 +192,15 @@ ActiveRecord::Schema.define(version: 20151208174856) do
   add_index "setting_values", ["user_id"], name: "index_setting_values_on_user_id", using: :btree
 
   create_table "tasks", force: :cascade do |t|
-    t.string   "description", limit: 255,                 null: false
-    t.integer  "project_id",  limit: 4,                   null: false
-    t.boolean  "finished",                default: false, null: false
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.string   "name",        limit: 255
+    t.string   "description", limit: 4096
+    t.integer  "project_id",  limit: 4,                    null: false
+    t.boolean  "finished",                 default: false, null: false
+    t.date     "finish_date"
+    t.date     "dead_line"
+    t.integer  "priority",    limit: 4,    default: 1,     null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   add_index "tasks", ["project_id"], name: "index_tasks_on_project_id", using: :btree

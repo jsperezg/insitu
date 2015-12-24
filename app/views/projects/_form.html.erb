@@ -29,7 +29,7 @@
     <div class="form-group pull-left col-xs-6">
       <%= f.label :customer_id, :class => 'control-label' %>
       <%= f.collection_select :customer_id, Customer.order(name: :asc), :id, :name,
-        { prompt: true }, { class: 'form-control input-sm', required: true } %>
+        { prompt: true }, { class: 'form-control input-sm select2', required: true } %>
     </div>
   </div>
 </div>

@@ -20,7 +20,7 @@ es:
     accepted: Aceptado
     rejected: Rechazado
 
-  log_in: Acceso al sistema
+  log_in: Entrar
   sign_up: Crear cuenta
   forgot_password: ¿Has olvidado tu contraseña?
   didn_received_confirmation_instructions: ¿No has recibido las instrucciones para validar la cuenta?

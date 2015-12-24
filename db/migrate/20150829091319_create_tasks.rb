@@ -1,9 +1,13 @@
 class CreateTasks < ActiveRecord::Migration
   def change
     create_table :tasks do |t|
-      t.string :description, null: false
+      t.string :name, null: :false
+      t.string :description, limit: 4096
       t.references :project, index: true, foreign_key: true, null: false
       t.boolean :finished, null: false, default: false
+      t.date :finish_date
+      t.date :dead_line
+      t.integer :priority, null: false, default: 1
 
       t.timestamps null: false
     end

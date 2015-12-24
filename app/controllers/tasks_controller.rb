@@ -6,7 +6,10 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.includes(:project).all
+    @tasks = Task
+                 .includes(:project)
+                 .paginate(page: params[:page], per_page: DEFAULT_ITEMS_PER_PAGE)
+                 .order(finished: :asc, priority: :desc, dead_line: :asc)
   end
 
   # GET /tasks/1
@@ -17,10 +20,13 @@ class TasksController < ApplicationController
   # GET /tasks/new
   def new
     @task = Task.new(project_id: @project.id)
+    @task.time_logs.build
   end
 
   # GET /tasks/1/edit
   def edit
+    @time_log = TimeLog.new
+    @task.time_logs.build
   end
 
   # POST /tasks
@@ -75,6 +81,13 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:description, :project_id, :finished)
+      params
+          .require(:task)
+          .permit(
+              :name, :description, :project_id, :finished, :finish_date, :dead_line, :priority,
+              time_logs_attributes: [
+                  :id, :description, :start_time, :end_time, :task_id, :service_id, :_destroy
+              ]
+          )
     end
 end

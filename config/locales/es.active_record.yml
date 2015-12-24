@@ -37,9 +37,13 @@ es:
         project_status_id: Estado
         customer_id: Cliente
       task:
+        name: Nombre
         description: Descripción
         project_id: Proyecto
         finished: Finalizado
+        finish_date: Fecha finalización
+        dead_line: Fecha límite
+        priority: Prioridad
       time_log:
         description: Descripción
         start_time: Inicio

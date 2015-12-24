@@ -5,7 +5,7 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <script src='./assets/0.10.0/application.js' type='text/javascript'></script>    
     <link href='./assets/0.10.0/application.css' media='screen, projection, print' rel='stylesheet' type='text/css'>
-    <link rel="shortcut icon" type="image/png" href="./assets/0.10.0/favicon_green.png" />
+    <link rel="shortcut icon" type="image/png" href="./assets/0.10.0/favicon_yellow.png" />
     <link rel="icon" type="image/png" href="./assets/0.10.0/favicon.png" />
   </head>
   
@@ -14,27 +14,27 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2015-12-23T16:17:33+01:00">2015-12-23T16:17:33+01:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2015-12-24T08:22:26+01:00">2015-12-24T08:22:26+01:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">100.0%</span></span>
+    (<span class="covered_percent"><span class="yellow">80.95%</span></span>
      covered at
      <span class="covered_strength">
-       <span class="yellow">
-         1.0
+       <span class="green">
+         1.38
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>3</b> files in total.
-    <b>10</b> relevant lines. 
-    <span class="green"><b>10</b> lines covered</span> and
-    <span class="red"><b>0</b> lines missed </span>
+    <b>21</b> relevant lines. 
+    <span class="green"><b>17</b> lines covered</span> and
+    <span class="red"><b>4</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -51,13 +51,13 @@
     <tbody>
       
       <tr>
-        <td class="strong"><a href="#3eed47fe8e5af16b26b513b5c7ef3a26602840d9" class="src_link" title="app/models/customer.rb">app/models/customer.rb</a></td>
-        <td class="green strong">100.0 %</td>
-        <td>6</td>
-        <td>5</td>
-        <td>5</td>
-        <td>0</td>
-        <td>1.0</td>
+        <td class="strong"><a href="#c1dfa8b4509a559caeeb16d9220c7e4d5322cfe3" class="src_link" title="app/models/task.rb">app/models/task.rb</a></td>
+        <td class="red strong">75.0 %</td>
+        <td>28</td>
+        <td>16</td>
+        <td>12</td>
+        <td>4</td>
+        <td>1.5</td>
       </tr>
       
       <tr>
@@ -96,14 +96,14 @@
     
       <div class="source_files">
       
-        <div class="source_table" id="3eed47fe8e5af16b26b513b5c7ef3a26602840d9">
+        <div class="source_table" id="c1dfa8b4509a559caeeb16d9220c7e4d5322cfe3">
   <div class="header">
-    <h3>app/models/customer.rb</h3>
-    <h4><span class="green">100.0 %</span> covered</h4>
+    <h3>app/models/task.rb</h3>
+    <h4><span class="red">75.0 %</span> covered</h4>
     <div>
-      <b>5</b> relevant lines. 
-      <span class="green"><b>5</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <b>16</b> relevant lines. 
+      <span class="green"><b>12</b> lines covered</span> and
+      <span class="red"><b>4</b> lines missed.</span>
     </div>
   </div>
   
@@ -113,34 +113,166 @@
         <li class="covered" data-hits="1" data-linenumber="1">
           <span class="hits">1</span>
           
-          <code class="ruby">class Customer &lt; ActiveRecord::Base</code>
+          <code class="ruby">class Task &lt; ActiveRecord::Base</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="2">
           <span class="hits">1</span>
           
-          <code class="ruby">  validates :name, presence: true</code>
+          <code class="ruby">  belongs_to :project</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="3">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="3">
           
-          <code class="ruby">  validates :contact_email, email: { allow_blank: true }</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="4">
           <span class="hits">1</span>
           
-          <code class="ruby">  validates :tax_id, uniqueness: { case_sensitive: false, allow_blank: true}</code>
+          <code class="ruby">  has_many :time_logs, dependent: :destroy</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="5">
+        <li class="never" data-hits="" data-linenumber="5">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="6">
           <span class="hits">1</span>
           
-          <code class="ruby">  validates :billing_tax, numericality: { greater_than_or_equal_to: 0, only_integer: true, allow_blank: true }</code>
+          <code class="ruby">  validates :name, presence: true</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="6">
+        <li class="covered" data-hits="1" data-linenumber="7">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  validates :project_id, presence: true</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  validates :priority, numericality: { only_integer: true }, inclusion: { in: 1..5 }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="9">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="10">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  before_validation :set_default_values</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="11">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="12">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  accepts_nested_attributes_for :time_logs, reject_if: proc { |attr|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="13">
+          
+          
+          <code class="ruby">    result = true</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="14">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="15">
+          
+          
+          <code class="ruby">    [:service_id, :description, :start_time, :end_time].each do |attr_id|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="16">
+          
+          
+          <code class="ruby">      result = false unless attr[attr_id].blank?</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="17">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="18">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="19">
+          
+          
+          <code class="ruby">    result</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="20">
+          
+          
+          <code class="ruby">  }, :allow_destroy =&gt; true</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="21">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="22">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  private</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="23">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="24">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def set_default_values</code>
+        </li>
+      
+        <li class="covered" data-hits="7" data-linenumber="25">
+          <span class="hits">7</span>
+          
+          <code class="ruby">    self.finished ||= false</code>
+        </li>
+      
+        <li class="covered" data-hits="7" data-linenumber="26">
+          <span class="hits">7</span>
+          
+          <code class="ruby">    self.priority ||= 1</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="27">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="28">
           
           
           <code class="ruby">end</code>

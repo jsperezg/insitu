@@ -1,64 +1,72 @@
 <%- model_class = Task -%>
-<div class="page-header">
-  <h1>
-    <%=t 'tasks.title', :default => model_class.model_name.human.pluralize.titleize %>
-    <small><%= @project[:name] %></small>
-  </h1>
-</div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
-      <th class=text-center><%= model_class.human_attribute_name(:finished) %></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td>
-          <%= link_to task.id, edit_user_project_task_path(current_user, params[:project_id], task) %>
-        </td>
-        <td>
-          <%= best_in_place task, :description,
-              url: user_project_task_url(current_user, params[:project_id], task, format: :json) %>
-        </td>
-        <td class=text-center>
-          <%= best_in_place task, :finished, as: :checkbox,
-              collection: {
-                false: t('checkbox_false', default: 'No'),
-                true: t('checkbox_true', default: 'Yes')
-              },
-              url: user_project_task_url(current_user, params[:project_id], task, format: :json) %>
-        </td>
-        <td class=text-right>
-          <%= link_to edit_user_project_task_path(current_user, params[:project_id], task), :class => 'btn btn-default btn-xs' do %>
-            <i class="fa fa-pencil-square-o" aria-hidden="true">
-              <%=t 'helpers.links.edit' %>
-            </i>
+<div class="box box-primary">
+  <div class="box-header">
+    <h3 class="box-title"><%= @project[:name] %></h3>
+  </div>
+  <div class="box-body">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th><%= model_class.human_attribute_name(:name) %></th>
+            <th class="col-xs-2 text-center"><%= model_class.human_attribute_name(:dead_line) %></th>
+            <th class="col-xs-2 text-center"><%= model_class.human_attribute_name(:finished) %></th>
+            <th class="col-xs-1"></th>
+            <th class="col-xs-1"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @tasks.each do |task| %>
+            <%= task_tr task do %>
+              <td>
+                <%= best_in_place task, :description,
+                                  url: user_project_task_url(current_user, params[:project_id], task, format: :json) %>
+              </td>
+              <td class=text-center><%= ldate task[:dead_line] %></td>
+              <td class=text-center>
+                <%= best_in_place task, :finished, as: :checkbox,
+                    collection: {
+                      false: t('checkbox_false', default: 'No'),
+                      true: t('checkbox_true', default: 'Yes')
+                    },
+                    url: user_project_task_url(current_user, params[:project_id], task, format: :json) %>
+              </td>
+              <td>
+                <%= link_to edit_user_project_task_path(current_user, params[:project_id], task),
+                            class: 'btn btn-default btn-xs btn-flat btn-block',
+                            method: :get do %>
+                  <i class="fa fa-pencil-square-o" aria-hidden="true">
+                    <%=t 'helpers.links.edit' %>
+                  </i>
+                <% end %>
+              </td>
+              <td>
+                <%= button_to user_project_task_path(current_user, params[:project_id], task),
+                            :method => :delete,
+                            :data => { :confirm => t("helpers.links.confirm", :default => 'Are you sure?') },
+                            :class => 'btn btn-xs btn-danger btn-flat btn-block' do %>
+                  <i class="fa fa-trash-o" aria-hidden="true">
+                    <%=t 'helpers.links.destroy' %>
+                  </i>
+                <% end %>
+              </td>
+            <% end %>
           <% end %>
-
-          <%= link_to user_project_task_time_logs_path(current_user, params[:project_id], task), class: 'btn btn-default btn-xs' do %>
-            <i class="fa fa-tasks" aria-hidden="true">
-              <%=t 'time_logs.title' %>
-            </i>
-          <% end %>
-
-          <%= link_to user_project_task_path(current_user, params[:project_id], task),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' do %>
-            <i class="fa fa-trash-o" aria-hidden="true">
-              <%=t 'helpers.links.destroy' %>
-            </i>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="box-footer">
+    <div class="row">
+      <div class="col-xs-2">
+        <%= button_to t("helpers.links.new"),
             new_user_project_task_path(current_user, params[:project_id]),
-            :class => 'btn btn-default' %>
+            class: 'btn btn-primary btn-flat btn-block',
+            method: :get %>
+      </div>
+      <div class="col-xs-10 text-right">
+        <%= will_paginate @tasks, renderer: BootstrapPagination::Rails, class: 'pagination-flat' %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -30,7 +30,7 @@
                 <% end %>
               </td>
               <td>
-                <%= link_to user_project_tasks_path(current_user, project),
+                <%= button_to user_project_tasks_path(current_user, project),
                             class: 'btn btn-default btn-xs btn-block btn-flat',
                             method: :get do %>
                   <i class="fa fa-tasks" aria-hidden="true">
@@ -39,7 +39,7 @@
                 <% end %>
               </td>
               <td>
-                <%= link_to user_project_path(current_user, project),
+                <%= button_to user_project_path(current_user, project),
                             :method => :delete,
                             :data => { :confirm => t("helpers.links.confirm", :default => 'Are you sure?') },
                             :class => 'btn btn-xs btn-danger btn-block btn-flat' do %>

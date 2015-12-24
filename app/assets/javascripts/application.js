@@ -23,7 +23,12 @@
 
 if (typeof jQuery !== 'undefined') {
   $(document).on("page:change", function () {
-    var bestInPlace = $(".best_in_place");
+    var bestInPlace = $(".best_in_place"),
+        select2 = $('.select2');
+
+    if (select2.length) {
+      select2.select2();
+    }
 
     if (bestInPlace.length) {
       /* Activating Best In Place */

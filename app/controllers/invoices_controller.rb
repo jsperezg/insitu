@@ -16,13 +16,13 @@ class InvoicesController < ApplicationController
   # GET /invoices/new
   def new
     @invoice = Invoice.new(date: Date.today)
-    detail = @invoice.invoice_details.build
+    @invoice.invoice_details.build
   end
 
   # GET /invoices/1/edit
   def edit
     @invoice_detail = InvoiceDetail.new
-    detail = @invoice.invoice_details.build
+    @invoice.invoice_details.build
   end
 
   # POST /invoices
