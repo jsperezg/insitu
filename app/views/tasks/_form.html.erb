@@ -65,6 +65,12 @@
     </div>
   </div>
 
+  <hr>
+
+  <%= f.fields_for :time_logs do |builder| %>
+    <%= render 'time_logs', f: builder %>
+  <% end %>
+
 </div>
 <div class="box-footer">
   <%= f.submit t(:save), :class => 'btn btn-primary btn-flat', data: { disable_with: t('please_wait')} %>
