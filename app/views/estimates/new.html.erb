@@ -1,5 +1,5 @@
-<%- model_class = Estimate -%>
-
-<%= form_for @estimate, url: user_estimates_path(current_user) do |f| %>
-    <%= render :partial => 'form',  locals: { f: f } %>
-<% end %>
+<div class="box box-primary">
+  <%= form_for @estimate, url: user_estimates_path(current_user) do |f| %>
+      <%= render :partial => 'form',  locals: { f: f } %>
+  <% end %>
+</div>

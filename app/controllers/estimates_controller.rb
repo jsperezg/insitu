@@ -15,7 +15,7 @@ class EstimatesController < ApplicationController
 
   # GET /estimates/new
   def new
-    @estimate = Estimate.new(date: Date.today)
+    @estimate = Estimate.new
     detail = @estimate.estimate_details.build
   end
 

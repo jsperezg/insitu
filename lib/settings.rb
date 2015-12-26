@@ -2,7 +2,7 @@ module Settings
 	def find_or_create_key(name, data_type)
 		key = SettingKey.find_by(name: name)
 		if key.nil?
-			key = SettingKey.create(name: name, data_type: data_type)
+			key = SettingKey.create!(name: name, data_type: data_type)
 		end
 
 		key

@@ -19,6 +19,7 @@ class Estimate < ActiveRecord::Base
     result
   }, :allow_destroy => true
 
+  after_initialize :set_default_values
   before_validation :set_default_values
 
   after_commit(on: :create) do
@@ -33,6 +34,8 @@ class Estimate < ActiveRecord::Base
     unless self.date.nil?
       self.number ||= generate_id(Thread.current[:user], self.model_name.human, self.date.year)
     end
+
+    self.date ||= Date.today
   end
 
   def validate_valid_until
