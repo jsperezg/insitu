@@ -10,7 +10,7 @@
           <tr>
             <th><%= model_class.human_attribute_name(:name) %></th>
             <th class="col-xs-2 text-center"><%= model_class.human_attribute_name(:dead_line) %></th>
-            <th class="col-xs-2 text-center"><%= model_class.human_attribute_name(:finished) %></th>
+            <th class="col-xs-2 text-center"><%= model_class.human_attribute_name(:finish_date) %></th>
             <th class="col-xs-1"></th>
             <th class="col-xs-1"></th>
           </tr>
@@ -19,18 +19,11 @@
           <% @tasks.each do |task| %>
             <%= task_tr task do %>
               <td>
-                <%= best_in_place task, :description,
+                <%= best_in_place task, :name,
                                   url: user_project_task_url(current_user, params[:project_id], task, format: :json) %>
               </td>
               <td class=text-center><%= ldate task[:dead_line] %></td>
-              <td class=text-center>
-                <%= best_in_place task, :finished, as: :checkbox,
-                    collection: {
-                      false: t('checkbox_false', default: 'No'),
-                      true: t('checkbox_true', default: 'Yes')
-                    },
-                    url: user_project_task_url(current_user, params[:project_id], task, format: :json) %>
-              </td>
+              <td class=text-center><%= ldate task[:finish_date] %></td>
               <td>
                 <%= link_to edit_user_project_task_path(current_user, params[:project_id], task),
                             class: 'btn btn-default btn-xs btn-flat btn-block',

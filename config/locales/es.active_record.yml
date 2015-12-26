@@ -40,14 +40,19 @@ es:
         name: Nombre
         description: Descripción
         project_id: Proyecto
-        finished: Finalizado
         finish_date: Fecha finalización
         dead_line: Fecha límite
         priority: Prioridad
       time_log:
         description: Descripción
-        start_time: Inicio
-        end_time: Fin
+        date: Fecha
+        time_spent: Tiempo empleado
+        task_id: Tarea
+        service_id: Servicio
+      task/time_logs:
+        description: Descripción
+        date: Fecha
+        time_spent: Tiempo empleado
         task_id: Tarea
         service_id: Servicio
       delivery_note:
@@ -146,9 +151,12 @@ es:
           attributes:
             description:
               blank: 'es obligatoria.'
-            start_time:
+            date:
               blank: 'es obligatoria.'
-              invalid_value: 'debe ser anterior a la fecha de fin.'
+            time_spent:
+              blank: es obligatorio.
+              not_a_number: no es un número.
+              not_an_integer: no admite decimales.
             task_id:
               blank: 'es obligatoria.'
             service_id:

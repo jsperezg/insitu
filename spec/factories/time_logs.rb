@@ -4,8 +4,8 @@ FactoryGirl.define do
       "Time log #{ n }"
     end
 
-    start_time { DateTime.now - 2.hours }
-    end_time  { DateTime.now }
+    time_spent 120
+    date { Date.today }
     task_id { Task.first.try(:id) || create(:task).id }
     service_id { Service.first.try(:id) || create(:service).id }
   end

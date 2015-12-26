@@ -9,12 +9,11 @@ class Task < ActiveRecord::Base
 
   after_initialize :set_default_values
   before_validation :set_default_values
-  before_save :update_finished_state
 
   accepts_nested_attributes_for :time_logs, reject_if: proc { |attr|
     result = true
 
-    [:description, :start_time, :end_time, :service_id].each do |attr_id|
+    [:description, :time_spent, :date, :service_id].each do |attr_id|
       result = false unless attr[attr_id].blank?
     end
 
@@ -24,15 +23,6 @@ class Task < ActiveRecord::Base
   private
 
   def set_default_values
-    self.finished ||= false
     self.priority ||= 1
-  end
-
-  def update_finished_state
-    if self.finished
-      self.finish_date ||= Date.today
-    else
-      self.finish_date = nil
-    end
   end
 end

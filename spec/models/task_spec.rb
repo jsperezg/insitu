@@ -13,13 +13,6 @@ RSpec.describe Task, type: :model do
     expect(task.errors).to satisfy { |errors| errors.key? :project_id }
   end
 
-  it 'Finished defaults to false' do
-    task = Task.new
-    task.save
-    expect(task.errors).not_to satisfy { |errors| errors.key? :finished }
-    expect(task.finished).to be(false)
-  end
-
   it 'Priority defaults to 1' do
     task = Task.new
     task.save

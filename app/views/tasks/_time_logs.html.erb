@@ -1,5 +1,3 @@
-<div class="box box-default">
-  <div class="box-body">
     <%= f.hidden_field :id %>
     <%= f.hidden_field :task_id %>
 
@@ -25,17 +23,24 @@
         <%= f.text_field :description, :class => 'form-control input-sm' %>
       </div>
 
-      <div class="form-group pull-left col-xs-2">
-        <%= f.label :start_time, :class => 'control-label' %>
-        <%= f.time_field :start_time, :class => 'form-control input-sm' %>
-        <p class=help-block>hh:mm</p>
+      <div class="form-group col-xs-2">
+        <%= f.label :date, class: 'control-label' %>
+        <div class="input-group">
+          <%= f.text_field :date, class: 'form-control input-sm date', value: ldate(f.object.date) %>
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
       </div>
 
       <div class="form-group pull-left col-xs-2">
-        <%= f.label :end_time, :class => 'control-label' %>
-        <%= f.time_field :end_time, :class => 'form-control input-sm' %>
-        <p class=help-block>hh:mm</p>
+        <%= f.label :time_spent, :class => 'control-label' %>
+        <div class="input-group">
+          <%= f.number_field :time_spent, :class => 'form-control input-sm' %>
+          <span class="input-group-addon">
+            min.
+          </span>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+    <hr>

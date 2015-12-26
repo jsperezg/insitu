@@ -40,14 +40,19 @@ en:
         name: Name
         description: Description
         project_id: Project
-        finished: Finished
         finish_date: Finish date
         dead_line: Dead line
         priority: Priority
       time_log:
         description: Description
-        start_time: Start time
-        end_time: End time
+        date: Date
+        time_spent: Time Spent
+        task_id: Task
+        service_id: Service
+      task/time_logs:
+        description: Description
+        date: Date
+        time_spent: Time Spent
         task_id: Task
         service_id: Service
       delivery_note:
@@ -146,11 +151,12 @@ en:
             attributes:
               description:
                 blank: 'is mandatory.'
-              start_time:
+              date:
                 blank: 'is mandatory.'
-                invalid_value: 'must be before the end time.'
-              end_time:
+              time_spent:
                 blank: 'is mandatory.'
+                not_a_number: is not a number.
+                not_an_integer: is not an integer value.
               task_id:
                 blank: 'is mandatory.'
               service_id:

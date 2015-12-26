@@ -9,7 +9,7 @@ class TasksController < ApplicationController
     @tasks = Task
                  .includes(:project)
                  .paginate(page: params[:page], per_page: DEFAULT_ITEMS_PER_PAGE)
-                 .order(finished: :asc, priority: :desc, dead_line: :asc)
+                 .order(finish_date: :asc, priority: :desc, dead_line: :asc)
   end
 
   # GET /tasks/1
@@ -36,7 +36,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to user_project_tasks_url(current_user, @project), notice: t(:successfully_created, item: t('tasks.task')) }
+        format.html { redirect_to edit_user_project_task_url(current_user, @project, @task), notice: t(:successfully_created, item: t('tasks.task')) }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to user_project_tasks_url(current_user, @project), notice: t(:successfully_updated, item: t('tasks.task')) }
+        format.html { redirect_to edit_user_project_task_url(current_user, @project, @task), notice: t(:successfully_updated, item: t('tasks.task')) }
         format.json { respond_with_bip @task }
       else
         format.html { render :edit }
@@ -86,7 +86,7 @@ class TasksController < ApplicationController
           .permit(
               :name, :description, :project_id, :finished, :finish_date, :dead_line, :priority,
               time_logs_attributes: [
-                  :id, :description, :start_time, :end_time, :task_id, :service_id, :_destroy
+                  :id, :description, :time_spent, :date, :task_id, :service_id, :_destroy
               ]
           )
     end

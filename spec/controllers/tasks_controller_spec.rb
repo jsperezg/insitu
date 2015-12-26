@@ -29,7 +29,7 @@ RSpec.describe TasksController, type: :controller do
 
   let(:invalid_attributes) {
     {
-      description: nil
+      name: nil
     }
   }
 
@@ -90,7 +90,7 @@ RSpec.describe TasksController, type: :controller do
 
       it "redirects to the tasks list" do
         post :create, {user_id: @user, project_id: @project, :task => valid_attributes}
-        expect(response).to redirect_to(user_project_tasks_url(@user, @project))
+        expect(response).to redirect_to(edit_user_project_task_url(@user, @project, Task.last))
       end
     end
 
@@ -132,7 +132,7 @@ RSpec.describe TasksController, type: :controller do
       it "redirects to the tasks list" do
         task = Task.create! valid_attributes
         put :update, {user_id: @user, project_id: @project, :id => task.to_param, :task => valid_attributes}
-        expect(response).to redirect_to(user_project_tasks_url(@user, @project))
+        expect(response).to redirect_to(edit_user_project_task_url(@user, @project, task))
       end
     end
 

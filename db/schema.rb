@@ -195,7 +195,6 @@ ActiveRecord::Schema.define(version: 20151208174856) do
     t.string   "name",        limit: 255
     t.string   "description", limit: 4096
     t.integer  "project_id",  limit: 4,                    null: false
-    t.boolean  "finished",                 default: false, null: false
     t.date     "finish_date"
     t.date     "dead_line"
     t.integer  "priority",    limit: 4,    default: 1,     null: false
@@ -207,8 +206,8 @@ ActiveRecord::Schema.define(version: 20151208174856) do
 
   create_table "time_logs", force: :cascade do |t|
     t.string   "description", limit: 255, null: false
-    t.datetime "start_time",              null: false
-    t.datetime "end_time"
+    t.date     "date",                    null: false
+    t.integer  "time_spent",  limit: 4,   null: false
     t.integer  "task_id",     limit: 4,   null: false
     t.integer  "service_id",  limit: 4,   null: false
     t.datetime "created_at",              null: false

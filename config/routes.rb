@@ -15,9 +15,7 @@ Rails.application.routes.draw do
     resources :estimates
 
     resources :projects do
-      resources :tasks do
-        resources :time_logs
-      end
+      resources :tasks
     end
   end
 

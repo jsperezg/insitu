@@ -2,8 +2,35 @@ if (typeof jQuery !== 'undefined') {
   $(document).on("page:change", function () {
     var datePicker = $(".date"),
         locale = '<%= I18n.locale  %>',
-        dateFormat = "YYYY-MM-DD";
+        dateFormat = "YYYY-MM-DD",
+        bestInPlace = $(".best_in_place"),
+        select2 = $('.select2');
 
+    // activating select plugin
+    if (select2.length) {
+      select2.select2();
+    }
+
+    /* Activating Best In Place */
+    if (bestInPlace.length) {
+      bestInPlace.best_in_place();
+
+      jQuery(document).on('best_in_place:error', function (event, request, error) {
+        'use strict';
+        // Display all error messages from server side validation
+        jQuery.each(jQuery.parseJSON(request.responseText), function (index, value) {
+          var container = jQuery('#bip_error_message');
+
+          if (typeof value === "object") {value = index + " " + value.toString(); }
+
+          container.html(value);
+          container.show();
+          window.setTimeout(function() { container.hide(); }, 2000);
+        });
+      });
+    }
+
+    // Date picker.
     if (datePicker.length) {
       switch (locale) {
         case "es":
@@ -11,7 +38,7 @@ if (typeof jQuery !== 'undefined') {
           break;
       }
 
-      datePicker.datetimepicker({ format: dateFormat });
+      datePicker.datepicker($.datepicker.regional[ locale ]);
     }
   });
 }

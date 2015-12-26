@@ -8,11 +8,32 @@ RSpec.describe TimeLog, type: :model do
     expect(time_log.errors).to satisfy { |errors| !errors.empty? && errors.key?( :description )}
   end
 
-  it 'start_time is mandatory' do
+  it 'time_spent is mandatory' do
     time_log = TimeLog.new
     time_log.save
 
-    expect(time_log.errors).to satisfy { |errors| !errors.empty? && errors.key?( :start_time )}
+    expect(time_log.errors).to satisfy { |errors| errors.key? :time_spent }
+  end
+
+  it 'time_spent is a number' do
+    time_log = TimeLog.new(time_spent: 'asdf')
+    time_log.save
+
+    expect(time_log.errors).to satisfy { |errors| errors.key? :time_spent }
+  end
+
+  it 'time_spent is a integer' do
+    time_log = TimeLog.new(time_spent: 1.2)
+    time_log.save
+
+    expect(time_log.errors).to satisfy { |errors| errors.key? :time_spent }
+  end
+
+  it 'time_spent is greater than zero' do
+    time_log = TimeLog.new(time_spent: -1)
+    time_log.save
+
+    expect(time_log.errors).to satisfy { |errors| errors.key? :time_spent }
   end
 
   it 'task_id is mandatory' do
@@ -29,10 +50,10 @@ RSpec.describe TimeLog, type: :model do
     expect(time_log.errors).to satisfy { |errors| !errors.empty? && errors.key?( :service_id )}
   end
 
-  it 'start time is before end time' do
-    time_log = TimeLog.new(start_time: DateTime.now.utc, end_time: DateTime.now.utc - 2.hours)
+  it 'date is mandatory' do
+    time_log = TimeLog.new
     time_log.save
 
-    expect(time_log.errors).to satisfy { |errors| !errors.empty? && errors.key?( :start_time )}
+    expect(time_log.errors).to satisfy { |errors| errors.key? :date }
   end
 end

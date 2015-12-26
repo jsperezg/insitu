@@ -1,6 +1,6 @@
 module TasksHelper
   def task_tr(task)
-    if task.finished
+    if !task.finish_date.nil?
       tr_class = 'success'
     elsif task.dead_line.nil? || task.dead_line > Date.today
       tr_class = 'active'
