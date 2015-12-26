@@ -48,11 +48,11 @@
     <div class="form-group col-xs-2">
       <%= f.label :finish_date, class: 'control-label' %>
       <div class="input-group">
-        <%= f.text_field :finish_date, class: 'form-control input-sm date', value: ldate(@task[:finish_date]) %>
-
         <span class="input-group-addon">
           <span class="glyphicon glyphicon-calendar"></span>
         </span>
+
+        <%= f.text_field :finish_date, class: 'form-control input-sm date', value: ldate(@task[:finish_date]) %>
       </div>
     </div>
   </div>

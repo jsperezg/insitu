@@ -17,7 +17,9 @@
 //= require best_in_place
 //= require jquery-ui
 //= require best_in_place.jquery-ui
-//= require moment
-//= require bootstrap-datetimepicker
+//= require jquery.inputmask
+//= require jquery.inputmask.extensions
+//= require jquery.inputmask.numeric.extensions
+//= require jquery.inputmask.date.extensions
 //= require_tree ./autoload
 
