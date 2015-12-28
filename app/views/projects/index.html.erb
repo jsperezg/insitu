@@ -13,6 +13,9 @@
           </tr>
         </thead>
         <tbody>
+          <% if @projects.empty? %>
+            <tr><td colspan="5"><%=t 'helpers.tables.empty' %></td></tr>
+          <% end %>
           <% @projects.each do |project| %>
             <tr>
               <td>

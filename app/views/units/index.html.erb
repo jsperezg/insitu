@@ -12,6 +12,9 @@
           </tr>
         </thead>
         <tbody>
+          <% if @units.empty? %>
+            <tr><td colspan="4"><%=t 'helpers.tables.empty' %></td></tr>
+          <% end %>
           <% @units.each do |unit| %>
             <tr>
               <td><%= best_in_place unit, :label_short, path: user_unit_path(current_user, unit, format: :json) %></td>

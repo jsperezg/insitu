@@ -34,7 +34,7 @@ services.calculateTotal = function (objectName) {
       discount = 0,
       discountId = services.getObjectId(objectName, 'discount'),
       vat = 0,
-      vatId = services.getObjectId(objectName, 'vat'),
+      vatId = services.getObjectId(objectName, 'vat_rate'),
       total;
 
   if ($(priceId).length) {
@@ -45,7 +45,7 @@ services.calculateTotal = function (objectName) {
   }
 
   if ($(quantityId).length) {
-    quantity = parseInt($(quantityId).val(), 10);
+    quantity = parseFloat($(quantityId).val());
     if (isNaN(quantity)) {
       quantity = 0;
     }

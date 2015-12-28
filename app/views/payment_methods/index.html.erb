@@ -12,6 +12,9 @@
           </tr>
         </thead>
         <tbody>
+          <% if @payment_methods.empty? %>
+              <tr><td colspan="4"><%=t 'helpers.tables.empty' %></td></tr>
+          <% end %>
           <% @payment_methods.each do |payment_method| %>
             <tr>
               <td>

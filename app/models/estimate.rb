@@ -12,7 +12,7 @@ class Estimate < ActiveRecord::Base
   accepts_nested_attributes_for :estimate_details, reject_if: proc { |attr|
     result = true
 
-    [:service_id, :quantity, :price, :discount].each do |attr_id|
+    [:service_id, :quantity, :price].each do |attr_id|
       result = false unless attr[attr_id].blank?
     end
 

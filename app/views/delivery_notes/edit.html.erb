@@ -1,5 +1,5 @@
-<%- model_class = DeliveryNote -%>
-
-<%= form_for @delivery_note, url: user_delivery_note_path(current_user, @delivery_note) do |f| %>
-  <%= render :partial => 'form',  locals: { f: f } %> 
-<% end %>
+<div class="box box-primary">
+  <%= form_for @delivery_note, url: user_delivery_note_path(current_user, @delivery_note) do |f| %>
+    <%= render :partial => 'form',  locals: { f: f } %>
+  <% end %>
+</div>

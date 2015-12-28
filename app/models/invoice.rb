@@ -17,7 +17,7 @@ class Invoice < ActiveRecord::Base
     accepts_nested_attributes_for :invoice_details, reject_if: proc { |attr|
       result = true
 
-      [:date, :payment_method_id, :customer_id, :payment_date, :price, :quantity, :discount].each do |attr_id|
+      [:date, :payment_method_id, :customer_id, :payment_date, :price, :quantity].each do |attr_id|
         result = false unless attr[attr_id].blank?
       end
 

@@ -50,14 +50,14 @@ ActiveRecord::Schema.define(version: 20151208174856) do
   add_index "delivery_notes", ["number"], name: "index_delivery_notes_on_number", using: :btree
 
   create_table "estimate_details", force: :cascade do |t|
-    t.integer  "estimate_id", limit: 4,                           null: false
-    t.integer  "service_id",  limit: 4,                           null: false
+    t.integer  "estimate_id", limit: 4,                                       null: false
+    t.integer  "service_id",  limit: 4,                                       null: false
     t.string   "description", limit: 255
-    t.decimal  "quantity",                precision: 7, scale: 2, null: false
-    t.decimal  "price",                   precision: 7, scale: 2, null: false
-    t.decimal  "discount",                precision: 7, scale: 2, null: false
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.decimal  "quantity",                precision: 7, scale: 2,             null: false
+    t.decimal  "price",                   precision: 7, scale: 2,             null: false
+    t.integer  "discount",    limit: 4,                           default: 0, null: false
+    t.datetime "created_at",                                                  null: false
+    t.datetime "updated_at",                                                  null: false
   end
 
   add_index "estimate_details", ["estimate_id"], name: "index_estimate_details_on_estimate_id", using: :btree
@@ -84,15 +84,15 @@ ActiveRecord::Schema.define(version: 20151208174856) do
   add_index "estimates", ["number"], name: "index_estimates_on_number", using: :btree
 
   create_table "invoice_details", force: :cascade do |t|
-    t.integer  "invoice_id",  limit: 4,                           null: false
-    t.integer  "service_id",  limit: 4,                           null: false
+    t.integer  "invoice_id",  limit: 4,                                       null: false
+    t.integer  "service_id",  limit: 4,                                       null: false
     t.string   "description", limit: 255
-    t.integer  "vat_rate",    limit: 4,                           null: false
-    t.decimal  "price",                   precision: 7, scale: 2, null: false
-    t.decimal  "quantity",                precision: 7, scale: 2, null: false
-    t.integer  "discount",    limit: 4,                           null: false
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.integer  "vat_rate",    limit: 4,                                       null: false
+    t.decimal  "price",                   precision: 7, scale: 2,             null: false
+    t.decimal  "quantity",                precision: 7, scale: 2,             null: false
+    t.integer  "discount",    limit: 4,                           default: 0, null: false
+    t.datetime "created_at",                                                  null: false
+    t.datetime "updated_at",                                                  null: false
   end
 
   add_index "invoice_details", ["invoice_id"], name: "index_invoice_details_on_invoice_id", using: :btree
@@ -194,12 +194,12 @@ ActiveRecord::Schema.define(version: 20151208174856) do
   create_table "tasks", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.string   "description", limit: 4096
-    t.integer  "project_id",  limit: 4,                    null: false
+    t.integer  "project_id",  limit: 4,                null: false
     t.date     "finish_date"
     t.date     "dead_line"
-    t.integer  "priority",    limit: 4,    default: 1,     null: false
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.integer  "priority",    limit: 4,    default: 1, null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   add_index "tasks", ["project_id"], name: "index_tasks_on_project_id", using: :btree

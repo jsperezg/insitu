@@ -1,5 +1,5 @@
-<%- model_class = Invoice -%>
-
-<%= form_for @invoice, url: user_invoices_path(current_user) do |f| %>
-  <%= render :partial => 'form',  locals: { f: f } %>
-<% end %>
+<div class="box">
+  <%= form_for @invoice, url: user_invoices_path(current_user) do |f| %>
+    <%= render :partial => 'form',  locals: { f: f } %>
+  <% end %>
+</div>

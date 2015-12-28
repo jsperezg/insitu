@@ -1,38 +1,52 @@
 <%- model_class = Invoice -%>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:number) %></th>
-      <th><%= model_class.human_attribute_name(:date) %></th>
-      <th><%= model_class.human_attribute_name(:customer_id) %></th>
-      <th><%= model_class.human_attribute_name(:paid_on) %></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @invoices.each do |invoice| %>
-      <tr class="<%=payment_status invoice %>">
-        <td><%= link_to invoice.id, user_invoice_path(current_user, invoice) %></td>
-        <td><%= invoice.number %></td>
-        <td><%=ldate invoice.date %></td>
-        <td><%= invoice.customer.try(:name) %></td>
-        <td><%=ldate invoice.paid_on %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_user_invoice_path(current_user, invoice), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      user_invoice_path(current_user, invoice),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<div class="box">
+  <div class="box-body">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th class="col-xs-1"><%= model_class.human_attribute_name(:number) %></th>
+            <th class="col-xs-1"><%= model_class.human_attribute_name(:date) %></th>
+            <th><%= model_class.human_attribute_name(:customer_id) %></th>
+            <th class="col-xs-1"><%= model_class.human_attribute_name(:paid_on) %></th>
+            <th class="col-xs-1"></th>
+            <th class="col-xs-1"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @invoices.empty? %>
+            <tr><td colspan="6"><%=t 'helpers.tables.empty' %></td></tr>
+          <% end %>
+          <% @invoices.each do |invoice| %>
+            <tr class="<%=payment_status invoice %>">
+              <td><%= invoice.number %></td>
+              <td><%=ldate invoice.date %></td>
+              <td><%= invoice.customer.try(:name) %></td>
+              <td><%=ldate invoice.paid_on %></td>
+              <td>
+                <%= button_to ("helpers.links.edit"),
+                            edit_user_invoice_path(current_user, invoice),
+                            method: :get,
+                            :class => 'btn btn-default btn-xs btn-block btn-flat' %>
+              </td>
+              <td>
+                <%= button_to t("helpers.links.destroy"),
+                            user_invoice_path(current_user, invoice),
+                            :method => :delete,
+                            :data => { :confirm => t("helpers.links.confirm", :default => 'Are you sure?') },
+                            :class => 'btn btn-xs btn-danger btn-block btn-flat' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="box-footer">
+    <%= button_to t("helpers.links.new"),
             new_user_invoice_path(current_user),
-            :class => 'btn btn-default' %>
+            method: :get,
+            class: 'btn btn-primary btn-flat btn-block' %>
+  </div>
+</div>

@@ -15,6 +15,9 @@
           </tr>
         </thead>
         <tbody>
+          <% if @services.empty? %>
+            <tr><td colspan="7"><%=t 'helpers.tables.empty' %></td></tr>
+          <% end %>
           <% @services.each do |service| %>
             <tr>
               <td><%= best_in_place service, :code, path: user_service_path(current_user, service, format: :json) %></td>

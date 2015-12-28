@@ -16,6 +16,9 @@
           </tr>
         </thead>
         <tbody>
+          <% if @tasks.empty? %>
+            <tr><td colspan="5"><%=t 'helpers.tables.empty' %></td></tr>
+          <% end %>
           <% @tasks.each do |task| %>
             <%= task_tr task do %>
               <td>

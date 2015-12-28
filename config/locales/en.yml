@@ -71,6 +71,8 @@ en:
       destroy: Destroy
       confirm: Are you sure?
       cancel: Cancel
+    tables:
+      empty: No records found.
 
   will_paginate:
     previous_label: "&#8592; Previous"

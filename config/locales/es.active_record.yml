@@ -114,6 +114,7 @@ es:
               confirmation: es obligatorio.
             current_password:
               blank: es obligatoria.
+              invalid: es incorrecta.
         service:
           attributes:
             code:

@@ -23,7 +23,7 @@
       </div>
     </div>
   </td>
-  <td class=text-right>
+  <td>
     <div class="form-group">
       <div class="input-group">
         <%= f.number_field :quantity, {
@@ -34,7 +34,7 @@
       </div>
     </div>
   </td>
-  <td class=text-right>
+  <td>
     <div class="form-group">
       <div class="input-group">
         <%= f.text_field :price, { class: 'form-control input-sm', onchange: "INSITU.services.calculateTotal('#{ f.object_name }')" } %>
@@ -42,18 +42,19 @@
       </div>
     </div>
   </td>
-  <td class=text-right>
+  <td>
     <div class="form-group">
       <div class="input-group">
         <%= f.number_field :discount, {
             class: 'form-control input-sm',
             step: '1',
+            min: '0',
             onchange: "INSITU.services.calculateTotal('#{ f.object_name }')" } %>
         <span class="input-group-addon">%</span>
       </div>
     </div>
   </td>
-  <td class=text-right>
+  <td>
     <div class="form-group">
       <div class="input-group">
         <%= f.text_field :total, { class: 'form-control input-sm', readonly: true } %>

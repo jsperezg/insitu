@@ -25,6 +25,10 @@ NAVIGATION_RULES = {
         edit: {
             parent: :my_profile,
             title: :edit_account
+        },
+        update: {
+            parent: :my_profile,
+            title: :edit_account
         }
     },
 

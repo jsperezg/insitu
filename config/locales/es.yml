@@ -74,6 +74,8 @@ es:
       destroy: Borrar
       confirm: ¿Estas seguro?
       cancel: Cancelar
+    tables:
+      empty: No se encontraron registros.
 
   services:
     service: Servicio

@@ -12,6 +12,9 @@
           </tr>
         </thead>
         <tbody>
+          <% if @vats.empty? %>
+            <tr><td colspan="4"><%=t 'helpers.tables.empty' %></td></tr>
+          <% end %>
           <% @vats.each do |vat| %>
             <tr>
               <td><%= best_in_place vat, :label, url: user_vat_path(current_user, vat, format: :json) %></td>
