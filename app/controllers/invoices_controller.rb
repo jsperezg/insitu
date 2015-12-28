@@ -1,5 +1,4 @@
-class InvoicesController < ApplicationController
-  before_action :authenticate_user!
+class InvoicesController < SecuredController
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
 
   # GET /invoices

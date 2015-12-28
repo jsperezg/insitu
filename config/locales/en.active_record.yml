@@ -97,7 +97,7 @@ en:
       estimate/estimate_details:
         service_id: Item
         description: Description
-        price: Precio
+        price: Price
         quantity: Quantity
         discount: Discount
         total: Total

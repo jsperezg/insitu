@@ -1,5 +1,4 @@
-class ServicesController < ApplicationController
-  before_action :authenticate_user!
+class ServicesController < SecuredController
   before_action :set_service, only: [:show, :edit, :update, :destroy]
 
   # GET /services

@@ -1,5 +1,4 @@
-class UnitsController < ApplicationController
-  before_action :authenticate_user!
+class UnitsController < SecuredController
   before_action :set_unit, only: [:show, :edit, :update, :destroy]
 
   # GET /units

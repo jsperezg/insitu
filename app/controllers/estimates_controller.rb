@@ -1,5 +1,4 @@
-class EstimatesController < ApplicationController
-  before_action :authenticate_user!
+class EstimatesController < SecuredController
   before_action :set_estimate, only: [:show, :edit, :update, :destroy]
 
   # GET /estimates
@@ -16,13 +15,13 @@ class EstimatesController < ApplicationController
   # GET /estimates/new
   def new
     @estimate = Estimate.new
-    detail = @estimate.estimate_details.build
+    @estimate.estimate_details.build
   end
 
   # GET /estimates/1/edit
   def edit
     @estimate_detail = EstimateDetail.new
-    detail = @estimate.estimate_details.build
+    @estimate.estimate_details.includes(service: [ :unit, :vat ]).build
   end
 
   # POST /estimates

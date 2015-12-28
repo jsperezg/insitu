@@ -1,5 +1,4 @@
-class DeliveryNotesController < ApplicationController
-  before_action :authenticate_user!
+class DeliveryNotesController < SecuredController
   before_action :set_delivery_note, only: [:show, :edit, :update, :destroy]
 
   # GET /delivery_notes

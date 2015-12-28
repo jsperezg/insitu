@@ -1,0 +1,86 @@
+var services = INSITU.namespace('services');
+
+/**
+ * Retrieve product data from database.
+ */
+services.loadService = function (url, element, objectName) {
+  var id = $(element).val();
+
+  if (id !== '' && id !== null && id !== undefined) {
+    $.ajax({
+      url: url + '/' + id + '.json',
+      method: 'get',
+      cache: false,
+      success: function (data) {
+        $(services.getObjectId(objectName, 'price')).val(data.price);
+        $(services.getObjectId(objectName, 'quantity')).parent().find('.input-group-addon').html(data.unit.label_short);
+
+        services.calculateTotal(objectName);
+      }
+    });
+  }
+};
+
+/**
+ * Calculates total for the given input
+ *
+ * @param objectName
+ */
+services.calculateTotal = function (objectName) {
+  var price = 0,
+      priceId = services.getObjectId(objectName, 'price'),
+      quantity = 0,
+      quantityId = services.getObjectId(objectName, 'quantity'),
+      discount = 0,
+      discountId = services.getObjectId(objectName, 'discount'),
+      vat = 0,
+      vatId = services.getObjectId(objectName, 'vat'),
+      total;
+
+  if ($(priceId).length) {
+    price = parseFloat($(priceId).val());
+    if (isNaN(price)) {
+      price = 0;
+    }
+  }
+
+  if ($(quantityId).length) {
+    quantity = parseInt($(quantityId).val(), 10);
+    if (isNaN(quantity)) {
+      quantity = 0;
+    }
+  }
+
+  if ($(discountId).length) {
+    discount = parseInt($(discountId).val(), 10);
+    if (isNaN(discount)) {
+      discount = 0;
+    }
+  }
+
+  if ($(vatId).length) {
+    vat = parseInt($(vatId).val(), 10);
+    if (isNaN(vat)) {
+      vat = 0;
+    }
+  }
+
+  total = quantity * price * ( 1 - (discount / 100)) * ( 1 + (vat / 100));
+  $(services.getObjectId(objectName, 'total')).val(total.toFixed(2));
+};
+
+/**
+ * Calculates object Id.
+ *
+ * @param objectName
+ * @param inputId
+ * @returns {string}
+ */
+services.getObjectId = function (objectName, inputId) {
+  objectName = objectName
+      .replace(/]/g, '_')
+      .replace(/\[/g, '_')
+      .replace(/__/g, '_');
+
+  return '#' + objectName + inputId;
+};

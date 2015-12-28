@@ -7,7 +7,7 @@ class CreateInvoiceDetails < ActiveRecord::Migration
       t.integer :vat_rate, null: false
       t.decimal :price, precision: 7, scale: 2, null: false
       t.decimal :quantity, precision: 7, scale: 2, null: false
-      t.integer :discount, null: false
+      t.integer :discount, null: false, default: 0
 
       t.timestamps null: false
     end

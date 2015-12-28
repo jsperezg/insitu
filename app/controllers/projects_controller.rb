@@ -1,5 +1,4 @@
-class ProjectsController < ApplicationController
-  before_action :authenticate_user!
+class ProjectsController < SecuredController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects

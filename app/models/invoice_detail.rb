@@ -10,9 +10,7 @@ class InvoiceDetail < ActiveRecord::Base
     
   def total
     if price.present? && quantity.present? && discount.present? && vat_rate.present?
-	    v = ( 1 - (discount / 100.0)) * price * quantity
-
-      v + v * (vat_rate / 100.0)
+	    ( 1 - (discount / 100.0)) * price * quantity * ( 1 + (vat_rate / 100.0))
     end
 	end
 end

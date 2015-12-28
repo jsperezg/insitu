@@ -1,5 +1,4 @@
-class PaymentMethodsController < ApplicationController
-  before_action :authenticate_user!
+class PaymentMethodsController < SecuredController
   before_action :set_payment_method, only: [:show, :edit, :update, :destroy]
 
   # GET /payment_methods
