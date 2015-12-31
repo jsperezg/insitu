@@ -10,10 +10,10 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require common
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require turbolinks
 //= require best_in_place
 //= require jquery-ui
 //= require best_in_place.jquery-ui
@@ -21,5 +21,10 @@
 //= require jquery.inputmask.extensions
 //= require jquery.inputmask.numeric.extensions
 //= require jquery.inputmask.date.extensions
-//= require common
+//= require jquery.slimscroll
+//= require fastclick
+//= require AdminLTE
+//= require turbolinks
+//= require initialization
+
 //= require_tree ./autoload

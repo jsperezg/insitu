@@ -22,11 +22,7 @@
       </div>
     <% end %>
 
-    <div class="form-group pull-left col-xs-6">
-      <%= f.label :customer_id, :class => 'control-label' %>
-      <%= f.collection_select :customer_id, Customer.order(name: :asc), :id, :name,
-        { prompt: true }, { class: 'form-control input-sm select2', required: true } %>
-    </div>
+    <%= customer_field f, :customer_id, class: 'pull-left col-xs-6', required: true %>
 
     <div class="form-group pull-left col-xs-2">
       <%= f.label :date, :class => 'control-label' %>

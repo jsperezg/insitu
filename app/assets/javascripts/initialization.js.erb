@@ -1,15 +1,10 @@
 if (typeof jQuery !== 'undefined') {
   $(document).on("page:change", function () {
     var dateInputs = $(".date"),
-        locale = '<%= I18n.locale  %>',
+        locale = document.documentElement.lang,
         dateFormat = "yyyy-mm-dd",
-        bestInPlace = $(".best_in_place"),
-        select2 = $('.select2');
-
-    // activating select plugin
-    if (select2.length) {
-      select2.select2();
-    }
+        mask = 'y-m-d',
+        bestInPlace = $(".best_in_place");
 
     /* Activating Best In Place */
     if (bestInPlace.length) {
@@ -35,10 +30,11 @@ if (typeof jQuery !== 'undefined') {
       switch (locale) {
         case "es":
           dateFormat = "dd/mm/yyyy";
+          mask = 'd/m/y';
           break;
       }
 
-      dateInputs.inputmask(dateFormat, { "placeholder": dateFormat });
+      dateInputs.inputmask(mask, {"placeholder": dateFormat});
     }
   });
 }

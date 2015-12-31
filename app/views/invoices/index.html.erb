@@ -25,7 +25,7 @@
               <td><%= invoice.customer.try(:name) %></td>
               <td><%=ldate invoice.paid_on %></td>
               <td>
-                <%= button_to ("helpers.links.edit"),
+                <%= button_to t("helpers.links.edit"),
                             edit_user_invoice_path(current_user, invoice),
                             method: :get,
                             :class => 'btn btn-default btn-xs btn-block btn-flat' %>

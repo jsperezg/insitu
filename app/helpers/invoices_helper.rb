@@ -10,6 +10,6 @@ module InvoicesHelper
       return 'danger'
     end    
 
-    return 'info'
+    'info'
   end
 end

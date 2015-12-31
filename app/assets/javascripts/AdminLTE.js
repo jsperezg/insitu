@@ -250,13 +250,14 @@ function _init() {
     },
     fix: function () {
       //Get window height and the wrapper height
-      var neg = $('.main-header').outerHeight() + $('.main-footer').outerHeight();
+      var mainFooter = $('.main-footer'),
+          neg = $('.main-header').outerHeight() + mainFooter.outerHeight();
       var window_height = $(window).height();
       var sidebar_height = $(".sidebar").height();
       //Set the min-height of the content and sidebar based on the
       //the height of the document.
       if ($("body").hasClass("fixed")) {
-        $(".content-wrapper, .right-side").css('min-height', window_height - $('.main-footer').outerHeight());
+        $(".content-wrapper, .right-side").css('min-height', window_height - mainFooter.outerHeight());
       } else {
         var postSetWidth;
         if (window_height >= sidebar_height) {
@@ -277,10 +278,12 @@ function _init() {
       }
     },
     fixSidebar: function () {
+      var sidebar = $('.sidebar');
+
       //Make sure the body tag has the .fixed class
       if (!$("body").hasClass("fixed")) {
         if (typeof $.fn.slimScroll != 'undefined') {
-          $(".sidebar").slimScroll({destroy: true}).height("auto");
+          sidebar.slimScroll({destroy: true}).height("auto");
         }
         return;
       } else if (typeof $.fn.slimScroll == 'undefined' && window.console) {
@@ -290,9 +293,9 @@ function _init() {
       if ($.AdminLTE.options.sidebarSlimScroll) {
         if (typeof $.fn.slimScroll != 'undefined') {
           //Destroy if it exists
-          $(".sidebar").slimScroll({destroy: true}).height("auto");
+          sidebar.slimScroll({destroy: true}).height("auto");
           //Add slimscroll
-          $(".sidebar").slimscroll({
+          sidebar.slimscroll({
             height: ($(window).height() - $(".main-header").height()) + "px",
             color: "rgba(0,0,0,0.2)",
             size: "3px"
@@ -312,7 +315,8 @@ function _init() {
   $.AdminLTE.pushMenu = {
     activate: function (toggleBtn) {
       //Get the screen sizes
-      var screenSizes = $.AdminLTE.options.screenSizes;
+      var screenSizes = $.AdminLTE.options.screenSizes,
+          body = $('body');
 
       //Enable sidebar toggle
       $(toggleBtn).on('click', function (e) {
@@ -320,49 +324,50 @@ function _init() {
 
         //Enable sidebar push menu
         if ($(window).width() > (screenSizes.sm - 1)) {
-          if ($("body").hasClass('sidebar-collapse')) {
-            $("body").removeClass('sidebar-collapse').trigger('expanded.pushMenu');
+          if (body.hasClass('sidebar-collapse')) {
+            body.removeClass('sidebar-collapse').trigger('expanded.pushMenu');
           } else {
-            $("body").addClass('sidebar-collapse').trigger('collapsed.pushMenu');
+            body.addClass('sidebar-collapse').trigger('collapsed.pushMenu');
           }
         }
         //Handle sidebar push menu for small screens
         else {
-          if ($("body").hasClass('sidebar-open')) {
-            $("body").removeClass('sidebar-open').removeClass('sidebar-collapse').trigger('collapsed.pushMenu');
+          if (body.hasClass('sidebar-open')) {
+            body.removeClass('sidebar-open').removeClass('sidebar-collapse').trigger('collapsed.pushMenu');
           } else {
-            $("body").addClass('sidebar-open').trigger('expanded.pushMenu');
+            body.addClass('sidebar-open').trigger('expanded.pushMenu');
           }
         }
       });
 
       $(".content-wrapper").click(function () {
         //Enable hide menu when clicking on the content-wrapper on small screens
-        if ($(window).width() <= (screenSizes.sm - 1) && $("body").hasClass("sidebar-open")) {
-          $("body").removeClass('sidebar-open');
+        if ($(window).width() <= (screenSizes.sm - 1) && body.hasClass("sidebar-open")) {
+          body.removeClass('sidebar-open');
         }
       });
 
       //Enable expand on hover for sidebar mini
       if ($.AdminLTE.options.sidebarExpandOnHover
-              || ($('body').hasClass('fixed')
-                      && $('body').hasClass('sidebar-mini'))) {
+              || (body.hasClass('fixed') && body.hasClass('sidebar-mini'))) {
         this.expandOnHover();
       }
     },
     expandOnHover: function () {
-      var _this = this;
-      var screenWidth = $.AdminLTE.options.screenSizes.sm - 1;
+      var _this = this,
+          body = $('body'),
+          screenWidth = $.AdminLTE.options.screenSizes.sm - 1;
+
       //Expand sidebar on hover
       $('.main-sidebar').hover(function () {
-        if ($('body').hasClass('sidebar-mini')
-                && $("body").hasClass('sidebar-collapse')
+        if (body.hasClass('sidebar-mini')
+                && body.hasClass('sidebar-collapse')
                 && $(window).width() > screenWidth) {
           _this.expand();
         }
       }, function () {
-        if ($('body').hasClass('sidebar-mini')
-                && $('body').hasClass('sidebar-expanded-on-hover')
+        if (body.hasClass('sidebar-mini')
+                && body.hasClass('sidebar-expanded-on-hover')
                 && $(window).width() > screenWidth) {
           _this.collapse();
         }
@@ -372,8 +377,10 @@ function _init() {
       $("body").removeClass('sidebar-collapse').addClass('sidebar-expanded-on-hover');
     },
     collapse: function () {
-      if ($('body').hasClass('sidebar-expanded-on-hover')) {
-        $('body').removeClass('sidebar-expanded-on-hover').addClass('sidebar-collapse');
+      var body = $('body');
+
+      if (body.hasClass('sidebar-expanded-on-hover')) {
+        body.removeClass('sidebar-expanded-on-hover').addClass('sidebar-collapse');
       }
     }
   };

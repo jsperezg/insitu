@@ -89,6 +89,7 @@ en:
     title: Customers
     create_title: New customer
     edit_title: Edit customer
+    select_customer_placeholder: Type something to start searching customers.
 
   projects:
     project: Project

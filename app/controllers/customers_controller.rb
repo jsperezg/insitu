@@ -4,7 +4,18 @@ class CustomersController < SecuredController
   # GET /customers
   # GET /customers.json
   def index
-    @customers = Customer.paginate(page: params[:page], per_page: DEFAULT_ITEMS_PER_PAGE).order(name: :asc)
+    respond_to do |format|
+      format.html {
+        @customers = Customer.paginate(page: params[:page], per_page: DEFAULT_ITEMS_PER_PAGE).order(name: :asc)
+      }
+
+      format.json {
+        if params[:name]
+          @customers = Customer.where('name like ?', "%#{ params[:name] }%").order(name: :asc)
+        end
+      }
+    end
+
   end
 
   # GET /customers/1

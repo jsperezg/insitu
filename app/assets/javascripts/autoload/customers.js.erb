@@ -1,0 +1,42 @@
+$(document).on("page:change", function () {
+  'use strict';
+
+  $('.customer-selector').each(function () {
+    var searchInput = $(this).find('input[type=text]'),
+        searchId = $(this).find('input[type=hidden]'),
+        url= $(this).attr('url_source');
+
+    $(searchInput).autocomplete({
+      minLength: 1,
+      delay: 100,
+      source: function (request, response) {
+        $.ajax({
+          type: 'GET',
+          url: url,
+          data: {
+            name: $(searchInput).val()
+          },
+          success: function(data, textStatus, jqXHR) {
+            var i, l = data.length, found = [];
+
+
+            for (i = 0; i < l; i += 1) {
+              found.push({
+                id: data[i].id,
+                label: data[i].name
+              });
+            }
+
+            response(found);
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.log('Filter request failed. Status: ' + textStatus + ', Error thrown: ' + errorThrown);
+          }
+        });
+      },
+      select: function(event, ui) {
+        searchId.val(ui.item.id);
+      }
+    });
+  });
+});

@@ -88,6 +88,7 @@ es:
     title: Clientes
     create_title: Nuevo cliente
     edit_title: Editar cliente
+    select_customer_placeholder: Teclea para buscar clientes
 
   projects:
     project: Proyecto
