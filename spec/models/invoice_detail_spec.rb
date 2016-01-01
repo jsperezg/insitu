@@ -85,11 +85,11 @@ RSpec.describe InvoiceDetail, type: :model do
 	end
 
 	describe "discount" do
-  		it "is mandatory" do
-  			invoice_detail = InvoiceDetail.new
+		it "is zero by default" do
+			invoice_detail = InvoiceDetail.new
 			invoice_detail.save
 
-			expect(invoice_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :discount )}
+			expect(invoice_detail.discount).to equal(0)
 		end
 
 		it "must be a number" do

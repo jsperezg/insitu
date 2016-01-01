@@ -22,7 +22,7 @@ class Estimate < ActiveRecord::Base
   after_initialize :set_default_values
   before_validation :set_default_values
 
-  after_commit(on: :create) do
+  after_save(on: :create) do
     increase_id(Thread.current[:user], self.model_name.human, self.date.year)
   end
 
@@ -40,7 +40,7 @@ class Estimate < ActiveRecord::Base
 
   def validate_valid_until
     if !valid_until.nil? and !date.nil? and valid_until < date
-      errors.add(:valid_until, I18n.t('activerecord.errors.models.estimate.valid_until.invalid_value'))
+      errors.add(:valid_until, I18n.t('activerecord.errors.models.estimate.attributes.valid_until.invalid_value'))
     end
   end
 

@@ -55,11 +55,11 @@ RSpec.describe EstimateDetail, type: :model do
 	end
 
   describe "discount" do
-		it "is mandatory" do
+		it "is zero by default" do
 			estimate_detail = EstimateDetail.new
   		estimate_detail.save
 
-  		expect(estimate_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :discount )}
+  		expect(estimate_detail.discount).to equal (0)
   	end
 
 		it "must be a number" do

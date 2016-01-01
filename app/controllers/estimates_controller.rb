@@ -27,18 +27,20 @@ class EstimatesController < SecuredController
   # POST /estimates
   # POST /estimates.json
   def create
-    @estimate = Estimate.new(estimate_params)
+    Estimate.transaction do
+      @estimate = Estimate.new(estimate_params)
 
-    respond_to do |format|
-      if @estimate.save
-        format.html {
-          redirect_to edit_user_estimate_url(current_user, @estimate),
-          notice: t(:successfully_created, item: t('estimates.estimate'))
-        }
-        format.json { render :show, status: :created, location: @estimate }
-      else
-        format.html { render :new }
-        format.json { render json: @estimate.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @estimate.save
+          format.html {
+            redirect_to edit_user_estimate_url(current_user, @estimate),
+            notice: t(:successfully_created, item: t('estimates.estimate'))
+          }
+          format.json { render :show, status: :created, location: @estimate }
+        else
+          format.html { render :new }
+          format.json { render json: @estimate.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -46,16 +48,18 @@ class EstimatesController < SecuredController
   # PATCH/PUT /estimates/1
   # PATCH/PUT /estimates/1.json
   def update
-    respond_to do |format|
-      if @estimate.update(estimate_params)
-        format.html {
-          redirect_to edit_user_estimate_url(current_user, @estimate),
-          notice: t(:successfully_updated, item: t('estimates.estimate'))
-        }
-        format.json { render :show, status: :ok, location: @estimate }
-      else
-        format.html { render :edit }
-        format.json { render json: @estimate.errors, status: :unprocessable_entity }
+    Estimate.transaction do
+      respond_to do |format|
+        if @estimate.update(estimate_params)
+          format.html {
+            redirect_to edit_user_estimate_url(current_user, @estimate),
+            notice: t(:successfully_updated, item: t('estimates.estimate'))
+          }
+          format.json { render :show, status: :ok, location: @estimate }
+        else
+          format.html { render :edit }
+          format.json { render json: @estimate.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

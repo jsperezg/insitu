@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Invoice, type: :model do
+  before(:each) do
+    Thread.current[:user] = User.first || create(:user)
+  end
+
   it 'date is mandatory' do
   	invoice = Invoice.new
   	invoice.save
@@ -29,26 +33,41 @@ RSpec.describe Invoice, type: :model do
   	expect(invoice.errors).to satisfy { |errors| !errors.empty? && errors.key?( :invoice_status_id )}
   end
 
-  describe 'payment date' do
-  	it 'is mandatory' do
-  		invoice = Invoice.new
-	  	invoice.save
-
-	  	expect(invoice.errors).to satisfy { |errors| !errors.empty? && errors.key?( :payment_date )}
-  	end
-
-  	it 'must be after issue date' do
-  		invoice = Invoice.new(payment_date: Date.today, date: Date.today + 15.days)
-  		invoice.save
-
-	  	expect(invoice.errors).to satisfy { |errors| !errors.empty? && errors.key?( :payment_date )}
-  	end
-  end
-
-  it 'paid on must be after issue date' do
-  	invoice = Invoice.new(paid_on: Date.today, date: Date.today + 15.days)
+  it 'payment date is mandatory' do
+    invoice = Invoice.new
     invoice.save
 
-  	expect(invoice.errors).to satisfy { |errors| !errors.empty? && errors.key?( :paid_on )}
+    expect(invoice.errors).to satisfy { |errors| !errors.empty? && errors.key?( :payment_date )}
+  end
+
+  describe 'Invoice serie' do
+  	it 'generic serie' do
+      customer = create(:customer, billing_serie: nil)
+      invoice = create(:invoice, customer_id: customer.id)
+
+      invoice.reload
+
+      expect(invoice.errors.empty?).to be(true)
+      expect(invoice.number).to start_with(Invoice.model_name.human[0].capitalize)
+    end
+
+    it 'custom serie' do
+      customer = create(:customer, billing_serie: 'A')
+      invoice = create(:invoice, customer_id: customer.id)
+
+      invoice.reload
+
+      expect(invoice.errors.empty?).to be(true)
+      expect(invoice.number).to start_with('A')
+      expect(invoice.number).to end_with('001')
+
+      another_invoice = create(:invoice, customer_id: customer.id)
+
+      another_invoice.reload
+
+      expect(another_invoice.errors.empty?).to be(true)
+      expect(another_invoice.number).to start_with('A')
+      expect(another_invoice.number).to end_with('002')
+    end
 	end
 end

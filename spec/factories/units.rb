@@ -1,7 +1,12 @@
 FactoryGirl.define do
   factory :unit do
-    label_short "PCS"
-    label_long "Piezas"
+    sequence :label_short do |n|
+      "U#{n}"
+    end
+
+    sequence :label_long do |n|
+      "Unit #{n}"
+    end
   end
 
 end

@@ -27,16 +27,18 @@ class DeliveryNotesController < SecuredController
   # POST /delivery_notes
   # POST /delivery_notes.json
   def create
-    @delivery_note = DeliveryNote.new(delivery_note_params)
+    DeliveryNote.transaction do
+      @delivery_note = DeliveryNote.new(delivery_note_params)
 
-    respond_to do |format|
-      if @delivery_note.save
-        format.html { redirect_to edit_user_delivery_note_path(current_user, @delivery_note),
-                      notice: t(:successfully_created, item: t('delivery_notes.delivery_note')) }
-        format.json { render :show, status: :created, location: @delivery_note }
-      else
-        format.html { render :new }
-        format.json { render json: @delivery_note.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @delivery_note.save
+          format.html { redirect_to edit_user_delivery_note_path(current_user, @delivery_note),
+                        notice: t(:successfully_created, item: t('delivery_notes.delivery_note')) }
+          format.json { render :show, status: :created, location: @delivery_note }
+        else
+          format.html { render :new }
+          format.json { render json: @delivery_note.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -44,14 +46,16 @@ class DeliveryNotesController < SecuredController
   # PATCH/PUT /delivery_notes/1
   # PATCH/PUT /delivery_notes/1.json
   def update
-    respond_to do |format|
-      if @delivery_note.update(delivery_note_params)
-        format.html { redirect_to edit_user_delivery_note_path(current_user, @delivery_note),
-                      notice: t(:successfully_updated, item: t('delivery_notes.delivery_note')) }
-        format.json { render :show, status: :ok, location: @delivery_note }
-      else
-        format.html { render :edit }
-        format.json { render json: @delivery_note.errors, status: :unprocessable_entity }
+    DeliveryNote.transaction do
+      respond_to do |format|
+        if @delivery_note.update(delivery_note_params)
+          format.html { redirect_to edit_user_delivery_note_path(current_user, @delivery_note),
+                        notice: t(:successfully_updated, item: t('delivery_notes.delivery_note')) }
+          format.json { render :show, status: :ok, location: @delivery_note }
+        else
+          format.html { render :edit }
+          format.json { render json: @delivery_note.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

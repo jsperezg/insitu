@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe InvoiceStatus, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'name is mandatory' do
+    status = InvoiceStatus.new
+    status.save
+
+    expect(status.errors).to satisfy { |errors| errors.key? :name }
+  end
 end

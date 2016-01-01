@@ -27,19 +27,21 @@ class InvoicesController < SecuredController
   # POST /invoices
   # POST /invoices.json
   def create
-    @invoice = Invoice.new(invoice_params)
+    Invoice.transaction do
+      @invoice = Invoice.new(invoice_params)
 
-    respond_to do |format|
-      if @invoice.save
-        format.html {
-          redirect_to edit_user_invoice_url(current_user, @invoice),
-          notice: t(:successfully_created, item: t('invoices.invoice'))
-        }
+      respond_to do |format|
+        if @invoice.save
+          format.html {
+            redirect_to edit_user_invoice_url(current_user, @invoice),
+            notice: t(:successfully_created, item: t('invoices.invoice'))
+          }
 
-        format.json { render :show, status: :created, location: @invoice }
-      else
-        format.html { render :new }
-        format.json { render json: @invoice.errors, status: :unprocessable_entity }
+          format.json { render :show, status: :created, location: @invoice }
+        else
+          format.html { render :new }
+          format.json { render json: @invoice.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -47,16 +49,18 @@ class InvoicesController < SecuredController
   # PATCH/PUT /invoices/1
   # PATCH/PUT /invoices/1.json
   def update
-    respond_to do |format|
-      if @invoice.update(invoice_params)
-        format.html {
-          redirect_to edit_user_invoice_path(current_user, @invoice),
-          notice: t(:successfully_updated, item: t('invoices.invoice'))
-        }
-        format.json { render :show, status: :ok, location: @invoice }
-      else
-        format.html { render :edit }
-        format.json { render json: @invoice.errors, status: :unprocessable_entity }
+    Invoice.transaction do
+      respond_to do |format|
+        if @invoice.update(invoice_params)
+          format.html {
+            redirect_to edit_user_invoice_path(current_user, @invoice),
+            notice: t(:successfully_updated, item: t('invoices.invoice'))
+          }
+          format.json { render :show, status: :ok, location: @invoice }
+        else
+          format.html { render :edit }
+          format.json { render json: @invoice.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

@@ -1,7 +1,12 @@
 FactoryGirl.define do
   factory :vat do
-    label "21 %"
-    rate 21
+    sequence :label do |n|
+      "#{22  + n} %"
+    end
+
+    sequence :rate do |n|
+      22 + n
+    end
   end
 
 end

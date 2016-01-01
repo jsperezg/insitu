@@ -13,7 +13,7 @@ class DeliveryNote < ActiveRecord::Base
 
   	before_validation :set_number
 
-  	after_commit(on: :create) do
+  	after_save(on: :create) do
 			unless self.date.nil?
   		  increase_id(Thread.current[:user], self.model_name.human, self.date.year)
       end

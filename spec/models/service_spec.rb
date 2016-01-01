@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Service, type: :model do
   before(:all) do
-      create(:vat)
-      create(:unit)
+    Vat.first || create(:vat)
+    Unit.first || create(:unit)
   end
 
   it 'code is mandatory' do
