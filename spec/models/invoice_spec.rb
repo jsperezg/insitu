@@ -69,5 +69,63 @@ RSpec.describe Invoice, type: :model do
       expect(another_invoice.number).to start_with('A')
       expect(another_invoice.number).to end_with('002')
     end
-	end
+
+    it 'do not allow duplicates' do
+      invoice = build(:invoice, number: "I/#{ Date.today.year }/000001")
+      invoice.save
+
+      expect(invoice.errors.empty?).to be(true)
+
+      another_invoice = build(:invoice, number: "I/#{ Date.today.year }/000001")
+      another_invoice.save
+
+      expect(another_invoice.errors).to satisfy { |errors| errors.key? :number }
+    end
+
+    it 'update default serie for invoices' do
+      customer = create(:customer, billing_serie: nil)
+
+      invoice = build(:invoice, number: "X/#{ Date.today.year }/000001", customer_id: customer.id)
+      invoice.save
+
+      expect(invoice.errors.empty?).to be(true)
+
+      another_invoice = create(:invoice, customer_id: customer.id)
+      another_invoice.reload
+
+      expect(another_invoice.number).to eq("X/#{ Date.today.year }/000002")
+    end
+  end
+
+  describe 'Number format validation' do
+    it 'First capital letter' do
+      invoice = build(:invoice, number: "i/#{ Date.today.year }/000001")
+      invoice.save
+
+      expect(invoice.errors).to satisfy { |errors| errors.key? :number }
+    end
+
+    it 'Same year as bill' do
+      invoice = build(:invoice, number: "i/#{ Date.today.year + 1 }/000001")
+      invoice.save
+
+      expect(invoice.errors).to satisfy { |errors| errors.key? :number }
+    end
+
+    it '6 digits' do
+      invoice = build(:invoice, number: "i/#{ Date.today.year}/xxxxxx")
+      invoice.save
+
+      expect(invoice.errors).to satisfy { |errors| errors.key? :number }
+    end
+  end
+
+  it 'valid invoices' do
+    10.times do
+      invoice = build(:invoice)
+      invoice.save
+
+      expect(invoice.errors.empty?).to be(true)
+    end
+  end
 end

@@ -11,6 +11,8 @@ class Invoice < ActiveRecord::Base
   validates :customer_id, presence: true
   validates :payment_date, presence: true
   validates :invoice_status_id, presence: true
+  validates :number, presence: true, uniqueness: true
+  validate :number_format
 
   accepts_nested_attributes_for :invoice_details, reject_if: proc { |attr|
     result = true
@@ -24,15 +26,10 @@ class Invoice < ActiveRecord::Base
 
   after_initialize :set_default_values
   before_validation :set_default_values
-
-  after_validation :set_invoice_number
+  before_validation :set_invoice_number
 
   after_save(on: :create) do
-    if self.customer.try(:billing_serie).blank?
-      increase_id(Thread.current[:user], self.model_name.human, self.date.year)
-    else
-      increase_id(Thread.current[:user], self.customer.billing_serie.capitalize, self.date.year)
-    end
+    increase_id self
   end
 
   private
@@ -48,6 +45,12 @@ class Invoice < ActiveRecord::Base
       else
         self.number ||= generate_id(Thread.current[:user], self.customer.billing_serie.capitalize, self.date.year)
       end
+    end
+  end
+
+  def number_format
+    unless is_number_valid?(self.number, self.date)
+      errors.add(:number, I18n.t('activerecord.errors.models.invoice.attributes.number.invalid_format'))
     end
   end
 end

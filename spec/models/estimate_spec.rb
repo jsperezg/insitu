@@ -32,4 +32,71 @@ RSpec.describe Estimate, type: :model do
 
     expect(estimate.errors).to satisfy { |errors| errors.key? :estimate_status_id }
   end
+
+  describe 'Estimate serie' do
+    it 'generic serie' do
+      estimate = create(:estimate)
+
+      estimate.reload
+
+      expect(estimate.errors.empty?).to be(true)
+      expect(estimate.number).to start_with(Estimate.model_name.human[0].capitalize)
+    end
+
+    it 'do not allow duplicates' do
+      estimate = build(:estimate, number: "I/#{ Date.today.year }/000001")
+      estimate.save
+
+      expect(estimate.errors.empty?).to be(true)
+
+      another_estimate = build(:estimate, number: "I/#{ Date.today.year }/000001")
+      another_estimate.save
+
+      expect(another_estimate.errors).to satisfy { |errors| errors.key? :number }
+    end
+
+    it 'update default serie for estimates' do
+      estimate = build(:estimate, number: "X/#{ Date.today.year }/000001")
+      estimate.save
+
+      expect(estimate.errors.empty?).to be(true)
+
+      another_estimate = create(:estimate)
+      another_estimate.reload
+
+      expect(another_estimate.number).to eq("X/#{ Date.today.year }/000002")
+    end
+  end
+
+  describe 'Number format validation' do
+    it 'First capital letter' do
+      estimate = build(:estimate, number: "i/#{ Date.today.year }/000001")
+      estimate.save
+
+      expect(estimate.errors).to satisfy { |errors| errors.key? :number }
+    end
+
+    it 'Same year as bill' do
+      estiamte = build(:estimate, number: "i/#{ Date.today.year + 1 }/000001")
+      estiamte.save
+
+      expect(estiamte.errors).to satisfy { |errors| errors.key? :number }
+    end
+
+    it '6 digits' do
+      estimate = build(:estimate, number: "i/#{ Date.today.year}/xxxxxx")
+      estimate.save
+
+      expect(estimate.errors).to satisfy { |errors| errors.key? :number }
+    end
+  end
+
+  it 'valid estimates' do
+    10.times do
+      estimate = build(:estimate)
+      estimate.save
+
+      expect(estimate.errors.empty?).to be(true)
+    end
+  end
 end

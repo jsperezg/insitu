@@ -8,6 +8,8 @@ class Estimate < ActiveRecord::Base
   validates :date, presence: true
   validates :estimate_status_id, presence: true
   validate :validate_valid_until
+  validates :number, presence: true, uniqueness: true
+  validate :number_format
 
   accepts_nested_attributes_for :estimate_details, reject_if: proc { |attr|
     result = true
@@ -23,7 +25,7 @@ class Estimate < ActiveRecord::Base
   before_validation :set_default_values
 
   after_save(on: :create) do
-    increase_id(Thread.current[:user], self.model_name.human, self.date.year)
+    increase_id self
   end
 
   private
@@ -44,4 +46,9 @@ class Estimate < ActiveRecord::Base
     end
   end
 
+  def number_format
+    unless is_number_valid?(self.number, self.date)
+      errors.add(:number, I18n.t('activerecord.errors.models.estimate.attributes.number.invalid_format'))
+    end
+  end
 end

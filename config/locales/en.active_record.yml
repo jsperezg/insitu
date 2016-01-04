@@ -166,6 +166,8 @@ en:
             attributes:
               number:
                 blank: 'is mandatory.'
+                invalid_format: ': invalid format. [A-Z]/yyyy/###### was expected.'
+                taken: already used in another bill.
               date:
                 blank: 'is mandatory.'
               customer_id:
@@ -184,6 +186,10 @@ en:
                 not_a_number: "must be a number."
           invoice:
             attributes:
+              number:
+                blank: is mandatory.
+                invalid_format: ': invalid format. [A-Z]/yyyy/###### was expected.'
+                taken: already used in another bill.
               date:
                 blank: 'is mandatory.'
               payment_method_id:
@@ -235,6 +241,10 @@ en:
 
           estimate:
             attributes:
+              number:
+                blank: is mandatory.
+                invalid_format: ': invalid format. [A-Z]/yyyy/###### was expected.'
+                taken: already used in another bill.
               valid_until:
                 invalid_value: is invalid.
               date:

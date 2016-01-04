@@ -118,7 +118,7 @@ es:
         service:
           attributes:
             code:
-              taken: ": El código seleccionado está en uso."
+              taken: ': El código seleccionado está en uso.'
             price:
               greater_than: " debe ser mayor que %{count}."
               not_a_number: no es un número.
@@ -166,6 +166,8 @@ es:
           attributes:
             number:
               blank: 'es obligatorio.'
+              invalid_format: tiene un formato invalido. Se esperaba [A-Z]/yyyy/######
+              taken: ya está asignado a otra factura.
             date:
               blank: 'es obligatorio.'
             customer_id:
@@ -180,10 +182,14 @@ es:
               not_a_number: "debe ser un número."
             price:
               blank: 'es obligatorio.'
-              greater_than: "debe ser mayor que %{count}."
+              greater_than: 'debe ser mayor que %{count}.'
               not_a_number: "debe ser un número."
         invoice:
           attributes:
+            number:
+              blank: es obligatorio.
+              invalid_format: tiene un formato invalido. Se esperaba [A-Z]/yyyy/######
+              taken: ya está asignado a otra factura.
             date:
               blank: 'es obligatoria.'
             payment_method_id:
@@ -234,6 +240,10 @@ es:
                 taken: ya está registrado.
         estimate:
           attributes:
+            number:
+              blank: es obligatorio.
+              invalid_format: tiene un formato invalido. Se esperaba [A-Z]/yyyy/######
+              taken: ya está asignado a otra factura.
             valid_until:
               invalid_value: es incorrecta.
             date:
