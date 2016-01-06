@@ -64,20 +64,6 @@ en:
   toggle_navigation: Toggle navigation
   sign_in_at: Sign in at
 
-  helpers:
-    links:
-      new: New
-      edit: Edit
-      destroy: Destroy
-      confirm: Are you sure?
-      cancel: Cancel
-    tables:
-      empty: No records found.
-
-  will_paginate:
-    previous_label: "&#8592; Previous"
-    next_label: "Next &#8594;"
-
   services:
     service: Service
     title: Services
@@ -141,4 +127,5 @@ en:
     title: Estimates
     estimate: Estimate
     edit_title: Edit estimate
-    create_title: Crate estimate
+    create_title: Create estimate
+    print_title: Print estimate

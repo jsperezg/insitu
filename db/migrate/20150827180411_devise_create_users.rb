@@ -39,6 +39,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :postal_code, length: 25
       t.string :state
       t.string :country
+      t.string :phone_number
 
       t.timestamps null: false
     end

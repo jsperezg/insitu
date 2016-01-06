@@ -9,8 +9,9 @@
             <th class="col-xs-1"><%= model_class.human_attribute_name(:date) %></th>
             <th><%= model_class.human_attribute_name(:customer_id) %></th>
             <th class="col-xs-2"><%= model_class.human_attribute_name(:valid_until) %></th>
-            <th></th>
-            <th></th>
+            <th class="col-xs-1"></th>
+            <th class="col-xs-1"></th>
+            <th class="col-xs-1"></th>
           </tr>
         </thead>
         <tbody>
@@ -24,17 +25,32 @@
               <td><%= estimate.customer.try(:name) %></td>
               <td><%=ldate estimate.valid_until %></td>
               <td>
-                <%= button_to t('helpers.links.edit'),
-                            edit_user_estimate_path(current_user, estimate),
-                            :class => 'btn btn-default btn-xs btn-block btn-flat',
-                            method: :get %>
+                <%= button_to edit_user_estimate_path(current_user, estimate),
+                              method: :get,
+                              class: 'btn btn-default btn-xs btn-flat btn-block' do %>
+                    <i class="fa fa-pencil-square-o" aria-hidden="true">
+                      <%=t 'helpers.links.edit' %>
+                    </i>
+                <% end %>
               </td>
               <td>
-                <%= button_to t("helpers.links.destroy"),
-                            user_estimate_path(current_user, estimate),
+                <%= button_to user_estimate_path(current_user, estimate),
+                              method: :get,
+                              class: 'btn btn-default btn-xs btn-flat btn-block' do %>
+                    <i class="fa fa-print" aria-hidden="true">
+                      <%=t 'helpers.links.print' %>
+                    </i>
+                <% end %>
+              </td>
+              <td>
+                <%= button_to user_estimate_path(current_user, estimate),
                             :method => :delete,
                             :data => { :confirm => t('helpers.links.confirm', :default => 'Are you sure?') },
-                            :class => 'btn btn-xs btn-danger btn-block btn-flat' %>
+                            :class => 'btn btn-xs btn-danger btn-block btn-flat' do %>
+                  <i class="fa fa-trash-o" aria-hidden="true">
+                    <%=t 'helpers.links.destroy' %>
+                  </i>
+                <% end %>
               </td>
             </tr>
           <% end %>

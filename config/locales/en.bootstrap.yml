@@ -11,13 +11,20 @@ en:
     actions: "Actions"
     links:
       back: "Back"
-      cancel: "Cancel"
-      confirm: "Are you sure?"
-      destroy: "Delete"
-      new: "New"
-      edit: "Edit"
+      new: New
+      edit: Edit
+      destroy: Delete
+      confirm: Are you sure?
+      cancel: Cancel
+      print: Print
     titles:
       edit: "Edit %{model}"
       save: "Save %{model}"
       new: "New %{model}"
       delete: "Delete %{model}"
+    tables:
+      empty: No records found.
+
+  will_paginate:
+    previous_label: "&#8592; Previous"
+    next_label: "Next &#8594;"

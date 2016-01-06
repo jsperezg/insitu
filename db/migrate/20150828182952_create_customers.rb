@@ -8,6 +8,11 @@ class CreateCustomers < ActiveRecord::Migration
       t.string :contact_name
       t.string :contact_phone
       t.string :contact_email, length: 250
+      t.string :address
+      t.string :city
+      t.string :postal_code, length: 25
+      t.string :state
+      t.string :country
 
       t.timestamps null: false
     end

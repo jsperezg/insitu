@@ -69,7 +69,7 @@
 
 </div>
 <div class="box-footer">
-  <%= f.submit t(:save), :class => 'btn btn-primary btn-flat', data: { disable_with: t('please_wait')} %>
+  <%= f.submit t(:save), :class => 'btn btn-primary btn-flat col-xs-1', data: { disable_with: t('please_wait')} %>
   <%= link_to t("helpers.links.cancel"),
-            user_project_tasks_path(current_user, @project), :class => 'btn btn-default btn-flat' %>
+            user_project_tasks_path(current_user, @project), :class => 'btn btn-default btn-flat col-xs-1' %>
 </div>

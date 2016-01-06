@@ -21,6 +21,11 @@ ActiveRecord::Schema.define(version: 20151208174856) do
     t.string   "contact_name",  limit: 255
     t.string   "contact_phone", limit: 255
     t.string   "contact_email", limit: 255
+    t.string   "address",       limit: 255
+    t.string   "city",          limit: 255
+    t.string   "postal_code",   limit: 255
+    t.string   "state",         limit: 255
+    t.string   "country",       limit: 255
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
@@ -245,6 +250,7 @@ ActiveRecord::Schema.define(version: 20151208174856) do
     t.string   "postal_code",            limit: 255
     t.string   "state",                  limit: 255
     t.string   "country",                limit: 255
+    t.string   "phone_number",           limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.integer  "role_id",                limit: 4

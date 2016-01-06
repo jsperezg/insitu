@@ -25,17 +25,23 @@
               <td><%= invoice.customer.try(:name) %></td>
               <td><%=ldate invoice.paid_on %></td>
               <td>
-                <%= button_to t("helpers.links.edit"),
-                            edit_user_invoice_path(current_user, invoice),
+                <%= button_to edit_user_invoice_path(current_user, invoice),
                             method: :get,
-                            :class => 'btn btn-default btn-xs btn-block btn-flat' %>
+                            :class => 'btn btn-default btn-xs btn-block btn-flat' do %>
+                  <i class="fa fa-pencil-square-o" aria-hidden="true">
+                    <%=t 'helpers.links.edit' %>
+                  </i>
+                <% end %>
               </td>
               <td>
-                <%= button_to t("helpers.links.destroy"),
-                            user_invoice_path(current_user, invoice),
+                <%= button_to user_invoice_path(current_user, invoice),
                             :method => :delete,
                             :data => { :confirm => t("helpers.links.confirm", :default => 'Are you sure?') },
-                            :class => 'btn btn-xs btn-danger btn-block btn-flat' %>
+                            :class => 'btn btn-xs btn-danger btn-block btn-flat' do %>
+                  <i class="fa fa-trash-o" aria-hidden="true">
+                    <%=t 'helpers.links.destroy' %>
+                  </i>
+                <% end %>
               </td>
             </tr>
           <% end %>

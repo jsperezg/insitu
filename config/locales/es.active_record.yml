@@ -15,6 +15,7 @@ es:
         password: Contraseña
         password_confirmation: Repetir contraseña
         current_password: Contraseña actual
+        phone_number: Teléfono
       payment_method:
         name: Nombre
         note_for_invoice: Anotación en factura
@@ -32,6 +33,11 @@ es:
         contact_name: Persona de contacto
         contact_phone: Teléfono
         contact_email: Correo electrónico
+        address: Dirección
+        city: Población
+        country: País
+        postal_code: Código Postal
+        state: Provincia
       project:
         name: Nombre
         project_status_id: Estado

@@ -63,20 +63,6 @@ es:
   toggle_navigation: Mostrar/Ocultar navegación
   sign_in_at: Acceso el
 
-  will_paginate:
-    previous_label: "&#8592; Anterior"
-    next_label: "Siguiente &#8594;"
-
-  helpers:
-    links:
-      new: Nuevo
-      edit: Editar
-      destroy: Borrar
-      confirm: ¿Estas seguro?
-      cancel: Cancelar
-    tables:
-      empty: No se encontraron registros.
-
   services:
     service: Servicio
     title: Servicios
@@ -140,4 +126,5 @@ es:
     title: Presupuestos
     estimate: Presupuestos
     edit_title: Editar presupuesto
+    print_title: Imprimir presupuesto
     create_title: Crear presupuesto

@@ -147,6 +147,10 @@ NAVIGATION_RULES = {
             parent: :production,
             title: 'estimates.title'
         },
+        show: {
+            parent: { controller: :estimates, action: :index, params: [ :user_id ] },
+            title: 'estimates.print_title'
+        },
         new: {
             parent: { controller: :estimates, action: :index, params: [ :user_id ] },
             title: 'estimates.create_title'

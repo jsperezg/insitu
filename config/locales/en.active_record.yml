@@ -15,6 +15,7 @@ en:
         password: Password
         password_confirmation: Repeat password
         current_password: Current password
+        phone_number: Phone number
       payment_method:
         name: Name
         note_for_invoice: Note for invoice
@@ -32,6 +33,11 @@ en:
         contact_name: Contact name
         contact_phone: Phone
         contact_email: E-mail
+        address: Address
+        city: City
+        country: Country
+        postal_code: Post code
+        state: State
       project:
         name: Name
         project_status_id: Status

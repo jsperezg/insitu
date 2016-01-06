@@ -1,4 +1,4 @@
-en:
+es:
   breadcrumbs:
     application:
       root: "Indice"
@@ -7,14 +7,20 @@ en:
   helpers:
     actions: "Acciones"
     links:
-      back: "Atrás"
-      cancel: "Cancelar"
-      confirm: "¿Estas seguro?"
-      destroy: "Delete"
-      new: "Nuevo"
-      edit: "Editar"
+      back: 'Atrás'
+      cancel: 'Cancelar'
+      confirm: ¿Estas seguro?
+      destroy: Borrar
+      new: Nuevo
+      edit: Editar
+      print: Imprimir
     titles:
       edit: "Editar %{model}"
       save: "Guardar %{model}"
       new: "Nuevo %{model}"
       delete: "Borrar %{model}"
+    tables:
+      empty: No se encontraron registros.
+  will_paginate:
+    previous_label: "&#8592; Anterior"
+    next_label: "Siguiente &#8594;"
