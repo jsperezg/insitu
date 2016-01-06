@@ -5,7 +5,7 @@ module ApplicationHelper
 		end
 	end
 
-	def ldate object, options = {}
+	def ldate(object, options = {})
 		object.present? ? localize(object, options) : ''
 	end
 
@@ -112,5 +112,14 @@ module ApplicationHelper
     end
 
     '#'
+  end
+
+  def input_code(form, options = nil)
+    options ||= {}
+
+    options[:class] = 'form-control input-sm document-id' unless options.key? :class
+    options[:class] = "#{ options[:class] } document-id" unless options[:class].include? 'document-id'
+
+    form.text_field :number, class: options[:class], required: true, autofocus: true, style: "text-transform:uppercase"
   end
 end

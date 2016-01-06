@@ -166,7 +166,7 @@ es:
           attributes:
             number:
               blank: 'es obligatorio.'
-              invalid_format: tiene un formato invalido. Se esperaba [A-Z]/yyyy/######
+              invalid_format: tiene un formato invalido. Se esperaba [A-Z]/%{year}/######
               taken: ya está asignado a otra factura.
             date:
               blank: 'es obligatorio.'
@@ -188,7 +188,7 @@ es:
           attributes:
             number:
               blank: es obligatorio.
-              invalid_format: tiene un formato invalido. Se esperaba [A-Z]/yyyy/######
+              invalid_format: tiene un formato invalido. Se esperaba [A-Z]/%{year}/######
               taken: ya está asignado a otra factura.
             date:
               blank: 'es obligatoria.'
@@ -229,20 +229,20 @@ es:
               blank: es obligatoria.
               taken: ya está definida.
         vat:
-            attributes:
-              label:
-                blank: es obligatoria.
-              rate:
-                blank: es obligatorio.
-                greater_than_or_equal_to: "debe ser mayor o igual que %{count}%."
-                not_a_number: No es un número.
-                not_an_integer: no admite decimales.
-                taken: ya está registrado.
+          attributes:
+            label:
+              blank: es obligatoria.
+            rate:
+              blank: es obligatorio.
+              greater_than_or_equal_to: "debe ser mayor o igual que %{count}%."
+              not_a_number: No es un número.
+              not_an_integer: no admite decimales.
+              taken: ya está registrado.
         estimate:
           attributes:
             number:
               blank: es obligatorio.
-              invalid_format: tiene un formato invalido. Se esperaba [A-Z]/yyyy/######
+              invalid_format: tiene un formato invalido. Se esperaba [A-Z]/%{year}/######
               taken: ya está asignado a otra factura.
             valid_until:
               invalid_value: es incorrecta.

@@ -42,6 +42,11 @@ module SequenceGenerator
       sequence_value[:value_i] += 1
       sequence_value.save
     end
+
+    if sequence_value[:value_i] < number_parts[:sequence]
+      sequence_value[:value_i] = number_parts[:sequence] + 1
+      sequence_value.save
+    end
 	end
 
   def is_number_valid? value, date

@@ -112,10 +112,9 @@ RSpec.describe DeliveryNotesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        delivery_note = attributes_for :delivery_note
-        delivery_note[:date] = DateTime.now.utc.beginning_of_day - 7.days
+        new_date = DateTime.now.utc.beginning_of_day - 7.days
 
-        delivery_note
+        attributes_for :delivery_note, date: new_date, number: "T/#{new_date.year}/999999"
       }
 
       it "updates the requested delivery_note" do

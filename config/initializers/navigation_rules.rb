@@ -129,7 +129,15 @@ NAVIGATION_RULES = {
             parent: { controller: :customers, action: :index, params: [ :user_id ] },
             title: 'customers.create_title'
         },
+        create: {
+            parent: { controller: :customers, action: :index, params: [ :user_id ] },
+            title: 'customers.create_title'
+        },
         edit: {
+            parent: { controller: :customers, action: :index, params: [ :user_id ] },
+            title: 'customers.edit_title'
+        },
+        update: {
             parent: { controller: :customers, action: :index, params: [ :user_id ] },
             title: 'customers.edit_title'
         }
@@ -143,7 +151,15 @@ NAVIGATION_RULES = {
             parent: { controller: :estimates, action: :index, params: [ :user_id ] },
             title: 'estimates.create_title'
         },
+        create: {
+            parent: { controller: :estimates, action: :index, params: [ :user_id ] },
+            title: 'estimates.create_title'
+        },
         edit: {
+            parent: { controller: :estimates, action: :index, params: [ :user_id ] },
+            title: 'estimates.edit_title'
+        },
+        update: {
             parent: { controller: :estimates, action: :index, params: [ :user_id ] },
             title: 'estimates.edit_title'
         }
@@ -157,7 +173,15 @@ NAVIGATION_RULES = {
             parent: { controller: :delivery_notes, action: :index, params: [ :user_id ] },
             title: 'delivery_notes.create_title'
         },
+        create: {
+            parent: { controller: :delivery_notes, action: :index, params: [ :user_id ] },
+            title: 'delivery_notes.create_title'
+        },
         edit: {
+            parent: { controller: :delivery_notes, action: :index, params: [ :user_id ] },
+            title: 'delivery_notes.edit_title'
+        },
+        update: {
             parent: { controller: :delivery_notes, action: :index, params: [ :user_id ] },
             title: 'delivery_notes.edit_title'
         }
@@ -171,7 +195,15 @@ NAVIGATION_RULES = {
             parent: { controller: :invoices, action: :index, params: [ :user_id ] },
             title: 'invoices.create_title'
         },
+        create: {
+            parent: { controller: :invoices, action: :index, params: [ :user_id ] },
+            title: 'invoices.create_title'
+        },
         edit: {
+            parent: { controller: :invoices, action: :index, params: [ :user_id ] },
+            title: 'invoices.edit_title'
+        },
+        update: {
             parent: { controller: :invoices, action: :index, params: [ :user_id ] },
             title: 'invoices.edit_title'
         }
@@ -229,7 +261,15 @@ NAVIGATION_RULES = {
             parent: { controller: :time_logs, action: :index, params: [ :user_id, :project_id, :task_id ] },
             title: 'time_logs.create_title'
         },
+        create: {
+            parent: { controller: :time_logs, action: :index, params: [ :user_id, :project_id, :task_id ] },
+            title: 'time_logs.create_title'
+        },
         edit: {
+            parent: { controller: :time_logs, action: :index, params: [ :user_id, :project_id, :task_id ] },
+            title: 'time_logs.edit_title'
+        },
+        update: {
             parent: { controller: :time_logs, action: :index, params: [ :user_id, :project_id, :task_id ] },
             title: 'time_logs.edit_title'
         }

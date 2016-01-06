@@ -122,154 +122,153 @@ en:
             price:
               greater_than: "must be greater than %{count}"
               not_a_number: is not a number.
-          customer:
-            attributes:
-              name:
-                blank: 'is mandatory.'
-              contact_email:
-                invalid: 'seems to be invalid.'
-              tax_id:
-                taken: ': Is already associated to another customer.'
-              billing_tax:
-                not_a_number: is not a number.
-                not_an_integer: is not an integer value.
-                greater_than_or_equal_to: must be greater than %{count}.
-          project:
-            attributes:
-              name:
-                blank: 'is mandatory.'
-              project_status_id:
-                blank: 'is mandatory.'
-              customer_id:
-                blank: 'is mandatory.'
-          task:
-            attributes:
-              description:
-                blank: 'is mandatory.'
-              project_id:
-                blank: 'is mandatory.'
-          time_log:
-            attributes:
-              description:
-                blank: 'is mandatory.'
-              date:
-                blank: 'is mandatory.'
-              time_spent:
-                blank: 'is mandatory.'
-                not_a_number: is not a number.
-                not_an_integer: is not an integer value.
-              task_id:
-                blank: 'is mandatory.'
-              service_id:
-                blank: 'is mandatory.'
-          delivery_note:
-            attributes:
-              number:
-                blank: 'is mandatory.'
-                invalid_format: ': invalid format. [A-Z]/yyyy/###### was expected.'
-                taken: already used in another bill.
-              date:
-                blank: 'is mandatory.'
-              customer_id:
-                blank: 'is mandatory.'
-          delivery_note_detail:
-            attributes:
-              service_id:
-                blank: 'is mandatory.'
-              quantity:
-                blank: 'is mandatory.'
-                greater_than: "must be greater than %{count}."
-                not_a_number: "must be a number."
-              price:
-                blank: 'is mandatory.'
-                greater_than: "must be greater than %{count}."
-                not_a_number: "must be a number."
-          invoice:
-            attributes:
-              number:
-                blank: is mandatory.
-                invalid_format: ': invalid format. [A-Z]/yyyy/###### was expected.'
-                taken: already used in another bill.
-              date:
-                blank: 'is mandatory.'
-              payment_method_id:
-                blank: 'is mandatory.'
-              customer_id:
-                blank: 'is mandatory.'
-              payment_date:
-                blank: is mandatory.
-                invalid_value: is invalid.
-              paid_on:
-                invalid_value: is invalid.
-              invoice_status_id:
-                blank: is mandatory.
-          invoice_detail:
-            attributes:
-              service_id:
-                blank: is mandatory.
-              quantity:
-                blank: is mandatory.
-                greater_than: "must be greater than %{count}."
-                not_a_number: "must be a number."
-              price:
-                blank: is mandatory.
-                greater_than: "must be greater than %{count}."
-                not_a_number: "must be a number."
-              discount:
-                blank: is mandatory.
-                greater_than_or_equal_to: "must be greater or equal to %{count}%."
-                not_a_number: "must be a number."
-              vat_rate:
-                blank: is mandatory.
-                greater_than_or_equal_to: "must be greater or equal to %{count}%."
-                not_a_number: "must be a number."
-                taken: already registered.
-          unit:
-            attributes:
-              label_short:
-                blank: is mandatory.
-                taken: is already defined.
-          vat:
-            attributes:
-              label:
-                blank: is mandatory.
-              rate:
-                blank: is mandatory.
-                greater_than_or_equal_to: "must be greater or equal to %{count}%."
-                not_a_number: isn't a number.
-                not_an_integer: must be an integer value.
-
-          estimate:
-            attributes:
-              number:
-                blank: is mandatory.
-                invalid_format: ': invalid format. [A-Z]/yyyy/###### was expected.'
-                taken: already used in another bill.
-              valid_until:
-                invalid_value: is invalid.
-              date:
-                blank: 'is mandatory.'
-              customer_id:
-                blank: 'is mandatory.'
-              estimate_status_id:
-                blank: is mandatory.                  
-          estimate_detail:
-            attributes:
-              service_id:
-                blank: is mandatory.
-              quantity:
-                blank: is mandatory.
-                greater_than: "must be greater than %{count}."
-                not_a_number: "must be a number."
-              price:
-                blank: is mandatory.
-                greater_than: "must be greater than %{count}."
-                not_a_number: "must be a number."
-              discount:
-                blank: is mandatory.
-                greater_than_or_equal_to: "must be greater or equal to %{count}%."
-                not_a_number: "must be a number."
-          payment_method:
-            attributes:
-              name:
-                taken: is already registered.
+        customer:
+          attributes:
+            name:
+              blank: 'is mandatory.'
+            contact_email:
+              invalid: 'seems to be invalid.'
+            tax_id:
+              taken: ': Is already associated to another customer.'
+            billing_tax:
+              not_a_number: is not a number.
+              not_an_integer: is not an integer value.
+              greater_than_or_equal_to: must be greater than %{count}.
+        project:
+          attributes:
+            name:
+              blank: 'is mandatory.'
+            project_status_id:
+              blank: 'is mandatory.'
+            customer_id:
+              blank: 'is mandatory.'
+        task:
+          attributes:
+            description:
+              blank: 'is mandatory.'
+            project_id:
+              blank: 'is mandatory.'
+        time_log:
+          attributes:
+            description:
+              blank: 'is mandatory.'
+            date:
+              blank: 'is mandatory.'
+            time_spent:
+              blank: 'is mandatory.'
+              not_a_number: is not a number.
+              not_an_integer: is not an integer value.
+            task_id:
+              blank: 'is mandatory.'
+            service_id:
+              blank: 'is mandatory.'
+        delivery_note:
+          attributes:
+            number:
+              blank: 'is mandatory.'
+              invalid_format: ': invalid format. [A-Z]/%{year}/###### was expected.'
+              taken: already used in another bill.
+            date:
+              blank: 'is mandatory.'
+            customer_id:
+              blank: 'is mandatory.'
+        delivery_note_detail:
+          attributes:
+            service_id:
+              blank: 'is mandatory.'
+            quantity:
+              blank: 'is mandatory.'
+              greater_than: "must be greater than %{count}."
+              not_a_number: "must be a number."
+            price:
+              blank: 'is mandatory.'
+              greater_than: "must be greater than %{count}."
+              not_a_number: "must be a number."
+        invoice:
+          attributes:
+            number:
+              blank: is mandatory.
+              invalid_format: ': invalid format. [A-Z]/%{year}/###### was expected.'
+              taken: already used in another bill.
+            date:
+              blank: 'is mandatory.'
+            payment_method_id:
+              blank: 'is mandatory.'
+            customer_id:
+              blank: 'is mandatory.'
+            payment_date:
+              blank: is mandatory.
+              invalid_value: is invalid.
+            paid_on:
+              invalid_value: is invalid.
+            invoice_status_id:
+              blank: is mandatory.
+        invoice_detail:
+          attributes:
+            service_id:
+              blank: is mandatory.
+            quantity:
+              blank: is mandatory.
+              greater_than: "must be greater than %{count}."
+              not_a_number: "must be a number."
+            price:
+              blank: is mandatory.
+              greater_than: "must be greater than %{count}."
+              not_a_number: "must be a number."
+            discount:
+              blank: is mandatory.
+              greater_than_or_equal_to: "must be greater or equal to %{count}%."
+              not_a_number: "must be a number."
+            vat_rate:
+              blank: is mandatory.
+              greater_than_or_equal_to: "must be greater or equal to %{count}%."
+              not_a_number: "must be a number."
+              taken: already registered.
+        unit:
+          attributes:
+            label_short:
+              blank: is mandatory.
+              taken: is already defined.
+        vat:
+          attributes:
+            label:
+              blank: is mandatory.
+            rate:
+              blank: is mandatory.
+              greater_than_or_equal_to: "must be greater or equal to %{count}%."
+              not_a_number: isn't a number.
+              not_an_integer: must be an integer value.
+        estimate:
+          attributes:
+            number:
+              blank: is mandatory.
+              invalid_format: ': invalid format. [A-Z]/%{year}/###### was expected.'
+              taken: already used in another bill.
+            valid_until:
+              invalid_value: is invalid.
+            date:
+              blank: 'is mandatory.'
+            customer_id:
+              blank: 'is mandatory.'
+            estimate_status_id:
+              blank: is mandatory.
+        estimate_detail:
+          attributes:
+            service_id:
+              blank: is mandatory.
+            quantity:
+              blank: is mandatory.
+              greater_than: "must be greater than %{count}."
+              not_a_number: "must be a number."
+            price:
+              blank: is mandatory.
+              greater_than: "must be greater than %{count}."
+              not_a_number: "must be a number."
+            discount:
+              blank: is mandatory.
+              greater_than_or_equal_to: "must be greater or equal to %{count}%."
+              not_a_number: "must be a number."
+        payment_method:
+          attributes:
+            name:
+              taken: is already registered.

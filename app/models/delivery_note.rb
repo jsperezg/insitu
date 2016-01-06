@@ -15,7 +15,7 @@ class DeliveryNote < ActiveRecord::Base
 
   before_validation :set_number
 
-  after_save(on: :create) do
+  after_save do
     unless self.date.nil?
       increase_id self
     end
@@ -31,7 +31,8 @@ class DeliveryNote < ActiveRecord::Base
 
   def number_format
     unless is_number_valid?(self.number, self.date)
-      errors.add(:number, I18n.t('activerecord.errors.models.delivery_note.attributes.number.invalid_format'))
+      year = self.date.try(:year) || Date.today.year
+      errors.add(:number, I18n.t('activerecord.errors.models.delivery_note.attributes.number.invalid_format', year: year))
     end
   end
 end

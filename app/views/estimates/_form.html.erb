@@ -18,7 +18,7 @@
     <% unless @estimate.new_record? %>
       <div class="form-group pull-left col-xs-2">
         <%= f.label :number, :class => 'control-label' %>
-        <p class="form-control-static"><%= @estimate[:number] %></p>
+        <%= input_code f %>
       </div>
     <% end %>
 

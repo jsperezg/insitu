@@ -80,6 +80,7 @@ class DeliveryNotesController < SecuredController
     # Never trust parameters from the scary internet, only allow the white list through.
     def delivery_note_params
       params.require(:delivery_note).permit(
+        :number,
         :customer_id,
         :date,
         delivery_note_details_attributes: [

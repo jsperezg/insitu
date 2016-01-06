@@ -18,7 +18,7 @@
     <% unless @invoice.new_record? %>
       <div class="form-group pull-left col-xs-2">
         <%= f.label :number, :class => 'control-label' %>
-        <p class="form-control-static"><%= @invoice[:number] %></p>
+        <%= input_code f %>
       </div>
     <% end %>
 

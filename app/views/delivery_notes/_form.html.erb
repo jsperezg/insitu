@@ -16,13 +16,13 @@
 
   <div class=row>
     <% unless @delivery_note.new_record? %>
-      <div class="form-group pull-left col-xs-3">
+      <div class="form-group pull-left col-xs-2">
         <%= f.label :number, :class => 'control-label' %>
-        <p class="form-control-static"><%= @delivery_note[:number] %></p>
+        <%= input_code f %>
       </div>
     <% end %>
 
-    <%= customer_field f, :customer_id, class: 'pull-left col-xs-6', required: true %>
+    <%= customer_field f, :customer_id, class: 'pull-left col-xs-8', required: true %>
 
     <div class="form-group pull-left col-xs-2">
       <%= f.label :date, :class => 'control-label' %>

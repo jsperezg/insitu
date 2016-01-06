@@ -1,6 +1,7 @@
 if (typeof jQuery !== 'undefined') {
   $(document).on("page:change", function () {
     var dateInputs = $(".date"),
+        documentIds = $(".document-id"),
         locale = document.documentElement.lang,
         dateFormat = "yyyy-mm-dd",
         mask = 'y-m-d',
@@ -35,6 +36,10 @@ if (typeof jQuery !== 'undefined') {
       }
 
       dateInputs.inputmask(mask, {"placeholder": dateFormat});
+    }
+
+    if (documentIds.length) {
+      documentIds.inputmask('a/9999/999999');
     }
   });
 }

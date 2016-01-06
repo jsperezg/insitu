@@ -24,7 +24,7 @@ class Estimate < ActiveRecord::Base
   after_initialize :set_default_values
   before_validation :set_default_values
 
-  after_save(on: :create) do
+  after_save do
     increase_id self
   end
 
@@ -48,7 +48,8 @@ class Estimate < ActiveRecord::Base
 
   def number_format
     unless is_number_valid?(self.number, self.date)
-      errors.add(:number, I18n.t('activerecord.errors.models.estimate.attributes.number.invalid_format'))
+      year = self.date.try(:year) || Date.today.year
+      errors.add(:number, I18n.t('activerecord.errors.models.estimate.attributes.number.invalid_format', year: year ))
     end
   end
 end
