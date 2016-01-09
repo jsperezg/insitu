@@ -2,6 +2,7 @@ en:
   activerecord:
     models:
       service: Service
+      estimate: Estimate
     attributes:
       user:
         tax_id: TAX Id.
@@ -100,6 +101,14 @@ en:
         date: Date
         valid_until: Valid until
         estimate_status_id: Status
+        total: TOTAL
+      estimate_detail:
+        service_id: Product
+        description: Description
+        price: Price
+        quantity: Quantity
+        discount: Discount
+        total: Subtotal
       estimate/estimate_details:
         service_id: Item
         description: Description

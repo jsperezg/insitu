@@ -15,6 +15,10 @@ RSpec.describe EstimatesController, type: :routing do
       expect(:get => "/users/1/estimates/1").to route_to("estimates#show", :id => "1", user_id: '1')
     end
 
+    it "routes to #print" do
+      expect(:get => "/users/1/estimates/1/print").to route_to("estimates#print", :id => "1", user_id: '1')
+    end
+
     it "routes to #edit" do
       expect(:get => "/users/1/estimates/1/edit").to route_to("estimates#edit", :id => "1", user_id: '1')
     end

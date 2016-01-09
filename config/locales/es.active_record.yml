@@ -2,6 +2,7 @@ es:
   activerecord:
     models:
       service: Servicio
+      estimate: Presupuesto
     attributes:
       user:
         tax_id: NIF/CIF
@@ -100,6 +101,14 @@ es:
         date: Fecha
         valid_until: Valido hasta
         estimate_status_id: Estado
+        total: TOTAL
+      estimate_detail:
+        service_id: Producto
+        description: Descripción
+        price: Precio
+        quantity: Cantidad
+        discount: Descuento
+        total: Subtotal
       estimate/estimate_details:
         service_id: Concepto
         description: Descripción

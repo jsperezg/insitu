@@ -147,8 +147,6 @@ body.hold-transition .main-header .logo {
   padding: 15px;
   margin-right: auto;
   margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
 }
 /* H1 - H6 font */
 h1,
@@ -557,9 +555,8 @@ a:focus {
 .sidebar-menu .treeview-menu {
   display: none;
   list-style: none;
-  padding: 0;
+  padding: 0 0 0 5px;
   margin: 0;
-  padding-left: 5px;
 }
 .sidebar-menu .treeview-menu .treeview-menu {
   padding-left: 20px;
@@ -944,10 +941,7 @@ a:focus {
 .navbar-nav > .notifications-menu > .dropdown-menu > li.header,
 .navbar-nav > .messages-menu > .dropdown-menu > li.header,
 .navbar-nav > .tasks-menu > .dropdown-menu > li.header {
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+  border-radius: 4px 4px 0 0;
   background-color: #ffffff;
   padding: 7px 10px;
   border-bottom: 1px solid #f4f4f4;
@@ -957,10 +951,7 @@ a:focus {
 .navbar-nav > .notifications-menu > .dropdown-menu > li.footer > a,
 .navbar-nav > .messages-menu > .dropdown-menu > li.footer > a,
 .navbar-nav > .tasks-menu > .dropdown-menu > li.footer > a {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-radius: 0 0 4px 4px;
   font-size: 12px;
   background-color: #fff;
   padding: 7px 10px;
@@ -1763,10 +1754,7 @@ a:focus {
   box-shadow: none;
 }
 .box-body {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
+  border-radius: 0 0 3px 3px;
   padding: 10px;
 }
 .no-header .box-body {
@@ -1786,22 +1774,13 @@ a:focus {
   margin: -9px;
 }
 .box-body .box-pane {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 3px;
+  border-radius: 0 0 0 3px;
 }
 .box-body .box-pane-right {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 0;
+  border-radius: 0 0 3px 0;
 }
 .box-footer {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
+  border-radius: 0 0 3px 3px;
   border-top: 1px solid #f4f4f4;
   padding: 10px;
   background-color: #ffffff;
@@ -2023,10 +2002,7 @@ a:focus {
   background: #fff;
 }
 .info-box-icon {
-  border-top-left-radius: 2px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 2px;
+  border-radius: 2px 0 0 2px;
   display: block;
   float: left;
   height: 90px;
@@ -3277,6 +3253,11 @@ table.text-center th {
 .invoice-title {
   margin-top: 0;
 }
+
+.invoice-info {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
 /*
  * Page: Profile
  * -------------
@@ -3358,14 +3339,13 @@ table.text-center th {
 }
 .btn-social-icon {
   position: relative;
-  padding-left: 44px;
   text-align: left;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   height: 34px;
   width: 34px;
-  padding: 0;
+  padding: 0 0 0 44px;
 }
 .btn-social-icon > :first-child {
   position: absolute;
@@ -4692,13 +4672,15 @@ table.text-center th {
  * -----------
  */
 @media print {
-  .no-print,
-  .main-sidebar,
-  .left-side,
-  .main-header,
-  .content-header {
-    display: none!important;
-  }
+    .alert,
+    .no-print,
+    .main-sidebar,
+    .left-side,
+    .main-header,
+    .content-header {
+        display: none!important;
+        width: 0;
+    }
   .content-wrapper,
   .right-side,
   .main-footer {
@@ -4713,18 +4695,18 @@ table.text-center th {
   .fixed .right-side {
     padding-top: 0!important;
   }
-  .invoice {
-    width: 100%;
-    border: 0;
-    margin: 0;
-    padding: 0;
-  }
+    .invoice {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0 !important;
+    }
   .invoice-col {
     float: left;
     width: 33.3333333%;
   }
   .table-responsive {
-    overflow: auto;
+    overflow: none;
   }
   .table-responsive > .table tr th,
   .table-responsive > .table tr td {
@@ -4738,4 +4720,8 @@ a.btn-primary:visited {
 
 .pagination {
     margin: 0 !important;
+}
+
+.borderless td, .borderless th {
+    border: none !important;
 }

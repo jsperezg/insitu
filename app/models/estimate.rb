@@ -28,6 +28,15 @@ class Estimate < ActiveRecord::Base
     increase_id self
   end
 
+  def total
+    total = 0
+    self.estimate_details.each do |detail|
+      total += detail[:quantity] * detail[:price] * (1 - (detail[:discount] / 100.0))
+    end
+
+    total
+  end
+
   private
 
   def set_default_values

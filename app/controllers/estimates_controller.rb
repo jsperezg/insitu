@@ -1,5 +1,5 @@
 class EstimatesController < SecuredController
-  before_action :set_estimate, only: [:show, :edit, :update, :destroy]
+  before_action :set_estimate, only: [:show, :print, :edit, :update, :destroy]
 
   # GET /estimates
   # GET /estimates.json
@@ -10,6 +10,11 @@ class EstimatesController < SecuredController
   # GET /estimates/1
   # GET /estimates/1.json
   def show
+  end
+
+  # GET /estimates/1/print
+  def print
+    render :show, layout: 'print'
   end
 
   # GET /estimates/new

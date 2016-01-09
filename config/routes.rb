@@ -12,7 +12,11 @@ Rails.application.routes.draw do
     resources :customers
     resources :invoices
     resources :delivery_notes
-    resources :estimates
+    resources :estimates do
+      member do
+        get :print
+      end
+    end
 
     resources :projects do
       resources :tasks
