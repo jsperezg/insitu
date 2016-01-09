@@ -13,7 +13,14 @@ class InvoicesController < SecuredController
   end
 
   def print
-    render :show, layout: 'print'
+    respond_to do |format|
+      format.html do
+        render :show, layout: 'print'
+      end
+      format.pdf do
+        render pdf: "invoice_#{ @invoice.number.gsub('/', '_') }", viewport_size: '1920x1080'
+      end
+    end
   end
 
   # GET /invoices/new

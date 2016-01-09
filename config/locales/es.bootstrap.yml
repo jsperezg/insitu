@@ -14,6 +14,7 @@ es:
       new: Nuevo
       edit: Editar
       print: Imprimir
+      pdf: Generar PDF
     titles:
       edit: "Editar %{model}"
       save: "Guardar %{model}"

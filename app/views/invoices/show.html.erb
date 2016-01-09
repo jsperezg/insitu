@@ -13,8 +13,8 @@
           <%= current_user[:tax_id] %><br>
           <%= current_user[:address] %><br>
           <%= current_user[:city] %>, <%= current_user[:state] %> <%= current_user[:postal_code] %><br>
-          <%= model_class.human_attribute_name(:phone_number) %>: <%= current_user[:phone_number] %><br>
-          <%= model_class.human_attribute_name(:email) %>: <%= current_user[:email] %>
+          <%= User.human_attribute_name(:phone_number) %>: <%= current_user[:phone_number] %><br>
+          <%= User.human_attribute_name(:email) %>: <%= current_user[:email] %>
         </address>
       </div><!-- /.col -->
       <div class="col-sm-4 invoice-col">
@@ -122,12 +122,15 @@
   <% unless action_name == 'print' %>
       <div class="row no-print">
         <div class="col-xs-12">
-          <%= link_to print_user_invoice_url(current_user.id, @invoice.id), class: 'btn btn-default col-xs-1', target: '_blank' do %>
+          <%= link_to print_user_invoice_url(current_user.id, @invoice.id), class: 'btn btn-default btn-flat col-xs-1', target: '_blank' do %>
               <i class="fa fa-print"></i> <%=t 'helpers.links.print' %>
           <% end %>
 
-          <button class="btn btn-success col-xs-1 pull-right"><i class="fa fa-envelope"></i> Send by email</button>
-          <button class="btn btn-primary col-xs-1 pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button>
+          <button class="btn btn-success col-xs-1 btn-flat pull-right"><i class="fa fa-envelope"></i> Send by email</button>
+
+          <%= link_to print_user_invoice_url(current_user.id, @invoice.id, format: :pdf), class: 'btn btn-primary btn-flat col-xs-1 pull-right', target: '_blank' do %>
+              <i class="fa fa-download"></i> <%=t 'helpers.links.pdf' %>
+          <% end %>
         </div>
       </div>
   <% end %>

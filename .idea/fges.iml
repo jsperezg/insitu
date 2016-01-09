@@ -293,6 +293,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="html5shiv" level="application" />
     <orderEntry type="library" name="respond" level="application" />
+    <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionmailer (v4.2.3, rbenv: 2.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionpack (v4.2.3, rbenv: 2.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionview (v4.2.3, rbenv: 2.2.2) [gem]" level="application" />
@@ -367,6 +369,7 @@
     <orderEntry type="library" scope="PROVIDED" name="uglifier (v2.7.2, rbenv: 2.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="warden (v1.2.3, rbenv: 2.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="web-console (v2.2.1, rbenv: 2.2.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="wicked_pdf (v1.0.3, rbenv: 2.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="will_paginate (v3.0.7, rbenv: 2.2.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="will_paginate-bootstrap (v1.0.1, rbenv: 2.2.2) [gem]" level="application" />
   </component>
