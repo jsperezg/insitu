@@ -99,12 +99,14 @@ es:
     title: Facturas
     create_title: Nueva factura
     edit_title: Editar factura
+    print_title: Imprimir factura
 
   delivery_notes:
     delivery_note: Albarán
     title: Albaranes
     create_title: Nuevo albarán
     edit_title: Editar albarán
+    print_title: Imprimir albarán
 
   delivery_note_details:
     delivery_note_detail: Detalle albarán

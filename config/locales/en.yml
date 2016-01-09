@@ -100,12 +100,14 @@ en:
     title: Invoices
     create_title: New invoice
     edit_title: Edit invoice
+    print_title: Print invoice
 
   delivery_notes:
     delivery_note: Delivery note
     title: Delivery notes
     create_title: New delivery note
     edit_title: Edit delivery note
+    print_title: Print delivery note
 
   delivery_notes_details:
     delivery_note_detail: Delivery note details

@@ -173,6 +173,10 @@ NAVIGATION_RULES = {
             parent: :production,
             title: 'delivery_notes.title'
         },
+        show: {
+            parent: { controller: :delivery_notes, action: :index, params: [ :user_id ] },
+            title: 'delivery_notes.print_title'
+        },
         new: {
             parent: { controller: :delivery_notes, action: :index, params: [ :user_id ] },
             title: 'delivery_notes.create_title'
@@ -194,6 +198,10 @@ NAVIGATION_RULES = {
         index: {
             parent: :production,
             title: 'invoices.title'
+        },
+        show: {
+            parent: { controller: :invoices, action: :index, params: [ :user_id ] },
+            title: 'invoices.print_title'
         },
         new: {
             parent: { controller: :invoices, action: :index, params: [ :user_id ] },

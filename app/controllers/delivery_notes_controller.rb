@@ -1,5 +1,5 @@
 class DeliveryNotesController < SecuredController
-  before_action :set_delivery_note, only: [:show, :edit, :update, :destroy]
+  before_action :set_delivery_note, only: [:show, :print, :edit, :update, :destroy]
 
   # GET /delivery_notes
   # GET /delivery_notes.json
@@ -10,6 +10,10 @@ class DeliveryNotesController < SecuredController
   # GET /delivery_notes/1
   # GET /delivery_notes/1.json
   def show
+  end
+
+  def print
+    render :show, layout: 'print'
   end
 
   # GET /delivery_notes/new

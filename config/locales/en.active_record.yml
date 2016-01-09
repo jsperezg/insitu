@@ -3,6 +3,8 @@ en:
     models:
       service: Service
       estimate: Estimate
+      invoice: Invoice
+      delivery_note: Delivery note
     attributes:
       user:
         tax_id: TAX Id.
@@ -75,11 +77,21 @@ en:
       invoice:
         number: Invoice number
         date: Invoice date
-        payment_method_id: Payment method
+        payment_method_id: Payment Method
         customer_id: Customer
-        payment_date: Due date
+        payment_date: Payment Due
         paid_on: Paid on
         invoice_status_id: Status
+        tax: Tax
+      invoice_detail:
+        invoice_id: Invoice
+        service_id: Item
+        description: Description
+        vat_rate: VAT
+        price: Price
+        quantity: Quantity
+        discount: Discount
+        total: Total
       invoice/invoice_details:
         invoice_id: Invoice
         service_id: Item

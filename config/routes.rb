@@ -10,8 +10,19 @@ Rails.application.routes.draw do
     resources :vats
     resources :units
     resources :customers
-    resources :invoices
-    resources :delivery_notes
+
+    resources :invoices  do
+      member do
+        get :print
+      end
+    end
+
+    resources :delivery_notes  do
+      member do
+        get :print
+      end
+    end
+
     resources :estimates do
       member do
         get :print

@@ -1,5 +1,5 @@
 class InvoicesController < SecuredController
-  before_action :set_invoice, only: [:show, :edit, :update, :destroy]
+  before_action :set_invoice, only: [:show, :print, :edit, :update, :destroy]
 
   # GET /invoices
   # GET /invoices.json
@@ -10,6 +10,10 @@ class InvoicesController < SecuredController
   # GET /invoices/1
   # GET /invoices/1.json
   def show
+  end
+
+  def print
+    render :show, layout: 'print'
   end
 
   # GET /invoices/new

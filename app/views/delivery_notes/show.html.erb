@@ -1,23 +1,108 @@
 <%- model_class = DeliveryNote -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
-</div>
+<% content_for :title, "#{ DeliveryNote.model_name.human } #{ @delivery_note.number}" %>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:number) %>:</strong></dt>
-  <dd><%= @delivery_note.number %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:customer_id) %>:</strong></dt>
-  <dd><%= @delivery_note.customer_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:date) %>:</strong></dt>
-  <dd><%= @delivery_note.date %></dd>
-</dl>
+<section class="invoice">
+  <!-- title row -->
+  <div class="row">
 
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              delivery_notes_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_delivery_note_path(@delivery_note), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              delivery_note_path(@delivery_note),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+    <!-- info row -->
+    <div class="row invoice-info">
+      <div class="col-sm-4 invoice-col">
+        <address>
+          <strong><%= current_user[:name] %></strong><br>
+          <%= current_user[:tax_id] %><br>
+          <%= current_user[:address] %><br>
+          <%= current_user[:city] %>, <%= current_user[:state] %> <%= current_user[:postal_code] %><br>
+          <%= model_class.human_attribute_name(:phone_number) %>: <%= current_user[:phone_number] %><br>
+          <%= model_class.human_attribute_name(:email) %>: <%= current_user[:email] %>
+        </address>
+      </div><!-- /.col -->
+      <div class="col-sm-4 invoice-col">
+        <address>
+          <strong><%= @delivery_note.customer.name %></strong><br>
+          <%= @delivery_note.customer.address %><br>
+          <%= @delivery_note.customer.city %>, <%= @delivery_note.customer.state %> <%= @delivery_note.customer.postal_code %><br>
+
+          <% unless @delivery_note.customer.contact_phone.blank? %>
+              <%= Customer.human_attribute_name(:contact_phone) %>: <%= @delivery_note.customer.contact_phone %><br>
+          <% end %>
+
+          <% unless @delivery_note.customer.contact_email.blank? %>
+              <%= Customer.human_attribute_name(:contact_email) %>: <%= @delivery_note.customer.contact_email %>
+          <% end %>
+        </address>
+      </div><!-- /.col -->
+      <div class="col-sm-4 invoice-col">
+        <table class="table table-condensed borderless">
+          <tr>
+            <th class="col-xs-9 text-right"><%= DeliveryNote.model_name.human %>:</th>
+            <td class="text-right"><%= @delivery_note.number %></td>
+          </tr>
+          <tr>
+            <th class="col-xs-9 text-right"><%= model_class.human_attribute_name(:date) %>:</th>
+            <td class="text-right"><%=l @delivery_note[:date] %></td>
+          </tr>
+        </table>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div>
+
+  <!-- Table row -->
+  <div class="row">
+    <div class="col-xs-12 table-responsive">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th class="text-right col-xs-1"><%= DeliveryNoteDetail.human_attribute_name :quantity %></th>
+          <th class="col-xs-2"><%= DeliveryNoteDetail.human_attribute_name :service_id %></th>
+          <th class="text-center col-xs-1"><%= Service.human_attribute_name :code %></th>
+          <th><%= DeliveryNoteDetail.human_attribute_name :custom_description %></th>
+          <th class="text-right col-xs-1"><%= DeliveryNoteDetail.human_attribute_name :price %></th>
+          <th class="text-right col-xs-1"><%= DeliveryNoteDetail.human_attribute_name :total %></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @delivery_note.delivery_note_details.each do |detail| %>
+            <tr>
+              <td class="text-right"><%= detail.quantity %></td>
+              <td><%= detail.service.description %></td>
+              <td class="text-center"><%= detail.service.code %></td>
+              <td><%= detail.custom_description %></td>
+              <td class="text-right"><%= number_with_precision detail.price, precision: 2 %>€</td>
+              <td class="text-right"><%= number_with_precision detail.total, precision: 2 %>€</td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div><!-- /.col -->
+  </div><!-- /.row -->
+
+  <div class="row">
+    <!-- accepted payments column -->
+    <div class="col-xs-6"></div>
+    <div class="col-xs-6">
+      <div class="table-responsive">
+        <table class="table">
+          <tr>
+            <th class="col-xs-9 text-right"><%= DeliveryNote.human_attribute_name :total %>:</th>
+            <td class="text-right"><%= number_with_precision @delivery_note.total, precision: 2 %>€</td>
+          </tr>
+        </table>
+      </div>
+    </div><!-- /.col -->
+  </div><!-- /.row -->
+
+  <!-- this row will not appear when printing -->
+  <% unless action_name == 'print' %>
+      <div class="row no-print">
+        <div class="col-xs-12">
+          <%= link_to print_user_delivery_note_url(current_user.id, @delivery_note.id), class: 'btn btn-default col-xs-1', target: '_blank' do %>
+              <i class="fa fa-print"></i> <%=t 'helpers.links.print' %>
+          <% end %>
+
+          <button class="btn btn-success col-xs-1 pull-right"><i class="fa fa-envelope"></i> Send by email</button>
+          <button class="btn btn-primary col-xs-1 pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button>
+        </div>
+      </div>
+  <% end %>
+</section>

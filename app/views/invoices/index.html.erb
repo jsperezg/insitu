@@ -12,6 +12,7 @@
             <th class="col-xs-1"><%= model_class.human_attribute_name(:paid_on) %></th>
             <th class="col-xs-1"></th>
             <th class="col-xs-1"></th>
+            <th class="col-xs-1"></th>
           </tr>
         </thead>
         <tbody>
@@ -31,6 +32,15 @@
                   <i class="fa fa-pencil-square-o" aria-hidden="true">
                     <%=t 'helpers.links.edit' %>
                   </i>
+                <% end %>
+              </td>
+              <td>
+                <%= button_to user_invoice_url(current_user, invoice),
+                              method: :get,
+                              :class => 'btn btn-default btn-xs btn-block btn-flat' do %>
+                    <i class="fa fa-print" aria-hidden="true">
+                      <%=t 'helpers.links.print' %>
+                    </i>
                 <% end %>
               </td>
               <td>

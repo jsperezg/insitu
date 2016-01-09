@@ -21,6 +21,16 @@ class DeliveryNote < ActiveRecord::Base
     end
   end
 
+  def total
+    result = 0
+
+    delivery_note_details.each do |detail|
+      result += detail.total
+    end
+
+    result
+  end
+
   private
 
   def set_number

@@ -3,6 +3,8 @@ es:
     models:
       service: Servicio
       estimate: Presupuesto
+      invoice: Factura
+      delivery_note: Albarán
     attributes:
       user:
         tax_id: NIF/CIF
@@ -77,9 +79,19 @@ es:
         date: Fecha de emisión
         payment_method_id: Forma de pago
         customer_id: Cliente
-        payment_date: Fecha de vencimiento
+        payment_date: Vencimiento
         paid_on: Fecha de cobro
         invoice_status_id: Estado
+        tax: IVA
+      invoice_detail:
+        invoice_id: Factura
+        service_id: Concepto
+        description: Descripción
+        vat_rate: IVA
+        price: Precio
+        quantity: Cantidad
+        discount: Descuento
+        total: Subtotal
       invoice/invoice_details:
         invoice_id: Factura
         service_id: Concepto

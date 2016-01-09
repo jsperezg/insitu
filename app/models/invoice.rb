@@ -32,6 +32,46 @@ class Invoice < ActiveRecord::Base
     increase_id self
   end
 
+  def total
+    result = 0
+
+    self.invoice_details.each do |detail|
+      result += detail.total
+    end
+
+    result
+  end
+
+  def subtotal
+    result = 0
+
+    self.invoice_details.each do |detail|
+      result += detail.subtotal
+    end
+
+    result
+  end
+
+  def tax
+    result = 0
+
+    self.invoice_details.each do |detail|
+      result += detail.tax
+    end
+
+    result
+  end
+
+  def discount
+    result = 0
+
+    self.invoice_details.each do |detail|
+      result += detail.applied_discount
+    end
+
+    result
+  end
+
   private
 
   def set_default_values

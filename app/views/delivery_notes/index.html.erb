@@ -6,8 +6,9 @@
         <thead>
           <tr>
             <th class=col-xs-2><%= model_class.human_attribute_name(:number) %></th>
-            <th class=col-xs-7><%= model_class.human_attribute_name(:customer_id) %></th>
+            <th class=col-xs-6><%= model_class.human_attribute_name(:customer_id) %></th>
             <th class="col-xs-1 text-center"><%= model_class.human_attribute_name(:date) %></th>
+            <th class=col-xs-1></th>
             <th class=col-xs-1></th>
             <th class=col-xs-1></th>
           </tr>
@@ -28,6 +29,15 @@
                   <i class="fa fa-pencil-square-o" aria-hidden="true">
                     <%=t 'helpers.links.edit' %>
                   </i>
+                <% end %>
+              </td>
+              <td>
+                <%= button_to user_delivery_note_path(current_user, delivery_note),
+                              method: :get,
+                              class: 'btn btn-default btn-xs btn-flat btn-block' do %>
+                    <i class="fa fa-print" aria-hidden="true">
+                      <%=t 'helpers.links.print' %>
+                    </i>
                 <% end %>
               </td>
               <td>

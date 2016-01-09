@@ -15,6 +15,10 @@ RSpec.describe InvoicesController, type: :routing do
       expect(:get => "/users/1/invoices/1").to route_to("invoices#show", :id => "1", user_id: '1')
     end
 
+    it "routes to #print" do
+      expect(:get => "/users/1/invoices/1/print").to route_to("invoices#print", :id => "1", user_id: '1')
+    end
+
     it "routes to #edit" do
       expect(:get => "/users/1/invoices/1/edit").to route_to("invoices#edit", :id => "1", user_id: '1')
     end
