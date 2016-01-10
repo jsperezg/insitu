@@ -14,7 +14,14 @@ class EstimatesController < SecuredController
 
   # GET /estimates/1/print
   def print
-    render :show, layout: 'print'
+    respond_to do |format|
+      format.html do
+        render :show, layout: 'print'
+      end
+      format.pdf do
+        render pdf: "estimate_#{ @estimate.number.gsub('/', '_') }", viewport_size: '1920x1080'
+      end
+    end
   end
 
   # GET /estimates/new

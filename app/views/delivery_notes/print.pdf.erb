@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>In Situ</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" media="all">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src='https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js'></script>
+  <script src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js'></script>
+  <![endif]-->
+</head>
+<body style="padding: 50px 20px 50px 50px">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-4">
+        <address>
+          <strong><%= current_user[:name] %></strong><br>
+          <%= current_user[:tax_id] %><br>
+          <%= current_user[:address] %><br>
+          <%= current_user[:city] %>, <%= current_user[:state] %> <%= current_user[:postal_code] %><br>
+          <%= User.human_attribute_name(:phone_number) %>: <%= current_user[:phone_number] %><br>
+          <%= User.human_attribute_name(:email) %>: <%= current_user[:email] %>
+        </address>
+      </div><!-- /.col -->
+
+      <div class="col-xs-4">
+        <address>
+          <strong><%= @delivery_note.customer.name %></strong><br>
+          <%= @delivery_note.customer.address %><br>
+          <%= @delivery_note.customer.city %>, <%= @delivery_note.customer.state %> <%= @delivery_note.customer.postal_code %><br>
+
+          <% unless @delivery_note.customer.contact_phone.blank? %>
+              <%= Customer.human_attribute_name(:contact_phone) %>: <%= @delivery_note.customer.contact_phone %><br>
+          <% end %>
+
+          <% unless @delivery_note.customer.contact_email.blank? %>
+              <%= Customer.human_attribute_name(:contact_email) %>: <%= @delivery_note.customer.contact_email %>
+          <% end %>
+        </address>
+      </div>
+
+      <div class="col-xs-4">
+        <div class="row">
+          <div class="col-xs-7 text-right"><b><%= DeliveryNote.model_name.human %>:</b></div>
+          <div class="col-xs-5"><%= @delivery_note.number %></div>
+        </div>
+        <div class="row">
+          <div class="col-xs-7 text-right"><b><%= DeliveryNote.human_attribute_name(:date) %>:</b></div>
+          <div class="col-xs-5"><%=l @delivery_note[:date] %></div>
+        </div>
+      </div><!-- /.col -->
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 table-responsive">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th class="text-right col-xs-1"><%= DeliveryNoteDetail.human_attribute_name :quantity %></th>
+            <th class="col-xs-2"><%= DeliveryNoteDetail.human_attribute_name :service_id %></th>
+            <th class="text-center col-xs-1"><%= Service.human_attribute_name :code %></th>
+            <th><%= DeliveryNoteDetail.human_attribute_name :custom_description %></th>
+            <th class="text-right col-xs-1"><%= DeliveryNoteDetail.human_attribute_name :price %></th>
+            <th class="text-right col-xs-1"><%= DeliveryNoteDetail.human_attribute_name :total %></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @delivery_note.delivery_note_details.each do |detail| %>
+              <tr>
+                <td class="text-right"><%= detail.quantity %></td>
+                <td><%= detail.service.description %></td>
+                <td class="text-center"><%= detail.service.code %></td>
+                <td><%= detail.custom_description %></td>
+                <td class="text-right"><%= number_with_precision(detail.price, precision: 2) %>€</td>
+                <td class="text-right"><%= number_with_precision(detail.total, precision: 2) %>€</td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+    <div class="row">
+      <!-- accepted payments column -->
+      <div class="col-xs-6"></div>
+      <div class="col-xs-6">
+        <div class="table-responsive">
+          <table class="table table-condensed borderless">
+            <tr>
+              <th class="col-xs-9 text-right"><%= DeliveryNote.human_attribute_name :subtotal %>:</th>
+              <td class="text-right"><%= number_with_precision(@delivery_note.total, precision: 2) %>€</td>
+            </tr>
+          </table>
+        </div>
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>

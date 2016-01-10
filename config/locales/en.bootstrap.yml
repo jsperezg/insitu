@@ -17,7 +17,7 @@ en:
       confirm: Are you sure?
       cancel: Cancel
       print: Print
-      pdf: Generate PDF
+      pdf: Get PDF
     titles:
       edit: "Edit %{model}"
       save: "Save %{model}"

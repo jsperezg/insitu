@@ -101,7 +101,9 @@
           <% end %>
 
           <button class="btn btn-success col-xs-1 pull-right"><i class="fa fa-envelope"></i> Send by email</button>
-          <button class="btn btn-primary col-xs-1 pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button>
+          <%= link_to print_user_delivery_note_url(current_user.id, @delivery_note.id, format: :pdf), class: 'btn btn-primary pull-right col-xs-1', target: '_blank' do %>
+              <i class="fa fa-download"></i> <%=t 'helpers.links.pdf' %>
+          <% end %>
         </div>
       </div>
   <% end %>
