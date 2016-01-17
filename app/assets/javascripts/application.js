@@ -25,6 +25,8 @@
 //= require fastclick
 //= require AdminLTE
 //= require turbolinks
+//= require nprogress
+//= require nprogress-turbolinks
 //= require initialization
 
 //= require_tree ./autoload

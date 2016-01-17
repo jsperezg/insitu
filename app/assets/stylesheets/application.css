@@ -14,5 +14,8 @@
  *=require twitter-bootstrap-static/fontawesome
  *=require jquery-ui
  *=require AdminLTE
+ *=require nprogress
+ *=require nprogress-bootstrap
+ *=require progress_bar
  *=require_self
  */
