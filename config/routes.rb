@@ -21,12 +21,14 @@ Rails.application.routes.draw do
     resources :delivery_notes  do
       member do
         get :print
+        get :forward_email
       end
     end
 
     resources :estimates do
       member do
         get :print
+        get :forward_email
       end
     end
 

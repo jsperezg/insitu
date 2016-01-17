@@ -14,27 +14,27 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2016-01-16T13:16:22+01:00">2016-01-16T13:16:22+01:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2016-01-17T20:23:50+01:00">2016-01-17T20:23:50+01:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">39.29%</span></span>
+    (<span class="covered_percent"><span class="red">35.94%</span></span>
      covered at
      <span class="covered_strength">
        <span class="red">
-         0.41
+         0.4
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>4</b> files in total.
-    <b>56</b> relevant lines. 
-    <span class="green"><b>22</b> lines covered</span> and
-    <span class="red"><b>34</b> lines missed </span>
+    <b>64</b> relevant lines. 
+    <span class="green"><b>23</b> lines covered</span> and
+    <span class="red"><b>41</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -51,12 +51,12 @@
     <tbody>
       
       <tr>
-        <td class="strong"><a href="#bb2057456c555bc4b193354e03dfc6928b1f77fa" class="src_link" title="app/controllers/invoices_controller.rb">app/controllers/invoices_controller.rb</a></td>
-        <td class="red strong">27.66 %</td>
-        <td>114</td>
-        <td>47</td>
-        <td>13</td>
-        <td>34</td>
+        <td class="strong"><a href="#0739232ac1592f6e43eb914741d8bc47bec29e10" class="src_link" title="app/controllers/estimates_controller.rb">app/controllers/estimates_controller.rb</a></td>
+        <td class="red strong">25.45 %</td>
+        <td>126</td>
+        <td>55</td>
+        <td>14</td>
+        <td>41</td>
         <td>0.3</td>
       </tr>
       
@@ -106,14 +106,14 @@
     
       <div class="source_files">
       
-        <div class="source_table" id="bb2057456c555bc4b193354e03dfc6928b1f77fa">
+        <div class="source_table" id="0739232ac1592f6e43eb914741d8bc47bec29e10">
   <div class="header">
-    <h3>app/controllers/invoices_controller.rb</h3>
-    <h4><span class="red">27.66 %</span> covered</h4>
+    <h3>app/controllers/estimates_controller.rb</h3>
+    <h4><span class="red">25.45 %</span> covered</h4>
     <div>
-      <b>47</b> relevant lines. 
-      <span class="green"><b>13</b> lines covered</span> and
-      <span class="red"><b>34</b> lines missed.</span>
+      <b>55</b> relevant lines. 
+      <span class="green"><b>14</b> lines covered</span> and
+      <span class="red"><b>41</b> lines missed.</span>
     </div>
   </div>
   
@@ -123,13 +123,13 @@
         <li class="covered" data-hits="1" data-linenumber="1">
           <span class="hits">1</span>
           
-          <code class="ruby">class InvoicesController &lt; SecuredController</code>
+          <code class="ruby">class EstimatesController &lt; SecuredController</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="2">
           <span class="hits">1</span>
           
-          <code class="ruby">  before_action :set_invoice, only: [:show, :print, :edit, :update, :destroy]</code>
+          <code class="ruby">  before_action :set_estimate, only: [:show, :print, :forward_email, :edit, :update, :destroy]</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="3">
@@ -141,13 +141,13 @@
         <li class="never" data-hits="" data-linenumber="4">
           
           
-          <code class="ruby">  # GET /invoices</code>
+          <code class="ruby">  # GET /estimates</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="5">
           
           
-          <code class="ruby">  # GET /invoices.json</code>
+          <code class="ruby">  # GET /estimates.json</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="6">
@@ -159,7 +159,7 @@
         <li class="missed" data-hits="0" data-linenumber="7">
           
           
-          <code class="ruby">    @invoices = Invoice.order(date: :desc)</code>
+          <code class="ruby">    @estimates = Estimate.order(date: :desc)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="8">
@@ -177,13 +177,13 @@
         <li class="never" data-hits="" data-linenumber="10">
           
           
-          <code class="ruby">  # GET /invoices/1</code>
+          <code class="ruby">  # GET /estimates/1</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="11">
           
           
-          <code class="ruby">  # GET /invoices/1.json</code>
+          <code class="ruby">  # GET /estimates/1.json</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="12">
@@ -204,601 +204,673 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="15">
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">  # GET /estimates/1/print</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="16">
           <span class="hits">1</span>
           
           <code class="ruby">  def print</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="16">
-          
-          
-          <code class="ruby">    respond_to do |format|</code>
-        </li>
-      
         <li class="missed" data-hits="0" data-linenumber="17">
           
           
-          <code class="ruby">      format.html do</code>
+          <code class="ruby">    respond_to do |format|</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="18">
           
           
+          <code class="ruby">      format.html do</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="19">
+          
+          
           <code class="ruby">        render :show, layout: &#39;print&#39;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="19">
+        <li class="never" data-hits="" data-linenumber="20">
           
           
           <code class="ruby">      end</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="20">
-          
-          
-          <code class="ruby">      format.pdf do</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="21">
           
           
-          <code class="ruby">        render pdf: &quot;invoice_#{ @invoice.number.gsub(&#39;/&#39;, &#39;_&#39;) }&quot;, viewport_size: &#39;1920x1080&#39;</code>
+          <code class="ruby">      format.pdf do</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="22">
+        <li class="missed" data-hits="0" data-linenumber="22">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby">        render pdf: &quot;estimate_#{ @estimate.number.gsub(&#39;/&#39;, &#39;_&#39;) }&quot;, viewport_size: &#39;1920x1080&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="23">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="24">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="25">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="26">
           
           
-          <code class="ruby">  # GET /invoices/new</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="27">
           <span class="hits">1</span>
           
-          <code class="ruby">  def new</code>
+          <code class="ruby">  def forward_email</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="28">
           
           
-          <code class="ruby">    @invoice = Invoice.new(date: Date.today)</code>
+          <code class="ruby">    file_name =  &quot;estimate_#{ current_user.id }_#{ @estimate.number.gsub(&#39;/&#39;, &#39;_&#39;) }_#{ Time.now.to_i }&quot;</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="29">
           
           
-          <code class="ruby">    @invoice.invoice_details.build</code>
+          <code class="ruby">    pdf = render_to_string pdf: file_name, template: &#39;estimates/print.pdf.erb&#39;, encoding: &#39;UTF-8&#39;</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="30">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="31">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">    # then save to a file</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="32">
+        <li class="missed" data-hits="0" data-linenumber="32">
           
           
-          <code class="ruby">  # GET /invoices/1/edit</code>
+          <code class="ruby">    save_path = Rails.root.join(&#39;tmp&#39;,&quot;#{ file_name }.pdf&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="33">
-          <span class="hits">1</span>
+        <li class="missed" data-hits="0" data-linenumber="33">
           
-          <code class="ruby">  def edit</code>
+          
+          <code class="ruby">    File.open(save_path, &#39;wb&#39;) do |file|</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="34">
           
           
-          <code class="ruby">    @invoice_detail = InvoiceDetail.new</code>
+          <code class="ruby">      file &lt;&lt; pdf</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="35">
+        <li class="never" data-hits="" data-linenumber="35">
           
           
-          <code class="ruby">    @invoice.invoice_details.build</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="36">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="37">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="38">
+        <li class="missed" data-hits="0" data-linenumber="37">
           
           
-          <code class="ruby">  # POST /invoices</code>
+          <code class="ruby">    EstimateMailer.send_to_customer(current_user, @estimate, save_path.to_s, I18n.locale.to_s).deliver_later</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="38">
+          
+          
+          <code class="ruby">    redirect_to user_estimate_path(current_user.id, @estimate.id), notice: t(&#39;helpers.email_successfully_sent&#39;)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="39">
           
           
-          <code class="ruby">  # POST /invoices.json</code>
+          <code class="ruby">  end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="40">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def create</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="41">
-          
-          
-          <code class="ruby">    Invoice.transaction do</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="42">
-          
-          
-          <code class="ruby">      @invoice = Invoice.new(invoice_params)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="43">
+        <li class="never" data-hits="" data-linenumber="40">
           
           
           <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="41">
+          
+          
+          <code class="ruby">  # GET /estimates/new</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="42">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def new</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="43">
+          
+          
+          <code class="ruby">    @estimate = Estimate.new</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="44">
           
           
-          <code class="ruby">      respond_to do |format|</code>
+          <code class="ruby">    @estimate.estimate_details.build</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="45">
+        <li class="never" data-hits="" data-linenumber="45">
           
           
-          <code class="ruby">        if @invoice.save</code>
+          <code class="ruby">  end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="46">
-          
-          
-          <code class="ruby">          format.html {</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="47">
-          
-          
-          <code class="ruby">            redirect_to edit_user_invoice_url(current_user, @invoice),</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="48">
-          
-          
-          <code class="ruby">            notice: t(:successfully_created, item: t(&#39;invoices.invoice&#39;))</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="49">
-          
-          
-          <code class="ruby">          }</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="50">
+        <li class="never" data-hits="" data-linenumber="46">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="51">
+        <li class="never" data-hits="" data-linenumber="47">
           
           
-          <code class="ruby">          format.json { render :show, status: :created, location: @invoice }</code>
+          <code class="ruby">  # GET /estimates/1/edit</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="48">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def edit</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="49">
+          
+          
+          <code class="ruby">    @estimate_detail = EstimateDetail.new</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="50">
+          
+          
+          <code class="ruby">    @estimate.estimate_details.includes(service: [ :unit, :vat ]).build</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="51">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="52">
           
           
-          <code class="ruby">        else</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="53">
+        <li class="never" data-hits="" data-linenumber="53">
           
           
-          <code class="ruby">          format.html { render :new }</code>
+          <code class="ruby">  # POST /estimates</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="54">
+        <li class="never" data-hits="" data-linenumber="54">
           
           
-          <code class="ruby">          format.json { render json: @invoice.errors, status: :unprocessable_entity }</code>
+          <code class="ruby">  # POST /estimates.json</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="55">
+        <li class="covered" data-hits="1" data-linenumber="55">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">        end</code>
+          <code class="ruby">  def create</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="56">
+        <li class="missed" data-hits="0" data-linenumber="56">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby">    Estimate.transaction do</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="57">
+        <li class="missed" data-hits="0" data-linenumber="57">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">      @estimate = Estimate.new(estimate_params)</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="58">
           
           
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="59">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="60">
-          
-          
-          <code class="ruby">  # PATCH/PUT /invoices/1</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="61">
-          
-          
-          <code class="ruby">  # PATCH/PUT /invoices/1.json</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="62">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def update</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="63">
-          
-          
-          <code class="ruby">    Invoice.transaction do</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="64">
+        <li class="missed" data-hits="0" data-linenumber="59">
           
           
           <code class="ruby">      respond_to do |format|</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="65">
+        <li class="missed" data-hits="0" data-linenumber="60">
           
           
-          <code class="ruby">        if @invoice.update(invoice_params)</code>
+          <code class="ruby">        if @estimate.save</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="66">
+        <li class="missed" data-hits="0" data-linenumber="61">
           
           
           <code class="ruby">          format.html {</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="67">
+        <li class="missed" data-hits="0" data-linenumber="62">
           
           
-          <code class="ruby">            redirect_to edit_user_invoice_path(current_user, @invoice),</code>
+          <code class="ruby">            redirect_to edit_user_estimate_url(current_user, @estimate),</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="68">
+        <li class="never" data-hits="" data-linenumber="63">
           
           
-          <code class="ruby">            notice: t(:successfully_updated, item: t(&#39;invoices.invoice&#39;))</code>
+          <code class="ruby">            notice: t(:successfully_created, item: t(&#39;estimates.estimate&#39;))</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="69">
+        <li class="never" data-hits="" data-linenumber="64">
           
           
           <code class="ruby">          }</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="70">
+        <li class="missed" data-hits="0" data-linenumber="65">
           
           
-          <code class="ruby">          format.json { render :show, status: :ok, location: @invoice }</code>
+          <code class="ruby">          format.json { render :show, status: :created, location: @estimate }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="71">
+        <li class="never" data-hits="" data-linenumber="66">
           
           
           <code class="ruby">        else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="72">
+        <li class="missed" data-hits="0" data-linenumber="67">
           
           
-          <code class="ruby">          format.html { render :edit }</code>
+          <code class="ruby">          format.html { render :new }</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="73">
+        <li class="missed" data-hits="0" data-linenumber="68">
           
           
-          <code class="ruby">          format.json { render json: @invoice.errors, status: :unprocessable_entity }</code>
+          <code class="ruby">          format.json { render json: @estimate.errors, status: :unprocessable_entity }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="74">
+        <li class="never" data-hits="" data-linenumber="69">
           
           
           <code class="ruby">        end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="75">
+        <li class="never" data-hits="" data-linenumber="70">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="76">
+        <li class="never" data-hits="" data-linenumber="71">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="77">
+        <li class="never" data-hits="" data-linenumber="72">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="78">
+        <li class="never" data-hits="" data-linenumber="73">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="79">
+        <li class="never" data-hits="" data-linenumber="74">
           
           
-          <code class="ruby">  # DELETE /invoices/1</code>
+          <code class="ruby">  # PATCH/PUT /estimates/1</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="80">
+        <li class="never" data-hits="" data-linenumber="75">
           
           
-          <code class="ruby">  # DELETE /invoices/1.json</code>
+          <code class="ruby">  # PATCH/PUT /estimates/1.json</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="81">
+        <li class="covered" data-hits="1" data-linenumber="76">
           <span class="hits">1</span>
           
-          <code class="ruby">  def destroy</code>
+          <code class="ruby">  def update</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="82">
+        <li class="missed" data-hits="0" data-linenumber="77">
           
           
-          <code class="ruby">    @invoice.destroy</code>
+          <code class="ruby">    Estimate.transaction do</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="83">
+        <li class="missed" data-hits="0" data-linenumber="78">
           
           
-          <code class="ruby">    respond_to do |format|</code>
+          <code class="ruby">      respond_to do |format|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="79">
+          
+          
+          <code class="ruby">        if @estimate.update(estimate_params)</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="80">
+          
+          
+          <code class="ruby">          format.html {</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="81">
+          
+          
+          <code class="ruby">            redirect_to edit_user_estimate_url(current_user, @estimate),</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="82">
+          
+          
+          <code class="ruby">            notice: t(:successfully_updated, item: t(&#39;estimates.estimate&#39;))</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="83">
+          
+          
+          <code class="ruby">          }</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="84">
           
           
-          <code class="ruby">      format.html {</code>
+          <code class="ruby">          format.json { render :show, status: :ok, location: @estimate }</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="85">
+        <li class="never" data-hits="" data-linenumber="85">
           
           
-          <code class="ruby">        redirect_to user_invoices_url(current_user),</code>
+          <code class="ruby">        else</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="86">
+        <li class="missed" data-hits="0" data-linenumber="86">
           
           
-          <code class="ruby">        notice: t(:successfully_destroyed, item: t(&#39;invoices.invoice&#39;))</code>
+          <code class="ruby">          format.html { render :edit }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="87">
+        <li class="missed" data-hits="0" data-linenumber="87">
           
           
-          <code class="ruby">      }</code>
+          <code class="ruby">          format.json { render json: @estimate.errors, status: :unprocessable_entity }</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="88">
+        <li class="never" data-hits="" data-linenumber="88">
           
           
-          <code class="ruby">      format.json { head :no_content }</code>
+          <code class="ruby">        end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="89">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="90">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="91">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  end</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="92">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="92">
           
-          <code class="ruby">  private</code>
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="93">
           
           
-          <code class="ruby">    # Use callbacks to share common setup or constraints between actions.</code>
+          <code class="ruby">  # DELETE /estimates/1</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="94">
+        <li class="never" data-hits="" data-linenumber="94">
+          
+          
+          <code class="ruby">  # DELETE /estimates/1.json</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="95">
           <span class="hits">1</span>
           
-          <code class="ruby">    def set_invoice</code>
+          <code class="ruby">  def destroy</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="95">
+        <li class="missed" data-hits="0" data-linenumber="96">
           
           
-          <code class="ruby">      @invoice = Invoice.find(params[:id])</code>
+          <code class="ruby">    @estimate.destroy</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="96">
+        <li class="missed" data-hits="0" data-linenumber="97">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">    respond_to do |format|</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="97">
+        <li class="missed" data-hits="0" data-linenumber="98">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">      format.html {</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="98">
+        <li class="missed" data-hits="0" data-linenumber="99">
           
           
-          <code class="ruby">    # Never trust parameters from the scary internet, only allow the white list through.</code>
+          <code class="ruby">        redirect_to user_estimates_url(current_user),</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="99">
-          <span class="hits">1</span>
-          
-          <code class="ruby">    def invoice_params</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="100">
+        <li class="never" data-hits="" data-linenumber="100">
           
           
-          <code class="ruby">      params.require(:invoice).permit(</code>
+          <code class="ruby">        notice: t(:successfully_destroyed, item: t(&#39;estimates.estimate&#39;))</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="101">
           
           
-          <code class="ruby">        :date,</code>
+          <code class="ruby">      }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="102">
+        <li class="missed" data-hits="0" data-linenumber="102">
           
           
-          <code class="ruby">        :number,</code>
+          <code class="ruby">      format.json { head :no_content }</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="103">
           
           
-          <code class="ruby">        :payment_method_id,</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="104">
           
           
-          <code class="ruby">        :customer_id,</code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="105">
           
           
-          <code class="ruby">        :payment_date,</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="106">
+        <li class="covered" data-hits="1" data-linenumber="106">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">        :paid_on,</code>
+          <code class="ruby">  private</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="107">
           
           
-          <code class="ruby">        :invoice_status_id,</code>
+          <code class="ruby">    # Use callbacks to share common setup or constraints between actions.</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="108">
+        <li class="covered" data-hits="1" data-linenumber="108">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">        invoice_details_attributes: [</code>
+          <code class="ruby">    def set_estimate</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="109">
+        <li class="missed" data-hits="0" data-linenumber="109">
           
           
-          <code class="ruby">          :id, :invoice_id, :service_id, :vat_rate, :quantity, :price,</code>
+          <code class="ruby">      @estimate = Estimate.find(params[:id])</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="110">
           
           
-          <code class="ruby">          :discount, :description, :_destroy</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="111">
           
           
-          <code class="ruby">        ]</code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="112">
           
           
+          <code class="ruby">    # Never trust parameters from the scary internet, only allow the white list through.</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="113">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    def estimate_params</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="114">
+          
+          
+          <code class="ruby">      params.require(:estimate).permit(</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="115">
+          
+          
+          <code class="ruby">        :date,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="116">
+          
+          
+          <code class="ruby">        :number,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="117">
+          
+          
+          <code class="ruby">        :customer_id,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="118">
+          
+          
+          <code class="ruby">        :valid_until,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="119">
+          
+          
+          <code class="ruby">        :estimate_status_id,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="120">
+          
+          
+          <code class="ruby">        estimate_details_attributes: [</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="121">
+          
+          
+          <code class="ruby">          :id, :estimate_id, :service_id, :quantity, :price,</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="122">
+          
+          
+          <code class="ruby">          :discount, :description, :_destroy</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="123">
+          
+          
+          <code class="ruby">        ]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="124">
+          
+          
           <code class="ruby">      )</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="113">
+        <li class="never" data-hits="" data-linenumber="125">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="114">
+        <li class="never" data-hits="" data-linenumber="126">
           
           
           <code class="ruby">end</code>

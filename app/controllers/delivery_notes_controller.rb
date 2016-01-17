@@ -1,5 +1,5 @@
 class DeliveryNotesController < SecuredController
-  before_action :set_delivery_note, only: [:show, :print, :edit, :update, :destroy]
+  before_action :set_delivery_note, only: [:show, :print, :forward_email, :edit, :update, :destroy]
 
   # GET /delivery_notes
   # GET /delivery_notes.json
@@ -21,6 +21,20 @@ class DeliveryNotesController < SecuredController
         render pdf: "delivery_note_#{ @delivery_note.number.gsub('/', '_') }", viewport_size: '1920x1080'
       end
     end
+  end
+
+  def forward_email
+    file_name =  "delivery_note_#{ current_user.id }_#{ @delivery_note.number.gsub('/', '_') }_#{ Time.now.to_i }"
+    pdf = render_to_string pdf: file_name, template: 'delivery_notes/print.pdf.erb', encoding: 'UTF-8'
+
+    # then save to a file
+    save_path = Rails.root.join('tmp',"#{ file_name }.pdf")
+    File.open(save_path, 'wb') do |file|
+      file << pdf
+    end
+
+    DeliveryNoteMailer.send_to_customer(current_user, @delivery_note, save_path.to_s, I18n.locale.to_s).deliver_later
+    redirect_to user_delivery_note_path(current_user.id, @delivery_note.id), notice: t('helpers.email_successfully_sent')
   end
 
   # GET /delivery_notes/new

@@ -10,3 +10,12 @@ en:
       subject: Invoice %{invoice_number}
       body_1: "Please find attached our invoice for services rendered and additional disbursements in the above mentioned matter."
       body_2: "Hoping the above to your satisfaction."
+  delivery_note_mailer:
+    send_to_customer:
+      subject: Delivery note %{delivery_note_number}
+      body_1: "Please find attached our delivery note for services rendered and additional disbursements in the above mentioned matter."
+      body_2: "Hoping the above to your satisfaction."
+  estimate_mailer:
+    send_to_customer:
+      subject: Estimate %{estimate_number}
+      body_1: "Please find attached our estimate for services required."

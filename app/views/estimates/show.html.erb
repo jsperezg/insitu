@@ -106,7 +106,12 @@
             <i class="fa fa-print"></i> <%=t 'helpers.links.print' %>
         <% end %>
 
-        <button class="btn btn-success col-xs-1 pull-right"><i class="fa fa-envelope"></i> Send by email</button>
+        <%= link_to forward_email_user_estimate_url(current_user.id, @estimate.id),
+                     class: 'btn btn-success col-xs-1 btn-flat pull-right',
+                     data: { disable_with: t(:please_wait) } do %>
+            <i class="fa fa-envelope"></i> <%=t 'helpers.send_by_email' %>
+        <% end %>
+
         <%= link_to print_user_estimate_url(current_user.id, @estimate.id, format: :pdf), class: 'btn btn-primary col-xs-1 pull-right', target: '_blank' do %>
             <i class="fa fa-download"></i> <%=t 'helpers.links.pdf' %>
         <% end %>

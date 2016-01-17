@@ -1,0 +1,15 @@
+<p>
+  <% if @estimate.customer.contact_name.blank? %>
+  <%=t 'helpers.anonymous_customer' %>:
+  <% else %>
+  <%=t 'helpers.dear' %> <%= @estimate.customer.contact_name %>:
+  <% end %>
+</p>
+<p><%=t 'estimate_mailer.send_to_customer.body_1' %></p>
+<p><%=t 'helpers.closing' %></p>
+<p>
+<%= @sender.name %><br>
+<%= @sender.phone_number %><br>
+<%= @sender.email %><br>
+<%= @sender.address %> <%= @sender.state %> (<%= @sender.postal_code %>) <%= @sender.country %><br>
+</p>

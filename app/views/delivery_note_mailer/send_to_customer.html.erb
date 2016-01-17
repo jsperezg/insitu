@@ -1,0 +1,16 @@
+<p>
+  <% if @delivery_note.customer.contact_name.blank? %>
+  <%=t 'helpers.anonymous_customer' %>:
+  <% else %>
+  <%=t 'helpers.dear' %> <%= @delivery_note.customer.contact_name %>:
+  <% end %>
+</p>
+<p><%=t 'delivery_note_mailer.send_to_customer.body_1' %></p>
+<p><%=t 'delivery_note_mailer.send_to_customer.body_2' %></p>
+<p><%=t 'helpers.closing' %></p>
+<p>
+<%= @sender.name %><br>
+<%= @sender.phone_number %><br>
+<%= @sender.email %><br>
+<%= @sender.address %> <%= @sender.state %> (<%= @sender.postal_code %>) <%= @sender.country %><br>
+</p>
