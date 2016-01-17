@@ -1,5 +1,5 @@
 class InvoicesController < SecuredController
-  before_action :set_invoice, only: [:show, :print, :edit, :update, :destroy]
+  before_action :set_invoice, only: [:show, :print, :forward_email, :edit, :update, :destroy]
 
   # GET /invoices
   # GET /invoices.json
@@ -21,6 +21,20 @@ class InvoicesController < SecuredController
         render pdf: "invoice_#{ @invoice.number.gsub('/', '_') }", viewport_size: '1920x1080'
       end
     end
+  end
+
+  def forward_email
+    file_name =  "invoice_#{ current_user.id }_#{ @invoice.number.gsub('/', '_') }_#{ Time.now.to_i }"
+    pdf = render_to_string pdf: file_name, template: 'invoices/print.pdf.erb', encoding: 'UTF-8'
+
+    # then save to a file
+    save_path = Rails.root.join('tmp',"#{ file_name }.pdf")
+    File.open(save_path, 'wb') do |file|
+      file << pdf
+    end
+
+    InvoiceMailer.send_to_customer(current_user, @invoice, save_path.to_s, I18n.locale.to_s).deliver_later
+    redirect_to user_invoice_path(current_user.id, @invoice.id), notice: t('helpers.email_successfully_sent')
   end
 
   # GET /invoices/new

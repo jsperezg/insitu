@@ -26,5 +26,7 @@ module Fges
 
     # Autoload libraries in lib folder
     config.autoload_paths << Rails.root.join('lib')
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end

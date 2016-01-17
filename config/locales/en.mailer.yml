@@ -1,0 +1,12 @@
+en:
+  helpers:
+    send_by_email: Send by email
+    email_successfully_sent: Mail successfully sent. This mail will be delivered within the next few hours.
+    dear: Dear
+    anonymous_customer: "Dear sir/madame"
+    closing: "Sincerely,"
+  invoice_mailer:
+    send_to_customer:
+      subject: Invoice %{invoice_number}
+      body_1: "Please find attached our invoice for services rendered and additional disbursements in the above mentioned matter."
+      body_2: "Hoping the above to your satisfaction."

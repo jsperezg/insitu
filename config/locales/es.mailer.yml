@@ -1,0 +1,12 @@
+es:
+  helpers:
+    send_by_email: Enviar correo
+    email_successfully_sent: El correo se envió con éxito y será entregado en las próximas horas.
+    dear: Estimado
+    anonymous_customer: "Estimado sr./sra."
+    closing: "Atentamente"
+  invoice_mailer:
+    send_to_customer:
+      subject: Factura %{invoice_number}
+      body_1: "Le adjuntamos la factura por los servicios prestados."
+      body_2: "Esperamos que haya quedado satisfecho con nuestros servicios."

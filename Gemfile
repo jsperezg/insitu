@@ -24,6 +24,10 @@ gem 'will_paginate-bootstrap'
 gem 'jquery-inputmask-rails'
 gem 'wicked_pdf'
 
+gem 'sidekiq'
+gem 'apartment-sidekiq'
+gem 'figaro'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
