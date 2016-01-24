@@ -9,7 +9,7 @@ class EstimateMailer < ApplicationMailer
 
       attachments["estimate_#{ estimate.number.gsub('/', '_')}.pdf"] = File.read(document_path)
 
-      mail(to: estimate.customer.contact_email, subject: default_i18n_subject(estimate_number: estimate.number))
+      mail(to: estimate.customer.contact_email, subject: default_i18n_subject(estimate_number: estimate.number, customer_name: invoice.customer.name))
     ensure
       File.delete(document_path)
     end

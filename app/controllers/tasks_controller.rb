@@ -68,6 +68,49 @@ class TasksController < SecuredController
     end
   end
 
+  # Generate invoice for finished tasks.
+  def invoice_finished
+    project = Project.find(params[:project_id])
+
+    Invoice.transaction do
+      invoice = Invoice.create(
+        date: Date.today,
+        payment_date: Date.today + 15.days,
+        customer_id: project.customer_id,
+        payment_method_id: PaymentMethod.first.id
+      )
+
+      # Iterate over finished tasks.
+      tasks = Task.where(project_id: project).where.not(finish_date: :nil)
+      tasks.each do |task|
+        # Iterate over non billed time records.
+        time_logs = TimeLog.where(task_id: task.id, invoice_detail_id: nil)
+        time_logs.each do |time_log|
+          invoice_detail = InvoiceDetail.create(
+            invoice_id: invoice.id,
+            service_id: time_log.service_id,
+            vat_rate: time_log.service.vat.rate,
+            price: time_log.service.price,
+            discount: 0,
+            description: time_log.description,
+            quantity: time_log.time_spent / 60
+          )
+
+          time_log.invoice_detail_id = invoice_detail.id
+          time_log.save
+        end
+      end
+
+      if invoice.invoice_details.empty?
+        flash[:alert] = t('tasks.no_pending_tasks')
+        redirect_to user_project_tasks_path(current_user, project)
+        raise ActiveRecord::Rollback
+      else
+        redirect_to edit_user_invoice_path(current_user, invoice)
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task

@@ -33,7 +33,11 @@ Rails.application.routes.draw do
     end
 
     resources :projects do
-      resources :tasks
+      resources :tasks do
+        collection do
+          get :invoice_finished
+        end
+      end
     end
   end
 

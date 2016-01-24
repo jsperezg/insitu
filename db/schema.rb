@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208174856) do
+ActiveRecord::Schema.define(version: 20160124075113) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "name",          limit: 255, null: false
@@ -210,15 +210,17 @@ ActiveRecord::Schema.define(version: 20151208174856) do
   add_index "tasks", ["project_id"], name: "index_tasks_on_project_id", using: :btree
 
   create_table "time_logs", force: :cascade do |t|
-    t.string   "description", limit: 255, null: false
-    t.date     "date",                    null: false
-    t.integer  "time_spent",  limit: 4,   null: false
-    t.integer  "task_id",     limit: 4,   null: false
-    t.integer  "service_id",  limit: 4,   null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "description",       limit: 255, null: false
+    t.date     "date",                          null: false
+    t.integer  "time_spent",        limit: 4,   null: false
+    t.integer  "task_id",           limit: 4,   null: false
+    t.integer  "service_id",        limit: 4,   null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "invoice_detail_id", limit: 4
   end
 
+  add_index "time_logs", ["invoice_detail_id"], name: "index_time_logs_on_invoice_detail_id", using: :btree
   add_index "time_logs", ["service_id"], name: "index_time_logs_on_service_id", using: :btree
   add_index "time_logs", ["task_id"], name: "index_time_logs_on_task_id", using: :btree
 

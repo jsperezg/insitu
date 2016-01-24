@@ -166,4 +166,53 @@ RSpec.describe TasksController, type: :controller do
     end
   end
 
+  describe "GET #invoice_finished" do
+    before(:all) do
+      PaymentMethod.first || create(:payment_method)
+      Service.first || create(:service)
+      InvoiceStatus.first || create(:invoice_status)
+    end
+
+    it "Warns when nothing to invoice" do
+      task = Task.create! valid_attributes
+
+      get :invoice_finished, { user_id: @user, project_id: @project }
+      expect(response).to redirect_to(user_project_tasks_path(@user, @project))
+      expect(flash[:alert]).to eq(I18n.t('tasks.no_pending_tasks'))
+    end
+
+    it "Generates invoice with all pending time logs" do
+      task = Task.create! valid_attributes
+      2.times do |i|
+        TimeLog.create!(
+          description: "time log #{ i + 1 }",
+          date: Date.today,
+          time_spent: (i + 1) * 60,
+          task_id: task.id,
+          service_id: Service.first.id
+        )
+      end
+
+      task.finish_date = Date.today
+      task.save
+
+      get :invoice_finished, { user_id: @user, project_id: @project }
+
+      task.reload
+
+      task.time_logs.each do |time_log|
+        expect(time_log.invoice_detail_id).not_to be_nil
+
+        expect(time_log.invoice_detail.description).to eq(time_log.description)
+        expect(time_log.invoice_detail.quantity).to eq(time_log.time_spent / 60)
+        expect(time_log.invoice_detail.service_id).to eq(time_log.service_id)
+        expect(time_log.invoice_detail.vat_rate).not_to be_nil
+        expect(time_log.invoice_detail.price).not_to be_nil
+
+        expect(response).to redirect_to(edit_user_invoice_path(@user, time_log.invoice_detail.invoice_id))
+      end
+    end
+  end
+
+
 end

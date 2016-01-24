@@ -35,5 +35,8 @@ RSpec.describe TasksController, type: :routing do
       expect(:delete => "/users/1/projects/1/tasks/1").to route_to("tasks#destroy", :id => "1", user_id: '1', project_id: '1')
     end
 
+    it "routes to #invoice_finished" do
+      expect(:get => "/users/1/projects/1/tasks/invoice_finished").to route_to("tasks#invoice_finished", user_id: '1', project_id: '1')
+    end
   end
 end

@@ -60,7 +60,19 @@
             class: 'btn btn-primary btn-flat btn-block',
             method: :get %>
       </div>
-      <div class="col-xs-10 text-right">
+      <div class="col-xs-2">
+        <%= button_to t('tasks.bill_finished'),
+                      invoice_finished_user_project_tasks_path(current_user, params[:project_id]),
+                      class: 'btn btn-default btn-flat btn-block',
+                      method: :get %>
+      </div>
+      <div class="col-xs-2">
+        <%= button_to t('helpers.links.back'),
+                      user_projects_path(current_user),
+                      class: 'btn btn-default btn-flat btn-block',
+                      method: :get %>
+      </div>
+      <div class="col-xs-6 text-right">
         <%= will_paginate @tasks, renderer: BootstrapPagination::Rails, class: 'pagination-flat' %>
       </div>
     </div>
