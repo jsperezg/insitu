@@ -1,6 +1,7 @@
 class InvoiceDetail < ActiveRecord::Base
   belongs_to :invoice
   belongs_to :service
+  has_one :time_log
 
   validates :service_id, presence: true
   validates :vat_rate, presence: true, numericality: { greater_than_or_equal_to: 0, only_integer: true }

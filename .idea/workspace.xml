@@ -2,25 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9253af97-43bb-4d75-844d-496160ae5ec1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/fges.iml" afterPath="$PROJECT_DIR$/.idea/fges.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/tasks_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/tasks_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/mailers/delivery_note_mailer.rb" afterPath="$PROJECT_DIR$/app/mailers/delivery_note_mailer.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/mailers/estimate_mailer.rb" afterPath="$PROJECT_DIR$/app/mailers/estimate_mailer.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/mailers/invoice_mailer.rb" afterPath="$PROJECT_DIR$/app/mailers/invoice_mailer.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/time_log.rb" afterPath="$PROJECT_DIR$/app/models/time_log.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tasks/index.html.erb" afterPath="$PROJECT_DIR$/app/views/tasks/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/locales/en.mailer.yml" afterPath="$PROJECT_DIR$/config/locales/en.mailer.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/locales/en.yml" afterPath="$PROJECT_DIR$/config/locales/en.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/locales/es.mailer.yml" afterPath="$PROJECT_DIR$/config/locales/es.mailer.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/locales/es.yml" afterPath="$PROJECT_DIR$/config/locales/es.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/.last_run.json" afterPath="$PROJECT_DIR$/coverage/.last_run.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/.resultset.json" afterPath="$PROJECT_DIR$/coverage/.resultset.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/index.html" afterPath="$PROJECT_DIR$/coverage/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/controllers/tasks_controller_spec.rb" afterPath="$PROJECT_DIR$/spec/controllers/tasks_controller_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/routing/tasks_routing_spec.rb" afterPath="$PROJECT_DIR$/spec/routing/tasks_routing_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/invoice_detail.rb" afterPath="$PROJECT_DIR$/app/models/invoice_detail.rb" />
     </list>
     <ignored path="fges.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -106,7 +89,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/pdf.css" />
         <option value="$PROJECT_DIR$/config/initializers/assets.rb" />
         <option value="$PROJECT_DIR$/config/locales/es.active_record.yml" />
         <option value="$PROJECT_DIR$/config/locales/en.bootstrap.yml" />
@@ -157,6 +139,7 @@
         <option value="$PROJECT_DIR$/config/locales/es.yml" />
         <option value="$PROJECT_DIR$/app/controllers/tasks_controller.rb" />
         <option value="$PROJECT_DIR$/spec/controllers/tasks_controller_spec.rb" />
+        <option value="$PROJECT_DIR$/app/models/invoice_detail.rb" />
       </list>
     </option>
   </component>
@@ -846,7 +829,13 @@
       <option name="project" value="LOCAL" />
       <updated>1453060156301</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Invoice generation.&#10;&#10;Invoice generation from time tracker done.">
+      <created>1453625410854</created>
+      <option name="number" value="00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1453625410854</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -887,6 +876,7 @@
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2032" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32507434" sideWeight="0.31253332" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903865" sideWeight="0.46826667" order="1" side_tool="false" content_ui="tabs" />
@@ -897,7 +887,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39940536" sideWeight="0.62186664" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -918,7 +907,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Estimates.&#10;&#10;Implemented estimates editing." />
     <MESSAGE value="Estimates.&#10;&#10;Spec tests for estimates controller." />
     <MESSAGE value="Styling application&#10;&#10;Styling application." />
     <MESSAGE value="Styling application&#10;&#10;Navigation bar finished. Still pending tests." />
@@ -943,7 +931,8 @@
     <MESSAGE value="Send documents through email.&#10;&#10;User can send invoices through email." />
     <MESSAGE value="Send documents through email.&#10;&#10;User can also send estimates and delivery notes." />
     <MESSAGE value="Loading progress&#10;&#10;Loading progress for turbolinks." />
-    <option name="LAST_COMMIT_MESSAGE" value="Loading progress&#10;&#10;Loading progress for turbolinks." />
+    <MESSAGE value="Invoice generation.&#10;&#10;Invoice generation from time tracker done." />
+    <option name="LAST_COMMIT_MESSAGE" value="Invoice generation.&#10;&#10;Invoice generation from time tracker done." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1291,14 +1280,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/invoice_detail.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spec/factories/invoice_statuses.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1367,6 +1348,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.49840763">
           <caret line="64" column="98" selection-start-line="64" selection-start-column="98" selection-end-line="64" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/invoice_detail.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0690184">
+          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
           <folding />
         </state>
       </provider>
