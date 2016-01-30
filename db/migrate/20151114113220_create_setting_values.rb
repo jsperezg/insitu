@@ -5,7 +5,6 @@ class CreateSettingValues < ActiveRecord::Migration
       t.string :value_s
       t.boolean :value_b
       t.date :value_d
-      t.integer :user_id, index: true, null: false
       
       t.references :setting_key, index: true, foreign_key: true      
 

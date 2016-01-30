@@ -30,7 +30,7 @@ RSpec.describe Vat, type: :model do
   end
 
   it 'rate is unique' do
-    vat = Vat.create(label: '21%', rate: 21)
+    vat = Vat.create(label: '21.1%', rate: 21.1)
     vat.save
 
     expect(vat.errors).to satisfy { |errors| !errors.empty? && errors.key?( :rate )}

@@ -30,10 +30,7 @@ if Apartment::Tenant.current_tenant.blank? or Apartment::Tenant.current_tenant =
     admin.save!
   end
 else
-  user = User.find_by(tenant: Apartment::Tenant.current_tenant)
-  unless user.nil?
-    init_default_settings_for(user)
-  end
+  init_default_settings
 
   [
     {label_short: 'H', label_long:  'Horas'},

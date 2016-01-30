@@ -46,7 +46,7 @@ RSpec.describe PaymentMethodsController, type: :controller do
     it "assigns all payment_methods as @payment_methods" do
       payment_method = PaymentMethod.create! valid_attributes
       get :index, { user_id: @user.id } # , valid_session
-      expect(assigns(:payment_methods)).to eq([payment_method])
+      expect(assigns(:payment_methods)).to include(payment_method)
     end
   end
 

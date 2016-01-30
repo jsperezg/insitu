@@ -26,7 +26,7 @@ RSpec.describe InvoicesController, type: :controller do
   let(:valid_attributes) {
     invoice = attributes_for(:invoice)
 
-    invoice.merge(invoice_details_attributes: [ attributes_for(:invoice_detail) ])
+    invoice.merge(invoice_details_attributes: [ attributes_for(:invoice_detail, invoice_id: nil) ])
   }
 
   let(:invalid_attributes) {

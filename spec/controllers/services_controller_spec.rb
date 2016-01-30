@@ -48,7 +48,7 @@ RSpec.describe ServicesController, type: :controller do
     it "assigns all services as @services" do
       service = Service.create! valid_attributes
       get :index, { user_id: @user.id }
-      expect(assigns(:services)).to eq([service])
+      expect(assigns(:services)).to include(service)
     end
   end
 

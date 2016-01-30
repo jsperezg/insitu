@@ -187,14 +187,12 @@ ActiveRecord::Schema.define(version: 20160124075113) do
     t.string   "value_s",        limit: 255
     t.boolean  "value_b"
     t.date     "value_d"
-    t.integer  "user_id",        limit: 4,   null: false
     t.integer  "setting_key_id", limit: 4
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
 
   add_index "setting_values", ["setting_key_id"], name: "index_setting_values_on_setting_key_id", using: :btree
-  add_index "setting_values", ["user_id"], name: "index_setting_values_on_user_id", using: :btree
 
   create_table "tasks", force: :cascade do |t|
     t.string   "name",        limit: 255

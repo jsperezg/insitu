@@ -35,7 +35,7 @@ class DeliveryNote < ActiveRecord::Base
 
   def set_number
     unless self.date.nil?
-      self.number ||= generate_id(Thread.current[:user], self.model_name.human, self.date.year)
+      self.number ||= generate_id(self.model_name.human, self.date.year)
     end
   end
 

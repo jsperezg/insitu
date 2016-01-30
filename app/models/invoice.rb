@@ -81,9 +81,9 @@ class Invoice < ActiveRecord::Base
   def set_invoice_number
     unless self.date.nil?
       if self.customer.try(:billing_serie).blank?
-        self.number ||= generate_id(Thread.current[:user], self.model_name.human, self.date.year)
+        self.number ||= generate_id(self.model_name.human, self.date.year)
       else
-        self.number ||= generate_id(Thread.current[:user], self.customer.billing_serie.capitalize, self.date.year)
+        self.number ||= generate_id(self.customer.billing_serie.capitalize, self.date.year)
       end
     end
   end

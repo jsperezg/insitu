@@ -1,21 +1,20 @@
 module SequenceGenerator
 	include Settings
 
-	def generate_id(user, model_name, year)
+	def generate_id(model_name, year)
 		# Get serie.
 		key = find_or_create_key("#{ model_name }.serie", SettingKey.data_types[:string])
-		serie_value = find_or_create_value(user, key, model_name[0].capitalize)
+		serie_value = find_or_create_value(key, model_name[0].capitalize)
 		
 		# Get value
 		key = find_or_create_key("#{ model_name }.#{ year }", SettingKey.data_types[:integer])
-		sequence_value = find_or_create_value(user, key, 1)
+		sequence_value = find_or_create_value(key, 1)
 		
 		"#{ serie_value[:value_s] }/#{ year }/" + sequence_value[:value_i].to_s.rjust(6, '0')
 	end
 
   # Automatically manages series and sequences for document Id.
 	def increase_id entity
-    user = Thread.current[:user]
     year = entity.date.year
     number_parts = parse_number entity.number
 
@@ -24,7 +23,7 @@ module SequenceGenerator
 
       # Update the serie
       key = find_or_create_key("#{ model_name }.serie", SettingKey.data_types[:string])
-      serie_value = find_or_create_value(user, key, model_name[0].capitalize)
+      serie_value = find_or_create_value(key, model_name[0].capitalize)
 
       if serie_value[:value_s] != number_parts[:serie]
         serie_value[:value_s] = number_parts[:serie]
@@ -36,7 +35,7 @@ module SequenceGenerator
 
     # Update the sequence.
     key = find_or_create_key("#{ model_name }.#{ year }", SettingKey.data_types[:integer])
-    sequence_value = find_or_create_value(user, key, 1)
+    sequence_value = find_or_create_value(key, 1)
 
     if sequence_value[:value_i] == number_parts[:sequence]
       sequence_value[:value_i] += 1

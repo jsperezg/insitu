@@ -10,21 +10,21 @@ RSpec.describe InvoiceDetail, type: :model do
 
   	describe "quantity" do
   		it "is mandatory" do
-  			invoice_detail = InvoiceDetail.new
+      invoice_detail = InvoiceDetail.new
 			invoice_detail.save
 
 			expect(invoice_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :quantity )}
 		end
 
 		it "must be a number" do
-  			invoice_detail = InvoiceDetail.new(quantity: 'asdf')
+      invoice_detail = InvoiceDetail.new(quantity: 'asdf')
 			invoice_detail.save
 
 			expect(invoice_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :quantity )}
 		end
 
 		it "is greater than zero" do
-  			invoice_detail = InvoiceDetail.new(quantity: 0)
+      invoice_detail = InvoiceDetail.new(quantity: 0)
 			invoice_detail.save
 
 			expect(invoice_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :quantity )}
@@ -32,22 +32,22 @@ RSpec.describe InvoiceDetail, type: :model do
 	end
 
 	describe "price" do
-  		it "is mandatory" do
-  			invoice_detail = InvoiceDetail.new
-			invoice_detail.save
+    it "is mandatory" do
+      invoice_detail = InvoiceDetail.new
+      invoice_detail.save
 
-			expect(invoice_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :price )}
+      expect(invoice_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :price )}
 		end
 
 		it "must be a number" do
-  			invoice_detail = InvoiceDetail.new(price: 'asdf')
+      invoice_detail = InvoiceDetail.new(price: 'asdf')
 			invoice_detail.save
 
 			expect(invoice_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :price )}
 		end
 
 		it "is greater than zero" do
-  			invoice_detail = InvoiceDetail.new(price: -1)
+      invoice_detail = InvoiceDetail.new(price: -1)
 			invoice_detail.save
 
 			expect(invoice_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :price )}
@@ -56,21 +56,21 @@ RSpec.describe InvoiceDetail, type: :model do
 
 	describe 'vat rate' do
 		it "is mandatory" do
-  			invoice_detail = InvoiceDetail.new
+      invoice_detail = InvoiceDetail.new
 			invoice_detail.save
 
 			expect(invoice_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :vat_rate )}
 		end
 
 		it "must be a number" do
-  			invoice_detail = InvoiceDetail.new(vat_rate: 'asdf')
+      invoice_detail = InvoiceDetail.new(vat_rate: 'asdf')
 			invoice_detail.save
 
 			expect(invoice_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :vat_rate )}
 		end
 
 		it "is greater or equal to zero" do
-  			invoice_detail = InvoiceDetail.new(vat_rate: -1)
+      invoice_detail = InvoiceDetail.new(vat_rate: -1)
 			invoice_detail.save
 
 			expect(invoice_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :vat_rate )}
@@ -93,14 +93,14 @@ RSpec.describe InvoiceDetail, type: :model do
 		end
 
 		it "must be a number" do
-  			invoice_detail = InvoiceDetail.new(discount: 'asdf')
+      invoice_detail = InvoiceDetail.new(discount: 'asdf')
 			invoice_detail.save
 
 			expect(invoice_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :discount )}
 		end
 
 		it "is greater or equal to zero" do
-  			invoice_detail = InvoiceDetail.new(discount: -1)
+      invoice_detail = InvoiceDetail.new(discount: -1)
 			invoice_detail.save
 
 			expect(invoice_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :discount )}
@@ -111,6 +111,18 @@ RSpec.describe InvoiceDetail, type: :model do
     it 'total includes discount, vat, price and quantity' do
       r = InvoiceDetail.new(quantity: 1.0, price: 100.0, vat_rate: 21.0, discount: 10.0)
       expect(r.total).to eq(108.9)
+    end
+  end
+
+  describe 'invoice detail relationship with time tracker' do
+    it 'removing invoice detail lives time log record pending for unvoice' do
+      invoice_detail = create(:invoice_detail)
+			time_log = create(:time_log, invoice_detail_id: invoice_detail.id)
+
+      invoice_detail.destroy
+
+      time_log.reload
+      expect(time_log.invoice_detail_id).to be_nil
     end
   end
 end
