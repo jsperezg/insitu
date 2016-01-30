@@ -1,6 +1,7 @@
 class EstimateDetail < ActiveRecord::Base
   belongs_to :estimate
   belongs_to :service
+  belongs_to :invoice_detail
 
   validates :service_id, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }

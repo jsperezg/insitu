@@ -1,5 +1,5 @@
 class EstimatesController < SecuredController
-  before_action :set_estimate, only: [:show, :print, :forward_email, :edit, :update, :destroy]
+  before_action :set_estimate, only: [:show, :print, :forward_email, :edit, :update, :destroy, :invoice]
 
   # GET /estimates
   # GET /estimates.json
@@ -100,6 +100,41 @@ class EstimatesController < SecuredController
         notice: t(:successfully_destroyed, item: t('estimates.estimate'))
       }
       format.json { head :no_content }
+    end
+  end
+
+  def invoice
+    Invoice.transaction do
+      invoice = Invoice.create(
+          date: Date.today,
+          payment_date: Date.today + 15.days,
+          customer_id: @estimate.customer_id,
+          payment_method_id: PaymentMethod.first.id
+      )
+
+      # Iterate over estimate details.
+      @estimate.estimate_details.each do |detail|
+        invoice_detail = InvoiceDetail.create(
+          invoice_id: invoice.id,
+          service_id: detail.service_id,
+          vat_rate: detail.service.vat.rate,
+          price: detail.price,
+          discount: detail.discount,
+          description: detail.description,
+          quantity: detail.quantity
+        )
+
+        detail.invoice_detail_id = invoice_detail.id
+        detail.save
+      end
+
+      if invoice.invoice_details.empty?
+        flash[:alert] = t('estimates.nothing_to_invoice')
+        redirect_to edit_user_estimate_path(current_user, @estimate)
+        raise ActiveRecord::Rollback
+      else
+        redirect_to edit_user_invoice_path(current_user, invoice)
+      end
     end
   end
 

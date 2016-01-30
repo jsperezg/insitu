@@ -27,6 +27,10 @@ RSpec.describe EstimatesController, type: :routing do
       expect(:get => "/users/1/estimates/1/edit").to route_to("estimates#edit", :id => "1", user_id: '1')
     end
 
+    it "routes to #invoice" do
+      expect(:get => "/users/1/estimates/1/invoice").to route_to("estimates#invoice", :id => "1", user_id: '1')
+    end
+
     it "routes to #create" do
       expect(:post => "/users/1/estimates").to route_to("estimates#create", user_id: '1')
     end

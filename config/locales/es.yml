@@ -132,3 +132,5 @@ es:
     edit_title: Editar presupuesto
     print_title: Imprimir presupuesto
     create_title: Crear presupuesto
+    nothing_to_invoice: Presupuesto vacio. No se puede generar la factura.
+    estimates.invoice_title: Facturar

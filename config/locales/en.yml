@@ -133,3 +133,5 @@ en:
     edit_title: Edit estimate
     create_title: Create estimate
     print_title: Print estimate
+    nothing_to_invoice: Empty estimate. Can't generate the invoice.
+    estimates.invoice_title: Invoice
