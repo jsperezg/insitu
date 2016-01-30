@@ -12,5 +12,8 @@
 !/log/.keep
 /tmp
 
+# Ignore coverage test results
+/coverage
+
 # Ignore application configuration
 /config/application.yml

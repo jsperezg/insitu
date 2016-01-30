@@ -26,7 +26,7 @@ RSpec.describe EstimatesController, type: :controller do
   let(:valid_attributes) {
     estimate = attributes_for(:estimate)
 
-    estimate.merge(estimate_details_attributes: [ attributes_for(:estimate_detail) ])
+    estimate.merge(estimate_details_attributes: [ attributes_for(:estimate_detail, estimate_id: nil) ])
   }
 
   let(:invalid_attributes) {
@@ -172,4 +172,39 @@ RSpec.describe EstimatesController, type: :controller do
     end
   end
 
+  describe "GET #invoice" do
+    before(:all) do
+      PaymentMethod.first || create(:payment_method)
+      Service.first || create(:service)
+      InvoiceStatus.first || create(:invoice_status)
+    end
+
+    it "Warns when nothing to invoice" do
+      estimate = create(:estimate)
+
+      get :invoice, { user_id: @user, id: estimate }
+      expect(response).to redirect_to(edit_user_estimate_path(@user, estimate))
+      expect(flash[:alert]).to eq(I18n.t('estimates.nothing_to_invoice'))
+    end
+
+    it "Generates invoice " do
+      estimate = Estimate.create! valid_attributes
+
+      get :invoice, { user_id: @user, id: estimate }
+
+      estimate.reload
+
+      estimate.estimate_details.each do |details|
+        expect(details.invoice_detail_id).not_to be_nil
+
+        expect(details.invoice_detail.description).to eq(details.description)
+        expect(details.invoice_detail.quantity).to eq(details.quantity)
+        expect(details.invoice_detail.service_id).to eq(details.service_id)
+        expect(details.invoice_detail.vat_rate).to eq(details.invoice_detail.service.vat.rate)
+        expect(details.invoice_detail.price).to eq(details.price)
+
+        expect(response).to redirect_to(edit_user_invoice_path(@user, details.invoice_detail.invoice_id))
+      end
+    end
+  end
 end

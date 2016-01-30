@@ -113,7 +113,8 @@ class EstimatesController < SecuredController
       )
 
       # Iterate over estimate details.
-      @estimate.estimate_details.each do |detail|
+      details = EstimateDetail.where(estimate_id: @estimate.id, invoice_detail_id: nil)
+      details.each do |detail|
         invoice_detail = InvoiceDetail.create(
           invoice_id: invoice.id,
           service_id: detail.service_id,

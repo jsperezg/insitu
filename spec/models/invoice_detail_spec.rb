@@ -114,8 +114,8 @@ RSpec.describe InvoiceDetail, type: :model do
     end
   end
 
-  describe 'invoice detail relationship with time tracker' do
-    it 'removing invoice detail lives time log record pending for unvoice' do
+  describe 'removing invoice details' do
+    it 'leaves time log record pending for invoice' do
       invoice_detail = create(:invoice_detail)
 			time_log = create(:time_log, invoice_detail_id: invoice_detail.id)
 
@@ -124,5 +124,15 @@ RSpec.describe InvoiceDetail, type: :model do
       time_log.reload
       expect(time_log.invoice_detail_id).to be_nil
     end
+
+		it 'leaves estimate record pending for invoice' do
+			invoice_detail = create(:invoice_detail)
+			estimate_detail = create(:estimate_detail, invoice_detail_id: invoice_detail.id)
+
+			invoice_detail.destroy
+
+			estimate_detail.reload
+			expect(estimate_detail.invoice_detail_id).to be_nil
+		end
   end
 end
