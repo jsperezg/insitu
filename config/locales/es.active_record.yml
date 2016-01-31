@@ -19,6 +19,7 @@ es:
         password_confirmation: Repetir contraseña
         current_password: Contraseña actual
         phone_number: Teléfono
+        locale: Idioma
       payment_method:
         name: Nombre
         note_for_invoice: Anotación en factura

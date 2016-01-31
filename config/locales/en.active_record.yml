@@ -19,6 +19,7 @@ en:
         password_confirmation: Repeat password
         current_password: Current password
         phone_number: Phone number
+        locale: Language
       payment_method:
         name: Name
         note_for_invoice: Note for invoice
@@ -75,8 +76,8 @@ en:
         total: Total
         custom_description: Custom description
       invoice:
-        number: Invoice number
-        date: Invoice date
+        number: Number
+        date: Date
         payment_method_id: Payment Method
         customer_id: Customer
         payment_date: Payment Due

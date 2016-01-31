@@ -38,7 +38,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :city
       t.string :postal_code, length: 25
       t.string :state
-      t.string :country
+      t.string :country, length: 2
+      t.string :locale, length: 5
       t.string :phone_number
 
       t.timestamps null: false

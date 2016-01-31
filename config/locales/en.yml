@@ -63,6 +63,7 @@ en:
   please_wait: Please wait
   toggle_navigation: Toggle navigation
   sign_in_at: Sign in at
+  auto: Auto
 
   services:
     service: Service

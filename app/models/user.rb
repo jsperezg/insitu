@@ -11,6 +11,14 @@ class User < ActiveRecord::Base
   after_commit :init_tenant, on: :create
   after_commit :destroy_tenant, on: :destroy
 
+  # Available locales
+  def self.available_locales
+    [
+        { id: 'es', description: 'Español' },
+        { id: 'en', description: 'English' }
+    ]
+  end
+
   private
 
   def init_role
