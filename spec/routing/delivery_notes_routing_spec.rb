@@ -19,6 +19,10 @@ RSpec.describe DeliveryNotesController, type: :routing do
       expect(:get => "/users/1/delivery_notes/1/forward_email").to route_to("delivery_notes#forward_email", :id => "1", user_id: '1')
     end
 
+    it "routes to #invoice" do
+      expect(:get => "/users/1/delivery_notes/1/invoice").to route_to("delivery_notes#invoice", :id => "1", user_id: '1')
+    end
+
     it "routes to #print" do
       expect(:get => "/users/1/delivery_notes/1/print").to route_to("delivery_notes#print", :id => "1", user_id: '1')
     end

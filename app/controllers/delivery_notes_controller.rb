@@ -1,5 +1,5 @@
 class DeliveryNotesController < SecuredController
-  before_action :set_delivery_note, only: [:show, :print, :forward_email, :edit, :update, :destroy]
+  before_action :set_delivery_note, only: [:show, :print, :forward_email, :edit, :update, :destroy, :invoice]
 
   # GET /delivery_notes
   # GET /delivery_notes.json
@@ -24,6 +24,12 @@ class DeliveryNotesController < SecuredController
   end
 
   def forward_email
+    if @delivery_note.customer.contact_email.blank?
+      flash[:error] = t('helpers.customer_mail_missing')
+      redirect_to user_delivery_note_path(current_user.id, @delivery_note.id)
+      return
+    end
+
     file_name =  "delivery_note_#{ current_user.id }_#{ @delivery_note.number.gsub('/', '_') }_#{ Time.now.to_i }"
     pdf = render_to_string pdf: file_name, template: 'delivery_notes/print.pdf.erb', encoding: 'UTF-8'
 
@@ -93,6 +99,42 @@ class DeliveryNotesController < SecuredController
       format.html { redirect_to user_delivery_notes_url(current_user),
                     notice: t(:successfully_destroyed, item: t('delivery_notes.delivery_note')) }
       format.json { head :no_content }
+    end
+  end
+
+  def invoice
+    Invoice.transaction do
+      invoice = Invoice.create(
+          date: Date.today,
+          payment_date: Date.today + 15.days,
+          customer_id: @delivery_note.customer_id,
+          payment_method_id: PaymentMethod.first.id
+      )
+
+      # Iterate over estimate details.
+      details = DeliveryNoteDetail.where(delivery_note_id: @delivery_note.id, invoice_detail_id: nil)
+      details.each do |detail|
+        invoice_detail = InvoiceDetail.create(
+            invoice_id: invoice.id,
+            service_id: detail.service_id,
+            vat_rate: detail.service.vat.rate,
+            price: detail.price,
+            discount: 0,
+            description: detail.custom_description,
+            quantity: detail.quantity
+        )
+
+        detail.invoice_detail_id = invoice_detail.id
+        detail.save
+      end
+
+      if invoice.invoice_details.empty?
+        flash[:alert] = t('delivery_notes.nothing_to_invoice')
+        redirect_to edit_user_delivery_note_path(current_user, @delivery_note)
+        raise ActiveRecord::Rollback
+      else
+        redirect_to edit_user_invoice_path(current_user, invoice)
+      end
     end
   end
 

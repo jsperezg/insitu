@@ -3,6 +3,7 @@ class InvoiceDetail < ActiveRecord::Base
   belongs_to :service
   has_one :time_log, dependent: :nullify
   has_one :estimate_detail, dependent: :nullify
+  has_one :delivery_note_detail, dependent: :nullify
 
   validates :service_id, presence: true
   validates :vat_rate, presence: true, numericality: { greater_than_or_equal_to: 0, only_integer: true }

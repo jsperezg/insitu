@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160130190058) do
+ActiveRecord::Schema.define(version: 20160203203248) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "name",          limit: 255, null: false
@@ -38,9 +38,11 @@ ActiveRecord::Schema.define(version: 20160130190058) do
     t.string   "custom_description", limit: 255
     t.datetime "created_at",                                             null: false
     t.datetime "updated_at",                                             null: false
+    t.integer  "invoice_detail_id",  limit: 4
   end
 
   add_index "delivery_note_details", ["delivery_note_id"], name: "index_delivery_note_details_on_delivery_note_id", using: :btree
+  add_index "delivery_note_details", ["invoice_detail_id"], name: "index_delivery_note_details_on_invoice_detail_id", using: :btree
   add_index "delivery_note_details", ["service_id"], name: "index_delivery_note_details_on_service_id", using: :btree
 
   create_table "delivery_notes", force: :cascade do |t|
@@ -274,6 +276,7 @@ ActiveRecord::Schema.define(version: 20160130190058) do
   add_index "vats", ["rate"], name: "index_vats_on_rate", using: :btree
 
   add_foreign_key "delivery_note_details", "delivery_notes"
+  add_foreign_key "delivery_note_details", "invoice_details"
   add_foreign_key "delivery_note_details", "services"
   add_foreign_key "delivery_notes", "customers"
   add_foreign_key "estimate_details", "estimates"

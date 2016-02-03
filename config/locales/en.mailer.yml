@@ -5,6 +5,7 @@ en:
     dear: Dear
     anonymous_customer: "Dear sir/madame"
     closing: "Sincerely,"
+    customer_mail_missing: Customer's email address is missing.
   invoice_mailer:
     send_to_customer:
       subject: Invoice %{invoice_number} from %{customer_name}

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       member do
         get :print
         get :forward_email
+        get :invoice
       end
     end
 

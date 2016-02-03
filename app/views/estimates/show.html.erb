@@ -8,29 +8,10 @@
     <!-- info row -->
     <div class="row invoice-info">
       <div class="col-sm-4 invoice-col">
-        <address>
-          <strong><%= current_user[:name] %></strong><br>
-          <%= current_user[:tax_id] %><br>
-          <%= current_user[:address] %><br>
-          <%= current_user[:city] %>, <%= current_user[:state] %> <%= current_user[:postal_code] %><br>
-          <%= User.human_attribute_name(:phone_number) %>: <%= current_user[:phone_number] %><br>
-          <%= User.human_attribute_name(:email) %>: <%= current_user[:email] %>
-        </address>
+        <%= render 'layouts/user_address' %>
       </div><!-- /.col -->
       <div class="col-sm-4 invoice-col">
-        <address>
-          <strong><%= @estimate.customer.name %></strong><br>
-          <%= @estimate.customer.address %><br>
-          <%= @estimate.customer.city %>, <%= @estimate.customer.state %> <%= @estimate.customer.postal_code %><br>
-
-          <% unless @estimate.customer.contact_phone.blank? %>
-            <%= Customer.human_attribute_name(:contact_phone) %>: <%= @estimate.customer.contact_phone %><br>
-          <% end %>
-
-          <% unless @estimate.customer.contact_email.blank? %>
-            <%= Customer.human_attribute_name(:contact_email) %>: <%= @estimate.customer.contact_email %>
-          <% end %>
-        </address>
+        <%= render 'layouts/customer_address', customer: @estimate.customer %>
       </div><!-- /.col -->
       <div class="col-sm-4 invoice-col">
         <table class="table table-condensed borderless">

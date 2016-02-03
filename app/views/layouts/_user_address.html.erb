@@ -1,0 +1,10 @@
+<address>
+  <strong><%= current_user[:name] %></strong><br>
+  <%= current_user[:tax_id] %><br>
+  <%= current_user[:address] %><br>
+  <%= current_user[:city] %>, <%= current_user[:state] %> <%= current_user[:postal_code] %><br>
+  <% unless current_user[:phone_number].blank? %>
+      <%= User.human_attribute_name(:phone_number) %>: <%= current_user[:phone_number] %><br>
+  <% end %>
+  <%= User.human_attribute_name(:email) %>: <%= current_user[:email] %>
+</address>

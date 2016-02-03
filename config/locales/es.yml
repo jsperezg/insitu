@@ -110,11 +110,12 @@ es:
     create_title: Nuevo albarán
     edit_title: Editar albarán
     print_title: Imprimir albarán
+    nothing_to_invoice: Albarán vacio. No se puede generar la factura.
+    invoice_title: Facturar
 
   delivery_note_details:
     delivery_note_detail: Detalle albarán
     title: Detalle albarán
-
   vats:
     title: Tipos de IVA
     create_title: Crear tipo de IVA
@@ -134,4 +135,4 @@ es:
     print_title: Imprimir presupuesto
     create_title: Crear presupuesto
     nothing_to_invoice: Presupuesto vacio. No se puede generar la factura.
-    estimates.invoice_title: Facturar
+    invoice_title: Facturar

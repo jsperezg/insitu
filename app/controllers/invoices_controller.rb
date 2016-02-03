@@ -24,6 +24,12 @@ class InvoicesController < SecuredController
   end
 
   def forward_email
+    if @invoice.customer.contact_email.blank?
+      flash[:error] = t('helpers.customer_mail_missing')
+      redirect_to user_invoice_path(current_user.id, @invoice.id)
+      return
+    end
+
     file_name =  "invoice_#{ current_user.id }_#{ @invoice.number.gsub('/', '_') }_#{ Time.now.to_i }"
     pdf = render_to_string pdf: file_name, template: 'invoices/print.pdf.erb', encoding: 'UTF-8'
 

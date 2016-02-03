@@ -4,7 +4,8 @@ es:
     email_successfully_sent: El correo se envió con éxito y será entregado en las próximas horas.
     dear: Estimado
     anonymous_customer: "Estimado sr./sra."
-    closing: "Atentamente"
+    closing: Atentamente
+    customer_mail_missing: El cliente no tiene dirección de correo.
   invoice_mailer:
     send_to_customer:
       subject: Factura %{invoice_number} from %{customer_name}

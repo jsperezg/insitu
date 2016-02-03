@@ -111,6 +111,8 @@ en:
     create_title: New delivery note
     edit_title: Edit delivery note
     print_title: Print delivery note
+    nothing_to_invoice: This delivery note is empty. Can't generate invoice.
+    invoice_title: Invoice
 
   delivery_notes_details:
     delivery_note_detail: Delivery note details
@@ -135,4 +137,4 @@ en:
     create_title: Create estimate
     print_title: Print estimate
     nothing_to_invoice: Empty estimate. Can't generate the invoice.
-    estimates.invoice_title: Invoice
+    invoice_title: Invoice

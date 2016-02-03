@@ -25,6 +25,12 @@ class EstimatesController < SecuredController
   end
 
   def forward_email
+    if @estimate.customer.contact_email.blank?
+      flash[:error] = t('helpers.customer_mail_missing')
+      redirect_to user_estimate_path(current_user.id, @estimate.id)
+      return
+    end
+
     file_name =  "estimate_#{ current_user.id }_#{ @estimate.number.gsub('/', '_') }_#{ Time.now.to_i }"
     pdf = render_to_string pdf: file_name, template: 'estimates/print.pdf.erb', encoding: 'UTF-8'
 
