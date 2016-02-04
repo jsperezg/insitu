@@ -133,6 +133,16 @@ RSpec.describe InvoiceDetail, type: :model do
 
 			estimate_detail.reload
 			expect(estimate_detail.invoice_detail_id).to be_nil
+    end
+
+		it 'leaves delivery note record pending for invoice' do
+			invoice_detail = create(:invoice_detail)
+			delivery_note_detail = create(:delivery_note_detail, invoice_detail_id: invoice_detail.id)
+
+			invoice_detail.destroy
+
+			delivery_note_detail.reload
+			expect(delivery_note_detail.invoice_detail_id).to be_nil
 		end
   end
 end

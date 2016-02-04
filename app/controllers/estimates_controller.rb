@@ -110,12 +110,19 @@ class EstimatesController < SecuredController
   end
 
   def invoice
+    payment_method = PaymentMethod.find_by(default: true) || PaymentMethod.first
+    unless payment_method
+      flash[:alert] = t('payment_methods.not_found')
+      redirect_to edit_user_estimate_path(current_user, @estimate)
+      return
+    end
+
     Invoice.transaction do
       invoice = Invoice.create(
           date: Date.today,
           payment_date: Date.today + 15.days,
           customer_id: @estimate.customer_id,
-          payment_method_id: PaymentMethod.first.id
+          payment_method_id: payment_method.id
       )
 
       # Iterate over estimate details.

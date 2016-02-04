@@ -72,12 +72,19 @@ class TasksController < SecuredController
   def invoice_finished
     project = Project.find(params[:project_id])
 
+    payment_method = PaymentMethod.find_by(default: true) || PaymentMethod.first
+    unless payment_method
+      flash[:alert] = t('payment_methods.not_found')
+      redirect_to user_project_tasks_path(current_user, project)
+      return
+    end
+
     Invoice.transaction do
       invoice = Invoice.create(
         date: Date.today,
         payment_date: Date.today + 15.days,
         customer_id: project.customer_id,
-        payment_method_id: PaymentMethod.first.id
+        payment_method_id: payment_method.id
       )
 
       # Iterate over finished tasks.

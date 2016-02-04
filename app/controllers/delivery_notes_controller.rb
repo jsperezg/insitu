@@ -103,6 +103,13 @@ class DeliveryNotesController < SecuredController
   end
 
   def invoice
+    payment_method = PaymentMethod.find_by(default: true) || PaymentMethod.first
+    unless payment_method
+      flash[:alert] = t('payment_methods.not_found')
+      redirect_to edit_user_delivery_note_path(current_user, @delivery_note)
+      return
+    end
+
     Invoice.transaction do
       invoice = Invoice.create(
           date: Date.today,

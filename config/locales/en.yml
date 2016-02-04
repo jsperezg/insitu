@@ -42,7 +42,6 @@ en:
   are_you_sure: Are you sure?
   my_office: My office
   general: General
-  payment_methods: Payment methods
   vat: VAT
   customers: Customers
   minimum_length: (%{len} characters minimum)
@@ -64,6 +63,10 @@ en:
   toggle_navigation: Toggle navigation
   sign_in_at: Sign in at
   auto: Auto
+
+  payment_methods:
+      title: Payment methods
+      not_found: No payment methods defined. Can't generate invoice.
 
   services:
     service: Service

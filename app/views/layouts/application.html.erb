@@ -129,7 +129,7 @@
             <li class="treeview">
               <a href="#"><i class="fa fa-database"></i> <span><%=t :general %></span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><%= link_to t(:payment_methods), user_payment_methods_path(current_user.id)  %></li>
+                <li><%= link_to t('payment_methods.title'), user_payment_methods_path(current_user.id)  %></li>
                 <li><%= link_to t('vats.title'), user_vats_path(current_user.id) %></li>
                 <li><%= link_to t('units.title'), user_units_path(current_user.id) %></li>
                 <li><%= link_to t('services.title'), user_services_path(current_user.id)  %></li>

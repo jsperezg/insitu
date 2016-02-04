@@ -1,6 +1,12 @@
 FactoryGirl.define do
   factory :delivery_note_detail do
-  	service { Service.first.try(:id) || create(:service).id }
+		delivery_note_id { DeliveryNote.first.try(:id) || create(:delivery_note).id }
+  	service_id { Service.first.try(:id) || create(:service).id }
+
+		sequence :custom_description do |n|
+			"delivery note #{n}"
+    end
+
   	quantity 1
   	price 1
   end

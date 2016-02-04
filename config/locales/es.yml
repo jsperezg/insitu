@@ -42,7 +42,6 @@ es:
   are_you_sure: ¿Estás seguro?
   my_office: Tu oficina
   general: General
-  payment_methods: Métodos de pago
   vat: IVA
   minimum_length: (Mínimo %{len} carácteres)
   production: Producción
@@ -63,6 +62,10 @@ es:
   toggle_navigation: Mostrar/Ocultar navegación
   sign_in_at: Acceso el
   auto: Auto
+
+  payment_methods:
+    title: Métodos de pago
+    not_found: No hay métodos de pago definidos. No se puede facturar.
 
   services:
     service: Servicio

@@ -25,7 +25,7 @@ RSpec.describe DeliveryNotesController, type: :controller do
   # adjust the attributes here as well.
   let(:valid_attributes) {
     delivery_note = attributes_for :delivery_note
-    delivery_note.merge(delivery_note_details_attributes: [ attributes_for(:delivery_note_detail) ])
+    delivery_note.merge(delivery_note_details_attributes: [ attributes_for(:delivery_note_detail, delivery_note_id: nil) ])
 
     delivery_note
   }
@@ -167,4 +167,60 @@ RSpec.describe DeliveryNotesController, type: :controller do
       expect(response).to redirect_to(user_delivery_notes_url(@user))
     end
   end
+
+  describe "GET #invoice" do
+    before(:all) do
+      PaymentMethod.first || create(:payment_method)
+      Service.first || create(:service)
+      InvoiceStatus.first || create(:invoice_status)
+    end
+
+    it "Warns when nothing to invoice" do
+      delivery_note = create(:delivery_note)
+
+      get :invoice, { user_id: @user, id: delivery_note }
+      expect(response).to redirect_to(edit_user_delivery_note_path(@user, delivery_note))
+      expect(flash[:alert]).to eq(I18n.t('delivery_notes.nothing_to_invoice'))
+    end
+
+    it "Generates invoice " do
+      delivery_note = DeliveryNote.create! valid_attributes
+
+      get :invoice, { user_id: @user, id: delivery_note }
+
+      delivery_note.reload
+
+      delivery_note.delivery_note_details.each do |details|
+        expect(details.invoice_detail_id).not_to be_nil
+
+        expect(details.invoice_detail.description).to eq(details.custom_description)
+        expect(details.invoice_detail.quantity).to eq(details.quantity)
+        expect(details.invoice_detail.service_id).to eq(details.service_id)
+        expect(details.invoice_detail.vat_rate).to eq(details.invoice_detail.service.vat.rate)
+        expect(details.invoice_detail.price).to eq(details.price)
+
+        expect(response).to redirect_to(edit_user_invoice_path(@user, details.invoice_detail.invoice_id))
+      end
+    end
+  end
+
+  describe "GET #forward_email" do
+    let(:customer_without_email_delivery_note) {
+      customer = create(:customer, contact_email: nil)
+      delivery_note = attributes_for :delivery_note, customer_id: customer.id
+      delivery_note.merge(delivery_note_details_attributes: [ attributes_for(:delivery_note_detail, delivery_note_id: nil) ])
+
+      delivery_note
+    }
+
+    it "fails for customers without email" do
+      delivery_note = DeliveryNote.create! customer_without_email_delivery_note
+
+      get :forward_email, { user_id: @user, id: delivery_note }
+
+      expect(response).to redirect_to(user_delivery_note_path(@user.id, delivery_note.id))
+      expect(flash[:error]).to eq(I18n.t('helpers.customer_mail_missing'))
+    end
+  end
+
 end

@@ -47,4 +47,6 @@ else
   ].each do |vat|
     Vat.find_by(rate: vat[:rate]) || Vat.create(vat)
   end
+
+  PaymentMethod.create(name: 'Default', note_for_invoice: 'Pago al contado/Cash payment', default: true)
 end

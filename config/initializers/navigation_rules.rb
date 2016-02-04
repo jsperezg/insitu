@@ -35,7 +35,7 @@ NAVIGATION_RULES = {
     payment_methods: {
         index: {
             parent: :general,
-            title: :payment_methods
+            title: 'payment_methods.title'
         },
         new: {
             parent: { controller: :payment_methods, action: :index, params: [ :user_id ] },
