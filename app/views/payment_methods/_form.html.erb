@@ -22,6 +22,11 @@
     <%= f.label :note_for_invoice, :class => 'control-label' %>
     <%= f.text_field :note_for_invoice, :class => 'form-control input-sm' %>
   </div>
+  <div class="checkbox">
+    <label>
+      <%= f.check_box :default %><%= t('activerecord.attributes.payment_method.default') %>
+    </label>
+  </div>
 </div>
 <div class="box-footer">
   <%= f.submit t(:save), :class => 'btn btn-primary btn-flat col-xs-1', data: { disable_with: t('please_wait')} %>

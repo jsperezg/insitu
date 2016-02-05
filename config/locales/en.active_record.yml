@@ -23,6 +23,7 @@ en:
       payment_method:
         name: Name
         note_for_invoice: Note for invoice
+        default: Default
       service:
         code: Code
         description: Description

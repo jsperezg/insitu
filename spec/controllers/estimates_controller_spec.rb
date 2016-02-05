@@ -207,4 +207,23 @@ RSpec.describe EstimatesController, type: :controller do
       end
     end
   end
+
+  describe "GET #forward_email" do
+    let(:customer_without_email_estimate) {
+      customer = create(:customer, contact_email: nil)
+      estimate = attributes_for :estimate, customer_id: customer.id
+      estimate.merge(estimate_details_attributes: [ attributes_for(:estimate_detail, estimate_id: nil) ])
+
+      estimate
+    }
+
+    it "fails for customers without email" do
+      estimate = Estimate.create! customer_without_email_estimate
+
+      get :forward_email, { user_id: @user, id: estimate }
+
+      expect(response).to redirect_to(user_estimate_path(@user.id, estimate.id))
+      expect(flash[:error]).to eq(I18n.t('helpers.customer_mail_missing'))
+    end
+  end
 end

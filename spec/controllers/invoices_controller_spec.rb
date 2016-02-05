@@ -167,4 +167,23 @@ RSpec.describe InvoicesController, type: :controller do
       expect(response).to redirect_to(user_invoices_url(@user.id))
     end
   end
+
+  describe "GET #forward_email" do
+    let(:customer_without_email_invoice) {
+      customer = create(:customer, contact_email: nil)
+      invoice = attributes_for :invoice, customer_id: customer.id
+      invoice.merge(invoice_details_attributes: [ attributes_for(:invoice_detail, invoice_id: nil) ])
+
+      invoice
+    }
+
+    it "fails for customers without email" do
+      invoice = Invoice.create! customer_without_email_invoice
+
+      get :forward_email, { user_id: @user, id: invoice }
+
+      expect(response).to redirect_to(user_invoice_path(@user.id, invoice.id))
+      expect(flash[:error]).to eq(I18n.t('helpers.customer_mail_missing'))
+    end
+  end
 end

@@ -69,6 +69,6 @@ class PaymentMethodsController < SecuredController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_method_params
-      params.require(:payment_method).permit(:name, :note_for_invoice)
+      params.require(:payment_method).permit(:name, :note_for_invoice, :default)
     end
 end

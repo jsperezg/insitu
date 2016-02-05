@@ -23,6 +23,7 @@ es:
       payment_method:
         name: Nombre
         note_for_invoice: Anotación en factura
+        default: Por defecto
       service:
         code: Código
         description: Descripción
