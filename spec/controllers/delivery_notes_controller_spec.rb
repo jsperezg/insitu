@@ -169,7 +169,7 @@ RSpec.describe DeliveryNotesController, type: :controller do
   end
 
   describe "GET #invoice" do
-    before(:all) do
+    before(:each) do
       PaymentMethod.first || create(:payment_method)
       Service.first || create(:service)
       InvoiceStatus.first || create(:invoice_status)
@@ -202,7 +202,20 @@ RSpec.describe DeliveryNotesController, type: :controller do
         expect(response).to redirect_to(edit_user_invoice_path(@user, details.invoice_detail.invoice_id))
       end
     end
+
+    it "Fails when no paying method available" do
+      PaymentMethod.delete_all
+
+      delivery_note = DeliveryNote.create! valid_attributes
+
+      get :invoice, { user_id: @user, id: delivery_note }
+
+      expect(response).to redirect_to edit_user_delivery_note_path(@user.id, delivery_note)
+      expect(flash[:alert]).to eq(I18n.t('payment_methods.not_found'))
+    end
   end
+
+
 
   describe "GET #forward_email" do
     let(:customer_without_email_delivery_note) {

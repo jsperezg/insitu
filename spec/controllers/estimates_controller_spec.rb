@@ -173,7 +173,7 @@ RSpec.describe EstimatesController, type: :controller do
   end
 
   describe "GET #invoice" do
-    before(:all) do
+    before(:each) do
       PaymentMethod.first || create(:payment_method)
       Service.first || create(:service)
       InvoiceStatus.first || create(:invoice_status)
@@ -205,6 +205,17 @@ RSpec.describe EstimatesController, type: :controller do
 
         expect(response).to redirect_to(edit_user_invoice_path(@user, details.invoice_detail.invoice_id))
       end
+    end
+
+    it "Fails when no paying method available" do
+      PaymentMethod.delete_all
+
+      estimate = Estimate.create! valid_attributes
+
+      get :invoice, { user_id: @user, id: estimate }
+
+      expect(response).to redirect_to edit_user_estimate_path(@user.id, estimate)
+      expect(flash[:alert]).to eq(I18n.t('payment_methods.not_found'))
     end
   end
 
