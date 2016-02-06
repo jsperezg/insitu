@@ -13,6 +13,11 @@ class InvoicesController < SecuredController
   end
 
   def print
+    if @invoice.created?
+      @invoice.invoice_status = InvoiceStatus.find_by(name: 'invoice_status.sent')
+      @invoice.save
+    end
+
     respond_to do |format|
       format.html do
         render :show, layout: 'print'
@@ -24,6 +29,11 @@ class InvoicesController < SecuredController
   end
 
   def forward_email
+    if @invoice.created?
+      @invoice.invoice_status = InvoiceStatus.find_by(name: 'invoice_status.sent')
+      @invoice.save
+    end
+
     if @invoice.customer.contact_email.blank?
       flash[:error] = t('helpers.customer_mail_missing')
       redirect_to user_invoice_path(current_user.id, @invoice.id)

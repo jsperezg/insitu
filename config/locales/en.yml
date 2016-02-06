@@ -6,18 +6,26 @@ en:
     date:
       formats:
         default: "%Y-%m-%d"
+
   project_status:
     active: Active
     suspended: Suspended
     cancelled: Canceled
     closed: Closed
+
   estimate_status:
     created: Created
     sent: Sent
     accepted: Accepted
     rejected: Rejected
 
-  log_in: "Log in"
+  invoice_status:
+    created: Created
+    sent: Sent
+    paid: Paid
+    default: Default
+
+  log_in: Log in
   sign_up: Sign up
   forgot_password: Forgot password?
   didnt_received_confirmation_instructions: Didn't receive confirmation instructions?

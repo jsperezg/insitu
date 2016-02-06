@@ -20,7 +20,7 @@
             <tr><td colspan="6"><%=t 'helpers.tables.empty' %></td></tr>
           <% end %>
           <% @invoices.each do |invoice| %>
-            <tr class="<%=payment_status invoice %>">
+            <%= invoice_tr invoice do %>
               <td><%= invoice.number %></td>
               <td><%=ldate invoice.date %></td>
               <td><%= invoice.customer.try(:name) %></td>
@@ -53,7 +53,7 @@
                   </i>
                 <% end %>
               </td>
-            </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>

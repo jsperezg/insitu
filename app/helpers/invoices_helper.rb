@@ -1,15 +1,18 @@
 module InvoicesHelper
-  def payment_status invoice
-    now = Date.today
+  def invoice_tr(invoice)
 
-    if invoice[:paid_on].present?
-      return 'success'
+    if invoice.paid?
+      tr_class = 'success'
+    elsif invoice.default?
+      tr_class = 'danger'
+    elsif invoice.sent?
+      tr_class = 'info'
+    else
+      tr_class = 'active'
     end
 
-    if invoice[:payment_date] < now
-      return 'danger'
-    end    
-
-    'info'
+    content_tag(:tr, class: tr_class) do
+      yield
+    end
   end
 end

@@ -7,7 +7,7 @@ if Apartment::Tenant.current_tenant.blank? or Apartment::Tenant.current_tenant =
       ProjectStatus.find_by(name: state) || ProjectStatus.create(name: state)
   end
 
-  ['invoice_status.created', 'invoice_status.planed', 'invoice_status.sent'].each do |status|
+  ['invoice_status.created', 'invoice_status.sent', 'invoice_status.paid', 'invoice_status.default'].each do |status|
     InvoiceStatus.find_by(name: status) || InvoiceStatus.create(name: status)
   end
 
@@ -48,5 +48,5 @@ else
     Vat.find_by(rate: vat[:rate]) || Vat.create(vat)
   end
 
-  PaymentMethod.create(name: 'Default', note_for_invoice: 'Pago al contado/Cash payment', default: true)
+  PaymentMethod.create(name: 'Efectivo/Cash', note_for_invoice: 'Pago al contado/Cash payment', default: true)
 end

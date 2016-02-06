@@ -74,10 +74,10 @@ class Invoice < ActiveRecord::Base
 
   def applied_irpf
     result = 0
-    gross_ammount = subtotal - discount
+    gross_amount = subtotal - discount
     irpf_value = irpf || 0
     if irpf_value > 0
-      result = gross_ammount * irpf / 100.0
+      result = gross_amount * irpf / 100.0
     end
 
     result
@@ -88,10 +88,32 @@ class Invoice < ActiveRecord::Base
     self.irpf = 0 unless user.try(:country) == 'ES'
   end
 
+  def created?
+    self.invoice_status.nil? || self.invoice_status.name == 'invoice_status.created'
+  end
+
+  def sent?
+    self.invoice_status.try(:name) == 'invoice_status.sent'
+  end
+
+  def paid?
+    self.invoice_status.try(:name) == 'invoice_status.paid'
+  end
+
+  def default?
+    self.invoice_status.try(:name) == 'invoice_status.default' || (!created? && self.payment_date < Date.today)
+  end
+
   private
 
   def set_default_values
-    self.invoice_status_id ||= InvoiceStatus.find_by(name: 'invoice_status.created').try(:id)
+    if !self.paid? && self.paid_on.present?
+      self.invoice_status_id = InvoiceStatus.find_by(name: 'invoice_status.paid').try(:id)
+    elsif self.default?
+      self.invoice_status_id = InvoiceStatus.find_by(name: 'invoice_status.default').try(:id)
+    else
+      self.invoice_status_id ||= InvoiceStatus.find_by(name: 'invoice_status.created').try(:id)
+    end
   end
 
   def set_invoice_number

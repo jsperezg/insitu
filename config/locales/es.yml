@@ -20,6 +20,12 @@ es:
     accepted: Aceptado
     rejected: Rechazado
 
+  invoice_status:
+    created: Creada
+    sent: Enviada
+    paid: Pagada
+    default: Pendiente
+
   log_in: Entrar
   sign_up: Crear cuenta
   forgot_password: ¿Has olvidado tu contraseña?
