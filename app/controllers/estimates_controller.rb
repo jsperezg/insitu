@@ -125,6 +125,8 @@ class EstimatesController < SecuredController
           payment_method_id: payment_method.id
       )
 
+      invoice.apply_irpf(current_user)
+
       # Iterate over estimate details.
       details = EstimateDetail.where(estimate_id: @estimate.id, invoice_detail_id: nil)
       details.each do |detail|

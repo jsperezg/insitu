@@ -45,7 +45,8 @@ class InvoicesController < SecuredController
 
   # GET /invoices/new
   def new
-    @invoice = Invoice.new(date: Date.today)
+    payment_method = PaymentMethod.find_by(default: true)
+    @invoice = Invoice.new(date: Date.today, payment_method: payment_method)
     @invoice.invoice_details.build
   end
 
@@ -60,6 +61,8 @@ class InvoicesController < SecuredController
   def create
     Invoice.transaction do
       @invoice = Invoice.new(invoice_params)
+
+      @invoice.apply_irpf(current_user)
 
       respond_to do |format|
         if @invoice.save
@@ -81,6 +84,8 @@ class InvoicesController < SecuredController
   # PATCH/PUT /invoices/1.json
   def update
     Invoice.transaction do
+      @invoice.apply_irpf(current_user)
+
       respond_to do |format|
         if @invoice.update(invoice_params)
           format.html {

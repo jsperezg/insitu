@@ -121,4 +121,45 @@ RSpec.describe Invoice, type: :model do
       expect(invoice.errors.empty?).to be(true)
     end
   end
+
+  describe 'billing process' do
+    let(:irpf_15) {
+      invoice = attributes_for(:invoice)
+
+      invoice.merge(invoice_details_attributes: [ attributes_for(:invoice_detail, invoice_id: nil) ])
+    }
+
+    let(:irpf_0) {
+      invoice = attributes_for(:invoice, irpf: 0)
+
+      invoice.merge(invoice_details_attributes: [ attributes_for(:invoice_detail, invoice_id: nil) ])
+    }
+
+    it 'irpf 15%' do
+      invoice = Invoice.create! irpf_15
+
+      gross_total = 0
+      invoice.invoice_details.each do |detail|
+        gross_total += detail.subtotal - detail.discount
+      end
+
+      expect(gross_total).not_to eq(0)
+      expect(invoice.applied_irpf).not_to eq(0)
+      expect(invoice.applied_irpf).to eq(gross_total * invoice.irpf / 100)
+      expect(invoice.total).to eq(invoice.subtotal - invoice.discount - invoice.applied_irpf + invoice.tax)
+    end
+
+    it 'irpf 0%' do
+      invoice = Invoice.create! irpf_0
+
+      gross_total = 0
+      invoice.invoice_details.each do |detail|
+        gross_total += detail.subtotal - detail.discount
+      end
+
+      expect(gross_total).not_to eq(0)
+      expect(invoice.applied_irpf).to eq(0)
+      expect(invoice.total).to eq(invoice.subtotal - invoice.discount - invoice.applied_irpf + invoice.tax)
+    end
+  end
 end

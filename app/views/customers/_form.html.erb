@@ -27,17 +27,9 @@
   </div>
 
   <div class=row>
-    <div class="form-group col-xs-3 pull-left">
+    <div class="form-group col-xs-2">
       <%= f.label :billing_serie, :class => 'control-label' %>
       <%= f.text_field :billing_serie, :class => 'form-control input-sm' %>
-    </div>
-
-    <div class="form-group col-xs-3 pull-left">
-      <%= f.label :billing_tax, :class => 'control-label' %>
-      <div class="input-group">
-        <%= f.number_field :billing_tax, :class => 'form-control input-sm', step: '1', min: '0' %>
-        <span class="input-group-addon">%</span>
-      </div>
     </div>
   </div>
 
@@ -86,6 +78,8 @@
       <%= f.text_field :country, class: 'form-control input-sm' %>
     </div>
   </div>
+
+  <%= render partial: 'form_es', locals: { f: f } %>
 </div>
 <div class="box-footer">
   <%= f.submit t(:save), :class => 'btn btn-primary btn-flat col-xs-1', data: { disable_with: t('please_wait')} %>

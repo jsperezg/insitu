@@ -84,8 +84,11 @@ class TasksController < SecuredController
         date: Date.today,
         payment_date: Date.today + 15.days,
         customer_id: project.customer_id,
-        payment_method_id: payment_method.id
+        payment_method_id: payment_method.id,
+        irpf: 0
       )
+
+      invoice.apply_irpf(current_user)
 
       # Iterate over finished tasks.
       tasks = Task.where(project_id: project).where.not(finish_date: :nil)

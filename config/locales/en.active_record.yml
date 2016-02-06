@@ -34,7 +34,7 @@ en:
         name: Name
         tax_id: TAX Id.
         billing_serie: Billing serie
-        billing_tax: Tax
+        irpf: I.R.P.F.
         contact_name: Contact name
         contact_phone: Phone
         contact_email: E-mail
@@ -85,6 +85,7 @@ en:
         paid_on: Paid on
         invoice_status_id: Status
         tax: Tax
+        irpf: I.R.P.F.
       invoice_detail:
         invoice_id: Invoice
         service_id: Item
@@ -159,7 +160,7 @@ en:
               invalid: 'seems to be invalid.'
             tax_id:
               taken: ': Is already associated to another customer.'
-            billing_tax:
+            irpf:
               not_a_number: is not a number.
               not_an_integer: is not an integer value.
               greater_than_or_equal_to: must be greater than %{count}.

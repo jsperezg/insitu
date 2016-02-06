@@ -118,6 +118,8 @@ class DeliveryNotesController < SecuredController
           payment_method_id: PaymentMethod.first.id
       )
 
+      invoice.apply_irpf(current_user)
+
       # Iterate over estimate details.
       details = DeliveryNoteDetail.where(delivery_note_id: @delivery_note.id, invoice_detail_id: nil)
       details.each do |detail|

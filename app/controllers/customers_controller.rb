@@ -83,7 +83,7 @@ class CustomersController < SecuredController
       params
         .require(:customer)
         .permit(
-            :name, :tax_id, :billing_serie, :billing_tax, :contact_name, :contact_phone, :contact_email,
+            :name, :tax_id, :billing_serie, :irpf, :contact_name, :contact_phone, :contact_email,
             :address, :city, :country, :state, :postal_code
         )
     end

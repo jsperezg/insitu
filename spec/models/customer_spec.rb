@@ -40,24 +40,24 @@ RSpec.describe Customer, type: :model do
     expect(customer.errors).to satisfy { |errors| !errors.empty? && errors.key?( :tax_id )}
   end
 
-  it 'billing_tax must be a number' do
-    c = Customer.new(billing_tax: 'asdfasdfasdf')
+  it 'irpf must be a number' do
+    c = Customer.new(irpf: 'asdfasdfasdf')
     c.save
 
-    expect(c.errors).to satisfy { |errors| errors.key? :billing_tax }
+    expect(c.errors).to satisfy { |errors| errors.key? :irpf }
   end
 
-  it 'billing_tax must be an integer' do
-    c = Customer.new(billing_tax: 1.2)
+  it 'irpf must be an integer' do
+    c = Customer.new(irpf: 1.2)
     c.save
 
-    expect(c.errors).to satisfy { |errors| errors.key? :billing_tax }
+    expect(c.errors).to satisfy { |errors| errors.key? :irpf }
   end
 
-  it 'billing_tax must be great or equal to zero' do
-    c = Customer.new(billing_tax: -1)
+  it 'irpf must be great or equal to zero' do
+    c = Customer.new(irpf: -1)
     c.save
 
-    expect(c.errors).to satisfy { |errors| errors.key? :billing_tax }
+    expect(c.errors).to satisfy { |errors| errors.key? :irpf }
   end
 end

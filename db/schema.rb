@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203203248) do
+ActiveRecord::Schema.define(version: 20160206060319) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "name",          limit: 255, null: false
     t.string   "tax_id",        limit: 255
     t.string   "billing_serie", limit: 255
-    t.integer  "billing_tax",   limit: 4
+    t.integer  "irpf",          limit: 4
     t.string   "contact_name",  limit: 255
     t.string   "contact_phone", limit: 255
     t.string   "contact_email", limit: 255
@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 20160203203248) do
     t.date     "paid_on"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
+    t.integer  "irpf",              limit: 4
   end
 
   add_index "invoices", ["customer_id"], name: "index_invoices_on_customer_id", using: :btree

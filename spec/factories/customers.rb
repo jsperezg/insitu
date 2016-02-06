@@ -9,7 +9,7 @@ FactoryGirl.define do
     end
 
     billing_serie 'A'
-    billing_tax 21
+    irpf 15
 
     contact_name { "Contact: #{ name }" }
 

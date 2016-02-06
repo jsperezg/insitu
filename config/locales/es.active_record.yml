@@ -34,7 +34,7 @@ es:
         name: Nombre
         tax_id: CIF
         billing_serie: Serie de facturación
-        billing_tax: Retención
+        irpf: I.R.P.F.
         contact_name: Persona de contacto
         contact_phone: Teléfono
         contact_email: E-Mail
@@ -86,6 +86,7 @@ es:
         invoice_status_id: Estado
         tax: IVA
         discount: Descuento
+        irpf: I.R.P.F.
       invoice_detail:
         invoice_id: Factura
         service_id: Concepto
@@ -160,7 +161,7 @@ es:
               invalid: 'tiene un formato incorrecto.'
             tax_id:
               taken: ': Ya está asociado a otro cliente.'
-            billing_tax:
+            irpf:
               not_a_number: no es un número.
               not_an_integer: no admite decimales.
               greater_than_or_equal_to: debe ser mayor que %{count}.

@@ -39,7 +39,7 @@ class Invoice < ActiveRecord::Base
       result += detail.total
     end
 
-    result
+    result - applied_irpf
   end
 
   def subtotal
@@ -70,6 +70,22 @@ class Invoice < ActiveRecord::Base
     end
 
     result
+  end
+
+  def applied_irpf
+    result = 0
+    gross_ammount = subtotal - discount
+    irpf_value = irpf || 0
+    if irpf_value > 0
+      result = gross_ammount * irpf / 100.0
+    end
+
+    result
+  end
+
+  def apply_irpf(user)
+    self.irpf = self.customer.irpf || 0
+    self.irpf = 0 unless user.try(:country) == 'ES'
   end
 
   private

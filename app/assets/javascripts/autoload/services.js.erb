@@ -14,6 +14,7 @@ services.loadService = function (url, element, objectName) {
       success: function (data) {
         $(services.getObjectId(objectName, 'price')).val(data.price);
         $(services.getObjectId(objectName, 'quantity')).parent().find('.input-group-addon').html(data.unit.label_short);
+        $(services.getObjectId(objectName, 'vat_rate')).val(data.vat.rate);
 
         services.calculateTotal(objectName);
       }

@@ -1,0 +1,11 @@
+<% if current_user.country == 'ES' %>
+  <div class="row">
+    <div class="form-group col-xs-2">
+      <%= f.label :irpf, :class => 'control-label' %>
+      <div class="input-group">
+        <%= f.number_field :irpf, :class => 'form-control input-sm', step: '1', min: '0' %>
+        <span class="input-group-addon">%</span>
+      </div>
+    </div>
+  </div>
+<% end %>
