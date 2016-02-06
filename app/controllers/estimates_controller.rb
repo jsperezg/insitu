@@ -14,6 +14,11 @@ class EstimatesController < SecuredController
 
   # GET /estimates/1/print
   def print
+    unless @estimate.sent?
+      @estimate.estimate_status = EstimateStatus.find_by(name: 'estimate_status.sent')
+      @estimate.save
+    end
+
     respond_to do |format|
       format.html do
         render :show, layout: 'print'
@@ -29,6 +34,11 @@ class EstimatesController < SecuredController
       flash[:error] = t('helpers.customer_mail_missing')
       redirect_to user_estimate_path(current_user.id, @estimate.id)
       return
+    end
+
+    unless @estimate.sent?
+      @estimate.estimate_status = EstimateStatus.find_by(name: 'estimate_status.sent')
+      @estimate.save
     end
 
     file_name =  "estimate_#{ current_user.id }_#{ @estimate.number.gsub('/', '_') }_#{ Time.now.to_i }"
@@ -118,6 +128,11 @@ class EstimatesController < SecuredController
     end
 
     Invoice.transaction do
+      unless @estimate.accepted?
+        @estimate.estimate_status = EstimateStatus.find_by(name: 'estimate_status.accepted')
+        @estimate.save
+      end
+
       invoice = Invoice.create(
           date: Date.today,
           payment_date: Date.today + 15.days,

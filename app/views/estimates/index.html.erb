@@ -19,7 +19,7 @@
             <tr><td colspan="6"><%=t 'helpers.tables.empty' %></td></tr>
           <% end %>
           <% @estimates.each do |estimate| %>
-            <tr>
+            <%= estimate_tr estimate do %>
               <td><%= estimate.number %></td>
               <td><%=ldate estimate.date %></td>
               <td><%= estimate.customer.try(:name) %></td>
@@ -52,7 +52,7 @@
                   </i>
                 <% end %>
               </td>
-            </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>

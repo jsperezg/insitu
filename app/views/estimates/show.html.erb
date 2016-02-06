@@ -84,7 +84,7 @@
     <div class="row no-print">
       <div class="col-xs-12">
         <%= link_to invoice_user_estimate_url(current_user.id, @estimate.id), class: 'btn btn-default col-xs-1',
-                    data: { confirm: t('helpers.links.confirm', :default => 'Are you sure?'), disable_with: t(:please_wait) }, do %>
+                    data: { confirm: t('helpers.links.confirm', :default => 'Are you sure?'), disable_with: t(:please_wait) } do %>
             <i class="fa fa-money"></i> <%=t 'estimates.invoice_title' %>
         <% end %>
 

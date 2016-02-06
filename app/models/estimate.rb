@@ -3,6 +3,7 @@ class Estimate < ActiveRecord::Base
 
   belongs_to :customer
   has_many :estimate_details, :dependent => :destroy
+  belongs_to :estimate_status
 
   validates :customer_id, presence: true
   validates :date, presence: true
@@ -35,6 +36,22 @@ class Estimate < ActiveRecord::Base
     end
 
     total
+  end
+
+  def created?
+    self.estimate_status.nil? || self.estimate_status.try(:name) == 'estimate-status.created'
+  end
+
+  def accepted?
+    self.estimate_status.try(:name) == 'estimate_status.accepted'
+  end
+
+  def rejected?
+    (!self.accepted? && self.valid_until <= Date.today) || self.estimate_status.try(:name) == 'estimate_status.rejected'
+  end
+
+  def sent?
+    self.estimate_status.try(:name) == 'estimate_status.sent'
   end
 
   private
