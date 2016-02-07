@@ -6,6 +6,12 @@ $(document).on("page:change", function () {
         searchId = $(this).find('input[type=hidden]'),
         url= $(this).attr('url_source');
 
+    $(searchInput).on('keyup', function (event) {
+      if ($(this).val() === '') {
+        searchId.val('');
+      }
+    });
+
     $(searchInput).autocomplete({
       minLength: 1,
       delay: 100,
@@ -19,7 +25,6 @@ $(document).on("page:change", function () {
           success: function(data, textStatus, jqXHR) {
             var i, l = data.length, found = [];
 
-
             for (i = 0; i < l; i += 1) {
               found.push({
                 id: data[i].id,
@@ -29,6 +34,7 @@ $(document).on("page:change", function () {
 
             response(found);
           },
+
           error: function(jqXHR, textStatus, errorThrown) {
             console.log('Filter request failed. Status: ' + textStatus + ', Error thrown: ' + errorThrown);
           }

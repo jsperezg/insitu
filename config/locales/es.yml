@@ -8,6 +8,12 @@ es:
     formats:
       default: "%d/%m/%Y"
 
+  filterrific:
+    reset_filters: Limpiar
+    starting_from_date: Desde fecha
+    sorted_by: Ordenar por
+    sort_by_date_desc: Fecha (Mas reciente primero)
+
   project_status:
     active: Activo
     suspended: Suspendido

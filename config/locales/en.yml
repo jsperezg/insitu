@@ -7,6 +7,12 @@ en:
       formats:
         default: "%Y-%m-%d"
 
+  filterrific:
+    reset_filters:  Reset filters
+    starting_from_date: Starting from date
+    sorted_by: Sorted by
+    sort_by_date_desc: Date (newest first)
+
   project_status:
     active: Active
     suspended: Suspended

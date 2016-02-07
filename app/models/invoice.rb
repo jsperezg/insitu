@@ -1,6 +1,27 @@
 class Invoice < ActiveRecord::Base
   include SequenceGenerator
 
+  filterrific(
+      default_filter_params: {
+          sorted_by: 'date_desc',
+          with_date_ge: Date.today.beginning_of_year
+      },
+      available_filters: [
+          :with_number,
+          :with_date_ge,
+          :with_customer,
+          :sorted_by
+      ]
+  )
+
+  self.per_page = 10
+
+  def self.options_for_sorted_by
+    [
+        [I18n.t('filterrific.sort_by_date_desc'), 'date_desc']
+    ]
+  end
+
   belongs_to :payment_method
   belongs_to :customer
   belongs_to :invoice_status
@@ -103,6 +124,33 @@ class Invoice < ActiveRecord::Base
   def default?
     self.invoice_status.try(:name) == 'invoice_status.default' || (!created? && self.payment_date < Date.today)
   end
+
+  scope :with_number, lambda { |number|
+    where('number like :number', { number: "#{number}%" })
+  }
+
+  scope :with_date_ge, lambda { |date|
+    match = date.match(/(\d{2})\/(\d{2})\/(\d{4})/i)
+    if match
+      date = "#{match[3]}-#{match[2]}-#{match[1]}"
+    end
+
+    where("date >= :date", { date: date })
+  }
+
+  scope :with_customer, lambda { |customer_id|
+    where(customer_id: customer_id)
+  }
+
+  scope :sorted_by, lambda { |sort_by|
+    case sort_by
+      when 'date_desc'
+        order(date: :desc)
+
+      else
+        order(date: :desc)
+    end
+  }
 
   private
 

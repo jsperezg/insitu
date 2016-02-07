@@ -4,7 +4,24 @@ class InvoicesController < SecuredController
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.order(date: :desc)
+    @filterrific = initialize_filterrific(
+      Invoice,
+      params[:filterrific],
+      select_options: {
+          sorted_by: Invoice.options_for_sorted_by
+      },
+      default_filter_params: {
+          with_date_ge: I18n.l(Date.today.beginning_of_year)
+      }
+    ) or return
+
+    @invoices = @filterrific.find.page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.json
+      format.js
+    end
   end
 
   # GET /invoices/1

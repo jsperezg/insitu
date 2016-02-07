@@ -9,22 +9,38 @@ module CustomersHelper
       options[:class] = 'form-group customer-selector'
     end
 
+    if options.key? :input_class
+      options[:input_class] = "form-control input-sm #{ options[:input_class]}"
+    else
+      options[:input_class] = 'form-control input-sm'
+    end
+
+    hidden_class = ''
+    hidden_class = 'filterrific-periodically-observed' if options[:filterrific]
+
     # value for approximate search
     value = ''
 
-    unless form.object.nil?
+    if !form.object.nil? && form.object.respond_to?(:customer)
       customer = form.object.send('customer')
       value = customer.send('name') unless customer.nil?
     end
 
     content_tag(:div, class: options[:class], url_source: user_customers_path(current_user, format: :json)) do
-      content << form.label(method, class: 'control-label', for: "#{ form.object_name }_#{ method }_finder")
+      if options.key? :label
+        content << form.label(method, options[:label], class: 'control-label', for: "#{ form.object_name }_#{ method }_finder")
+      else
+        content << form.label(method, class: 'control-label', for: "#{ form.object_name }_#{ method }_finder")
+      end
+
       content << text_field_tag("#{ form.object_name }_#{ method }_finder",
                                 value,
-                                class: 'form-control input-sm',
+                                class: options[:input_class],
                                 placeholder: I18n.t('customers.select_customer_placeholder'),
                                 required: options[:required])
-      content << form.hidden_field(method)
+
+
+      content << form.hidden_field(method, class: hidden_class)
       raw(content.join(''))
     end
   end

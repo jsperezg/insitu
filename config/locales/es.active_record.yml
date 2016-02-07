@@ -82,7 +82,7 @@ es:
         payment_method_id: Forma de pago
         customer_id: Cliente
         payment_date: Vencimiento
-        paid_on: Fecha de cobro
+        paid_on: Pagado el
         invoice_status_id: Estado
         tax: IVA
         discount: Descuento

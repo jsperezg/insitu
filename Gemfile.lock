@@ -93,6 +93,8 @@ GEM
       railties (>= 3.0.0)
     figaro (1.1.1)
       thor (~> 0.14)
+    filterrific (2.0.5)
+      rails (>= 3.1.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -244,6 +246,7 @@ DEPENDENCIES
   email_validator
   factory_girl_rails (~> 4.0)
   figaro
+  filterrific
   jbuilder (~> 2.0)
   jquery-inputmask-rails
   jquery-rails

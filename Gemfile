@@ -28,6 +28,7 @@ gem 'country_select', github: 'stefanpenner/country_select'
 gem 'sidekiq'
 gem 'apartment-sidekiq'
 gem 'figaro'
+gem 'filterrific'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

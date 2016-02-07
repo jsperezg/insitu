@@ -22,6 +22,7 @@
 //= require jquery.inputmask.numeric.extensions
 //= require jquery.inputmask.date.extensions
 //= require jquery.slimscroll
+//= require filterrific/filterrific-jquery
 //= require fastclick
 //= require AdminLTE
 //= require turbolinks

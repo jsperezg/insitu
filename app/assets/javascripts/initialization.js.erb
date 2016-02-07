@@ -5,7 +5,8 @@ if (typeof jQuery !== 'undefined') {
         locale = document.documentElement.lang,
         dateFormat = "yyyy-mm-dd",
         mask = 'y-m-d',
-        bestInPlace = $(".best_in_place");
+        bestInPlace = $(".best_in_place"),
+        pullDownElements = $('.pull-down');
 
     /* Activating Best In Place */
     if (bestInPlace.length) {
@@ -41,5 +42,16 @@ if (typeof jQuery !== 'undefined') {
     if (documentIds.length) {
       documentIds.inputmask('a/9999/999999');
     }
+
+    // Pulldown elements.
+    pullDownElements.each(function () {
+      var margin = $(this).parent().height()- $(this).outerHeight(true);
+
+      if (margin < 0) {
+        margin = 0;
+      }
+
+      $(this).css('margin-top', margin);
+    });
   });
 }

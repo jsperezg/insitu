@@ -19,3 +19,11 @@
  *=require progress_bar
  *=require_self
  */
+
+#filterrific_filter {
+    margin-bottom: 0;
+}
+
+.pull-down {
+    margin-bottom: 14px;
+}
