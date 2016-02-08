@@ -4,7 +4,24 @@ class EstimatesController < SecuredController
   # GET /estimates
   # GET /estimates.json
   def index
-    @estimates = Estimate.order(date: :desc)
+    @filterrific = initialize_filterrific(
+        Estimate,
+        params[:filterrific],
+        select_options: {
+            sorted_by: Estimate.options_for_sorted_by
+        },
+        default_filter_params: {
+            with_date_ge: I18n.l(Date.today.beginning_of_year)
+        }
+    ) or return
+
+    @estimates = @filterrific.find.page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.json
+      format.js
+    end
   end
 
   # GET /estimates/1
