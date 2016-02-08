@@ -1,0 +1,8 @@
+<% js = escape_javascript(
+  render(
+    :partial => 'delivery_notes/list',
+    :locals => { delivery_notes: @delivery_notes }
+  )
+) %>
+
+$("#filterrific_results").html("<%= js %>");

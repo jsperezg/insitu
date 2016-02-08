@@ -1,0 +1,58 @@
+<%- model_class = DeliveryNote -%>
+<div id="filterrific_results">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th class=col-xs-2><%= model_class.human_attribute_name(:number) %></th>
+        <th class=col-xs-6><%= model_class.human_attribute_name(:customer_id) %></th>
+        <th class="col-xs-1 text-center"><%= model_class.human_attribute_name(:date) %></th>
+        <th class=col-xs-1></th>
+        <th class=col-xs-1></th>
+        <th class=col-xs-1></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% if delivery_notes.empty? %>
+          <tr><td colspan="5"><%=t 'helpers.tables.empty' %></td></tr>
+      <% end %>
+      <% delivery_notes.each do |delivery_note| %>
+          <tr>
+            <td><%= link_to delivery_note.number, edit_user_delivery_note_path(current_user, delivery_note) %></td>
+            <td><%= delivery_note.customer.name %></td>
+            <td class="text-center"><%=l delivery_note.date %></td>
+            <td>
+              <%= button_to edit_user_delivery_note_path(current_user, delivery_note),
+                            method: :get,
+                            class: 'btn btn-default btn-xs btn-flat btn-block' do %>
+                  <i class="fa fa-pencil-square-o" aria-hidden="true">
+                    <%=t 'helpers.links.edit' %>
+                  </i>
+              <% end %>
+            </td>
+            <td>
+              <%= button_to user_delivery_note_path(current_user, delivery_note),
+                            method: :get,
+                            class: 'btn btn-default btn-xs btn-flat btn-block' do %>
+                  <i class="fa fa-print" aria-hidden="true">
+                    <%=t 'helpers.links.print' %>
+                  </i>
+              <% end %>
+            </td>
+            <td>
+              <%= button_to user_delivery_note_path(current_user, delivery_note),
+                            :method => :delete,
+                            :data => { :confirm => t("helpers.links.confirm", :default => 'Are you sure?') },
+                            :class => 'btn btn-xs btn-danger btn-flat btn-block' do %>
+                  <i class="fa fa-trash-o" aria-hidden="true">
+                    <%=t 'helpers.links.destroy' %>
+                  </i>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%= will_paginate delivery_notes, renderer: BootstrapPagination::Rails %>

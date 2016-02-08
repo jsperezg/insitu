@@ -4,7 +4,24 @@ class DeliveryNotesController < SecuredController
   # GET /delivery_notes
   # GET /delivery_notes.json
   def index
-    @delivery_notes = DeliveryNote.order(date: :desc)
+    @filterrific = initialize_filterrific(
+        DeliveryNote,
+        params[:filterrific],
+        select_options: {
+            sorted_by: DeliveryNote.options_for_sorted_by
+        },
+        default_filter_params: {
+            with_date_ge: I18n.l(Date.today.beginning_of_year)
+        }
+    ) or return
+
+    @delivery_notes = @filterrific.find.page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.json
+      format.js
+    end
   end
 
   # GET /delivery_notes/1

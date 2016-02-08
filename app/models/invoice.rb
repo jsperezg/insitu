@@ -3,8 +3,7 @@ class Invoice < ActiveRecord::Base
 
   filterrific(
       default_filter_params: {
-          sorted_by: 'date_desc',
-          with_date_ge: Date.today.beginning_of_year
+          sorted_by: 'date_desc'
       },
       available_filters: [
           :with_number,
