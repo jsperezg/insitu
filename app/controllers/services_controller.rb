@@ -4,7 +4,21 @@ class ServicesController < SecuredController
   # GET /services
   # GET /services.json
   def index
-    @services = Service.includes(:vat, :unit).paginate(page: params[:page], per_page: DEFAULT_ITEMS_PER_PAGE).order(code: :asc)
+    @filterrific = initialize_filterrific(
+        Service,
+        params[:filterrific],
+        select_options: {
+            sorted_by: Service.options_for_sorted_by
+        }
+    ) or return
+
+    @services = @filterrific.find.page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.json
+      format.js
+    end
   end
 
   # GET /services/1

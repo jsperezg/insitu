@@ -15,6 +15,8 @@ es:
     sort_by_date_desc: Fecha (Mas reciente primero)
     sort_by_name_desc: Nombre (Z-A)
     sort_by_name_asc: Nombre (A-Z)
+    sort_alpha_asc: A-Z
+    sort_alpha_desc: Z-A
 
   project_status:
     active: Activo

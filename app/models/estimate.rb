@@ -13,7 +13,7 @@ class Estimate < ActiveRecord::Base
       ]
   )
 
-  self.per_page = 10
+  self.per_page = DEFAULT_ITEMS_PER_PAGE
 
   def self.options_for_sorted_by
     [

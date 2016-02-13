@@ -1,0 +1,52 @@
+<%- model_class = Service -%>
+<div id="filterrific_results">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th class="col-xs-1"><%= model_class.human_attribute_name(:code) %></th>
+        <th><%= model_class.human_attribute_name(:description) %></th>
+        <th class="col-xs-1"><%= model_class.human_attribute_name(:vat_id) %></th>
+        <th class="col-xs-1"><%= model_class.human_attribute_name(:unit_id) %></th>
+        <th class="col-xs-1"><%= model_class.human_attribute_name(:price) %></th>
+        <th class="col-xs-1"></th>
+        <th class="col-xs-1"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% if services.empty? %>
+          <tr><td colspan="7"><%=t 'helpers.tables.empty' %></td></tr>
+      <% end %>
+      <% services.each do |service| %>
+          <tr>
+            <td><%= best_in_place service, :code, path: user_service_path(current_user, service, format: :json) %></td>
+            <td><%= best_in_place service, :description, path: user_service_path(current_user, service, format: :json) %></td>
+            <td><%= service.vat.rate %> %</td>
+            <td><%= service.unit.label_short %></td>
+            <td><%= best_in_place service, :price, path: user_service_path(current_user, service, format: :json) %></td>
+            <td>
+              <%= button_to edit_user_service_path(current_user.id, service),
+                            class: 'btn btn-default btn-xs btn-flat btn-block',
+                            method: :get do %>
+                  <i class="fa fa-pencil-square-o" aria-hidden="true">
+                    <%=t 'helpers.links.edit' %>
+                  </i>
+              <% end %>
+            </td>
+            <td>
+              <%= button_to user_service_path(current_user.id, service),
+                            :method => :delete,
+                            :data => { :confirm => t('helpers.links.confirm', :default => 'Are you sure?') },
+                            :class => 'btn btn-xs btn-danger btn-flat btn-block' do %>
+                  <i class="fa fa-trash-o" aria-hidden="true">
+                    <%=t 'helpers.links.destroy' %>
+                  </i>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= will_paginate services, renderer: BootstrapPagination::Rails %>
+</div>
