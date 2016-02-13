@@ -4,9 +4,21 @@ class CustomersController < SecuredController
   # GET /customers
   # GET /customers.json
   def index
+    @filterrific = initialize_filterrific(
+        Customer,
+        params[:filterrific],
+        select_options: {
+            sorted_by: Customer.options_for_sorted_by
+        }
+    ) or return
+
     respond_to do |format|
       format.html {
-        @customers = Customer.paginate(page: params[:page], per_page: DEFAULT_ITEMS_PER_PAGE).order(name: :asc)
+        @customers = @filterrific.find.page(params[:page])
+      }
+
+      format.js {
+        @customers = @filterrific.find.page(params[:page])
       }
 
       format.json {
@@ -15,7 +27,6 @@ class CustomersController < SecuredController
         end
       }
     end
-
   end
 
   # GET /customers/1

@@ -13,6 +13,8 @@ es:
     starting_from_date: Desde fecha
     sorted_by: Ordenar por
     sort_by_date_desc: Fecha (Mas reciente primero)
+    sort_by_name_desc: Nombre (Z-A)
+    sort_by_name_asc: Nombre (A-Z)
 
   project_status:
     active: Activo

@@ -1,0 +1,48 @@
+<%- model_class = Customer -%>
+<div id="filterrific_results">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th><%= model_class.human_attribute_name(:name) %></th>
+        <th><%= model_class.human_attribute_name(:contact_name) %></th>
+        <th><%= model_class.human_attribute_name(:contact_phone) %></th>
+        <th><%= model_class.human_attribute_name(:contact_email) %></th>
+        <th class="col-xs-1"></th>
+        <th class="col-xs-1"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% if @customers.empty? %>
+          <tr><td colspan="6"><%=t 'helpers.tables.empty' %></td></tr>
+      <% end %>
+      <% customers.each do |customer| %>
+          <tr>
+            <td><%= best_in_place customer, :name, url: user_customer_path(current_user, customer, format: :json) %></td>
+            <td><%= best_in_place customer, :contact_name, url: user_customer_path(current_user, customer, format: :json) %></td>
+            <td><%= best_in_place customer, :contact_phone, url: user_customer_path(current_user, customer, format: :json) %></td>
+            <td><%= best_in_place customer, :contact_email, url: user_customer_path(current_user, customer, format: :json) %></td>
+            <td>
+              <%= button_to edit_user_customer_path(current_user, customer), class: 'btn btn-default btn-xs btn-flat btn-block', method: :get do %>
+                  <i class="fa fa-pencil-square-o" aria-hidden="true">
+                    <%=t 'helpers.links.edit' %>
+                  </i>
+              <% end %>
+            </td>
+            <td>
+              <%= button_to user_customer_path(current_user, customer),
+                            :method => :delete,
+                            :data => { :confirm => t('helpers.links.confirm', :default => 'Are you sure?') },
+                            :class => 'btn btn-xs btn-danger btn-flat btn-block' do %>
+                  <i class="fa fa-trash-o" aria-hidden="true">
+                    <%=t 'helpers.links.destroy' %>
+                  </i>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= will_paginate customers, renderer: BootstrapPagination::Rails %>
+</div>
