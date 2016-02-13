@@ -27,7 +27,12 @@ class User < ActiveRecord::Base
 
   def init_tenant_name
     if self[:tenant].blank?
-      self[:tenant] = "user_#{ self[:id] }"
+      if Rails.env.production?
+        self[:tenant] = "user_#{ self[:id] }"
+      else
+        self[:tenant] = "user_#{ self[:id] }_#{ Rails.env }"
+      end
+
       save!
     end  
   end
