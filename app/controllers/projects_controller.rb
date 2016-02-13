@@ -4,10 +4,21 @@ class ProjectsController < SecuredController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project
-                    .includes(:project_status, :customer)
-                    .paginate(page: params[:page], per_page: DEFAULT_ITEMS_PER_PAGE)
-                    .order(created_at: :desc)
+    @filterrific = initialize_filterrific(
+        Project,
+        params[:filterrific],
+        select_options: {
+            sorted_by: Project.options_for_sorted_by
+        }
+    ) or return
+
+    @projects = @filterrific.find.page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.json
+      format.js
+    end
   end
 
   # GET /projects/1

@@ -1,0 +1,59 @@
+<%- model_class = Project -%>
+<div id="filterrific_results">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th class=col-xs-8><%= model_class.human_attribute_name(:name) %></th>
+        <th class=col-xs-1><%= model_class.human_attribute_name(:project_status_id) %></th>
+        <th class=col-xs-1></th>
+        <th class=col-xs-1></th>
+        <th class=col-xs-1></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% if projects.empty? %>
+          <tr><td colspan="5"><%=t 'helpers.tables.empty' %></td></tr>
+      <% end %>
+      <% projects.each do |project| %>
+          <tr>
+            <td>
+              <%= best_in_place project, :name,
+                                url: user_project_path(current_user, project, format: :json)%>
+            </td>
+            <td><%= project.project_status.locale_name %></td>
+            <td>
+              <%= button_to edit_user_project_path(current_user, project),
+                            class: 'btn btn-default btn-xs btn-block btn-flat',
+                            method: :get do %>
+                  <i class="fa fa-pencil-square-o" aria-hidden="true">
+                    <%=t 'helpers.links.edit' %>
+                  </i>
+              <% end %>
+            </td>
+            <td>
+              <%= button_to user_project_tasks_path(current_user, project),
+                            class: 'btn btn-default btn-xs btn-block btn-flat',
+                            method: :get do %>
+                  <i class="fa fa-tasks" aria-hidden="true">
+                    <%=t 'tasks.title' %>
+                  </i>
+              <% end %>
+            </td>
+            <td>
+              <%= button_to user_project_path(current_user, project),
+                            :method => :delete,
+                            :data => { :confirm => t("helpers.links.confirm", :default => 'Are you sure?') },
+                            :class => 'btn btn-xs btn-danger btn-block btn-flat' do %>
+                  <i class="fa fa-trash-o" aria-hidden="true">
+                    <%=t 'helpers.links.destroy' %>
+                  </i>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= will_paginate projects, renderer: BootstrapPagination::Rails %>
+</div>
