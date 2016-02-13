@@ -124,7 +124,8 @@ RSpec.describe Invoice, type: :model do
 
   describe 'billing process' do
     let(:irpf_15) {
-      invoice = attributes_for(:invoice)
+      customer = create(:customer, irpf: 15, country: 'ES')
+      invoice = attributes_for(:invoice, customer_id: customer.id, irpf: 15)
 
       invoice.merge(invoice_details_attributes: [ attributes_for(:invoice_detail, invoice_id: nil) ])
     }
