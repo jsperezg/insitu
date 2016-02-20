@@ -76,7 +76,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <!-- The user image in the navbar-->
                   <%= image_tag image_url('user'), class: 'user-image', alt: 'User image' %>
-                  
+
                   <!-- hidden-xs hides the username on small devices so only the image appears. -->
                   <span class="hidden-xs"><%= current_user.name || current_user.email %></span>
                 </a>
@@ -113,7 +113,7 @@
           <!-- Sidebar user panel (optional) -->
           <div class="user-panel">
             <div class="pull-left image">
-              <%= image_tag 'user', class: 'user-image', alt: 'User image' %>
+              <%= image_tag image_url('user'), class: 'user-image', alt: 'User image' %>
             </div>
             <div class="pull-left info">
               <p><%= current_user.name || current_user.email %></p>
