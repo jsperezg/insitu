@@ -75,15 +75,15 @@
                 <!-- Menu Toggle Button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <!-- The user image in the navbar-->
-                  <%= image_tag 'user', class: 'user-image', alt: 'User image' %>
-
+                  <%= image_tag image_url('user'), class: 'user-image', alt: 'User image' %>
+                  
                   <!-- hidden-xs hides the username on small devices so only the image appears. -->
                   <span class="hidden-xs"><%= current_user.name || current_user.email %></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- The user image in the menu -->
                   <li class="user-header">
-                    <%= image_tag 'user', class: 'user-image', alt: 'User image' %>
+                    <%= image_tag image_url('user'), class: 'user-image', alt: 'User image' %>
                     <p>
                       <%= current_user.name || current_user.email %>
                       <small><%=t :sign_in_at %> <%=l current_user.current_sign_in_at, format: :long %></small>

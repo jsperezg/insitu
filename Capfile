@@ -26,7 +26,8 @@ require 'capistrano/deploy'
 require 'capistrano/rbenv'
 require 'capistrano/figaro_yml'
 require 'capistrano/rails'
-require 'capistrano/passenger'
+
+# require 'capistrano/passenger'
 
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined

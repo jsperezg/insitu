@@ -144,9 +144,6 @@ GEM
       mini_portile (~> 0.6.0)
     nprogress-rails (0.1.6.7)
     orm_adapter (0.5.0)
-    passenger (5.0.24)
-      rack
-      rake (>= 0.8.1)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -286,7 +283,6 @@ DEPENDENCIES
   jquery-ui-rails
   mysql2
   nprogress-rails
-  passenger
   rails (= 4.2.3)
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
