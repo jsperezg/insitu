@@ -14,7 +14,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-gem 'devise'
+gem 'devise', '3.5.2'
 gem 'apartment'
 gem "twitter-bootstrap-rails"
 gem 'email_validator'
@@ -59,12 +59,22 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-
   gem 'rspec-rails', '~> 3.0'
-
   gem 'factory_girl_rails',  '~> 4.0'
+
+  # Deployment with capistrano
+  gem "capistrano", "~> 3.4"
+  gem 'capistrano-figaro-yml', '~> 1.0.2'
+  gem 'capistrano-rbenv', '~> 2.0'
+  gem 'capistrano-bundler', '~> 1.1.2'
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-passenger'
 end
 
 group :test do
   gem 'simplecov', require: false
+end
+
+group :production do
+  gem "passenger"
 end
