@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9253af97-43bb-4d75-844d-496160ae5ec1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/payment_methods/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/payment_methods/_form.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/service.rb" afterPath="$PROJECT_DIR$/app/models/service.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/services/_list.html.erb" afterPath="$PROJECT_DIR$/app/views/services/_list.html.erb" />
     </list>
     <ignored path="fges.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -57,7 +58,7 @@
     <SUITE FILE_PATH="coverage/fges@Run_spec__estimates_controller_spec___fges.coverage" NAME="Run spec 'estimates_controller_spec': fges Coverage Results" MODIFIED="1454694594007" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Run_spec__vat_spec___fges.coverage" NAME="Run spec 'vat_spec': fges Coverage Results" MODIFIED="1450857748672" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Run_spec__tasks_routing_spec___fges.coverage" NAME="Run spec 'tasks_routing_spec': fges Coverage Results" MODIFIED="1453621508087" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
-    <SUITE FILE_PATH="coverage/fges@Development__fges.coverage" NAME="Development: fges Coverage Results" MODIFIED="1456058944334" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
+    <SUITE FILE_PATH="coverage/fges@Development__fges.coverage" NAME="Development: fges Coverage Results" MODIFIED="1456060067258" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Run_spec__invoices_routing_spec___fges.coverage" NAME="Run spec 'invoices_routing_spec': fges Coverage Results" MODIFIED="1452946579905" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Run_spec__invoices_controller_spec___fges.coverage" NAME="Run spec 'invoices_controller_spec': fges Coverage Results" MODIFIED="1455342712993" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@DeliveryNotesController_GET__forward_email_fails_for_customers_without_email__fges.coverage" NAME="DeliveryNotesController GET #forward_email fails for customers without email: fges Coverage Results" MODIFIED="1454620301873" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
@@ -83,11 +84,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="_form.html.erb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/payment_methods/_form.html.erb">
+      <file leaf-file-name="_list.html.erb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/services/_list.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6626506">
-              <caret line="22" column="19" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.15060242">
+              <caret line="26" column="141" selection-start-line="26" selection-start-column="136" selection-end-line="26" selection-end-column="141" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="service.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/service.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="54" column="21" selection-start-line="54" selection-start-column="6" selection-end-line="54" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -141,10 +152,8 @@
         <option value="$PROJECT_DIR$/app/models/delivery_note.rb" />
         <option value="$PROJECT_DIR$/app/models/estimate.rb" />
         <option value="$PROJECT_DIR$/app/models/invoice.rb" />
-        <option value="$PROJECT_DIR$/app/models/service.rb" />
         <option value="$PROJECT_DIR$/app/views/services/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/customers/_list.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/services/_list.html.erb" />
         <option value="$PROJECT_DIR$/app/views/services/index.js.erb" />
         <option value="$PROJECT_DIR$/app/controllers/services_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/project.rb" />
@@ -165,6 +174,8 @@
         <option value="$PROJECT_DIR$/Capfile" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/views/payment_methods/_form.html.erb" />
+        <option value="$PROJECT_DIR$/app/models/service.rb" />
+        <option value="$PROJECT_DIR$/app/views/services/_list.html.erb" />
       </list>
     </option>
   </component>
@@ -287,7 +298,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="payment_methods" />
+              <option name="myItemId" value="services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fges" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fges" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -720,12 +749,6 @@
       <option name="number" value="Default" />
       <updated>1450296634841</updated>
     </task>
-    <task id="LOCAL-00002" summary="Estimates.&#10;&#10;Spec tests for estimates controller.">
-      <created>1450597489197</created>
-      <option name="number" value="00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1450597489197</updated>
-    </task>
     <task id="LOCAL-00003" summary="Styling application&#10;&#10;Styling application.">
       <created>1450772148894</created>
       <option name="number" value="00003" />
@@ -1014,7 +1037,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455973597542</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Payment methods.&#10;&#10;Annotation for invoice in payment methods now accepts values with more than one line.">
+      <created>1456059028113</created>
+      <option name="number" value="00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1456059028114</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1055,6 +1084,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17013334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45391476" sideWeight="0.3952" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903865" sideWeight="0.49813333" order="7" side_tool="false" content_ui="tabs" />
@@ -1064,7 +1094,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39940536" sideWeight="0.59253335" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1086,7 +1115,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Send documents through email.&#10;&#10;User can send invoices through email." />
     <MESSAGE value="Send documents through email.&#10;&#10;User can also send estimates and delivery notes." />
     <MESSAGE value="Loading progress&#10;&#10;Loading progress for turbolinks." />
     <MESSAGE value="Invoice generation.&#10;&#10;Invoice generation from time tracker done." />
@@ -1111,7 +1139,8 @@
     <MESSAGE value="Tenant management&#10;&#10;Environment will appear in tennant name for all environments but production." />
     <MESSAGE value="Deployment process.&#10;&#10;First version for integration with capistrano." />
     <MESSAGE value="Deployment process.&#10;&#10;Solved issues with image assets in app layout.&#10;CSS will be preprocessed like any other asset." />
-    <option name="LAST_COMMIT_MESSAGE" value="Deployment process.&#10;&#10;Solved issues with image assets in app layout.&#10;CSS will be preprocessed like any other asset." />
+    <MESSAGE value="Payment methods.&#10;&#10;Annotation for invoice in payment methods now accepts values with more than one line." />
+    <option name="LAST_COMMIT_MESSAGE" value="Payment methods.&#10;&#10;Annotation for invoice in payment methods now accepts values with more than one line." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1262,20 +1291,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="40" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/service.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="15" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/services/_list.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1024096">
-          <caret line="50" column="28" selection-start-line="50" selection-start-column="28" selection-end-line="50" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -1493,6 +1508,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6626506">
           <caret line="22" column="19" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/service.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="54" column="21" selection-start-line="54" selection-start-column="6" selection-end-line="54" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/services/_list.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15060242">
+          <caret line="26" column="141" selection-start-line="26" selection-start-column="136" selection-end-line="26" selection-end-column="141" />
           <folding />
         </state>
       </provider>

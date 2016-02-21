@@ -51,4 +51,8 @@ class Service < ActiveRecord::Base
   validates_numericality_of :price, allow_nil: false, greater_than: 0
   validates :vat, presence: true
   validates :unit, presence: true
+
+  def formatted_price
+    ActionController::Base.helpers.number_to_currency(self.price, :precision => 2, unit: '€')
+  end
 end
