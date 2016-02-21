@@ -5,8 +5,8 @@
       <table class="table table-striped">
         <thead>
           <tr>
+            <th class="col-xs-1 text-right"><%= model_class.human_attribute_name(:rate) %></th>
             <th><%= model_class.human_attribute_name(:label) %></th>
-            <th><%= model_class.human_attribute_name(:rate) %></th>
             <th class="col-xs-1"></th>
             <th class="col-xs-1"></th>
           </tr>
@@ -17,8 +17,8 @@
           <% end %>
           <% @vats.each do |vat| %>
             <tr>
+              <td class="text-right"><%= best_in_place vat, :rate, url: user_vat_path(current_user, vat, format: :json) %></td>
               <td><%= best_in_place vat, :label, url: user_vat_path(current_user, vat, format: :json) %></td>
-              <td><%= best_in_place vat, :rate, url: user_vat_path(current_user, vat, format: :json) %></td>
               <td>
                 <%= button_to edit_user_vat_path(current_user.id, vat), class: 'btn btn-default btn-xs btn-flat btn-block', method: :get do %>
                   <i class="fa fa-pencil-square-o" aria-hidden="true">

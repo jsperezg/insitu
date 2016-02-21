@@ -43,4 +43,11 @@ class Customer < ActiveRecord::Base
   has_many :invoices, dependent: :restrict_with_error
   has_many :estimates, dependent: :restrict_with_error
   has_many :delivery_notes, dependent: :restrict_with_error
+
+  def country_name
+    unless country.blank?
+      value = ISO3166::Country[country]
+      value.translations[I18n.locale.to_s] || value.name
+    end
+  end
 end

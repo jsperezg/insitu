@@ -31,7 +31,7 @@
       <%= f.label :dead_line, class: 'control-label' %>
       <div class="input-group">
         <span class="input-group-addon">
-          <span class="glyphicon glyphicon-calendar"></span>
+          <span class="fa fa-calendar"></span>
         </span>
         <%= f.text_field :dead_line, class: 'form-control input-sm date', value: ldate(@task[:dead_line]) %>
       </div>
@@ -48,7 +48,7 @@
       <%= f.label :finish_date, class: 'control-label' %>
       <div class="input-group">
         <span class="input-group-addon">
-          <span class="glyphicon glyphicon-calendar"></span>
+          <span class="fa fa-calendar"></span>
         </span>
 
         <%= f.text_field :finish_date, class: 'form-control input-sm date', value: ldate(@task[:finish_date]) %>

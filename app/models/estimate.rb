@@ -67,7 +67,7 @@ class Estimate < ActiveRecord::Base
   end
 
   def rejected?
-    (!self.accepted? && self.valid_until <= Date.today) || self.estimate_status.try(:name) == 'estimate_status.rejected'
+    (!self.accepted? && (valid_until.nil? || valid_until <= Date.today)) || self.estimate_status.try(:name) == 'estimate_status.rejected'
   end
 
   def sent?

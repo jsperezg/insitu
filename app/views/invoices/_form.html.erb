@@ -28,7 +28,7 @@
       <%= f.label :date, :class => 'control-label' %>
       <div class="input-group date">
         <span class="input-group-addon">
-          <span class="glyphicon glyphicon-calendar"></span>
+          <span class="fa fa-calendar"></span>
         </span>
         <%= f.text_field :date, class: 'form-control input-sm date', value: l(@invoice[:date]), required: true %>
       </div>
@@ -38,7 +38,7 @@
       <%= f.label :payment_date, :class => 'control-label' %>
       <div class="input-group date">
         <span class="input-group-addon">
-          <span class="glyphicon glyphicon-calendar"></span>
+          <span class="fa fa-calendar"></span>
         </span>
         <%= f.text_field :payment_date,
                          class: 'form-control input-sm date',
@@ -57,7 +57,7 @@
       <%= f.label :paid_on, :class => 'control-label' %>
       <div class="input-group date">
         <span class="input-group-addon">
-          <span class="glyphicon glyphicon-calendar"></span>
+          <span class="fa fa-calendar"></span>
         </span>
         <%= f.text_field :paid_on, class: 'form-control input-sm date', value: ldate(@invoice[:paid_on]) %>
       </div>

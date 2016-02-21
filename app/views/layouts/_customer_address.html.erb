@@ -1,7 +1,7 @@
 <address>
   <strong><%= customer.name %></strong><br>
   <%= customer.address %><br>
-  <%= customer.city %>, <%= customer.state %> <%= customer.postal_code %><br>
+  <%= customer.city %>, <%= customer.state %> <%= customer.postal_code %> <%= customer.country_name %><br>
 
   <% unless customer.contact_phone.blank? %>
       <%= Customer.human_attribute_name(:contact_phone) %>: <%= customer.contact_phone %><br>

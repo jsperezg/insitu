@@ -19,6 +19,13 @@ class User < ActiveRecord::Base
     ]
   end
 
+  def country_name
+    unless country.blank?
+      value = ISO3166::Country[country]
+      value.translations[I18n.locale.to_s] || value.name
+    end
+  end
+
   private
 
   def init_role

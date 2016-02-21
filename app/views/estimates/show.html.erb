@@ -23,10 +23,12 @@
             <th class="col-xs-9 text-right"><%= model_class.human_attribute_name(:date) %>:</th>
             <td class="text-right"><%=l @estimate[:date] %></td>
           </tr>
+          <% unless @estimate.valid_until.nil? %>
           <tr>
             <th class="col-xs-9 text-right"><%= model_class.human_attribute_name(:valid_until) %>:</th>
-            <td class="text-right"><%=l @estimate.valid_until %></td>
+            <td class="text-right"><%=ldate @estimate.valid_until %></td>
           </tr>
+          <% end %>
         </table>
       </div><!-- /.col -->
     </div><!-- /.row -->
