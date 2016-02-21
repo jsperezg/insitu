@@ -60,3 +60,7 @@ set :ssh_options, {
 #     auth_methods: %w(publickey password)
 #     # password: 'please use keys'
 #   }
+
+set :default_env, {
+    RAILS_RELATIVE_URL_ROOT: '/insitu'
+}
