@@ -197,7 +197,7 @@ es:
           attributes:
             number:
               blank: 'es obligatorio.'
-              invalid_format: tiene un formato invalido. Se esperaba [A-Z]/%{year}/######
+              invalid_format: tiene un formato invalido. Se esperaba [A-Z]+/%{year}/######
               taken: ya está asignado a otra factura.
             date:
               blank: 'es obligatorio.'
@@ -219,7 +219,7 @@ es:
           attributes:
             number:
               blank: es obligatorio.
-              invalid_format: tiene un formato invalido. Se esperaba [A-Z]/%{year}/######
+              invalid_format: tiene un formato invalido. Se esperaba [A-Z]+/%{year}/######
               taken: ya está asignado a otra factura.
             date:
               blank: 'es obligatoria.'
@@ -273,7 +273,7 @@ es:
           attributes:
             number:
               blank: es obligatorio.
-              invalid_format: tiene un formato invalido. Se esperaba [A-Z]/%{year}/######
+              invalid_format: tiene un formato invalido. Se esperaba [A-Z]+/%{year}/######
               taken: ya está asignado a otra factura.
             valid_until:
               invalid_value: es incorrecta.

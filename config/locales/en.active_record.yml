@@ -196,7 +196,7 @@ en:
           attributes:
             number:
               blank: 'is mandatory.'
-              invalid_format: ': invalid format. [A-Z]/%{year}/###### was expected.'
+              invalid_format: ': invalid format. [A-Z]+/%{year}/###### was expected.'
               taken: already used in another bill.
             date:
               blank: 'is mandatory.'
@@ -218,7 +218,7 @@ en:
           attributes:
             number:
               blank: is mandatory.
-              invalid_format: ': invalid format. [A-Z]/%{year}/###### was expected.'
+              invalid_format: ': invalid format. [A-Z]+/%{year}/###### was expected.'
               taken: already used in another bill.
             date:
               blank: 'is mandatory.'
@@ -272,7 +272,7 @@ en:
           attributes:
             number:
               blank: is mandatory.
-              invalid_format: ': invalid format. [A-Z]/%{year}/###### was expected.'
+              invalid_format: ': invalid format. [A-Z]+/%{year}/###### was expected.'
               taken: already used in another bill.
             valid_until:
               invalid_value: is invalid.

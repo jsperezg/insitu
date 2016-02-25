@@ -63,7 +63,7 @@ module SequenceGenerator
     result = nil
 
     unless value.blank?
-      parts = value.match(/^([A-Z])\/(\d{4})\/(\d{6})$/)
+      parts = value.match(/^([A-Z]+)\/(\d{4})\/(\d{6})$/)
 
       if parts
         result = {

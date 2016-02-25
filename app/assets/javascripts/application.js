@@ -18,9 +18,6 @@
 //= require jquery-ui
 //= require best_in_place.jquery-ui
 //= require jquery.inputmask
-//= require jquery.inputmask.extensions
-//= require jquery.inputmask.numeric.extensions
-//= require jquery.inputmask.date.extensions
 //= require jquery.slimscroll
 //= require filterrific/filterrific-jquery
 //= require fastclick
