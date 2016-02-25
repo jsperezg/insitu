@@ -109,10 +109,20 @@
               <th class="col-xs-9 text-right"><%= Invoice.human_attribute_name :subtotal %>:</th>
               <td class="text-right"><%= number_with_precision(@invoice.subtotal, precision: 2) %>€</td>
             </tr>
+            <% if @invoice.discount > 0 %>
             <tr>
               <th class="col-xs-9 text-right"><%= Invoice.human_attribute_name :discount %>:</th>
               <td class="text-right red">-&nbsp;<%= number_with_precision(@invoice.discount, precision: 2) %>€</td>
             </tr>
+            <% end %>
+
+            <% if @invoice.irpf > 0 %>
+            <tr>
+              <th class="col-xs-9 text-right"><%= Invoice.human_attribute_name :irpf %> (<%= @invoice.irpf %>%):</th>
+              <td class="text-right red">-&nbsp;<%= number_with_precision(@invoice.applied_irpf, precision: 2) %>€</td>
+            </tr>
+            <% end %>
+
             <tr>
               <th class="col-xs-9 text-right"><%= Invoice.human_attribute_name :tax %>:</th>
               <td class="text-right"><%= number_with_precision(@invoice.tax, precision: 2) %>€</td>
