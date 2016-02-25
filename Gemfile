@@ -21,7 +21,6 @@ gem 'email_validator'
 gem 'best_in_place', '~> 3.0.1'
 gem 'jquery-ui-rails'
 gem 'will_paginate-bootstrap'
-# gem 'jquery-inputmask-rails'
 gem 'wicked_pdf'
 gem 'country_select', github: 'stefanpenner/country_select'
 
