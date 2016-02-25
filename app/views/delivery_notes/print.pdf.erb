@@ -32,6 +32,7 @@
       <div class="col-xs-4">
         <address>
           <strong><%= @delivery_note.customer.name %></strong><br>
+          <%= @delivery_note.customer.tax_id %><br>
           <%= @delivery_note.customer.address %><br>
           <%= @delivery_note.customer.city %>, <%= @delivery_note.customer.state %> <%= @delivery_note.customer.postal_code %><br>
 
