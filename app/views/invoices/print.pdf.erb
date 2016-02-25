@@ -19,31 +19,11 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-4">
-        <address>
-          <strong><%= current_user[:name] %></strong><br>
-          <%= current_user[:tax_id] %><br>
-          <%= current_user[:address] %><br>
-          <%= current_user[:city] %>, <%= current_user[:state] %> <%= current_user[:postal_code] %><br>
-          <%= User.human_attribute_name(:phone_number) %>: <%= current_user[:phone_number] %><br>
-          <%= User.human_attribute_name(:email) %>: <%= current_user[:email] %>
-        </address>
+        <%= render 'layouts/user_address' %>
       </div><!-- /.col -->
 
       <div class="col-xs-4">
-        <address>
-          <strong><%= @invoice.customer.name %></strong><br>
-          <%= @invoice.customer.tax_id %><br>
-          <%= @invoice.customer.address %><br>
-          <%= @invoice.customer.city %>, <%= @invoice.customer.state %> <%= @invoice.customer.postal_code %><br>
-
-          <% unless @invoice.customer.contact_phone.blank? %>
-              <%= Customer.human_attribute_name(:contact_phone) %>: <%= @invoice.customer.contact_phone %><br>
-          <% end %>
-
-          <% unless @invoice.customer.contact_email.blank? %>
-              <%= Customer.human_attribute_name(:contact_email) %>: <%= @invoice.customer.contact_email %>
-          <% end %>
-        </address>
+        <%= render 'layouts/customer_address', customer: @invoice.customer %>
       </div>
 
       <div class="col-xs-4">
