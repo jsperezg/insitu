@@ -98,9 +98,9 @@
       <!-- accepted payments column -->
       <div class="col-xs-6">
         <% unless @invoice.payment_method.try(:note_for_invoice).blank? %>
-            <p class="text-muted">
-              <%= @invoice.payment_method.note_for_invoice %>
-            </p>
+            <div class="text-muted">
+              <%=raw @invoice.payment_method.note_for_invoice %>
+            </div>
         <% end %>
       </div>
       <div class="col-xs-6">
