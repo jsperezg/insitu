@@ -161,6 +161,9 @@ class Invoice < ActiveRecord::Base
     else
       self.invoice_status_id ||= InvoiceStatus.find_by(name: 'invoice_status.created').try(:id)
     end
+
+    # By default: payment date is the invoice date + 15 days.
+    self.payment_date = self.date + 15.days if self.date.present? and !self.payment_date.present?
   end
 
   def set_invoice_number
