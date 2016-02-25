@@ -40,7 +40,15 @@ class InvoicesController < SecuredController
         render :show, layout: 'print'
       end
       format.pdf do
-        render pdf: "invoice_#{ @invoice.number.gsub('/', '_') }", viewport_size: '1920x1080'
+        try = 0
+
+        begin
+          try += 1
+          render pdf: "invoice_#{ @invoice.number.gsub('/', '_') }", viewport_size: '1920x1080'
+        rescue => e
+          logger.fatal "Error printing invoice #{ @invoice.number}, user: #{ current_user.id }: #{ e }"
+          retry if try < 5
+        end
       end
     end
   end
