@@ -50,4 +50,12 @@ class Customer < ActiveRecord::Base
       value.translations[I18n.locale.to_s] || value.name
     end
   end
+
+  def can_invoice?
+    self.tax_id.present? and
+        self.name.present? and
+        self.address.present? and
+        self.postal_code.present? and
+        self.country.present?
+  end
 end

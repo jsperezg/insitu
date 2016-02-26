@@ -33,6 +33,7 @@ class Invoice < ActiveRecord::Base
   validates :invoice_status_id, presence: true
   validates :number, presence: true, uniqueness: true
   validate :number_format
+  validate :valid_customer
 
   accepts_nested_attributes_for :invoice_details, reject_if: proc { |attr|
     result = true
@@ -180,6 +181,12 @@ class Invoice < ActiveRecord::Base
     unless is_number_valid?(self.number, self.date)
       year = self.date.try(:year) || Date.today.year
       errors.add(:number, I18n.t('activerecord.errors.models.invoice.attributes.number.invalid_format', year: year))
+    end
+  end
+
+  def valid_customer
+    if self.customer.present? and !customer.can_invoice?
+      errors.add(:customer_id, I18n.t('activerecord.errors.models.invoice.attributes.customer_id.invalid_format'))
     end
   end
 end

@@ -3,11 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="9253af97-43bb-4d75-844d-496160ae5ec1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/dashboard_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/dashboard_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/locales/en.yml" afterPath="$PROJECT_DIR$/config/locales/en.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/locales/es.yml" afterPath="$PROJECT_DIR$/config/locales/es.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/customer.rb" afterPath="$PROJECT_DIR$/app/models/customer.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/invoice.rb" afterPath="$PROJECT_DIR$/app/models/invoice.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/locales/en.active_record.yml" afterPath="$PROJECT_DIR$/config/locales/en.active_record.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/locales/es.active_record.yml" afterPath="$PROJECT_DIR$/config/locales/es.active_record.yml" />
     </list>
     <ignored path="fges.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -88,64 +87,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="invoice_spec.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spec/models/invoice_spec.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="90" column="5" selection-start-line="90" selection-start-column="5" selection-end-line="90" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="user.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/user.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
+              <caret line="34" column="5" selection-start-line="28" selection-start-column="2" selection-end-line="34" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dashboard_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/dashboard_controller.rb">
+      <file leaf-file-name="customer.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models/customer.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="56" selection-start-line="3" selection-start-column="56" selection-end-line="3" selection-end-column="56" />
+              <caret line="53" column="18" selection-start-line="53" selection-start-column="6" selection-end-line="53" selection-end-column="18" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="en.yml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/config/locales/en.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4597701">
-              <caret line="127" column="102" selection-start-line="127" selection-start-column="102" selection-end-line="127" selection-end-column="102" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="es.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/locales/es.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="124" column="4" selection-start-line="124" selection-start-column="4" selection-end-line="124" selection-end-column="100" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.125">
-              <caret line="145" column="110" selection-start-line="145" selection-start-column="110" selection-end-line="145" selection-end-column="110" />
-              <folding>
-                <element signature="e#6585#6605#0#ruby" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -153,8 +110,18 @@
       <file leaf-file-name="invoice.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/invoice.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.6285715">
-              <caret line="34" column="25" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="188" column="111" selection-start-line="188" selection-start-column="97" selection-end-line="188" selection-end-column="111" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="en.active_record.yml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config/locales/en.active_record.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.48850575">
+              <caret line="228" column="86" selection-start-line="228" selection-start-column="86" selection-end-line="228" selection-end-column="86" />
               <folding />
             </state>
           </provider>
@@ -164,27 +131,7 @@
         <entry file="file://$PROJECT_DIR$/config/locales/es.active_record.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="222" column="53" selection-start-line="222" selection-start-column="53" selection-end-line="222" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="en.active_record.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/locales/en.active_record.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="221" column="50" selection-start-line="221" selection-start-column="50" selection-end-line="221" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="49" column="4" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="25" />
+              <caret line="229" column="87" selection-start-line="229" selection-start-column="14" selection-end-line="229" selection-end-column="87" />
               <folding />
             </state>
           </provider>
@@ -239,7 +186,6 @@
         <option value="$PROJECT_DIR$/app/views/devise/sessions/new.html.erb" />
         <option value="$PROJECT_DIR$/app/views/invoices/_list.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/initialization.js.erb" />
-        <option value="$PROJECT_DIR$/app/models/customer.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/_customer_address.html.erb" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
@@ -253,15 +199,16 @@
         <option value="$PROJECT_DIR$/app/views/estimates/print.pdf.erb" />
         <option value="$PROJECT_DIR$/app/views/delivery_notes/print.pdf.erb" />
         <option value="$PROJECT_DIR$/lib/sequence_generator.rb" />
-        <option value="$PROJECT_DIR$/config/locales/en.active_record.yml" />
-        <option value="$PROJECT_DIR$/config/locales/es.active_record.yml" />
-        <option value="$PROJECT_DIR$/app/models/invoice.rb" />
         <option value="$PROJECT_DIR$/spec/models/invoice_spec.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/models/user.rb" />
         <option value="$PROJECT_DIR$/config/locales/es.yml" />
         <option value="$PROJECT_DIR$/app/controllers/dashboard_controller.rb" />
         <option value="$PROJECT_DIR$/config/locales/en.yml" />
+        <option value="$PROJECT_DIR$/app/models/customer.rb" />
+        <option value="$PROJECT_DIR$/app/models/invoice.rb" />
+        <option value="$PROJECT_DIR$/config/locales/es.active_record.yml" />
+        <option value="$PROJECT_DIR$/config/locales/en.active_record.yml" />
       </list>
     </option>
   </component>
@@ -810,12 +757,6 @@
       <option name="number" value="Default" />
       <updated>1450296634841</updated>
     </task>
-    <task id="LOCAL-00016" summary="Invoicing, delivery notes and estimates&#10;&#10;custom series for documents.">
-      <created>1451941128066</created>
-      <option name="number" value="00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1451941128066</updated>
-    </task>
     <task id="LOCAL-00017" summary="Support edit document Id&#10;&#10;Support editing document id. &#10;Solved issues with i18n.&#10;Solved isses with tests.">
       <created>1452067790576</created>
       <option name="number" value="00017" />
@@ -1104,7 +1045,13 @@
       <option name="project" value="LOCAL" />
       <updated>1456513572561</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Bugfixing&#10;&#10;* User won't create documents if he don't fills his profile first.">
+      <created>1456514687233</created>
+      <option name="number" value="00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1456514687233</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1143,7 +1090,7 @@
     <frame x="1965" y="24" width="1875" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36586666" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36586666" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45391476" sideWeight="0.3312" order="10" side_tool="true" content_ui="tabs" />
@@ -1176,7 +1123,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Estimates&#10;&#10;Full estimate lifecycle defined." />
     <MESSAGE value="Invoices&#10;&#10;Full invoice lifecycle definition" />
     <MESSAGE value="Filtering&#10;&#10;Adding filtering capabilities for invoices." />
     <MESSAGE value="Filtering&#10;&#10;Adding filtering capabilities for delivery notes" />
@@ -1201,7 +1147,8 @@
     <MESSAGE value="Bugfixing&#10;&#10;* Rescue when pdf generator fails." />
     <MESSAGE value="Bugfixing&#10;&#10;* PDF generation process were not using the generic blocks for customer and user." />
     <MESSAGE value="Bugfixing&#10;&#10;* Solved issue with i18n settings and custom billing serie for customer." />
-    <option name="LAST_COMMIT_MESSAGE" value="Bugfixing&#10;&#10;* Solved issue with i18n settings and custom billing serie for customer." />
+    <MESSAGE value="Bugfixing&#10;&#10;* User won't create documents if he don't fills his profile first." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bugfixing&#10;&#10;* User won't create documents if he don't fills his profile first." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1223,7 +1170,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
           <url>file://$PROJECT_DIR$/app/models/invoice.rb</url>
-          <line>51</line>
+          <line>52</line>
           <option name="timeStamp" value="94" />
         </line-breakpoint>
       </breakpoints>
@@ -1306,13 +1253,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="34" column="10" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/customer.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="48" column="39" selection-start-line="48" selection-start-column="39" selection-end-line="48" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -1539,30 +1479,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/locales/en.active_record.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="221" column="50" selection-start-line="221" selection-start-column="50" selection-end-line="221" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/locales/es.active_record.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="222" column="53" selection-start-line="222" selection-start-column="53" selection-end-line="222" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/invoice.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.6285715">
-          <caret line="34" column="25" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spec/models/invoice_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1578,14 +1494,6 @@
           <folding>
             <element signature="e#6585#6605#0#ruby" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1607,8 +1515,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/locales/en.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4597701">
-          <caret line="127" column="102" selection-start-line="127" selection-start-column="102" selection-end-line="127" selection-end-column="102" />
+        <state vertical-scroll-proportion="0.48850575">
+          <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="5" selection-start-line="28" selection-start-column="2" selection-end-line="34" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/customer.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="53" column="18" selection-start-line="53" selection-start-column="6" selection-end-line="53" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/locales/es.active_record.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="229" column="87" selection-start-line="229" selection-start-column="14" selection-end-line="229" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/invoice.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="188" column="111" selection-start-line="188" selection-start-column="97" selection-end-line="188" selection-end-column="111" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/locales/en.active_record.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48850575">
+          <caret line="228" column="86" selection-start-line="228" selection-start-column="86" selection-end-line="228" selection-end-column="86" />
           <folding />
         </state>
       </provider>
