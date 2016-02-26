@@ -26,6 +26,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def can_invoice?
+    self.tax_id.present? and
+        self.name.present? and
+        self.address.present? and
+        self.postal_code.present? and
+        self.country.present?
+  end
+
   private
 
   def init_role

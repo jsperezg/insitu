@@ -141,9 +141,11 @@
               <a href="#"><i class="fa fa-cog"></i> <span><%=t :production %></span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><%= link_to t('projects.title'), user_projects_path(current_user.id)%></li>
-                <li><%= link_to t('estimates.title'), user_estimates_path(current_user.id) %></li>
-                <li><%= link_to t('delivery_notes.title'), user_delivery_notes_path(current_user.id) %></li>
-                <li><%= link_to t('invoices.title'), user_invoices_path(current_user.id) %></li>
+                <% if current_user.can_invoice? %>
+                  <li><%= link_to t('estimates.title'), user_estimates_path(current_user.id) %></li>
+                  <li><%= link_to t('delivery_notes.title'), user_delivery_notes_path(current_user.id) %></li>
+                  <li><%= link_to t('invoices.title'), user_invoices_path(current_user.id) %></li>
+                <% end %>
               </ul>
             </li>
           </ul><!-- /.sidebar-menu -->

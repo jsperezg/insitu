@@ -125,6 +125,7 @@ en:
     create_title: New invoice
     edit_title: Edit invoice
     print_title: Print invoice
+    missing_user_data: You must fill your user details in your profile before starting to create bills.
 
   delivery_notes:
     delivery_note: Delivery note
