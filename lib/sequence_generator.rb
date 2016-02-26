@@ -18,7 +18,7 @@ module SequenceGenerator
     year = entity.date.year
     number_parts = parse_number entity.number
 
-    if entity.customer.try(:billing_serie).blank? or entity.model_name.human != 'Invoice'
+    if entity.customer.try(:billing_serie).blank? or (!entity.is_a? Invoice)
       model_name = self.model_name.human
 
       # Update the serie
@@ -37,14 +37,14 @@ module SequenceGenerator
     key = find_or_create_key("#{ model_name }.#{ year }", SettingKey.data_types[:integer])
     sequence_value = find_or_create_value(key, 1)
 
-    if sequence_value[:value_i] == number_parts[:sequence]
+    if sequence_value[:value_i] == number_parts[:sequence].to_i
       sequence_value[:value_i] += 1
-      sequence_value.save
+      sequence_value.save!
     end
 
-    if sequence_value[:value_i] < number_parts[:sequence]
-      sequence_value[:value_i] = number_parts[:sequence] + 1
-      sequence_value.save
+    if sequence_value[:value_i] < number_parts[:sequence].to_i
+      sequence_value[:value_i] = number_parts[:sequence].to_i + 1
+      sequence_value.save!
     end
 	end
 
