@@ -105,7 +105,7 @@ class Invoice < ActiveRecord::Base
   end
 
   def apply_irpf(user)
-    self.irpf = self.customer.irpf || 0
+    self.irpf = self.customer.try(:irpf) || 0
     self.irpf = 0 unless user.try(:country) == 'ES'
   end
 

@@ -12,14 +12,14 @@ class InvoiceDetail < ActiveRecord::Base
   validates :discount, presence: true, numericality: { greater_than_or_equal_to: 0, only_integer: true }
 
   def subtotal
-    if price.present? && quantity.present? && discount.present? && vat_rate.present?
+    if price.present? && quantity.present?
       price * quantity
     end
   end
 
   def applied_discount
-    if price.present? && quantity.present? && discount.present? && vat_rate.present?
-      subtotal - ( 1 - (discount / 100.0)) * subtotal
+    if price.present? && quantity.present? && discount.present?
+      (1 - discount / 100.0) * subtotal
     end
   end
 

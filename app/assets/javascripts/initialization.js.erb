@@ -1,10 +1,9 @@
 if (typeof jQuery !== 'undefined') {
   $(document).on("page:change", function () {
-    var dateInputs = $(".date"),
+    var dateInputs = $("input.date"),
         documentIds = $(".document-id"),
         locale = document.documentElement.lang,
         dateFormat = "yyyy-mm-dd",
-        mask = 'y-m-d',
         bestInPlace = $(".best_in_place"),
         pullDownElements = $('.pull-down');
 
@@ -32,11 +31,10 @@ if (typeof jQuery !== 'undefined') {
       switch (locale) {
         case "es":
           dateFormat = "dd/mm/yyyy";
-          mask = 'd/m/y';
           break;
       }
 
-      dateInputs.inputmask(mask, {"placeholder": dateFormat});
+      dateInputs.inputmask(dateFormat);
     }
 
     if (documentIds.length) {

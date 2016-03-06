@@ -160,3 +160,12 @@ en:
     print_title: Print estimate
     nothing_to_invoice: Empty estimate. Can't generate the invoice.
     invoice_title: Invoice
+
+  dashboard:
+    title: Dashboard
+    current_year: Current year
+    net: Net revenue
+    discounts: Discounts
+    tax: IRPF
+    vat_resume: VAT totals
+    best_customers: Best customers

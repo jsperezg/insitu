@@ -18,7 +18,7 @@
 //= require best_in_place
 //= require jquery-ui
 //= require best_in_place.jquery-ui
-//= require jquery.inputmask
+//= require jquery.inputmask.bundle.min
 //= require jquery.slimscroll
 //= require filterrific/filterrific-jquery
 //= require fastclick

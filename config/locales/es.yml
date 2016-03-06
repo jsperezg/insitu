@@ -156,3 +156,12 @@ es:
     create_title: Crear presupuesto
     nothing_to_invoice: Presupuesto vacio. No se puede generar la factura.
     invoice_title: Facturar
+
+  dashboard:
+    title: Panel de control
+    current_year: Ejercicio actual
+    net: Facturación neta
+    discounts: Descuento
+    tax: IRPF
+    vat_resume: Resumen IVA
+    best_customers: Clientes VIP
