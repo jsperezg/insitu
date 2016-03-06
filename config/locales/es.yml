@@ -160,6 +160,9 @@ es:
   dashboard:
     title: Panel de control
     current_year: Ejercicio actual
+    current_month: Mes en curso
+    last_year: Últimos 12 meses
+    past_year: Ejercicio anterior
     net: Facturación neta
     discounts: Descuento
     tax: IRPF

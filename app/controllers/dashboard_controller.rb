@@ -6,10 +6,10 @@ class DashboardController < SecuredController
 
     @reports = {}
 
-    # @reports[:past_year] = calculate_totals (DateTime.now - 1.year).beginning_of_year, (DateTime.now - 1.year).end_of_year
+    @reports[:past_year] = calculate_totals (DateTime.now - 1.year).beginning_of_year, (DateTime.now - 1.year).end_of_year
     @reports[:current_year] = calculate_totals DateTime.now.beginning_of_year, DateTime.now.end_of_year
-    # @reports[:current_month] = calculate_totals DateTime.now.beginning_of_month, DateTime.now.end_of_month
-    # @reports[:last_year] = calculate_totals DateTime.now - 12.months, DateTime.now
+    @reports[:current_month] = calculate_totals DateTime.now.beginning_of_month, DateTime.now.end_of_month
+    @reports[:last_year] = calculate_totals DateTime.now - 12.months, DateTime.now
   end
 
   def calculate_totals(from_date, to_date)

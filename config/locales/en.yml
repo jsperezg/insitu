@@ -164,6 +164,9 @@ en:
   dashboard:
     title: Dashboard
     current_year: Current year
+    current_month: Current month
+    last_year: Last 12 months
+    past_year: Last year
     net: Net revenue
     discounts: Discounts
     tax: IRPF

@@ -1,0 +1,77 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box <%= collapsed ? 'collapsed-box' : nil %>">
+      <div class="box-header with-border">
+        <h3 class="box-title"><%= title %></h3>
+        <div class="box-tools pull-right">
+          <% if collapsed %>
+            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+          <% else %>
+            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+          <% end %>
+          <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+      </div><!-- /.box-header -->
+      <div class="box-body">
+        <div class="row">
+          <div class="col-xs-2">
+            <h5 class="description-header text-center"><%=t 'dashboard.vat_resume' %></h5>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <tbody>
+                <% data[:vat].each do |rate, total| %>
+                    <tr>
+                      <td class="text-right"><%= rate %> %</td>
+                      <td class="text-right"><%= number_with_precision(total, precision: 2) %> €</td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="col-xs-10">
+            <h5 class="description-header text-center"><%=t 'dashboard.best_customers' %></h5>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <tbody>
+                <% data[:customers].each do |name, total| %>
+                    <tr>
+                      <td><%= name %></td>
+                      <td class="text-right"><%= number_with_precision(total, precision: 2) %> €</td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div><!-- ./box-body -->
+      <div class="box-footer">
+        <div class="row">
+          <div class="col-sm-4 col-xs-6">
+            <div class="description-block border-right">
+              <h5 class="description-header"><%= number_with_precision(data[:net], precision: 2) %> €</h5>
+              <span class="description-text"><%=t 'dashboard.net' %></span>
+            </div><!-- /.description-block -->
+          </div><!-- /.col -->
+          <div class="col-sm-4 col-xs-6">
+            <div class="description-block border-right">
+
+              <h5 class="description-header"><%= number_with_precision(data[:discounts], precision: 2) %> €</h5>
+              <span class="description-text"><%=t 'dashboard.discounts' %></span>
+            </div><!-- /.description-block -->
+          </div><!-- /.col -->
+          <% if current_user.country == 'ES' %>
+              <div class="col-sm-4 col-xs-6">
+                <div class="description-block border-right">
+                  <h5 class="description-header"><%= number_with_precision(data[:tax], precision: 2) %> €</h5>
+                  <span class="description-text"><%=t 'dashboard.tax' %></span>
+                </div><!-- /.description-block -->
+              </div><!-- /.col -->
+          <% end %>
+        </div><!-- /.row -->
+      </div>
+    </div><!-- /.box -->
+  </div><!-- /.col -->
+</div><!-- /.row -->
