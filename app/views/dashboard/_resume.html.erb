@@ -15,35 +15,39 @@
       <div class="box-body">
         <div class="row">
           <div class="col-xs-2">
-            <h5 class="description-header text-center"><%=t 'dashboard.vat_resume' %></h5>
-            <div class="table-responsive">
-              <table class="table table-striped">
-                <tbody>
-                <% data[:vat].each do |rate, total| %>
-                    <tr>
-                      <td class="text-right"><%= rate %> %</td>
-                      <td class="text-right"><%= number_with_precision(total, precision: 2) %> €</td>
-                    </tr>
-                <% end %>
-                </tbody>
-              </table>
-            </div>
+            <% unless data[:vat].empty? %>
+              <h5 class="description-header text-center"><%=t 'dashboard.vat_resume' %></h5>
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <tbody>
+                  <% data[:vat].each do |rate, total| %>
+                      <tr>
+                        <td class="text-right"><%= rate %> %</td>
+                        <td class="text-right"><%= number_with_precision(total, precision: 2) %> €</td>
+                      </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+            <% end %>
           </div>
 
           <div class="col-xs-10">
-            <h5 class="description-header text-center"><%=t 'dashboard.best_customers' %></h5>
-            <div class="table-responsive">
-              <table class="table table-striped">
-                <tbody>
-                <% data[:customers].each do |name, total| %>
-                    <tr>
-                      <td><%= name %></td>
-                      <td class="text-right"><%= number_with_precision(total, precision: 2) %> €</td>
-                    </tr>
-                <% end %>
-                </tbody>
-              </table>
-            </div>
+            <% unless data[:customers].empty? %>
+              <h5 class="description-header"><%=t 'dashboard.best_customers' %></h5>
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <tbody>
+                  <% data[:customers].each do |name, total| %>
+                      <tr>
+                        <td><%= name %></td>
+                        <td class="text-right"><%= number_with_precision(total, precision: 2) %> €</td>
+                      </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+            <% end %>
           </div>
         </div>
       </div><!-- ./box-body -->

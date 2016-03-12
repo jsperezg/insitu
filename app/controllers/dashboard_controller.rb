@@ -36,6 +36,7 @@ class DashboardController < SecuredController
     result[:vat] = InvoiceDetail
                        .includes(:invoice)
                        .where('invoices.date': from_date..to_date)
+                       .where.not(vat_rate: 0)
                        .group(:vat_rate)
                        .sum('(1 - discount / 100) * price * quantity * (vat_rate / 100)')
 
