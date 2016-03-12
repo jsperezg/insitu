@@ -19,7 +19,7 @@ class InvoiceDetail < ActiveRecord::Base
 
   def applied_discount
     if price.present? && quantity.present? && discount.present?
-      (1 - discount / 100.0) * subtotal
+      discount / 100.0 * subtotal
     end
   end
 

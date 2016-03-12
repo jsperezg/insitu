@@ -16,15 +16,15 @@
       <div class="col-sm-4 invoice-col">
         <table class="table table-condensed borderless">
           <tr>
-            <th class="col-xs-9 text-right"><%= Invoice.model_name.human %>:</th>
+            <th class="col-xs-8 text-right"><%= Invoice.model_name.human %>:</th>
             <td class="text-right"><%= @invoice.number %></td>
           </tr>
           <tr>
-            <th class="col-xs-9 text-right"><%= model_class.human_attribute_name(:date) %>:</th>
+            <th class="col-xs-8 text-right"><%= model_class.human_attribute_name(:date) %>:</th>
             <td class="text-right"><%=l @invoice[:date] %></td>
           </tr>
           <tr>
-            <th class="col-xs-9 text-right"><%= model_class.human_attribute_name(:payment_date) %>:</th>
+            <th class="col-xs-8 text-right"><%= model_class.human_attribute_name(:payment_date) %>:</th>
             <td class="text-right"><%=l @invoice[:payment_date] %></td>
           </tr>
         </table>
@@ -43,8 +43,13 @@
           <th class="text-center col-xs-1"><%= Service.human_attribute_name :code %></th>
           <th><%= InvoiceDetail.human_attribute_name :description %></th>
           <th class="text-right col-xs-1"><%= InvoiceDetail.human_attribute_name :price %></th>
-          <th class="text-right col-xs-1"><%= InvoiceDetail.human_attribute_name :discount %></th>
-          <th class="text-right col-xs-1"><%= InvoiceDetail.human_attribute_name :vat_rate %></th>
+          <% if @invoice.discount > 0 %>
+            <th class="text-right col-xs-1"><%= InvoiceDetail.human_attribute_name :discount %></th>
+          <% end %>
+
+          <% if @invoice.tax > 0 %>
+            <th class="text-right col-xs-1"><%= InvoiceDetail.human_attribute_name :vat_rate %></th>
+          <% end %>
           <th class="text-right col-xs-1"><%= InvoiceDetail.human_attribute_name :total %></th>
         </tr>
         </thead>
@@ -56,8 +61,14 @@
               <td class="text-center"><%= detail.service.code %></td>
               <td><%= detail.description %></td>
               <td class="text-right"><%= number_with_precision(detail.price, precision: 2) %>€</td>
-              <td class="text-right"><%= detail.discount %>%</td>
-              <td class="text-right"><%= detail.vat_rate %>%</td>
+
+              <% if detail.discount > 0 %>
+                <td class="text-right"><%= detail.discount %>%</td>
+              <% end %>
+
+              <% if detail.vat_rate > 0 %>
+                <td class="text-right"><%= detail.vat_rate %>%</td>
+              <% end %>
               <td class="text-right"><%= number_with_precision(detail.subtotal, precision: 2) %>€</td>
             </tr>
         <% end %>
@@ -75,7 +86,7 @@
         </div>
       <% end %>
     </div>
-    <div class="col-xs-6">
+    <div class="col-xs-6 invoice-col">
       <div class="table-responsive">
         <table class="table table-condensed borderless">
           <tr>
@@ -101,6 +112,7 @@
             <th class="col-xs-9 text-right"><%= Invoice.human_attribute_name :tax %>:</th>
             <td class="text-right"><%= number_with_precision(@invoice.tax, precision: 2) %>€</td>
           </tr>
+
           <tr>
             <th class="col-xs-9 text-right"><%= Invoice.human_attribute_name :total %>:</th>
             <td class="text-right"><%= number_with_precision(@invoice.total, precision: 2) %>€</td>
