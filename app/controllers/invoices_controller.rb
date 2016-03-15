@@ -40,15 +40,8 @@ class InvoicesController < SecuredController
         render :show, layout: 'print'
       end
       format.pdf do
-        try = 0
-
-        begin
-          try += 1
-          render pdf: "invoice_#{ @invoice.number.gsub('/', '_') }", viewport_size: '1920x1080'
-        rescue => e
-          logger.fatal "Error printing invoice #{ @invoice.number}, user: #{ current_user.id }: #{ e }"
-          retry if try < 5
-        end
+        pdf = InvoicePdf.new current_user, @invoice
+        send_data pdf.render, filename: "invoice_#{ @invoice.number.gsub('/', '_') }.pdf", type: 'application/pdf'
       end
     end
   end
