@@ -24,6 +24,7 @@ gem 'will_paginate-bootstrap'
 gem 'ckeditor_rails'
 gem 'wicked_pdf'
 gem 'prawn'
+gem 'prawn-table'
 gem 'country_select', github: 'stefanpenner/country_select'
 
 gem 'sidekiq'

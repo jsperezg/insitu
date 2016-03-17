@@ -9,6 +9,10 @@ class DocumentPdf < Prawn::Document
 
     @current_user = current_user
     @customer = customer
+
+    generate_header
+    generate_body
+    generate_footer
   end
 
   def generate_header
@@ -65,9 +69,13 @@ class DocumentPdf < Prawn::Document
 
   def document_data
     bounding_box([header_block_left(2), bounds.top], width: header_block_width, height: HEADER_HEIGHT) do
-      text "document data"
-      transparent (0.5) { stroke_bounds }
+      document_details
     end
+  end
+
+  def document_details
+    text "define your own document_details method."
+    transparent (0.5) { stroke_bounds }
   end
 
   def header_block_width
@@ -88,9 +96,13 @@ class DocumentPdf < Prawn::Document
 
   def generate_footer
     bounding_box([0, footer_top], width: footer_width, height: FOOTER_HEIGHT) do
-      text "footer"
-      transparent (0.5) { stroke_bounds }
+      footer_details
     end
+  end
+
+  def footer_details
+    text "footer"
+    transparent (0.5) { stroke_bounds }
   end
 
   def footer_top
@@ -99,5 +111,28 @@ class DocumentPdf < Prawn::Document
 
   def footer_width
     bounds.right
+  end
+
+  def generate_body
+    bounding_box([0, body_top], width: body_width, height: body_height) do
+      body_details
+    end
+  end
+
+  def body_details
+    text "body"
+    transparent (0.5) { stroke_bounds }
+  end
+
+  def body_top
+    bounds.top - HEADER_HEIGHT - SECTION_MARGIN
+  end
+
+  def body_width
+    bounds.right
+  end
+
+  def body_height
+    bounds.top - HEADER_HEIGHT - FOOTER_HEIGHT - SECTION_MARGIN * 2
   end
 end
