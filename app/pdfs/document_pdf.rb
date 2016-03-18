@@ -1,4 +1,6 @@
 class DocumentPdf < Prawn::Document
+  include ActionView::Helpers::NumberHelper
+
   DEFAULT_FONT = 'Times-Roman'
   HEADER_HEIGHT = 100
   FOOTER_HEIGHT = 150
@@ -10,9 +12,12 @@ class DocumentPdf < Prawn::Document
     @current_user = current_user
     @customer = customer
 
-    generate_header
+    repeat :all do
+      generate_header
+      generate_footer
+    end
+
     generate_body
-    generate_footer
   end
 
   def generate_header
@@ -96,13 +101,9 @@ class DocumentPdf < Prawn::Document
 
   def generate_footer
     bounding_box([0, footer_top], width: footer_width, height: FOOTER_HEIGHT) do
-      footer_details
+      generate_footer_notes
+      generate_footer_totals
     end
-  end
-
-  def footer_details
-    text "footer"
-    transparent (0.5) { stroke_bounds }
   end
 
   def footer_top
@@ -113,6 +114,28 @@ class DocumentPdf < Prawn::Document
     bounds.right
   end
 
+  def generate_footer_notes
+    bounding_box([0, bounds.top], width: footer_width * 0.66, height: FOOTER_HEIGHT) do
+      footer_notes
+    end
+  end
+
+  def footer_notes
+    text "footer notes"
+    transparent (0.5) { stroke_bounds }
+  end
+
+  def generate_footer_totals
+    bounding_box([footer_width * 0.66, bounds.top], width: footer_width * 0.33, height: FOOTER_HEIGHT) do
+      footer_totals
+    end
+  end
+
+  def footer_totals
+    text "footer totals"
+    transparent (0.5) { stroke_bounds }
+  end
+
   def generate_body
     bounding_box([0, body_top], width: body_width, height: body_height) do
       body_details
@@ -121,6 +144,8 @@ class DocumentPdf < Prawn::Document
 
   def body_details
     text "body"
+    start_new_page
+    text "body 2"
     transparent (0.5) { stroke_bounds }
   end
 
@@ -134,5 +159,16 @@ class DocumentPdf < Prawn::Document
 
   def body_height
     bounds.top - HEADER_HEIGHT - FOOTER_HEIGHT - SECTION_MARGIN * 2
+  end
+
+  def header_cell(text, borders, padding, align = 'left'.to_sym)
+    cell = make_cell(content: text, borders: borders, padding: padding, align: align)
+    cell.font_style = :bold
+
+    cell
+  end
+
+  def data_cell(text, borders, padding, align = 'left'.to_sym)
+    make_cell(content: text, borders: borders, padding: padding, align: align)
   end
 end
