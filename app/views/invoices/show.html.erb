@@ -46,10 +46,7 @@
           <% if @invoice.discount > 0 %>
             <th class="text-right col-xs-1"><%= InvoiceDetail.human_attribute_name :discount %></th>
           <% end %>
-
-          <% if @invoice.tax > 0 %>
-            <th class="text-right col-xs-1"><%= InvoiceDetail.human_attribute_name :vat_rate %></th>
-          <% end %>
+          <th class="text-right col-xs-1"><%= InvoiceDetail.human_attribute_name :vat_rate %></th>
           <th class="text-right col-xs-1"><%= InvoiceDetail.human_attribute_name :total %></th>
         </tr>
         </thead>
@@ -66,9 +63,7 @@
                 <td class="text-right"><%= detail.discount %>%</td>
               <% end %>
 
-              <% if detail.vat_rate > 0 %>
-                <td class="text-right"><%= detail.vat_rate %>%</td>
-              <% end %>
+              <td class="text-right"><%= detail.vat_rate %>%</td>
               <td class="text-right"><%= number_with_precision(detail.subtotal, precision: 2) %>€</td>
             </tr>
         <% end %>
@@ -108,10 +103,12 @@
           </tr>
           <% end %>
 
-          <tr>
-            <th class="col-xs-9 text-right"><%= Invoice.human_attribute_name :tax %>:</th>
-            <td class="text-right"><%= number_with_precision(@invoice.tax, precision: 2) %>€</td>
-          </tr>
+          <% @invoice.tax.each do |key, value| %>
+            <tr>
+              <th class="col-xs-9 text-right"><%= Invoice.human_attribute_name :tax %> (<%= key %> %):</th>
+              <td class="text-right"><%= number_with_precision(value, precision: 2) %>€</td>
+            </tr>
+          <% end %>
 
           <tr>
             <th class="col-xs-9 text-right"><%= Invoice.human_attribute_name :total %>:</th>

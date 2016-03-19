@@ -74,10 +74,12 @@ class Invoice < ActiveRecord::Base
   end
 
   def tax
-    result = 0
+    result = {
+    }
 
     self.invoice_details.each do |detail|
-      result += detail.tax
+      result[detail.vat_rate] = 0 unless result.key?(detail.vat_rate)
+      result[detail.vat_rate] += detail.tax
     end
 
     result
