@@ -41,7 +41,8 @@ class EstimatesController < SecuredController
         render :show, layout: 'print'
       end
       format.pdf do
-        render pdf: "estimate_#{ @estimate.number.gsub('/', '_') }", viewport_size: '1920x1080'
+        pdf = EstimatePdf.new current_user, @estimate
+        send_data pdf.render, filename: "estimate_#{ @estimate.number.gsub('/', '_') }.pdf", type: 'application/pdf'
       end
     end
   end
