@@ -35,7 +35,8 @@ class DeliveryNotesController < SecuredController
         render :show, layout: 'print'
       end
       format.pdf do
-        render pdf: "delivery_note_#{ @delivery_note.number.gsub('/', '_') }", viewport_size: '1920x1080'
+        pdf = DeliveryNotePdf.new current_user, @delivery_note
+        send_data pdf.render, filename: "delivery_note_#{ @delivery_note.number.gsub('/', '_') }.pdf", type: 'application/pdf'
       end
     end
   end

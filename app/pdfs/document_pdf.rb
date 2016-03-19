@@ -122,14 +122,16 @@ class DocumentPdf < Prawn::Document
   end
 
   def footer_notes
-    text "footer notes"
-    transparent (0.5) { stroke_bounds }
   end
 
   def generate_footer_totals
-    bounding_box([footer_width * 0.66, bounds.top], width: footer_width * 0.33, height: FOOTER_HEIGHT) do
+    bounding_box([footer_width * 0.66, bounds.top], width: footer_totals_width, height: FOOTER_HEIGHT) do
       footer_totals
     end
+  end
+
+  def footer_totals_width
+    footer_width * 0.33
   end
 
   def footer_totals
