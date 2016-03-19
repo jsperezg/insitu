@@ -65,7 +65,7 @@ class InvoicePdf < DocumentPdf
     @invoice.tax.each do |key, value|
       totals << [
           header_cell("#{ Invoice.human_attribute_name :tax } (#{ key }%):", default_borders, default_padding, :right),
-          data_cell("#{ number_with_precision(value, precision: 2) } €", default_borders, default_padding, :right)
+          data_cell("#{ number_with_precision(value, precision: 2) } %", default_borders, default_padding, :right)
       ]
     end
 

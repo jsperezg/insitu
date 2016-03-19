@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9253af97-43bb-4d75-844d-496160ae5ec1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/invoice.rb" afterPath="$PROJECT_DIR$/app/models/invoice.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pdfs/invoice_pdf.rb" afterPath="$PROJECT_DIR$/app/pdfs/invoice_pdf.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/invoices/print.pdf.erb" afterPath="$PROJECT_DIR$/app/views/invoices/print.pdf.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/invoices/show.html.erb" afterPath="$PROJECT_DIR$/app/views/invoices/show.html.erb" />
     </list>
     <ignored path="fges.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -88,55 +85,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="invoice.rb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/models/invoice.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.270115">
-              <caret line="79" column="41" selection-start-line="79" selection-start-column="41" selection-end-line="79" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="invoice_pdf.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="invoice_pdf.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/pdfs/invoice_pdf.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="67" column="51" selection-start-line="67" selection-start-column="51" selection-end-line="67" selection-end-column="51" />
+            <state vertical-scroll-proportion="0.47205883">
+              <caret line="67" column="70" selection-start-line="67" selection-start-column="70" selection-end-line="67" selection-end-column="70" />
               <folding>
                 <element signature="e#1563#1861#0" expanded="false" />
                 <element signature="e#1867#2183#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_resume.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/dashboard/_resume.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.625">
-              <caret line="71" column="85" selection-start-line="71" selection-start-column="85" selection-end-line="71" selection-end-column="85" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dashboard_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/dashboard_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="invoice_detail.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/invoice_detail.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="27" column="63" selection-start-line="27" selection-start-column="55" selection-end-line="27" selection-end-column="63" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -212,8 +169,8 @@
         <option value="$PROJECT_DIR$/app/views/dashboard/_resume.html.erb" />
         <option value="$PROJECT_DIR$/app/views/invoices/print.pdf.erb" />
         <option value="$PROJECT_DIR$/app/views/invoices/show.html.erb" />
-        <option value="$PROJECT_DIR$/app/pdfs/invoice_pdf.rb" />
         <option value="$PROJECT_DIR$/app/models/invoice.rb" />
+        <option value="$PROJECT_DIR$/app/pdfs/invoice_pdf.rb" />
       </list>
     </option>
   </component>
@@ -758,12 +715,6 @@
       <option name="number" value="Default" />
       <updated>1450296634841</updated>
     </task>
-    <task id="LOCAL-00030" summary="Invoice generation.&#10;&#10;Invoice generation from estimates. Tests finished.">
-      <created>1454182402989</created>
-      <option name="number" value="00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1454182402989</updated>
-    </task>
     <task id="LOCAL-00031" summary="Security&#10;&#10;When the user tries to access a different user his session is closed.&#10;&#10;User interface:&#10;&#10;User can select his country and preferred language.">
       <created>1454230921802</created>
       <option name="number" value="00031" />
@@ -1052,7 +1003,13 @@
       <option name="project" value="LOCAL" />
       <updated>1458376025341</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="VAT Grouping&#10;&#10;VAT is grouped by vat rate in the invoices.">
+      <created>1458377041319</created>
+      <option name="number" value="00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1458377041319</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1098,7 +1055,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903865" sideWeight="0.41777542" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903865" sideWeight="0.49813333" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.45391476" sideWeight="0.64768493" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2973241" sideWeight="0.64768493" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24906865" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1124,7 +1081,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Bugfixing&#10;&#10;* Solved with estimate validity date. When it was null the application was failing in several points. The label when printing the estimate was not being hide.&#10;* Replacement of bootstrap glyphicons by awesome fonts.&#10;* Customers country is not a free text anymore.&#10;* Vats: More rational column sort." />
     <MESSAGE value="Bugfixing&#10;&#10;* Solved wrong app setup regarding to relative url of the application." />
     <MESSAGE value="Bugfixing&#10;&#10;* Solved missing icons in login page." />
     <MESSAGE value="Bugfixing&#10;&#10;* Invoice payment date: set to invoice date + 15 days by default." />
@@ -1149,7 +1105,8 @@
     <MESSAGE value="PDF Generation.&#10;&#10;estimates pdf generation finished." />
     <MESSAGE value="PDF Generation.&#10;&#10;removal of wicked pdf" />
     <MESSAGE value="Tests&#10;&#10;Solved issues in specs after changes in invoice process validation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Tests&#10;&#10;Solved issues in specs after changes in invoice process validation." />
+    <MESSAGE value="VAT Grouping&#10;&#10;VAT is grouped by vat rate in the invoices." />
+    <option name="LAST_COMMIT_MESSAGE" value="VAT Grouping&#10;&#10;VAT is grouped by vat rate in the invoices." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1518,22 +1475,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/invoice_detail.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="63" selection-start-line="27" selection-start-column="55" selection-end-line="27" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/dashboard_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/invoices/show.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.1666665">
@@ -1550,30 +1491,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/invoice.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.270115">
+          <caret line="79" column="41" selection-start-line="79" selection-start-column="41" selection-end-line="79" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/dashboard/_resume.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.625">
+        <state vertical-scroll-proportion="0.8493976">
           <caret line="71" column="85" selection-start-line="71" selection-start-column="85" selection-end-line="71" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/dashboard_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.92528737">
+          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/invoice_detail.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.54022986">
+          <caret line="27" column="63" selection-start-line="27" selection-start-column="55" selection-end-line="27" selection-end-column="63" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/pdfs/invoice_pdf.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="67" column="51" selection-start-line="67" selection-start-column="51" selection-end-line="67" selection-end-column="51" />
+        <state vertical-scroll-proportion="0.47205883">
+          <caret line="67" column="70" selection-start-line="67" selection-start-column="70" selection-end-line="67" selection-end-column="70" />
           <folding>
             <element signature="e#1563#1861#0" expanded="false" />
             <element signature="e#1867#2183#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/invoice.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.270115">
-          <caret line="79" column="41" selection-start-line="79" selection-start-column="41" selection-end-line="79" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
