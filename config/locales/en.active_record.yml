@@ -133,6 +133,8 @@ en:
         total: Total
 
     errors:
+      messages:
+        record_invalid: Invalid record
       models:
         user:
           attributes:

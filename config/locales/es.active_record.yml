@@ -134,6 +134,8 @@ es:
         total: Total
 
     errors:
+      messages:
+        record_invalid: Registro inválido
       models:
         user:
           attributes:

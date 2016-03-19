@@ -20,6 +20,10 @@ FactoryGirl.define do
     sequence :contact_email do |n|
       "address_#{n}@domain.com"
     end
+
+    postal_code '00000'
+    country 'ES'
+    address 'test street, 1'
   end
 
 end
