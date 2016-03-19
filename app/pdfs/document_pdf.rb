@@ -1,5 +1,6 @@
 class DocumentPdf < Prawn::Document
   include ActionView::Helpers::NumberHelper
+  include Prawn::Measurements
 
   DEFAULT_FONT = 'Times-Roman'
   HEADER_HEIGHT = 100
