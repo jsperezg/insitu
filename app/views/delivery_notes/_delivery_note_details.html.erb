@@ -52,4 +52,11 @@
     </div>
   </td>      
 </tr>
+<% if f.object.id.blank? %>
+    <tr>
+      <td colspan="100%">
+        <%= f.submit t(:add_detail), :class => 'btn btn-primary btn-flat col-xs-12', data: { disable_with: t('please_wait')} %>
+      </td>
+    </tr>
+<% end %>
   

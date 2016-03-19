@@ -62,8 +62,6 @@
   </table>
 </div>
 <div class="box-footer">
-  <%= f.submit t(:save), :class => 'btn btn-primary btn-flat col-xs-1', data: { disable_with: t('please_wait')} %>
-
   <% unless @delivery_note.new_record? %>
       <%= link_to user_delivery_note_path(current_user, @delivery_note),
                   method: :get,

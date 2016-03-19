@@ -78,6 +78,7 @@ es:
   toggle_navigation: Mostrar/Ocultar navegación
   sign_in_at: Acceso el
   auto: Auto
+  add_detail: Guardar y añadir nueva fila
 
   payment_methods:
     title: Métodos de pago

@@ -97,8 +97,6 @@
   </table>
 </div>
 <div class="box-footer">
-  <%= f.submit t(:save), :class => 'btn btn-primary btn-flat col-xs-1', data: { disable_with: t('please_wait')} %>
-
   <% unless @invoice.new_record? %>
       <%= link_to user_invoice_path(current_user, @invoice),
                   method: :get,

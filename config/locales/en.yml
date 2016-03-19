@@ -81,6 +81,7 @@ en:
   toggle_navigation: Toggle navigation
   sign_in_at: Sign in at
   auto: Auto
+  add_detail: Save and add another row
 
   payment_methods:
       title: Payment methods
