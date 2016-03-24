@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :api do
+  get 'plan/index'
+  end
+
   root :to => "dashboard#index"
 
   devise_for :users
@@ -43,6 +47,9 @@ Rails.application.routes.draw do
     end
   end
 
+  scope '/api' do
+    resources :plans, :controller => 'api/plans'
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -15,7 +15,7 @@ if Apartment::Tenant.current_tenant.blank? or Apartment::Tenant.current_tenant =
     EstimateStatus.find_by(name: status) || EstimateStatus.create(name: status)
   end
 
-  %w(Administrador Usuario).each do |role|
+  %w(Administrator User).each do |role|
     Role.find_by(description: role) || Role.create(description: role)
   end
 

@@ -145,6 +145,10 @@ GEM
       mini_portile (~> 0.6.0)
     nprogress-rails (0.1.6.7)
     orm_adapter (0.5.0)
+    paypal-sdk-rest (1.4.3)
+      multi_json (~> 1.0)
+      uuidtools (~> 2.1)
+      xml-simple
     pdf-core (0.6.0)
     prawn (2.0.2)
       pdf-core (~> 0.6.0)
@@ -253,6 +257,7 @@ GEM
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     unicode_utils (1.4.0)
+    uuidtools (2.1.5)
     warden (1.2.3)
       rack (>= 1.0)
     web-console (2.2.1)
@@ -263,6 +268,7 @@ GEM
     will_paginate (3.0.7)
     will_paginate-bootstrap (1.0.1)
       will_paginate (>= 3.0.3)
+    xml-simple (1.1.5)
 
 PLATFORMS
   ruby
@@ -290,6 +296,7 @@ DEPENDENCIES
   jquery-ui-rails
   mysql2
   nprogress-rails
+  paypal-sdk-rest
   prawn
   prawn-table
   rails (= 4.2.3)
