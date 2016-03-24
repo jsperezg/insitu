@@ -5,6 +5,7 @@ en:
       estimate: Estimate
       invoice: Invoice
       delivery_note: Delivery note
+      plan: Price plan
     attributes:
       user:
         tax_id: TAX Id.
@@ -131,6 +132,12 @@ en:
         quantity: Quantity
         discount: Discount
         total: Total
+      plan:
+        description: Description
+        price: Price
+        months: Months
+        vat_rate: VAT
+        is_active: Active
 
     errors:
       messages:
@@ -305,3 +312,23 @@ en:
           attributes:
             name:
               taken: is already registered.
+        plan:
+          attributes:
+            description:
+              blank: is mandatory.
+            price:
+              blank: is mandatory.
+              not_a_number: must be a number.
+              greater_than: "must be greater than %{count}."
+            months:
+              blank: is mandatory.
+              not_a_number: must be a number.
+              greater_than: "must be greater than %{count}."
+              not_an_integer: must be an integer value.
+            vat_rate:
+              blank: is mandatory.
+              not_a_number: must be a number.
+              greater_than: "must be greater than %{count}."
+              not_an_integer: must be an integer value.
+            is_active:
+              blank: is mandatory.

@@ -5,6 +5,7 @@ es:
       estimate: Presupuesto
       invoice: Factura
       delivery_note: Albarán
+      plan: Plan de precios
     attributes:
       user:
         tax_id: NIF/CIF
@@ -132,6 +133,12 @@ es:
         quantity: Cantidad
         discount: Descuento
         total: Total
+      plan:
+        description: Descripción
+        price: Precio
+        months: Meses
+        vat_rate: %IVA
+        is_active: Activo
 
     errors:
       messages:
@@ -291,9 +298,9 @@ es:
             service_id:
               blank: 'es obligatorio.'
             quantity:
-              blank: 'es obligatorio.'
+              blank: es obligatorio.
               greater_than: "debe ser mayor que %{count}."
-              not_a_number: "debe ser un número."
+              not_a_number: debe ser un número.
             price:
               blank: 'es obligatorio.'
               greater_than: "debe ser mayor que %{count}."
@@ -306,3 +313,23 @@ es:
           attributes:
             name:
               taken: ya está registrado.
+        plan:
+          attributes:
+            description:
+              blank: es obligatorio.
+            price:
+              blank: es obligatorio.
+              not_a_number: debe ser un número.
+              greater_than: "debe ser mayor que %{count}."
+            months:
+              blank: es obligatorio.
+              not_a_number: debe ser un número.
+              greater_than: "debe ser mayor que %{count}."
+              not_an_integer: no admite decimales.
+            vat_rate:
+              blank: es obligatorio.
+              not_a_number: debe ser un número.
+              greater_than: "debe ser mayor que %{count}."
+              not_an_integer: no admite decimales.
+            is_active:
+              blank: es obligatorio.
