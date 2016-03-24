@@ -1,53 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9253af97-43bb-4d75-844d-496160ae5ec1" name="Default" comment="Usability improvements&#10;&#10;The button to add a new detail record in master-detail editions become more evident for the user.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/admin_secured.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/admin_secured_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/api/plans_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/api_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/plans_controller.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/helpers/admin_secured_helper.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/helpers/api/plans_helper.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/helpers/api_helper.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/helpers/plans_helper.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/plan.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/api/api/.keep" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/api/plans/.keep" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/plans/_form.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/plans/edit.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/plans/index.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/plans/index.json.jbuilder" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/plans/new.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/plans/show.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/plans/show.json.jbuilder" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/initializers/paypal.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20160319172204_add_valid_until_to_user.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20160319172736_create_plans.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/controllers/api/plans_controller_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/controllers/plans_controller_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/factories/plans.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/helpers/admin_secured_helper_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/helpers/api/plans_helper_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/helpers/api_helper_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/helpers/plans_helper_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/models/plan_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/requests/plans_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/routing/plans_routing_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/views/plans/edit.html.erb_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/views/plans/index.html.erb_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/views/plans/new.html.erb_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/views/plans/show.html.erb_spec.rb" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.generators" afterPath="$PROJECT_DIR$/.idea/.generators" />
+    <list default="true" id="9253af97-43bb-4d75-844d-496160ae5ec1" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/helpers/api/plans_helper.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/helpers/api_helper.rb" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/fges.iml" afterPath="$PROJECT_DIR$/.idea/fges.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/initializers/apartment.rb" afterPath="$PROJECT_DIR$/config/initializers/apartment.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/seeds.rb" afterPath="$PROJECT_DIR$/db/seeds.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/api/plans_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/api/plans_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/.last_run.json" afterPath="$PROJECT_DIR$/coverage/.last_run.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/.resultset.json" afterPath="$PROJECT_DIR$/coverage/.resultset.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/index.html" afterPath="$PROJECT_DIR$/coverage/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/controllers/api/plans_controller_spec.rb" afterPath="$PROJECT_DIR$/spec/controllers/api/plans_controller_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/factories/plans.rb" afterPath="$PROJECT_DIR$/spec/factories/plans.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/models/plan_spec.rb" afterPath="$PROJECT_DIR$/spec/models/plan_spec.rb" />
     </list>
     <ignored path="fges.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,6 +35,7 @@
     <SUITE FILE_PATH="coverage/fges@Invoice_Invoice_serie_generic_serie__fges.coverage" NAME="Invoice Invoice serie generic serie: fges Coverage Results" MODIFIED="1451648070707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@DeliveryNotesController_GET__forward_email__fges.coverage" NAME="DeliveryNotesController GET #forward_email: fges Coverage Results" MODIFIED="1454620043968" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Run_spec__unit_spec___fges.coverage" NAME="Run spec 'unit_spec': fges Coverage Results" MODIFIED="1450875139786" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
+    <SUITE FILE_PATH="coverage/fges@Plan_validation_rules_description_is_mandatory__fges.coverage" NAME="Plan validation rules description is mandatory: fges Coverage Results" MODIFIED="1458810109779" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Invoice_billing_process_irpf_15___fges.coverage" NAME="Invoice billing process irpf 15%: fges Coverage Results" MODIFIED="1454740512438" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@customers_index_renders_a_list_of_customers__fges.coverage" NAME="customers/index renders a list of customers: fges Coverage Results" MODIFIED="1450810817058" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Invoice_customer_is_mandatory__fges.coverage" NAME="Invoice customer is mandatory: fges Coverage Results" MODIFIED="1451647950893" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
@@ -91,6 +57,7 @@
     <SUITE FILE_PATH="coverage/fges@InvoiceDetail_invoice_detail_relationship_with_time_tracker__fges.coverage" NAME="InvoiceDetail invoice detail relationship with time tracker: fges Coverage Results" MODIFIED="1454177863771" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@All_specs_in_fges__fges__1_.coverage" NAME="All specs in fges: fges (1) Coverage Results" MODIFIED="1458375924778" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Run_spec__delivery_note_spec___fges.coverage" NAME="Run spec 'delivery_note_spec': fges Coverage Results" MODIFIED="1452067654927" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
+    <SUITE FILE_PATH="coverage/fges@Plan__fges.coverage" NAME="Plan: fges Coverage Results" MODIFIED="1458810244508" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Run_spec__index_html_erb_spec___fges.coverage" NAME="Run spec 'index.html.erb_spec': fges Coverage Results" MODIFIED="1450811556173" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Run_spec__task_spec___fges.coverage" NAME="Run spec 'task_spec': fges Coverage Results" MODIFIED="1450941745271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@TasksController_GET__invoice_finished_Generates_invoice_with_all_pending_time_logs__fges.coverage" NAME="TasksController GET #invoice_finished Generates invoice with all pending time logs: fges Coverage Results" MODIFIED="1453625119201" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
@@ -114,6 +81,7 @@
     <SUITE FILE_PATH="coverage/fges@All_specs_in_models__fges.coverage" NAME="All specs in models: fges Coverage Results" MODIFIED="1451650099988" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@InvoicesController_GET__index_assigns_all_invoices_as__invoices__fges.coverage" NAME="InvoicesController GET #index assigns all invoices as @invoices: fges Coverage Results" MODIFIED="1458375918454" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Run_spec__invoice_detail_spec___fges.coverage" NAME="Run spec 'invoice_detail_spec': fges Coverage Results" MODIFIED="1454619222612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
+    <SUITE FILE_PATH="coverage/fges@Api__PlansController_index__fges.coverage" NAME="Api::PlansController index: fges Coverage Results" MODIFIED="1458811166989" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Run_spec__services_controller_spec___fges.coverage" NAME="Run spec 'services_controller_spec': fges Coverage Results" MODIFIED="1454179685203" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@InvoiceDetail_invoice_detail_relationship_with_time_tracker_removing_invoice_detail_lives_time_log_record_pending_for_unvoice__fges.coverage" NAME="InvoiceDetail invoice detail relationship with time tracker removing invoice detail lives time log record pending for unvoice: fges Coverage Results" MODIFIED="1454179933540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@All_specs_in_fges__fges.coverage" NAME="All specs in fges: fges Coverage Results" MODIFIED="1456510343360" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
@@ -128,7 +96,48 @@
     <favorites_list name="fges" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="plan_spec.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spec/models/plan_spec.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="85" column="70" selection-start-line="85" selection-start-column="61" selection-end-line="85" selection-end-column="70" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="plans_controller_spec.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/spec/controllers/api/plans_controller_spec.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.2647059">
+              <caret line="12" column="106" selection-start-line="12" selection-start-column="106" selection-end-line="12" selection-end-column="106" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="plans_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/api/plans_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2" column="75" selection-start-line="2" selection-start-column="75" selection-end-line="2" selection-end-column="111" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customers_controller_spec.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spec/controllers/customers_controller_spec.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="48" column="51" selection-start-line="46" selection-start-column="6" selection-end-line="48" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -149,8 +158,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/lib/sequence_generator.rb" />
-        <option value="$PROJECT_DIR$/spec/models/invoice_spec.rb" />
         <option value="$PROJECT_DIR$/app/models/user.rb" />
         <option value="$PROJECT_DIR$/app/models/customer.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
@@ -188,7 +195,6 @@
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/config/paypal.yml" />
         <option value="$PROJECT_DIR$/app/models/plan.rb" />
-        <option value="$PROJECT_DIR$/spec/factories/plans.rb" />
         <option value="$PROJECT_DIR$/config/initializers/apartment.rb" />
         <option value="$PROJECT_DIR$/app/controllers/plans_controller.rb" />
         <option value="$PROJECT_DIR$/app/helpers/admin_secured_helper.rb" />
@@ -197,9 +203,12 @@
         <option value="$PROJECT_DIR$/db/migrate/20160319172736_create_plans.rb" />
         <option value="$PROJECT_DIR$/app/controllers/api/api_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/api/plan_controller.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/api/plans_controller.rb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/spec/models/plan_spec.rb" />
+        <option value="$PROJECT_DIR$/spec/factories/plans.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/api/plans_controller.rb" />
+        <option value="$PROJECT_DIR$/spec/controllers/api/plans_controller_spec.rb" />
       </list>
     </option>
   </component>
@@ -311,7 +320,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
+              <option name="myItemId" value="factories" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -325,11 +334,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="spec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="support" />
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -343,61 +348,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="spec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="routing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fges" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fges" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="requests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fges" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fges" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fges" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fges" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spec" />
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -415,29 +366,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="spec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="helpers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fges" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fges" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spec" />
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -455,53 +384,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="db" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fges" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fges" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fges" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fges" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fges" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fges" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="api" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -554,109 +445,7 @@
       <recent name="$PROJECT_DIR$/app/views/estimates" />
     </key>
   </component>
-  <component name="RunManager" selected="Rails.Development: fges">
-    <configuration default="false" name="Invoice billing process irpf 15%: fges" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
-      <predefined_log_file id="RUBY_RSPEC" enabled="true" />
-      <module name="fges" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-      <envs>
-        <env name="RAILS_ENV" value="test" />
-        <env name="JRUBY_OPTS" value="-X+O" />
-      </envs>
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
-        <COVERAGE_PATTERN ENABLED="true">
-          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-        </COVERAGE_PATTERN>
-      </EXTENSION>
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/models/invoice_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Invoice billing process irpf 15%" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Run spec 'invoice_spec': fges" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
-      <predefined_log_file id="RUBY_RSPEC" enabled="true" />
-      <module name="fges" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-      <envs>
-        <env name="RAILS_ENV" value="test" />
-        <env name="JRUBY_OPTS" value="-X+O" />
-      </envs>
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
-        <COVERAGE_PATTERN ENABLED="true">
-          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-        </COVERAGE_PATTERN>
-      </EXTENSION>
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/models/invoice_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Invoice valid invoices: fges" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
-      <predefined_log_file id="RUBY_RSPEC" enabled="true" />
-      <module name="fges" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-      <envs>
-        <env name="RAILS_ENV" value="test" />
-        <env name="JRUBY_OPTS" value="-X+O" />
-      </envs>
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
-        <COVERAGE_PATTERN ENABLED="true">
-          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-        </COVERAGE_PATTERN>
-      </EXTENSION>
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/models/invoice_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Invoice valid invoices" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="RSpec.Api::PlansController index: fges">
     <configuration default="false" name="All specs in fges: fges (1)" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
       <predefined_log_file id="RUBY_RSPEC" enabled="true" />
       <module name="fges" />
@@ -715,6 +504,108 @@
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="InvoicesController GET #index assigns all invoices as @invoices" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Plan validation rules description is mandatory: fges" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
+      <predefined_log_file id="RUBY_RSPEC" enabled="true" />
+      <module name="fges" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="RAILS_ENV" value="test" />
+        <env name="JRUBY_OPTS" value="-X+O" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/models/plan_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Plan validation rules description is mandatory" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Plan: fges" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
+      <predefined_log_file id="RUBY_RSPEC" enabled="true" />
+      <module name="fges" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="RAILS_ENV" value="test" />
+        <env name="JRUBY_OPTS" value="-X+O" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/models/plan_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Plan" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Api::PlansController index: fges" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
+      <predefined_log_file id="RUBY_RSPEC" enabled="true" />
+      <module name="fges" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="RAILS_ENV" value="test" />
+        <env name="JRUBY_OPTS" value="-X+O" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/controllers/api/plans_controller_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Api::PlansController index" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
@@ -907,19 +798,19 @@
       <item index="2" class="java.lang.String" itemvalue="Rails.Production: fges" />
       <item index="3" class="java.lang.String" itemvalue="Rails.Development: fges" />
       <item index="4" class="java.lang.String" itemvalue="RSpec.All specs in fges: fges" />
-      <item index="5" class="java.lang.String" itemvalue="RSpec.Invoice billing process irpf 15%: fges" />
-      <item index="6" class="java.lang.String" itemvalue="RSpec.Run spec 'invoice_spec': fges" />
-      <item index="7" class="java.lang.String" itemvalue="RSpec.Invoice valid invoices: fges" />
-      <item index="8" class="java.lang.String" itemvalue="RSpec.All specs in fges: fges (1)" />
-      <item index="9" class="java.lang.String" itemvalue="RSpec.InvoicesController GET #index assigns all invoices as @invoices: fges" />
+      <item index="5" class="java.lang.String" itemvalue="RSpec.All specs in fges: fges (1)" />
+      <item index="6" class="java.lang.String" itemvalue="RSpec.InvoicesController GET #index assigns all invoices as @invoices: fges" />
+      <item index="7" class="java.lang.String" itemvalue="RSpec.Plan validation rules description is mandatory: fges" />
+      <item index="8" class="java.lang.String" itemvalue="RSpec.Plan: fges" />
+      <item index="9" class="java.lang.String" itemvalue="RSpec.Api::PlansController index: fges" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="RSpec.InvoicesController GET #index assigns all invoices as @invoices: fges" />
-        <item index="1" class="java.lang.String" itemvalue="RSpec.All specs in fges: fges (1)" />
-        <item index="2" class="java.lang.String" itemvalue="RSpec.Invoice valid invoices: fges" />
-        <item index="3" class="java.lang.String" itemvalue="RSpec.Run spec 'invoice_spec': fges" />
-        <item index="4" class="java.lang.String" itemvalue="RSpec.Invoice billing process irpf 15%: fges" />
+        <item index="0" class="java.lang.String" itemvalue="RSpec.Api::PlansController index: fges" />
+        <item index="1" class="java.lang.String" itemvalue="RSpec.Plan: fges" />
+        <item index="2" class="java.lang.String" itemvalue="RSpec.Plan validation rules description is mandatory: fges" />
+        <item index="3" class="java.lang.String" itemvalue="RSpec.InvoicesController GET #index assigns all invoices as @invoices: fges" />
+        <item index="4" class="java.lang.String" itemvalue="RSpec.All specs in fges: fges (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -933,12 +824,6 @@
       <created>1450296634841</created>
       <option name="number" value="Default" />
       <updated>1450296634841</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Invoicing from delivery notes management view.&#10;&#10;Validations when sending documents to customers without email.&#10;Default payment method.">
-      <created>1454620294541</created>
-      <option name="number" value="00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1454620294541</updated>
     </task>
     <task id="LOCAL-00034" summary="Invoicing from delivery notes management view.&#10;&#10;Validations when sending documents to customers without email.&#10;Default payment method.">
       <created>1454694229532</created>
@@ -1228,57 +1113,63 @@
       <option name="project" value="LOCAL" />
       <updated>1458378668244</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Management area.&#10;&#10;* Created structure for JSON API.&#10;* New model for plans&#10;* New controller for admin restricted controller.">
+      <created>1458809809690</created>
+      <option name="number" value="00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1458809809690</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_specs_in_fges__fges_(1) - 2016.03.19 at 09h 16m 11s.xml">
-      <configuration name="All specs in fges: fges (1)" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="Api__PlansController_index__fges - 2016.03.24 at 10h 08m 02s.xml">
+      <configuration name="Api::PlansController index: fges" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_specs_in_fges__fges_(1) - 2016.03.19 at 09h 18m 56s.xml">
-      <configuration name="All specs in fges: fges (1)" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="Api__PlansController_index__fges - 2016.03.24 at 10h 08m 26s.xml">
+      <configuration name="Api::PlansController index: fges" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_specs_in_fges__fges_(1) - 2016.03.19 at 09h 21m 18s.xml">
-      <configuration name="All specs in fges: fges (1)" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="Api__PlansController_index__fges - 2016.03.24 at 10h 08m 46s.xml">
+      <configuration name="Api::PlansController index: fges" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="All_specs_in_fges__fges_(1) - 2016.03.19 at 09h 25m 35s.xml">
-      <configuration name="All specs in fges: fges (1)" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="Api__PlansController_index__fges - 2016.03.24 at 10h 10m 38s.xml">
+      <configuration name="Api::PlansController index: fges" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="Invoice_valid_invoices__fges - 2016.02.26 at 20h 05m 30s.xml">
-      <configuration name="Invoice valid invoices: fges" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="Api__PlansController_index__fges - 2016.03.24 at 10h 12m 37s.xml">
+      <configuration name="Api::PlansController index: fges" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="InvoicesController_GET_#index_assigns_all_invoices_as_@invoices__fges - 2016.03.19 at 09h 23m 37s.xml">
-      <configuration name="InvoicesController GET #index assigns all invoices as @invoices: fges" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="Api__PlansController_index__fges - 2016.03.24 at 10h 13m 21s.xml">
+      <configuration name="Api::PlansController index: fges" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="InvoicesController_GET_#index_assigns_all_invoices_as_@invoices__fges - 2016.03.19 at 09h 23m 54s.xml">
-      <configuration name="InvoicesController GET #index assigns all invoices as @invoices: fges" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="Api__PlansController_index__fges - 2016.03.24 at 10h 14m 19s.xml">
+      <configuration name="Api::PlansController index: fges" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="InvoicesController_GET_#index_assigns_all_invoices_as_@invoices__fges - 2016.03.19 at 09h 25m 08s.xml">
-      <configuration name="InvoicesController GET #index assigns all invoices as @invoices: fges" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="Api__PlansController_index__fges - 2016.03.24 at 10h 15m 11s.xml">
+      <configuration name="Api::PlansController index: fges" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="InvoicesController_GET_#index_assigns_all_invoices_as_@invoices__fges - 2016.03.19 at 09h 25m 20s.xml">
-      <configuration name="InvoicesController GET #index assigns all invoices as @invoices: fges" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="Api__PlansController_index__fges - 2016.03.24 at 10h 15m 27s.xml">
+      <configuration name="Api::PlansController index: fges" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_spec__invoice_spec___fges - 2016.02.26 at 20h 05m 37s.xml">
-      <configuration name="Run spec 'invoice_spec': fges" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="Api__PlansController_index__fges - 2016.03.24 at 10h 19m 28s.xml">
+      <configuration name="Api::PlansController index: fges" configurationId="RSpecRunConfigurationType" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="1961" y="24" width="1879" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22086217" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22086217" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45391476" sideWeight="0.35231507" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903865" sideWeight="0.49813333" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2973241" sideWeight="0.64768493" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2973241" sideWeight="0.64768493" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24906865" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39940536" sideWeight="0.5769026" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1300,7 +1191,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Bugfixing&#10;&#10;* Invoice payment date: set to invoice date + 15 days by default." />
     <MESSAGE value="Bugfixing&#10;&#10;* Document number accepts series more than one character long." />
     <MESSAGE value="Bugfixing&#10;&#10;* Discount hidden when 0.&#10;* Missing IRPF in invoice." />
     <MESSAGE value="Bugfixing&#10;&#10;* Missing id for customer in documents (invoices, estimates and delivery notes)." />
@@ -1325,7 +1215,8 @@
     <MESSAGE value="VAT Grouping&#10;&#10;VAT is grouped by vat rate in the invoices." />
     <MESSAGE value="PDF Invoicing&#10;&#10;solved issue with vat, It was followed by a € sign, instead of a % sign." />
     <MESSAGE value="Usability improvements&#10;&#10;The button to add a new detail record in master-detail editions become more evident for the user." />
-    <option name="LAST_COMMIT_MESSAGE" value="Usability improvements&#10;&#10;The button to add a new detail record in master-detail editions become more evident for the user." />
+    <MESSAGE value="Management area.&#10;&#10;* Created structure for JSON API.&#10;* New model for plans&#10;* New controller for admin restricted controller." />
+    <option name="LAST_COMMIT_MESSAGE" value="Management area.&#10;&#10;* Created structure for JSON API.&#10;* New model for plans&#10;* New controller for admin restricted controller." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1356,27 +1247,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/pdfs/invoice_pdf.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47205883">
-          <caret line="67" column="70" selection-start-line="67" selection-start-column="70" selection-end-line="67" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/locales/en.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="83" column="38" selection-start-line="83" selection-start-column="38" selection-end-line="83" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/locales/es.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="80" column="41" selection-start-line="80" selection-start-column="41" selection-end-line="80" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/invoices/_form.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-15.458333">
@@ -1458,13 +1328,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="55" selection-start-line="8" selection-start-column="55" selection-end-line="8" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/factories/plans.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -1638,14 +1501,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/plan.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.066176474">
-          <caret line="3" column="19" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/schema.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1666,14 +1521,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.09558824">
           <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/api_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1702,18 +1549,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/api/plans_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.066176474">
-          <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/projects_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/models/payment_method_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/plan.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="19" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/project.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/models/project_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="88" selection-start-line="4" selection-start-column="4" selection-end-line="7" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/controllers/customers_controller_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="48" column="51" selection-start-line="46" selection-start-column="6" selection-end-line="48" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/models/plan_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="85" column="70" selection-start-line="85" selection-start-column="61" selection-end-line="85" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/factories/plans.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13235295">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/plans_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="75" selection-start-line="2" selection-start-column="75" selection-end-line="2" selection-end-column="111" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/controllers/api/plans_controller_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2647059">
+          <caret line="12" column="106" selection-start-line="12" selection-start-column="106" selection-end-line="12" selection-end-column="106" />
           <folding />
         </state>
       </provider>

@@ -4,5 +4,6 @@ FactoryGirl.define do
     price 5.00
     months 1
     vat_rate 21
+    is_active true
   end
 end
