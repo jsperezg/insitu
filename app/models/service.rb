@@ -25,9 +25,9 @@ class Service < ActiveRecord::Base
 
   def self.active_filter_options
     [
-      [I18n.t('services.only_active'), '1'],
       [I18n.t('services.all_records'), '0'],
-      [I18n.t('services.only_inactive'), '2']
+      [I18n.t('services.only_inactive'), '2'],
+      [I18n.t('services.only_active'), '1']
     ]
   end
 
