@@ -31,6 +31,7 @@ es:
         vat_id: IVA
         unit_id: Unidades
         price: Precio
+        active: Activo
       customer:
         name: Nombre
         tax_id: CIF
@@ -137,7 +138,7 @@ es:
         description: Descripción
         price: Precio
         months: Meses
-        vat_rate: %IVA
+        vat_rate: "%IVA"
         is_active: Activo
 
     errors:
@@ -158,10 +159,14 @@ es:
         service:
           attributes:
             code:
+              blank: 'es obligatorio.'
               taken: ': El código seleccionado está en uso.'
             price:
+              blank: 'es obligatorio.'
               greater_than: " debe ser mayor que %{count}."
               not_a_number: no es un número.
+            active:
+              blank: 'es obligatorio.'
         customer:
           attributes:
             name:

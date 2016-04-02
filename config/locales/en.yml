@@ -83,6 +83,7 @@ en:
   auto: Auto
   add_detail: Save and add another row
 
+
   payment_methods:
       title: Payment methods
       not_found: No payment methods defined. Can't generate invoice.
@@ -92,6 +93,9 @@ en:
     title: Services
     create_title: Create Service
     edit_title: Edit Service
+    all_records: All records
+    only_active: Only active
+    only_inactive: Only inactive
 
   customers:
     customer: Customer

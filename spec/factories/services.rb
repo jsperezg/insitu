@@ -8,6 +8,7 @@ FactoryGirl.define do
     vat_id { Vat.first.try(:id) || create(:vat).id }
     unit_id { Unit.first.try(:id) || create(:unit).id }
     price 25
+    active true
   end
 
 end

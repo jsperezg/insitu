@@ -9,6 +9,7 @@
         <th class="col-xs-1"><%= model_class.human_attribute_name(:vat_id) %></th>
         <th class="col-xs-1"><%= model_class.human_attribute_name(:unit_id) %></th>
         <th class="col-xs-1 text-right"><%= model_class.human_attribute_name(:price) %></th>
+        <th class="col-xs-1"><%= model_class.human_attribute_name(:active) %></th>
         <th class="col-xs-1"></th>
         <th class="col-xs-1"></th>
       </tr>
@@ -25,7 +26,12 @@
             <td><%= service.unit.label_short %></td>
             <td class="text-right">
               <%= best_in_place service, :price, display_with: :number_to_currency, helper_options: { unit: '€', precision: 2, format: '%n %u'},
-                                path: user_service_path(current_user, service, format: :json) %>
+                                url: user_service_path(current_user, service, format: :json) %>
+            </td>
+            <td>
+              <%= best_in_place service, :active, as: :checkbox,
+                    collection: {'true': t(:checkbox_true), 'false': t(:checkbox_false) },
+                    url: user_service_path(current_user, service, format: :json) %>
             </td>
             <td>
               <%= button_to edit_user_service_path(current_user.id, service),

@@ -7,7 +7,7 @@ class Task < ActiveRecord::Base
   validates :project_id, presence: true
   validates :priority, numericality: { only_integer: true }, inclusion: { in: 1..5 }
 
-  after_initialize :set_default_values
+  after_initialize :set_default_values, if: :new_record?
   before_validation :set_default_values
 
   accepts_nested_attributes_for :time_logs, reject_if: proc { |attr|

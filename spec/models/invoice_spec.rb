@@ -147,7 +147,13 @@ RSpec.describe Invoice, type: :model do
       expect(gross_total).not_to eq(0)
       expect(invoice.applied_irpf).not_to eq(0)
       expect(invoice.applied_irpf).to eq(gross_total * invoice.irpf / 100)
-      expect(invoice.total).to eq(invoice.subtotal - invoice.discount - invoice.applied_irpf + invoice.tax)
+
+      tax_total = 0
+      invoice.tax.each do |key, value|
+        tax_total += invoice.tax[key]
+      end
+
+      expect(invoice.total).to eq(invoice.subtotal - invoice.discount - invoice.applied_irpf + tax_total)
     end
 
     it 'irpf 0%' do
@@ -160,7 +166,13 @@ RSpec.describe Invoice, type: :model do
 
       expect(gross_total).not_to eq(0)
       expect(invoice.applied_irpf).to eq(0)
-      expect(invoice.total).to eq(invoice.subtotal - invoice.discount - invoice.applied_irpf + invoice.tax)
+
+      tax_total = 0
+      invoice.tax.each do |key, value|
+        tax_total += invoice.tax[key]
+      end
+
+      expect(invoice.total).to eq(invoice.subtotal - invoice.discount - invoice.applied_irpf + tax_total)
     end
   end
 end

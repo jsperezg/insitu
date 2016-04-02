@@ -42,7 +42,7 @@ class Estimate < ActiveRecord::Base
     result
   }, :allow_destroy => true
 
-  after_initialize :set_default_values
+  after_initialize :set_default_values, if: :new_record?
   before_validation :set_default_values
 
   after_save do

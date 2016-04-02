@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160319172736) do
+ActiveRecord::Schema.define(version: 20160402062748) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "name",          limit: 255, null: false
@@ -175,13 +175,14 @@ ActiveRecord::Schema.define(version: 20160319172736) do
   add_index "roles", ["description"], name: "index_roles_on_description", using: :btree
 
   create_table "services", force: :cascade do |t|
-    t.string   "code",        limit: 255,                         null: false
-    t.string   "description", limit: 255,                         null: false
-    t.integer  "vat_id",      limit: 4,                           null: false
-    t.integer  "unit_id",     limit: 4,                           null: false
-    t.decimal  "price",                   precision: 7, scale: 2, null: false
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.string   "code",        limit: 255,                                        null: false
+    t.string   "description", limit: 255,                                        null: false
+    t.integer  "vat_id",      limit: 4,                                          null: false
+    t.integer  "unit_id",     limit: 4,                                          null: false
+    t.decimal  "price",                   precision: 7, scale: 2,                null: false
+    t.datetime "created_at",                                                     null: false
+    t.datetime "updated_at",                                                     null: false
+    t.boolean  "active",                                          default: true
   end
 
   add_index "services", ["code"], name: "index_services_on_code", using: :btree

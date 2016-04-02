@@ -10,7 +10,7 @@
     <%= f.hidden_field :invoice_id %>
     <div class=row>
       <div class="form-group pull-left col-xs-5">
-        <%= f.collection_select :service_id, Service.order(description: :asc), :id, :description,
+        <%= f.collection_select :service_id, Service.where(active: true).order(description: :asc), :id, :description,
           { prompt: true },
           {
             class: 'form-control input-sm',

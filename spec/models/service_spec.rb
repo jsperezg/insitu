@@ -101,4 +101,18 @@ RSpec.describe Service, type: :model do
 
     expect(service.errors).to satisfy { |errors| !errors.empty? && errors.key?( :unit )}
   end
+
+  it 'active defaults to true' do
+    service = Service.new(
+        code:  'a code',
+        description: 'It has a description',
+        price: 1,
+        unit: Unit.first,
+        vat: Vat.first
+    )
+    expect(service.save).to be_truthy
+
+    service.reload
+    expect(service.active).to be_truthy
+  end
 end

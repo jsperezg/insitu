@@ -5,6 +5,7 @@ class Service < ActiveRecord::Base
       },
       available_filters: [
           :with_filter_criteria,
+          :with_active_criteria,
           :sorted_by
       ]
   )
@@ -16,12 +17,29 @@ class Service < ActiveRecord::Base
         [ "#{ Service.human_attribute_name(:code) } (#{I18n.t('filterrific.sort_alpha_asc')})", 'code_asc'],
         [ "#{ Service.human_attribute_name(:code) } (#{I18n.t('filterrific.sort_alpha_desc')})", 'code_desc'],
         [ "#{ Service.human_attribute_name(:description) } (#{I18n.t('filterrific.sort_alpha_asc')})", 'description_asc'],
-        [ "#{ Service.human_attribute_name(:description) } (#{I18n.t('filterrific.sort_alpha_desc')})", 'description_desc']
+        [ "#{ Service.human_attribute_name(:description) } (#{I18n.t('filterrific.sort_alpha_desc')})", 'description_desc'],
+        [ "#{ Service.human_attribute_name(:active) } (#{I18n.t('filterrific.sort_alpha_desc')})", 'active_asc'],
+        [ "#{ Service.human_attribute_name(:active) } (#{I18n.t('filterrific.sort_alpha_desc')})", 'active_desc']
+    ]
+  end
+
+  def self.active_filter_options
+    [
+      [I18n.t('services.only_active'), '1'],
+      [I18n.t('services.all_records'), '0'],
+      [I18n.t('services.only_inactive'), '2']
     ]
   end
 
   scope :with_filter_criteria, lambda { |filter|
     where('code like :filter or description like :filter', { filter: "%#{filter}%" })
+  }
+
+  scope :with_active_criteria, lambda { |filter |
+    case filter
+      when 1 then where(active: true)
+      when 2 then where(active: false)
+    end
   }
 
   scope :sorted_by, lambda { |sort_by|
@@ -38,6 +56,12 @@ class Service < ActiveRecord::Base
       when 'description_desc'
         order(description: :desc)
 
+      when 'active_asc'
+        order(active: :asc)
+
+      when 'active_desc'
+        order(active: :desc)
+
       else
         order(code: :asc)
     end
@@ -52,7 +76,15 @@ class Service < ActiveRecord::Base
   validates :vat, presence: true
   validates :unit, presence: true
 
+  after_initialize :set_default_values, if: :new_record?
+
   def formatted_price
     ActionController::Base.helpers.number_to_currency(self.price, :precision => 2, unit: '€')
+  end
+
+  private
+
+  def set_default_values
+    self.active = true
   end
 end

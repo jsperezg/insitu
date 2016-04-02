@@ -31,6 +31,7 @@ en:
         vat: VAT
         unit: Unit
         price: Price
+        active: Active
       customer:
         name: Name
         tax_id: TAX Id.
@@ -157,10 +158,14 @@ en:
         service:
           attributes:
             code:
+              blank: 'is mandatory'
               taken: "already been taken."
             price:
+              blank: 'is mandatory'
               greater_than: "must be greater than %{count}"
               not_a_number: is not a number.
+            active:
+              blank: 'is mandatory'
         customer:
           attributes:
             name:

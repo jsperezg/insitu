@@ -8,8 +8,10 @@ class ServicesController < SecuredController
         Service,
         params[:filterrific],
         select_options: {
-            sorted_by: Service.options_for_sorted_by
+            sorted_by: Service.options_for_sorted_by,
+            with_active_criteria: Service.active_filter_options
         }
+
     ) or return
 
     @services = @filterrific.find.page(params[:page])
@@ -83,6 +85,6 @@ class ServicesController < SecuredController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def service_params
-      params.require(:service).permit(:code, :description, :vat_id, :unit_id, :price)
+      params.require(:service).permit(:code, :description, :vat_id, :unit_id, :price, :active)
     end
 end

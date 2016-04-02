@@ -89,6 +89,9 @@ es:
     title: Servicios
     create_title: Crear Servicio
     edit_title: Editar Servicio
+    all_records: Todos
+    only_active: Solo activos
+    only_inactive: Solo inactivos
 
   customers:
     customer: Cliente
