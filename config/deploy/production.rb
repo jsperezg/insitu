@@ -32,7 +32,7 @@ server 'localhost', roles: %w{app db web}, port: 22, user: fetch(:user), passwor
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
 
-
+set :linked_files, [ 'config/paypal.yml' ]
 
 # Custom SSH Options
 # ==================
