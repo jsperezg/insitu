@@ -50,6 +50,9 @@ GEM
     apartment-sidekiq (1.0.0)
       apartment (~> 1.0)
       sidekiq (>= 2.11)
+    api_smith (1.3.0)
+      hashie (>= 1.0, < 3.0)
+      httparty
     arel (6.0.3)
     bcrypt (3.1.10)
     best_in_place (3.0.3)
@@ -117,6 +120,10 @@ GEM
       rails (>= 3.1.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    hashie (2.1.2)
+    httparty (0.13.7)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     i18n_data (0.7.0)
     jbuilder (2.3.1)
@@ -136,7 +143,9 @@ GEM
     mime-types (2.6.1)
     mini_portile (0.6.2)
     minitest (5.8.0)
+    moneta (0.8.0)
     multi_json (1.11.2)
+    multi_xml (0.5.5)
     mysql2 (0.3.20)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -189,6 +198,13 @@ GEM
       redis (~> 3.0, >= 3.0.4)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
+    rocket_pants (1.13.1)
+      actionpack (>= 3.0, < 5.0)
+      api_smith
+      hashie (>= 1.0, < 3)
+      moneta
+      railties (>= 3.0, < 5.0)
+      will_paginate (~> 3.0)
     rspec-core (3.3.2)
       rspec-support (~> 3.3.0)
     rspec-expectations (3.3.1)
@@ -300,6 +316,7 @@ DEPENDENCIES
   prawn
   prawn-table
   rails (= 4.2.3)
+  rocket_pants (~> 1.0)
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

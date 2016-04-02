@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     begin
       if current_user.try(:locale).blank?
         logger.debug "* Accept-Language: #{request.env['HTTP_ACCEPT_LANGUAGE']}"
-        I18n.locale = extract_locale_from_accept_language_header
+        I18n.locale = extract_locale_from_headers
         logger.debug "* Locale set to '#{I18n.locale}'"
       else
         I18n.locale = current_user.locale
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def extract_locale_from_accept_language_header
+  def extract_locale_from_headers
     request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
   end
 

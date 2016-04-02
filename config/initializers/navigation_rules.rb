@@ -13,7 +13,10 @@ NAVIGATION_RULES = {
         icon: 'fa fa-cog',
         title: :production
     },
-
+    administration: {
+        icon: 'fa fa-users',
+        title: :administration
+    },
     dashboard: {
         index: {
             title: :general
@@ -285,5 +288,16 @@ NAVIGATION_RULES = {
             parent: { controller: :time_logs, action: :index, params: [ :user_id, :project_id, :task_id ] },
             title: 'time_logs.edit_title'
         }
+    },
+
+    plans: {
+      index: {
+          parent: :administration,
+          title: 'plans.title'
+      },
+      new: {
+          parent: { controller: :plans, action: :index },
+          title: 'plans.create_title'
+      },
     }
 }

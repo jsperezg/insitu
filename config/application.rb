@@ -28,5 +28,11 @@ module Fges
     config.autoload_paths << Rails.root.join('lib')
 
     config.active_job.queue_adapter = :sidekiq
+
+    # Rocket pants
+    config.rocket_pants.use_caching = true
+    # config.rocket_pants.cache
+    config.rocket_pants.header_metadata = true
+
   end
 end

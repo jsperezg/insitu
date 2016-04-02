@@ -1,6 +1,5 @@
-<h1>Editing Plan</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @plan %> |
-<%= link_to 'Back', plans_path %>
+<div class="box box-primary">
+  <%= form_for @plan, url: plan_path(@plan), html: { class: 'plan', role: 'form' } do |f| %>
+      <%= render :partial => 'form', locals: { f: f } %>
+  <% end %>
+</div>

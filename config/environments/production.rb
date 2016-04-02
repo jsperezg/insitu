@@ -86,4 +86,6 @@ Rails.application.configure do
       authentication: :plain,
       enable_starttls_auto: true
   }
+
+  config.rocket_pants.pass_through_errors = false
 end

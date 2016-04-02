@@ -47,9 +47,17 @@ Rails.application.routes.draw do
     end
   end
 
-  scope '/api' do
-    resources :plans, :controller => 'api/plans'
+  resources :plans
+  api version: 1 do
+    scope module: 'api' do
+      resources :plans, only: [:index]
+    end
   end
+  # scope '/api' do
+  #   resources :plans, :controller => 'api/plans'
+  # end
+  #
+  #
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,10 @@
+en:
+  administration: Administration
+
+  plans:
+    plan: Plan
+    title: Pricing plans
+    create_title: New pricing plan
+    all_records: All records
+    only_active: Only active
+    only_inactive: Only inactive

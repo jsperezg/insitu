@@ -1,4 +1,6 @@
 class AdminSecuredController < SecuredController
+  include AdminSecuredHelper
+
   before_action :check_admin_role
 
   private
