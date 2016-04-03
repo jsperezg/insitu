@@ -19,16 +19,14 @@
       <% plans.each do |plan| %>
           <tr>
             <td><%= best_in_place plan, :description, url: plan_path(plan, format: :json) %></td>
-            <td class="text-right"><%= best_in_place plan, :months, url: plan_path(plan, format: :json) %> %</td>
+            <td class="text-right"><%= best_in_place plan, :months, url: plan_path(plan, format: :json) %></td>
             <td class="text-right">
               <%= best_in_place plan, :price,
                                 display_with: :number_to_currency, helper_options: { unit: '€', precision: 2, format: '%n %u'},
                                 url: plan_path(plan, format: :json) %>
             </td>
             <td class="text-right">
-              <%= best_in_place plan, :vat_rate,
-                                display_with: :number_to_currency, helper_options: { unit: '€', precision: 2, format: '%n %u'},
-                                url: plan_path(plan, format: :json) %>
+              <%= best_in_place plan, :vat_rate, url: plan_path(plan, format: :json) %> %
             </td>
             <td>
               <%= best_in_place plan, :is_active, as: :checkbox,

@@ -1,7 +1,7 @@
 module ApplicationHelper
-	def has_role?(role_name)
+	def has_role?(role_name, &block)
 		if role_name.split('|').include? current_user.role.try(:description)
-      yield
+      capture(&block)
 		end
 	end
 

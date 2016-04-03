@@ -8,3 +8,12 @@ es:
     only_active: Solo activos
     only_inactive: Solo inactivos
     create_title: Nuevo plan de precios
+    perpetual: Perpetual
+
+  users:
+    user: Usuario
+    title: Gestión de usuarios
+    vip: VIPs
+    only_active: Solo activos
+    only_inactive: Solo inactivos
+    perpetual: Perpetua

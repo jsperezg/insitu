@@ -299,5 +299,12 @@ NAVIGATION_RULES = {
           parent: { controller: :plans, action: :index },
           title: 'plans.create_title'
       },
+    },
+
+    users: {
+        index: {
+            parent: :administration,
+            title: 'users.title'
+        }
     }
 }

@@ -8,3 +8,10 @@ en:
     all_records: All records
     only_active: Only active
     only_inactive: Only inactive
+
+  users:
+    user: User
+    title: User management
+    vip: VIPs
+    only_active: Solo activos
+    only_inactive: Solo inactivos

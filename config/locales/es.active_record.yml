@@ -21,6 +21,8 @@ es:
         current_password: Contraseña actual
         phone_number: Teléfono
         locale: Idioma
+        valid_until: Válido hasta
+        user_role_id: Rol
       payment_method:
         name: Nombre
         note_for_invoice: Anotación en factura

@@ -47,7 +47,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :plans
+  resources :plans, :users
   api version: 1 do
     scope module: 'api' do
       resources :plans, only: [:index]

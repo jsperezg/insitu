@@ -21,6 +21,8 @@ en:
         current_password: Current password
         phone_number: Phone number
         locale: Language
+        valid_until: Valid until
+        user_role_id: Rol
       payment_method:
         name: Name
         note_for_invoice: Note for invoice

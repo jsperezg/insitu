@@ -1,4 +1,60 @@
 class User < ActiveRecord::Base
+  filterrific(
+      default_filter_params: {
+          sorted_by: 'valid_until_asc'
+      },
+      available_filters: [
+          :with_filter_criteria,
+          :with_active_criteria,
+          :sorted_by
+      ]
+  )
+
+  self.per_page = DEFAULT_ITEMS_PER_PAGE
+
+  def self.options_for_sorted_by
+    [
+        [ "#{ Service.human_attribute_name(:valid_until) } (#{I18n.t('filterrific.sort_alpha_asc')})", 'valid_until_asc'],
+        [ "#{ Service.human_attribute_name(:valid_until) } (#{I18n.t('filterrific.sort_alpha_desc')})", 'valid_until_desc']
+    ]
+  end
+
+  def self.active_filter_options
+    [
+        [I18n.t('users.only_active'), '1'],
+        [I18n.t('users.vip'), '0'],
+        [I18n.t('users.only_inactive'), '2']
+    ]
+  end
+
+  scope :with_filter_criteria, lambda { |filter|
+    where('email like :filter', filter: "%#{filter}%")
+  }
+
+  scope :with_active_criteria, lambda { |filter |
+    case filter
+      when 0 then where(valid_until: nil)
+      when 2 then where('valid_until < ?', Date.today)
+      when 1 then where('valid_until >= ? or valid_until is null', Date.today)
+    end
+  }
+
+  scope :sorted_by, lambda { |sort_by|
+    case sort_by
+      when 'valid_until_asc'
+        order(valid_until: :asc)
+
+      when 'valid_until_desc'
+        order(valid_until: :desc)
+
+      else
+        order(email: :asc)
+    end
+  }
+
+  validates :email, presence: true
+  validates :encrypted_password, presence: true
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -32,6 +88,18 @@ class User < ActiveRecord::Base
         self.address.present? and
         self.postal_code.present? and
         self.country.present?
+  end
+
+  def is_active?
+    self.valid_until.nil? || self.valid_until >= Date.today
+  end
+
+  def has_expired?
+    self.valid_until < Date.today?
+  end
+
+  def is_about_to_expire?
+    self.valid_until >= Date.today && self.valid_until - 7.days <= Date.today
   end
 
   private
