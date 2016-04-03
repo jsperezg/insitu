@@ -80,10 +80,10 @@ RSpec.describe Plan, type: :model do
       end
     end
 
-    it 'is active is mandatory' do
-      plan = Plan.new
-      expect(plan.save).to be_falsey
-      expect(plan.errors).to satisfy { |errors| errors.key? :is_active }
+    it 'is active is default' do
+      plan = Plan.new(description: 'Plan name', months: 7, price: 7.0, vat_rate: 21)
+      expect(plan.save).to be_truthy
+      expect(plan.is_active).to be_truthy
     end
   end
 end

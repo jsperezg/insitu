@@ -9,6 +9,9 @@ RSpec.describe "delivery_notes/index", type: :view do
       create(:delivery_note),
       create(:delivery_note)      
     ])
+
+    allow(view).to receive(:form_for_filterrific).and_return('filterrific form')
+    allow(view).to receive(:will_paginate).and_return('filterrific paginator')
   end
 
   after(:each) do

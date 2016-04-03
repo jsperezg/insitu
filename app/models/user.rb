@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   private
 
   def init_role
-    self[:role_id] = Role.find_by(description: 'Usuario').try(:id) if self[:role_id].nil?
+    self[:role_id] = Role.find_by(description: 'User').try(:id) if self[:role_id].nil?
   end
 
   def init_tenant_name

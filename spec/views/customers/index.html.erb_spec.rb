@@ -12,6 +12,9 @@ RSpec.describe 'customers/index', type: :view do
     end
 
     assign(:customers, @customers)
+
+    allow(view).to receive(:form_for_filterrific).and_return('filterrific form')
+    allow(view).to receive(:will_paginate).and_return('filterrific paginator')
   end
 
   after(:each) do
@@ -22,7 +25,6 @@ RSpec.describe 'customers/index', type: :view do
     render
 
     @customers.each do |c|
-      assert_select 'tr>td', :text => c[:id].to_s, :count => 1
       assert_select 'tr>td', :text => c[:name], count: 1
       assert_select 'tr>td', :text => c[:contact_name].to_s, count: 1
       assert_select 'tr>td', :text => c[:contact_phone].to_s, count: 1

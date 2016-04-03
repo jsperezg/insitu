@@ -11,5 +11,41 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe EstimatesHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "estimate_tr" do
+    it "accepted estimate" do
+      estimate = create(:estimate, estimate_status_id: create(:estimate_status, name: 'estimate_status.accepted').try(:id))
+
+      html_row = helper.estimate_tr(estimate) do
+      end
+
+      expect(html_row).to include('success')
+    end
+
+    it "created estimate" do
+      estimate = create(:estimate, estimate_status_id: create(:estimate_status, name: 'estimate-status.created').try(:id))
+
+      html_row = helper.estimate_tr(estimate) do
+      end
+
+      expect(html_row).to include('active')
+    end
+
+    it "sent estimate" do
+      estimate = create(:estimate, estimate_status_id: create(:estimate_status, name: 'estimate_status.sent').try(:id))
+
+      html_row = helper.estimate_tr(estimate) do
+      end
+
+      expect(html_row).to include('info')
+    end
+
+    it 'rejected estimate' do
+      estimate = create(:estimate, estimate_status_id: create(:estimate_status, name: 'estimate_status.rejected').try(:id))
+
+      html_row = helper.estimate_tr(estimate) do
+      end
+
+      expect(html_row).to include('danger')
+    end
+  end
 end

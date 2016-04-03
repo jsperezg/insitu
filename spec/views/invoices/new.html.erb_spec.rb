@@ -2,8 +2,11 @@ require 'rails_helper'
 
 RSpec.describe "invoices/new", type: :view do
   before(:each) do
+    @user = User.first || create(:user)
+    sign_in @user
+
     assign(:invoice, Invoice.new(
-      :number => "MyString",
+      date: Date.today,
       :payment_method => nil,
       :customer => nil
     ))
@@ -12,13 +15,8 @@ RSpec.describe "invoices/new", type: :view do
   it "renders new invoice form" do
     render
 
-    assert_select "form[action=?][method=?]", invoices_path, "post" do
-
-      assert_select "input#invoice_number[name=?]", "invoice[number]"
-
-      assert_select "input#invoice_payment_method_id[name=?]", "invoice[payment_method_id]"
-
-      assert_select "input#invoice_customer_id[name=?]", "invoice[customer_id]"
+    assert_select "form[action=?][method=?]", user_invoices_path(@user), "post" do
+      assert_select "select#invoice_payment_method_id[name=?]", "invoice[payment_method_id]"
     end
   end
 end
