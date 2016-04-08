@@ -80,7 +80,6 @@ class EstimatesController < SecuredController
 
   # GET /estimates/1/edit
   def edit
-    @estimate_detail = EstimateDetail.new
     @estimate.estimate_details.includes(service: [ :unit, :vat ]).build
   end
 
@@ -113,11 +112,14 @@ class EstimatesController < SecuredController
         if @estimate.update(estimate_params)
           format.html {
             redirect_to edit_user_estimate_url(current_user, @estimate),
-            notice: t(:successfully_updated, item: t('estimates.estimate'))
+                        notice: t(:successfully_updated, item: t('estimates.estimate'))
           }
           format.json { render :show, status: :ok, location: @estimate }
         else
-          format.html { render :edit }
+          format.html {
+            @estimate.estimate_details.includes(service: [ :unit, :vat ]).build
+            render :edit
+          }
           format.json { render json: @estimate.errors, status: :unprocessable_entity }
         end
       end

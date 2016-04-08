@@ -80,7 +80,6 @@ class InvoicesController < SecuredController
 
   # GET /invoices/1/edit
   def edit
-    @invoice_detail = InvoiceDetail.new
     @invoice.invoice_details.build
   end
 
@@ -122,7 +121,10 @@ class InvoicesController < SecuredController
           }
           format.json { render :show, status: :ok, location: @invoice }
         else
-          format.html { render :edit }
+          format.html {
+            @invoice.invoice_details.build
+            render :edit
+          }
           format.json { render json: @invoice.errors, status: :unprocessable_entity }
         end
       end
@@ -143,25 +145,26 @@ class InvoicesController < SecuredController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_invoice
-      @invoice = Invoice.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def invoice_params
-      params.require(:invoice).permit(
-        :date,
-        :number,
-        :payment_method_id,
-        :customer_id,
-        :payment_date,
-        :paid_on,
-        :invoice_status_id,
-        invoice_details_attributes: [
-          :id, :invoice_id, :service_id, :vat_rate, :quantity, :price,
-          :discount, :description, :_destroy
-        ]
-      )
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_invoice
+    @invoice = Invoice.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def invoice_params
+    params.require(:invoice).permit(
+      :date,
+      :number,
+      :payment_method_id,
+      :customer_id,
+      :payment_date,
+      :paid_on,
+      :invoice_status_id,
+      invoice_details_attributes: [
+        :id, :invoice_id, :service_id, :vat_rate, :quantity, :price,
+        :discount, :description, :_destroy
+      ]
+    )
+  end
 end

@@ -1,18 +1,5 @@
 <div class="box-body">
-  <% if @delivery_note.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%=t :validation_error_header %></h3>
-      </div>
-      <div class="panel-body">
-        <ul>
-        <% @delivery_note.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    </div>
-  <% end %>
+  <%= render partial: 'layouts/validation_errors', locals: { object: @delivery_note } %>
 
   <div class=row>
     <% unless @delivery_note.new_record? %>
@@ -58,6 +45,11 @@
       <%= f.fields_for :delivery_note_details do |builder| %>
         <%= render 'delivery_note_details', f: builder %>
       <% end %>
+      <tr>
+        <td colspan="100%">
+          <%= f.submit t(:add_detail), :class => 'btn btn-primary btn-flat col-xs-12', data: { disable_with: t('please_wait')} %>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>

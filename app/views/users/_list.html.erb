@@ -1,0 +1,39 @@
+<%- model_class = User -%>
+<div id="filterrific_results">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th class="col-xs-3"><%= model_class.human_attribute_name(:email) %></th>
+        <th class="col-xs-1"><%= model_class.human_attribute_name(:role_id) %></th>
+        <th><%= model_class.human_attribute_name(:name) %></th>
+        <th class="col-xs-1"><%= model_class.human_attribute_name(:valid_until) %></th>
+        <th class="col-xs-1"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% if users.empty? %>
+          <tr><td colspan="4"><%=t 'helpers.tables.empty' %></td></tr>
+      <% end %>
+      <% users.each do |user| %>
+          <%= user_tr(user) do %>
+            <td><%= user.email %></td>
+            <td><%= user.role.try(:description) %></td>
+            <td><%= user.name %></td>
+            <td><%=validity_date user.valid_until %></td>
+            <td>
+              <%= button_to edit_user_path(user),
+                            :method => :get,
+                            :class => 'btn btn-xs btn-default btn-flat btn-block' do %>
+                  <i class="fa fa-pencil-square-o" aria-hidden="true">
+                    <%=t 'helpers.links.edit' %>
+                  </i>
+              <% end %>
+            </td>
+          <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= will_paginate users, renderer: BootstrapPagination::Rails %>
+</div>

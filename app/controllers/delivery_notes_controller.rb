@@ -69,8 +69,7 @@ class DeliveryNotesController < SecuredController
 
   # GET /delivery_notes/1/edit
   def edit
-    @delivery_note_detail = DeliveryNoteDetail.new
-    detail = @delivery_note.delivery_note_details.build
+    @delivery_note.delivery_note_details.build
   end
 
   # POST /delivery_notes
@@ -102,7 +101,11 @@ class DeliveryNotesController < SecuredController
                         notice: t(:successfully_updated, item: t('delivery_notes.delivery_note')) }
           format.json { render :show, status: :ok, location: @delivery_note }
         else
-          format.html { render :edit }
+          format.html {
+            @delivery_note.delivery_note_details.build
+            render :edit
+          }
+
           format.json { render json: @delivery_note.errors, status: :unprocessable_entity }
         end
       end
