@@ -15,6 +15,11 @@
       </div>
     </div>
   </div>
+  <div class="checkbox">
+    <label>
+      <%= f.check_box :default %><%= t('activerecord.attributes.vat.default') %>
+    </label>
+  </div>
 </div>
 <div class="box-footer">
   <%= f.submit t(:save), :class => 'btn btn-primary btn-flat col-xs-1', data: { disable_with: t('please_wait')} %>

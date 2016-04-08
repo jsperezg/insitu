@@ -4,7 +4,7 @@ FactoryGirl.define do
       "Payment method #{n}"
     end
 
-    note_for_invoice "Note  for invoice"
+    note_for_invoice 'Note  for invoice'
   end
 
 end

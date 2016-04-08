@@ -47,6 +47,7 @@ en:
         country: Country
         postal_code: Post code
         state: State
+        send_invoices_to: Send invoices to
       project:
         name: Name
         project_status_id: Status
@@ -114,6 +115,7 @@ en:
       vat:
         label: Label
         rate: Value
+        default: Default
       estimate:
         number: Number
         customer_id: Customer
@@ -157,8 +159,6 @@ en:
             current_password:
               blank: is mandatory.
               invalid: is invalid.
-            valid_until:
-              perpetual_license_was_expected: A perpetual license was expected.
         service:
           attributes:
             code:
@@ -182,6 +182,8 @@ en:
               not_a_number: is not a number.
               not_an_integer: is not an integer value.
               greater_than_or_equal_to: must be greater than %{count}.
+            send_invoices_to:
+              invalid: 'seems to be invalid.'
         project:
           attributes:
             name:

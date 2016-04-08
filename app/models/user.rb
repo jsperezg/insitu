@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
     case filter
       when 0 then where(valid_until: nil)
       when 2 then where('valid_until < ?', Date.today)
-      when 1 then where('valid_until >= ? or valid_until is null', Date.today)
+      else where('valid_until >= ? or valid_until is null', Date.today)
     end
   }
 
@@ -54,7 +54,6 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true
   validates :encrypted_password, presence: true
-  validate :admins_are_perpetual
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -63,10 +62,10 @@ class User < ActiveRecord::Base
 
   belongs_to :role
 
-  before_save :init_role, on: :create
   after_save :init_tenant_name, on: :create
   after_commit :init_tenant, on: :create
   after_commit :destroy_tenant, on: :destroy
+  before_validation :set_default_values
 
   # Available locales
   def self.available_locales
@@ -109,10 +108,6 @@ class User < ActiveRecord::Base
 
   private
 
-  def init_role
-    self[:role_id] = Role.find_by(description: 'User').try(:id) if self[:role_id].nil?
-  end
-
   def init_tenant_name
     if self[:tenant].blank?
       if Rails.env.production?
@@ -137,9 +132,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def admins_are_perpetual
-    if is_administrator? and not valid_until.nil?
-      errors.add(:valid_until, I18n.t('activerecord.errors.models.user.attributes.valid_until.perpetual_license_was_expected'))
-    end
+  def set_default_values
+    self[:role_id] = Role.find_by(description: 'User').try(:id) if self[:role_id].nil?
+    self[:valid_until] = nil if is_administrator?
   end
 end

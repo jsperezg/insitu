@@ -11,23 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160402062748) do
+ActiveRecord::Schema.define(version: 20160408191115) do
 
   create_table "customers", force: :cascade do |t|
-    t.string   "name",          limit: 255, null: false
-    t.string   "tax_id",        limit: 255
-    t.string   "billing_serie", limit: 255
-    t.integer  "irpf",          limit: 4
-    t.string   "contact_name",  limit: 255
-    t.string   "contact_phone", limit: 255
-    t.string   "contact_email", limit: 255
-    t.string   "address",       limit: 255
-    t.string   "city",          limit: 255
-    t.string   "postal_code",   limit: 255
-    t.string   "state",         limit: 255
-    t.string   "country",       limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "name",             limit: 255, null: false
+    t.string   "tax_id",           limit: 255
+    t.string   "billing_serie",    limit: 255
+    t.integer  "irpf",             limit: 4
+    t.string   "contact_name",     limit: 255
+    t.string   "contact_phone",    limit: 255
+    t.string   "contact_email",    limit: 255
+    t.string   "address",          limit: 255
+    t.string   "city",             limit: 255
+    t.string   "postal_code",      limit: 255
+    t.string   "state",            limit: 255
+    t.string   "country",          limit: 255
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "send_invoices_to", limit: 255
   end
 
   create_table "delivery_note_details", force: :cascade do |t|
@@ -279,10 +280,11 @@ ActiveRecord::Schema.define(version: 20160402062748) do
   add_index "users", ["role_id"], name: "fk_rails_642f17018b", using: :btree
 
   create_table "vats", force: :cascade do |t|
-    t.string   "label",      limit: 255, null: false
-    t.integer  "rate",       limit: 4,   null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "label",      limit: 255,                 null: false
+    t.integer  "rate",       limit: 4,                   null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.boolean  "default",                default: false
   end
 
   add_index "vats", ["label"], name: "index_vats_on_label", using: :btree

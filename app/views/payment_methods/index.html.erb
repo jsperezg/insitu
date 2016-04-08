@@ -5,19 +5,25 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th class="col-xs-10"><%=t model_class.human_attribute_name(:name) %></th>
+            <th class="col-xs-9"><%= model_class.human_attribute_name(:name) %></th>
+            <th class="col-xs-1"><%= model_class.human_attribute_name(:default) %></th>
             <th class="col-xs-1"></th>
             <th class="col-xs-1"></th>
           </tr>
         </thead>
         <tbody>
           <% if @payment_methods.empty? %>
-              <tr><td colspan="3"><%=t 'helpers.tables.empty' %></td></tr>
+              <tr><td colspan="4"><%=t 'helpers.tables.empty' %></td></tr>
           <% end %>
           <% @payment_methods.each do |payment_method| %>
             <tr>
               <td>
                 <%= best_in_place payment_method, :name, url: user_payment_method_path(current_user, payment_method, format: :json)  %>
+              </td>
+              <td>
+                <%= best_in_place payment_method, :default, as: :checkbox,
+                                  collection: {'true': t(:checkbox_true), 'false': t(:checkbox_false) },
+                                  url: user_payment_method_path(current_user, payment_method, format: :json) %>
               </td>
               <td>
                 <%= button_to edit_user_payment_method_path(current_user.id, payment_method),

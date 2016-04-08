@@ -167,6 +167,9 @@ class Invoice < ActiveRecord::Base
 
     # By default: payment date is the invoice date + 15 days.
     self.payment_date = self.date + 15.days if self.date.present? and !self.payment_date.present?
+
+    # Establish the default payment method
+    self.payment_method_id = PaymentMethod.find_by(default: true).try(:id) if self.payment_method_id.nil?
   end
 
   def set_invoice_number

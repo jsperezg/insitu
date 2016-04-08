@@ -35,4 +35,19 @@ RSpec.describe Vat, type: :model do
 
     expect(vat.errors).to satisfy { |errors| !errors.empty? && errors.key?( :rate )}
   end
+
+  describe 'default' do
+    it 'just one record can by the default value' do
+      vat_1 = create(:vat, default: true)
+      vat_1.reload
+      expect(vat_1.default).to be_truthy
+
+      vat_2 = create(:vat, default: true)
+      vat_2.reload
+      expect(vat_2.default).to be_truthy
+
+      vat_1.reload
+      expect(vat_1.default).to be_falsey
+    end
+  end
 end

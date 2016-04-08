@@ -11,6 +11,8 @@ class InvoiceDetail < ActiveRecord::Base
   validates :quantity, presence: true, numericality: { greater_than: 0 }
   validates :discount, presence: true, numericality: { greater_than_or_equal_to: 0, only_integer: true }
 
+  after_initialize :set_default_values, if: :new_record?
+
   def subtotal
     if price.present? && quantity.present?
       price * quantity
@@ -33,5 +35,11 @@ class InvoiceDetail < ActiveRecord::Base
     if price.present? && quantity.present? && discount.present? && vat_rate.present?
 	    ( 1 - (discount / 100.0)) * price * quantity * ( 1 + (vat_rate / 100.0))
     end
-	end
+  end
+
+  private
+
+  def set_default_values
+    self.vat_rate = Vat.find_by(default: true).try(:rate) if self.vat_rate.nil?
+  end
 end

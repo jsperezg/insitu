@@ -81,7 +81,14 @@ RSpec.describe InvoiceDetail, type: :model do
 			invoice_detail.save
 
 			expect(invoice_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :vat_rate )}
-		end
+    end
+
+    it 'is initialized to default vat rate' do
+      vat_rate = create(:vat, default: true)
+
+      invoice_detail = InvoiceDetail.new
+      expect(invoice_detail.vat_rate).to eq(vat_rate.rate)
+    end
 	end
 
 	describe "discount" do

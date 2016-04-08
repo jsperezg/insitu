@@ -175,4 +175,13 @@ RSpec.describe Invoice, type: :model do
       expect(invoice.total).to eq(invoice.subtotal - invoice.discount - invoice.applied_irpf + tax_total)
     end
   end
+
+  describe 'default values' do
+    it 'default payment method' do
+      default_payment_method = create(:payment_method, default: true)
+
+      invoice = Invoice.new
+      expect(invoice.payment_method_id).to eq(default_payment_method.id)
+    end
+  end
 end

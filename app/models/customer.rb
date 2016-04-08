@@ -19,7 +19,7 @@ class Customer < ActiveRecord::Base
   end
 
   scope :with_filter_criteria, lambda { |filter|
-    where('name like :filter or contact_name like :filter or contact_email like :filter', { filter: "%#{filter}%" })
+    where('name like :filter or contact_name like :filter or contact_email like :filter or send_invoices_to like :filter', filter: "%#{filter}%")
   }
 
   scope :sorted_by, lambda { |sort_by|
@@ -37,6 +37,7 @@ class Customer < ActiveRecord::Base
 
   validates :name, presence: true
   validates :contact_email, email: { allow_blank: true }
+  validates :send_invoices_to, email: { allow_blank: true }
   validates :tax_id, uniqueness: { case_sensitive: false, allow_blank: true}
   validates :irpf, numericality: { greater_than_or_equal_to: 0, only_integer: true, allow_blank: true }
 

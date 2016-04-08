@@ -2,16 +2,16 @@ include Settings
 
 config = Rails.configuration.database_configuration
 
-if Apartment::Tenant.current_tenant.blank? or Apartment::Tenant.current_tenant == config[Rails.env]["database"]
-  ['project_status.active', 'project_status.suspended', 'project_status.cancelled', 'project_status.closed'].each do |state|
+if Apartment::Tenant.current_tenant.blank? or Apartment::Tenant.current_tenant == config[Rails.env]['database']
+  %w(project_status.active project_status.suspended project_status.cancelled project_status.closed).each do |state|
       ProjectStatus.find_by(name: state) || ProjectStatus.create(name: state)
   end
 
-  ['invoice_status.created', 'invoice_status.sent', 'invoice_status.paid', 'invoice_status.default'].each do |status|
+  %w(invoice_status.created invoice_status.sent invoice_status.paid invoice_status.default).each do |status|
     InvoiceStatus.find_by(name: status) || InvoiceStatus.create(name: status)
   end
 
-  ['estimate_status.created', 'estimate_status.sent', 'estimate_status.accepted', 'estimate_status.rejected'].each do |status|
+  %w(estimate_status.created estimate_status.sent estimate_status.accepted estimate_status.rejected).each do |status|
     EstimateStatus.find_by(name: status) || EstimateStatus.create(name: status)
   end
 
@@ -24,7 +24,7 @@ if Apartment::Tenant.current_tenant.blank? or Apartment::Tenant.current_tenant =
     admin = User.create(:email => 'jsperezg@gmail.com', :password => 'change_me', :password_confirmation => 'change_me')
   end
 
-  admin_role = Role.find_by(description: 'Administrador')
+  admin_role = Role.find_by(description: 'Administrator')
   unless admin_role.nil?
     admin.role = admin_role
     admin.save!
@@ -48,5 +48,5 @@ else
     Vat.find_by(rate: vat[:rate]) || Vat.create(vat)
   end
 
-  PaymentMethod.create(name: 'Efectivo/Cash', note_for_invoice: 'Pago al contado/Cash payment', default: true)
+  PaymentMethod.find_by(name: 'Efectivo/Cash') || PaymentMethod.create(name: 'Efectivo/Cash', note_for_invoice: 'Pago al contado/Cash payment', default: true)
 end

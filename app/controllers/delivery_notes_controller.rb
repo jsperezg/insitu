@@ -42,7 +42,7 @@ class DeliveryNotesController < SecuredController
   end
 
   def forward_email
-    if @delivery_note.customer.contact_email.blank?
+    if @delivery_note.customer.contact_email.blank? and @delivery_note.customer.send_invoices_to.blank?
       flash[:error] = t('helpers.customer_mail_missing')
       redirect_to user_delivery_note_path(current_user.id, @delivery_note.id)
       return

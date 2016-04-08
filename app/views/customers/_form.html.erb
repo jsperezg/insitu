@@ -26,15 +26,23 @@
   </div>
 
   <div class=row>
-    <div class="form-group col-xs-3 pull-left">
+    <div class="form-group col-xs-2">
       <%= f.label :contact_phone, :class => 'control-label' %>
       <%= f.text_field :contact_phone, :class => 'form-control input-sm' %>
     </div>
-    <div class="form-group col-xs-9 pull-left">
+    <div class="form-group col-xs-5">
       <%= f.label :contact_email, :class => 'control-label' %>
       <div class="input-group">
         <span class="input-group-addon">@</span>
         <%= f.text_field :contact_email, :class => 'form-control input-sm' %>
+      </div>
+    </div>
+
+    <div class="form-group col-xs-5">
+      <%= f.label :send_invoices_to, :class => 'control-label' %>
+      <div class="input-group">
+        <span class="input-group-addon">@</span>
+        <%= f.text_field :send_invoices_to, :class => 'form-control input-sm' %>
       </div>
     </div>
   </div>

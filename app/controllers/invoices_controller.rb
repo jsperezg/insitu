@@ -52,7 +52,7 @@ class InvoicesController < SecuredController
       @invoice.save
     end
 
-    if @invoice.customer.contact_email.blank?
+    if @invoice.customer.contact_email.blank? and @invoice.customer.send_invoices_to.blank?
       flash[:error] = t('helpers.customer_mail_missing')
       redirect_to user_invoice_path(current_user.id, @invoice.id)
       return

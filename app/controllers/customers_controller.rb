@@ -95,7 +95,7 @@ class CustomersController < SecuredController
         .require(:customer)
         .permit(
             :name, :tax_id, :billing_serie, :irpf, :contact_name, :contact_phone, :contact_email,
-            :address, :city, :country, :state, :postal_code
+            :address, :city, :country, :state, :postal_code, :send_invoices_to
         )
     end
 end

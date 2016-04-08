@@ -23,4 +23,19 @@ RSpec.describe PaymentMethod, type: :model do
 
     expect(r.errors).to satisfy { |errors| errors.key? :name }
   end
+
+  describe 'default flag' do
+    it 'just one payment method as default' do
+      p1 = create(:payment_method, default: true)
+      p1.reload
+      expect(p1.default).to be_truthy
+
+      p2 = create(:payment_method, default: true)
+      p2.reload
+      expect(p2.default).to be_truthy
+
+      p1.reload
+      expect(p1.default).to be_falsey
+    end
+  end
 end

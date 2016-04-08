@@ -69,6 +69,6 @@ class VatsController < SecuredController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vat_params
-      params.require(:vat).permit(:label, :rate)
+      params.require(:vat).permit(:label, :rate, :default)
     end
 end

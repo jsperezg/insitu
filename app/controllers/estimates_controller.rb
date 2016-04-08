@@ -48,7 +48,7 @@ class EstimatesController < SecuredController
   end
 
   def forward_email
-    if @estimate.customer.contact_email.blank?
+    if @estimate.customer.contact_email.blank? and @estimate.customer.send_invoices_to.blank?
       flash[:error] = t('helpers.customer_mail_missing')
       redirect_to user_estimate_path(current_user.id, @estimate.id)
       return

@@ -47,6 +47,7 @@ es:
         country: País
         postal_code: Código Postal
         state: Provincia
+        send_invoices_to: Enviar facturas a
       project:
         name: Nombre
         project_status_id: Estado
@@ -115,6 +116,7 @@ es:
       vat:
         label: Etiqueta
         rate: Valor
+        default: Por defecto
       estimate:
         number: Número
         customer_id: Cliente
@@ -158,8 +160,6 @@ es:
             current_password:
               blank: es obligatoria.
               invalid: es incorrecta.
-            valid_until:
-              perpetual_license_was_expected: Los administradores solo pueden tener licencia perpetua.
 
         service:
           attributes:
@@ -184,6 +184,8 @@ es:
               not_a_number: no es un número.
               not_an_integer: no admite decimales.
               greater_than_or_equal_to: debe ser mayor que %{count}.
+            send_invoices_to:
+              invalid: 'tiene un formato incorrecto.'
         project:
           attributes:
             name:

@@ -9,7 +9,7 @@ class DeliveryNoteMailer < ApplicationMailer
 
       attachments["delivery_note_#{ delivery_note.number.gsub('/', '_')}.pdf"] = File.read(document_path)
 
-      mail(to: delivery_note.customer.contact_email, subject: default_i18n_subject(delivery_note_number: delivery_note.number, customer_name: invoice.customer.name))
+      mail(to: destination_address(delivery_note.customer), subject: default_i18n_subject(delivery_note_number: delivery_note.number, customer_name: invoice.customer.name))
     ensure
       File.delete(document_path)
     end
