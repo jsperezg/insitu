@@ -158,6 +158,9 @@ es:
             current_password:
               blank: es obligatoria.
               invalid: es incorrecta.
+            valid_until:
+              perpetual_license_was_expected: Los administradores solo pueden tener licencia perpetua.
+
         service:
           attributes:
             code:

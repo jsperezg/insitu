@@ -20,7 +20,7 @@
             <td><%= user.email %></td>
             <td><%= user.role.try(:description) %></td>
             <td><%= user.name %></td>
-            <td><%=validity_date user.valid_until %></td>
+            <td><%= validity_date user.valid_until %></td>
             <td>
               <%= button_to edit_user_path(user),
                             :method => :get,

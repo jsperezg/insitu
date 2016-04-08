@@ -157,6 +157,8 @@ en:
             current_password:
               blank: is mandatory.
               invalid: is invalid.
+            valid_until:
+              perpetual_license_was_expected: A perpetual license was expected.
         service:
           attributes:
             code:

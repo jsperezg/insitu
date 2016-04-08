@@ -54,6 +54,7 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true
   validates :encrypted_password, presence: true
+  validate :admins_are_perpetual
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -102,6 +103,10 @@ class User < ActiveRecord::Base
     self.valid_until >= Date.today && self.valid_until - 7.days <= Date.today
   end
 
+  def is_administrator?
+    self.role.try(:description) == 'Administrator'
+  end
+
   private
 
   def init_role
@@ -123,12 +128,18 @@ class User < ActiveRecord::Base
   def init_tenant
     unless Rails.env.test?
       Apartment::Tenant.create(self[:tenant])
-   end
+    end
   end
 
   def destroy_tenant
-   unless Rails.env.test?
-     Apartment::Tenant.drop(self[:tenant])
-   end
+    unless Rails.env.test?
+      Apartment::Tenant.drop(self[:tenant])
+    end
+  end
+
+  def admins_are_perpetual
+    if is_administrator? and not valid_until.nil?
+      errors.add(:valid_until, I18n.t('activerecord.errors.models.user.attributes.valid_until.perpetual_license_was_expected'))
+    end
   end
 end

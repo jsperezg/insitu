@@ -86,10 +86,6 @@ class UsersController < AdminSecuredController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(
-        :password, :password_confirmation,
-        :tax_id, :name, :address, :city, :country, :state, :postal_code, :phone_number, :locale,
-        :valid_until
-    )
+    params.require(:user).permit(:valid_until)
   end
 end
