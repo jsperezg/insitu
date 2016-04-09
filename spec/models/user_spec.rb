@@ -28,6 +28,12 @@ RSpec.describe User, type: :model do
       user.reload
       expect(user.valid_until).to be_nil
     end
+  end
 
+  describe 'users' do
+    it 'first month is free' do
+      user = create(:user)
+      expect(user.valid_until).to eq(Date.today + 1.month)
+    end
   end
 end

@@ -20,10 +20,18 @@
       <% end %>
       <% services.each do |service| %>
           <tr>
-            <td><%= best_in_place service, :code, path: user_service_path(current_user, service, format: :json) %></td>
-            <td><%= best_in_place service, :description, path: user_service_path(current_user, service, format: :json) %></td>
-            <td><%= service.vat.rate %> %</td>
-            <td><%= service.unit.label_short %></td>
+            <td><%= best_in_place service, :code, url: user_service_path(current_user, service, format: :json) %></td>
+            <td><%= best_in_place service, :description, url: user_service_path(current_user, service, format: :json) %></td>
+            <td>
+                <%= best_in_place service, :vat_id, as: :select,
+                                  collection: bip_vats_collection,
+                                  url: user_service_path(current_user, service, format: :json)%>
+            </td>
+            <td>
+                <%= best_in_place service, :unit_id, as: :select,
+                      collection: bip_units_collection,
+                      url: user_service_path(current_user, service, format: :json)%>
+            </td>
             <td class="text-right">
               <%= best_in_place service, :price, display_with: :number_to_currency, helper_options: { unit: '€', precision: 2, format: '%n %u'},
                                 url: user_service_path(current_user, service, format: :json) %>

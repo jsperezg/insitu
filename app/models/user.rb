@@ -134,6 +134,10 @@ class User < ActiveRecord::Base
 
   def set_default_values
     self[:role_id] = Role.find_by(description: 'User').try(:id) if self[:role_id].nil?
-    self[:valid_until] = nil if is_administrator?
+    if is_administrator?
+      self[:valid_until] = nil
+    else
+      self[:valid_until] = Date.today + 1.months
+    end
   end
 end

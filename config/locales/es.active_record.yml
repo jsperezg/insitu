@@ -32,6 +32,7 @@ es:
         description: Descripción
         vat_id: IVA
         unit_id: Unidades
+        unit: Unidades
         price: Precio
         active: Activo
       customer:
@@ -167,11 +168,13 @@ es:
               blank: 'es obligatorio.'
               taken: ': El código seleccionado está en uso.'
             price:
-              blank: 'es obligatorio.'
+              blank: es obligatorio.
               greater_than: " debe ser mayor que %{count}."
               not_a_number: no es un número.
             active:
-              blank: 'es obligatorio.'
+              blank: es obligatorio.
+            unit:
+              blank: es obligatorio.
         customer:
           attributes:
             name:

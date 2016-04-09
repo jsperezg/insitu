@@ -31,9 +31,10 @@ en:
         code: Code
         description: Description
         vat: VAT
-        unit: Unit
+        unit: Unidades
         price: Price
         active: Active
+        unit_id: Unidades
       customer:
         name: Name
         tax_id: TAX Id.
@@ -170,6 +171,8 @@ en:
               not_a_number: is not a number.
             active:
               blank: 'is mandatory'
+            unit:
+              blank: is mandatory
         customer:
           attributes:
             name:
