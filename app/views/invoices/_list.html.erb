@@ -42,13 +42,15 @@
                 <% end %>
               </td>
               <td>
-                <%= button_to user_invoice_path(current_user, invoice),
+                <% unless invoice.paid? %>
+                  <%= button_to user_invoice_path(current_user, invoice),
                               :method => :delete,
                               :data => { :confirm => t("helpers.links.confirm", :default => 'Are you sure?') },
                               :class => 'btn btn-xs btn-danger btn-block btn-flat' do %>
                     <i class="fa fa-trash-o" aria-hidden="true">
                       <%=t 'helpers.links.destroy' %>
                     </i>
+                  <% end %>
                 <% end %>
               </td>
           <% end %>
