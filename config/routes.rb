@@ -5,9 +5,13 @@ Rails.application.routes.draw do
 
   root :to => "dashboard#index"
 
-  devise_for :users
+  devise_for :users, controllers: { sessions: 'users/sessions' }
 
   resources :users do
+    member do
+      delete :ban
+    end
+
     resources :dashboard
     resources :payment_methods
     resources :services
@@ -47,7 +51,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :plans, :users
+  resources :plans
   api version: 1 do
     scope module: 'api' do
       resources :plans, only: [:index]

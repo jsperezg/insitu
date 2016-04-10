@@ -31,8 +31,6 @@ class DashboardController < SecuredController
                          .where.not('customers.irpf': nil)
                          .sum('(1 - discount / 100) * price * quantity * (customers.irpf / 100)') if current_user.country == 'ES'
 
-
-
     result[:vat] = InvoiceDetail
                        .includes(:invoice)
                        .where('invoices.date': from_date..to_date)

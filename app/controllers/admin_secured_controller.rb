@@ -7,7 +7,9 @@ class AdminSecuredController < SecuredController
 
   def check_admin_role
     unless is_admin?
-      render status: :unauthorized
+      # A la puta calle cabrón
+      sign_out resource
+      root_path
     end
   end
 end

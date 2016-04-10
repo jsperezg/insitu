@@ -28,12 +28,26 @@ RSpec.describe User, type: :model do
       user.reload
       expect(user.valid_until).to be_nil
     end
+
+    it "can't be banned" do
+      user = create(:admin_user)
+      user.banned = true
+      expect(user.save).to be_falsey
+
+      expect(user.errors).to satisfy { |errors| errors.key?( :banned )}
+    end
   end
 
   describe 'users' do
     it 'first month is free' do
       user = create(:user)
       expect(user.valid_until).to eq(Date.today + 1.month)
+    end
+
+    it 'can be banned' do
+      user = create(:user)
+      user.banned = true
+      expect(user.save).to be_truthy
     end
   end
 end

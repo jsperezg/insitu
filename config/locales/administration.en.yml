@@ -16,3 +16,6 @@ en:
     only_active: Solo activos
     only_inactive: Solo inactivos
     edit_title: Edit user
+    ban_link: Ban
+    successfully_banned: The user has been banned.
+    account_blocked: This account is blocked. Please contact the administrator.

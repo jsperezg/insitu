@@ -23,6 +23,7 @@ en:
         locale: Language
         valid_until: Valid until
         user_role_id: Rol
+        banned: Banned
       payment_method:
         name: Name
         note_for_invoice: Note for invoice
@@ -160,6 +161,8 @@ en:
             current_password:
               blank: is mandatory.
               invalid: is invalid.
+            banned:
+              admin_banned: "Administrators can't be banned."
         service:
           attributes:
             code:

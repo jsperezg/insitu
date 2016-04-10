@@ -1,6 +1,23 @@
 <div class="box-body">
   <%= render partial: 'layouts/validation_errors', locals: { object: @user } %>
 
+  <div class="row">
+    <div class="form-group col-xs-2">
+      <%= f.label :valid_until, :class => 'control-label' %>
+      <div class="input-group date">
+        <span class="input-group-addon">
+          <span class="fa fa-calendar"></span>
+        </span>
+        <%= f.text_field :valid_until, class: 'form-control input-sm date', value: ldate(@user[:valid_until]), autofocus: true %>
+      </div>
+    </div>
+    <div class="form-group col-xs-2">
+      <%= f.label :role_id, :class => 'control-label' %>
+      <%= f.collection_select :role_id, Role.order(description: :asc), :id, :description,
+                              { prompt: true }, { class: 'form-control input-sm', required: true } %>
+    </div>
+  </div>
+
   <div class=row>
     <div class="form-group col-xs-2">
       <%= f.label :tax_id, class: 'control-label' %>
@@ -49,27 +66,12 @@
       <%= f.country_select :country, { priority_countries: [ 'ES' ], include_blank: true }, { class: 'form-control input-sm', disabled: true } %>
     </div>
   </div>
-
-  <div class="row">
-    <div class="form-group col-xs-1">
-      <%= f.label :locale, class: 'control-label' %>
-      <%= f.select :locale,
-                   User.available_locales.map { |l| [ l[:description], l[:id] ] },
-                   { include_blank: t('auto') },
-                   { class: 'form-control input-sm', disabled: true } %>
-    </div>
-
-    <div class="form-group col-xs-2">
-      <%= f.label :valid_until, :class => 'control-label' %>
-      <div class="input-group date">
-        <span class="input-group-addon">
-          <span class="fa fa-calendar"></span>
-        </span>
-        <%= f.text_field :valid_until, class: 'form-control input-sm date', value: ldate(@user[:valid_until]), autofocus: true %>
-      </div>
-    </div>
-  </div>
 </div>
 <div class="box-footer">
-  <%= f.submit t(:update), class: 'btn btn-primary btn-block btn-flat', data: { disable_with: t('please_wait')} %>
+  <%= f.submit t(:update),
+               class: 'btn btn-primary btn-block btn-flat',
+               data: {
+                   disable_with: t('please_wait'),
+                   confirm: t('helpers.links.confirm', :default => 'Are you sure?')
+               } %>
 </div>

@@ -18,3 +18,6 @@ es:
     only_inactive: Solo inactivos
     perpetual: Perpetua
     edit_title: Editar usuario
+    ban_link: Ban
+    successfully_banned: El usuario fue baneado
+    account_blocked: Esta cuenta está bloqueada. Contacte con el administrador.

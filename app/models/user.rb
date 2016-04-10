@@ -54,6 +54,7 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true
   validates :encrypted_password, presence: true
+  validate :ban_administrators
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -133,11 +134,18 @@ class User < ActiveRecord::Base
   end
 
   def set_default_values
-    self[:role_id] = Role.find_by(description: 'User').try(:id) if self[:role_id].nil?
+    self.role_id = Role.find_by(description: 'User').try(:id) if self[:role_id].nil?
+
     if is_administrator?
-      self[:valid_until] = nil
+      self.valid_until = nil
     else
-      self[:valid_until] = Date.today + 1.months
+      self.valid_until = Date.today + 1.months if self.valid_until.nil?
+    end
+  end
+
+  def ban_administrators
+    if is_administrator? and self.banned
+      errors.add(:banned, I18n.t('activerecord.errors.models.user.attributes.banned.admin_banned'))
     end
   end
 end

@@ -1,11 +1,17 @@
 module UsersHelper
-  def validity_date(object, options = {})
-    object.present? ? localize(object, options) : t('users.perpetual')
+  def validity_date(user, options = {})
+    if user.banned?
+      'Banned'
+    else
+      user.valid_until.nil? ? t('users.perpetual') : localize(user.valid_until, options)
+    end
   end
 
   def user_tr(user)
 
-    if user.is_active?
+    if user.banned?
+      tr_class = 'danger'
+    elsif user.is_active?
       tr_class = 'success'
     elsif user.is_about_to_expire?
       tr_class = 'warning'

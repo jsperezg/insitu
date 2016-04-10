@@ -23,6 +23,7 @@ es:
         locale: Idioma
         valid_until: Válido hasta
         user_role_id: Rol
+        banned: Expulsado
       payment_method:
         name: Nombre
         note_for_invoice: Anotación en factura
@@ -161,11 +162,13 @@ es:
             current_password:
               blank: es obligatoria.
               invalid: es incorrecta.
+            banned:
+              admin_banned: Los administradores no pueden ser baneados
 
         service:
           attributes:
             code:
-              blank: 'es obligatorio.'
+              blank: es obligatorio.
               taken: ': El código seleccionado está en uso.'
             price:
               blank: es obligatorio.
@@ -178,9 +181,9 @@ es:
         customer:
           attributes:
             name:
-              blank: 'es obligatorio.'
+              blank: es obligatorio.
             contact_email:
-              invalid: 'tiene un formato incorrecto.'
+              invalid: tiene un formato incorrecto.
             tax_id:
               taken: ': Ya está asociado a otro cliente.'
             irpf:
@@ -188,7 +191,7 @@ es:
               not_an_integer: no admite decimales.
               greater_than_or_equal_to: debe ser mayor que %{count}.
             send_invoices_to:
-              invalid: 'tiene un formato incorrecto.'
+              invalid: tiene un formato incorrecto.
         project:
           attributes:
             name:
