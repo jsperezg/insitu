@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9253af97-43bb-4d75-844d-496160ae5ec1" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/users/new.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/users/show.html.erb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/views/users/show.json.jbuilder" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/invoices/_list.html.erb" afterPath="$PROJECT_DIR$/app/views/invoices/_list.html.erb" />
     </list>
     <ignored path="fges.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -796,12 +792,6 @@
       <option name="number" value="Default" />
       <updated>1450296634841</updated>
     </task>
-    <task id="LOCAL-00046" summary="Tenant management&#10;&#10;Environment will appear in tennant name for all environments but production.">
-      <created>1455346676215</created>
-      <option name="number" value="00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1455346676215</updated>
-    </task>
     <task id="LOCAL-00047" summary="Deployment process.&#10;&#10;First version for integration with capistrano.">
       <created>1455971624727</created>
       <option name="number" value="00047" />
@@ -1090,7 +1080,13 @@
       <option name="project" value="LOCAL" />
       <updated>1460275110293</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="invoices&#10;&#10;* Paid invoices can't be deleted.&#10;&#10;">
+      <created>1460281954766</created>
+      <option name="number" value="00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1460281954768</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1127,10 +1123,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1961" y="24" width="1879" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25758383" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45391476" sideWeight="0.35231507" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903865" sideWeight="0.49813333" order="7" side_tool="false" content_ui="tabs" />
@@ -1140,7 +1137,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39940536" sideWeight="0.5769026" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1162,7 +1158,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Invoicing.&#10;&#10;Improvements in the apperance of the invoice" />
     <MESSAGE value="PDF Generation.&#10;&#10;Migrating to prawn to avoid stability issues.&#10;&#10;Generic parts of the document have been migrated." />
     <MESSAGE value="PDF Generation.&#10;&#10;Migrating to prawn to avoid stability issues.&#10;&#10;Invoice detail for PDF document finished." />
     <MESSAGE value="PDF Generation.&#10;&#10;Migrating to prawn to avoid stability issues.&#10;&#10;invoice footer already migrated." />
@@ -1187,7 +1182,8 @@
     <MESSAGE value="Usability improvements and bugfixes&#10;&#10;* New users where registered without any role.&#10;* Default flag for vat records.&#10;* Default payment method was not automatically selected for new invoices.&#10;* New flag: send_invoices_to for customers. This way we can maintain two addresses. &#10;* Default flags are exclusive. Once you set a vat or a payment method as default any other object set as default will be updated to false.&#10;&#10;" />
     <MESSAGE value="Usability improvements and bugfixes&#10;&#10;* user can maintain in the index view of services the vat rate and the measurement units that apply to the service.&#10;&#10;" />
     <MESSAGE value="User ban&#10;&#10;* Administrators can ban regular users.&#10;&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="User ban&#10;&#10;* Administrators can ban regular users.&#10;&#10;" />
+    <MESSAGE value="invoices&#10;&#10;* Paid invoices can't be deleted.&#10;&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="invoices&#10;&#10;* Paid invoices can't be deleted.&#10;&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
