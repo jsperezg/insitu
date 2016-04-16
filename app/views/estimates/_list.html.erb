@@ -5,9 +5,10 @@
       <thead>
       <tr>
         <th class="col-xs-1"><%= model_class.human_attribute_name(:number) %></th>
-        <th class="col-xs-1"><%= model_class.human_attribute_name(:date) %></th>
+        <th class="col-xs-1 text-center"><%= model_class.human_attribute_name(:date) %></th>
         <th><%= model_class.human_attribute_name(:customer_id) %></th>
-        <th class="col-xs-2"><%= model_class.human_attribute_name(:valid_until) %></th>
+        <th class="col-xs-2 text-center"><%= model_class.human_attribute_name(:valid_until) %></th>
+        <th class="col-xs-1 text-right"><%= model_class.human_attribute_name(:total) %></th>
         <th class="col-xs-1"></th>
         <th class="col-xs-1"></th>
         <th class="col-xs-1"></th>
@@ -15,14 +16,15 @@
       </thead>
       <tbody>
       <% if estimates.empty? %>
-          <tr><td colspan="6"><%=t 'helpers.tables.empty' %></td></tr>
+          <tr><td colspan="0"><%=t 'helpers.tables.empty' %></td></tr>
       <% end %>
       <% estimates.each do |estimate| %>
           <%= estimate_tr estimate do %>
               <td><%= estimate.number %></td>
-              <td><%=ldate estimate.date %></td>
+              <td class="text-center"><%=ldate estimate.date %></td>
               <td><%= estimate.customer.try(:name) %></td>
-              <td><%=ldate estimate.valid_until %></td>
+              <td class="text-center"><%=ldate estimate.valid_until %></td>
+              <td class="text-right"><%= number_to_currency(estimate.total, unit: '€', format: '%n %u') %></td>
               <td>
                 <%= button_to edit_user_estimate_path(current_user, estimate),
                               method: :get,

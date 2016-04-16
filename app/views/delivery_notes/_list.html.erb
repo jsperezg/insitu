@@ -5,8 +5,9 @@
       <thead>
       <tr>
         <th class=col-xs-2><%= model_class.human_attribute_name(:number) %></th>
-        <th class=col-xs-6><%= model_class.human_attribute_name(:customer_id) %></th>
+        <th class=col-xs-5><%= model_class.human_attribute_name(:customer_id) %></th>
         <th class="col-xs-1 text-center"><%= model_class.human_attribute_name(:date) %></th>
+        <th class="col-xs-1 text-right"><%= model_class.human_attribute_name(:total) %></th>
         <th class=col-xs-1></th>
         <th class=col-xs-1></th>
         <th class=col-xs-1></th>
@@ -14,13 +15,14 @@
       </thead>
       <tbody>
       <% if delivery_notes.empty? %>
-          <tr><td colspan="5"><%=t 'helpers.tables.empty' %></td></tr>
+          <tr><td colspan="0"><%=t 'helpers.tables.empty' %></td></tr>
       <% end %>
       <% delivery_notes.each do |delivery_note| %>
           <tr>
-            <td><%= link_to delivery_note.number, edit_user_delivery_note_path(current_user, delivery_note) %></td>
+            <td><%= delivery_note.number %></td>
             <td><%= delivery_note.customer.name %></td>
             <td class="text-center"><%=l delivery_note.date %></td>
+            <td class="text-right"><%= number_to_currency(delivery_note.total, unit: '€', format: '%n %u') %></td>
             <td>
               <%= button_to edit_user_delivery_note_path(current_user, delivery_note),
                             method: :get,

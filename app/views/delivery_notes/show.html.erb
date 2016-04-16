@@ -82,10 +82,6 @@
               <i class="fa fa-money"></i> <%=t 'delivery_notes.invoice_title' %>
           <% end %>
 
-          <%= link_to print_user_delivery_note_url(current_user.id, @delivery_note.id), class: 'btn btn-default col-xs-1', target: '_blank' do %>
-              <i class="fa fa-print"></i> <%=t 'helpers.links.print' %>
-          <% end %>
-
           <%= link_to forward_email_user_delivery_note_url(current_user.id, @delivery_note.id),
                        class: 'btn btn-success col-xs-1 btn-flat pull-right',
                        data: { disable_with: t(:please_wait) } do %>

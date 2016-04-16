@@ -93,6 +93,7 @@ en:
         invoice_status_id: Status
         tax: Tax
         irpf: I.R.P.F.
+        total: Total
       invoice_detail:
         invoice_id: Invoice
         service_id: Item

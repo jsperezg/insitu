@@ -79,7 +79,7 @@ class Service < ActiveRecord::Base
   after_initialize :set_default_values, if: :new_record?
 
   def formatted_price
-    ActionController::Base.helpers.number_to_currency(self.price, :precision => 2, unit: '€')
+    ActionController::Base.helpers.number_to_currency(self.price, :precision => 2, unit: '€', format: '%n %u')
   end
 
   private

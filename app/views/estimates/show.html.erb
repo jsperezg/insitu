@@ -90,10 +90,6 @@
             <i class="fa fa-money"></i> <%=t 'estimates.invoice_title' %>
         <% end %>
 
-        <%= link_to print_user_estimate_url(current_user.id, @estimate.id), class: 'btn btn-default col-xs-1', target: '_blank' do %>
-            <i class="fa fa-print"></i> <%=t 'helpers.links.print' %>
-        <% end %>
-
         <%= link_to forward_email_user_estimate_url(current_user.id, @estimate.id),
                      class: 'btn btn-success col-xs-1 btn-flat pull-right',
                      data: { confirm: t('helpers.links.confirm', :default => 'Are you sure?'), disable_with: t(:please_wait) } do %>

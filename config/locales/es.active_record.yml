@@ -94,6 +94,7 @@ es:
         tax: IVA
         discount: Descuento
         irpf: I.R.P.F.
+        total: Total
       invoice_detail:
         invoice_id: Factura
         service_id: Concepto
