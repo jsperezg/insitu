@@ -57,8 +57,8 @@ class InvoicePdf < DocumentPdf
 
     if @invoice.irpf > 0
       totals << [
-          header_cell("#{ Invoice.human_attribute_name :irpf } (#{ @invoice.irpf }%):", default_borders, default_padding, :right),
-          data_cell("#{ number_with_precision(@invoice.applied_irpf, precision: 2) } €", default_borders, default_padding, :right)
+          header_cell("#{ Invoice.human_attribute_name :irpf } (- #{ @invoice.irpf }%):", default_borders, default_padding, :right),
+          data_cell("- #{ number_with_precision(@invoice.applied_irpf, precision: 2) } €", default_borders, default_padding, :right)
       ]
     end
 

@@ -98,7 +98,7 @@
 
           <% if @invoice.irpf > 0 %>
           <tr>
-            <th class="col-xs-9 text-right"><%= Invoice.human_attribute_name :irpf %> (<%= @invoice.irpf %>%):</th>
+            <th class="col-xs-9 text-right"><%= Invoice.human_attribute_name :irpf %> (- <%= @invoice.irpf %>%):</th>
             <td class="text-right red">-&nbsp;<%= number_with_precision(@invoice.applied_irpf, precision: 2) %>€</td>
           </tr>
           <% end %>
