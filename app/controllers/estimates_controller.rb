@@ -59,16 +59,12 @@ class EstimatesController < SecuredController
       @estimate.save
     end
 
-    file_name =  "estimate_#{ current_user.id }_#{ @estimate.number.gsub('/', '_') }_#{ Time.now.to_i }"
-    pdf = render_to_string pdf: file_name, template: 'estimates/print.pdf.erb', encoding: 'UTF-8'
+    file_name = Rails.root.join('tmp', "estimate_#{ current_user.id }_#{ @estimate.number.gsub('/', '_') }_#{ Time.now.to_i }.pdf")
 
-    # then save to a file
-    save_path = Rails.root.join('tmp',"#{ file_name }.pdf")
-    File.open(save_path, 'wb') do |file|
-      file << pdf
-    end
+    pdf = EstimatePdf.new current_user, @estimate
+    pdf.render_file(file_name)
 
-    EstimateMailer.send_to_customer(current_user, @estimate, save_path.to_s, I18n.locale.to_s).deliver_later
+    EstimateMailer.send_to_customer(current_user, @estimate, file_name, I18n.locale.to_s).deliver_later
     redirect_to user_estimate_path(current_user.id, @estimate.id), notice: t('helpers.email_successfully_sent')
   end
 

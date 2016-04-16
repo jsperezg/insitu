@@ -48,16 +48,12 @@ class DeliveryNotesController < SecuredController
       return
     end
 
-    file_name =  "delivery_note_#{ current_user.id }_#{ @delivery_note.number.gsub('/', '_') }_#{ Time.now.to_i }"
-    pdf = render_to_string pdf: file_name, template: 'delivery_notes/print.pdf.erb', encoding: 'UTF-8'
+    file_name = Rails.root.join('tmp',"delivery_note_#{ current_user.id }_#{ @delivery_note.number.gsub('/', '_') }_#{ Time.now.to_i }.pdf")
 
-    # then save to a file
-    save_path = Rails.root.join('tmp',"#{ file_name }.pdf")
-    File.open(save_path, 'wb') do |file|
-      file << pdf
-    end
+    pdf = DeliveryNotePdf.new current_user, @delivery_note
+    pdf.render_file(file_name)
 
-    DeliveryNoteMailer.send_to_customer(current_user, @delivery_note, save_path.to_s, I18n.locale.to_s).deliver_later
+    DeliveryNoteMailer.send_to_customer(current_user, @delivery_note, file_name, I18n.locale.to_s).deliver_later
     redirect_to user_delivery_note_path(current_user.id, @delivery_note.id), notice: t('helpers.email_successfully_sent')
   end
 
