@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { sessions: 'users/sessions' }
 
-  resources :users do
+  resources :users, only: [ :index, :edit, :update ] do
     member do
       delete :ban
     end

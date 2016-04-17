@@ -22,7 +22,7 @@ es:
         phone_number: Teléfono
         locale: Idioma
         valid_until: Válido hasta
-        user_role_id: Rol
+        role_id: Rol
         banned: Expulsado
       payment_method:
         name: Nombre
@@ -164,7 +164,7 @@ es:
               blank: es obligatoria.
               invalid: es incorrecta.
             banned:
-              admin_banned: Los administradores no pueden ser baneados
+              admin_banned: ': Los administradores no pueden ser baneados.'
 
         service:
           attributes:

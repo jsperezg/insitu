@@ -145,7 +145,7 @@ class User < ActiveRecord::Base
 
   def ban_administrators
     if is_administrator? and self.banned
-      errors.add(:banned, I18n.t('activerecord.errors.models.user.attributes.banned.admin_banned'))
+      errors.add(:role_id, I18n.t('activerecord.errors.models.user.attributes.banned.admin_banned'))
     end
   end
 end

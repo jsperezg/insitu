@@ -309,6 +309,10 @@ NAVIGATION_RULES = {
         edit: {
             parent: {controller: :users, action: :index},
             title: 'users.edit_title'
+        },
+        update: {
+            parent: {controller: :users, action: :index},
+            title: 'users.edit_title'
         }
     }
 }

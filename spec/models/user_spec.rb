@@ -8,8 +8,6 @@ RSpec.describe User, type: :model do
 
   describe 'default values' do
     it 'User role by default' do
-
-
       user = create(:user, role_id: nil)
       user.reload
 

@@ -69,9 +69,11 @@
 </div>
 <div class="box-footer">
   <%= f.submit t(:update),
-               class: 'btn btn-primary btn-block btn-flat',
+               class: 'btn btn-primary btn-flat col-xs-1',
                data: {
                    disable_with: t('please_wait'),
                    confirm: t('helpers.links.confirm', :default => 'Are you sure?')
                } %>
+
+  <%= link_to t("helpers.links.cancel"), users_path, :class => 'btn btn-default btn-flat col-xs-1' %>
 </div>

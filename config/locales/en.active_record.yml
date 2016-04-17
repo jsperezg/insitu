@@ -22,7 +22,7 @@ en:
         phone_number: Phone number
         locale: Language
         valid_until: Valid until
-        user_role_id: Rol
+        role_id: Role
         banned: Banned
       payment_method:
         name: Name

@@ -1,5 +1,5 @@
 class UsersController < AdminSecuredController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :ban]
+  before_action :set_user, only: [:edit, :update, :ban]
 
   # GET /users
   # GET /users.json
@@ -23,25 +23,8 @@ class UsersController < AdminSecuredController
     end
   end
 
-  # GET /users/1
-  # GET /users/1.json
-  def show
-    render nothing: true, status: :service_unavailable
-  end
-
-  # GET /users/new
-  def new
-    render nothing: true, status: :service_unavailable
-  end
-
   # GET /users/1/edit
   def edit
-  end
-
-  # POST /users
-  # POST /users.json
-  def create
-    render nothing: true, status: :service_unavailable
   end
 
   # PATCH/PUT /users/1
@@ -64,16 +47,6 @@ class UsersController < AdminSecuredController
       redirect_to users_url, notice: t('users.successfully_banned')
     else
       redirect_to users_url, error: @user.errors.full_messages.join(', ')
-    end
-  end
-
-  # DELETE /users/1
-  # DELETE /users/1.json
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: t(:successfully_destroyed, item: t('users.user')) }
-      format.json { head :no_content }
     end
   end
 
