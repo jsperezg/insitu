@@ -76,10 +76,16 @@ class CustomersController < SecuredController
   # DELETE /customers/1
   # DELETE /customers/1.json
   def destroy
-    @customer.destroy
-    respond_to do |format|
-      format.html { redirect_to user_customers_url(current_user), notice: t(:successfully_destroyed, item: t('customers.customer')) }
-      format.json { head :no_content }
+    if @customer.destroy
+      respond_to do |format|
+        format.html { redirect_to user_customers_url(current_user), notice: t(:successfully_destroyed, item: t('customers.customer')) }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to user_customers_url(current_user), alert: @customer.errors.full_messages.join('<br>') }
+        format.json { render json: @customer.errors, status: :unprocessable_entity }
+      end
     end
   end
 

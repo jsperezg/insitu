@@ -70,10 +70,16 @@ class ServicesController < SecuredController
   # DELETE /services/1
   # DELETE /services/1.json
   def destroy
-    @service.destroy
-    respond_to do |format|
-      format.html { redirect_to user_services_url(current_user.id), notice: t(:successfully_destroyed, item: t('services.service')) }
-      format.json { head :no_content }
+    if @service.destroy
+      respond_to do |format|
+        format.html { redirect_to user_services_url(current_user.id), notice: t(:successfully_destroyed, item: t('services.service')) }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to user_services_url(current_user.id), alert: @service.errors.full_messages.join('<br>') }
+        format.json { render json: @service.errors, status: :unprocessable_entity }
+      end
     end
   end
 

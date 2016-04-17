@@ -78,6 +78,12 @@ class Service < ActiveRecord::Base
 
   after_initialize :set_default_values, if: :new_record?
 
+  has_many :invoice_details
+  has_many :estimate_details
+  has_many :delivery_note_details
+
+  before_destroy :validate_referential_integrity
+
   def formatted_price
     ActionController::Base.helpers.number_to_currency(self.price, :precision => 2, unit: '€', format: '%n %u')
   end
@@ -86,5 +92,12 @@ class Service < ActiveRecord::Base
 
   def set_default_values
     self.active = true
+  end
+
+  def validate_referential_integrity
+    return true if invoice_details.count == 0 and estimate_details.count == 0 and delivery_note_details.count == 0
+
+    errors.add(:base, I18n.t('activerecord.errors.models.service.used_elsewhere'))
+    false
   end
 end

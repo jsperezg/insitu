@@ -162,9 +162,10 @@ en:
             current_password:
               blank: is mandatory.
               invalid: is invalid.
-            banned:
+            role_id:
               admin_banned: "Administrators can't be banned."
         service:
+          used_elsewhere: This service is being referenced from one or more documents and can not be deleted.
           attributes:
             code:
               blank: 'is mandatory'
@@ -178,6 +179,7 @@ en:
             unit:
               blank: is mandatory
         customer:
+          used_elsewhere: This customer is being referenced from one or more documents and can not be deleted.
           attributes:
             name:
               blank: 'is mandatory.'
@@ -283,6 +285,7 @@ en:
               not_a_number: "must be a number."
               taken: already registered.
         unit:
+          used_elsewhere: This measurement unit is used in the definition of a service and it can not be deleted.
           attributes:
             label_short:
               blank: is mandatory.
@@ -327,6 +330,7 @@ en:
               greater_than_or_equal_to: "must be greater or equal to %{count}%."
               not_a_number: "must be a number."
         payment_method:
+          used_elsewhere: This payment method is being used in some invoices and can not be deleted.
           attributes:
             name:
               taken: is already registered.

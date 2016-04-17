@@ -41,9 +41,11 @@ class Customer < ActiveRecord::Base
   validates :tax_id, uniqueness: { case_sensitive: false, allow_blank: true}
   validates :irpf, numericality: { greater_than_or_equal_to: 0, only_integer: true, allow_blank: true }
 
-  has_many :invoices, dependent: :restrict_with_error
-  has_many :estimates, dependent: :restrict_with_error
-  has_many :delivery_notes, dependent: :restrict_with_error
+  has_many :invoices
+  has_many :estimates
+  has_many :delivery_notes
+
+  before_destroy :validate_referential_integrity
 
   def country_name
     unless country.blank?
@@ -58,5 +60,12 @@ class Customer < ActiveRecord::Base
         self.address.present? and
         self.postal_code.present? and
         self.country.present?
+  end
+
+  def validate_referential_integrity
+    return true if invoices.count == 0 and estimates.count == 0 and delivery_notes.count == 0
+
+    errors.add(:base, I18n.t('activerecord.errors.models.customer.used_elsewhere'))
+    false
   end
 end

@@ -54,10 +54,16 @@ class UnitsController < SecuredController
   # DELETE /units/1
   # DELETE /units/1.json
   def destroy
-    @unit.destroy
-    respond_to do |format|
-      format.html { redirect_to user_units_path(current_user.id), notice: t(:successfully_destroyed, item: t('units.unit')) }
-      format.json { head :no_content }
+    if @unit.destroy
+      respond_to do |format|
+        format.html { redirect_to user_units_path(current_user.id), notice: t(:successfully_destroyed, item: t('units.unit')) }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to user_units_path(current_user.id), alert: @unit.errors.full_messages.join('<br>') }
+        format.json { render json: @unit.errors, status: :unprocessable_entity }
+      end
     end
   end
 

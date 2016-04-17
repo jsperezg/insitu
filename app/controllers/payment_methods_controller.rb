@@ -54,10 +54,16 @@ class PaymentMethodsController < SecuredController
   # DELETE /payment_methods/1
   # DELETE /payment_methods/1.json
   def destroy
-    @payment_method.destroy
-    respond_to do |format|
-      format.html { redirect_to user_payment_methods_url(current_user.id), notice: t(:successfully_destroyed, item: t(:payment_method)) }
-      format.json { head :no_content }
+    if @payment_method.destroy
+      respond_to do |format|
+        format.html { redirect_to user_payment_methods_url(current_user.id), notice: t(:successfully_destroyed, item: t(:payment_method)) }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to user_payment_methods_url(current_user.id), alert: @payment_method.errors.full_messages.join('<br>') }
+        format.json { render json: @payment_method.errors, status: :unprocessable_entity }
+      end
     end
   end
 
