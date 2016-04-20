@@ -1,4 +1,4 @@
-class Task < ActiveRecord::Base
+class Task < AbstractSubscriptionValidator
   belongs_to :project
 
   has_many :time_logs, dependent: :destroy

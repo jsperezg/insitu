@@ -96,7 +96,11 @@ class User < ActiveRecord::Base
   end
 
   def has_expired?
-    self.valid_until < Date.today?
+    if self.valid_until.nil?
+      false
+    else
+      self.valid_until < Date.today
+    end
   end
 
   def is_about_to_expire?

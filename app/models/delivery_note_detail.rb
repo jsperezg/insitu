@@ -1,4 +1,4 @@
-class DeliveryNoteDetail < ActiveRecord::Base
+class DeliveryNoteDetail < AbstractSubscriptionValidator
   belongs_to :delivery_note
   belongs_to :service
   belongs_to :invoice_detail

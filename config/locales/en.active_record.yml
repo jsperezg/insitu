@@ -146,10 +146,12 @@ en:
         months: Months
         vat_rate: VAT
         is_active: Active
+        hosted_button_id: Paypal button id
 
     errors:
       messages:
         record_invalid: Invalid record
+        subscription_expired: Your subscription has expired. Please renew your subscription to continue.
       models:
         user:
           attributes:

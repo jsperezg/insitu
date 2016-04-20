@@ -1,4 +1,4 @@
-class Estimate < ActiveRecord::Base
+class Estimate < AbstractSubscriptionValidator
   include SequenceGenerator
 
   filterrific(

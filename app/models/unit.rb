@@ -1,4 +1,4 @@
-class Unit < ActiveRecord::Base
+class Unit < AbstractSubscriptionValidator
 	validates :label_short, presence: true, uniqueness: true
 
 	has_many :services

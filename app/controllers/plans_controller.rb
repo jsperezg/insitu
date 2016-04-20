@@ -85,6 +85,6 @@ class PlansController < AdminSecuredController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plan_params
-      params.require(:plan).permit(:description, :vat_rate, :price, :months, :is_active)
+      params.require(:plan).permit(:description, :vat_rate, :price, :months, :is_active, :hosted_button_id)
     end
 end

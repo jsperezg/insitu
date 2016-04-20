@@ -1,4 +1,4 @@
-class Project < ActiveRecord::Base
+class Project < AbstractSubscriptionValidator
   filterrific(
       default_filter_params: {
         sorted_by: 'name_asc',

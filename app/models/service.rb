@@ -1,4 +1,4 @@
-class Service < ActiveRecord::Base
+class Service < AbstractSubscriptionValidator
   filterrific(
       default_filter_params: {
           sorted_by: 'code_asc'
@@ -37,8 +37,8 @@ class Service < ActiveRecord::Base
 
   scope :with_active_criteria, lambda { |filter |
     case filter
-      when 1 then where(active: true)
       when 2 then where(active: false)
+      else where(active: true)
     end
   }
 
