@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe PaymentMethod, type: :model do
+  before(:each) do
+    Thread.current[:user] = create(:user)
+  end
+
   it "Name is mandatory: Nil is not a valid value" do
     payment_method = PaymentMethod.new
     payment_method.save
@@ -37,5 +41,14 @@ RSpec.describe PaymentMethod, type: :model do
       p1.reload
       expect(p1.default).to be_falsey
     end
+  end
+
+  it 'expired user cant save delivery notes' do
+    Thread.current[:user] = create(:expired_user)
+    object = PaymentMethod.new
+    object.save
+
+    expect(object.errors).to satisfy { |errors| !errors.empty? && errors.key?( :base )}
+    expect(object.errors[:base]).to include(I18n.t('activerecord.errors.messages.subscription_expired'))
   end
 end

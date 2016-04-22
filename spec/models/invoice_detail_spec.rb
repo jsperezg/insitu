@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe InvoiceDetail, type: :model do
+  before(:each) do
+    Thread.current[:user] = create(:user)
+  end
+
   it "service_id is mandatory" do
 		invoice_detail = InvoiceDetail.new
 		invoice_detail.save
@@ -8,8 +12,8 @@ RSpec.describe InvoiceDetail, type: :model do
 		expect(invoice_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :service_id )}
 	end
 
-  	describe "quantity" do
-  		it "is mandatory" do
+	describe "quantity" do
+		it "is mandatory" do
       invoice_detail = InvoiceDetail.new
 			invoice_detail.save
 
@@ -152,4 +156,13 @@ RSpec.describe InvoiceDetail, type: :model do
 			expect(delivery_note_detail.invoice_detail_id).to be_nil
 		end
   end
+
+	it 'expired user cant save delivery notes' do
+		Thread.current[:user] = create(:expired_user)
+		object = InvoiceDetail.new
+		object.save
+
+		expect(object.errors).to satisfy { |errors| !errors.empty? && errors.key?( :base )}
+		expect(object.errors[:base]).to include(I18n.t('activerecord.errors.messages.subscription_expired'))
+	end
 end

@@ -21,4 +21,13 @@ RSpec.describe Project, type: :model do
 
     expect(project.errors).to satisfy { |errors| !errors.empty? && errors.key?( :customer_id )}
   end
+
+  it 'expired user cant save delivery notes' do
+    Thread.current[:user] = create(:expired_user)
+    object = Project.new
+    object.save
+
+    expect(object.errors).to satisfy { |errors| !errors.empty? && errors.key?( :base )}
+    expect(object.errors[:base]).to include(I18n.t('activerecord.errors.messages.subscription_expired'))
+  end
 end

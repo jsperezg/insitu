@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
 
   belongs_to :role
 
-  after_save :init_tenant_name, on: :create
+  after_save :init_tenant_name
   after_commit :init_tenant, on: :create
   after_commit :destroy_tenant, on: :destroy
   before_validation :set_default_values

@@ -184,4 +184,13 @@ RSpec.describe Invoice, type: :model do
       expect(invoice.payment_method_id).to eq(default_payment_method.id)
     end
   end
+
+  it 'expired user cant save delivery notes' do
+    Thread.current[:user] = create(:expired_user)
+    object = Invoice.new
+    object.save
+
+    expect(object.errors).to satisfy { |errors| !errors.empty? && errors.key?( :base )}
+    expect(object.errors[:base]).to include(I18n.t('activerecord.errors.messages.subscription_expired'))
+  end
 end

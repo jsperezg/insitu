@@ -6,6 +6,6 @@ class Api::PlansController < ApiController
   caches :index, :cache_for => 2.hours
 
   def index
-    expose Plan.where(is_active: true).order(months: :asc), only: [:id, :description, :months, :vat_rate, :price]
+    expose Plan.where(is_active: true).order(months: :asc), only: [:id, :description, :months, :vat_rate, :price, :hosted_button_id]
   end
 end

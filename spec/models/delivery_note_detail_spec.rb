@@ -8,9 +8,9 @@ RSpec.describe DeliveryNoteDetail, type: :model do
 		expect(deliver_note_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :service_id )}
 	end
 
-  	describe "quantity" do
-  		it "is mandatory" do
-  			deliver_note_detail = DeliveryNoteDetail.new
+	describe "quantity" do
+		it "is mandatory" do
+			deliver_note_detail = DeliveryNoteDetail.new
 			deliver_note_detail.save
 
 			expect(deliver_note_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :quantity )}
@@ -32,22 +32,22 @@ RSpec.describe DeliveryNoteDetail, type: :model do
 	end
 
 	describe "price" do
-  		it "is mandatory" do
-  			deliver_note_detail = DeliveryNoteDetail.new
+		it "is mandatory" do
+			deliver_note_detail = DeliveryNoteDetail.new
 			deliver_note_detail.save
 
 			expect(deliver_note_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :price )}
 		end
 
 		it "must be a number" do
-  			deliver_note_detail = DeliveryNoteDetail.new(price: 'asdf')
+			deliver_note_detail = DeliveryNoteDetail.new(price: 'asdf')
 			deliver_note_detail.save
 
 			expect(deliver_note_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :price )}
 		end
 
 		it "is greater than zero" do
-  			deliver_note_detail = DeliveryNoteDetail.new(price: 0)
+			deliver_note_detail = DeliveryNoteDetail.new(price: 0)
 			deliver_note_detail.save
 
 			expect(deliver_note_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :price )}
@@ -57,5 +57,15 @@ RSpec.describe DeliveryNoteDetail, type: :model do
 	it "total is quatity x price" do
 		delivery_note_detail = DeliveryNoteDetail.new(quantity: 10.0, price: 18.0)
 		expect(delivery_note_detail.total).to eq(180.0)
-	end
+  end
+
+
+  it 'expired user cant save delivery notes' do
+    Thread.current[:user] = create(:expired_user)
+    delivery_note_detail = DeliveryNoteDetail.new
+    delivery_note_detail.save
+
+    expect(delivery_note_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :base )}
+    expect(delivery_note_detail.errors[:base]).to include(I18n.t('activerecord.errors.messages.subscription_expired'))
+  end
 end

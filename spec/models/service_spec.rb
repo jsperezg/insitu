@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Service, type: :model do
   before(:all) do
+    Thread.current[:user] = create(:user)
     Vat.first || create(:vat)
     Unit.first || create(:unit)
   end
@@ -19,7 +20,7 @@ RSpec.describe Service, type: :model do
   end
 
   it 'code is unique' do
-    service = Service.create!(
+    Service.create!(
       code:  'a code',
       description: 'It has a description',
       price: 1.0,
@@ -114,5 +115,14 @@ RSpec.describe Service, type: :model do
 
     service.reload
     expect(service.active).to be_truthy
+  end
+
+  it 'expired user cant save delivery notes' do
+    Thread.current[:user] = create(:expired_user)
+    object = Service.new
+    object.save
+
+    expect(object.errors).to satisfy { |errors| !errors.empty? && errors.key?( :base )}
+    expect(object.errors[:base]).to include(I18n.t('activerecord.errors.messages.subscription_expired'))
   end
 end

@@ -7,6 +7,7 @@ RSpec.describe Api::PlansController, type: :controller do
 
   it 'index' do
     plan = Plan.create! valid_attributes
+
     get :index, { format: :json, version: 1 }
 
     json_response = JSON.parse(response.body)

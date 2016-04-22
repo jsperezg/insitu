@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Vat, type: :model do
+  before(:each) do
+    Thread.current[:user] = create(:user)
+  end
+
   it 'label is required' do
   	vat = Vat.create(rate: 0)
   	vat.save
@@ -49,5 +53,14 @@ RSpec.describe Vat, type: :model do
       vat_1.reload
       expect(vat_1.default).to be_falsey
     end
+  end
+
+  it 'expired user cant save delivery notes' do
+    Thread.current[:user] = create(:expired_user)
+    object = Vat.new
+    object.save
+
+    expect(object.errors).to satisfy { |errors| !errors.empty? && errors.key?( :base )}
+    expect(object.errors[:base]).to include(I18n.t('activerecord.errors.messages.subscription_expired'))
   end
 end

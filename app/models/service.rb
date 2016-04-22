@@ -32,7 +32,7 @@ class Service < AbstractSubscriptionValidator
   end
 
   scope :with_filter_criteria, lambda { |filter|
-    where('code like :filter or description like :filter', { filter: "%#{filter}%" })
+    where('code like :filter or description like :filter', filter: "%#{filter}%")
   }
 
   scope :with_active_criteria, lambda { |filter |
@@ -76,7 +76,7 @@ class Service < AbstractSubscriptionValidator
   validates :vat, presence: true
   validates :unit, presence: true
 
-  after_initialize :set_default_values, if: :new_record?
+  after_initialize :set_default_values
 
   has_many :invoice_details
   has_many :estimate_details
@@ -91,7 +91,7 @@ class Service < AbstractSubscriptionValidator
   private
 
   def set_default_values
-    self.active = true
+    self.active = true if self.new_record?
   end
 
   def validate_referential_integrity

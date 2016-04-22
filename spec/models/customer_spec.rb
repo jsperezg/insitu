@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Customer, type: :model do
+  before(:each) do
+    Thread.current[:user] = create(:user)
+  end
+
   it 'name is mandatory' do
     customer = Customer.new
     customer.save
@@ -59,5 +63,14 @@ RSpec.describe Customer, type: :model do
     c.save
 
     expect(c.errors).to satisfy { |errors| errors.key? :irpf }
+  end
+
+  it 'expired user cant save delivery notes' do
+    Thread.current[:user] = create(:expired_user)
+    object = Customer.new
+    object.save
+
+    expect(object.errors).to satisfy { |errors| !errors.empty? && errors.key?( :base )}
+    expect(object.errors[:base]).to include(I18n.t('activerecord.errors.messages.subscription_expired'))
   end
 end

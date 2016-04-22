@@ -32,7 +32,7 @@ RSpec.describe User, type: :model do
       user.banned = true
       expect(user.save).to be_falsey
 
-      expect(user.errors).to satisfy { |errors| errors.key?( :banned )}
+      expect(user.errors).to satisfy { |errors| errors.key?( :role_id )}
     end
   end
 
