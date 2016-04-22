@@ -18,10 +18,10 @@ RSpec.describe UsersController, type: :controller do
   }
 
   before(:each) do
-    @user = User.first || create(:admin_user)
+    @user = create(:admin_user)
     sign_in @user
 
-    Thread.current[:admin_user] = @user
+    Thread.current[:user] = @user
   end
 
   after(:each) do
