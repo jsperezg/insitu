@@ -170,6 +170,8 @@ class Invoice < AbstractSubscriptionValidator
 
     # Establish the default payment method
     self.payment_method_id = PaymentMethod.find_by(default: true).try(:id) if self.payment_method_id.nil?
+
+    self.irpf = 0 if self.irpf.nil?
   end
 
   def set_invoice_number
