@@ -46,7 +46,7 @@ RSpec.describe CustomersController, type: :controller do
     it "assigns all customers as @customers" do
       customer = Customer.create! valid_attributes
       get :index, {user_id: @user.id}
-      expect(assigns(:customers)).to eq([customer])
+      expect(assigns(:vats)).to eq([customer])
     end
   end
 

@@ -5,6 +5,8 @@ RSpec.describe 'customers/index', type: :view do
   	@user = User.first || create(:user)
     sign_in @user
 
+    Thread.current[:user] = @user
+
     @customers = []
 
     2.times do

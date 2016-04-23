@@ -19,20 +19,20 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe UnitsController, type: :controller do
-
   # This should return the minimal set of attributes required to create a valid
   # Unit. As you add validations to Unit, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    attributes_for :unit
+    @label_sequence = 0 if @label_sequence.nil?
+    @label_sequence += 1
+
+    { label_short: "U#{ @label_sequence }", label_long: "Unit #{ @label_sequence }" }
+
+
   }
 
   let(:invalid_attributes) {
-    unit = attributes_for :unit
-
-    unit[:label_short] = nil
-
-    unit
+    { label_short: nil, label_long: 'Label long' }
   }
 
   before(:each) do
@@ -91,7 +91,7 @@ RSpec.describe UnitsController, type: :controller do
         expect(assigns(:unit)).to be_persisted
       end
 
-      it "redirects to the created unit" do
+      it "redirects to the units list" do
         post :create, {:unit => valid_attributes, user_id: @user.id}
         expect(response).to redirect_to(user_units_path(@user.id))
       end

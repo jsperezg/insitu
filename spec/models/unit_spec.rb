@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Unit, type: :model do
   before(:each) do
-    Thread.current[:user] = create(:user)
+    @user_sequence = rand(10000) if @user_sequence.nil?
+    @user_sequence += 1
+
+    Thread.current[:user] = create(:user, email: "user_#{@user_sequence}@domain.com")
   end
 
   it 'short label is mandatory' do

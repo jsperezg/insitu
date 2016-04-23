@@ -5,13 +5,15 @@ before(:each) do
     @user = create(:user)
     sign_in @user
 
-    @customers = []
+    Thread.current[:user] = @user
+
+    @vats = []
 
     1.times do
-      @customers << create(:vat)
+      @vats << create(:vat)
     end
 
-    assign(:customers, @customers)
+    assign(:vats, @vats)
   end
 
   after(:each) do
@@ -21,7 +23,7 @@ before(:each) do
   it "renders a list of vats" do
     render
 
-    @customers.each do |i|
+    @vats.each do |i|
       assert_select "tr>td", :text => i[:id].to_s, :count => 1
       assert_select "tr>td", :text => i[:label], count: 1
       assert_select "tr>td", :text => i[:rate].to_s, count: 1

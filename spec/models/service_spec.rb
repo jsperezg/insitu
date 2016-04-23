@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Service, type: :model do
   before(:all) do
-    Thread.current[:user] = create(:user)
+    @user_sequence = rand(10000) if @user_sequence.nil?
+    @user_sequence += 1
+
+    Thread.current[:user] = create(:user, email: "user_#{@user_sequence}@domain.com")
     Vat.first || create(:vat)
     Unit.first || create(:unit)
   end
