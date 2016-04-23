@@ -2,24 +2,25 @@ require 'rails_helper'
 
 RSpec.describe "projects/index", type: :view do
   before(:each) do
+    @user = create(:user)
+    sign_in @user
+
+    Thread.current[:user] = @user
+
     assign(:projects, [
-      Project.create!(
-        :name => "Name",
-        :project_status => nil,
-        :customer => nil
-      ),
-      Project.create!(
-        :name => "Name",
-        :project_status => nil,
-        :customer => nil
-      )
+      create(:project),
+      create(:project)
     ])
+
+    allow(view).to receive(:form_for_filterrific).and_return('filterrific form')
+    allow(view).to receive(:will_paginate).and_return('filterrific paginator')
+  end
+
+  after(:each) do
+    sign_out @user
   end
 
   it "renders a list of projects" do
     render
-    assert_select "tr>td", :text => "Name".to_s, :count => 2
-    assert_select "tr>td", :text => nil.to_s, :count => 2
-    assert_select "tr>td", :text => nil.to_s, :count => 2
   end
 end

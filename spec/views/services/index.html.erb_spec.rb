@@ -2,30 +2,26 @@ require 'rails_helper'
 
 RSpec.describe "services/index", type: :view do
   before(:each) do
+    @user = create(:user)
+    sign_in @user
+
+    Thread.current[:user] = @user
+
     assign(:services, [
-      Service.create!(
-        :code => "Code",
-        :description => "Description",
-        :vat => nil,
-        :unit => nil,
-        :price => "9.99"
-      ),
-      Service.create!(
-        :code => "Code",
-        :description => "Description",
-        :vat => nil,
-        :unit => nil,
-        :price => "9.99"
-      )
+      create(:service),
+      create(:service)
     ])
+
+    allow(view).to receive(:form_for_filterrific).and_return('filterrific form')
+    allow(view).to receive(:will_paginate).and_return('filterrific paginator')
+  end
+
+  after(:each) do
+    sign_out @user
   end
 
   it "renders a list of services" do
     render
-    assert_select "tr>td", :text => "Code".to_s, :count => 2
-    assert_select "tr>td", :text => "Description".to_s, :count => 2
-    assert_select "tr>td", :text => nil.to_s, :count => 2
-    assert_select "tr>td", :text => nil.to_s, :count => 2
-    assert_select "tr>td", :text => "9.99".to_s, :count => 2
+    assert_select "tr>th", :text => Service.human_attribute_name(:code), :count => 1
   end
 end

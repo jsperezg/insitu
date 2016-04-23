@@ -2,7 +2,16 @@ require 'rails_helper'
 
 RSpec.describe "plans/edit", type: :view do
   before(:each) do
-    @plan = assign(:plan, Plan.create!())
+    @user = create(:admin_user)
+    sign_in @user
+
+    Thread.current[:user] = @user
+
+    @plan = assign(:plan, create(:plan))
+  end
+
+  after(:each) do
+    sign_out @user
   end
 
   it "renders the edit plan form" do

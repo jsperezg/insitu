@@ -5,5 +5,6 @@ FactoryGirl.define do
   	customer_id { Customer.first.try(:id) || create(:customer).try(:id) }
   	payment_date { Date.today + 15.days }
     invoice_status_id { InvoiceStatus.first.try(:id) || create(:invoice_status).try(:id) }
+    irpf 0
   end
 end

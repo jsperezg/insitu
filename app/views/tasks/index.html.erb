@@ -23,12 +23,12 @@
             <%= task_tr task do %>
               <td>
                 <%= best_in_place task, :name,
-                                  url: user_project_task_url(current_user, params[:project_id], task, format: :json) %>
+                                  url: user_project_task_path(current_user, task.project, task, format: :json) %>
               </td>
               <td class=text-center><%= ldate task[:dead_line] %></td>
               <td class=text-center><%= ldate task[:finish_date] %></td>
               <td>
-                <%= link_to edit_user_project_task_path(current_user, params[:project_id], task),
+                <%= link_to edit_user_project_task_path(current_user, task.project, task),
                             class: 'btn btn-default btn-xs btn-flat btn-block',
                             method: :get do %>
                   <i class="fa fa-pencil-square-o" aria-hidden="true">
@@ -37,7 +37,7 @@
                 <% end %>
               </td>
               <td>
-                <%= button_to user_project_task_path(current_user, params[:project_id], task),
+                <%= button_to user_project_task_path(current_user, task.project, task),
                             :method => :delete,
                             :data => { :confirm => t("helpers.links.confirm", :default => 'Are you sure?') },
                             :class => 'btn btn-xs btn-danger btn-flat btn-block' do %>
@@ -56,13 +56,13 @@
     <div class="row">
       <div class="col-xs-2">
         <%= button_to t("helpers.links.new"),
-            new_user_project_task_path(current_user, params[:project_id]),
+            new_user_project_task_path(current_user, @project),
             class: 'btn btn-primary btn-flat btn-block',
             method: :get %>
       </div>
       <div class="col-xs-2">
         <%= button_to t('tasks.bill_finished'),
-                      invoice_finished_user_project_tasks_path(current_user, params[:project_id]),
+                      invoice_finished_user_project_tasks_path(current_user, @project),
                       class: 'btn btn-default btn-flat btn-block',
                       method: :get %>
       </div>

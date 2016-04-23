@@ -22,7 +22,6 @@ RSpec.describe "payment_methods/index", type: :view do
     render
 
     @payment_methods.each do |i|
-      assert_select "tr>td", :text => i[:id].to_s, :count => 1
       assert_select "tr>td", :text => i[:name], count: 1
     end
   end

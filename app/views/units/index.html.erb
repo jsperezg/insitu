@@ -17,8 +17,8 @@
           <% end %>
           <% @units.each do |unit| %>
             <tr>
-              <td><%= best_in_place unit, :label_short, path: user_unit_path(current_user, unit, format: :json) %></td>
-              <td><%= best_in_place unit, :label_long, path: user_unit_path(current_user, unit, format: :json) %></td>
+              <td><%= best_in_place unit, :label_short, url: user_unit_path(current_user, unit, format: :json) %></td>
+              <td><%= best_in_place unit, :label_long, url: user_unit_path(current_user, unit, format: :json) %></td>
               <td>
                 <%= button_to edit_user_unit_path(current_user.id, unit),
                               class: 'btn btn-default btn-xs btn-flat btn-block',

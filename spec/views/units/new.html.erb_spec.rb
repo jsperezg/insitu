@@ -2,13 +2,22 @@ require 'rails_helper'
 
 RSpec.describe "units/new", type: :view do
   before(:each) do
-    assign(:unit, Unit.new())
+    @user = create(:user)
+    sign_in @user
+
+    Thread.current[:user] = @user
+
+    assign(:unit, Unit.new)
+  end
+
+  after(:each) do
+    sign_out @user
   end
 
   it "renders new unit form" do
     render
 
-    assert_select "form[action=?][method=?]", units_path, "post" do
+    assert_select "form[action=?][method=?]", user_units_path(@user), "post" do
     end
   end
 end

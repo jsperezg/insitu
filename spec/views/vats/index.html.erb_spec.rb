@@ -24,7 +24,6 @@ before(:each) do
     render
 
     @vats.each do |i|
-      assert_select "tr>td", :text => i[:id].to_s, :count => 1
       assert_select "tr>td", :text => i[:label], count: 1
       assert_select "tr>td", :text => i[:rate].to_s, count: 1
     end

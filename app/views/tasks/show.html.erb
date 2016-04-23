@@ -8,16 +8,14 @@
   <dd><%= @task.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:project_id) %>:</strong></dt>
   <dd><%= @task.project_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:finished) %>:</strong></dt>
-  <dd><%= @task.finished %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              tasks_path, :class => 'btn btn-default'  %>
+              user_project_tasks_path(current_user, @task.project.to_param), :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_task_path(@task), :class => 'btn btn-default' %>
+              edit_user_project_task_path(current_user, @task.project.to_param, @task), :class => 'btn btn-default' %>
 <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              task_path(@task),
+              user_project_task_path(current_user, @task.project.to_param, @task),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>

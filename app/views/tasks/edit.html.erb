@@ -3,7 +3,7 @@
     <h3 class="box-title"><%= @project[:name] %></h3>
   </div>
 
-  <%= form_for @task, url: user_project_task_url(current_user, @project, @task), :html => { :class => "task", role: 'form' } do |f| %>
+  <%= form_for @task, url: user_project_task_path(current_user, @project, @task), :html => { :class => "task", role: 'form' } do |f| %>
     <%= render :partial => 'form',  locals: { f: f } %>
   <% end %>
 </div>

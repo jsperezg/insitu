@@ -17,11 +17,11 @@
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
-              services_path, :class => 'btn btn-default'  %>
+              user_services_path(current_user), :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_service_path(@service), :class => 'btn btn-default' %>
+              edit_user_service_path(current_user, @service), :class => 'btn btn-default' %>
 <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              service_path(@service),
+              user_service_path(current_user, @service),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
