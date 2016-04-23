@@ -9,6 +9,8 @@ es:
     only_inactive: Solo inactivos
     create_title: Nuevo plan de precios
     perpetual: Perpetual
+    renew_label_1_month: Renovar por 1 mes
+    renew_label_n_month: Renovar por %{months} meses
 
   users:
     user: Usuario

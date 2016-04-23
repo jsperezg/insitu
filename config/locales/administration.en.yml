@@ -8,6 +8,8 @@ en:
     all_records: All records
     only_active: Only active
     only_inactive: Only inactive
+    renew_label_1_month: Renew 1 month
+    renew_label_n_month: Renew %{months} months
 
   users:
     user: User
