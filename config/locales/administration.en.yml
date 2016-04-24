@@ -21,3 +21,4 @@ en:
     ban_link: Ban
     successfully_banned: The user has been banned.
     account_blocked: This account is blocked. Please contact the administrator.
+    account_expired_message: Your account has expired. Click here to renew your subscription.

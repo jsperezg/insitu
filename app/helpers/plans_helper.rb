@@ -12,12 +12,12 @@ module PlansHelper
               content_tag(:div, class: 'panel panel-info') do
                 panel_elements = []
 
-                panel_elements << localized_plan_header(plan)
+                panel_elements << plan_header_tag(plan)
 
                 panel_elements << content_tag(:div, class: 'panel-body') do
                     elements = []
-                    elements << localized_plan_price(plan)
-                    elements  << localized_paypal_payment_button(plan)
+                    elements << plan_price_tag(plan)
+                    elements  << paypal_payment_tag(plan)
 
                     elements.join('').html_safe
                 end
@@ -33,7 +33,7 @@ module PlansHelper
     end
   end
 
-  def localized_plan_header(plan)
+  def plan_header_tag(plan)
     if plan.months == 1
       label = I18n.t('plans.renew_label_1_month')
     else
@@ -45,7 +45,7 @@ module PlansHelper
     end
   end
 
-  def localized_plan_price(plan)
+  def plan_price_tag(plan)
     plan_price = []
 
     plan_price << content_tag(:h4, number_to_currency(plan.price, :precision => 2, unit: '€', format: '%n %u'), class: 'text-center')
@@ -54,8 +54,7 @@ module PlansHelper
     plan_price.join('').html_safe
   end
 
-  #TODO Localize button
-  def localized_paypal_payment_button(plan)
+  def paypal_payment_tag(plan)
     elements = []
 
     elements << hidden_field_tag('cmd', value: '_s-xclick')

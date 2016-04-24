@@ -8,7 +8,6 @@ module UsersHelper
   end
 
   def user_tr(user)
-
     if user.banned?
       tr_class = 'danger'
     elsif user.is_active?
@@ -21,6 +20,17 @@ module UsersHelper
 
     content_tag(:tr, class: tr_class) do
       yield
+    end
+  end
+
+  def renew_subscription_link_tag
+    if current_user.has_expired?
+      message = I18n.t('users.account_expired_message')
+      content_tag :div, class: 'row' do
+        content_tag :p, class: 'col-xs-12' do
+          link_to message, renew_user_path(current_user), class: 'text-danger'
+        end
+      end
     end
   end
 end

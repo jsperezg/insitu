@@ -7,9 +7,8 @@ class AdminSecuredController < SecuredController
 
   def check_admin_role
     unless is_admin?
-      # A la puta calle cabrón
-      sign_out resource
-      root_path
+      sign_out current_user
+      redirect_to new_user_session_path
     end
   end
 end

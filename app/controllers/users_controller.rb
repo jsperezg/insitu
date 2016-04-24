@@ -1,5 +1,6 @@
 class UsersController < AdminSecuredController
   before_action :set_user, only: [:edit, :update, :ban]
+  before_action :check_admin_role, except: [ :renew ]
 
   # GET /users
   # GET /users.json
@@ -48,6 +49,10 @@ class UsersController < AdminSecuredController
     else
       redirect_to users_url, error: @user.errors.full_messages.join(', ')
     end
+  end
+
+  def renew
+
   end
 
   private

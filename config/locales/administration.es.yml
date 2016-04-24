@@ -23,3 +23,4 @@ es:
     ban_link: Ban
     successfully_banned: El usuario fue baneado
     account_blocked: Esta cuenta está bloqueada. Contacte con el administrador.
+    account_expired_message: Tu subscripción ha caducado. Pulsa aquí para renovar tu subscripción.
