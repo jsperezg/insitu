@@ -291,14 +291,14 @@ NAVIGATION_RULES = {
     },
 
     plans: {
-      index: {
-          parent: :administration,
-          title: 'plans.title'
-      },
-      new: {
-          parent: { controller: :plans, action: :index },
-          title: 'plans.create_title'
-      },
+        index: {
+            parent: :administration,
+            title: 'plans.title'
+        },
+        new: {
+            parent: { controller: :plans, action: :index },
+            title: 'plans.create_title'
+        },
     },
 
     users: {
@@ -313,6 +313,10 @@ NAVIGATION_RULES = {
         update: {
             parent: {controller: :users, action: :index},
             title: 'users.edit_title'
+        },
+        renew: {
+            parent: :my_profile,
+            title: 'users.renew_title'
         }
     }
 }

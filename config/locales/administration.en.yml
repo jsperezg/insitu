@@ -22,3 +22,5 @@ en:
     successfully_banned: The user has been banned.
     account_blocked: This account is blocked. Please contact the administrator.
     account_expired_message: Your account has expired. Click here to renew your subscription.
+    renew_title: Renew your subscription
+    invoice_data_missing_error: You must fill your invoicing data in order to renew your subscription.

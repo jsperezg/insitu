@@ -47,12 +47,14 @@ class UsersController < AdminSecuredController
     if @user.save
       redirect_to users_url, notice: t('users.successfully_banned')
     else
-      redirect_to users_url, error: @user.errors.full_messages.join(', ')
+      redirect_to users_url, flash: { error: @user.errors.full_messages.join(', ') }
     end
   end
 
   def renew
-
+    unless current_user.can_invoice?
+      redirect_to edit_user_registration_path, flash: { error: I18n.t('users.invoice_data_missing_error') }
+    end
   end
 
   private
