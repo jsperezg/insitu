@@ -6,6 +6,7 @@ en:
       invoice: Invoice
       delivery_note: Delivery note
       plan: Price plan
+      user: User
     attributes:
       user:
         tax_id: TAX Id.

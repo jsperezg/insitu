@@ -6,6 +6,7 @@ es:
       invoice: Factura
       delivery_note: Albarán
       plan: Plan de precios
+      user: Usuario
     attributes:
       user:
         tax_id: NIF/CIF
