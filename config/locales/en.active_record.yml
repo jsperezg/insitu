@@ -9,7 +9,7 @@ en:
       user: User
     attributes:
       user:
-        tax_id: TAX Id.
+        tax_id: VAT ID
         name: Name
         address: Billing Address
         city: City
