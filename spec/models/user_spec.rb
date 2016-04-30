@@ -17,7 +17,9 @@ RSpec.describe User, type: :model do
 
   describe 'administrators' do
     it 'have perpetual license' do
-      user = create(:user, valid_until: Date.today + 365.days)
+      user = create(:user)
+      user.reload
+
       expect(user.valid_until).not_to be_nil
 
       user.role_id = @admin_role.id
@@ -44,6 +46,7 @@ RSpec.describe User, type: :model do
 
     it 'can be banned' do
       user = create(:user)
+
       user.banned = true
       expect(user.save).to be_truthy
     end

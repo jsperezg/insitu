@@ -21,7 +21,7 @@ if Apartment::Tenant.current_tenant.blank? or Apartment::Tenant.current_tenant =
 
   admin = User.find_by(email: 'jsperezg@gmail.com')
   if admin.nil?
-    admin = User.create(:email => 'jsperezg@gmail.com', :password => 'change_me', :password_confirmation => 'change_me')
+    admin = User.create(:email => 'jsperezg@gmail.com', :password => 'change_me', :password_confirmation => 'change_me', confirmed_at: DateTime.now)
   end
 
   admin_role = Role.find_by(description: 'Administrator')

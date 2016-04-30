@@ -7,10 +7,8 @@
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
-set :user, ask('User', nil)
-set :password, ask('Password', nil)
 
-server 'localhost', roles: %w{app db web}, port: 22, user: fetch(:user), password: fetch(:password)
+server '46.4.12.7', user: 'rails', roles: %w{app db web}
 
 # role-based syntax
 # ==================
@@ -32,7 +30,7 @@ server 'localhost', roles: %w{app db web}, port: 22, user: fetch(:user), passwor
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
 
-set :linked_files, [ 'config/paypal.yml' ]
+set :linked_files, %w(config/paypal.yml config/application.yml)
 
 # Custom SSH Options
 # ==================
