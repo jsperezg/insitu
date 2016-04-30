@@ -23,7 +23,7 @@ require 'capistrano/deploy'
 # require 'capistrano/rails/migrations'
 # require 'capistrano/passenger'
 
-require 'capistrano/rbenv'
+require 'capistrano/rvm'
 require 'capistrano/figaro_yml'
 require 'capistrano/rails'
 

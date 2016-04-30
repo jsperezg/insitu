@@ -10,6 +10,9 @@
 
 server '46.4.12.7', user: 'rails', roles: %w{app db web}
 
+set :rvm_type, :system
+set :rvm_ruby_version, 'ruby-2.3.0@rails4.2'
+
 # role-based syntax
 # ==================
 
@@ -41,7 +44,7 @@ set :linked_files, %w(config/paypal.yml config/application.yml)
 # Global options
 # --------------
 set :ssh_options, {
-  keys: %w(/home/jsperezg/.ssh/id_rsa),
+  keys: [ "#{ENV['HOME'] }/.ssh/id_rsa" ],
   forward_agent: true,
   auth_methods: %w(publickey password)
 }
@@ -60,5 +63,5 @@ set :ssh_options, {
 #   }
 
 set :default_env, {
-    RAILS_RELATIVE_URL_ROOT: '/insitu'
+    RAILS_RELATIVE_URL_ROOT: '/'
 }
