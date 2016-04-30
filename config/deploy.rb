@@ -11,9 +11,7 @@ set :repo_url, 'git@bitbucket.org:jsperezg/fideliges.git'
 # set :deploy_to, '/var/www/my_app_name'
 set :deploy_to, '/opt/insitu'
 
-set :rbenv_type, :user
-set :rbenv_ruby, '2.2.2'
-set :rails_env, 'production'
+
 set :keep_assets, 2
 set :passenger_restart_with_sudo, true
 
@@ -43,14 +41,14 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-namespace :deploy do
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
-  end
-
-end
+# namespace :deploy do
+#   after :restart, :clear_cache do
+#     on roles(:web), in: :groups, limit: 3, wait: 10 do
+#       # Here we can do anything such as:
+#       # within release_path do
+#       #   execute :rake, 'cache:clear'
+#       # end
+#     end
+#   end
+#
+# end
