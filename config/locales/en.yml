@@ -36,29 +36,11 @@ en:
     paid: Paid
     default: Default
 
-  log_in: Log in
-  sign_up: Sign up
-  forgot_password: Forgot password?
-  didnt_received_confirmation_instructions: Didn't receive confirmation instructions?
-  didnt_received_unlock_instructions: Didn't receive unlock instructions?
-  sign_in_with: Sign in with %{provider}
-  fill_email: Type  your e-mail address
-  remember_me: Remember  me
-  my_profile: My profile
-  log_out: Log out
-  send_me_reset_password_instructions: Send me reset password instructions
-  edit_account: Edit User
-  leave_password_blank: (leave blank if you don't want to change it)
-  help_current_password: (we need your current password to confirm your changes)
   edit:  Edit
   update: Update
   destroy: Destroy
   save: Save
-  waiting_confirmation_email: "Currently waiting confirmation for: %{email}"
-  cancel_account: Cancel my account
-  unhappy: Unhappy?
-  cancel_account: Cancel my account
-  are_you_sure: Are you sure?
+  are_you_sure: "Are you sure?"
   my_office: My office
   general: General
   vat: VAT

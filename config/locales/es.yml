@@ -37,25 +37,10 @@ es:
     paid: Pagada
     default: Pendiente
 
-  log_in: Entrar
-  sign_up: Crear cuenta
-  forgot_password: ¿Has olvidado tu contraseña?
-  didn_received_confirmation_instructions: ¿No has recibido las instrucciones para validar la cuenta?
-  sign_in_with: Acceder con %{provider}
-  fill_email: Introduce tu dirección de correo electrónico
-  remember_me: Mantener la sesión abierta
-  my_profile: Mi perfil
-  log_out: Cerrar sesión
-  send_me_reset_password_instructions: Enviame las instrucciones para restablecer mi contraseña
-  edit_account: Editar cuenta
-  leave_password_blank: (Dejar en blanco para conservar la contraseña)
-  help_current_password: (Necesitamos tu contraseña actual para confirmar tus cambios)
+  edit: Editar
   update: Actualizar
+  destroy: Borrar
   save: Guardar
-  waiting_confirmation_email: "Actualmente esperando confirmación para: %{email}"
-  cancel_account: Cancelar mi cuenta
-  unhappy: ¿No te gusta?
-  cancel_account: Cancelar mi cuenta
   are_you_sure: ¿Estás seguro?
   my_office: Tu oficina
   general: General
