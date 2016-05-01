@@ -17,7 +17,8 @@ class DeliveryNote < AbstractSubscriptionValidator
 
   def self.options_for_sorted_by
     [
-        [I18n.t('filterrific.sort_by_date_desc'), 'date_desc']
+        [I18n.t('filterrific.sort_by_date_desc'), 'date_desc'],
+        [I18n.t('filterrific.sort_by_date_asc'), 'date_asc']
     ]
   end
 
@@ -74,7 +75,7 @@ class DeliveryNote < AbstractSubscriptionValidator
         order(date: :desc)
 
       else
-        order(date: :desc)
+        order(date: :asc)
     end
   }
 

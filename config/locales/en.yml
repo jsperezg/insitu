@@ -12,6 +12,7 @@ en:
     starting_from_date: Starting from date
     sorted_by: Sorted by
     sort_by_date_desc: Date (newest first)
+    sort_by_date_asc: Date  (oldest primero)
     sort_by_name_desc: Name (Z-A)
     sort_by_name_asc: Name (A-Z)
     sort_alpha_asc: A-Z
