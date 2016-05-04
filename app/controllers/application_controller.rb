@@ -19,7 +19,11 @@ class ApplicationController < ActionController::Base
   end
 
   def extract_locale_from_headers
-    request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
+    if request.env['HTTP_ACCEPT_LANGUAGE'].nil?
+      'es'
+    else
+      request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
+    end
   end
 
   def configure_permitted_parameters
@@ -37,6 +41,8 @@ class ApplicationController < ActionController::Base
       if current_user.id.to_s != params[:user_id]
         sign_out current_user
       end
+    else
+      render :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false
     end
   end
 
