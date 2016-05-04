@@ -25,6 +25,7 @@ es:
         valid_until: Válido hasta
         role_id: Rol
         banned: Expulsado
+        is_active: Activo
       payment_method:
         name: Nombre
         note_for_invoice: Anotación en factura

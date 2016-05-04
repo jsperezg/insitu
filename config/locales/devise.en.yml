@@ -19,6 +19,7 @@ en:
   cancel_account: Cancel my account
   unhappy: Unhappy?
   cancel_account: Cancel my account
+  sign_in_message: Sign in to start your session
 
   devise:
     confirmations:

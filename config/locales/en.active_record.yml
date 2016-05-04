@@ -25,6 +25,7 @@ en:
         valid_until: Valid until
         role_id: Role
         banned: Banned
+        is_active: Active
       payment_method:
         name: Name
         note_for_invoice: Note for invoice

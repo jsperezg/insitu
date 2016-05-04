@@ -3,7 +3,7 @@
     <a href="#"><b>In Situ</b></a>
   </div><!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p class="login-box-msg"><%=t :sign_in_message %></p>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-group has-feedback">
         <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: t('activerecord.attributes.user.email') %>

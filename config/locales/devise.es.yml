@@ -19,6 +19,7 @@ es:
   cancel_account: Cancelar mi cuenta
   unhappy: "¿No te gusta?"
   cancel_account: Cancelar mi cuenta
+  sign_in_message: Introduce tos credenciales para iniciar sesión
 
   devise:
     confirmations:
