@@ -132,21 +132,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="application.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/application.rb">
+      <file leaf-file-name="application_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+            <state vertical-scroll-proportion="-18.0">
+              <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application_controller.rb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+      <file leaf-file-name="dashboard_controller.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/dashboard_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.27675277">
-              <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="39" selection-start-line="0" selection-start-column="39" selection-end-line="0" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="secured_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/secured_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -931,12 +941,6 @@
       <option name="number" value="Default" />
       <updated>1450296634841</updated>
     </task>
-    <task id="LOCAL-00071" summary="PDF Generation.&#10;&#10;Migrating to prawn to avoid stability issues.&#10;&#10;Generic parts of the document have been migrated.">
-      <created>1458074529456</created>
-      <option name="number" value="00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1458074529457</updated>
-    </task>
     <task id="LOCAL-00072" summary="PDF Generation.&#10;&#10;Migrating to prawn to avoid stability issues.&#10;&#10;Invoice detail for PDF document finished.">
       <created>1458240080412</created>
       <option name="number" value="00072" />
@@ -1225,7 +1229,13 @@
       <option name="project" value="LOCAL" />
       <updated>1462385811505</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="fixed security issue.&#10;&#10;Rendering views even if no user was authenticated.">
+      <created>1462388308496</created>
+      <option name="number" value="00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1462388308496</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1297,7 +1307,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="User management&#10;&#10;Administrators must have a perpetual license. &#10;" />
     <MESSAGE value="Usability improvements and bugfixes&#10;&#10;* New users where registered without any role.&#10;* Default flag for vat records.&#10;* Default payment method was not automatically selected for new invoices.&#10;* New flag: send_invoices_to for customers. This way we can maintain two addresses. &#10;* Default flags are exclusive. Once you set a vat or a payment method as default any other object set as default will be updated to false.&#10;&#10;" />
     <MESSAGE value="Usability improvements and bugfixes&#10;&#10;* user can maintain in the index view of services the vat rate and the measurement units that apply to the service.&#10;&#10;" />
     <MESSAGE value="User ban&#10;&#10;* Administrators can ban regular users.&#10;&#10;" />
@@ -1322,7 +1331,8 @@
     <MESSAGE value="Filtering invoices, estimates and delivery notes&#10;&#10;solved wrong sorting by date.&#10;added missing translations&#10;redesign of links in login form&#10;&#10;" />
     <MESSAGE value="Preventing login page from being indexed.&#10;Footer updated.&#10;&#10;" />
     <MESSAGE value="Added missing translations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added missing translations" />
+    <MESSAGE value="fixed security issue.&#10;&#10;Rendering views even if no user was authenticated." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed security issue.&#10;&#10;Rendering views even if no user was authenticated." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1353,7 +1363,7 @@
           <option name="timeStamp" value="147" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="150" />
+      <option name="time" value="151" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="RSpecRunConfigurationType">
@@ -1362,13 +1372,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/helpers/plans_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="25" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/mailer.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1405,13 +1408,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/customers_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/dashboard_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1727,10 +1723,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/secured_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27675277">
-          <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+        <state vertical-scroll-proportion="-18.0">
+          <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/dashboard_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="39" selection-start-line="0" selection-start-column="39" selection-end-line="0" selection-end-column="39" />
           <folding />
         </state>
       </provider>
