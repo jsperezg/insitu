@@ -15,6 +15,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'devise', '3.5.2'
+gem 'devise-async'
 gem 'apartment'
 gem "twitter-bootstrap-rails"
 gem 'email_validator'
