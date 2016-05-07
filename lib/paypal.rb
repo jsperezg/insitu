@@ -1,0 +1,3 @@
+module Paypal
+
+end

@@ -33,7 +33,7 @@ set :rvm_ruby_version, 'ruby-2.3.0@rails4.2'
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
 
-set :linked_files, %w(config/paypal.yml config/application.yml)
+set :linked_files, %w(config/application.yml)
 
 # Custom SSH Options
 # ==================
@@ -62,6 +62,6 @@ set :ssh_options, {
 #     # password: 'please use keys'
 #   }
 
-set :default_env, {
-    RAILS_RELATIVE_URL_ROOT: '/'
-}
+# set :default_env, {
+#     RAILS_RELATIVE_URL_ROOT: '/'
+# }

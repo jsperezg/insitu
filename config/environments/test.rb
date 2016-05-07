@@ -45,5 +45,9 @@ Rails.application.configure do
 
   config.rocket_pants.pass_through_errors = true
 
-
+  # Paypal integration
+  config.x.paypal_validate_ipn_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_notify-validate'
+  config.x.paypal_validate_ipn_verify_mode = OpenSSL::SSL::VERIFY_NONE
+  config.x.paypal_validate_ipn_user_agent = 'Insitu test'
+  config.x.paypal_receiver_email = 'jsperezg-facilitator@gmail.com'
 end

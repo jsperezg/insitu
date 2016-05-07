@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425175330) do
+ActiveRecord::Schema.define(version: 20160507071318) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "name",             limit: 255, null: false
@@ -139,6 +139,26 @@ ActiveRecord::Schema.define(version: 20160425175330) do
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
   end
+
+  create_table "payments", force: :cascade do |t|
+    t.string   "txn_id",                             limit: 19,                 null: false
+    t.string   "receiver_email",                     limit: 127,                null: false
+    t.string   "payment_status",                     limit: 25,                 null: false
+    t.string   "pending_reason",                     limit: 25
+    t.string   "reason_code",                        limit: 25
+    t.decimal  "mc_gross",                                       precision: 10
+    t.string   "mc_currency",                        limit: 255
+    t.string   "payer_email",                        limit: 127,                null: false
+    t.string   "item_name1",                         limit: 127
+    t.string   "item_number1",                       limit: 127
+    t.integer  "fraud_management_pending_filters_1", limit: 4
+    t.decimal  "mc_gross_1",                                     precision: 10
+    t.datetime "created_at",                                                    null: false
+    t.datetime "updated_at",                                                    null: false
+  end
+
+  add_index "payments", ["payment_status"], name: "index_payments_on_payment_status", using: :btree
+  add_index "payments", ["txn_id"], name: "index_payments_on_txn_id", using: :btree
 
   create_table "plans", force: :cascade do |t|
     t.string   "description",      limit: 255

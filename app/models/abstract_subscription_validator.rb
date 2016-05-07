@@ -7,8 +7,10 @@ class AbstractSubscriptionValidator < ActiveRecord::Base
 
   def subscription_validity
     user = Thread.current[:user]
-    if user.has_expired?
-      errors.add(:base, I18n.t('activerecord.errors.messages.subscription_expired'))
+    unless user.nil?
+      if user.has_expired?
+        errors.add(:base, I18n.t('activerecord.errors.messages.subscription_expired'))
+      end
     end
   end
 end

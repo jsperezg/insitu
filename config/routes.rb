@@ -58,11 +58,8 @@ Rails.application.routes.draw do
       resources :plans, only: [:index]
     end
   end
-  # scope '/api' do
-  #   resources :plans, :controller => 'api/plans'
-  # end
-  #
-  #
+
+  resources :ipn_listener, only: [:create]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

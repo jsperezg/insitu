@@ -37,9 +37,6 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'nprogress-rails'
 
-# Accept payments through paypal
-gem 'paypal-sdk-rest'
-
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 

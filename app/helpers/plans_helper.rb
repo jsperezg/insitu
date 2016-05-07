@@ -1,4 +1,6 @@
 module PlansHelper
+  require 'open-uri'
+
   def payment_buttons_tag
     if current_user.has_expired?
       plans = Plan.where(is_active: true).where.not(hosted_button_id: nil).order(months: :asc)
@@ -57,8 +59,9 @@ module PlansHelper
   def paypal_payment_tag(plan)
     elements = []
 
-    elements << hidden_field_tag('cmd', value: '_s-xclick')
-    elements << hidden_field_tag('hosted_button_id', value: plan.hosted_button_id)
+    elements << hidden_field_tag('cmd', '_s-xclick')
+    elements << hidden_field_tag('hosted_button_id', plan.hosted_button_id)
+    elements << hidden_field_tag('notify_url', calculate_ipn_listener_url)
 
     elements << image_submit_tag(paypal_button_image,
                                  {
@@ -84,6 +87,15 @@ module PlansHelper
       'https://www.sandbox.paypal.com/es_ES/ES/i/btn/btn_buynowCC_LG.gif'
     else
       'https://www.paypalobjects.com/webstatic/en_US/btn/btn_buynow_cc_171x47.png'
+    end
+  end
+
+  def calculate_ipn_listener_url
+    if Rails.env.development?
+      remote_ip = open('http://whatismyip.akamai.com').read
+      url_for(controller: 'ipn_listener', action: 'create', host: remote_ip)
+    else
+      ipn_listener_index_url
     end
   end
 
