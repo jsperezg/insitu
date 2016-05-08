@@ -4,6 +4,8 @@ class IpnListenerController < ApplicationController
   protect_from_forgery :except => [:create]
 
   def create
+    # Parameters: {"mc_gross"=>"6.05", "protection_eligibility"=>"Ineligible", "payer_id"=>"2E8UEHL748ALL", "tax"=>"1.05", "payment_date"=>"02:24:10 May 08, 2016 PDT", "payment_status"=>"Completed", "charset"=>"windows-1252", "first_name"=>"test", "mc_fee"=>"0.56", "notify_version"=>"3.8", "custom"=>"2", "payer_status"=>"verified", "business"=>"jsperezg_facilitator@gmail.com", "quantity"=>"1", "verify_sign"=>"AcFHC8-bPIDZ88ii3yYZm66tFJ6VAN2wnIFytDXpt8OuR7yjaGKUekws", "payer_email"=>"jsperezg-buyer@gmail.com", "txn_id"=>"1KW388315P8523947", "payment_type"=>"instant", "last_name"=>"buyer", "receiver_email"=>"jsperezg_facilitator@gmail.com", "payment_fee"=>"", "receiver_id"=>"RYG2VVDDN76XA", "txn_type"=>"web_accept", "item_name"=>"Renovar por 1 mes", "mc_currency"=>"EUR", "item_number"=>"1", "residence_country"=>"ES", "test_ipn"=>"1", "handling_amount"=>"0.00", "transaction_subject"=>"", "payment_gross"=>"", "shipping"=>"0.00", "ipn_track_id"=>"36de2a4bc2691"}
+
     begin
       response = validate_ipn_notification(request.raw_post)
       case response

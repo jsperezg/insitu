@@ -98,5 +98,5 @@ Rails.application.configure do
   config.x.paypal_validate_ipn_url = 'https://www.paypal.com/cgi-bin/webscr?cmd=_notify-validate'
   config.x.paypal_validate_ipn_verify_mode = OpenSSL::SSL::VERIFY_PEER
   config.x.paypal_validate_ipn_user_agent = 'Insitu'
-  config.x.paypal_receiver_email = 'jsperezg@paypal.com'
+  config.x.paypal_receiver_email = 'jsperezg@gmail.com'
 end

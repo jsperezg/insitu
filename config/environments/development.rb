@@ -58,5 +58,5 @@ Rails.application.configure do
   config.x.paypal_validate_ipn_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_notify-validate'
   config.x.paypal_validate_ipn_verify_mode = OpenSSL::SSL::VERIFY_NONE
   config.x.paypal_validate_ipn_user_agent = 'Insitu development'
-  config.x.paypal_receiver_email = 'jsperezg-facilitator@gmail.com'
+  config.x.paypal_receiver_email = 'jsperezg_facilitator@gmail.com'
 end
