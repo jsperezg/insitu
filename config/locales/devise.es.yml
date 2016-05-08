@@ -15,11 +15,12 @@ es:
   edit_account: Editar cuenta
   leave_password_blank: (Dejar en blanco para conservar la contraseña)
   help_current_password: (Necesitamos tu contraseña actual para confirmar tus cambios)
-  waiting_confirmation_email: "Actualmente esperando confirmación para: %{email}"
+  waiting_confirmation_email: "Actuálmente esperando confirmación para: %{email}"
   cancel_account: Cancelar mi cuenta
   unhappy: "¿No te gusta?"
   cancel_account: Cancelar mi cuenta
   sign_in_message: Introduce tos credenciales para iniciar sesión
+  resend_confirmation_instructions: Reenviame las instrucciones de confirmación
 
   devise:
     confirmations:

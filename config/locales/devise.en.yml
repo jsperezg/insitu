@@ -20,6 +20,7 @@ en:
   unhappy: Unhappy?
   cancel_account: Cancel my account
   sign_in_message: Sign in to start your session
+  resend_confirmation_instructions: Resend confirmation instructions
 
   devise:
     confirmations:

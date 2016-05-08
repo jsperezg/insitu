@@ -1,16 +1,24 @@
-<h2>Resend confirmation instructions</h2>
-
 <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %> 
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions", data: { disable_with: t('please_wait')} %>
+  <div class="panel panel-default col-xs-12 col-lg-4 col-lg-offset-4" style="margin-top: 25px">
+    <div class="panel-body">
+      <div class="row">
+        <h2><%=t :resend_confirmation_instructions %></h2>
+      </div>
+      <%= devise_error_messages! %>
+      <div class="row">
+        <div class="form-group has-feedback">
+          <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: t('activerecord.attributes.user.email'), value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)  %>
+          <span class="fa fa-envelope form-control-feedback"></span>
+        </div>
+      </div>
+      <div class="row">
+        <%= f.submit t(:resend_confirmation_instructions), class: 'btn btn-primary col-xs-12', data: { disable_with: t('please_wait')} %>
+      </div>
+      <div class="row" style="margin-top: 5px;">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+
