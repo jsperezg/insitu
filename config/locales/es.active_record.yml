@@ -149,7 +149,6 @@ es:
         months: Meses
         vat_rate: "%IVA"
         is_active: Activo
-        hosted_button_id: ID botón Paypal
 
     errors:
       messages:

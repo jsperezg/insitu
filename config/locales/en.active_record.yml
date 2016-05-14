@@ -148,7 +148,6 @@ en:
         months: Months
         vat_rate: VAT
         is_active: Active
-        hosted_button_id: Paypal button id
 
     errors:
       messages:

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160507071318) do
+ActiveRecord::Schema.define(version: 20160514055531) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "name",             limit: 255, null: false
@@ -141,34 +141,46 @@ ActiveRecord::Schema.define(version: 20160507071318) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.string   "txn_id",                             limit: 19,                 null: false
-    t.string   "receiver_email",                     limit: 127,                null: false
-    t.string   "payment_status",                     limit: 25,                 null: false
-    t.string   "pending_reason",                     limit: 25
-    t.string   "reason_code",                        limit: 25
-    t.decimal  "mc_gross",                                       precision: 10
-    t.string   "mc_currency",                        limit: 255
-    t.string   "payer_email",                        limit: 127,                null: false
-    t.string   "item_name1",                         limit: 127
-    t.string   "item_number1",                       limit: 127
-    t.integer  "fraud_management_pending_filters_1", limit: 4
-    t.decimal  "mc_gross_1",                                     precision: 10
-    t.datetime "created_at",                                                    null: false
-    t.datetime "updated_at",                                                    null: false
+    t.string   "txn_id",            limit: 19,                          null: false
+    t.string   "business",          limit: 127,                         null: false
+    t.string   "receiver_email",    limit: 127,                         null: false
+    t.string   "receiver_id",       limit: 13,                          null: false
+    t.string   "residence_country", limit: 2
+    t.integer  "user_id",           limit: 4,                           null: false
+    t.string   "payer_id",          limit: 13,                          null: false
+    t.string   "payer_email",       limit: 127,                         null: false
+    t.string   "payer_status",      limit: 10,                          null: false
+    t.string   "last_name",         limit: 64
+    t.string   "first_name",        limit: 64
+    t.datetime "payment_date",                                          null: false
+    t.string   "payment_status",    limit: 25,                          null: false
+    t.string   "payment_type",      limit: 7,                           null: false
+    t.string   "txn_type",          limit: 50,                          null: false
+    t.decimal  "mc_gross",                      precision: 5, scale: 2, null: false
+    t.decimal  "tax",                           precision: 5, scale: 2, null: false
+    t.decimal  "mc_fee",                        precision: 5, scale: 2, null: false
+    t.integer  "quantity",          limit: 4,                           null: false
+    t.integer  "plan_id",           limit: 4,                           null: false
+    t.string   "mc_currency",       limit: 5,                           null: false
+    t.string   "charset",           limit: 255
+    t.string   "notify_version",    limit: 25
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
   end
 
   add_index "payments", ["payment_status"], name: "index_payments_on_payment_status", using: :btree
+  add_index "payments", ["plan_id"], name: "index_payments_on_plan_id", using: :btree
   add_index "payments", ["txn_id"], name: "index_payments_on_txn_id", using: :btree
+  add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
 
   create_table "plans", force: :cascade do |t|
-    t.string   "description",      limit: 255
-    t.decimal  "price",                        precision: 7, scale: 2, null: false
-    t.integer  "months",           limit: 4,                           null: false
-    t.integer  "vat_rate",         limit: 4,                           null: false
-    t.boolean  "is_active",                                            null: false
-    t.datetime "created_at",                                           null: false
-    t.datetime "updated_at",                                           null: false
-    t.string   "hosted_button_id", limit: 255
+    t.string   "description", limit: 255
+    t.decimal  "price",                   precision: 7, scale: 2, null: false
+    t.integer  "months",      limit: 4,                           null: false
+    t.integer  "vat_rate",    limit: 4,                           null: false
+    t.boolean  "is_active",                                       null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
   end
 
   create_table "project_statuses", force: :cascade do |t|
@@ -329,6 +341,8 @@ ActiveRecord::Schema.define(version: 20160507071318) do
   add_foreign_key "invoice_details", "services"
   add_foreign_key "invoices", "customers"
   add_foreign_key "invoices", "payment_methods"
+  add_foreign_key "payments", "plans"
+  add_foreign_key "payments", "users"
   add_foreign_key "setting_values", "setting_keys"
   add_foreign_key "tasks", "projects"
   add_foreign_key "time_logs", "services"

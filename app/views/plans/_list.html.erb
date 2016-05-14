@@ -8,7 +8,6 @@
         <th class="col-xs-1 text-right"><%= model_class.human_attribute_name(:months) %></th>
         <th class="col-xs-1 text-right"><%= model_class.human_attribute_name(:price) %></th>
         <th class="col-xs-1 text-right"><%= model_class.human_attribute_name(:vat_rate) %></th>
-        <th class="col-xs-2"><%= model_class.human_attribute_name(:hosted_button_id) %></th>
         <th class="col-xs-1"><%= model_class.human_attribute_name(:is_active) %></th>
         <th class="col-xs-1"></th>
       </tr>
@@ -28,9 +27,6 @@
             </td>
             <td class="text-right">
               <%= best_in_place plan, :vat_rate, url: plan_path(plan, format: :json) %> %
-            </td>
-            <td>
-              <%= best_in_place plan, :hosted_button_id, url: plan_path(plan, format: :json) %>
             </td>
             <td>
               <%= best_in_place plan, :is_active, as: :checkbox,

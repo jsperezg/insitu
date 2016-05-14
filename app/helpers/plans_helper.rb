@@ -3,7 +3,7 @@ module PlansHelper
 
   def payment_buttons_tag
     if current_user.has_expired?
-      plans = Plan.where(is_active: true).where.not(hosted_button_id: nil).order(months: :asc)
+      plans = Plan.where(is_active: true).order(months: :asc)
 
       content_tag :div, class: :row do
         buttons = []
