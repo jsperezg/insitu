@@ -62,6 +62,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :async
 
   belongs_to :role
+  has_many :payments
 
   after_save :init_tenant_name
   after_commit :init_tenant, on: :create
