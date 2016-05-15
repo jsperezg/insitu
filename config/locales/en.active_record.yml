@@ -7,6 +7,7 @@ en:
       delivery_note: Delivery note
       plan: Price plan
       user: User
+      payment: Pago
     attributes:
       user:
         tax_id: VAT ID
@@ -148,6 +149,31 @@ en:
         months: Months
         vat_rate: VAT
         is_active: Active
+      payment:
+        txn_id: Transaction ID
+        business: Paypal account
+        receiver_email: Receiver email
+        receiver_id: Receiver ID
+        residence_country: Residence country
+        user_id: User ID
+        user: User
+        payer_id: Payer ID
+        payer_email: Payer e-mail
+        payer_status: Payer status
+        last_name: Last name
+        first_name: First name
+        payment_date: Payment date
+        payment_status: Payment status
+        payment_type: Payment type
+        txn_type: Transaction type
+        mc_gross: Gross amount
+        tax: VAT
+        mc_fee: Paypal fee
+        quantity: Quantity
+        plan_id: Plan ID
+        plan: Plan
+        mc_currency: Currency
+        notify_version: Notify version
 
     errors:
       messages:
@@ -357,3 +383,71 @@ en:
               not_an_integer: must be an integer value.
             is_active:
               blank: is mandatory.
+
+        payment:
+          attributes:
+            txn_id:
+              blank: is mandatory.
+              taken: is already registered.
+              too_long: "%{count} characters is the maximum allowed"
+            business:
+              blank: is mandatory.
+              too_long: "%{count} characters is the maximum allowed"
+            receiver_email:
+              blank: is mandatory.
+              invalid_value: Receiver email %{ email } is not allowed.
+              too_long: "%{count} characters is the maximum allowed"
+            receiver_id:
+              blank: is mandatory.
+              too_long: "%{count} characters is the maximum allowed"
+            residence_country:
+              too_long: "%{count} characters is the maximum allowed"
+            user_id:
+              blank: is mandatory.
+            payer_id:
+              blank: is mandatory.
+              too_long: "%{count} characters is the maximum allowed"
+            payer_email:
+              blank: is mandatory.
+              too_long: "%{count} characters is the maximum allowed"
+            payer_status:
+              blank: is mandatory.
+              too_long: "%{count} characters is the maximum allowed"
+            last_name:
+              too_long: "%{count} characters is the maximum allowed"
+            first_name:
+              too_long: "%{count} characters is the maximum allowed"
+            payment_date:
+              blank: is mandatory.
+            payment_status:
+              blank: is mandatory.
+              too_long: "%{count} characters is the maximum allowed"
+            payment_type:
+              blank: is mandatory.
+              too_long: "%{count} characters is the maximum allowed"
+            txn_type:
+              blank: is mandatory.
+              too_long: "%{count} characters is the maximum allowed"
+            mc_gross:
+              blank: is mandatory.
+              invalid_value: Invalid value.
+              not_a_number: must be a number.
+            tax:
+              blank: is mandatory.
+              not_a_number: must be a number.
+            mc_fee:
+              blank: is mandatory.
+              not_a_number: must be a number.
+            quantity:
+              blank: is mandatory.
+              not_a_number: must be a number.
+              greater_than: "must be greater than %{count}."
+              not_an_integer: must be an integer value.
+            plan_id:
+              blank: is mandatory.
+            mc_currency:
+              blank: is mandatory.
+              invalid_value: Invalid currency. Only EUR is accepted.
+            notify_version:
+              too_long: "%{count} characters is the maximum allowed"
+

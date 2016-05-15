@@ -4,6 +4,8 @@ class IpnListenerController < ApplicationController
   protect_from_forgery :except => [:create]
 
   def create
+    status = :ok
+
     begin
       response = validate_ipn_notification(request.raw_post)
       case response
@@ -17,15 +19,15 @@ class IpnListenerController < ApplicationController
         else
           raise InvalidResponseError("Invalid response from Paypal server when verifying the IPN: #{ response }")
       end
-
-      render :nothing => true, status: :ok
     rescue InvalidResponseError => e
-      logger.error e
-      render :nothing => true, status: :unprocessable_entity
+      logger.error "IPN Request failed: #{e}"
+
+      status = :unprocessable_entity
     rescue => e
       logger.error e
       # Notify to customer
-      render :nothing => true, status: :ok
     end
+
+    render :nothing => true, status: status
   end
 end

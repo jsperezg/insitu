@@ -56,11 +56,13 @@ module PlansHelper
     elements << hidden_field_tag('business', Rails.configuration.x.paypal_receiver_email)
     elements << hidden_field_tag('item_name', plan_name(plan))
     elements << hidden_field_tag('quantity', 1)
+    elements << hidden_field_tag('undefined_ quantity', 0)
     elements << hidden_field_tag('button', 'buynow')
     elements << hidden_field_tag('amount', plan.price)
     elements << hidden_field_tag('currency_code', 'EUR')
     elements << hidden_field_tag('shipping', '0.0')
     elements << hidden_field_tag('tax', plan.price * plan.vat_rate / 100.0)
+    elements << hidden_field_tag('tax_rate', plan.vat_rate)
     elements << hidden_field_tag('notify_url', calculate_ipn_listener_url)
     elements << hidden_field_tag('env', 'www.sandbox')
     elements << hidden_field_tag('cmd', '_xclick')
@@ -68,9 +70,6 @@ module PlansHelper
     elements << hidden_field_tag('tax_rate', plan.vat_rate)
     elements << hidden_field_tag('custom', current_user.id)
     elements << hidden_field_tag('no_shipping', '1')
-
-    #TODO
-
     elements << image_submit_tag('https://www.paypalobjects.com/webstatic/en_US/btn/btn_buynow_cc_171x47.png',
                                  {
                                      border: 0,
@@ -78,20 +77,6 @@ module PlansHelper
                                      alt: 'PayPal. La forma rápida y segura de pagar en Internet.',
                                      class: 'center-block'
                                  })
-
-    # elements << hidden_field_tag('cmd', '_s-xclick')
-    # elements << hidden_field_tag('hosted_button_id', plan.hosted_button_id)
-    # elements << hidden_field_tag('notify_url', calculate_ipn_listener_url)
-    #
-    # elements << image_submit_tag('https://www.paypalobjects.com/webstatic/en_US/btn/btn_buynow_cc_171x47.png',
-    #                              {
-    #                                  border: 0,
-    #                                  name: 'submit',
-    #                                  alt: 'PayPal. La forma rápida y segura de pagar en Internet.',
-    #                                  class: 'center-block'
-    #                              })
-    # elements << image_tag("#{ paypal_base_url}/es_ES/i/scr/pixel.gif", width: 1, height: 1, border: 0)
-
     elements.join('').html_safe
   end
 

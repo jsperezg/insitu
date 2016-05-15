@@ -7,6 +7,7 @@ es:
       delivery_note: Albarán
       plan: Plan de precios
       user: Usuario
+      payment: Pago
     attributes:
       user:
         tax_id: NIF/CIF
@@ -149,6 +150,32 @@ es:
         months: Meses
         vat_rate: "%IVA"
         is_active: Activo
+      payment:
+        txn_id: ID Transacción
+        business: Cuenta paypal
+        receiver_email: E-mail receptor
+        receiver_id: ID receptor.
+        residence_country: Pais de residencia.
+        user_id: ID Usuario
+        user: Usuario
+        payer_id: ID pagador
+        payer_email: E-mail pagador
+        payer_status: Estado del pagador.
+        last_name: Apellidos
+        first_name: Nombre
+        payment_date: Fecha de pago
+        payment_status: Estado del pago
+        payment_type: Tipo de pago
+        txn_type: Tipo de transacción
+        mc_gross: Total bruto
+        tax: IVA
+        mc_fee: Cuota paypal
+        quantity: Cantidad
+        plan_id: ID Plan
+        plan: Plan
+        mc_currency: Divisa
+        notify_version: Version notificador
+
 
     errors:
       messages:
@@ -359,3 +386,71 @@ es:
               not_an_integer: no admite decimales.
             is_active:
               blank: es obligatorio.
+
+        payment:
+          attributes:
+            txn_id:
+              blank: es obligatoria.
+              taken: ya está registrada.
+              too_long: "solo se admiten %{count} caracteres."
+            business:
+              blank: es obligatoria.
+              too_long: "solo se admiten %{count} caracteres."
+            receiver_email:
+              blank: es obligatoria.
+              invalid_value: "El email del receptor %{ email } no es válido."
+              too_long: "solo se admiten %{count} caracteres."
+            receiver_id:
+              blank: es obligatorio.
+              too_long: "solo se admiten %{count} caracteres."
+            residence_country:
+              too_long: "solo se admiten %{count} caracteres."
+            user_id:
+              blank: es obligatorio.
+            payer_id:
+              blank: es obligatorio.
+              too_long: "solo se admiten %{count} caracteres."
+            payer_email:
+              blank: es obligatoria.
+              too_long: "solo se admiten %{count} caracteres."
+            payer_status:
+              blank: es obligatorio.
+              too_long: "solo se admiten %{count} caracteres."
+            last_name:
+              too_long: "solo se admiten %{count} caracteres."
+            first_name:
+              too_long: "solo se admiten %{count} caracteres."
+            payment_date:
+              blank: es obligatoria.
+            payment_status:
+              blank: es obligatoria.
+              too_long: "solo se admiten %{count} caracteres."
+            payment_type:
+              blank: es obligatorio.
+              too_long: "solo se admiten %{count} caracteres."
+            txn_type:
+              blank: es obligatorio.
+              too_long: "solo se admiten %{count} caracteres."
+            mc_gross:
+              blank: es obligatorio.
+              invalid_value: Valor inválido.
+              not_a_number: debe ser un número.
+            tax:
+              blank: es obligatorio.
+              not_a_number: debe ser un número.
+            mc_fee:
+              blank: es obligatoria.
+              not_a_number: debe ser un número.
+            quantity:
+              blank: es obligatoria.
+              not_a_number: debe ser un número.
+              greater_than: "debe ser mayor que %{count}."
+              not_an_integer: no admite decimales.
+            plan_id:
+              blank: es obligatorio.
+            mc_currency:
+              blank: es obligatorio.
+              invalid_value: Código de divisa inválido. Solo se aceptan transacciones en euros.
+            notify_version:
+              too_long: "solo se admiten %{count} caracteres."
+

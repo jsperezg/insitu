@@ -28,9 +28,9 @@ class Payment < ActiveRecord::Base
   validates :payment_status, presence: true, length: { maximum: 25 }
   validates :payment_type, presence: true, length: { maximum: 7 }
   validates :txn_type, presence: true, length: { maximum: 50 }
-  validates :mc_gross, presence: true
-  validates :tax, presence: true
-  validates :mc_fee, presence: true
+  validates :mc_gross, presence: true, numericality: true
+  validates :tax, presence: true, numericality: true
+  validates :mc_fee, presence: true, numericality: true
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :plan_id, presence: true
   validates :mc_currency, presence: true, length: { maximum: 5 }
@@ -45,17 +45,17 @@ class Payment < ActiveRecord::Base
   belongs_to :user
 
   def receiver_email_is_valid
-    errors[:receiver_email] = "Receiver email #{ receiver_email } is not allowed" if receiver_email != Rails.configuration.x.paypal_receiver_email
+    errors[:receiver_email] = I18n.t('activerecord.errors.models.payment.attributes.receiver_email.invalid_value', email: receiver_email ) if receiver_email != Rails.configuration.x.paypal_receiver_email
   end
 
   def payment_currency_is_valid
-    errors[:mc_currency] = "Invalid currencty. Only EUR is accepted." if mc_currency != 'EUR'
+    errors[:mc_currency] = I18n.t('activerecord.errors.models.payment.attributes.mc_currency.invalid_value') if mc_currency != 'EUR'
   end
 
   def payment_amount_is_valid
     unless plan.nil?
       expected_amount = plan.price * (1 + plan.vat_rate / 100.0)
-      errors[:mc_gross] = "Invalid amount. #{ expected_amount} € was expected." if mc_gross != expected_amount
+      errors[:mc_gross] = I18n.t('activerecord.errors.models.payment.attributes.mc_gross.invalid_value') if mc_gross != expected_amount
     end
   end
 

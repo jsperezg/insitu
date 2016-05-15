@@ -24,6 +24,8 @@ module Paypal
     unless payment.save
       raise payment.errors.full_messages.join(', ')
     end
+
+    payment
   end
 
   def create_payment(params)
@@ -46,6 +48,10 @@ module Paypal
     [ :txn_id, :business, :receiver_email, :receiver_id, :residence_country, :payer_id, :payer_email, :payer_status, :last_name, :first_name,
       :payment_status, :payment_type, :txn_type, :mc_gross, :tax, :mc_fee, :quantity, :mc_currency, :charset, :notify_version ].each do |param|
       payment[param] = params[param]
+    end
+
+    if params[:test_ipn] == '1' and Rails.env.development?
+      payment[:mc_currency] = 'EUR'
     end
 
     payment.user = User.find(params[:custom])
