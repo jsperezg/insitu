@@ -52,3 +52,4 @@ production:
   database: fges_production
   username: fges
   password: <%= ENV['FGES_DATABASE_PASSWORD'] %>
+  pool: 50

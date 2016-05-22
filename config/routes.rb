@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     member do
       delete :ban
       get :renew
+      get :renew_sent
     end
 
     resources :dashboard

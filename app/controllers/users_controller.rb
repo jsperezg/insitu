@@ -53,8 +53,12 @@ class UsersController < AdminSecuredController
 
   def renew
     unless current_user.can_invoice?
-      redirect_to edit_user_registration_path, flash: { error: I18n.t('users.invoice_data_missing_error') }
+      redirect_to edit_user_registration_path(current_user), flash: { error: I18n.t('users.invoice_data_missing_error') }
     end
+  end
+
+  def renew_sent
+    redirect_to edit_user_path(current_user), notice: t('users.renew_request_processed')
   end
 
   private

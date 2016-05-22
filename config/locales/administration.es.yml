@@ -26,3 +26,4 @@ es:
     account_expired_message: Tu subscripción ha caducado. Pulsa aquí para renovar tu subscripción.
     renew_title: Renovar subscripción
     invoice_data_missing_error: Debes completar tus datos de facturación para poder renovar la subscripción.
+    renew_request_processed: Su petición de renovación ha sido recibida y será procesada durante las próximas horas. Si tiene alguna duda no dude en contactarnos al email billing@insitu.tools.

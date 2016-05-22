@@ -50,4 +50,5 @@ Rails.application.configure do
   config.x.paypal_validate_ipn_verify_mode = OpenSSL::SSL::VERIFY_NONE
   config.x.paypal_validate_ipn_user_agent = 'Insitu test'
   config.x.paypal_receiver_email = 'jsperezg-facilitator@gmail.com'
+  config.x.paypal_billing_account = 'jsperezg@gmail.com'
 end

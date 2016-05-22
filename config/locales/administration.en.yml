@@ -24,3 +24,4 @@ en:
     account_expired_message: Your account has expired. Click here to renew your subscription.
     renew_title: Renew your subscription
     invoice_data_missing_error: You must fill your invoicing data in order to renew your subscription.
+    renew_request_processed: Your renewal request has been received and will be processed within the next few hours. However do not hesitate to contact us through billing@insitu.tools if you have any question.

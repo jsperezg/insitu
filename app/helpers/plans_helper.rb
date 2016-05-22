@@ -70,6 +70,8 @@ module PlansHelper
     elements << hidden_field_tag('tax_rate', plan.vat_rate)
     elements << hidden_field_tag('custom', current_user.id)
     elements << hidden_field_tag('no_shipping', '1')
+    elements << hidden_field_tag('return_url', renew_sent_user_url(current_user))
+    elements << hidden_field_tag('cancel_url', renew_user_url(current_user))
     elements << image_submit_tag('https://www.paypalobjects.com/webstatic/en_US/btn/btn_buynow_cc_171x47.png',
                                  {
                                      border: 0,

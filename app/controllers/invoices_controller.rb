@@ -1,4 +1,6 @@
 class InvoicesController < SecuredController
+  include InvoicingNotifications
+
   before_action :set_invoice, only: [:show, :print, :forward_email, :edit, :update, :destroy]
 
   # GET /invoices
@@ -59,12 +61,8 @@ class InvoicesController < SecuredController
       return
     end
 
-    file_name =  Rails.root.join('tmp', "invoice_#{ current_user.id }_#{ @invoice.number.gsub('/', '_') }_#{ Time.now.to_i }.pdf")
+    send_invoice_by_email(current_user, @invoice)
 
-    pdf = InvoicePdf.new current_user, @invoice
-    pdf.render_file file_name
-
-    InvoiceMailer.send_to_customer(current_user, @invoice, file_name, I18n.locale.to_s).deliver_later
     redirect_to user_invoice_path(current_user.id, @invoice.id), notice: t('helpers.email_successfully_sent')
   end
 

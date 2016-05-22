@@ -12,7 +12,7 @@ class IpnListenerController < ApplicationController
         when 'VERIFIED'
           payment = process_paypal_request(params)
           if payment.completed?
-            # process payment
+            RenewSubscriptionJob.perform_now payment.id
           end
         when 'INVALID'
           logger.error "Paypal failed to validate the IPN notification: #{ request.raw_post }"
@@ -25,7 +25,6 @@ class IpnListenerController < ApplicationController
       status = :unprocessable_entity
     rescue => e
       logger.error e
-      # Notify to customer
     end
 
     render :nothing => true, status: status
