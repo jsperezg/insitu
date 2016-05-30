@@ -79,11 +79,16 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = false
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.logger = Logger.new 'Action Mailer'
+  config.action_mailer.logger.level = Logger::DEBUG
+
   config.action_mailer.default :charset => 'utf-8'
   config.action_mailer.smtp_settings = {
       address: 'mail.your-server.de',
-      port: 465,
+      port: 587,
+      domain: 'insitu.tools',
       user_name: ENV['mail_username'],
       password: ENV['mail_password'],
       authentication: :plain,
@@ -99,5 +104,5 @@ Rails.application.configure do
   config.x.paypal_validate_ipn_verify_mode = OpenSSL::SSL::VERIFY_PEER
   config.x.paypal_validate_ipn_user_agent = 'Insitu'
   config.x.paypal_receiver_email = 'jsperezg@gmail.com'
-  config.x.paypal_billing_account = 'jsperezg@gmail.com'
+  config.x.paypal_billing_account = 'billing@insitu.tools'
 end
