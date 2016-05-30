@@ -54,7 +54,7 @@ class DeliveryNotesController < SecuredController
     pdf = DeliveryNotePdf.new current_user, @delivery_note
     pdf.render_file(file_name)
 
-    DeliveryNoteMailer.send_to_customer(current_user, @delivery_note, file_name, I18n.locale.to_s).deliver_later
+    DeliveryNoteMailer.send_to_customer(current_user, @delivery_note, file_name.to_s, I18n.locale.to_s).deliver_later
     redirect_to user_delivery_note_path(current_user.id, @delivery_note.id), notice: t('helpers.email_successfully_sent')
   end
 

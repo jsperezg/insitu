@@ -65,7 +65,7 @@ class EstimatesController < SecuredController
     pdf = EstimatePdf.new current_user, @estimate
     pdf.render_file(file_name)
 
-    EstimateMailer.send_to_customer(current_user, @estimate, file_name, I18n.locale.to_s).deliver_later
+    EstimateMailer.send_to_customer(current_user, @estimate, file_name.to_s, I18n.locale.to_s).deliver_later
     redirect_to user_estimate_path(current_user.id, @estimate.id), notice: t('helpers.email_successfully_sent')
   end
 

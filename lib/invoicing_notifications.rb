@@ -5,6 +5,6 @@ module InvoicingNotifications
     pdf = InvoicePdf.new from, invoice
     pdf.render_file file_name
 
-    InvoiceMailer.send_to_customer(from, invoice, file_name, I18n.locale.to_s).deliver_later
+    InvoiceMailer.send_to_customer(from, invoice, file_name.to_s, I18n.locale.to_s).deliver_later
   end
 end
