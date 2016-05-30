@@ -17,7 +17,7 @@ class IpnListenerController < ApplicationController
         when 'INVALID'
           logger.error "Paypal failed to validate the IPN notification: #{ request.raw_post }"
         else
-          raise InvalidResponseError("Invalid response from Paypal server when verifying the IPN: #{ response }")
+          raise InvalidResponseError.new("Invalid response from Paypal server when verifying the IPN: #{ response }")
       end
     rescue InvalidResponseError => e
       logger.error "IPN Request failed: #{e}"
