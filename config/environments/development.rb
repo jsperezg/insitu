@@ -40,7 +40,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.logger = Logger.new 'Action Mailer'
+  config.action_mailer.logger = Logger.new 'log/ActionMailer.log'
   config.action_mailer.logger.level = Logger::DEBUG
 
   config.action_mailer.delivery_method = :smtp
