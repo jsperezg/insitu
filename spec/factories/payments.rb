@@ -15,8 +15,8 @@ FactoryGirl.define do
     payment_status 'Completed'
     payment_type 'instant'
     txn_type 'web_accept'
-    mc_gross 6.05
-    tax 1.05
+    mc_gross { (Plan.first || create(:plan)).price * 1.21 }
+    tax { (Plan.first || create(:plan)).price * 0.21 }
     mc_fee 0.56
     quantity 1
     plan_id { Plan.first || create(:plan) }

@@ -14,18 +14,24 @@ module Paypal
   end
 
   def process_paypal_request(params)
-    payment = Payment.find_by(txn_id: params[:txn_id])
-    if payment.nil?
-      payment = create_payment(params)
-    else
-      update_payment(payment, params)
-    end
+    Payment.transaction do
+      payment = Payment.find_by(txn_id: params[:txn_id])
+      if payment.nil?
+        payment = create_payment(params)
+      else
+        update_payment(payment, params)
+      end
 
-    unless payment.save
-      raise payment.errors.full_messages.join(', ')
-    end
+      unless payment.save
+        raise payment.errors.full_messages.join(', ')
+      end
 
-    payment
+      if payment.completed?
+        payment.renew_user
+      end
+
+      payment
+    end
   end
 
   def create_payment(params)

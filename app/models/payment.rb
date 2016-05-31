@@ -59,5 +59,14 @@ class Payment < ActiveRecord::Base
     end
   end
 
+  def renew_user
+    user = self.user
+    user.valid_until = self.payment_date + self.plan.months.months
+    user.save!
+
+    self.processed_at = DateTime.now
+    self.save!
+  end
+
   private :receiver_email_is_valid, :payment_currency_is_valid
 end

@@ -10,25 +10,7 @@ class RenewSubscriptionJob < ActiveJob::Base
 
   def perform(*payment_id)
     payment = Payment.find(payment_id)
-    if payment.processed_at.nil?
-      Payment.transaction do
-        renew_user(payment)
-        mark_as_processed(payment)
-      end
-    end
-
     send_invoice(payment)
-  end
-
-  def renew_user(payment)
-    user = payment.user
-    user.valid_until = payment.payment_date + payment.plan.months.months
-    user.save!
-  end
-
-  def mark_as_processed(payment)
-    payment.processed_at = DateTime.now
-    payment.save!
   end
 
   def send_invoice(payment)
