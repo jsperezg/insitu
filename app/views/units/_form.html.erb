@@ -2,19 +2,19 @@
   <%= render partial: 'layouts/validation_errors', locals: { object: @unit } %>
 
   <div class="row">
-    <div class="form-group col-xs-1">
+    <div class="form-group col-md-1 col-sm-2 col-xs-2">
       <%= f.label :label_short, :class => 'control-label' %>
       <%= f.text_field :label_short, :class => 'form-control input-sm', required: true, autofocus: true %>
     </div>
 
-    <div class="form-group col-xs-11">
+    <div class="form-group col-md-11 col-sm-10 col-xs-10">
       <%= f.label :label_long, :class => 'control-label' %>
       <%= f.text_field :label_long, :class => 'form-control input-sm' %>
     </div>
   </div>
 </div>
 <div class="box-footer">
-  <%= f.submit t(:save), :class => 'btn btn-primary btn-flat col-xs-1', data: { disable_with: t('please_wait')} %>
+  <%= f.submit t(:save), :class => 'btn btn-primary btn-flat col-md-1 col-sm-2 col-xs-3', data: { disable_with: t('please_wait')} %>
   <%= link_to t("helpers.links.cancel"),
-            user_units_path(current_user.id), class: 'btn btn-default btn-flat col-xs-1' %>
+            user_units_path(current_user.id), class: 'btn btn-default btn-flat col-md-1 col-sm-2 col-xs-3' %>
 </div>

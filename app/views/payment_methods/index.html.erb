@@ -5,10 +5,10 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th class="col-xs-9"><%= model_class.human_attribute_name(:name) %></th>
-            <th class="col-xs-1"><%= model_class.human_attribute_name(:default) %></th>
-            <th class="col-xs-1"></th>
-            <th class="col-xs-1"></th>
+            <th class="col-md-9 col-sm-6 col-xs-5"><%= model_class.human_attribute_name(:name) %></th>
+            <th class="col-md-1 col-sm-2 col-xs-3"><%= model_class.human_attribute_name(:default) %></th>
+            <th class="col-md-1 col-sm-2 col-xs-2"></th>
+            <th class="col-md-1 col-sm-2 col-xs-2"></th>
           </tr>
         </thead>
         <tbody>
@@ -29,9 +29,10 @@
                 <%= button_to edit_user_payment_method_path(current_user.id, payment_method),
                               method: :get,
                               class: 'btn btn-default btn-xs btn-block btn-flat' do %>
-                  <i class="fa fa-pencil-square-o" aria-hidden="true">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  <span class="hidden-xs">
                     <%=t 'helpers.links.edit' %>
-                  </i>
+                  </span>
                 <% end %>
               </td>
               <td>
@@ -39,9 +40,10 @@
                             method: :delete,
                             data: { :confirm => t('helpers.links.confirm', default: 'Are you sure?') },
                             class: 'btn btn-xs btn-danger btn-block btn-flat' do %>
-                  <i class="fa fa-trash-o" aria-hidden="true">
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                  <span class="hidden-xs">
                     <%=t 'helpers.links.destroy' %>
-                  </i>
+                  </span>
                 <% end %>
               </td>
             </tr>
@@ -53,7 +55,7 @@
 
   <div class="box-footer">
     <div class="row">
-      <div class="col-xs-4 col-md-1">
+      <div class="col-xs-3 col-sm-2 col-md-1">
         <%= button_to t('helpers.links.new'),
             new_user_payment_method_path(current_user.id),
             method: :get,
