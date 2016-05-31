@@ -2,22 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9253af97-43bb-4d75-844d-496160ae5ec1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/ipn_listener.coffee" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/ipn_listener.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/controllers/ipn_listener_controller_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/helpers/ipn_listener_helper_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/mailers/notify_payment_error_spec.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/mailers/previews/notify_payment_error_preview.rb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spec/support/paypal.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/fges.iml" afterPath="$PROJECT_DIR$/.idea/fges.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/jobs/renew_subscription_job.rb" afterPath="$PROJECT_DIR$/app/jobs/renew_subscription_job.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/payment.rb" afterPath="$PROJECT_DIR$/app/models/payment.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/.last_run.json" afterPath="$PROJECT_DIR$/coverage/.last_run.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/.resultset.json" afterPath="$PROJECT_DIR$/coverage/.resultset.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/index.html" afterPath="$PROJECT_DIR$/coverage/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/paypal.rb" afterPath="$PROJECT_DIR$/lib/paypal.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/factories/payments.rb" afterPath="$PROJECT_DIR$/spec/factories/payments.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/factories/users.rb" afterPath="$PROJECT_DIR$/spec/factories/users.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/jobs/renew_subscription_job_spec.rb" afterPath="$PROJECT_DIR$/spec/jobs/renew_subscription_job_spec.rb" />
     </list>
     <ignored path="fges.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,6 +59,7 @@
     <SUITE FILE_PATH="coverage/fges@Run_spec__task_spec___fges.coverage" NAME="Run spec 'task_spec': fges Coverage Results" MODIFIED="1450941745271" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@EstimatesHelper_estimate_tr__fges.coverage" NAME="EstimatesHelper estimate_tr: fges Coverage Results" MODIFIED="1459667724058" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Run_spec__edit_html_erb_spec___fges__1_.coverage" NAME="Run spec 'edit.html.erb_spec': fges (1) Coverage Results" MODIFIED="1461394642775" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
+    <SUITE FILE_PATH="coverage/fges@Run_spec__renew_subscription_job_spec___fges.coverage" NAME="Run spec 'renew_subscription_job_spec': fges Coverage Results" MODIFIED="1464688484873" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Run_spec__units_controller_spec___fges.coverage" NAME="Run spec 'units_controller_spec': fges Coverage Results" MODIFIED="1459582209361" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@TasksHelper_task_tr_on_finished_task__fges.coverage" NAME="TasksHelper task_tr on finished task: fges Coverage Results" MODIFIED="1459668815399" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@TasksController_GET__invoice_finished_Generates_invoice_with_all_pending_time_logs__fges.coverage" NAME="TasksController GET #invoice_finished Generates invoice with all pending time logs: fges Coverage Results" MODIFIED="1453625119201" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
@@ -91,6 +85,7 @@
     <SUITE FILE_PATH="coverage/fges@InvoiceDetail_invoice_detail_relationship_with_time_tracker_removing_invoice_detail_lives_time_log_record_pending_for_unvoice__fges.coverage" NAME="InvoiceDetail invoice detail relationship with time tracker removing invoice detail lives time log record pending for unvoice: fges Coverage Results" MODIFIED="1454179933540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@vats_index_renders_a_list_of_vats__fges.coverage" NAME="vats/index renders a list of vats: fges Coverage Results" MODIFIED="1461389358180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@InvoicesHelper_invoice_tr_on_invoice_paid__fges.coverage" NAME="InvoicesHelper invoice_tr on invoice paid: fges Coverage Results" MODIFIED="1459668212960" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
+    <SUITE FILE_PATH="coverage/fges@RenewSubscriptionJob_Generates_invoice_Creates_Paypal_payment_method__fges.coverage" NAME="RenewSubscriptionJob Generates invoice Creates Paypal payment method: fges Coverage Results" MODIFIED="1464685468478" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@All_specs_in_fges__fges.coverage" NAME="All specs in fges: fges Coverage Results" MODIFIED="1461389248355" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@DeliveryNotesController_PUT__update_with_valid_params_updates_the_requested_delivery_note__fges.coverage" NAME="DeliveryNotesController PUT #update with valid params updates the requested delivery_note: fges Coverage Results" MODIFIED="1452067526190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Run_spec__ipn_listener_spec___fges.coverage" NAME="Run spec 'ipn_listener_spec': fges Coverage Results" MODIFIED="1464596677517" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
@@ -104,6 +99,7 @@
     <SUITE FILE_PATH="coverage/fges@Invoice_billing_process_irpf_0___fges.coverage" NAME="Invoice billing process irpf 0%: fges Coverage Results" MODIFIED="1459583068493" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@All_specs_in_spec__fges.coverage" NAME="All specs in spec: fges Coverage Results" MODIFIED="1450597393784" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@EstimateDetail_expired_user_cant_save_delivery_notes__fges.coverage" NAME="EstimateDetail expired user cant save delivery notes: fges Coverage Results" MODIFIED="1461348557214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
+    <SUITE FILE_PATH="coverage/fges@RenewSubscriptionJob__fges.coverage" NAME="RenewSubscriptionJob: fges Coverage Results" MODIFIED="1464686386034" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Run_spec__new_html_erb_spec___fges.coverage" NAME="Run spec 'new.html.erb_spec': fges Coverage Results" MODIFIED="1461395165129" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Production__fges.coverage" NAME="Production: fges Coverage Results" MODIFIED="1457765356378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@EstimatesHelper__fges.coverage" NAME="EstimatesHelper: fges Coverage Results" MODIFIED="1459668004206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
@@ -111,6 +107,7 @@
     <SUITE FILE_PATH="coverage/fges@Invoice_Invoice_serie_update_default_serie_for_invoices__fges.coverage" NAME="Invoice Invoice serie update default serie for invoices: fges Coverage Results" MODIFIED="1451815884235" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@db_migrate__fges.coverage" NAME="db:migrate: fges Coverage Results" MODIFIED="1454779874478" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@production__fges.coverage" NAME="production: fges Coverage Results" MODIFIED="1461174388811" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
+    <SUITE FILE_PATH="coverage/fges@RenewSubscriptionJob_Invoice_is_sent_by_email__fges.coverage" NAME="RenewSubscriptionJob Invoice is sent by email: fges Coverage Results" MODIFIED="1464688194273" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@ApplicationHelper_Dashboard__Navigation_bar_Dashboard__Just_tittle__fges.coverage" NAME="ApplicationHelper Dashboard: Navigation bar Dashboard: Just tittle: fges Coverage Results" MODIFIED="1450812257488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Run_spec__tasks_controller_spec___fges.coverage" NAME="Run spec 'tasks_controller_spec': fges Coverage Results" MODIFIED="1454694693652" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Invoice_Invoice_serie_custom_serie__fges.coverage" NAME="Invoice Invoice serie custom serie: fges Coverage Results" MODIFIED="1451649023973" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
@@ -120,6 +117,7 @@
     <SUITE FILE_PATH="coverage/fges@PlansHelper__fges.coverage" NAME="PlansHelper: fges Coverage Results" MODIFIED="1459667206188" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Run_spec__user_controller_spec___fges.coverage" NAME="Run spec 'user_controller_spec': fges Coverage Results" MODIFIED="1460876228469" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Run_spec__new_html_erb_spec___fges__2_.coverage" NAME="Run spec 'new.html.erb_spec': fges (2) Coverage Results" MODIFIED="1459670518207" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
+    <SUITE FILE_PATH="coverage/fges@RenewSubscriptionJob_Generates_invoice_Registers_the_customer__fges.coverage" NAME="RenewSubscriptionJob Generates invoice Registers the customer: fges Coverage Results" MODIFIED="1464685885894" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@EstimatesController_GET__invoice_Generates_invoice___fges.coverage" NAME="EstimatesController GET #invoice Generates invoice : fges Coverage Results" MODIFIED="1454182025912" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@ApplicationHelper_has_role__fges.coverage" NAME="ApplicationHelper has_role: fges Coverage Results" MODIFIED="1459669069662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@TasksController_PUT__update_with_invalid_params_re_renders_the__edit__template__fges.coverage" NAME="TasksController PUT #update with invalid params re-renders the 'edit' template: fges Coverage Results" MODIFIED="1451116679849" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
@@ -141,6 +139,7 @@
     <SUITE FILE_PATH="coverage/fges@Run_spec__invoice_detail_spec___fges.coverage" NAME="Run spec 'invoice_detail_spec': fges Coverage Results" MODIFIED="1461348703159" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Api__PlansController_index__fges.coverage" NAME="Api::PlansController index: fges Coverage Results" MODIFIED="1459534573376" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Run_spec__services_controller_spec___fges.coverage" NAME="Run spec 'services_controller_spec': fges Coverage Results" MODIFIED="1459579593768" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
+    <SUITE FILE_PATH="coverage/fges@RenewSubscriptionJob_Generates_invoice_Generates_a_new_invoice_for_the_payment__fges.coverage" NAME="RenewSubscriptionJob Generates invoice Generates a new invoice for the payment: fges Coverage Results" MODIFIED="1464686913324" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Plan_validation_rules_is_active_is_default__fges.coverage" NAME="Plan validation rules is active is default: fges Coverage Results" MODIFIED="1459665110753" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Estimate_valid_until_must_be_after_date__fges.coverage" NAME="Estimate valid_until must be after date: fges Coverage Results" MODIFIED="1451649826345" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
   </component>
@@ -153,41 +152,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ipn_listener_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/ipn_listener_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="44" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="paypal.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/paypal.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="33" column="7" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="renew_subscription_job.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/jobs/renew_subscription_job.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state vertical-scroll-proportion="-10.645162">
+              <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ipn_listener_controller_spec.rb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/spec/controllers/ipn_listener_controller_spec.rb">
+      <file leaf-file-name="renew_subscription_job_spec.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/spec/jobs/renew_subscription_job_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.47420964">
-              <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+            <state vertical-scroll-proportion="1.0515807">
+              <caret line="83" column="20" selection-start-line="83" selection-start-column="20" selection-end-line="83" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spec/factories/users.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="43" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -215,8 +204,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/views/users/renew.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/users/sessions/new.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/sign_in.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/AdminLTE.css" />
         <option value="$PROJECT_DIR$/config/locales/devise.en.yml" />
@@ -237,7 +224,6 @@
         <option value="$PROJECT_DIR$/config/locales/en.active_record.yml" />
         <option value="$PROJECT_DIR$/db/migrate/20160522081504_add_process_time_to_payment.rb" />
         <option value="$PROJECT_DIR$/config/environments/test.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/invoices_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/notify_payment_error_mailer/notify_payment_error.html.erb" />
         <option value="$PROJECT_DIR$/app/mailers/notify_payment_error_mailer.rb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
@@ -251,7 +237,6 @@
         <option value="$PROJECT_DIR$/config/initializers/apartment.rb" />
         <option value="$PROJECT_DIR$/config/deploy/production.rb" />
         <option value="$PROJECT_DIR$/Gemfile" />
-        <option value="$PROJECT_DIR$/lib/invoicing_notifications.rb" />
         <option value="$PROJECT_DIR$/app/controllers/estimates_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/delivery_notes_controller.rb" />
         <option value="$PROJECT_DIR$/spec/routing/ipn_listener_routing_spec.rb" />
@@ -261,11 +246,15 @@
         <option value="$PROJECT_DIR$/config/environments/development.rb" />
         <option value="$PROJECT_DIR$/config/environments/production.rb" />
         <option value="$PROJECT_DIR$/spec/support/paypal.rb" />
-        <option value="$PROJECT_DIR$/spec/factories/payments.rb" />
-        <option value="$PROJECT_DIR$/app/jobs/renew_subscription_job.rb" />
         <option value="$PROJECT_DIR$/app/models/payment.rb" />
         <option value="$PROJECT_DIR$/lib/paypal.rb" />
         <option value="$PROJECT_DIR$/spec/controllers/ipn_listener_controller_spec.rb" />
+        <option value="$PROJECT_DIR$/spec/factories/payments.rb" />
+        <option value="$PROJECT_DIR$/spec/jobs/renew_subscription_job_spec.rb" />
+        <option value="$PROJECT_DIR$/spec/factories/users.rb" />
+        <option value="$PROJECT_DIR$/app/jobs/renew_subscription_job.rb" />
+        <option value="$PROJECT_DIR$/lib/invoicing_notifications.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/invoices_controller.rb" />
       </list>
     </option>
   </component>
@@ -331,7 +320,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="RailsProjectView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -396,7 +385,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="jobs" />
+              <option name="myItemId" value="factories" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -460,32 +449,14 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fges" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fges" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jobs" />
+              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="RailsProjectView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -530,8 +501,8 @@
       <recent name="$PROJECT_DIR$/app/helpers" />
     </key>
   </component>
-  <component name="RunManager" selected="RSpec.Run spec 'ipn_listener_controller_spec': fges">
-    <configuration default="false" name="Run spec 'ipn_listener_spec': fges" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
+  <component name="RunManager" selected="RSpec.Run spec 'renew_subscription_job_spec': fges">
+    <configuration default="false" name="Run spec 'renew_subscription_job_spec': fges" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
       <predefined_log_file id="RUBY_RSPEC" enabled="true" />
       <module name="fges" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
@@ -551,7 +522,7 @@
         </COVERAGE_PATTERN>
       </EXTENSION>
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/requests/ipn_listener_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/jobs/renew_subscription_job_spec.rb" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="" />
@@ -565,7 +536,7 @@
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Run spec 'ipn_listener_controller_spec': fges" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
+    <configuration default="false" name="RenewSubscriptionJob Generates invoice Registers the customer: fges" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
       <predefined_log_file id="RUBY_RSPEC" enabled="true" />
       <module name="fges" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
@@ -585,10 +556,10 @@
         </COVERAGE_PATTERN>
       </EXTENSION>
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/controllers/ipn_listener_controller_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/jobs/renew_subscription_job_spec.rb" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="RenewSubscriptionJob Generates invoice Registers the customer" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
@@ -599,7 +570,7 @@
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
       <method />
     </configuration>
-    <configuration default="false" name="IpnListenerController POST #create Other responses: fges" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
+    <configuration default="false" name="RenewSubscriptionJob: fges" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
       <predefined_log_file id="RUBY_RSPEC" enabled="true" />
       <module name="fges" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
@@ -619,10 +590,10 @@
         </COVERAGE_PATTERN>
       </EXTENSION>
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/controllers/ipn_listener_controller_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/jobs/renew_subscription_job_spec.rb" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="IpnListenerController POST #create Other responses" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="RenewSubscriptionJob" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
@@ -633,7 +604,7 @@
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
       <method />
     </configuration>
-    <configuration default="false" name="IpnListenerController POST #create INVALID response referred subscription remains unchanged: fges" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
+    <configuration default="false" name="RenewSubscriptionJob Generates invoice Generates a new invoice for the payment: fges" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
       <predefined_log_file id="RUBY_RSPEC" enabled="true" />
       <module name="fges" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
@@ -653,10 +624,10 @@
         </COVERAGE_PATTERN>
       </EXTENSION>
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/controllers/ipn_listener_controller_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/jobs/renew_subscription_job_spec.rb" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="IpnListenerController POST #create INVALID response referred subscription remains unchanged" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="RenewSubscriptionJob Generates invoice Generates a new invoice for the payment" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
@@ -667,7 +638,7 @@
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
       <method />
     </configuration>
-    <configuration default="false" name="IpnListenerController POST #create VERIFIED response referred subscription is renewed: fges" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
+    <configuration default="false" name="RenewSubscriptionJob Invoice is sent by email: fges" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
       <predefined_log_file id="RUBY_RSPEC" enabled="true" />
       <module name="fges" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
@@ -687,10 +658,10 @@
         </COVERAGE_PATTERN>
       </EXTENSION>
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/controllers/ipn_listener_controller_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/jobs/renew_subscription_job_spec.rb" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="IpnListenerController POST #create VERIFIED response referred subscription is renewed" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="RenewSubscriptionJob Invoice is sent by email" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
@@ -903,19 +874,19 @@
       <item index="2" class="java.lang.String" itemvalue="Rails.Production: fges" />
       <item index="3" class="java.lang.String" itemvalue="Rails.Development: fges" />
       <item index="4" class="java.lang.String" itemvalue="RSpec.All specs in fges: fges" />
-      <item index="5" class="java.lang.String" itemvalue="RSpec.Run spec 'ipn_listener_spec': fges" />
-      <item index="6" class="java.lang.String" itemvalue="RSpec.Run spec 'ipn_listener_controller_spec': fges" />
-      <item index="7" class="java.lang.String" itemvalue="RSpec.IpnListenerController POST #create Other responses: fges" />
-      <item index="8" class="java.lang.String" itemvalue="RSpec.IpnListenerController POST #create INVALID response referred subscription remains unchanged: fges" />
-      <item index="9" class="java.lang.String" itemvalue="RSpec.IpnListenerController POST #create VERIFIED response referred subscription is renewed: fges" />
+      <item index="5" class="java.lang.String" itemvalue="RSpec.Run spec 'renew_subscription_job_spec': fges" />
+      <item index="6" class="java.lang.String" itemvalue="RSpec.RenewSubscriptionJob Generates invoice Registers the customer: fges" />
+      <item index="7" class="java.lang.String" itemvalue="RSpec.RenewSubscriptionJob: fges" />
+      <item index="8" class="java.lang.String" itemvalue="RSpec.RenewSubscriptionJob Generates invoice Generates a new invoice for the payment: fges" />
+      <item index="9" class="java.lang.String" itemvalue="RSpec.RenewSubscriptionJob Invoice is sent by email: fges" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="RSpec.Run spec 'ipn_listener_controller_spec': fges" />
-        <item index="1" class="java.lang.String" itemvalue="RSpec.IpnListenerController POST #create VERIFIED response referred subscription is renewed: fges" />
-        <item index="2" class="java.lang.String" itemvalue="RSpec.IpnListenerController POST #create INVALID response referred subscription remains unchanged: fges" />
-        <item index="3" class="java.lang.String" itemvalue="RSpec.IpnListenerController POST #create Other responses: fges" />
-        <item index="4" class="java.lang.String" itemvalue="RSpec.Run spec 'ipn_listener_spec': fges" />
+        <item index="0" class="java.lang.String" itemvalue="RSpec.Run spec 'renew_subscription_job_spec': fges" />
+        <item index="1" class="java.lang.String" itemvalue="RSpec.RenewSubscriptionJob Invoice is sent by email: fges" />
+        <item index="2" class="java.lang.String" itemvalue="RSpec.RenewSubscriptionJob Generates invoice Generates a new invoice for the payment: fges" />
+        <item index="3" class="java.lang.String" itemvalue="RSpec.RenewSubscriptionJob: fges" />
+        <item index="4" class="java.lang.String" itemvalue="RSpec.RenewSubscriptionJob Generates invoice Registers the customer: fges" />
       </list>
     </recent_temporary>
   </component>
@@ -929,12 +900,6 @@
       <created>1450296634841</created>
       <option name="number" value="Default" />
       <updated>1450296634841</updated>
-    </task>
-    <task id="LOCAL-00090" summary="Bugfixing&#10;&#10;Solved issue with master detail edition.&#10;Improved validation error presentation.&#10;">
-      <created>1460108228589</created>
-      <option name="number" value="00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1460108228590</updated>
     </task>
     <task id="LOCAL-00091" summary="User management&#10;&#10;Administrators must have a perpetual license. &#10;">
       <created>1460110050276</created>
@@ -1224,39 +1189,45 @@
       <option name="project" value="LOCAL" />
       <updated>1464678464324</updated>
     </task>
-    <option name="localTasksCounter" value="139" />
+    <task id="LOCAL-00139" summary="Added tests for IPN controller.&#10;&#10;Added test for the IPN controller.">
+      <created>1464680598958</created>
+      <option name="number" value="00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1464680598958</updated>
+    </task>
+    <option name="localTasksCounter" value="140" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="IpnListenerController_POST_#create_VERIFIED_response_referred_subscription_is_renewed__fges - 2016.05.31 at 09h 25m 00s.xml">
-      <configuration name="IpnListenerController POST #create VERIFIED response referred subscription is renewed: fges" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="RenewSubscriptionJob_Invoice_is_sent_by_email__fges - 2016.05.31 at 11h 44m 59s.xml">
+      <configuration name="RenewSubscriptionJob Invoice is sent by email: fges" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="IpnListenerController_POST_#create_VERIFIED_response_referred_subscription_is_renewed__fges - 2016.05.31 at 09h 27m 08s.xml">
-      <configuration name="IpnListenerController POST #create VERIFIED response referred subscription is renewed: fges" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="RenewSubscriptionJob_Invoice_is_sent_by_email__fges - 2016.05.31 at 11h 46m 30s.xml">
+      <configuration name="RenewSubscriptionJob Invoice is sent by email: fges" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="IpnListenerController_POST_#create_VERIFIED_response_referred_subscription_is_renewed__fges - 2016.05.31 at 09h 27m 56s.xml">
-      <configuration name="IpnListenerController POST #create VERIFIED response referred subscription is renewed: fges" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="RenewSubscriptionJob_Invoice_is_sent_by_email__fges - 2016.05.31 at 11h 47m 16s.xml">
+      <configuration name="RenewSubscriptionJob Invoice is sent by email: fges" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="IpnListenerController_POST_#create_VERIFIED_response_referred_subscription_is_renewed__fges - 2016.05.31 at 09h 29m 22s.xml">
-      <configuration name="IpnListenerController POST #create VERIFIED response referred subscription is renewed: fges" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="RenewSubscriptionJob_Invoice_is_sent_by_email__fges - 2016.05.31 at 11h 47m 26s.xml">
+      <configuration name="RenewSubscriptionJob Invoice is sent by email: fges" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="IpnListenerController_POST_#create_VERIFIED_response_referred_subscription_is_renewed__fges - 2016.05.31 at 09h 31m 37s.xml">
-      <configuration name="IpnListenerController POST #create VERIFIED response referred subscription is renewed: fges" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="RenewSubscriptionJob_Invoice_is_sent_by_email__fges - 2016.05.31 at 11h 47m 43s.xml">
+      <configuration name="RenewSubscriptionJob Invoice is sent by email: fges" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="IpnListenerController_POST_#create_VERIFIED_response_referred_subscription_is_renewed__fges - 2016.05.31 at 09h 32m 54s.xml">
-      <configuration name="IpnListenerController POST #create VERIFIED response referred subscription is renewed: fges" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="RenewSubscriptionJob_Invoice_is_sent_by_email__fges - 2016.05.31 at 11h 48m 17s.xml">
+      <configuration name="RenewSubscriptionJob Invoice is sent by email: fges" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="IpnListenerController_POST_#create_VERIFIED_response_referred_subscription_is_renewed__fges - 2016.05.31 at 09h 38m 26s.xml">
-      <configuration name="IpnListenerController POST #create VERIFIED response referred subscription is renewed: fges" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="RenewSubscriptionJob_Invoice_is_sent_by_email__fges - 2016.05.31 at 11h 49m 04s.xml">
+      <configuration name="RenewSubscriptionJob Invoice is sent by email: fges" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_spec__ipn_listener_controller_spec___fges - 2016.05.31 at 09h 40m 11s.xml">
-      <configuration name="Run spec 'ipn_listener_controller_spec': fges" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="RenewSubscriptionJob_Invoice_is_sent_by_email__fges - 2016.05.31 at 11h 49m 52s.xml">
+      <configuration name="RenewSubscriptionJob Invoice is sent by email: fges" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_spec__ipn_listener_controller_spec___fges - 2016.05.31 at 09h 42m 03s.xml">
-      <configuration name="Run spec 'ipn_listener_controller_spec': fges" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="RenewSubscriptionJob_Invoice_is_sent_by_email__fges - 2016.05.31 at 11h 50m 39s.xml">
+      <configuration name="RenewSubscriptionJob Invoice is sent by email: fges" configurationId="RSpecRunConfigurationType" />
     </history-entry>
-    <history-entry file="Run_spec__ipn_listener_controller_spec___fges - 2016.05.31 at 09h 42m 11s.xml">
-      <configuration name="Run spec 'ipn_listener_controller_spec': fges" configurationId="RSpecRunConfigurationType" />
+    <history-entry file="Run_spec__renew_subscription_job_spec___fges - 2016.05.31 at 11h 54m 48s.xml">
+      <configuration name="Run spec 'renew_subscription_job_spec': fges" configurationId="RSpecRunConfigurationType" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -1265,7 +1236,6 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26510417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32848233" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45391476" sideWeight="0.35231507" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32640332" sideWeight="0.41777542" order="1" side_tool="false" content_ui="tabs" />
@@ -1276,6 +1246,7 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3991684" sideWeight="0.5769026" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32848233" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1317,7 +1288,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Profile edition&#10;&#10;Devise error messages styled with bootstrap" />
     <MESSAGE value="Preparing for deploy  into real production server." />
     <MESSAGE value="Filtering invoices, estimates and delivery notes&#10;&#10;solved wrong sorting by date.&#10;&#10;" />
     <MESSAGE value="Filtering invoices, estimates and delivery notes&#10;&#10;solved wrong sorting by date.&#10;added missing translations&#10;redesign of links in login form&#10;&#10;" />
@@ -1342,7 +1312,8 @@
     <MESSAGE value="Bugfixing&#10;&#10;solved issues when forwarding documents through email." />
     <MESSAGE value="Specs&#10;&#10;Start creating specs for IPN Listener controller." />
     <MESSAGE value="Action mailer&#10;&#10;changed place for action mailer logger." />
-    <option name="LAST_COMMIT_MESSAGE" value="Action mailer&#10;&#10;changed place for action mailer logger." />
+    <MESSAGE value="Added tests for IPN controller.&#10;&#10;Added test for the IPN controller." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added tests for IPN controller.&#10;&#10;Added test for the IPN controller." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1368,12 +1339,17 @@
           <option name="timeStamp" value="151" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="ruby-line">
-          <url>file://$PROJECT_DIR$/app/controllers/ipn_listener_controller.rb</url>
-          <line>12</line>
-          <option name="timeStamp" value="165" />
+          <url>file://$PROJECT_DIR$/app/jobs/renew_subscription_job.rb</url>
+          <line>24</line>
+          <option name="timeStamp" value="182" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/app/jobs/renew_subscription_job.rb</url>
+          <line>22</line>
+          <option name="timeStamp" value="183" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="168" />
+      <option name="time" value="184" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="RSpecRunConfigurationType">
@@ -1385,94 +1361,10 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="16.870968">
-          <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/devise/mailer/confirmation_instructions.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/devise/mailer/reset_password_instructions.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/devise/mailer/unlock_instructions.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/users_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6637168">
-          <caret line="30" column="27" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/vats_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/units_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/tasks_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/services_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/helpers/projects_helper.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/delivery_notes_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43645084">
-          <caret line="56" column="84" selection-start-line="56" selection-start-column="84" selection-end-line="56" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/estimates_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43645084">
-          <caret line="67" column="75" selection-start-line="67" selection-start-column="75" selection-end-line="67" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/invoicing_notifications.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25179857">
-          <caret line="7" column="64" selection-start-line="7" selection-start-column="64" selection-end-line="7" selection-end-column="64" />
         </state>
       </provider>
     </entry>
@@ -1599,7 +1491,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="42" column="2" selection-start-line="42" selection-start-column="2" selection-end-line="42" selection-end-column="65" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1607,23 +1498,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.50107294">
           <caret line="83" column="65" selection-start-line="83" selection-start-column="65" selection-end-line="83" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/factories/users.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="23" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7564378">
-          <caret line="98" column="6" selection-start-line="98" selection-start-column="6" selection-end-line="98" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1631,7 +1505,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1639,7 +1512,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1647,7 +1519,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1655,7 +1526,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1671,7 +1541,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="127" column="0" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1687,15 +1556,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/jobs/renew_subscription_job_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1703,15 +1563,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16423358">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/factories/payments.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52224374">
-          <caret line="18" column="49" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1731,34 +1582,162 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/jobs/renew_subscription_job.rb">
+    <entry file="file://$PROJECT_DIR$/lib/paypal.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.2918455">
+          <caret line="33" column="7" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/ipn_listener_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.22532189">
           <caret line="14" column="44" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/paypal.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="7" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="7" />
+          <caret line="91" column="20" selection-start-line="91" selection-start-column="13" selection-end-line="91" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/factories/payments.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17470881">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/factories/invoice_statuses.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.027372263">
+          <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/activerecord-4.2.6/lib/active_record/attribute_methods.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/invoice.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6738769">
+          <caret line="27" column="27" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/controllers/ipn_listener_controller_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47420964">
-          <caret line="19" column="19" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.8735441">
+          <caret line="35" column="61" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/environments/test.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="9" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/factories/users.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="43" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/i18n-0.7.0/lib/i18n.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/rspec-mocks-3.4.1/lib/rspec/mocks/method_double.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/web-console-2.2.1/lib/web_console/integration/cruby.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/mailers/invoice_mailer.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/delivery_notes_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="84" selection-start-line="56" selection-start-column="84" selection-end-line="56" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/estimates_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="67" column="75" selection-start-line="67" selection-start-column="75" selection-end-line="67" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/invoices_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="63" column="49" selection-start-line="63" selection-start-column="49" selection-end-line="63" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/invoicing_notifications.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/jobs/renew_subscription_job.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.645162">
+          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/jobs/renew_subscription_job_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0515807">
+          <caret line="83" column="20" selection-start-line="83" selection-start-column="20" selection-end-line="83" selection-end-column="20" />
           <folding />
         </state>
       </provider>

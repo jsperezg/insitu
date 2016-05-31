@@ -9,27 +9,31 @@ class RenewSubscriptionJob < ActiveJob::Base
   end
 
   def perform(*payment_id)
-    payment = Payment.find(payment_id)
-    send_invoice(payment)
+    payment = Payment.find_by(id: payment_id)
+    unless payment.nil?
+      send_invoice(payment)
+    end
   end
 
   def send_invoice(payment)
     billing_account = User.find_by(email: Rails.configuration.x.paypal_billing_account)
     begin
-      Apartment::Tenant.switch! billing_account.try(:tenant)
+      Apartment::Tenant.switch! billing_account.try(:tenant) unless Rails.env.test?
       invoice = generate_invoice(payment)
       send_invoice_by_email(billing_account, invoice)
+    rescue => e
+        raise e
     ensure
-      Appartment::Tenant.switch!
+      Appartment::Tenant.switch! unless Rails.env.test?
     end
   end
 
   def generate_invoice(payment)
     invoice = Invoice.create!(
         date: payment.payment_date,
-        payment_method_id: find_or_create_paypal_payment_method('Paypal').id,
+        payment_method_id: find_or_create_payment_method('Paypal').try(:id),
         customer_id: find_or_create_customer(payment.user).try(:id),
-        invoice_status_id: InvoiceStatus.find_by(name: 'invoice_status.paid'),
+        invoice_status_id: InvoiceStatus.find_by(name: 'invoice_status.paid').try(:id),
         payment_date: payment.payment_date,
         paid_on: payment.payment_date
     )
@@ -37,9 +41,9 @@ class RenewSubscriptionJob < ActiveJob::Base
     InvoiceDetail.create!(
       invoice_id: invoice.id,
       service_id: find_or_create_service(payment.plan).id,
-      description: "Renovación #{ plan.months } meses/#{ plan.months } months renewal",
-      vat_rate: plan.vat_rate,
-      price: plan.price,
+      description: "Renovación #{ payment.plan.months } meses/#{ payment.plan.months } months renewal",
+      vat_rate: payment.plan.vat_rate,
+      price: payment.plan.price,
       quantity: 1,
       discount: 0
     )

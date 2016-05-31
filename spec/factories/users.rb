@@ -2,6 +2,14 @@ FactoryGirl.define do
   factory :user, class: User do
     after(:create) { |user| user.confirm }
 
+    name { "#{Faker::Name.first_name} #{ Faker::Name.last_name }" }
+    tax_id { Faker::Company.swedish_organisation_number }
+    address { Faker::Address.street_address }
+    city { Faker::Address.city }
+    postal_code { Faker::Address.postcode }
+    state { Faker::Address.state }
+    country { Faker::Address.country_code }
+
     email { Faker::Internet.email }
     password 'change_me'
     password_confirmation 'change_me'
@@ -13,6 +21,14 @@ FactoryGirl.define do
     email { Faker::Internet.email }
 
     valid_until { Date.today - 7.days }
+
+    name { "#{Faker::Name.first_name} #{ Faker::Name.last_name }" }
+    tax_id { Faker::Company.swedish_organisation_number }
+    address { Faker::Address.street_address }
+    city { Faker::Address.city }
+    postal_code { Faker::Address.postcode }
+    state { Faker::Address.state }
+    country { Faker::Address.country_code }
 
     password 'change_me'
     password_confirmation 'change_me'

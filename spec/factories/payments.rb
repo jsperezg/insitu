@@ -5,7 +5,7 @@ FactoryGirl.define do
     receiver_email { Rails.configuration.x.paypal_receiver_email }
     receiver_id 'RYG2VVDDN76XA'
     residence_country 'ES'
-    user_id { create(:expired_user) }
+    user_id { create(:expired_user).try(:id) }
     payer_id 'RYG2VVDDN76XA'
     payer_email { Faker::Internet.free_email }
     payer_status 'verified'
@@ -19,7 +19,7 @@ FactoryGirl.define do
     tax { (Plan.first || create(:plan)).price * 0.21 }
     mc_fee 0.56
     quantity 1
-    plan_id { Plan.first || create(:plan) }
+    plan_id { Plan.first.try(:id) || create(:plan).try(:id) }
     mc_currency 'EUR'
     notify_version '3.8'
   end
