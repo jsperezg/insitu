@@ -1,7 +1,7 @@
 en:
   helpers:
     send_by_email: Send by email
-    email_successfully_sent: Mail successfully sent. This mail will be delivered within the next few hours.
+    email_successfully_sent: Mail successfully sent. This mail will be delivered soon.
     dear: Dear
     anonymous_customer: "Dear sir/madame"
     closing: "Sincerely,"

@@ -1,7 +1,7 @@
 es:
   helpers:
     send_by_email: Enviar
-    email_successfully_sent: El correo se envió con éxito y será entregado en las próximas horas.
+    email_successfully_sent: El correo se envió con éxito y será entregado próximamente.
     dear: Estimado
     anonymous_customer: "Estimado sr./sra."
     closing: Atentamente
