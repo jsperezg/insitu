@@ -4,5 +4,6 @@
 :logfile: /opt/insitu/current/log/sidekiq.log
 :queues:
   - default
+  - mailers
   - [urgent, 2]
-:daemon: true
+# :daemon: true
