@@ -4,14 +4,14 @@
     <table class="table table-striped">
       <thead>
       <tr>
-        <th class="col-xs-1"><%= model_class.human_attribute_name(:code) %></th>
+        <th class="col-md-1 col-sm-1 col-xs-2"><%= model_class.human_attribute_name(:code) %></th>
         <th><%= model_class.human_attribute_name(:description) %></th>
-        <th class="col-xs-1"><%= model_class.human_attribute_name(:vat_id) %></th>
-        <th class="col-xs-1"><%= model_class.human_attribute_name(:unit_id) %></th>
-        <th class="col-xs-1 text-right"><%= model_class.human_attribute_name(:price) %></th>
-        <th class="col-xs-1"><%= model_class.human_attribute_name(:active) %></th>
-        <th class="col-xs-1"></th>
-        <th class="col-xs-1"></th>
+        <th class="hidden-xs col-sm-1 col-md-1"><%= model_class.human_attribute_name(:vat_id) %></th>
+        <th class="hidden-xs hidden-sm col-md-1"><%= model_class.human_attribute_name(:unit_id) %></th>
+        <th class="hidden-xs col-sm-1 col-md-1 text-right"><%= model_class.human_attribute_name(:price) %></th>
+        <th class="hidden-xs hidden-sm col-md-1"><%= model_class.human_attribute_name(:active) %></th>
+        <th class="col-md-1 col-sm-2 col-xs-2"></th>
+        <th class="col-md-1 col-sm-2 col-xs-2"></th>
       </tr>
       </thead>
       <tbody>
@@ -22,21 +22,21 @@
           <tr>
             <td><%= best_in_place service, :code, url: user_service_path(current_user, service, format: :json) %></td>
             <td><%= best_in_place service, :description, url: user_service_path(current_user, service, format: :json) %></td>
-            <td>
+            <td class="hidden-xs">
                 <%= best_in_place service, :vat_id, as: :select,
                                   collection: bip_vats_collection,
                                   url: user_service_path(current_user, service, format: :json)%>
             </td>
-            <td>
+            <td class="hidden-xs hidden-sm">
                 <%= best_in_place service, :unit_id, as: :select,
                       collection: bip_units_collection,
                       url: user_service_path(current_user, service, format: :json)%>
             </td>
-            <td class="text-right">
+            <td class="text-right hidden-xs">
               <%= best_in_place service, :price, display_with: :number_to_currency, helper_options: { unit: '€', precision: 2, format: '%n %u'},
                                 url: user_service_path(current_user, service, format: :json) %>
             </td>
-            <td>
+            <td class="hidden-xs hidden-sm">
               <%= best_in_place service, :active, as: :checkbox,
                     collection: {'true': t(:checkbox_true), 'false': t(:checkbox_false) },
                     url: user_service_path(current_user, service, format: :json) %>
@@ -45,9 +45,10 @@
               <%= button_to edit_user_service_path(current_user.id, service),
                             class: 'btn btn-default btn-xs btn-flat btn-block',
                             method: :get do %>
-                  <i class="fa fa-pencil-square-o" aria-hidden="true">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  <span class="hidden-xs">
                     <%=t 'helpers.links.edit' %>
-                  </i>
+                  </span>
               <% end %>
             </td>
             <td>
@@ -55,9 +56,10 @@
                             :method => :delete,
                             :data => { :confirm => t('helpers.links.confirm', :default => 'Are you sure?') },
                             :class => 'btn btn-xs btn-danger btn-flat btn-block' do %>
-                  <i class="fa fa-trash-o" aria-hidden="true">
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                  <span class="hidden-xs">
                     <%=t 'helpers.links.destroy' %>
-                  </i>
+                  </span>
               <% end %>
             </td>
           </tr>

@@ -1,7 +1,8 @@
 class Service < AbstractSubscriptionValidator
   filterrific(
       default_filter_params: {
-          sorted_by: 'code_asc'
+          sorted_by: 'code_asc',
+          with_active_criteria: 1
       },
       available_filters: [
           :with_filter_criteria,
@@ -25,9 +26,8 @@ class Service < AbstractSubscriptionValidator
 
   def self.active_filter_options
     [
-      [I18n.t('services.all_records'), '0'],
-      [I18n.t('services.only_inactive'), '2'],
-      [I18n.t('services.only_active'), '1']
+      [I18n.t('services.only_active'), '1'],
+      [I18n.t('services.only_inactive'), '2']
     ]
   end
 
