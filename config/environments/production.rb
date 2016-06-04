@@ -82,7 +82,7 @@ Rails.application.configure do
 
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.logger = Logger.new 'log/ActionMailer.log'
-  config.action_mailer.logger.level = Logger::INFO
+  config.action_mailer.logger.level = Logger::DEBUG
 
   config.action_mailer.default :charset => 'utf-8'
   config.action_mailer.smtp_settings = {
