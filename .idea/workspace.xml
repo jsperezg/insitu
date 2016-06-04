@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9253af97-43bb-4d75-844d-496160ae5ec1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environments/production.rb" afterPath="$PROJECT_DIR$/config/environments/production.rb" />
     </list>
     <ignored path="fges.iws" />
@@ -148,8 +149,8 @@
       <file leaf-file-name="production.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/environments/production.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.34961155">
-              <caret line="44" column="2" selection-start-line="44" selection-start-column="2" selection-end-line="44" selection-end-column="2" />
+            <state vertical-scroll-proportion="0.078947365">
+              <caret line="41" column="2" selection-start-line="41" selection-start-column="2" selection-end-line="41" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -896,12 +897,6 @@
       <option name="number" value="Default" />
       <updated>1450296634841</updated>
     </task>
-    <task id="LOCAL-00097" summary="Usability improvements:&#10;&#10;* Invoices, estimates and delivery notes show the total amount in the list view.&#10;* Print button has been removed in favour of PDF export&#10;">
-      <created>1460790802433</created>
-      <option name="number" value="00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1460790802433</updated>
-    </task>
     <task id="LOCAL-00098" summary="Email forwarding&#10;&#10;* Documents forwarded by email now are generated using prawn.&#10;">
       <created>1460836665142</created>
       <option name="number" value="00098" />
@@ -1190,7 +1185,13 @@
       <option name="project" value="LOCAL" />
       <updated>1465021783028</updated>
     </task>
-    <option name="localTasksCounter" value="146" />
+    <task id="LOCAL-00146" summary="SSL&#10;&#10;Solved missconfiguration regarding to SSL setup in production environment.">
+      <created>1465022219013</created>
+      <option name="number" value="00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1465022219013</updated>
+    </task>
+    <option name="localTasksCounter" value="147" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1235,7 +1236,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45391476" sideWeight="0.35231507" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903865" sideWeight="0.49813333" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34407485" sideWeight="0.64768493" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34407485" sideWeight="0.64768493" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24906865" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903865" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1283,7 +1284,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed security issue.&#10;&#10;Rendering views even if no user was authenticated." />
     <MESSAGE value="patch undo" />
     <MESSAGE value="Production setup.&#10;&#10;Changes in devise setup.&#10; Disabled robots&#10; Updated mailing setup." />
     <MESSAGE value="Paypal payment / Devise&#10;&#10;Solved issues with devise and user registration.&#10;&#10;Paypal payment. Preparement of test environment." />
@@ -1308,7 +1308,8 @@
     <MESSAGE value="Views improvemenets.&#10;&#10;Added mobile support for payment methods, units and vats related views." />
     <MESSAGE value="I18n&#10;&#10;Changes in mailer translations." />
     <MESSAGE value="Mailer&#10;&#10;Solved issue with configuration  of action mailer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mailer&#10;&#10;Solved issue with configuration  of action mailer" />
+    <MESSAGE value="SSL&#10;&#10;Solved missconfiguration regarding to SSL setup in production environment." />
+    <option name="LAST_COMMIT_MESSAGE" value="SSL&#10;&#10;Solved missconfiguration regarding to SSL setup in production environment." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1723,8 +1724,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/environments/production.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34961155">
-          <caret line="44" column="2" selection-start-line="44" selection-start-column="2" selection-end-line="44" selection-end-column="2" />
+        <state vertical-scroll-proportion="0.078947365">
+          <caret line="41" column="2" selection-start-line="41" selection-start-column="2" selection-end-line="41" selection-end-column="2" />
           <folding />
         </state>
       </provider>

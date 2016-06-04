@@ -209,6 +209,10 @@ GEM
       moneta
       railties (>= 3.0, < 5.0)
       will_paginate (~> 3.0)
+    rspec (3.4.0)
+      rspec-core (~> 3.4.0)
+      rspec-expectations (~> 3.4.0)
+      rspec-mocks (~> 3.4.0)
     rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -225,6 +229,9 @@ GEM
       rspec-expectations (~> 3.4.0)
       rspec-mocks (~> 3.4.0)
       rspec-support (~> 3.4.0)
+    rspec-sidekiq (2.2.0)
+      rspec (~> 3.0, >= 3.0.0)
+      sidekiq (>= 2.4.0)
     rspec-support (3.4.1)
     sass (3.4.18)
     sass-rails (5.0.3)
@@ -325,6 +332,7 @@ DEPENDENCIES
   rails (= 4.2.6)
   rocket_pants (~> 1.0)
   rspec-rails (~> 3.0)
+  rspec-sidekiq
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   sidekiq
