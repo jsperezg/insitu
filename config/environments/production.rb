@@ -98,6 +98,7 @@ Rails.application.configure do
   config.rocket_pants.pass_through_errors = false
 
   Rails.application.routes.default_url_options[:host] = 'billing.insitu.tools'
+  Rails.application.routes.default_url_options[:protocol] = 'https'
 
   # Paypal integration
   config.x.paypal_validate_ipn_url = 'https://www.paypal.com/cgi-bin/webscr?cmd=_notify-validate'
