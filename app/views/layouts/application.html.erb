@@ -152,7 +152,7 @@
             </li>
 
             <%= has_role?('Administrator') do %>
-              <li class="treeview">
+              <li class="treeview hidden-xs hidden-sm">
                 <a href="#"><i class="fa fa-users"></i> <span><%=t :administration %></span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                   <li><%= link_to t('plans.title'), plans_path %></li>
