@@ -51,4 +51,26 @@ RSpec.describe User, type: :model do
       expect(user.save).to be_truthy
     end
   end
+
+  describe 'cif detection' do
+    it 'false for non spanish users' do
+      user = create(:user, country: 'US', tax_id: 'C00000000')
+      expect(user.has_cif?).to be_falsey
+    end
+
+    it 'false for nif' do
+      user = create(:user, country: 'ES', tax_id: '00000000X')
+      expect(user.has_cif?).to be_falsey
+    end
+
+    it 'false for nie' do
+      user = create(:user, country: 'ES', tax_id: 'X0000000X')
+      expect(user.has_cif?).to be_falsey
+    end
+
+    it 'true for cif' do
+      user = create(:user, country: 'ES', tax_id: 'C00000000')
+      expect(user.has_cif?).to be_truthy
+    end
+  end
 end

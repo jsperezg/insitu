@@ -109,7 +109,7 @@ class Invoice < AbstractSubscriptionValidator
 
   def apply_irpf(user)
     self.irpf = self.customer.try(:irpf) || 0
-    self.irpf = 0 unless user.try(:country) == 'ES'
+    self.irpf = 0 unless user.has_cif?
   end
 
   def created?

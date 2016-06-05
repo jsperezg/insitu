@@ -1,6 +1,6 @@
-<% if current_user.country == 'ES' %>
+<% if current_user.country == 'ES' && !current_user.has_cif? %>
   <div class="row">
-    <div class="form-group col-xs-4 col-sm-2 col-md-1">
+    <div class="form-group col-xs-4 col-sm-3 col-md-2">
       <%= f.label :irpf, :class => 'control-label' %>
       <div class="input-group">
         <%= f.number_field :irpf, :class => 'form-control input-sm', step: '1', min: '0' %>
