@@ -4,13 +4,13 @@
     <table class="table table-striped">
       <thead>
       <tr>
-        <th class=col-xs-2><%= model_class.human_attribute_name(:number) %></th>
-        <th class=col-xs-5><%= model_class.human_attribute_name(:customer_id) %></th>
-        <th class="col-xs-1 text-center"><%= model_class.human_attribute_name(:date) %></th>
-        <th class="col-xs-1 text-right"><%= model_class.human_attribute_name(:total) %></th>
-        <th class=col-xs-1></th>
-        <th class=col-xs-1></th>
-        <th class=col-xs-1></th>
+        <th class="col-md-2 col-sm-2 col-xs-3"><%= model_class.human_attribute_name(:number) %></th>
+        <th class="col-md-5 col-sm-4 col-xs-5"><%= model_class.human_attribute_name(:customer_id) %></th>
+        <th class="col-md-1 col-sm-2 hidden-xs text-center"><%= model_class.human_attribute_name(:date) %></th>
+        <th class="col-md-1 hidden-sm hidden-xs text-right"><%= model_class.human_attribute_name(:total) %></th>
+        <th class="col-md-1 col-sm-2 col-xs-2"></th>
+        <th class="col-md-1 hidden-sm hidden-xs"></th>
+        <th class="col-md-1 col-sm-2 col-xs-2"></th>
       </tr>
       </thead>
       <tbody>
@@ -21,24 +21,24 @@
           <tr>
             <td><%= delivery_note.number %></td>
             <td><%= delivery_note.customer.name %></td>
-            <td class="text-center"><%=l delivery_note.date %></td>
-            <td class="text-right"><%= number_to_currency(delivery_note.total, unit: '€', format: '%n %u') %></td>
+            <td class="text-center hidden-xs"><%=l delivery_note.date %></td>
+            <td class="text-right hidden-sm hidden-xs"><%= number_to_currency(delivery_note.total, unit: '€', format: '%n %u') %></td>
             <td>
               <%= button_to edit_user_delivery_note_path(current_user, delivery_note),
                             method: :get,
                             class: 'btn btn-default btn-xs btn-flat btn-block' do %>
-                  <i class="fa fa-pencil-square-o" aria-hidden="true">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  <span class="hidden-xs">
                     <%=t 'helpers.links.edit' %>
-                  </i>
+                  </span>
               <% end %>
             </td>
-            <td>
+            <td class="hidden-xs hidden-sm">
               <%= button_to user_delivery_note_path(current_user, delivery_note),
                             method: :get,
                             class: 'btn btn-default btn-xs btn-flat btn-block' do %>
-                  <i class="fa fa-print" aria-hidden="true">
-                    <%=t 'helpers.links.print' %>
-                  </i>
+                  <i class="fa fa-print" aria-hidden="true"></i>
+                  <%=t 'helpers.links.print' %>
               <% end %>
             </td>
             <td>
@@ -46,9 +46,10 @@
                             :method => :delete,
                             :data => { :confirm => t("helpers.links.confirm", :default => 'Are you sure?') },
                             :class => 'btn btn-xs btn-danger btn-flat btn-block' do %>
-                  <i class="fa fa-trash-o" aria-hidden="true">
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                  <span class="hidden-xs">
                     <%=t 'helpers.links.destroy' %>
-                  </i>
+                  </span>
               <% end %>
             </td>
           </tr>
