@@ -9,7 +9,7 @@ class InvoiceMailer < ApplicationMailer
 
       attachments["invoice_#{ invoice.number.gsub('/', '_')}.pdf"] = File.read(document_path)
 
-      mail(to: destination_address(invoice.customer), subject: default_i18n_subject(invoice_number: invoice.number, customer_name: invoice.customer.name))
+      mail(to: destination_address(invoice.customer), subject: default_i18n_subject(invoice_number: invoice.number, customer_name: sender.name))
     ensure
       File.delete(document_path)
     end
