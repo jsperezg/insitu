@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="9253af97-43bb-4d75-844d-496160ae5ec1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/delivery_notes/_delivery_note_details.html.erb" afterPath="$PROJECT_DIR$/app/views/delivery_notes/_delivery_note_details.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/delivery_notes/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/delivery_notes/_form.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/delivery_notes/_list.html.erb" afterPath="$PROJECT_DIR$/app/views/delivery_notes/_list.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/delivery_notes/index.html.erb" afterPath="$PROJECT_DIR$/app/views/delivery_notes/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/invoices/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/invoices/_form.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/invoices/_invoice_details.html.erb" afterPath="$PROJECT_DIR$/app/views/invoices/_invoice_details.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/invoices/_list.html.erb" afterPath="$PROJECT_DIR$/app/views/invoices/_list.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/invoices/index.html.erb" afterPath="$PROJECT_DIR$/app/views/invoices/index.html.erb" />
     </list>
     <ignored path="fges.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -148,11 +148,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="_delivery_note_details.html.erb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/delivery_notes/_delivery_note_details.html.erb">
+      <file leaf-file-name="_invoice_details.html.erb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/invoices/_invoice_details.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.75389946">
-              <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.88388216">
+              <caret line="55" column="46" selection-start-line="55" selection-start-column="46" selection-end-line="55" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -180,10 +180,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/lib/paypal.rb" />
-        <option value="$PROJECT_DIR$/spec/controllers/ipn_listener_controller_spec.rb" />
-        <option value="$PROJECT_DIR$/spec/factories/payments.rb" />
-        <option value="$PROJECT_DIR$/spec/jobs/renew_subscription_job_spec.rb" />
         <option value="$PROJECT_DIR$/spec/factories/users.rb" />
         <option value="$PROJECT_DIR$/app/jobs/renew_subscription_job.rb" />
         <option value="$PROJECT_DIR$/lib/invoicing_notifications.rb" />
@@ -225,12 +221,16 @@
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/views/estimates/_list.html.erb" />
         <option value="$PROJECT_DIR$/app/views/estimates/index.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/estimates/_form.html.erb" />
         <option value="$PROJECT_DIR$/app/views/estimates/_estimate_details.erb" />
         <option value="$PROJECT_DIR$/app/views/delivery_notes/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/delivery_notes/_list.html.erb" />
         <option value="$PROJECT_DIR$/app/views/delivery_notes/_form.html.erb" />
         <option value="$PROJECT_DIR$/app/views/delivery_notes/_delivery_note_details.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/invoices/index.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/invoices/_list.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/estimates/_form.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/invoices/_form.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/invoices/_invoice_details.html.erb" />
       </list>
     </option>
   </component>
@@ -351,7 +351,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="estimates" />
+              <option name="myItemId" value="invoices" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -373,7 +373,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="delivery_notes" />
+              <option name="myItemId" value="estimates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -839,12 +839,6 @@
       <option name="number" value="Default" />
       <updated>1450296634841</updated>
     </task>
-    <task id="LOCAL-00110" summary="Invoicing&#10;&#10;* Implementation of subscription renew form.">
-      <created>1461480871802</created>
-      <option name="number" value="00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1461480871802</updated>
-    </task>
     <task id="LOCAL-00111" summary="Profile edition&#10;&#10;Devise error messages styled with bootstrap">
       <created>1461481386667</created>
       <option name="number" value="00111" />
@@ -1133,7 +1127,13 @@
       <option name="project" value="LOCAL" />
       <updated>1465113405860</updated>
     </task>
-    <option name="localTasksCounter" value="159" />
+    <task id="LOCAL-00159" summary="Delivery notes&#10;&#10;Adaptation for mobile.">
+      <created>1465114971634</created>
+      <option name="number" value="00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1465114971634</updated>
+    </task>
+    <option name="localTasksCounter" value="160" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1226,7 +1226,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Server setup.&#10;&#10;* Number of connections in the pool reduced." />
     <MESSAGE value="Deploy adjustments" />
     <MESSAGE value="Deploy adjustments&#10;&#10;Changes in action mailer config. &#10;Fixed version for mysql2 gem." />
     <MESSAGE value="Bugfixing&#10;&#10;solved issues when forwarding documents through email." />
@@ -1251,7 +1250,8 @@
     <MESSAGE value="Projects&#10;&#10;Adaptation for mobile." />
     <MESSAGE value="Tasks&#10;&#10;Adaptation for mobile." />
     <MESSAGE value="Estimates&#10;&#10;Adaptation for mobile." />
-    <option name="LAST_COMMIT_MESSAGE" value="Estimates&#10;&#10;Adaptation for mobile." />
+    <MESSAGE value="Delivery notes&#10;&#10;Adaptation for mobile." />
+    <option name="LAST_COMMIT_MESSAGE" value="Delivery notes&#10;&#10;Adaptation for mobile." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1299,27 +1299,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/spec/support/factory_girl.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/capistrano/tasks/setup.rake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.rdoc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/application.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1627,22 +1606,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/invoices/_form.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.169844">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/estimates/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14211439">
-          <caret line="10" column="61" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/delivery_notes/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12998267">
@@ -1659,22 +1622,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/estimates/_form.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5840555">
-          <caret line="71" column="77" selection-start-line="71" selection-start-column="51" selection-end-line="71" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/estimates/_list.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33795494">
-          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/delivery_notes/_form.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36395147">
@@ -1683,18 +1630,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/delivery_notes/_delivery_note_details.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.75389946">
+          <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/estimates/_list.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28596187">
+          <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/invoices/_list.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12998267">
+          <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/invoices/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6759099">
+          <caret line="26" column="59" selection-start-line="26" selection-start-column="59" selection-end-line="26" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/estimates/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.63604856">
+          <caret line="41" column="46" selection-start-line="40" selection-start-column="4" selection-end-line="41" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/estimates/_form.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.416667">
+          <caret line="50" column="44" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/invoices/_form.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33795494">
+          <caret line="61" column="46" selection-start-line="61" selection-start-column="46" selection-end-line="61" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/estimates/_estimate_details.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3986135">
+        <state vertical-scroll-proportion="0.41594455">
           <caret line="29" column="65" selection-start-line="28" selection-start-column="14" selection-end-line="29" selection-end-column="65" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/delivery_notes/_delivery_note_details.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/invoices/_invoice_details.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75389946">
-          <caret line="32" column="46" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.88388216">
+          <caret line="55" column="46" selection-start-line="55" selection-start-column="46" selection-end-line="55" selection-end-column="46" />
           <folding />
         </state>
       </provider>

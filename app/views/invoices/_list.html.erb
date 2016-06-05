@@ -4,14 +4,14 @@
     <table class="table table-striped">
       <thead>
       <tr>
-        <th class="col-xs-2"><%= model_class.human_attribute_name(:number) %></th>
-        <th class="col-xs-1 text-center"><%= model_class.human_attribute_name(:date) %></th>
-        <th><%= model_class.human_attribute_name(:customer_id) %></th>
-        <th class="col-xs-1 text-center"><%= model_class.human_attribute_name(:paid_on) %></th>
-        <th class="col-xs-1 text-right"><%= model_class.human_attribute_name(:total) %></th>
-        <th class="col-xs-1"></th>
-        <th class="col-xs-1"></th>
-        <th class="col-xs-1"></th>
+        <th class="col-md-1 col-sm-2 col-xs-3"><%= model_class.human_attribute_name(:number) %></th>
+        <th class="col-md-1 hidden-sm hidden-xs text-center"><%= model_class.human_attribute_name(:date) %></th>
+        <th class="col-md-5 col-sm-4 col-xs-5"><%= model_class.human_attribute_name(:customer_id) %></th>
+        <th class="col-md-1 hidden-sm hidden-xs text-center"><%= model_class.human_attribute_name(:paid_on) %></th>
+        <th class="col-md-1 col-sm-2 hidden-xs text-right"><%= model_class.human_attribute_name(:total) %></th>
+        <th class="col-md-1 col-sm-2 col-xs-2"></th>
+        <th class="col-md-1 hidden-xs hidden-sm"></th>
+        <th class="col-md-1 col-sm-2 col-xs-2"></th>
       </tr>
       </thead>
       <tbody>
@@ -21,26 +21,26 @@
       <% invoices.each do |invoice| %>
           <%= invoice_tr invoice do %>
               <td><%= invoice.number %></td>
-              <td class="text-center"><%=ldate invoice.date %></td>
+              <td class="text-center hidden-sm hidden-xs"><%=ldate invoice.date %></td>
               <td><%= invoice.customer.try(:name) %></td>
-              <td class="text-center"><%=ldate invoice.paid_on %></td>
-              <td class="text-right"><%= number_to_currency(invoice.total, unit: '€', format: '%n %u') %></td>
+              <td class="text-center hidden-sm hidden-xs"><%=ldate invoice.paid_on %></td>
+              <td class="text-right hidden-xs"><%= number_to_currency(invoice.total, unit: '€', format: '%n %u') %></td>
               <td>
                 <%= button_to edit_user_invoice_path(current_user, invoice),
                               method: :get,
                               :class => 'btn btn-default btn-xs btn-block btn-flat' do %>
-                    <i class="fa fa-pencil-square-o" aria-hidden="true">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    <span class="hidden-xs">
                       <%=t 'helpers.links.edit' %>
-                    </i>
+                    </span>
                 <% end %>
               </td>
-              <td>
+              <td class="hidden-xs hidden-sm">
                 <%= button_to user_invoice_url(current_user, invoice),
                               method: :get,
                               :class => 'btn btn-default btn-xs btn-block btn-flat' do %>
-                    <i class="fa fa-print" aria-hidden="true">
-                      <%=t 'helpers.links.print' %>
-                    </i>
+                    <i class="fa fa-print" aria-hidden="true"></i>
+                    <%=t 'helpers.links.print' %>
                 <% end %>
               </td>
               <td>
@@ -49,9 +49,10 @@
                               :method => :delete,
                               :data => { :confirm => t("helpers.links.confirm", :default => 'Are you sure?') },
                               :class => 'btn btn-xs btn-danger btn-block btn-flat' do %>
-                    <i class="fa fa-trash-o" aria-hidden="true">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    <span class="hidden-xs">
                       <%=t 'helpers.links.destroy' %>
-                    </i>
+                    </span>
                   <% end %>
                 <% end %>
               </td>
