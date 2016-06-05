@@ -4,29 +4,30 @@
     <table class="table table-striped">
       <thead>
       <tr>
-        <th><%= model_class.human_attribute_name(:name) %></th>
-        <th><%= model_class.human_attribute_name(:contact_name) %></th>
-        <th><%= model_class.human_attribute_name(:contact_phone) %></th>
-        <th><%= model_class.human_attribute_name(:contact_email) %></th>
-        <th class="col-xs-1"></th>
-        <th class="col-xs-1"></th>
+        <th class="col-xs-8 col-md-3"><%= model_class.human_attribute_name(:name) %></th>
+        <th class="hidden-xs hidden-sm col-md-3"><%= model_class.human_attribute_name(:contact_name) %></th>
+        <th class="hidden-xs col-md-1"><%= model_class.human_attribute_name(:contact_phone) %></th>
+        <th class="hidden-xs col-md-3"><%= model_class.human_attribute_name(:contact_email) %></th>
+        <th class="col-md-1 col-sm-2 col-xs-2"></th>
+        <th class="col-md-1 col-sm-2- col-xs-2"></th>
       </tr>
       </thead>
       <tbody>
       <% if customers.empty? %>
-          <tr><td colspan="6"><%=t 'helpers.tables.empty' %></td></tr>
+          <tr><td colspan="100%"><%=t 'helpers.tables.empty' %></td></tr>
       <% end %>
       <% customers.each do |customer| %>
           <tr>
             <td><%= best_in_place customer, :name, url: user_customer_path(current_user, customer, format: :json) %></td>
-            <td><%= best_in_place customer, :contact_name, url: user_customer_path(current_user, customer, format: :json) %></td>
-            <td><%= best_in_place customer, :contact_phone, url: user_customer_path(current_user, customer, format: :json) %></td>
-            <td><%= best_in_place customer, :contact_email, url: user_customer_path(current_user, customer, format: :json) %></td>
+            <td class="hidden-xs hidden-sm"><%= best_in_place customer, :contact_name, url: user_customer_path(current_user, customer, format: :json) %></td>
+            <td class="hidden-xs"><%= best_in_place customer, :contact_phone, url: user_customer_path(current_user, customer, format: :json) %></td>
+            <td class="hidden-xs"><%= best_in_place customer, :contact_email, url: user_customer_path(current_user, customer, format: :json) %></td>
             <td>
               <%= button_to edit_user_customer_path(current_user, customer), class: 'btn btn-default btn-xs btn-flat btn-block', method: :get do %>
-                  <i class="fa fa-pencil-square-o" aria-hidden="true">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  <span class="hidden-xs">
                     <%=t 'helpers.links.edit' %>
-                  </i>
+                  </span>
               <% end %>
             </td>
             <td>
@@ -34,9 +35,10 @@
                             :method => :delete,
                             :data => { :confirm => t('helpers.links.confirm', :default => 'Are you sure?') },
                             :class => 'btn btn-xs btn-danger btn-flat btn-block' do %>
-                  <i class="fa fa-trash-o" aria-hidden="true">
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                  <span class="hidden-xs">
                     <%=t 'helpers.links.destroy' %>
-                  </i>
+                  </span>
               <% end %>
             </td>
           </tr>
