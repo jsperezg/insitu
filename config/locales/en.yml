@@ -98,7 +98,7 @@ en:
     title: Tasks
     create_title: New task
     edit_title: Edit task
-    bill_finished: Bill finished
+    bill_finished: Make Invoice
     no_pending_tasks: Nothing to bill. Can't generate invoice.
 
   time_logs:

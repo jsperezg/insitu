@@ -8,16 +8,16 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th><%= model_class.human_attribute_name(:name) %></th>
-            <th class="col-xs-2 text-center"><%= model_class.human_attribute_name(:dead_line) %></th>
-            <th class="col-xs-2 text-center"><%= model_class.human_attribute_name(:finish_date) %></th>
-            <th class="col-xs-1"></th>
-            <th class="col-xs-1"></th>
+            <th class="col-xs-8 col-md-8 col-sm-4"><%= model_class.human_attribute_name(:name) %></th>
+            <th class="hidden-xs col-md-1 col-sm-2 text-center"><%= model_class.human_attribute_name(:dead_line) %></th>
+            <th class="hidden-xs col-md-1 col-sm-2 text-center"><%= model_class.human_attribute_name(:finish_date) %></th>
+            <th class="col-md-1 col-sm-2 col-xs-2"></th>
+            <th class="col-md-1 col-sm-2 col-xs-2"></th>
           </tr>
         </thead>
         <tbody>
           <% if @tasks.empty? %>
-            <tr><td colspan="5"><%=t 'helpers.tables.empty' %></td></tr>
+            <tr><td colspan="100%"><%=t 'helpers.tables.empty' %></td></tr>
           <% end %>
           <% @tasks.each do |task| %>
             <%= task_tr task do %>
@@ -25,15 +25,16 @@
                 <%= best_in_place task, :name,
                                   url: user_project_task_path(current_user, task.project, task, format: :json) %>
               </td>
-              <td class=text-center><%= ldate task[:dead_line] %></td>
-              <td class=text-center><%= ldate task[:finish_date] %></td>
+              <td class="hidden-xs text-center"><%= ldate task[:dead_line] %></td>
+              <td class="hidden-xs text-center"><%= ldate task[:finish_date] %></td>
               <td>
                 <%= link_to edit_user_project_task_path(current_user, task.project, task),
                             class: 'btn btn-default btn-xs btn-flat btn-block',
                             method: :get do %>
-                  <i class="fa fa-pencil-square-o" aria-hidden="true">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  <span class="hidden-xs">
                     <%=t 'helpers.links.edit' %>
-                  </i>
+                  </span>
                 <% end %>
               </td>
               <td>
@@ -41,9 +42,10 @@
                             :method => :delete,
                             :data => { :confirm => t("helpers.links.confirm", :default => 'Are you sure?') },
                             :class => 'btn btn-xs btn-danger btn-flat btn-block' do %>
-                  <i class="fa fa-trash-o" aria-hidden="true">
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                  <span class="hidden-xs">
                     <%=t 'helpers.links.destroy' %>
-                  </i>
+                  </span>
                 <% end %>
               </td>
             <% end %>
@@ -53,28 +55,23 @@
     </div>
   </div>
   <div class="box-footer">
-    <div class="row">
-      <div class="col-xs-2">
-        <%= button_to t("helpers.links.new"),
-            new_user_project_task_path(current_user, @project),
-            class: 'btn btn-primary btn-flat btn-block',
-            method: :get %>
-      </div>
-      <div class="col-xs-2">
-        <%= button_to t('tasks.bill_finished'),
-                      invoice_finished_user_project_tasks_path(current_user, @project),
-                      class: 'btn btn-default btn-flat btn-block',
-                      method: :get %>
-      </div>
-      <div class="col-xs-2">
-        <%= button_to t('helpers.links.back'),
-                      user_projects_path(current_user),
-                      class: 'btn btn-default btn-flat btn-block',
-                      method: :get %>
-      </div>
-      <div class="col-xs-6 text-right">
-        <%= will_paginate @tasks, renderer: BootstrapPagination::Rails, class: 'pagination-flat' %>
-      </div>
+    <%= button_to t("helpers.links.new"),
+          new_user_project_task_path(current_user, @project),
+          class: 'btn btn-primary btn-flat col-xs-3 col-sm-2 col-md-1',
+          method: :get %>
+
+    <%= button_to t('tasks.bill_finished'),
+                    invoice_finished_user_project_tasks_path(current_user, @project),
+                    class: 'btn btn-default btn-flat col-xs-3 col-sm-2 col-md-1',
+                    method: :get %>
+
+    <%= button_to t('helpers.links.back'),
+                    user_projects_path(current_user),
+                    class: 'btn btn-default btn-flat col-xs-3 col-sm-2 col-md-1',
+                    method: :get %>
+
+    <div class="col-xs-3 col-sm-6 col-md-9 text-right">
+      <%= will_paginate @tasks, renderer: BootstrapPagination::Rails, class: 'pagination-flat' %>
     </div>
   </div>
 </div>

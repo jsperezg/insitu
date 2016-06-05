@@ -97,7 +97,7 @@ es:
     title: Tareas
     create_title: Nueva tarea
     edit_title: Editar tarea
-    bill_finished: Facturar finalizadas
+    bill_finished: Facturar
     no_pending_tasks: Nada que facturar. No se puede generar la factura.
 
   time_logs:
