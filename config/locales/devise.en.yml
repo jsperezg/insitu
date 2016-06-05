@@ -21,6 +21,9 @@ en:
   cancel_account: Cancel my account
   sign_in_message: Sign in to start your session
   resend_confirmation_instructions: Resend confirmation instructions
+  change_your_password: Change your password
+  change_my_password: Change my password
+  characters_minimum: characters minimum
 
   devise:
     confirmations:

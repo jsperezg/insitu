@@ -21,6 +21,9 @@ es:
   cancel_account: Cancelar mi cuenta
   sign_in_message: Introduce tos credenciales para iniciar sesión
   resend_confirmation_instructions: Reenviame las instrucciones de confirmación
+  change_your_password: Cambia tu contraseña
+  change_my_password: Cambia mi contraseña
+  characters_minimum: caractéres como mínimo
 
   devise:
     confirmations:

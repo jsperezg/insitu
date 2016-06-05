@@ -7,7 +7,9 @@
       <%= devise_error_messages! %>
       <div class="row">
         <div class="form-group has-feedback">
-          <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: t('activerecord.attributes.user.email'), value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)  %>
+          <%= f.email_field :email, autofocus: true, class: 'form-control',
+                            placeholder: t('activerecord.attributes.user.email'),
+                            value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)  %>
           <span class="fa fa-envelope form-control-feedback"></span>
         </div>
       </div>
