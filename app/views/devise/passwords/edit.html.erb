@@ -9,9 +9,9 @@
       <%= devise_error_messages! %>
 
       <div class="row">
-        <div class="form-group has-feedback col-xs-12">
+        <div class="form-group has-feedback">
           <%= f.password_field :password, autofocus: true, autocomplete: "off", class: 'form-control', placeholder: t('activerecord.attributes.user.password') %>
-          <span class="fa fa-envelope form-control-feedback"></span>
+          <span class="fa fa-lock form-control-feedback"></span>
           <% if @minimum_password_length %>
           <p class="help-block">(<%= @minimum_password_length %> <%=t :characters_minimum %>)</p>
           <% end %>
@@ -19,9 +19,9 @@
       </div>
 
       <div class="row">
-        <div class="form-group has-feedback col-xs-12">
+        <div class="form-group has-feedback">
           <%= f.password_field :password_confirmation, autofocus: true, autocomplete: "off", class: 'form-control', placeholder: t('activerecord.attributes.user.password_confirmation') %>
-          <span class="fa fa-envelope form-control-feedback"></span>
+          <span class="fa fa-lock form-control-feedback"></span>
         </div>
       </div>
 
