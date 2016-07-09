@@ -12,6 +12,7 @@
 //
 //= require common
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require ckeditor-jquery
 //= require twitter/bootstrap
@@ -27,5 +28,5 @@
 //= require nprogress
 //= require nprogress-turbolinks
 //= require initialization
-
+//= require cookies_eu
 //= require_tree ./autoload

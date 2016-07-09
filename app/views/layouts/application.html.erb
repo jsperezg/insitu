@@ -13,9 +13,9 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-    <%= stylesheet_link_tag "application", :media => "all", 'data-turbolinks-track' => true %>
-    <%= stylesheet_link_tag "_all-skins", :media => "all", 'data-turbolinks-track' => true %>
-    <%= stylesheet_link_tag "skin-blue", :media => "all", 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag "application", :media => "all",  data: { :'turbolinks-track' => true } %>
+    <%= stylesheet_link_tag "_all-skins", :media => "all", data: { :'turbolinks-track' => true } %>
+    <%= stylesheet_link_tag "skin-blue", :media => "all", data: { :'turbolinks-track' => true } %>
 
     <!-- For third-generation iPad with high-resolution Retina display: -->
     <!-- Size should be 144 x 144 pixels -->
@@ -37,7 +37,7 @@
     <!-- Size should be 32 x 32 pixels -->
     <%# = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
 
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', data: { :'turbolinks-track' => true } %>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -49,6 +49,7 @@
     <%= csrf_meta_tags %>
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
+    <%= render 'cookies_eu/consent_banner' %>
     <div class="wrapper">
       <!-- Main Header -->
       <header class="main-header">

@@ -48,6 +48,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # API Support
 gem 'rocket_pants', '~> 1.0'
 
+gem 'jquery-turbolinks'
+gem 'cookies_eu'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

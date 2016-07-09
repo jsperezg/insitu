@@ -18,8 +18,9 @@
  *=require nprogress-bootstrap
  *=require progress_bar
  *=require invoices
+ *=require cookies_eu
  *=require_self
- */
+*/
 
 #filterrific_filter {
     margin-bottom: 0;
