@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9253af97-43bb-4d75-844d-496160ae5ec1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/fges.iml" afterPath="$PROJECT_DIR$/.idea/fges.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pdfs/delivery_note_pdf.rb" afterPath="$PROJECT_DIR$/app/pdfs/delivery_note_pdf.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pdfs/document_pdf.rb" afterPath="$PROJECT_DIR$/app/pdfs/document_pdf.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pdfs/estimate_pdf.rb" afterPath="$PROJECT_DIR$/app/pdfs/estimate_pdf.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/pdfs/invoice_pdf.rb" afterPath="$PROJECT_DIR$/app/pdfs/invoice_pdf.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/locales/en.active_record.yml" afterPath="$PROJECT_DIR$/config/locales/en.active_record.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/locales/es.active_record.yml" afterPath="$PROJECT_DIR$/config/locales/es.active_record.yml" />
     </list>
     <ignored path="fges.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -872,12 +865,6 @@
       <option name="number" value="Default" />
       <updated>1450296634841</updated>
     </task>
-    <task id="LOCAL-00116" summary="Filtering invoices, estimates and delivery notes&#10;&#10;solved wrong sorting by date.&#10;&#10;">
-      <created>1462088057259</created>
-      <option name="number" value="00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1462088057259</updated>
-    </task>
     <task id="LOCAL-00117" summary="Filtering invoices, estimates and delivery notes&#10;&#10;solved wrong sorting by date.&#10;added missing translations&#10;redesign of links in login form&#10;&#10;">
       <created>1462089521335</created>
       <option name="number" value="00117" />
@@ -1166,7 +1153,13 @@
       <option name="project" value="LOCAL" />
       <updated>1465237662837</updated>
     </task>
-    <option name="localTasksCounter" value="165" />
+    <task id="LOCAL-00165" summary="Exported documents.&#10;&#10;New design for invoices, delivery notes and estimates. Solved bug with missing translations.">
+      <created>1468430822798</created>
+      <option name="number" value="00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1468430822798</updated>
+    </task>
+    <option name="localTasksCounter" value="166" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1207,6 +1200,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26510417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32848233" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45391476" sideWeight="0.35231507" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903865" sideWeight="0.49813333" order="7" side_tool="false" content_ui="tabs" />
@@ -1216,7 +1210,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3991684" sideWeight="0.5769026" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32848233" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1259,7 +1252,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Action mailer&#10;&#10;changed place for action mailer logger." />
     <MESSAGE value="Added tests for IPN controller.&#10;&#10;Added test for the IPN controller." />
     <MESSAGE value="Paypal integration&#10;&#10;Added tests for IPN and billing process after renewal." />
     <MESSAGE value="Footer&#10;&#10;Changes in footer." />
@@ -1284,7 +1276,8 @@
     <MESSAGE value="Password reset.&#10;&#10;adaptación bootstrap para password reset" />
     <MESSAGE value="IRPF.&#10;&#10;IRPF only available for spanish freelancers." />
     <MESSAGE value="Logo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Logo" />
+    <MESSAGE value="Exported documents.&#10;&#10;New design for invoices, delivery notes and estimates. Solved bug with missing translations." />
+    <option name="LAST_COMMIT_MESSAGE" value="Exported documents.&#10;&#10;New design for invoices, delivery notes and estimates. Solved bug with missing translations." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
