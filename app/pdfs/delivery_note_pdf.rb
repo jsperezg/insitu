@@ -7,23 +7,42 @@ class DeliveryNotePdf < DocumentPdf
 
   def document_details
     default_borders = []
-    default_padding = [0, 5]
+    default_padding = [0, 0]
 
-    font DEFAULT_FONT, style: :normal
-    font_size 10
+    font DEFAULT_FONT, style: :bold
+    font_size 24
 
-    cell_invoice = header_cell("#{ DeliveryNote.model_name.human }:", default_borders, default_padding)
-    cell_invoice_number = data_cell(@delivery_note.number, default_borders, default_padding)
-
-    cell_date = header_cell("#{ DeliveryNote.human_attribute_name(:date) }:", default_borders, default_padding)
-    cell_date_value = data_cell(I18n.l(@delivery_note[:date]), default_borders, default_padding)
+    cell_invoice = header_cell("#{ DeliveryNote.model_name.human }", default_borders, default_padding)
+    cell_invoice_number = header_cell(@delivery_note.number, default_borders, default_padding, :right)
 
     t = make_table([
-       [cell_invoice, cell_invoice_number],
-       [cell_date, cell_date_value],
-    ])
+       [cell_invoice, cell_invoice_number]
+     ], { column_widths: [ header_width / 2, header_width / 2 ]})
 
     t.draw
+  end
+
+  def compose_document_conditions
+    move_down 10
+
+    indent(10) do
+      column_title_width = (header_width - 10) / 4
+      column_data_width = (header_width - 10) / 4
+      default_borders = []
+      default_padding = [0, 0]
+
+      font DEFAULT_FONT, style: :normal
+      font_size 12
+
+      cell_date = header_cell("#{ DeliveryNote.human_attribute_name(:date) }:", default_borders, default_padding)
+      cell_date_value = data_cell(I18n.l(@delivery_note[:date]), default_borders, default_padding)
+
+      t = make_table([
+         [cell_date, cell_date_value ]
+       ], { column_widths: [ column_title_width, column_data_width ]})
+
+      t.draw
+    end
   end
 
   def footer_totals
@@ -45,7 +64,7 @@ class DeliveryNotePdf < DocumentPdf
         bounds.right * 40 / 100,
     ]
 
-    t = make_table(totals, column_widths: column_widths)
+    t = make_table(totals, column_widths: column_widths, cell_style: { size: 12 })
     t.draw
   end
 
@@ -59,9 +78,9 @@ class DeliveryNotePdf < DocumentPdf
 
     details << [
         header_cell(DeliveryNoteDetail.human_attribute_name(:quantity), header_borders, header_padding),
-        header_cell(DeliveryNoteDetail.human_attribute_name(:custom_description), header_borders, header_padding),
-        header_cell(InvoiceDetail.human_attribute_name(:price), header_borders, header_padding, :right),
-        header_cell(InvoiceDetail.human_attribute_name(:total), header_borders, header_padding, :right)
+        header_cell(DeliveryNoteDetail.human_attribute_name(:service_id), header_borders, header_padding),
+        header_cell(DeliveryNoteDetail.human_attribute_name(:price), header_borders, header_padding, :right),
+        header_cell(DeliveryNoteDetail.human_attribute_name(:total), header_borders, header_padding, :right)
     ]
 
     @delivery_note.delivery_note_details.each do |detail|
@@ -83,7 +102,7 @@ class DeliveryNotePdf < DocumentPdf
         body_width * 15 / 100
     ]
 
-    t = make_table(details, header: true, column_widths: column_widths)
+    t = make_table(details, header: true, column_widths: column_widths, cell_style: { size: 12 })
     t.draw
   end
 end

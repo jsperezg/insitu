@@ -8,32 +8,50 @@ class InvoicePdf < DocumentPdf
 
   def document_details
     default_borders = []
-    default_padding = [0, 5]
+    default_padding = [0, 0]
 
-    font DEFAULT_FONT, style: :normal
-    font_size 10
+    font DEFAULT_FONT, style: :bold
+    font_size 24
 
-    cell_invoice = header_cell("#{ Invoice.model_name.human }:", default_borders, default_padding)
-    cell_invoice_number = data_cell(@invoice.number, default_borders, default_padding)
-
-    cell_date = header_cell("#{ Invoice.human_attribute_name(:date) }:", default_borders, default_padding)
-    cell_date_value = data_cell(I18n.l(@invoice[:date]), default_borders, default_padding)
-
-    cell_payment_date = header_cell("#{ Invoice.human_attribute_name(:payment_date) }:", default_borders, default_padding)
-    cell_payment_date_value = data_cell(I18n.l(@invoice[:payment_date]), default_borders, default_padding)
+    cell_invoice = header_cell("#{ Invoice.model_name.human }", default_borders, default_padding)
+    cell_invoice_number = header_cell(@invoice.number, default_borders, default_padding, :right)
 
     t = make_table([
-      [cell_invoice, cell_invoice_number],
-      [cell_date, cell_date_value],
-      [cell_payment_date, cell_payment_date_value ]
-    ])
+      [cell_invoice, cell_invoice_number]
+    ], { column_widths: [ header_width / 2, header_width / 2 ]})
 
     t.draw
   end
 
+  def compose_document_conditions
+    move_down 10
+
+    indent(10) do
+      column_title_width = (header_width - 10) / 4
+      column_data_width = (header_width - 10) / 4
+      default_borders = []
+      default_padding = [0, 0]
+
+      font DEFAULT_FONT, style: :normal
+      font_size 12
+
+      cell_date = header_cell("#{ Invoice.human_attribute_name(:date) }:", default_borders, default_padding)
+      cell_date_value = data_cell(I18n.l(@invoice[:date]), default_borders, default_padding)
+
+      cell_payment_date = header_cell("#{ Invoice.human_attribute_name(:payment_date) }:", default_borders, default_padding)
+      cell_payment_date_value = data_cell(I18n.l(@invoice[:payment_date]), default_borders, default_padding)
+
+      t = make_table([
+         [cell_date, cell_date_value, cell_payment_date, cell_payment_date_value ]
+      ], { column_widths: [ column_title_width, column_data_width, column_title_width, column_data_width ]})
+
+      t.draw
+    end
+  end
+
   def footer_notes
     font DEFAULT_FONT, style: :normal
-    font_size 10
+    font_size 12
     text Nokogiri::HTML(@invoice.payment_method.note_for_invoice).text
   end
 
@@ -65,7 +83,7 @@ class InvoicePdf < DocumentPdf
     @invoice.tax.each do |key, value|
       totals << [
           header_cell("#{ Invoice.human_attribute_name :tax } (#{ key }%):", default_borders, default_padding, :right),
-          data_cell("#{ number_with_precision(value, precision: 2) } %", default_borders, default_padding, :right)
+          data_cell("#{ number_with_precision(value, precision: 2) } €", default_borders, default_padding, :right)
       ]
     end
 
@@ -74,16 +92,12 @@ class InvoicePdf < DocumentPdf
         data_cell("#{ number_with_precision(@invoice.total, precision: 2) } €", default_borders, default_padding, :right)
     ]
 
-
-    font DEFAULT_FONT, style: :normal
-    font_size 10
-
     column_widths = [
         bounds.right * 60 / 100,
         bounds.right * 40 / 100,
     ]
 
-    t = make_table(totals, column_widths: column_widths)
+    t = make_table(totals, column_widths: column_widths, cell_style: { size: 12 })
     t.draw
   end
 
@@ -120,14 +134,15 @@ class InvoicePdf < DocumentPdf
 
     column_widths = [
         body_width * 10 / 100,
-        body_width * 45 / 100,
+        body_width * 43 / 100,
         body_width * 12 / 100,
-        body_width * 10 / 100,
+        body_width * 12 / 100,
         body_width * 8 / 100,
         body_width * 15 / 100
     ]
 
-    t = make_table(details, header: true, column_widths: column_widths)
+    move_down 15
+    t = make_table(details, header: true, column_widths: column_widths, cell_style: { size: 12 })
     t.draw
   end
 end

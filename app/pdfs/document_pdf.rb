@@ -3,9 +3,11 @@ class DocumentPdf < Prawn::Document
   include Prawn::Measurements
 
   DEFAULT_FONT = 'Times-Roman'
+  DOCUMENT_DATA_HEIGHT = 45
+  DOCUMENT_CONDITIONS  = 30
   HEADER_HEIGHT = 100
   FOOTER_HEIGHT = 150
-  SECTION_MARGIN = 5
+  SECTION_MARGIN = 15
 
   def initialize(current_user, customer)
     super()
@@ -22,61 +24,84 @@ class DocumentPdf < Prawn::Document
   end
 
   def generate_header
-    bounding_box([0, header_top], width: header_width, height: HEADER_HEIGHT) do
+    bounding_box([0, header_top], width: header_width, height: HEADER_HEIGHT + DOCUMENT_DATA_HEIGHT + DOCUMENT_CONDITIONS) do
+      document_data
       user_data
       customer_data
-      document_data
-    end
-  end
-
-  def user_data
-    bounding_box([header_block_left(0), bounds.top], width: header_block_width, height: HEADER_HEIGHT) do
-      font DEFAULT_FONT, style: :bold
-      font_size 12
-
-      text @current_user[:name]
-
-      font DEFAULT_FONT, style: :normal
-      text @current_user[:tax_id]
-
-      font_size 8
-      text @current_user[:address]
-      text "#{ @current_user[:city] }, #{ @current_user[:state] } #{ @current_user[:postal_code ]} (#{ @current_user.country_name })"
-
-      unless @current_user[:phone_number].blank?
-        text @current_user[:phone_number]
-      end
-
-      text @current_user[:email]
-    end
-  end
-
-  def customer_data
-    bounding_box([header_block_left(1), bounds.top], width: header_block_width, height: HEADER_HEIGHT) do
-      font DEFAULT_FONT, style: :bold
-      font_size 12
-
-      text @customer[:name]
-
-      font DEFAULT_FONT, style: :normal
-      text @customer[:tax_id]
-
-      font_size 8
-      text @customer[:address]
-      text "#{ @customer[:city] }, #{ @customer[:state] } #{ @customer[:postal_code ]} (#{ @customer.country_name })"
-
-      unless @customer[:phone_number].blank?
-        text @customer[:phone_number]
-      end
-
-      text @customer[:email]
+      document_conditions
     end
   end
 
   def document_data
-    bounding_box([header_block_left(2), bounds.top], width: header_block_width, height: HEADER_HEIGHT) do
+    bounding_box([0, header_top], width: header_width, height: DOCUMENT_DATA_HEIGHT) do
       document_details
     end
+  end
+
+  def user_data
+    bounding_box([header_block_left(0), bounds.top - DOCUMENT_DATA_HEIGHT], width: header_block_width, height: HEADER_HEIGHT) do
+      font DEFAULT_FONT, style: :bold
+      font_size 14
+
+      move_down 10
+      indent 10 do
+        text @current_user[:name]
+
+        font DEFAULT_FONT, style: :normal
+        text @current_user[:tax_id]
+
+        font_size 12
+        text @current_user[:address]
+        text "#{ @current_user[:city] }, #{ @current_user[:state] } #{ @current_user[:postal_code ]} (#{ @current_user.country_name })"
+
+        unless @current_user[:phone_number].blank?
+          text @current_user[:phone_number]
+        end
+
+        text @current_user[:email]
+      end
+
+      transparent(1) { stroke_bounds }
+    end
+  end
+
+  def customer_data
+    bounding_box([header_block_left(1), bounds.top - DOCUMENT_DATA_HEIGHT], width: header_block_width, height: HEADER_HEIGHT) do
+      font DEFAULT_FONT, style: :bold
+      font_size 14
+
+      move_down 10
+      indent 10 do
+        text @customer[:name]
+
+        font DEFAULT_FONT, style: :normal
+        text @customer[:tax_id]
+
+        font_size 12
+        text @customer[:address]
+        text "#{ @customer[:city] }, #{ @customer[:state] } #{ @customer[:postal_code ]} (#{ @customer.country_name })"
+
+        unless @customer[:phone_number].blank?
+          text @customer[:phone_number]
+        end
+
+        text @customer[:email]
+      end
+
+      transparent(1) { stroke_bounds }
+    end
+  end
+
+  def document_conditions
+    bounding_box([0, bounds.top - DOCUMENT_DATA_HEIGHT - HEADER_HEIGHT], width: header_width, height: DOCUMENT_CONDITIONS) do
+      compose_document_conditions
+
+      transparent(1) { stroke_bounds }
+    end
+  end
+
+  def compose_document_conditions
+    text "Document conditions"
   end
 
   def document_details
@@ -85,11 +110,11 @@ class DocumentPdf < Prawn::Document
   end
 
   def header_block_width
-    (header_width - SECTION_MARGIN * 2) / 3
+    header_width / 2
   end
 
   def header_block_left (index)
-    (header_block_width + SECTION_MARGIN) * index
+    header_block_width * index
   end
 
   def header_top
@@ -108,7 +133,7 @@ class DocumentPdf < Prawn::Document
   end
 
   def footer_top
-    bounds.top - HEADER_HEIGHT - SECTION_MARGIN - body_height - SECTION_MARGIN
+    bounds.top - HEADER_HEIGHT - DOCUMENT_DATA_HEIGHT - DOCUMENT_CONDITIONS - SECTION_MARGIN - body_height - SECTION_MARGIN
   end
 
   def footer_width
@@ -153,7 +178,7 @@ class DocumentPdf < Prawn::Document
   end
 
   def body_top
-    bounds.top - HEADER_HEIGHT - SECTION_MARGIN
+    bounds.top - HEADER_HEIGHT - DOCUMENT_CONDITIONS - DOCUMENT_DATA_HEIGHT - SECTION_MARGIN
   end
 
   def body_width
@@ -161,7 +186,7 @@ class DocumentPdf < Prawn::Document
   end
 
   def body_height
-    bounds.top - HEADER_HEIGHT - FOOTER_HEIGHT - SECTION_MARGIN * 2
+    bounds.top - HEADER_HEIGHT - DOCUMENT_CONDITIONS - DOCUMENT_DATA_HEIGHT - FOOTER_HEIGHT - SECTION_MARGIN * 2
   end
 
   def header_cell(text, borders, padding, align = 'left'.to_sym)

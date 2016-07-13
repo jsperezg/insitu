@@ -86,6 +86,12 @@ es:
         price: Precio
         total: Total
         custom_description: Personalizado
+      delivery_note_detail:
+        service_id: Concepto
+        quantity: Cantidad
+        price: Precio
+        total: Total
+        custom_description: Personalizado
       invoice:
         number: Número
         date: Emisión
