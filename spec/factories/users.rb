@@ -13,6 +13,7 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     password 'change_me'
     password_confirmation 'change_me'
+    currency '€'
   end
 
   factory :expired_user, class: User do
@@ -29,6 +30,7 @@ FactoryGirl.define do
     postal_code { Faker::Address.postcode }
     state { Faker::Address.state }
     country { Faker::Address.country_code }
+    currency  '€'
 
     password 'change_me'
     password_confirmation 'change_me'
@@ -40,6 +42,7 @@ FactoryGirl.define do
     email { Faker::Internet.email }
 
     role_id { Role.find_by(description: 'Administrator').try(:id) || create(:admin_role).try(:id) }
+    currency '€'
 
     password 'change_me'
     password_confirmation 'change_me'

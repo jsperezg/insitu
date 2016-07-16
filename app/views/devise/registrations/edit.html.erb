@@ -70,6 +70,13 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="form-group col-xs-2">
+          <%=  label_tag  :currency, User.human_attribute_name(:currency), class: 'control-label' %>
+          <%= f.text_field :currency, class: 'form-control input-sm', size: 2, maxlength: 1 %>
+        </div>
+      </div>
+
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div><%=t :waiting_confirmation_email, email: resource.unconfirmed_email %></div>
       <% end %>

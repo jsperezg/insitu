@@ -54,6 +54,7 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true
   validates :encrypted_password, presence: true
+  validates :currency, presence:  true
   validate :ban_administrators
 
   # Include default devise modules. Others available are:
@@ -143,6 +144,7 @@ class User < ActiveRecord::Base
   end
 
   def set_default_values
+    self.currency = '€' if self.currency.blank?
     self.role_id = Role.find_by(description: 'User').try(:id) if self[:role_id].nil?
 
     if is_administrator?

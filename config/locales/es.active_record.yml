@@ -27,6 +27,7 @@ es:
         role_id: Rol
         banned: Expulsado
         is_active: Activo
+        currency: Divisa
       payment_method:
         name: Nombre
         note_for_invoice: Anotación en factura
@@ -201,6 +202,8 @@ es:
               invalid: es incorrecta.
             role_id:
               admin_banned: ': Los administradores no pueden ser baneados.'
+            currency:
+              blank: es obligatoria.
 
         service:
           used_elsewhere: Este servicio está siendo referenciado desde algún documento y no puede ser borrado.

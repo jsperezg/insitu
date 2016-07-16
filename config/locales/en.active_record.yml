@@ -27,6 +27,8 @@ en:
         role_id: Role
         banned: Banned
         is_active: Active
+        currency: Currency
+
       payment_method:
         name: Name
         note_for_invoice: Note for invoice
@@ -199,6 +201,8 @@ en:
               invalid: is invalid.
             role_id:
               admin_banned: "Administrators can't be banned."
+            currency:
+              blank: is mandatory.
         service:
           used_elsewhere: This service is being referenced from one or more documents and can not be deleted.
           attributes:

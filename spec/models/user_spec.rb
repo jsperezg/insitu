@@ -13,6 +13,13 @@ RSpec.describe User, type: :model do
 
       expect(user.role_id).to eq(@user_role.id)
     end
+
+    it 'Currency defaults to €' do
+      user = create(:user,  currency: nil)
+      user.reload
+
+      expect(user.currency).to eq('€')
+    end
   end
 
   describe 'administrators' do
