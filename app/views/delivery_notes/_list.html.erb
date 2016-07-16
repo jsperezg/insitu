@@ -22,7 +22,7 @@
             <td><%= delivery_note.number %></td>
             <td><%= delivery_note.customer.name %></td>
             <td class="text-center hidden-xs"><%=l delivery_note.date %></td>
-            <td class="text-right hidden-sm hidden-xs"><%= number_to_currency(delivery_note.total, unit: '€', format: '%n %u') %></td>
+            <td class="text-right hidden-sm hidden-xs"><%= number_to_currency(delivery_note.total, unit: current_user.currency, format: '%n %u') %></td>
             <td>
               <%= button_to edit_user_delivery_note_path(current_user, delivery_note),
                             method: :get,

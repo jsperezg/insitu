@@ -84,10 +84,6 @@ class Service < AbstractSubscriptionValidator
 
   before_destroy :validate_referential_integrity
 
-  def formatted_price
-    ActionController::Base.helpers.number_to_currency(self.price, :precision => 2, unit: '€', format: '%n %u')
-  end
-
   private
 
   def set_default_values

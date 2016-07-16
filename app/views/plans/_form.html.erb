@@ -16,7 +16,7 @@
       <%= f.label :price, :class => 'control-label' %>
       <div class="input-group">
         <%= f.number_field :price, class: 'form-control input-sm', requried: true, min: 1, step: 1 %>
-        <div class="input-group-addon">€</div>
+        <div class="input-group-addon"><%= current_user.currency %></div>
       </div>
     </div>
 

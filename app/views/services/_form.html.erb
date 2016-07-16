@@ -31,7 +31,7 @@
       <%= f.label :price, :class => 'control-label' %>
       <div class="input-group">
         <%= f.text_field :price, :class => 'form-control input-sm', required: true %>
-        <span class="input-group-addon">€</span>
+        <span class="input-group-addon"><%= current_user.currency %></span>
       </div>
     </div>
   </div>

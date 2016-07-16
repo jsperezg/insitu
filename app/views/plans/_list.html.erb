@@ -22,7 +22,7 @@
             <td class="text-right"><%= best_in_place plan, :months, url: plan_path(plan, format: :json) %></td>
             <td class="text-right">
               <%= best_in_place plan, :price,
-                                display_with: :number_to_currency, helper_options: { unit: '€', precision: 2, format: '%n %u'},
+                                display_with: :number_to_currency, helper_options: { unit: current_user.currency, precision: 2, format: '%n %u'},
                                 url: plan_path(plan, format: :json) %>
             </td>
             <td class="text-right">

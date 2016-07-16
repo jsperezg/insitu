@@ -33,7 +33,7 @@
                       url: user_service_path(current_user, service, format: :json)%>
             </td>
             <td class="text-right hidden-xs">
-              <%= best_in_place service, :price, display_with: :number_to_currency, helper_options: { unit: '€', precision: 2, format: '%n %u'},
+              <%= best_in_place service, :price, display_with: :number_to_currency, helper_options: { unit: current_user.currency, precision: 2, format: '%n %u'},
                                 url: user_service_path(current_user, service, format: :json) %>
             </td>
             <td class="hidden-xs hidden-sm">

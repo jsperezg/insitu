@@ -36,7 +36,7 @@
                            data: { toggle: 'tooltip', placement: 'top'},
                            title: model_class.human_attribute_name(:price),
                            onchange: "INSITU.services.calculateTotal('#{ f.object_name }')" %>
-          <span class="input-group-addon">€</span>
+          <span class="input-group-addon"><%= current_user.currency %></span>
         </div>
       </div>
 
@@ -71,7 +71,7 @@
     <div class="form-group">
       <div class="input-group">
         <%= f.text_field :total, { class: 'form-control input-sm', readonly: true } %>
-        <span class="input-group-addon">€</span>
+        <span class="input-group-addon"><%= current_user.currency %></span>
       </div>
     </div>
   </td>   

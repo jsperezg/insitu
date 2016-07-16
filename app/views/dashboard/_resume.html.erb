@@ -23,7 +23,7 @@
                   <% data[:vat].each do |rate, total| %>
                       <tr>
                         <td class="text-right"><%= rate %> %</td>
-                        <td class="text-right"><%= number_with_precision(total, precision: 2) %> €</td>
+                        <td class="text-right"><%= number_with_precision(total, precision: 2) %> <%= current_user.currency %></td>
                       </tr>
                   <% end %>
                   </tbody>
@@ -41,7 +41,7 @@
                   <% data[:customers].each do |name, total| %>
                       <tr>
                         <td><%= name %></td>
-                        <td class="text-right"><%= number_with_precision(total, precision: 2) %> €</td>
+                        <td class="text-right"><%= number_with_precision(total, precision: 2) %> <%= current_user.currency %></td>
                       </tr>
                   <% end %>
                   </tbody>
@@ -55,21 +55,21 @@
         <div class="row">
           <div class="col-md-4 col-sm-4 col-xs-6">
             <div class="description-block border-right">
-              <h5 class="description-header"><%= number_with_precision(data[:net], precision: 2) %> €</h5>
+              <h5 class="description-header"><%= number_with_precision(data[:net], precision: 2) %> <%= current_user.currency %></h5>
               <span class="description-text"><%=t 'dashboard.net' %></span>
             </div><!-- /.description-block -->
           </div><!-- /.col -->
           <div class="col-md-4 col-sm-4 hidden-xs">
             <div class="description-block border-right">
 
-              <h5 class="description-header"><%= number_with_precision(data[:discounts], precision: 2) %> €</h5>
+              <h5 class="description-header"><%= number_with_precision(data[:discounts], precision: 2) %> <%= current_user.currency %></h5>
               <span class="description-text"><%=t 'dashboard.discounts' %></span>
             </div><!-- /.description-block -->
           </div><!-- /.col -->
           <% if current_user.has_cif? %>
               <div class="col-md-4 col-sm-4 col-xs-6">
                 <div class="description-block border-right">
-                  <h5 class="description-header"><%= number_with_precision(data[:tax], precision: 2) %> €</h5>
+                  <h5 class="description-header"><%= number_with_precision(data[:tax], precision: 2) %> <%= current_user.currency %></h5>
                   <span class="description-text"><%=t 'dashboard.tax' %></span>
                 </div><!-- /.description-block -->
               </div><!-- /.col -->

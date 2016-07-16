@@ -70,7 +70,7 @@ class EstimatePdf < DocumentPdf
 
     totals << [
         header_cell("#{ Estimate.human_attribute_name :total }:", default_borders, default_padding, :right),
-        data_cell("#{ number_with_precision @estimate.total, precision: 2 } €", default_borders, default_padding, :right)
+        data_cell("#{ number_with_precision @estimate.total, precision: 2 } #{ current_user.currency }", default_borders, default_padding, :right)
     ]
 
     font DEFAULT_FONT, style: :normal
@@ -108,9 +108,9 @@ class EstimatePdf < DocumentPdf
       details << [
           data_cell("#{ detail.quantity }", data_borders, default_padding),
           data_cell(description, data_borders, default_padding),
-          data_cell("#{ number_with_precision(detail.price, precision: 2)} €", data_borders, default_padding, :right),
+          data_cell("#{ number_with_precision(detail.price, precision: 2)} #{ current_user.currency }", data_borders, default_padding, :right),
           data_cell("#{ detail.discount} %", data_borders, default_padding, :right),
-          data_cell("#{ number_with_precision(detail.total, precision: 2) } €", data_borders, default_padding, :right)
+          data_cell("#{ number_with_precision(detail.total, precision: 2) } #{ current_user.currency }", data_borders, default_padding, :right)
       ]
     end
 

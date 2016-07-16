@@ -24,7 +24,7 @@
               <td class="text-center hidden-sm hidden-xs"><%=ldate invoice.date %></td>
               <td><%= invoice.customer.try(:name) %></td>
               <td class="text-center hidden-sm hidden-xs"><%=ldate invoice.paid_on %></td>
-              <td class="text-right hidden-xs"><%= number_to_currency(invoice.total, unit: '€', format: '%n %u') %></td>
+              <td class="text-right hidden-xs"><%= number_to_currency(invoice.total, unit: current_user.currency, format: '%n %u') %></td>
               <td>
                 <%= button_to edit_user_invoice_path(current_user, invoice),
                               method: :get,

@@ -58,8 +58,8 @@
                 <td><%= detail.service.description %></td>
                 <td class="text-center"><%= detail.service.code %></td>
                 <td><%= detail.custom_description %></td>
-                <td class="text-right"><%= number_with_precision(detail.price, precision: 2) %>€</td>
-                <td class="text-right"><%= number_with_precision(detail.total, precision: 2) %>€</td>
+                <td class="text-right"><%= number_with_precision(detail.price, precision: 2) %><%= current_user.currency %></td>
+                <td class="text-right"><%= number_with_precision(detail.total, precision: 2) %><%= current_user.currency %></td>
               </tr>
           <% end %>
           </tbody>
@@ -74,7 +74,7 @@
           <table class="table table-condensed borderless">
             <tr>
               <th class="col-xs-9 text-right"><%= DeliveryNote.human_attribute_name :subtotal %>:</th>
-              <td class="text-right"><%= number_with_precision(@delivery_note.total, precision: 2) %>€</td>
+              <td class="text-right"><%= number_with_precision(@delivery_note.total, precision: 2) %><%= current_user.currency %></td>
             </tr>
           </table>
         </div>

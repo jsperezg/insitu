@@ -57,14 +57,14 @@
               <td><%= detail.service.description %></td>
               <td class="text-center"><%= detail.service.code %></td>
               <td><%= detail.description %></td>
-              <td class="text-right"><%= number_with_precision(detail.price, precision: 2) %>€</td>
+              <td class="text-right"><%= number_with_precision(detail.price, precision: 2) %><%= current_user.currency %></td>
 
               <% if detail.discount > 0 %>
                 <td class="text-right"><%= detail.discount %>%</td>
               <% end %>
 
               <td class="text-right"><%= detail.vat_rate %>%</td>
-              <td class="text-right"><%= number_with_precision(detail.subtotal, precision: 2) %>€</td>
+              <td class="text-right"><%= number_with_precision(detail.subtotal, precision: 2) %><%= current_user.currency %></td>
             </tr>
         <% end %>
         </tbody>
@@ -86,33 +86,33 @@
         <table class="table table-condensed borderless">
           <tr>
             <th class="col-xs-9 text-right"><%= Invoice.human_attribute_name :subtotal %>:</th>
-            <td class="text-right"><%= number_with_precision(@invoice.subtotal, precision: 2) %>€</td>
+            <td class="text-right"><%= number_with_precision(@invoice.subtotal, precision: 2) %><%= current_user.currency %></td>
           </tr>
 
           <% if @invoice.discount > 0 %>
           <tr>
             <th class="col-xs-9 text-right"><%= Invoice.human_attribute_name :discount %>:</th>
-            <td class="text-right red">-&nbsp;<%= number_with_precision(@invoice.discount, precision: 2) %>€</td>
+            <td class="text-right red">-&nbsp;<%= number_with_precision(@invoice.discount, precision: 2) %><%= current_user.currency %></td>
           </tr>
           <% end %>
 
           <% if @invoice.irpf > 0 %>
           <tr>
             <th class="col-xs-9 text-right"><%= Invoice.human_attribute_name :irpf %> (- <%= @invoice.irpf %>%):</th>
-            <td class="text-right red">-&nbsp;<%= number_with_precision(@invoice.applied_irpf, precision: 2) %>€</td>
+            <td class="text-right red">-&nbsp;<%= number_with_precision(@invoice.applied_irpf, precision: 2) %><%= current_user.currency %></td>
           </tr>
           <% end %>
 
           <% @invoice.tax.each do |key, value| %>
             <tr>
               <th class="col-xs-9 text-right"><%= Invoice.human_attribute_name :tax %> (<%= key %> %):</th>
-              <td class="text-right"><%= number_with_precision(value, precision: 2) %>€</td>
+              <td class="text-right"><%= number_with_precision(value, precision: 2) %><%= current_user.currency %></td>
             </tr>
           <% end %>
 
           <tr>
             <th class="col-xs-9 text-right"><%= Invoice.human_attribute_name :total %>:</th>
-            <td class="text-right"><%= number_with_precision(@invoice.total, precision: 2) %>€</td>
+            <td class="text-right"><%= number_with_precision(@invoice.total, precision: 2) %><%= current_user.currency %></td>
           </tr>
         </table>
       </div>
