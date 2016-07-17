@@ -1,6 +1,10 @@
 $(document).on("page:change", function () {
   'use strict';
 
+  var hasValue = function (value) {
+    return value !== null && value !== undefined && value !== '';
+  };
+
   $('.customer-selector').each(function () {
     var searchInput = $(this).find('input[type=text]'),
         searchId = $(this).find('input[type=hidden]'),
@@ -42,6 +46,29 @@ $(document).on("page:change", function () {
       },
       select: function(event, ui) {
         searchId.val(ui.item.id);
+      }
+    });
+
+    $(searchInput).focusout(function () {
+      var value = searchId.val(),
+          text = searchInput.val();
+      if (!hasValue(value) && hasValue(text)) {
+        $.ajax({
+          type: 'GET',
+          url: url,
+          data: {
+            name: $(searchInput).val()
+          },
+          success: function (data, textStatus, jqXHR) {
+            var i, l;
+
+            for (i = 0, l = data.length; i < l; i += 1) {
+              if (data[i].name === text) {
+                searchId.val(data[i].id);
+              }
+            }
+          }
+        });
       }
     });
   });
