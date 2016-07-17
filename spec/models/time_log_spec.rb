@@ -36,13 +36,6 @@ RSpec.describe TimeLog, type: :model do
     expect(time_log.errors).to satisfy { |errors| errors.key? :time_spent }
   end
 
-  it 'task_id is mandatory' do
-    time_log = TimeLog.new
-    time_log.save
-
-    expect(time_log.errors).to satisfy { |errors| !errors.empty? && errors.key?( :task_id )}
-  end
-
   it 'service_id is mandatory' do
     time_log = TimeLog.new
     time_log.save

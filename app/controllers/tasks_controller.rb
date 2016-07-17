@@ -31,15 +31,17 @@ class TasksController < SecuredController
   # POST /tasks
   # POST /tasks.json
   def create
-    @task = Task.new(task_params)
+    Task.transaction  do
+      @task = Task.create(task_params)
 
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to edit_user_project_task_url(current_user, @project, @task), notice: t(:successfully_created, item: t('tasks.task')) }
-        format.json { render :show, status: :created, location: @task }
-      else
-        format.html { render :new }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @task.valid?
+          format.html { redirect_to edit_user_project_task_url(current_user, @project, @task), notice: t(:successfully_created, item: t('tasks.task')) }
+          format.json { render :show, status: :created, location: @task }
+        else
+          format.html { render :new }
+          format.json { render json: @task.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -138,7 +140,7 @@ class TasksController < SecuredController
           .permit(
               :name, :description, :project_id, :finished, :finish_date, :dead_line, :priority,
               time_logs_attributes: [
-                  :id, :description, :time_spent, :date, :task_id, :service_id, :_destroy
+                  :id, :task_id, :description, :time_spent, :date, :service_id, :_destroy
               ]
           )
     end
