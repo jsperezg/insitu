@@ -63,33 +63,33 @@ class InvoicePdf < DocumentPdf
 
     totals << [
         header_cell("#{ Invoice.human_attribute_name :subtotal }:", [:top], default_padding, :right),
-        data_cell("#{ number_with_precision(@invoice.subtotal, precision: 2) } #{ current_user.currency }", [:top], default_padding, :right)
+        data_cell("#{ number_with_precision(@invoice.subtotal, precision: 2) } #{ @current_user.currency }", [:top], default_padding, :right)
     ]
 
     if @invoice.discount > 0
       totals << [
           header_cell("#{ Invoice.human_attribute_name :discount }:", default_borders, default_padding, :right),
-          data_cell("#{ number_with_precision(@invoice.discount, precision: 2) } #{ current_user.currency }", default_borders, default_padding, :right)
+          data_cell("#{ number_with_precision(@invoice.discount, precision: 2) } #{ @current_user.currency }", default_borders, default_padding, :right)
       ]
     end
 
     if @invoice.irpf > 0
       totals << [
           header_cell("#{ Invoice.human_attribute_name :irpf } (- #{ @invoice.irpf }%):", default_borders, default_padding, :right),
-          data_cell("- #{ number_with_precision(@invoice.applied_irpf, precision: 2) } #{ current_user.currency }", default_borders, default_padding, :right)
+          data_cell("- #{ number_with_precision(@invoice.applied_irpf, precision: 2) } #{ @current_user.currency }", default_borders, default_padding, :right)
       ]
     end
 
     @invoice.tax.each do |key, value|
       totals << [
           header_cell("#{ Invoice.human_attribute_name :tax } (#{ key }%):", default_borders, default_padding, :right),
-          data_cell("#{ number_with_precision(value, precision: 2) } #{ current_user.currency }", default_borders, default_padding, :right)
+          data_cell("#{ number_with_precision(value, precision: 2) } #{ @current_user.currency }", default_borders, default_padding, :right)
       ]
     end
 
     totals << [
         header_cell("#{ Invoice.human_attribute_name :total }:", default_borders, default_padding, :right),
-        data_cell("#{ number_with_precision(@invoice.total, precision: 2) } #{ current_user.currency }", default_borders, default_padding, :right)
+        data_cell("#{ number_with_precision(@invoice.total, precision: 2) } #{ @current_user.currency }", default_borders, default_padding, :right)
     ]
 
     column_widths = [
@@ -125,10 +125,10 @@ class InvoicePdf < DocumentPdf
       details << [
           data_cell("#{ detail.quantity }", data_borders, default_padding),
           data_cell(description, data_borders, default_padding),
-          data_cell("#{ number_with_precision(detail.price, precision: 2)} #{ current_user.currency }", data_borders, default_padding, :right),
+          data_cell("#{ number_with_precision(detail.price, precision: 2)} #{ @current_user.currency }", data_borders, default_padding, :right),
           data_cell("#{ detail.discount} %", data_borders, default_padding, :right),
           data_cell("#{ detail.vat_rate } %", data_borders, default_padding, :right),
-          data_cell("#{ number_with_precision(detail.subtotal, precision: 2) } #{ current_user.currency }", data_borders, default_padding, :right)
+          data_cell("#{ number_with_precision(detail.subtotal, precision: 2) } #{ @current_user.currency }", data_borders, default_padding, :right)
       ]
     end
 
