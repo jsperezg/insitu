@@ -150,7 +150,7 @@ class User < ActiveRecord::Base
     if is_administrator?
       self.valid_until = nil
     else
-      self.valid_until = Date.today + 1.months if self.valid_until.nil?
+      self.valid_until = Date.today + 12.months if self.valid_until.nil?
     end
   end
 

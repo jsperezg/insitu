@@ -46,9 +46,9 @@ RSpec.describe User, type: :model do
   end
 
   describe 'users' do
-    it 'first month is free' do
+    it 'first year is free' do
       user = create(:user)
-      expect(user.valid_until).to eq(Date.today + 1.month)
+      expect(user.valid_until).to eq(Date.today + 12.month)
     end
 
     it 'can be banned' do
