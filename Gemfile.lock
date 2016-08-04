@@ -260,6 +260,10 @@ GEM
     sidekiq-client-cli (0.1.7)
       cli
       sidekiq (>= 2.15)
+    simple_token_authentication (1.14.0)
+      actionmailer (>= 3.2.6, < 6)
+      actionpack (>= 3.2.6, < 6)
+      devise (>= 3.2, < 6)
     simplecov (0.11.1)
       docile (~> 1.1.0)
       json (~> 1.8)
@@ -347,6 +351,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   sidekiq
   sidekiq-client-cli
+  simple_token_authentication (~> 1.0)
   simplecov
   spring
   turbolinks

@@ -51,6 +51,9 @@ gem 'rocket_pants', '~> 1.0'
 gem 'jquery-turbolinks'
 gem 'cookies_eu'
 
+# JSON API -> Android / IOS integration
+gem 'simple_token_authentication', '~> 1.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  acts_as_token_authenticatable
+
   filterrific(
       default_filter_params: {
           sorted_by: 'valid_until_asc'
