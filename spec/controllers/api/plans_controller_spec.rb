@@ -1,6 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Api::PlansController, type: :controller do
+RSpec.describe Api::V1::PlansController, type: :controller do
+  render_views
+
   let(:valid_attributes) {
     attributes_for :plan
   }
@@ -8,7 +10,7 @@ RSpec.describe Api::PlansController, type: :controller do
   it 'index' do
     plan = Plan.create! valid_attributes
 
-    get :index, { format: :json, version: 1 }
+    get :index, { format: :json }
 
     json_response = JSON.parse(response.body)
     expect(json_response['response']).to include(JSON.parse(plan.to_json(except: [:is_active, :created_at, :updated_at])))

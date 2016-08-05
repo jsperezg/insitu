@@ -43,8 +43,6 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  config.rocket_pants.pass_through_errors = true
-
   # Paypal integration
   config.x.paypal_validate_ipn_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_notify-validate'
   config.x.paypal_validate_ipn_verify_mode = OpenSSL::SSL::VERIFY_NONE

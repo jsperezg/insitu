@@ -95,8 +95,6 @@ Rails.application.configure do
       enable_starttls_auto: true
   }
 
-  config.rocket_pants.pass_through_errors = false
-
   Rails.application.routes.default_url_options[:host] = 'billing.insitu.tools'
   Rails.application.routes.default_url_options[:protocol] = 'https'
 

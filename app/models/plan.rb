@@ -1,6 +1,4 @@
 class Plan < ActiveRecord::Base
-  include RocketPants::Cacheable
-
   filterrific(
       default_filter_params: {
           sorted_by: 'months_asc'

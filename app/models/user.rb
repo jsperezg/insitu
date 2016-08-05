@@ -119,6 +119,10 @@ class User < ActiveRecord::Base
     self.country == 'ES' && self.tax_id =~ /^[a-z]\d{8}$/i
   end
 
+  def skip_confirmation!
+    self.confirmed_at = Time.now
+  end
+
   private
 
   def init_tenant_name

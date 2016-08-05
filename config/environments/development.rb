@@ -54,8 +54,6 @@ Rails.application.configure do
       enable_starttls_auto: true
   }
 
-  config.rocket_pants.pass_through_errors = true
-
   Rails.application.routes.default_url_options[:host] = "localhost:3000"
 
   # Paypal integration

@@ -41,12 +41,10 @@ gem 'nprogress-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
+gem  'yajl-ruby'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
-# API Support
-gem 'rocket_pants', '~> 1.0'
 
 gem 'jquery-turbolinks'
 gem 'cookies_eu'

@@ -54,8 +54,8 @@ Rails.application.routes.draw do
   end
 
   resources :plans
-  api version: 1 do
-    scope module: 'api' do
+  namespace :api do
+    namespace :v1 do
       resources :plans, only: [:index]
     end
   end
