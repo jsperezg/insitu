@@ -14,27 +14,27 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2016-08-05T08:51:41+02:00">2016-08-05T08:51:41+02:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2016-08-05T10:06:40+02:00">2016-08-05T10:06:40+02:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">75.0%</span></span>
+    (<span class="covered_percent"><span class="red">72.73%</span></span>
      covered at
      <span class="covered_strength">
        <span class="red">
-         0.75
+         0.7
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>4</b> files in total.
-    <b>16</b> relevant lines. 
-    <span class="green"><b>12</b> lines covered</span> and
-    <span class="red"><b>4</b> lines missed </span>
+    <b>44</b> relevant lines. 
+    <span class="green"><b>32</b> lines covered</span> and
+    <span class="red"><b>12</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -51,13 +51,13 @@
     <tbody>
       
       <tr>
-        <td class="strong"><a href="#9cede722363dfa22114b2c831ef47de6a8f03627" class="src_link" title="app/controllers/api/v1/plans_controller.rb">app/controllers/api/v1/plans_controller.rb</a></td>
-        <td class="green strong">100.0 %</td>
-        <td>5</td>
-        <td>3</td>
-        <td>3</td>
-        <td>0</td>
-        <td>1.0</td>
+        <td class="strong"><a href="#8c167a1947260d3bdcf8c1dcd155bcca946fabeb" class="src_link" title="app/controllers/api/v1/sessions_controller.rb">app/controllers/api/v1/sessions_controller.rb</a></td>
+        <td class="red strong">74.19 %</td>
+        <td>63</td>
+        <td>31</td>
+        <td>23</td>
+        <td>8</td>
+        <td>0.7</td>
       </tr>
       
       <tr>
@@ -106,14 +106,14 @@
     
       <div class="source_files">
       
-        <div class="source_table" id="9cede722363dfa22114b2c831ef47de6a8f03627">
+        <div class="source_table" id="8c167a1947260d3bdcf8c1dcd155bcca946fabeb">
   <div class="header">
-    <h3>app/controllers/api/v1/plans_controller.rb</h3>
-    <h4><span class="green">100.0 %</span> covered</h4>
+    <h3>app/controllers/api/v1/sessions_controller.rb</h3>
+    <h4><span class="red">74.19 %</span> covered</h4>
     <div>
-      <b>3</b> relevant lines. 
-      <span class="green"><b>3</b> lines covered</span> and
-      <span class="red"><b>0</b> lines missed.</span>
+      <b>31</b> relevant lines. 
+      <span class="green"><b>23</b> lines covered</span> and
+      <span class="red"><b>8</b> lines missed.</span>
     </div>
   </div>
   
@@ -123,31 +123,379 @@
         <li class="covered" data-hits="1" data-linenumber="1">
           <span class="hits">1</span>
           
-          <code class="ruby">class Api::V1::PlansController &lt; ActionController::Base</code>
+          <code class="ruby">class Api::V1::SessionsController &lt; Devise::SessionsController</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="2">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="2">
           
-          <code class="ruby">  def index</code>
+          
+          <code class="ruby">  # This controller provides a JSON version of the Devise::SessionsController and</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="3">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="3">
           
-          <code class="ruby">    @plans = Plan.where(is_active: true).order(months: :asc)</code>
+          
+          <code class="ruby">  # is compatible with the use of SimpleTokenAuthentication.</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="4">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">  # See https://github.com/gonzalo-bulnes/simple_token_authentication/issues/27</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="5">
           
           
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="6">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def create</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="7">
+          
+          
+          <code class="ruby">    # Fetch params</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="8">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    email = params[:session][:email] if params[:session]</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="9">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    password = params[:session][:password] if params[:session]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="10">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="11">
+          
+          
+          <code class="ruby">    # Validations</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="12">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    if request.format != :json</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="13">
+          
+          
+          <code class="ruby">      render status: 406, json: { message: &#39;The request must be JSON.&#39; }</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="14">
+          
+          
+          <code class="ruby">      return</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="16">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="17">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    if email.blank? or password.blank?</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="18">
+          
+          
+          <code class="ruby">      render status: 400, json: { message: &#39;The request MUST contain the user email and password.&#39; }</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="19">
+          
+          
+          <code class="ruby">      return</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="20">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="21">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="22">
+          
+          
+          <code class="ruby">    # Authentication</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="23">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    user = User.find_by(email: email)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="24">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="25">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    if user</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="26">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      if user.valid_password? password</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="27">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        user.restore_authentication_token!</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="28">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="29">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        user.sign_in_count += 1</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="30">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        user.last_sign_in_at = user.current_sign_in_at</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="31">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        user.last_sign_in_ip =  user.current_sign_in_ip</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="32">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="33">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        user.current_sign_in_at = DateTime.now</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="34">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        user.current_sign_in_ip = request.remote_ip</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="35">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="36">
+          <span class="hits">1</span>
+          
+          <code class="ruby">        if user.save</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="37">
+          
+          
+          <code class="ruby">          # Note that the data which should be returned depends heavily of the API client needs.</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="38">
+          <span class="hits">1</span>
+          
+          <code class="ruby">          render status: 200, json: { email: user.email, authentication_token: user.authentication_token, id: user.id }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="39">
+          
+          
+          <code class="ruby">        else</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="40">
+          
+          
+          <code class="ruby">          render status: 500</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="41">
+          
+          
+          <code class="ruby">        end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="42">
+          
+          
+          <code class="ruby">      else</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="43">
+          
+          
+          <code class="ruby">        render status: 401, json: { message: &#39;Invalid email or password.&#39; }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="44">
+          
+          
+          <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="45">
+          
+          
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="46">
+          
+          
+          <code class="ruby">      render status: 401, json: { message: &#39;Invalid email or password.&#39; }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="47">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="48">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="49">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="50">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def destroy</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="51">
+          
+          
+          <code class="ruby">    # Fetch params</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="52">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    user = User.find_by(authentication_token: params[:user_token])</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="53">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="54">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    if user.nil?</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="55">
+          
+          
+          <code class="ruby">      render status: 404, json: { message: &#39;Invalid token.&#39; }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="56">
+          
+          
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="57">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      user.authentication_token = nil</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="58">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      user.save!</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="59">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      render status: 204, json: nil</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="60">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="61">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="62">
+          
+          
           <code class="ruby">end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="63">
+          
+          
+          <code class="ruby"></code>
         </li>
       
     </ol>

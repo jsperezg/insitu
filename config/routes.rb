@@ -57,6 +57,11 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :plans, only: [:index]
+
+      devise_scope :user do
+        post 'sessions' => 'sessions#create', :as => 'login'
+        delete 'sessions' => 'sessions#destroy', :as => 'logout'
+      end
     end
   end
 
