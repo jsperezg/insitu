@@ -192,9 +192,13 @@ es:
         user:
           attributes:
             email:
+              blank: es obligatoria.
               taken: ya está registrado en el sistema.
             password:
               too_short: es demasiado corta.
+              blank: es obligatoria.
+            encrypted_password:
+              blank: es obligatoria.
             password_confirmation:
               confirmation: es obligatorio.
             current_password:

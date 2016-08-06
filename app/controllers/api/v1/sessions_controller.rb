@@ -1,4 +1,6 @@
 class Api::V1::SessionsController < Devise::SessionsController
+  respond_to :json
+
   # This controller provides a JSON version of the Devise::SessionsController and
   # is compatible with the use of SimpleTokenAuthentication.
   # See https://github.com/gonzalo-bulnes/simple_token_authentication/issues/27

@@ -192,8 +192,12 @@ en:
           attributes:
             email:
               taken: is already registered.
+              blank: is mandatory.
             password:
               too_short: is too short.
+              blank: is mandatory.
+            encrypted_password:
+              blank: is mandatory.
             password_confirmation:
               confirmation: is mandatory.
             current_password:
