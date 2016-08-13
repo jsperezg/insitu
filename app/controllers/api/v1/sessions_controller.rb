@@ -37,7 +37,22 @@ class Api::V1::SessionsController < Devise::SessionsController
 
         if user.save
           # Note that the data which should be returned depends heavily of the API client needs.
-          render status: 200, json: { email: user.email, authentication_token: user.authentication_token, id: user.id }
+          render status: 200, json: {
+              email: user.email,
+              authentication_token: user.authentication_token,
+              id: user.id,
+              tax_id: user.tax_id,
+              name: user.name,
+              address: user.address,
+              city: user.city,
+              state: user.state,
+              coutry: user.country,
+              locale: user.locale,
+              phone_number: user.phone_number,
+              valid_until: user.valid_until,
+              banned: user.banned,
+              currency: user.currency
+          }
         else
           render status: 500
         end
