@@ -15,4 +15,18 @@ RSpec.describe Api::V1::RegistrationsController, type: :controller do
     expect(user).not_to  be_nil
     expect(user.confirmed_at).not_to be_nil
   end
+
+  it  'returns user attributes after registration' do
+    email = Faker::Internet.email
+
+    post :create, format: :json, user: { email: email, password: 'Abcd1234', password_confirmation: 'Abcd1234'}
+    expect(response.status).to eq(200)
+
+    user = User.find_by(email: email)
+    expect(user).not_to  be_nil
+
+    json_response = JSON.parse(response.body, {:symbolize_names => true})
+    expect(json_response[:data][:user][:id]).to eq(user.id)
+    expect(json_response[:data][:user][:email]).to eq(user.email)
+  end
 end

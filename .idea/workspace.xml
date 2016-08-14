@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9253af97-43bb-4d75-844d-496160ae5ec1" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/fges.iml" afterPath="$PROJECT_DIR$/.idea/fges.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/application.rb" afterPath="$PROJECT_DIR$/config/application.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/api/v1/registrations_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/api/v1/registrations_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/.last_run.json" afterPath="$PROJECT_DIR$/coverage/.last_run.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/.resultset.json" afterPath="$PROJECT_DIR$/coverage/.resultset.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/coverage/index.html" afterPath="$PROJECT_DIR$/coverage/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/controllers/api/v1/registrations_controller_spec.rb" afterPath="$PROJECT_DIR$/spec/controllers/api/v1/registrations_controller_spec.rb" />
     </list>
     <ignored path="fges.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -81,6 +86,7 @@
     <SUITE FILE_PATH="coverage/fges@Run_spec__customers_controller_spec___fges.coverage" NAME="Run spec 'customers_controller_spec': fges Coverage Results" MODIFIED="1450296778278" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@production__fges.coverage" NAME="production: fges Coverage Results" MODIFIED="1461174388811" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@IpnListenerController_POST__create_VERIFIED_response_referred_subscription_is_renewed__fges.coverage" NAME="IpnListenerController POST #create VERIFIED response referred subscription is renewed: fges Coverage Results" MODIFIED="1464680283147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
+    <SUITE FILE_PATH="coverage/fges@Run_spec__registrations_controller_spec___fges.coverage" NAME="Run spec 'registrations_controller_spec': fges Coverage Results" MODIFIED="1471201686826" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@DeliveryNoteDetail_expired_user_cant_save_delivery_notes__fges.coverage" NAME="DeliveryNoteDetail expired user cant save delivery notes: fges Coverage Results" MODIFIED="1461348465532" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@Run_spec__index_html_erb_spec___fges__2_.coverage" NAME="Run spec 'index.html.erb_spec': fges (2) Coverage Results" MODIFIED="1461390373207" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
     <SUITE FILE_PATH="coverage/fges@DeliveryNotesController_PUT__update_with_valid_params_updates_the_requested_delivery_note__fges.coverage" NAME="DeliveryNotesController PUT #update with valid params updates the requested delivery_note: fges Coverage Results" MODIFIED="1452067526190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="fges" />
@@ -165,14 +171,14 @@
       <file leaf-file-name="registrations_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/registrations_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="165">
+              <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="application.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/application.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
@@ -182,11 +188,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="registrations_controller_spec.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="registrations_controller_spec.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spec/controllers/api/v1/registrations_controller_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="98" selection-start-line="10" selection-start-column="77" selection-end-line="10" selection-end-column="98" />
+            <state relative-caret-position="375">
+              <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -269,10 +275,10 @@
         <option value="$PROJECT_DIR$/spec/controllers/api/registrations_controller_spec.rb" />
         <option value="$PROJECT_DIR$/config/locales/es.active_record.yml" />
         <option value="$PROJECT_DIR$/config/locales/en.active_record.yml" />
-        <option value="$PROJECT_DIR$/app/controllers/api/v1/registrations_controller.rb" />
-        <option value="$PROJECT_DIR$/spec/controllers/api/v1/registrations_controller_spec.rb" />
         <option value="$PROJECT_DIR$/app/controllers/api/v1/sessions_controller.rb" />
         <option value="$PROJECT_DIR$/config/application.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/api/v1/registrations_controller.rb" />
+        <option value="$PROJECT_DIR$/spec/controllers/api/v1/registrations_controller_spec.rb" />
       </list>
     </option>
   </component>
@@ -575,41 +581,7 @@
       <recent name="$PROJECT_DIR$/app/controllers/api/1" />
     </key>
   </component>
-  <component name="RunManager" selected="Rails.Development: fges">
-    <configuration default="false" name="Api::V1::PlansController: fges" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
-      <predefined_log_file id="RUBY_RSPEC" enabled="true" />
-      <module name="fges" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-      <envs>
-        <env name="RAILS_ENV" value="test" />
-        <env name="JRUBY_OPTS" value="-X+O" />
-      </envs>
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
-        <COVERAGE_PATTERN ENABLED="true">
-          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-        </COVERAGE_PATTERN>
-      </EXTENSION>
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/controllers/api/v1/plans_controller_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Api::V1::PlansController" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
-      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="RSpec.Run spec 'registrations_controller_spec': fges">
     <configuration default="false" name="Api::V1::SessionsController login: fges" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
       <predefined_log_file id="RUBY_RSPEC" enabled="true" />
       <module name="fges" />
@@ -736,6 +708,40 @@
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="Api::V1::RegistrationsController allows user registration" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ZEUS" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPRING" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Run spec 'registrations_controller_spec': fges" type="RSpecRunConfigurationType" factoryName="RSpec" temporary="true">
+      <predefined_log_file id="RUBY_RSPEC" enabled="true" />
+      <module name="fges" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs>
+        <env name="RAILS_ENV" value="test" />
+        <env name="JRUBY_OPTS" value="-X+O" />
+      </envs>
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="true" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="$MODULE_DIR$/spec/controllers/api/v1/registrations_controller_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
       <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
@@ -950,19 +956,19 @@
       <item index="2" class="java.lang.String" itemvalue="Rails.Production: fges" />
       <item index="3" class="java.lang.String" itemvalue="Rails.Development: fges" />
       <item index="4" class="java.lang.String" itemvalue="RSpec.All specs in fges: fges" />
-      <item index="5" class="java.lang.String" itemvalue="RSpec.Api::V1::PlansController: fges" />
-      <item index="6" class="java.lang.String" itemvalue="RSpec.Api::V1::SessionsController login: fges" />
-      <item index="7" class="java.lang.String" itemvalue="RSpec.Run spec 'sessions_controller_spec': fges" />
-      <item index="8" class="java.lang.String" itemvalue="RSpec.Api::V1::SessionsController logout: fges" />
-      <item index="9" class="java.lang.String" itemvalue="RSpec.Api::V1::RegistrationsController allows user registration: fges" />
+      <item index="5" class="java.lang.String" itemvalue="RSpec.Api::V1::SessionsController login: fges" />
+      <item index="6" class="java.lang.String" itemvalue="RSpec.Run spec 'sessions_controller_spec': fges" />
+      <item index="7" class="java.lang.String" itemvalue="RSpec.Api::V1::SessionsController logout: fges" />
+      <item index="8" class="java.lang.String" itemvalue="RSpec.Api::V1::RegistrationsController allows user registration: fges" />
+      <item index="9" class="java.lang.String" itemvalue="RSpec.Run spec 'registrations_controller_spec': fges" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="RSpec.Api::V1::RegistrationsController allows user registration: fges" />
-        <item index="1" class="java.lang.String" itemvalue="RSpec.Api::V1::SessionsController logout: fges" />
-        <item index="2" class="java.lang.String" itemvalue="RSpec.Run spec 'sessions_controller_spec': fges" />
-        <item index="3" class="java.lang.String" itemvalue="RSpec.Api::V1::SessionsController login: fges" />
-        <item index="4" class="java.lang.String" itemvalue="RSpec.Api::V1::PlansController: fges" />
+        <item index="0" class="java.lang.String" itemvalue="RSpec.Run spec 'registrations_controller_spec': fges" />
+        <item index="1" class="java.lang.String" itemvalue="RSpec.Api::V1::RegistrationsController allows user registration: fges" />
+        <item index="2" class="java.lang.String" itemvalue="RSpec.Api::V1::SessionsController logout: fges" />
+        <item index="3" class="java.lang.String" itemvalue="RSpec.Run spec 'sessions_controller_spec': fges" />
+        <item index="4" class="java.lang.String" itemvalue="RSpec.Api::V1::SessionsController login: fges" />
       </list>
     </recent_temporary>
   </component>
@@ -988,14 +994,7 @@
       <workItem from="1471068379388" duration="2569000" />
       <workItem from="1471080379049" duration="1342000" />
       <workItem from="1471162699475" duration="1648000" />
-      <workItem from="1471199143304" duration="70000" />
-    </task>
-    <task id="LOCAL-00130" summary="Paypal.&#10;&#10;* Handshake protocol in ipn_listener_controller&#10;* Tests and locales for payment model.">
-      <created>1463309939419</created>
-      <option name="number" value="00130" />
-      <option name="presentableId" value="LOCAL-00130" />
-      <option name="project" value="LOCAL" />
-      <updated>1463309939420</updated>
+      <workItem from="1471199143304" duration="1792000" />
     </task>
     <task id="LOCAL-00131" summary="Paypal.&#10;&#10;* Finished implementation of paypal integration">
       <created>1463911040814</created>
@@ -1333,31 +1332,17 @@
       <option name="project" value="LOCAL" />
       <updated>1471082088813</updated>
     </task>
-    <option name="localTasksCounter" value="179" />
+    <task id="LOCAL-00179" summary="Default  locale&#10;&#10;Default  locale set to English">
+      <created>1471199230011</created>
+      <option name="number" value="00179" />
+      <option name="presentableId" value="LOCAL-00179" />
+      <option name="project" value="LOCAL" />
+      <updated>1471199230011</updated>
+    </task>
+    <option name="localTasksCounter" value="180" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Api__V1__RegistrationsController_allows_user_registration__fges - 2016.08.06 at 08h 02m 21s.xml">
-      <configuration name="Api::V1::RegistrationsController allows user registration: fges" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
-    <history-entry file="Api__V1__RegistrationsController_allows_user_registration__fges - 2016.08.06 at 08h 03m 18s.xml">
-      <configuration name="Api::V1::RegistrationsController allows user registration: fges" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
-    <history-entry file="Api__V1__RegistrationsController_allows_user_registration__fges - 2016.08.06 at 08h 04m 55s.xml">
-      <configuration name="Api::V1::RegistrationsController allows user registration: fges" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
-    <history-entry file="Api__V1__RegistrationsController_allows_user_registration__fges - 2016.08.06 at 08h 08m 51s.xml">
-      <configuration name="Api::V1::RegistrationsController allows user registration: fges" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
-    <history-entry file="Api__V1__RegistrationsController_allows_user_registration__fges - 2016.08.06 at 08h 09m 43s.xml">
-      <configuration name="Api::V1::RegistrationsController allows user registration: fges" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
-    <history-entry file="Api__V1__RegistrationsController_allows_user_registration__fges - 2016.08.06 at 08h 10m 07s.xml">
-      <configuration name="Api::V1::RegistrationsController allows user registration: fges" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
-    <history-entry file="Api__V1__RegistrationsController_allows_user_registration__fges - 2016.08.06 at 08h 13m 45s.xml">
-      <configuration name="Api::V1::RegistrationsController allows user registration: fges" configurationId="RSpecRunConfigurationType" />
-    </history-entry>
     <history-entry file="Api__V1__RegistrationsController_allows_user_registration__fges - 2016.08.06 at 08h 16m 48s.xml">
       <configuration name="Api::V1::RegistrationsController allows user registration: fges" configurationId="RSpecRunConfigurationType" />
     </history-entry>
@@ -1367,9 +1352,30 @@
     <history-entry file="Api__V1__SessionsController_login__fges - 2016.08.13 at 11h 27m 19s.xml">
       <configuration name="Api::V1::SessionsController login: fges" configurationId="RSpecRunConfigurationType" />
     </history-entry>
+    <history-entry file="Run_spec_'registrations_controller_spec'__fges - 2016.08.14 at 21h 03m 03s.xml">
+      <configuration name="Run spec 'registrations_controller_spec': fges" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Run_spec_'registrations_controller_spec'__fges - 2016.08.14 at 21h 04m 29s.xml">
+      <configuration name="Run spec 'registrations_controller_spec': fges" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Run_spec_'registrations_controller_spec'__fges - 2016.08.14 at 21h 04m 40s.xml">
+      <configuration name="Run spec 'registrations_controller_spec': fges" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Run_spec_'registrations_controller_spec'__fges - 2016.08.14 at 21h 05m 16s.xml">
+      <configuration name="Run spec 'registrations_controller_spec': fges" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Run_spec_'registrations_controller_spec'__fges - 2016.08.14 at 21h 06m 42s.xml">
+      <configuration name="Run spec 'registrations_controller_spec': fges" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Run_spec_'registrations_controller_spec'__fges - 2016.08.14 at 21h 06m 57s.xml">
+      <configuration name="Run spec 'registrations_controller_spec': fges" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Run_spec_'registrations_controller_spec'__fges - 2016.08.14 at 21h 08m 09s.xml">
+      <configuration name="Run spec 'registrations_controller_spec': fges" configurationId="RSpecRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19208000" />
+    <option name="totallyTimeSpent" value="20930000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1920" height="1009" extended-state="6" />
@@ -1380,7 +1386,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45391476" sideWeight="0.35231507" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903865" sideWeight="0.49813333" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39583334" sideWeight="0.64768493" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39583334" sideWeight="0.64768493" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24906865" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903865" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1429,7 +1435,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Mobile adaptation of services form." />
     <MESSAGE value="Invalid email subject when sending invoices through email." />
     <MESSAGE value="Invalid email subject when sending estimates and delivery notes through email." />
     <MESSAGE value="Customers&#10;&#10;Adaptation for mobile." />
@@ -1454,7 +1459,8 @@
     <MESSAGE value="SessionController.&#10;&#10;New session controller  for the JSON API." />
     <MESSAGE value="Registration  controller for JSON  API.&#10;&#10;Registration allowed, no  confirmation  required." />
     <MESSAGE value="Registration  controller for JSON  API.&#10;&#10;Login returns all information related to the user." />
-    <option name="LAST_COMMIT_MESSAGE" value="Registration  controller for JSON  API.&#10;&#10;Login returns all information related to the user." />
+    <MESSAGE value="Default  locale&#10;&#10;Default  locale set to English" />
+    <option name="LAST_COMMIT_MESSAGE" value="Default  locale&#10;&#10;Default  locale set to English" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1490,7 +1496,7 @@
           <option name="timeStamp" value="183" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="206" />
+      <option name="time" value="210" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="RSpecRunConfigurationType">
@@ -1682,6 +1688,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="422">
           <caret line="638" column="0" selection-start-line="638" selection-start-column="0" selection-end-line="638" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1823,13 +1830,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
           <caret line="122" column="21" selection-start-line="122" selection-start-column="9" selection-end-line="122" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/controllers/api/v1/sessions_controller_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1841,26 +1842,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/controllers/api/v1/registrations_controller_spec.rb">
+    <entry file="file://$PROJECT_DIR$/config/application.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="98" selection-start-line="10" selection-start-column="77" selection-end-line="10" selection-end-column="98" />
+        <state relative-caret-position="285">
+          <caret line="19" column="70" selection-start-line="19" selection-start-column="70" selection-end-line="19" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spec/controllers/api/v1/sessions_controller_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="52" selection-start-line="11" selection-start-column="4" selection-end-line="13" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/registrations_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state relative-caret-position="165">
+          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/application.rb">
+    <entry file="file://$PROJECT_DIR$/spec/controllers/api/v1/registrations_controller_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="70" selection-start-line="19" selection-start-column="70" selection-end-line="19" selection-end-column="70" />
+        <state relative-caret-position="375">
+          <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
           <folding />
         </state>
       </provider>

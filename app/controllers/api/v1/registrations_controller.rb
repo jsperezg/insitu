@@ -6,7 +6,10 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
     resource.skip_confirmation!
     if resource.save
       sign_in resource
-      render :status => 200,
+
+      resource.reload
+
+      render :status => :ok,
              :json => { :success => true,
                         :info => "Registered",
                         :data => { :user => resource,
