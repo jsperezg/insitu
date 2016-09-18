@@ -23,3 +23,5 @@
 
 # Ignore gemfile.lock
 Gemfile.lock
+
+.idea
