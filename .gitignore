@@ -24,5 +24,4 @@
 # Ignore gemfile.lock
 Gemfile.lock
 
-# IDE Files
 .idea
