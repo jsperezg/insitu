@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
 
   filterrific(
       default_filter_params: {
-          sorted_by: 'valid_until_asc'
+          sorted_by: 'valid_until_asc',
+          with_active_criteria: 'active'
       },
       available_filters: [
           :with_filter_criteria,
@@ -23,9 +24,9 @@ class User < ActiveRecord::Base
 
   def self.active_filter_options
     [
-        [I18n.t('users.only_active'), '1'],
-        [I18n.t('users.vip'), '0'],
-        [I18n.t('users.only_inactive'), '2']
+        [I18n.t('users.only_active'), 'active'],
+        [I18n.t('users.vip'), 'vip'],
+        [I18n.t('users.only_inactive'), 'inactive']
     ]
   end
 
@@ -35,8 +36,8 @@ class User < ActiveRecord::Base
 
   scope :with_active_criteria, lambda { |filter |
     case filter
-      when 0 then where(valid_until: nil)
-      when 2 then where('valid_until < ?', Date.today)
+      when 'vip' then where(valid_until: nil)
+      when 'inactive' then where('valid_until < ?', Date.today)
       else where('valid_until >= ? or valid_until is null', Date.today)
     end
   }

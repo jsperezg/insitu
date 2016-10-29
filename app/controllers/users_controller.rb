@@ -8,11 +8,14 @@ class UsersController < AdminSecuredController
     @filterrific = initialize_filterrific(
         User,
         params[:filterrific],
+        default_filter_params: {
+            sorted_by: 'valid_until_asc',
+            with_active_criteria: 'active'
+        },
         select_options: {
             sorted_by: User.options_for_sorted_by,
             with_active_criteria: User.active_filter_options
         }
-
     ) or return
 
     @users = @filterrific.find.page(params[:page])
