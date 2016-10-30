@@ -1,4 +1,6 @@
 class Api::V1::SessionsController < Devise::SessionsController
+  skip_before_filter :verify_signed_out_user
+
   respond_to :json
 
   # This controller provides a JSON version of the Devise::SessionsController and
@@ -54,7 +56,7 @@ class Api::V1::SessionsController < Devise::SessionsController
               currency: user.currency
           }
         else
-          render status: 500
+          render status: 500, json: { error: user.errors.messages }
         end
       else
         render status: 401, json: { message: 'Invalid email or password.' }
@@ -65,15 +67,18 @@ class Api::V1::SessionsController < Devise::SessionsController
   end
 
   def destroy
+    if params[:user_token].blank?
+      render status: 404, json: { message: 'Invalid token.' }
+      return
+    end
+
     # Fetch params
     user = User.find_by(authentication_token: params[:user_token])
-
     if user.nil?
       render status: 404, json: { message: 'Invalid token.' }
     else
-      user.authentication_token = nil
-      user.save!
-      render status: 204, json: nil
+      user.update_attribute(:authentication_token, nil)
+      render status: 204, json: { message: 'logout successful'}
     end
   end
 end

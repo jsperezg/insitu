@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  namespace :api do
-  get 'plan/index'
-  end
-
   root :to => "dashboard#index"
 
   devise_for :users, controllers: { sessions: 'users/sessions' }
@@ -54,6 +50,7 @@ Rails.application.routes.draw do
   end
 
   resources :plans
+
   namespace :api do
     namespace :v1 do
       resources :plans, only: [:index]
