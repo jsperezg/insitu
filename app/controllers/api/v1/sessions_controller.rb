@@ -78,7 +78,7 @@ class Api::V1::SessionsController < Devise::SessionsController
       render status: 404, json: { message: 'Invalid token.' }
     else
       user.update_attribute(:authentication_token, nil)
-      render status: 204, json: { message: 'logout successful'}
+      render status: 200, json: { message: 'logout successful'}
     end
   end
 end
