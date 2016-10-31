@@ -186,7 +186,6 @@ en:
     errors:
       messages:
         record_invalid: Invalid record
-        subscription_expired: Your subscription has expired. Please renew your subscription to continue.
       models:
         user:
           attributes:

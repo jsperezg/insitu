@@ -46,9 +46,9 @@ RSpec.describe User, type: :model do
   end
 
   describe 'users' do
-    it 'first year is free' do
+    it 'New users are not premium' do
       user = create(:user)
-      expect(user.valid_until).to eq(Date.today + 12.month)
+      expect(user.is_premium?).to be_falsey
     end
 
     it 'can be banned' do

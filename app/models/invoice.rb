@@ -1,4 +1,4 @@
-class Invoice < AbstractSubscriptionValidator
+class Invoice < ActiveRecord::Base
   include SequenceGenerator
 
   filterrific(

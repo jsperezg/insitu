@@ -1,4 +1,4 @@
-class Service < AbstractSubscriptionValidator
+class Service < ActiveRecord::Base
   filterrific(
       default_filter_params: {
           sorted_by: 'code_asc',

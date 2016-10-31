@@ -187,7 +187,6 @@ es:
     errors:
       messages:
         record_invalid: Registro inválido
-        subscription_expired: Tu subscripción ha caducado. Por favor renueva tu subscripción antes de continuar.
       models:
         user:
           attributes:

@@ -316,7 +316,7 @@ NAVIGATION_RULES = {
         },
         renew: {
             parent: :my_profile,
-            title: 'users.renew_title'
+            title: 'users.premium_title'
         }
     }
 }

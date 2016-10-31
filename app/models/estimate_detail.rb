@@ -1,4 +1,4 @@
-class EstimateDetail < AbstractSubscriptionValidator
+class EstimateDetail < ActiveRecord::Base
   belongs_to :estimate
   belongs_to :service
   belongs_to :invoice_detail

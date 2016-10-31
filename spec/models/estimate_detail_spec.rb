@@ -81,13 +81,4 @@ RSpec.describe EstimateDetail, type: :model do
 		delivery_note_detail = EstimateDetail.new(quantity: 10.0, price: 18.0, discount: 0)
 		expect(delivery_note_detail.total).to eq(180.0)
   end
-
-	it 'expired user cant save delivery notes' do
-		Thread.current[:user] = create(:expired_user)
-		object = EstimateDetail.new
-		object.save
-
-		expect(object.errors).to satisfy { |errors| !errors.empty? && errors.key?( :base )}
-		expect(object.errors[:base]).to include(I18n.t('activerecord.errors.messages.subscription_expired'))
-	end
 end

@@ -99,13 +99,4 @@ RSpec.describe Estimate, type: :model do
       expect(estimate.errors.empty?).to be(true)
     end
   end
-
-  it 'expired user cant save delivery notes' do
-    Thread.current[:user] = create(:expired_user)
-    object = Estimate.new
-    object.save
-
-    expect(object.errors).to satisfy { |errors| !errors.empty? && errors.key?( :base )}
-    expect(object.errors[:base]).to include(I18n.t('activerecord.errors.messages.subscription_expired'))
-  end
 end

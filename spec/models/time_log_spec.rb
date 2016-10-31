@@ -49,13 +49,4 @@ RSpec.describe TimeLog, type: :model do
 
     expect(time_log.errors).to satisfy { |errors| errors.key? :date }
   end
-
-  it 'expired user cant save delivery notes' do
-    Thread.current[:user] = create(:expired_user)
-    object = TimeLog.new
-    object.save
-
-    expect(object.errors).to satisfy { |errors| !errors.empty? && errors.key?( :base )}
-    expect(object.errors[:base]).to include(I18n.t('activerecord.errors.messages.subscription_expired'))
-  end
 end

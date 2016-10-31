@@ -10,12 +10,10 @@ module UsersHelper
   def user_tr(user)
     if user.banned?
       tr_class = 'danger'
-    elsif user.is_active?
+    elsif user.is_premium?
       tr_class = 'success'
-    elsif user.is_about_to_expire?
-      tr_class = 'warning'
     else
-      tr_class = 'danger'
+      tr_class = 'warning'
     end
 
     content_tag(:tr, class: tr_class) do
@@ -23,9 +21,9 @@ module UsersHelper
     end
   end
 
-  def renew_subscription_link_tag
-    if current_user.has_expired?
-      message = I18n.t('users.account_expired_message')
+  def premium_subscription_link_tag
+    unless current_user.is_premium?
+      message = I18n.t('users.account_premium_message')
       content_tag :div, class: 'row' do
         content_tag :p, class: 'col-xs-12' do
           link_to message, renew_user_path(current_user), class: 'text-danger'

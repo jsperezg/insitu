@@ -94,20 +94,8 @@ class User < ActiveRecord::Base
         self.country.present?
   end
 
-  def is_active?
-    self.valid_until.nil? || self.valid_until >= Date.today
-  end
-
-  def has_expired?
-    if self.valid_until.nil?
-      false
-    else
-      self.valid_until < Date.today
-    end
-  end
-
-  def is_about_to_expire?
-    self.valid_until >= Date.today && self.valid_until - 7.days <= Date.today
+  def is_premium?
+    self.valid_until.nil? || self.valid_until > Date.today
   end
 
   def is_administrator?
@@ -151,7 +139,7 @@ class User < ActiveRecord::Base
     if is_administrator?
       self.valid_until = nil
     else
-      self.valid_until = Date.today + 12.months if self.valid_until.nil?
+      self.valid_until = Date.today if self.valid_until.nil?
     end
   end
 
