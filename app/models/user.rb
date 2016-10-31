@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
     case filter
       when 'vip' then where(valid_until: nil)
       when 'free' then where('valid_until < ?', Date.today)
-      else where('valid_until >= ? or valid_until is null', Date.today)
+      else where('valid_until > ? or valid_until is null', Date.today)
     end
   }
 
