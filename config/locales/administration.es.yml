@@ -16,8 +16,8 @@ es:
     user: Usuario
     title: Gestión de usuarios
     vip: VIPs
-    only_active: Solo activos
-    only_inactive: Solo inactivos
+    only_premium: Solo Premium
+    only_free: Solo gratuitos
     perpetual: Perpetua
     edit_title: Editar usuario
     ban_link: Ban

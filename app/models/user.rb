@@ -22,9 +22,9 @@ class User < ActiveRecord::Base
 
   def self.active_filter_options
     [
-        [I18n.t('users.only_active'), 'active'],
+        [I18n.t('users.only_premium'), 'premium'],
         [I18n.t('users.vip'), 'vip'],
-        [I18n.t('users.only_inactive'), 'inactive']
+        [I18n.t('users.only_free'), 'free']
     ]
   end
 
@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   scope :with_active_criteria, lambda { |filter |
     case filter
       when 'vip' then where(valid_until: nil)
-      when 'inactive' then where('valid_until < ?', Date.today)
+      when 'free' then where('valid_until < ?', Date.today)
       else where('valid_until >= ? or valid_until is null', Date.today)
     end
   }

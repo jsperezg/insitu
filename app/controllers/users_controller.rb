@@ -10,7 +10,7 @@ class UsersController < AdminSecuredController
         params[:filterrific],
         default_filter_params: {
             sorted_by: 'valid_until_asc',
-            with_active_criteria: 'active'
+            with_active_criteria: 'premium'
         },
         select_options: {
             sorted_by: User.options_for_sorted_by,

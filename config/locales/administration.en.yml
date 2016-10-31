@@ -15,8 +15,8 @@ en:
     user: User
     title: User management
     vip: VIPs
-    only_active: Solo activos
-    only_inactive: Solo inactivos
+    only_premium: Only premium
+    only_free: Only free
     edit_title: Edit user
     ban_link: Ban
     successfully_banned: The user has been banned.
