@@ -28,6 +28,7 @@ es:
         banned: Expulsado
         is_active: Activo
         currency: Divisa
+        reset_password_token: Solicitud para cambio de contraseña
       payment_method:
         name: Nombre
         note_for_invoice: Anotación en factura
@@ -204,7 +205,7 @@ es:
             currency:
               blank: es obligatoria.
             reset_password_token:
-              invalid: Es inválido. Solicita un nuevo cambio de contraseña e intentalo de nuevo.
+              invalid: ha caducado. Solicita un nuevo cambio de contraseña e intentalo de nuevo.
 
         service:
           used_elsewhere: Este servicio está siendo referenciado desde algún documento y no puede ser borrado.

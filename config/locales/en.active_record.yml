@@ -28,6 +28,7 @@ en:
         banned: Banned
         is_active: Active
         currency: Currency
+        reset_password_token: Password change request
 
       payment_method:
         name: Name
@@ -203,7 +204,7 @@ en:
             currency:
               blank: is mandatory.
             reset_password_token:
-              invalid: Is inválid. Request a new password reset and try again.
+              invalid: has expired. Request a new password reset and try again.
         service:
           used_elsewhere: This service is being referenced from one or more documents and can not be deleted.
           attributes:
