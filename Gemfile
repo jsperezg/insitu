@@ -17,7 +17,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'devise', '3.5.2'
 gem 'devise-async'
 gem 'apartment'
-gem "twitter-bootstrap-rails"
+gem 'twitter-bootstrap-rails'
 gem 'email_validator'
 gem 'best_in_place', '~> 3.0.1'
 gem 'jquery-ui-rails'
