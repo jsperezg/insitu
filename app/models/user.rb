@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   scope :with_active_criteria, lambda { |filter |
     case filter
       when 'vip' then where(valid_until: nil)
-      when 'free' then where('valid_until < ?', Date.today)
+      when 'free' then where('valid_until <= ?', Date.today)
       else where('valid_until > ? or valid_until is null', Date.today)
     end
   }
