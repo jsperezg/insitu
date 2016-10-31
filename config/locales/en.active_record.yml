@@ -202,6 +202,8 @@ en:
               admin_banned: "Administrators can't be banned."
             currency:
               blank: is mandatory.
+            reset_password_token:
+              invalid: Is inválid. Request a new password reset and try again.
         service:
           used_elsewhere: This service is being referenced from one or more documents and can not be deleted.
           attributes:
