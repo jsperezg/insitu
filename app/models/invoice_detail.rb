@@ -37,6 +37,42 @@ class InvoiceDetail < ActiveRecord::Base
     end
   end
 
+  def self.calculate_totals(from_date, to_date)
+    result = {}
+
+    result[:net] = InvoiceDetail
+                       .includes(:invoice)
+                       .where('invoices.date': from_date..to_date)
+                       .sum('(1 - discount / 100) * price * quantity')
+
+    result[:discounts] = InvoiceDetail
+                             .includes(:invoice)
+                             .where('invoices.date': from_date..to_date)
+                             .sum('(discount / 100) * price * quantity')
+
+    result[:tax] = InvoiceDetail
+                       .includes(invoice: [ :customer ])
+                       .where('invoices.date': from_date..to_date)
+                       .where.not('customers.irpf': nil)
+                       .sum('(1 - discount / 100) * price * quantity * (customers.irpf / 100)') unless current_user.has_cif?
+
+    result[:vat] = InvoiceDetail
+                       .includes(:invoice)
+                       .where('invoices.date': from_date..to_date)
+                       .where.not(vat_rate: 0)
+                       .group(:vat_rate)
+                       .sum('(1 - discount / 100) * price * quantity * (vat_rate / 100)')
+
+    customers = InvoiceDetail
+                    .includes(invoice: [ :customer ])
+                    .where('invoices.date': from_date..to_date)
+                    .group('customers.name')
+                    .sum('(1 - discount / 100) * price * quantity')
+    result[:customers] = customers.select { |t| customers[t] >= 3000 }
+
+    result
+  end
+
   private
 
   def set_default_values
