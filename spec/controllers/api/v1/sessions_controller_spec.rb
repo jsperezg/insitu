@@ -24,7 +24,7 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
     current_token = @user.authentication_token
 
     delete :destroy, user_token: @user.authentication_token
-    expect(response.status).to eq(204)
+    expect(response.status).to eq(200)
 
     @user.reload
     expect(@user.authentication_token).not_to eq(current_token)
