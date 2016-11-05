@@ -158,6 +158,7 @@ class EstimatesController < SecuredController
       )
 
       invoice.apply_irpf(current_user)
+      invoice.save!
 
       # Iterate over estimate details.
       details = EstimateDetail.where(estimate_id: @estimate.id, invoice_detail_id: nil)

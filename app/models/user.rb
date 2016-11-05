@@ -105,7 +105,7 @@ class User < ActiveRecord::Base
   end
 
   def has_cif?
-    self.country == 'ES' && self.tax_id =~ /^[a-z]\d{8}$/i
+    self.country == 'ES' && !(self.tax_id =~ /^[a-z]\d{8}$/i).nil?
   end
 
   private

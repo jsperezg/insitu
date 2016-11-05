@@ -121,7 +121,9 @@ RSpec.describe InvoicesController, type: :controller do
         invoice.reload
 
         new_attributes.each do |key, value|
-          expect(invoice[key]).to eq(new_attributes[key]), "#{ key }, #{ invoice[key] } != #{new_attributes[key]}"
+          unless key == :irpf
+            expect(invoice[key]).to eq(value), "#{ key }, #{ invoice[key] } != #{value}"
+          end
         end
       end
 
