@@ -167,18 +167,41 @@
       </aside>
 
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
-        <%= content_header %>
-        <section class="content">
-          <div class="alert alert-danger" role="alert" id="bip_error_message" style="display:none">
-          </div>
+      <%= premium_wrapper_tag do %>
+        <div class="content-wrapper">
+          <%= content_header %>
+          <section class="content">
+            <div class="alert alert-danger" role="alert" id="bip_error_message" style="display:none">
+            </div>
 
-          <%= bootstrap_flash %>
-          <%= yield %>
-        </section>
-      </div><!-- /.content-wrapper -->
+            <%= bootstrap_flash %>
+            <%= yield %>
+          </section>
+        </div><!-- /.content-wrapper -->
 
-      <%= render partial: 'layouts/footer' %>
+        <!-- Main Footer -->
+        <footer class="main-footer">
+          <%= render partial: 'layouts/footer' %>
+        </footer>
+      <% end %>
+
+      <% unless current_user.is_premium? %>
+        <!-- Ads Sidebar -->
+        <aside class="control-sidebar control-sidebar-open control-sidebar-dark">
+          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- Insitu adaptable -->
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-8841400963454302"
+               data-ad-slot="3897889077"
+               data-ad-format="auto"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </aside><!-- /.control-sidebar -->
+
+        <div class="control-sidebar-bg"></div>
+      <% end %>
     </div>
   </body>
 </html>

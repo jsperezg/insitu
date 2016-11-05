@@ -28,6 +28,7 @@ en:
         banned: Banned
         is_active: Active
         currency: Currency
+        reset_password_token: Password change request
 
       payment_method:
         name: Name
@@ -186,7 +187,6 @@ en:
     errors:
       messages:
         record_invalid: Invalid record
-        subscription_expired: Your subscription has expired. Please renew your subscription to continue.
       models:
         user:
           attributes:
@@ -207,6 +207,8 @@ en:
               admin_banned: "Administrators can't be banned."
             currency:
               blank: is mandatory.
+            reset_password_token:
+              invalid: has expired. Request a new password reset and try again.
         service:
           used_elsewhere: This service is being referenced from one or more documents and can not be deleted.
           attributes:

@@ -1,4 +1,4 @@
-class TimeLog < AbstractSubscriptionValidator
+class TimeLog < ActiveRecord::Base
   belongs_to :task
   belongs_to :service
   belongs_to :invoice_detail

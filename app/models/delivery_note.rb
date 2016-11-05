@@ -1,4 +1,4 @@
-class DeliveryNote < AbstractSubscriptionValidator
+class DeliveryNote < ActiveRecord::Base
 	include SequenceGenerator
 
   filterrific(

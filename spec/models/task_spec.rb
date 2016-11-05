@@ -37,13 +37,4 @@ RSpec.describe Task, type: :model do
     task.save
     expect(task.errors).to satisfy { |errors| errors.key? :priority }
   end
-
-  it 'expired user cant save delivery notes' do
-    Thread.current[:user] = create(:expired_user)
-    object = Task.new
-    object.save
-
-    expect(object.errors).to satisfy { |errors| !errors.empty? && errors.key?( :base )}
-    expect(object.errors[:base]).to include(I18n.t('activerecord.errors.messages.subscription_expired'))
-  end
 end

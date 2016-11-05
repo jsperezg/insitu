@@ -202,9 +202,23 @@ RSpec.describe EstimatesController, type: :controller do
         expect(details.invoice_detail.service_id).to eq(details.service_id)
         expect(details.invoice_detail.vat_rate).to eq(details.invoice_detail.service.vat.rate)
         expect(details.invoice_detail.price).to eq(details.price)
-
-        expect(response).to redirect_to(edit_user_invoice_path(@user, details.invoice_detail.invoice_id))
       end
+
+      expect(response).to redirect_to(edit_user_invoice_path(@user, estimate.estimate_details.first.invoice_detail.invoice_id))
+    end
+
+    it  'Generates the invoice for spanish customers' do
+      @user.update_attributes(country: 'ES', tax_id: '48299472R')
+
+      estimate = Estimate.create! valid_attributes
+      estimate.customer.update_attributes(irpf: 16)
+
+      get :invoice, { user_id: @user, id: estimate }
+
+      estimate.reload
+      invoice = estimate.estimate_details.first.invoice_detail.invoice
+      
+      expect(invoice.irpf).to eq(16)
     end
 
     it "Fails when no paying method available" do

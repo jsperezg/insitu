@@ -28,6 +28,7 @@ es:
         banned: Expulsado
         is_active: Activo
         currency: Divisa
+        reset_password_token: Solicitud para cambio de contraseña
       payment_method:
         name: Nombre
         note_for_invoice: Anotación en factura
@@ -187,7 +188,6 @@ es:
     errors:
       messages:
         record_invalid: Registro inválido
-        subscription_expired: Tu subscripción ha caducado. Por favor renueva tu subscripción antes de continuar.
       models:
         user:
           attributes:
@@ -208,6 +208,8 @@ es:
               admin_banned: ': Los administradores no pueden ser baneados.'
             currency:
               blank: es obligatoria.
+            reset_password_token:
+              invalid: ha caducado. Solicita un nuevo cambio de contraseña e intentalo de nuevo.
 
         service:
           used_elsewhere: Este servicio está siendo referenciado desde algún documento y no puede ser borrado.

@@ -1,4 +1,4 @@
-class InvoiceDetail < AbstractSubscriptionValidator
+class InvoiceDetail < ActiveRecord::Base
   belongs_to :invoice
   belongs_to :service
   has_one :time_log, dependent: :nullify

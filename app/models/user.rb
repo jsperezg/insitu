@@ -24,9 +24,10 @@ class User < ActiveRecord::Base
 
   def self.active_filter_options
     [
-        [I18n.t('users.only_active'), 'active'],
+        [I18n.t('users.all'), 'all'],
+        [I18n.t('users.only_premium'), 'premium'],
         [I18n.t('users.vip'), 'vip'],
-        [I18n.t('users.only_inactive'), 'inactive']
+        [I18n.t('users.only_free'), 'free']
     ]
   end
 
@@ -37,8 +38,9 @@ class User < ActiveRecord::Base
   scope :with_active_criteria, lambda { |filter |
     case filter
       when 'vip' then where(valid_until: nil)
-      when 'inactive' then where('valid_until < ?', Date.today)
-      else where('valid_until >= ? or valid_until is null', Date.today)
+      when 'free' then where('valid_until <= ?', Date.today)
+      when 'premium' then where('valid_until > ? or valid_until is null', Date.today)
+      else all
     end
   }
 
@@ -96,20 +98,8 @@ class User < ActiveRecord::Base
         self.country.present?
   end
 
-  def is_active?
-    self.valid_until.nil? || self.valid_until >= Date.today
-  end
-
-  def has_expired?
-    if self.valid_until.nil?
-      false
-    else
-      self.valid_until < Date.today
-    end
-  end
-
-  def is_about_to_expire?
-    self.valid_until >= Date.today && self.valid_until - 7.days <= Date.today
+  def is_premium?
+    self.valid_until.nil? || self.valid_until > Date.today
   end
 
   def is_administrator?
@@ -117,7 +107,7 @@ class User < ActiveRecord::Base
   end
 
   def has_cif?
-    self.country == 'ES' && self.tax_id =~ /^[a-z]\d{8}$/i
+    self.country == 'ES' && !(self.tax_id =~ /^[a-z]\d{8}$/i).nil?
   end
 
   def skip_confirmation!
@@ -157,7 +147,7 @@ class User < ActiveRecord::Base
     if is_administrator?
       self.valid_until = nil
     else
-      self.valid_until = Date.today + 12.months if self.valid_until.nil?
+      self.valid_until = Date.today if self.valid_until.nil?
     end
   end
 

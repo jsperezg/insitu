@@ -18,7 +18,7 @@ RSpec.describe IpnListenerController, type: :controller do
         post :create, paypal_renewal_request(user)
 
         user.reload
-        expect(user.is_active?).to be_truthy
+        expect(user.is_premium?).to be_truthy
       end
 
       it 'payment is created' do
@@ -54,7 +54,7 @@ RSpec.describe IpnListenerController, type: :controller do
         post :create, paypal_renewal_request(user)
 
         user.reload
-        expect(user.has_expired?).to be_truthy
+        expect(user.is_premium?).to be_falsey
       end
     end
 

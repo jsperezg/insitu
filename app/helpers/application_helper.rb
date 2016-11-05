@@ -122,4 +122,11 @@ module ApplicationHelper
 
     form.text_field :number, class: options[:class], required: true, autofocus: true, style: "text-transform:uppercase"
   end
+
+  def premium_wrapper_tag(&block)
+    content_class = current_user.is_premium? ? '' : 'control-sidebar-open'
+    content = capture(&block)
+
+    content_tag :div, content, class: content_class
+  end
 end

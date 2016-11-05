@@ -2,7 +2,7 @@ module PlansHelper
   require 'open-uri'
 
   def payment_buttons_tag
-    if current_user.has_expired?
+    unless current_user.is_premium?
       plans = Plan.where(is_active: true).order(months: :asc)
 
       content_tag :div, class: :row do

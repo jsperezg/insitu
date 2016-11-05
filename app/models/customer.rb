@@ -1,4 +1,4 @@
-class Customer < AbstractSubscriptionValidator
+class Customer < ActiveRecord::Base
   filterrific(
       default_filter_params: {
           sorted_by: 'name_asc'

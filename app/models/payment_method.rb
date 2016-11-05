@@ -1,4 +1,4 @@
-class PaymentMethod < AbstractSubscriptionValidator
+class PaymentMethod < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
   after_save :maintain_default_flag, on: [ :create, :update ]
