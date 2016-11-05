@@ -18,6 +18,7 @@ es:
     vip: VIPs
     only_premium: Solo Premium
     only_free: Solo gratuitos
+    all: Todos
     perpetual: Perpetua
     edit_title: Editar usuario
     ban_link: Ban

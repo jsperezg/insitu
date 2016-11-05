@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
 
   def self.active_filter_options
     [
+        [I18n.t('users.all'), 'all'],
         [I18n.t('users.only_premium'), 'premium'],
         [I18n.t('users.vip'), 'vip'],
         [I18n.t('users.only_free'), 'free']
@@ -36,7 +37,8 @@ class User < ActiveRecord::Base
     case filter
       when 'vip' then where(valid_until: nil)
       when 'free' then where('valid_until <= ?', Date.today)
-      else where('valid_until > ? or valid_until is null', Date.today)
+      when 'premium' then where('valid_until > ? or valid_until is null', Date.today)
+      else all
     end
   }
 
