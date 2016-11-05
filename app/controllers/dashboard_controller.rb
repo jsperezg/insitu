@@ -29,7 +29,7 @@ class DashboardController < SecuredController
                          .includes(invoice: [ :customer ])
                          .where('invoices.date': from_date..to_date)
                          .where.not('customers.irpf': nil)
-                         .sum('(1 - discount / 100) * price * quantity * (customers.irpf / 100)') if current_user.has_cif?
+                         .sum('(1 - discount / 100) * price * quantity * (customers.irpf / 100)') unless current_user.has_cif?
 
     result[:vat] = InvoiceDetail
                        .includes(:invoice)
