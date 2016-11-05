@@ -1,0 +1,1 @@
+json.(@reports, :past_year, :current_year, :current_month, :last_year)
