@@ -17,6 +17,7 @@
           <tr><td colspan="100%"><%=t 'helpers.tables.empty' %></td></tr>
       <% end %>
       <% customers.each do |customer| %>
+        <% cache customer do %>
           <tr>
             <td><%= best_in_place customer, :name, url: user_customer_path(current_user, customer, format: :json) %></td>
             <td class="hidden-xs hidden-sm"><%= best_in_place customer, :contact_name, url: user_customer_path(current_user, customer, format: :json) %></td>
@@ -42,6 +43,7 @@
               <% end %>
             </td>
           </tr>
+        <% end %>
       <% end %>
       </tbody>
     </table>

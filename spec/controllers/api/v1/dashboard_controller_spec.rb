@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe DashboardController, type: :controller do
+RSpec.describe Api::V1::DashboardController, type: :controller do
   before(:each) do
     @user = User.first || create(:user)
     sign_in @user
@@ -14,7 +14,7 @@ RSpec.describe DashboardController, type: :controller do
 
   describe "GET #index" do
     it "Return totals for four periods" do
-      get :index, {user_id: @user.id}
+      get :index, {user_id: @user.id, format: :json }
       expect(assigns(:reports).key?(:past_year)).to be_truthy
       expect(assigns(:reports).key?(:current_year)).to be_truthy
       expect(assigns(:reports).key?(:current_month)).to be_truthy

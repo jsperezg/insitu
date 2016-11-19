@@ -55,6 +55,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :plans, only: [:index]
       resources :dashboard, only: [:index]
+      resources :customers, only: [:index, :show, :create, :update, :destroy]
 
       devise_scope :user do
         post 'sessions' => 'sessions#create', :as => 'login'

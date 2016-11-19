@@ -1,3 +1,5 @@
 json.array!(@customers) do |customer|
-  json.extract! customer, :id, :name
+  json.cache! customer do
+    json.extract! customer, :id, :name
+  end
 end
