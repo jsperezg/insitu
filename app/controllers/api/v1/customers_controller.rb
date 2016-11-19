@@ -12,13 +12,19 @@ class Api::V1::CustomersController < ApiController
 
   def create
     @customer = Customer.new(customer_params)
-    @customer.save
-    render 'show'
+    if @customer.save
+      render 'show'
+    else
+      render json: ResponseFactory.get_response_for(@customer)
+    end
   end
 
   def update
-    @customer.update(customer_params)
-    render 'show'
+    if @customer.update(customer_params)
+      render 'show'
+    else
+      render json: ResponseFactory.get_response_for(@customer)
+    end
   end
 
   def destroy

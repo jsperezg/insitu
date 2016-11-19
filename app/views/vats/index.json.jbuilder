@@ -1,4 +1,5 @@
 json.array!(@vats) do |vat|
-  json.extract! vat, :id
-  json.url vat_url(vat, format: :json)
+  json.cache! vat do
+    json.extract! vat, :id, :label, :rate, :default
+  end
 end

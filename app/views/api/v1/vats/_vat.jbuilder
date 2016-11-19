@@ -1,0 +1,1 @@
+json.extract! customer, :id, :label, :rate, :default
