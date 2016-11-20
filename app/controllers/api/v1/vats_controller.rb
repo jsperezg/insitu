@@ -32,7 +32,7 @@ class Api::V1::VatsController < ApiController
     if @vat.update(vat_params)
       render 'show'
     else
-      render json: ResponseFactory.get_response_for(@customer)
+      render json: ResponseFactory.get_response_for(@vat)
     end
   end
 

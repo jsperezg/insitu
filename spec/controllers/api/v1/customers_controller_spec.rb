@@ -45,7 +45,7 @@ RSpec.describe Api::V1::CustomersController, type: :controller do
   describe "GET #index" do
     it "assigns all customers as @customers" do
       customer = Customer.create! valid_attributes
-      get :index, {user_id: @user.id, format: :json }
+      get :index, { format: :json }
       expect(assigns(:customers)).to eq([customer])
     end
   end
@@ -53,7 +53,7 @@ RSpec.describe Api::V1::CustomersController, type: :controller do
   describe "GET #show" do
     it "assigns the requested customer as @customer" do
       customer = Customer.create! valid_attributes
-      get :show, {user_id: @user.id, :id => customer.to_param, format: :json }
+      get :show, { :id => customer.to_param, format: :json }
       expect(assigns(:customer)).to eq(customer)
     end
   end
@@ -62,26 +62,27 @@ RSpec.describe Api::V1::CustomersController, type: :controller do
     context "with valid params" do
       it "creates a new Customer" do
         expect {
-          post :create, {user_id: @user.id, :customer => valid_attributes, format: :json}
+          post :create, { :customer => valid_attributes, format: :json }
         }.to change(Customer, :count).by(1)
       end
 
       it "assigns a newly created customer as @customer" do
-        post :create, {user_id: @user.id, :customer => valid_attributes, format: :json}
+        post :create, { :customer => valid_attributes, format: :json }
         expect(assigns(:customer)).to be_a(Customer)
         expect(assigns(:customer)).to be_persisted
       end
 
       it "returns 200 - ok" do
-        post :create, { user_id: @user.id, :customer => valid_attributes, format: :json}
+        post :create, { :customer => valid_attributes, format: :json}
         expect(response).to have_http_status(:ok)
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved customer as @customer" do
-        post :create, {user_id: @user.id, :customer => invalid_attributes, format: :json}
+        post :create, { :customer => invalid_attributes, format: :json}
         expect(assigns(:customer)).to be_a_new(Customer)
+        expect(assigns(:customer)).not_to be_persisted
       end
     end
   end
@@ -94,7 +95,7 @@ RSpec.describe Api::V1::CustomersController, type: :controller do
 
       it "updates the requested customer" do
         customer = Customer.create! valid_attributes
-        put :update, {user_id: @user.id, :id => customer.to_param, :customer => new_attributes, format: :json }
+        put :update, { :id => customer.to_param, :customer => new_attributes, format: :json }
         customer.reload
 
         new_attributes.each do |key, value|
@@ -104,13 +105,13 @@ RSpec.describe Api::V1::CustomersController, type: :controller do
 
       it "assigns the requested customer as @customer" do
         customer = Customer.create! valid_attributes
-        put :update, {user_id: @user.id, :id => customer.to_param, :customer => valid_attributes, format: :json }
+        put :update, {:id => customer.to_param, :customer => valid_attributes, format: :json }
         expect(assigns(:customer)).to eq(customer)
       end
 
       it "returns 200 - ok" do
         customer = Customer.create! valid_attributes
-        put :update, {user_id: @user.id, :id => customer.to_param, :customer => valid_attributes, format: :json }
+        put :update, { :id => customer.to_param, :customer => valid_attributes, format: :json }
         expect(response).to have_http_status(:ok)
       end
     end
@@ -118,7 +119,7 @@ RSpec.describe Api::V1::CustomersController, type: :controller do
     context "with invalid params" do
       it "assigns the customer as @customer" do
         customer = Customer.create! valid_attributes
-        put :update, {user_id: @user.id, :id => customer.to_param, :customer => invalid_attributes, format: :json }
+        put :update, { :id => customer.to_param, :customer => invalid_attributes, format: :json }
         expect(assigns(:customer)).to eq(customer)
       end
     end

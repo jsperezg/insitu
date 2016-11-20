@@ -97,6 +97,7 @@ RSpec.describe CustomersController, type: :controller do
       it "assigns a newly created but unsaved customer as @customer" do
         post :create, {user_id: @user.id, :customer => invalid_attributes}
         expect(assigns(:customer)).to be_a_new(Customer)
+        expect(assigns(:customer)).not_to be_persisted
       end
 
       it "re-renders the 'new' template" do
