@@ -16,37 +16,39 @@
               <tr><td colspan="4"><%=t 'helpers.tables.empty' %></td></tr>
           <% end %>
           <% @payment_methods.each do |payment_method| %>
-            <tr>
-              <td>
-                <%= best_in_place payment_method, :name, url: user_payment_method_path(current_user, payment_method, format: :json)  %>
-              </td>
-              <td>
-                <%= best_in_place payment_method, :default, as: :checkbox,
-                                  collection: {'true': t(:checkbox_true), 'false': t(:checkbox_false) },
-                                  url: user_payment_method_path(current_user, payment_method, format: :json) %>
-              </td>
-              <td>
-                <%= button_to edit_user_payment_method_path(current_user.id, payment_method),
-                              method: :get,
-                              class: 'btn btn-default btn-xs btn-block btn-flat' do %>
-                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                  <span class="hidden-xs">
-                    <%=t 'helpers.links.edit' %>
-                  </span>
-                <% end %>
-              </td>
-              <td>
-                <%= button_to user_payment_method_path(current_user.id, payment_method),
-                            method: :delete,
-                            data: { :confirm => t('helpers.links.confirm', default: 'Are you sure?') },
-                            class: 'btn btn-xs btn-danger btn-block btn-flat' do %>
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                  <span class="hidden-xs">
-                    <%=t 'helpers.links.destroy' %>
-                  </span>
-                <% end %>
-              </td>
-            </tr>
+            <% cache payment_method do %>
+              <tr>
+                <td>
+                  <%= best_in_place payment_method, :name, url: user_payment_method_path(current_user, payment_method, format: :json)  %>
+                </td>
+                <td>
+                  <%= best_in_place payment_method, :default, as: :checkbox,
+                                    collection: {'true': t(:checkbox_true), 'false': t(:checkbox_false) },
+                                    url: user_payment_method_path(current_user, payment_method, format: :json) %>
+                </td>
+                <td>
+                  <%= button_to edit_user_payment_method_path(current_user.id, payment_method),
+                                method: :get,
+                                class: 'btn btn-default btn-xs btn-block btn-flat' do %>
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    <span class="hidden-xs">
+                      <%=t 'helpers.links.edit' %>
+                    </span>
+                  <% end %>
+                </td>
+                <td>
+                  <%= button_to user_payment_method_path(current_user.id, payment_method),
+                              method: :delete,
+                              data: { :confirm => t('helpers.links.confirm', default: 'Are you sure?') },
+                              class: 'btn btn-xs btn-danger btn-block btn-flat' do %>
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    <span class="hidden-xs">
+                      <%=t 'helpers.links.destroy' %>
+                    </span>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>

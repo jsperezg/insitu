@@ -1,1 +1,1 @@
-json.extract! customer, :id, :label, :rate, :default
+json.extract! vat, :id, :label, :rate, :default
