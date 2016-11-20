@@ -57,6 +57,7 @@ Rails.application.routes.draw do
       resources :dashboard, only: [:index]
       resources :customers, only: [:index, :show, :create, :update, :destroy]
       resources :payment_methods, only: [:index, :show, :create, :update, :destroy]
+      resources :units, only: [:index, :show, :create, :update, :destroy]
       resources :vats, only: [:index, :show, :create, :update, :destroy]
 
       devise_scope :user do

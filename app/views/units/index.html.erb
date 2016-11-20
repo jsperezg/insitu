@@ -16,31 +16,33 @@
             <tr><td colspan="4"><%=t 'helpers.tables.empty' %></td></tr>
           <% end %>
           <% @units.each do |unit| %>
-            <tr>
-              <td><%= best_in_place unit, :label_short, url: user_unit_path(current_user, unit, format: :json) %></td>
-              <td><%= best_in_place unit, :label_long, url: user_unit_path(current_user, unit, format: :json) %></td>
-              <td>
-                <%= button_to edit_user_unit_path(current_user.id, unit),
-                              class: 'btn btn-default btn-xs btn-flat btn-block',
-                              method: :get do %>
-                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                  <span class="hidden-xs">
-                    <%=t 'helpers.links.edit' %>
-                  </span>
-                <% end %>
-              </td>
-              <td>
-                <%= button_to user_unit_path(current_user.id, unit),
-                            :method => :delete,
-                            :data => { :confirm => t('helpers.links.confirm', :default => 'Are you sure?') },
-                            :class => 'btn btn-xs btn-danger btn-flat btn-block' do %>
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                  <span class="hidden-xs">
-                    <%=t 'helpers.links.destroy' %>
-                  </span>
-                <% end %>
-              </td>
-            </tr>
+            <% cache unit do %>
+              <tr>
+                <td><%= best_in_place unit, :label_short, url: user_unit_path(current_user, unit, format: :json) %></td>
+                <td><%= best_in_place unit, :label_long, url: user_unit_path(current_user, unit, format: :json) %></td>
+                <td>
+                  <%= button_to edit_user_unit_path(current_user.id, unit),
+                                class: 'btn btn-default btn-xs btn-flat btn-block',
+                                method: :get do %>
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    <span class="hidden-xs">
+                      <%=t 'helpers.links.edit' %>
+                    </span>
+                  <% end %>
+                </td>
+                <td>
+                  <%= button_to user_unit_path(current_user.id, unit),
+                              :method => :delete,
+                              :data => { :confirm => t('helpers.links.confirm', :default => 'Are you sure?') },
+                              :class => 'btn btn-xs btn-danger btn-flat btn-block' do %>
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    <span class="hidden-xs">
+                      <%=t 'helpers.links.destroy' %>
+                    </span>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>
