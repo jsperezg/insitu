@@ -1,4 +1,6 @@
 class Vat < ActiveRecord::Base
+	include ApartmentCacheKeyGenerator
+
 	validates :label, presence: true
 	validates :rate, presence: true, numericality: { greater_than_or_equal_to: 0, only_integer: true }, uniqueness: true
 

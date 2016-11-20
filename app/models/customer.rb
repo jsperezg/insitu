@@ -1,4 +1,6 @@
 class Customer < ActiveRecord::Base
+  include ApartmentCacheKeyGenerator
+
   filterrific(
       default_filter_params: {
           sorted_by: 'name_asc'
@@ -67,9 +69,5 @@ class Customer < ActiveRecord::Base
 
     errors.add(:base, I18n.t('activerecord.errors.models.customer.used_elsewhere'))
     false
-  end
-
-  def cache_key
-    "#{ self.class.name }/#{ Apartment::Tenant.current }/#{ self.id }-#{ self.updated_at.try(:to_i) }"
   end
 end

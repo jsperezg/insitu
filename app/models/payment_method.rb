@@ -1,7 +1,9 @@
 class PaymentMethod < ActiveRecord::Base
+  include ApartmentCacheKeyGenerator
+
   validates :name, presence: true, uniqueness: true
 
-  after_save :maintain_default_flag, on: [ :create, :update ]
+  after_save :maintain_default_flag
 
   has_many :invoices
   before_destroy :validate_referential_integrity

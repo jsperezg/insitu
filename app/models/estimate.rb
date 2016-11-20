@@ -1,5 +1,6 @@
 class Estimate < ActiveRecord::Base
   include SequenceGenerator
+  include ApartmentCacheKeyGenerator
 
   filterrific(
       default_filter_params: {

@@ -1,4 +1,6 @@
 class DeliveryNoteDetail < ActiveRecord::Base
+  include ApartmentCacheKeyGenerator
+
   belongs_to :delivery_note
   belongs_to :service
   belongs_to :invoice_detail

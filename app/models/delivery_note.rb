@@ -1,5 +1,6 @@
 class DeliveryNote < ActiveRecord::Base
 	include SequenceGenerator
+  include ApartmentCacheKeyGenerator
 
   filterrific(
       default_filter_params: {

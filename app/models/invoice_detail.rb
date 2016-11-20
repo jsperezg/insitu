@@ -1,4 +1,6 @@
 class InvoiceDetail < ActiveRecord::Base
+  include ApartmentCacheKeyGenerator
+
   belongs_to :invoice
   belongs_to :service
   has_one :time_log, dependent: :nullify

@@ -1,4 +1,6 @@
 class Project < ActiveRecord::Base
+  include ApartmentCacheKeyGenerator
+
   filterrific(
       default_filter_params: {
         sorted_by: 'name_asc',
