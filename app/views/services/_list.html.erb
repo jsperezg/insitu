@@ -19,6 +19,7 @@
           <tr><td colspan="7"><%=t 'helpers.tables.empty' %></td></tr>
       <% end %>
       <% services.each do |service| %>
+        <% cache service do %>
           <tr>
             <td><%= best_in_place service, :code, url: user_service_path(current_user, service, format: :json) %></td>
             <td><%= best_in_place service, :description, url: user_service_path(current_user, service, format: :json) %></td>
@@ -63,6 +64,7 @@
               <% end %>
             </td>
           </tr>
+        <% end %>
       <% end %>
       </tbody>
     </table>
