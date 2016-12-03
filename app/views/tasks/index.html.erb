@@ -20,34 +20,36 @@
             <tr><td colspan="100%"><%=t 'helpers.tables.empty' %></td></tr>
           <% end %>
           <% @tasks.each do |task| %>
-            <%= task_tr task do %>
-              <td>
-                <%= best_in_place task, :name,
-                                  url: user_project_task_path(current_user, task.project, task, format: :json) %>
-              </td>
-              <td class="hidden-xs text-center"><%= ldate task[:dead_line] %></td>
-              <td class="hidden-xs text-center"><%= ldate task[:finish_date] %></td>
-              <td>
-                <%= link_to edit_user_project_task_path(current_user, task.project, task),
-                            class: 'btn btn-default btn-xs btn-flat btn-block',
-                            method: :get do %>
-                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                  <span class="hidden-xs">
-                    <%=t 'helpers.links.edit' %>
-                  </span>
-                <% end %>
-              </td>
-              <td>
-                <%= button_to user_project_task_path(current_user, task.project, task),
-                            :method => :delete,
-                            :data => { :confirm => t("helpers.links.confirm", :default => 'Are you sure?') },
-                            :class => 'btn btn-xs btn-danger btn-flat btn-block' do %>
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                  <span class="hidden-xs">
-                    <%=t 'helpers.links.destroy' %>
-                  </span>
-                <% end %>
-              </td>
+            <% cache task do %>
+              <%= task_tr task do %>
+                <td>
+                  <%= best_in_place task, :name,
+                                    url: user_project_task_path(current_user, task.project, task, format: :json) %>
+                </td>
+                <td class="hidden-xs text-center"><%= ldate task[:dead_line] %></td>
+                <td class="hidden-xs text-center"><%= ldate task[:finish_date] %></td>
+                <td>
+                  <%= link_to edit_user_project_task_path(current_user, task.project, task),
+                              class: 'btn btn-default btn-xs btn-flat btn-block',
+                              method: :get do %>
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    <span class="hidden-xs">
+                      <%=t 'helpers.links.edit' %>
+                    </span>
+                  <% end %>
+                </td>
+                <td>
+                  <%= button_to user_project_task_path(current_user, task.project, task),
+                              :method => :delete,
+                              :data => { :confirm => t("helpers.links.confirm", :default => 'Are you sure?') },
+                              :class => 'btn btn-xs btn-danger btn-flat btn-block' do %>
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    <span class="hidden-xs">
+                      <%=t 'helpers.links.destroy' %>
+                    </span>
+                  <% end %>
+                </td>
+              <% end %>
             <% end %>
           <% end %>
         </tbody>

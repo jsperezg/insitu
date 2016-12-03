@@ -15,7 +15,7 @@ RSpec.describe "tasks/show", type: :view do
     sign_out @user
   end
 
-  it "renders attributes in <p>" do
+  skip "renders attributes in <p>" do
     render
   end
 end

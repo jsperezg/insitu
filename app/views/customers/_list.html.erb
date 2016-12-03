@@ -4,7 +4,9 @@
     <table class="table table-striped">
       <thead>
       <tr>
-        <th class="col-xs-8 col-md-3"><%= model_class.human_attribute_name(:name) %></th>
+        <th class="col-xs-8 col-md-3">
+          <%= filterrific_sorting_link(@filterrific, :name, label: model_class.human_attribute_name(:name)) %>
+        </th>
         <th class="hidden-xs hidden-sm col-md-3"><%= model_class.human_attribute_name(:contact_name) %></th>
         <th class="hidden-xs col-md-1"><%= model_class.human_attribute_name(:contact_phone) %></th>
         <th class="hidden-xs col-md-3"><%= model_class.human_attribute_name(:contact_email) %></th>

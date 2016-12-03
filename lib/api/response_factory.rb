@@ -7,5 +7,9 @@ module Api
         { error: true, errors: model.errors.full_messages }
       end
     end
+
+    def self.error_response(message)
+      { error: true, errors: [ message ] }
+    end
   end
 end

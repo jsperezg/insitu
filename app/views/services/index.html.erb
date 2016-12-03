@@ -15,11 +15,6 @@
             <%= f.select :with_active_criteria, @filterrific.select_options[:with_active_criteria], {}, { class: 'filterrific-periodically-observed form-control input-sm' } %>
           </div>
 
-          <div class="form-group col-md-2 col-sm-3 col-xs-4">
-            <%= f.label :sorted_by, t('filterrific.sorted_by'), :class => 'control-label' %>
-            <%= f.select :sorted_by, @filterrific.select_options[:sorted_by], {}, { class: 'filterrific-periodically-observed form-control input-sm' } %>
-          </div>
-
           <%= link_to t('filterrific.reset_filters'), reset_filterrific_url, class: 'btn btn-default pull-down col-md-1 col-sm-2 col-xs-2' %>
 
           <%# add an automated spinner to your form when the list is refreshed %>

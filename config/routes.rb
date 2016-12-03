@@ -60,7 +60,13 @@ Rails.application.routes.draw do
       resources :services, only: [ :index, :show, :create, :update, :destroy ]
       resources :units, only: [:index, :show, :create, :update, :destroy]
       resources :vats, only: [:index, :show, :create, :update, :destroy]
-      resources :projects, only: [:index, :show, :create, :update, :destroy]
+      resources :projects, only: [:index, :show, :create, :update, :destroy] do
+        resources :tasks, only: [:index, :show, :create, :update, :destroy] do
+          collection do
+            get :invoice_finished
+          end
+        end
+      end
 
       devise_scope :user do
         post 'sessions' => 'sessions#create', :as => 'login'

@@ -31,17 +31,15 @@ class TasksController < SecuredController
   # POST /tasks
   # POST /tasks.json
   def create
-    Task.transaction  do
-      @task = Task.create(task_params)
+    @task = Task.new(task_params)
 
-      respond_to do |format|
-        if @task.valid?
-          format.html { redirect_to edit_user_project_task_url(current_user, @project, @task), notice: t(:successfully_created, item: t('tasks.task')) }
-          format.json { render :show, status: :created, location: @task }
-        else
-          format.html { render :new }
-          format.json { render json: @task.errors, status: :unprocessable_entity }
-        end
+    respond_to do |format|
+      if @task.save
+        format.html { redirect_to edit_user_project_task_url(current_user, @project, @task), notice: t(:successfully_created, item: t('tasks.task')) }
+        format.json { render :show, status: :created, location: @task }
+      else
+        format.html { render :new }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -72,12 +70,10 @@ class TasksController < SecuredController
 
   # Generate invoice for finished tasks.
   def invoice_finished
-    project = Project.find(params[:project_id])
-
     payment_method = PaymentMethod.find_by(default: true) || PaymentMethod.first
     unless payment_method
       flash[:alert] = t('payment_methods.not_found')
-      redirect_to user_project_tasks_path(current_user, project)
+      redirect_to user_project_tasks_path(current_user, @project)
       return
     end
 
@@ -85,7 +81,7 @@ class TasksController < SecuredController
       invoice = Invoice.create(
         date: Date.today,
         payment_date: Date.today + 15.days,
-        customer_id: project.customer_id,
+        customer_id: @project.customer_id,
         payment_method_id: payment_method.id,
         irpf: 0
       )
@@ -93,29 +89,14 @@ class TasksController < SecuredController
       invoice.apply_irpf(current_user)
 
       # Iterate over finished tasks.
-      tasks = Task.retrieve_project_tasks(project.id).where.not(finish_date: :nil)
+      tasks = Task.retrieve_finished_tasks(@project.id)
       tasks.each do |task|
-        # Iterate over non billed time records.
-        time_logs = TimeLog.where(task_id: task.id, invoice_detail_id: nil)
-        time_logs.each do |time_log|
-          invoice_detail = InvoiceDetail.create(
-            invoice_id: invoice.id,
-            service_id: time_log.service_id,
-            vat_rate: time_log.service.vat.rate,
-            price: time_log.service.price,
-            discount: 0,
-            description: time_log.description,
-            quantity: time_log.time_spent / 60
-          )
-
-          time_log.invoice_detail_id = invoice_detail.id
-          time_log.save
-        end
+        task.invoice_timelogs_into(invoice)
       end
 
       if invoice.invoice_details.empty?
         flash[:alert] = t('tasks.no_pending_tasks')
-        redirect_to user_project_tasks_path(current_user, project)
+        redirect_to user_project_tasks_path(current_user, @project)
         raise ActiveRecord::Rollback
       else
         redirect_to edit_user_invoice_path(current_user, invoice)

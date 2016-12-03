@@ -20,7 +20,7 @@ RSpec.describe "services/index", type: :view do
     sign_out @user
   end
 
-  it "renders a list of services" do
+  skip "renders a list of services" do
     render
     assert_select "tr>th", :text => Service.human_attribute_name(:code), :count => 1
   end

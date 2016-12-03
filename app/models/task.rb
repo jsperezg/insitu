@@ -26,6 +26,28 @@ class Task < ActiveRecord::Base
     Task.includes(:project).where(project_id: project_id)
   end
 
+  def self.retrieve_finished_tasks(project_id)
+    self.retrieve_project_tasks(project_id).where.not(finish_date: :nil)
+  end
+
+  def invoice_timelogs_into(invoice)
+    time_logs = TimeLog.where(task_id: self.id, invoice_detail_id: nil)
+    time_logs.each do |time_log|
+      invoice_detail = InvoiceDetail.create!(
+          invoice_id: invoice.id,
+          service_id: time_log.service_id,
+          vat_rate: time_log.service.vat.rate,
+          price: time_log.service.price,
+          discount: 0,
+          description: time_log.description,
+          quantity: time_log.time_spent / 60
+      )
+
+      time_log.invoice_detail_id = invoice_detail.id
+      time_log.save!
+    end
+  end
+
   private
 
   def set_default_values

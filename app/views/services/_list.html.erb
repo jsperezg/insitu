@@ -4,12 +4,18 @@
     <table class="table table-striped">
       <thead>
       <tr>
-        <th class="col-md-1 col-sm-1 col-xs-2"><%= model_class.human_attribute_name(:code) %></th>
-        <th><%= model_class.human_attribute_name(:description) %></th>
+        <th class="col-md-1 col-sm-1 col-xs-2">
+          <%= filterrific_sorting_link(@filterrific, :code, label: model_class.human_attribute_name(:code)) %>
+        </th>
+        <th>
+          <%= filterrific_sorting_link(@filterrific, :description, label: model_class.human_attribute_name(:description)) %>
+        </th>
         <th class="hidden-xs col-sm-1 col-md-1"><%= model_class.human_attribute_name(:vat_id) %></th>
         <th class="hidden-xs hidden-sm col-md-1"><%= model_class.human_attribute_name(:unit_id) %></th>
         <th class="hidden-xs col-sm-1 col-md-1 text-right"><%= model_class.human_attribute_name(:price) %></th>
-        <th class="hidden-xs hidden-sm col-md-1"><%= model_class.human_attribute_name(:active) %></th>
+        <th class="hidden-xs hidden-sm col-md-1">
+          <%= filterrific_sorting_link(@filterrific, :active, label: model_class.human_attribute_name(:active)) %>
+        </th>
         <th class="col-md-1 col-sm-2 col-xs-2"></th>
         <th class="col-md-1 col-sm-2 col-xs-2"></th>
       </tr>
