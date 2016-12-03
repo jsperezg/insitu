@@ -16,6 +16,7 @@
           <tr><td colspan="5"><%=t 'helpers.tables.empty' %></td></tr>
       <% end %>
       <% projects.each do |project| %>
+        <% cache project do %>
           <tr>
             <td>
               <%= best_in_place project, :name,
@@ -54,6 +55,7 @@
               <% end %>
             </td>
           </tr>
+        <% end %>
       <% end %>
       </tbody>
     </table>
