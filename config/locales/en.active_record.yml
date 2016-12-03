@@ -7,7 +7,7 @@ en:
       delivery_note: Delivery note
       plan: Price plan
       user: User
-      payment: Pago
+      payment: Payment
     attributes:
       user:
         tax_id: VAT ID
@@ -38,14 +38,14 @@ en:
         code: Code
         description: Description
         vat: VAT
-        unit: Unidades
+        unit: Units
         price: Price
         active: Active
-        unit_id: Unidades
+        unit_id: Unit Id
       customer:
         name: Name
         tax_id: TAX Id.
-        billing_serie: Billing serie
+        billing_serie: Billing series
         irpf: I.R.P.F.
         contact_name: Contact name
         contact_phone: Phone
@@ -65,7 +65,7 @@ en:
         description: Description
         project_id: Project
         finish_date: Finish date
-        dead_line: Dead line
+        dead_line: Deadline
         priority: Priority
       time_log:
         description: Description
@@ -343,7 +343,7 @@ en:
               blank: is mandatory.
               greater_than_or_equal_to: "must be greater or equal to %{count}%."
               not_a_number: isn't a number.
-              not_an_integer: must be an integer value.
+              not_an_integer: must be an integer.
         estimate:
           attributes:
             number:
@@ -391,12 +391,12 @@ en:
               blank: is mandatory.
               not_a_number: must be a number.
               greater_than: "must be greater than %{count}."
-              not_an_integer: must be an integer value.
+              not_an_integer: must be an integer.
             vat_rate:
               blank: is mandatory.
               not_a_number: must be a number.
               greater_than: "must be greater than %{count}."
-              not_an_integer: must be an integer value.
+              not_an_integer: must be an integer.
             is_active:
               blank: is mandatory.
 
@@ -411,7 +411,7 @@ en:
               too_long: "%{count} characters is the maximum allowed"
             receiver_email:
               blank: is mandatory.
-              invalid_value: Receiver email %{ email } is not allowed.
+              invalid_value: "Receiver email %{ email } is not allowed."
               too_long: "%{count} characters is the maximum allowed"
             receiver_id:
               blank: is mandatory.

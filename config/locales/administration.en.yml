@@ -22,7 +22,7 @@ en:
     ban_link: Ban
     successfully_banned: The user has been banned.
     account_blocked: This account is blocked. Please contact the administrator.
-    account_premium_message: You are using a free account. Change to premium and use the app without advertisments.
+    account_premium_message: You are using a free account. Change to premium to use the app without advertisments.
     premium_title: Premium subscription
     invoice_data_missing_error: You must fill your invoicing data in order to renew your subscription.
-    renew_request_processed: Your renewal request has been received and will be processed within the next few hours. However do not hesitate to contact us through billing@insitu.tools if you have any question.
+    renew_request_processed: Your renewal request has been received and will be processed shortly. Do not hesitate to contact us through billing@insitu.tools if you have any question.
