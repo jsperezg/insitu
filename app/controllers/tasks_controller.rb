@@ -6,7 +6,7 @@ class TasksController < SecuredController
   # GET /tasks.json
   def index
     @tasks = Task
-                 .includes(:project)
+                 .retrieve_project_tasks(params[:project_id])
                  .paginate(page: params[:page], per_page: DEFAULT_ITEMS_PER_PAGE)
                  .order(finish_date: :asc, priority: :desc, dead_line: :asc)
   end
@@ -93,7 +93,7 @@ class TasksController < SecuredController
       invoice.apply_irpf(current_user)
 
       # Iterate over finished tasks.
-      tasks = Task.where(project_id: project).where.not(finish_date: :nil)
+      tasks = Task.retrieve_project_tasks(project.id).where.not(finish_date: :nil)
       tasks.each do |task|
         # Iterate over non billed time records.
         time_logs = TimeLog.where(task_id: task.id, invoice_detail_id: nil)

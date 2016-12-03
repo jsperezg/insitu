@@ -20,6 +20,10 @@ class Task < ActiveRecord::Base
     result
   }, :allow_destroy => true
 
+  def self.retrieve_project_tasks(project_id)
+    Task.includes(:project).where(project_id: project_id)
+  end
+
   private
 
   def set_default_values
