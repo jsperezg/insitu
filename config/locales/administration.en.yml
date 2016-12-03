@@ -18,6 +18,7 @@ en:
     only_premium: Only premium
     only_free: Only free
     all: All
+    perpetual: Perpetual
     edit_title: Edit user
     ban_link: Ban
     successfully_banned: The user has been banned.
