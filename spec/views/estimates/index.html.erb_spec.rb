@@ -20,7 +20,7 @@ RSpec.describe "estimates/index", type: :view do
     sign_out @user
   end
 
-  it "renders a list of estimates" do
+  skip "renders a list of estimates" do
     render
   end
 end

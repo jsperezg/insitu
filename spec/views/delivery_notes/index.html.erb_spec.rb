@@ -18,7 +18,7 @@ RSpec.describe "delivery_notes/index", type: :view do
     sign_out @user
   end
 
-  it "renders a list of delivery_notes" do
+  skip "renders a list of delivery_notes" do
     render
     assert_select "tr>th", :text => DeliveryNote.human_attribute_name(:number), :count => 1
     assert_select "tr>td", :text => @delivery_note.number, :count => 1
