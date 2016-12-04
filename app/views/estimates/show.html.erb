@@ -1,8 +1,7 @@
 <%- model_class = Estimate -%>
-<% content_for :title, "#{ Estimate.model_name.human } #{ @estimate.number}" %>
+  <% content_for :title, "#{ Estimate.model_name.human } #{ @estimate.number}" %>
 
-<section class="invoice">
-  <% cache @estimage do %>
+  <section class="invoice">
     <!-- title row -->
     <div class="row">
       <!-- info row -->
@@ -33,7 +32,6 @@
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div>
-  <% end %>
 
   <!-- Table row -->
   <div class="row">
