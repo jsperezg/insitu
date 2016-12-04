@@ -1,0 +1,1 @@
+json.partial! 'estimate', estimate: @estimate
