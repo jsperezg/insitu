@@ -1,0 +1,1 @@
+json.extract! invoice_status, :id, :name

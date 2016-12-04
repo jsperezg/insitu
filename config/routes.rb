@@ -53,6 +53,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      resources :estimate_statuses, only: [:index, :show]
+      resources :invoice_statuses, only: [:index, :show]
+      resources :project_statuses, only: [:index, :show]
       resources :plans, only: [:index]
       resources :dashboard, only: [:index]
       resources :customers, only: [:index, :show, :create, :update, :destroy]
