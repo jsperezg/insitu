@@ -1,4 +1,4 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_vat_path(@vat) %> |
-<%= link_to 'Back', vats_path %>
+<%= link_to 'Edit', edit_user_vat_path(current_user,  @vat) %> |
+<%= link_to 'Back', user_vats_path(current_user) %>

@@ -6,10 +6,7 @@ class CustomersController < SecuredController
   def index
     @filterrific = initialize_filterrific(
         Customer,
-        params[:filterrific],
-        select_options: {
-            sorted_by: Customer.options_for_sorted_by
-        }
+        params[:filterrific]
     ) or return
 
     respond_to do |format|
@@ -24,6 +21,8 @@ class CustomersController < SecuredController
       format.json {
         if params[:name]
           @customers = Customer.where('name like ?', "%#{ params[:name] }%").order(name: :asc)
+        else
+          @customers = Customer.order(name: :asc)
         end
       }
     end

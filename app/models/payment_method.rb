@@ -12,7 +12,9 @@ class PaymentMethod < ActiveRecord::Base
 
   def maintain_default_flag
     if self.default
-      PaymentMethod.where(default: true).where.not(id: self.id).update_all(default: false)
+      PaymentMethod.where(default: true).where.not(id: self.id).each do |payment_method|
+        payment_method.update(default: false)
+      end
     end
   end
 

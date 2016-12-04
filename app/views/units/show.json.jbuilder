@@ -1,1 +1,3 @@
-json.extract! @unit, :id, :created_at, :updated_at
+json.cache! @unit do
+  json.extract! @unit, :id, :label_short, :label_long
+end

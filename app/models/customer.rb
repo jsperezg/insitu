@@ -13,27 +13,18 @@ class Customer < ActiveRecord::Base
 
   self.per_page = DEFAULT_ITEMS_PER_PAGE
 
-  def self.options_for_sorted_by
-    [
-        [I18n.t('filterrific.sort_by_name_desc'), 'name_desc'],
-        [I18n.t('filterrific.sort_by_name_asc'), 'name_asc']
-    ]
-  end
-
   scope :with_filter_criteria, lambda { |filter|
     where('name like :filter or contact_name like :filter or contact_email like :filter or send_invoices_to like :filter', filter: "%#{filter}%")
   }
 
   scope :sorted_by, lambda { |sort_by|
-    case sort_by
-      when 'name_asc'
-        order(name: :asc)
-
-      when 'name_desc'
-        order(name: :desc)
-
-      else
-        order(name: :asc)
+    parts = sort_by.split('_')
+    if parts.empty?
+      order(name: :asc)
+    else
+      sort_criteria = {}
+      sort_criteria[parts[0].parameterize.underscore.to_sym] = parts[1].to_sym
+      order(sort_criteria)
     end
   }
 
@@ -43,9 +34,10 @@ class Customer < ActiveRecord::Base
   validates :tax_id, uniqueness: { case_sensitive: false, allow_blank: true}
   validates :irpf, numericality: { greater_than_or_equal_to: 0, only_integer: true, allow_blank: true }
 
-  has_many :invoices
-  has_many :estimates
-  has_many :delivery_notes
+  has_many :invoices, dependent: :restrict_with_error
+  has_many :estimates, dependent: :restrict_with_error
+  has_many :delivery_notes, dependent: :restrict_with_error
+  has_many :projects, dependent: :restrict_with_error
 
   before_destroy :validate_referential_integrity
 

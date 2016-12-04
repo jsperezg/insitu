@@ -1,1 +1,3 @@
-json.extract! @vat, :id, :created_at, :updated_at
+json.cache! @vat do
+  json.extract! @vat, :id, :label, :rate, :default
+end

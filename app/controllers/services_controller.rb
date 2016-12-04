@@ -8,7 +8,6 @@ class ServicesController < SecuredController
         Service,
         params[:filterrific],
         select_options: {
-            sorted_by: Service.options_for_sorted_by,
             with_active_criteria: Service.active_filter_options
         }
 

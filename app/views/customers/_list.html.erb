@@ -7,9 +7,15 @@
         <th class="col-xs-8 col-md-3">
           <%= filterrific_sorting_link(@filterrific, :name, label: model_class.human_attribute_name(:name)) %>
         </th>
-        <th class="hidden-xs hidden-sm col-md-3"><%= model_class.human_attribute_name(:contact_name) %></th>
-        <th class="hidden-xs col-md-1"><%= model_class.human_attribute_name(:contact_phone) %></th>
-        <th class="hidden-xs col-md-3"><%= model_class.human_attribute_name(:contact_email) %></th>
+        <th class="hidden-xs hidden-sm col-md-3">
+          <%= filterrific_sorting_link(@filterrific, 'contact name', label: model_class.human_attribute_name(:contact_name)) %>
+        </th>
+        <th class="hidden-xs col-md-1">
+          <%= filterrific_sorting_link(@filterrific, 'contact phone', label: model_class.human_attribute_name(:contact_phone)) %>
+        </th>
+        <th class="hidden-xs col-md-3">
+          <%= filterrific_sorting_link(@filterrific, 'contact email', label: model_class.human_attribute_name(:contact_email)) %>
+        </th>
         <th class="col-md-1 col-sm-2 col-xs-2"></th>
         <th class="col-md-1 col-sm-2- col-xs-2"></th>
       </tr>

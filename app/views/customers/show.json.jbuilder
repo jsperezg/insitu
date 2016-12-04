@@ -1,3 +1,3 @@
-cache @customer do
-  json.extract! @customer, :id, :created_at, :updated_at
+json.cache! @customer do
+  json.extract! @customer, :id, :name, :tax_id, :billing_serie, :irpf, :contact_name, :contact_phone, :contact_email, :address, :city, :postal_code, :state, :country, :send_invoices_to
 end

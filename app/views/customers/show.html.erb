@@ -1,31 +1,33 @@
-<%- model_class = Customer -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
-</div>
+<% cache @customer do %>
+  <%- model_class = Customer -%>
+  <div class="page-header">
+    <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @customer.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:tax_id) %>:</strong></dt>
-  <dd><%= @customer.tax_id %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:billing_serie) %>:</strong></dt>
-  <dd><%= @customer.billing_serie %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:irpf) %>:</strong></dt>
-  <dd><%= @customer.irpf %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:contact_name) %>:</strong></dt>
-  <dd><%= @customer.contact_name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:contact_phone) %>:</strong></dt>
-  <dd><%= @customer.contact_phone %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:contact_email) %>:</strong></dt>
-  <dd><%= @customer.contact_email %></dd>
-</dl>
+  <dl class="dl-horizontal">
+    <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+    <dd><%= @customer.name %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:tax_id) %>:</strong></dt>
+    <dd><%= @customer.tax_id %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:billing_serie) %>:</strong></dt>
+    <dd><%= @customer.billing_serie %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:irpf) %>:</strong></dt>
+    <dd><%= @customer.irpf %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:contact_name) %>:</strong></dt>
+    <dd><%= @customer.contact_name %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:contact_phone) %>:</strong></dt>
+    <dd><%= @customer.contact_phone %></dd>
+    <dt><strong><%= model_class.human_attribute_name(:contact_email) %>:</strong></dt>
+    <dd><%= @customer.contact_email %></dd>
+  </dl>
 
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              customers_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_customer_path(@customer), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              customer_path(@customer),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+                user_customers_path(current_user), :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                edit_user_customer_path(current_user, @customer), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                user_customer_path(current_user, @customer),
+                :method => 'delete',
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                :class => 'btn btn-danger' %>
+<% end %>

@@ -15,17 +15,6 @@ class Service < ActiveRecord::Base
 
   self.per_page = DEFAULT_ITEMS_PER_PAGE
 
-  def self.options_for_sorted_by
-    [
-        [ "#{ Service.human_attribute_name(:code) } (#{I18n.t('filterrific.sort_alpha_asc')})", 'code_asc'],
-        [ "#{ Service.human_attribute_name(:code) } (#{I18n.t('filterrific.sort_alpha_desc')})", 'code_desc'],
-        [ "#{ Service.human_attribute_name(:description) } (#{I18n.t('filterrific.sort_alpha_asc')})", 'description_asc'],
-        [ "#{ Service.human_attribute_name(:description) } (#{I18n.t('filterrific.sort_alpha_desc')})", 'description_desc'],
-        [ "#{ Service.human_attribute_name(:active) } (#{I18n.t('filterrific.sort_alpha_desc')})", 'active_asc'],
-        [ "#{ Service.human_attribute_name(:active) } (#{I18n.t('filterrific.sort_alpha_desc')})", 'active_desc']
-    ]
-  end
-
   def self.active_filter_options
     [
       [I18n.t('services.only_active'), '1'],
@@ -45,27 +34,18 @@ class Service < ActiveRecord::Base
   }
 
   scope :sorted_by, lambda { |sort_by|
-    case sort_by
-      when 'code_asc'
-        order(code: :asc)
+    parts = sort_by.split('_')
 
-      when 'code_desc'
-        order(code: :desc)
-
-      when 'description_asc'
-        order(description: :asc)
-
-      when 'description_desc'
-        order(description: :desc)
-
-      when 'active_asc'
-        order(active: :asc)
-
-      when 'active_desc'
-        order(active: :desc)
-
-      else
-        order(code: :asc)
+    if parts.empty?
+      order(code:  :asc)
+    elsif parts[0] == 'unit'
+      joins(:unit).order("units.label_short #{ parts[1] }")
+    elsif parts[0] == 'vat'
+      joins(:vat).order("vats.rate #{ parts[1] }")
+    else
+      sort_criteria = {}
+      sort_criteria[parts[0].to_sym] = parts[1].to_sym
+      order(sort_criteria)
     end
   }
 
@@ -80,9 +60,10 @@ class Service < ActiveRecord::Base
 
   after_initialize :set_default_values
 
-  has_many :invoice_details
-  has_many :estimate_details
-  has_many :delivery_note_details
+  has_many :invoice_details, dependent: :restrict_with_error
+  has_many :estimate_details, dependent: :restrict_with_error
+  has_many :delivery_note_details, dependent: :restrict_with_error
+  has_many :time_logs, dependent: :restrict_with_error
 
   before_destroy :validate_referential_integrity
 
