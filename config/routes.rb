@@ -82,6 +82,13 @@ Rails.application.routes.draw do
         end
       end
 
+      resources :invoices, only: [:index, :show, :create, :update, :destroy] do
+        member do
+          get :print
+        end
+      end
+
+
       devise_scope :user do
         post 'sessions' => 'sessions#create', :as => 'login'
         delete 'sessions' => 'sessions#destroy', :as => 'logout'

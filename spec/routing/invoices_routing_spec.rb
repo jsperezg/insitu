@@ -19,7 +19,7 @@ RSpec.describe InvoicesController, type: :routing do
       expect(:get => "/users/1/invoices/1/print").to route_to("invoices#print", :id => "1", user_id: '1')
     end
 
-    it "routes to #print" do
+    it "routes to #forward_email" do
       expect(:get => "/users/1/invoices/1/forward_email").to route_to("invoices#forward_email", :id => "1", user_id: '1')
     end
 
