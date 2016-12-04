@@ -68,6 +68,13 @@ Rails.application.routes.draw do
         end
       end
 
+      resources :estimates, only: [:index, :show, :create, :update, :destroy] do
+        member do
+          get :print
+          get :invoice
+        end
+      end
+
       devise_scope :user do
         post 'sessions' => 'sessions#create', :as => 'login'
         delete 'sessions' => 'sessions#destroy', :as => 'logout'

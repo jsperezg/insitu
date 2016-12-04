@@ -20,44 +20,47 @@
       <% if estimates.empty? %>
           <tr><td colspan="0"><%=t 'helpers.tables.empty' %></td></tr>
       <% end %>
-      <% estimates.each do |estimate| %>
-          <%= estimate_tr estimate do %>
-              <td><%= estimate.number %></td>
-              <td class="text-center hidden-xs hidden-sm"><%=ldate estimate.date %></td>
-              <td><%= estimate.customer.try(:name) %></td>
-              <td class="text-center hidden-xs hidden-sm"><%=ldate estimate.valid_until %></td>
-              <td class="text-right hidden-xs"><%= number_to_currency(estimate.total, unit: current_user.currency, format: '%n %u') %></td>
-              <td>
-                <%= button_to edit_user_estimate_path(current_user, estimate),
-                              method: :get,
-                              class: 'btn btn-default btn-xs btn-flat btn-block' do %>
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    <span class="hidden-xs">
-                      <%=t 'helpers.links.edit' %>
-                    </span>
-                <% end %>
-              </td>
-              <td class="hidden-xs hidden-sm">
-                <%= button_to user_estimate_path(current_user, estimate),
-                              method: :get,
-                              class: 'btn btn-default btn-xs btn-flat btn-block' do %>
-                    <i class="fa fa-print" aria-hidden="true"></i>
-                    <%=t 'helpers.links.print' %>
 
-                <% end %>
-              </td>
-              <td>
-                <%= button_to user_estimate_path(current_user, estimate),
-                              :method => :delete,
-                              :data => { :confirm => t('helpers.links.confirm', :default => 'Are you sure?') },
-                              :class => 'btn btn-xs btn-danger btn-block btn-flat' do %>
-                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                    <span class="hidden-xs">
-                      <%=t 'helpers.links.destroy' %>
-                    </span>
-                <% end %>
-              </td>
+      <% estimates.each do |estimate| %>
+        <% cache estimate do %>
+          <%= estimate_tr estimate do %>
+            <td><%= estimate.number %></td>
+            <td class="text-center hidden-xs hidden-sm"><%=ldate estimate.date %></td>
+            <td><%= estimate.customer.try(:name) %></td>
+            <td class="text-center hidden-xs hidden-sm"><%=ldate estimate.valid_until %></td>
+            <td class="text-right hidden-xs"><%= number_to_currency(estimate.total, unit: current_user.currency, format: '%n %u') %></td>
+            <td>
+              <%= button_to edit_user_estimate_path(current_user, estimate),
+                            method: :get,
+                            class: 'btn btn-default btn-xs btn-flat btn-block' do %>
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  <span class="hidden-xs">
+                    <%=t 'helpers.links.edit' %>
+                  </span>
+              <% end %>
+            </td>
+            <td class="hidden-xs hidden-sm">
+              <%= button_to user_estimate_path(current_user, estimate),
+                            method: :get,
+                            class: 'btn btn-default btn-xs btn-flat btn-block' do %>
+                  <i class="fa fa-print" aria-hidden="true"></i>
+                  <%=t 'helpers.links.print' %>
+
+              <% end %>
+            </td>
+            <td>
+              <%= button_to user_estimate_path(current_user, estimate),
+                            :method => :delete,
+                            :data => { :confirm => t('helpers.links.confirm', :default => 'Are you sure?') },
+                            :class => 'btn btn-xs btn-danger btn-block btn-flat' do %>
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                  <span class="hidden-xs">
+                    <%=t 'helpers.links.destroy' %>
+                  </span>
+              <% end %>
+            </td>
           <% end %>
+        <% end %>
       <% end %>
       </tbody>
     </table>

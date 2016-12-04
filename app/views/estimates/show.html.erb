@@ -2,37 +2,38 @@
 <% content_for :title, "#{ Estimate.model_name.human } #{ @estimate.number}" %>
 
 <section class="invoice">
-  <!-- title row -->
-  <div class="row">
-
-    <!-- info row -->
-    <div class="row invoice-info">
-      <div class="col-sm-4 invoice-col">
-        <%= render 'layouts/user_address' %>
-      </div><!-- /.col -->
-      <div class="col-sm-4 invoice-col">
-        <%= render 'layouts/customer_address', customer: @estimate.customer %>
-      </div><!-- /.col -->
-      <div class="col-sm-4 invoice-col">
-        <table class="table table-condensed borderless">
-          <tr>
-            <th class="col-xs-9 text-right"><%= Estimate.model_name.human %>:</th>
-            <td class="text-right"><%= @estimate.number %></td>
-          </tr>
-          <tr>
-            <th class="col-xs-9 text-right"><%= model_class.human_attribute_name(:date) %>:</th>
-            <td class="text-right"><%=l @estimate[:date] %></td>
-          </tr>
-          <% unless @estimate.valid_until.nil? %>
-          <tr>
-            <th class="col-xs-9 text-right"><%= model_class.human_attribute_name(:valid_until) %>:</th>
-            <td class="text-right"><%=ldate @estimate.valid_until %></td>
-          </tr>
-          <% end %>
-        </table>
-      </div><!-- /.col -->
-    </div><!-- /.row -->
-  </div>
+  <% cache @estimage do %>
+    <!-- title row -->
+    <div class="row">
+      <!-- info row -->
+      <div class="row invoice-info">
+        <div class="col-sm-4 invoice-col">
+          <%= render 'layouts/user_address' %>
+        </div><!-- /.col -->
+        <div class="col-sm-4 invoice-col">
+          <%= render 'layouts/customer_address', customer: @estimate.customer %>
+        </div><!-- /.col -->
+        <div class="col-sm-4 invoice-col">
+          <table class="table table-condensed borderless">
+            <tr>
+              <th class="col-xs-9 text-right"><%= Estimate.model_name.human %>:</th>
+              <td class="text-right"><%= @estimate.number %></td>
+            </tr>
+            <tr>
+              <th class="col-xs-9 text-right"><%= model_class.human_attribute_name(:date) %>:</th>
+              <td class="text-right"><%=l @estimate[:date] %></td>
+            </tr>
+            <% unless @estimate.valid_until.nil? %>
+            <tr>
+              <th class="col-xs-9 text-right"><%= model_class.human_attribute_name(:valid_until) %>:</th>
+              <td class="text-right"><%=ldate @estimate.valid_until %></td>
+            </tr>
+            <% end %>
+          </table>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div>
+  <% end %>
 
   <!-- Table row -->
   <div class="row">
@@ -51,15 +52,17 @@
         </thead>
         <tbody>
           <% @estimate.estimate_details.each do |detail| %>
-            <tr>
-              <td class="text-right"><%= detail.quantity %></td>
-              <td><%= detail.service.description %></td>
-              <td class="text-center"><%= detail.service.code %></td>
-              <td><%= detail.description %></td>
-              <td class="text-right"><%= number_with_precision(detail.price, precision: 2) %><%= current_user.currency %></td>
-              <td class="text-right"><%= detail.discount %>%</td>
-              <td class="text-right"><%= number_with_precision detail.total, precision: 2 %><%= current_user.currency %></td>
-            </tr>
+            <% cache detail do %>
+              <tr>
+                <td class="text-right"><%= detail.quantity %></td>
+                <td><%= detail.service.description %></td>
+                <td class="text-center"><%= detail.service.code %></td>
+                <td><%= detail.description %></td>
+                <td class="text-right"><%= number_with_precision(detail.price, precision: 2) %><%= current_user.currency %></td>
+                <td class="text-right"><%= detail.discount %>%</td>
+                <td class="text-right"><%= number_with_precision detail.total, precision: 2 %><%= current_user.currency %></td>
+              </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>
