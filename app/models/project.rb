@@ -15,13 +15,6 @@ class Project < ActiveRecord::Base
 
   self.per_page = DEFAULT_ITEMS_PER_PAGE
 
-  def self.options_for_sorted_by
-    [
-        [I18n.t('filterrific.sort_by_name_desc'), 'name_desc'],
-        [I18n.t('filterrific.sort_by_name_asc'), 'name_asc']
-    ]
-  end
-
   scope :with_name, lambda { |name|
     where('name like :name', { name: "%#{name}%" })
   }
@@ -31,15 +24,16 @@ class Project < ActiveRecord::Base
   }
 
   scope :sorted_by, lambda { |sort_by|
-    case sort_by
-      when 'name_asc'
-        order(name: :asc)
+    parts = sort_by.split('_')
 
-      when 'name_desc'
-        order(name: :desc)
-
-      else
-        order(name: :asc)
+    if parts.empty?
+      order(name:  :asc)
+    elsif parts[0] == 'project status'
+      joins(:project_status).order("project_statuses.name #{ parts[1] }")
+    else
+      sort_criteria = {}
+      sort_criteria[parts[0].to_sym] = parts[1].to_sym
+      order(sort_criteria)
     end
   }
 

@@ -6,10 +6,7 @@ class ProjectsController < SecuredController
   def index
     @filterrific = initialize_filterrific(
         Project,
-        params[:filterrific],
-        select_options: {
-            sorted_by: Project.options_for_sorted_by
-        }
+        params[:filterrific]
     ) or return
 
     @projects = @filterrific.find.page(params[:page])
