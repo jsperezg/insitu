@@ -16,13 +16,6 @@ class Estimate < ActiveRecord::Base
 
   self.per_page = DEFAULT_ITEMS_PER_PAGE
 
-  def self.options_for_sorted_by
-    [
-        [I18n.t('filterrific.sort_by_date_desc'), 'date_desc'],
-        [I18n.t('filterrific.sort_by_date_asc'), 'date_asc']
-    ]
-  end
-
   belongs_to :customer
   has_many :estimate_details, :dependent => :destroy
   belongs_to :estimate_status
@@ -94,12 +87,16 @@ class Estimate < ActiveRecord::Base
   }
 
   scope :sorted_by, lambda { |sort_by|
-    case sort_by
-      when 'date_desc'
-        order(date: :desc)
+    parts = sort_by.split('_')
 
-      else
-        order(date: :asc)
+    if parts.empty?
+      order(date:  :asc)
+    elsif parts[0] == 'customer'
+      joins(:customer).order("customers.name #{ parts[1] }")
+    else
+      sort_criteria = {}
+      sort_criteria[parts[0].parameterize.underscore.to_sym] = parts[1].to_sym
+      order(sort_criteria)
     end
   }
 

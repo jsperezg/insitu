@@ -7,9 +7,6 @@ class EstimatesController < SecuredController
     @filterrific = initialize_filterrific(
         Estimate,
         params[:filterrific],
-        select_options: {
-            sorted_by: Estimate.options_for_sorted_by
-        },
         default_filter_params: {
             with_date_ge: I18n.l(Date.today.beginning_of_year),
             sorted_by: 'date_desc'
