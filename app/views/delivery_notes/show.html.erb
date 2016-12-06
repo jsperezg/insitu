@@ -43,6 +43,7 @@
         </thead>
         <tbody>
         <% @delivery_note.delivery_note_details.each do |detail| %>
+          <% cache detail do %>
             <tr>
               <td class="text-right"><%= detail.quantity %></td>
               <td><%= detail.service.description %></td>
@@ -51,6 +52,7 @@
               <td class="text-right"><%= number_with_precision detail.price, precision: 2 %><%= current_user.currency %></td>
               <td class="text-right"><%= number_with_precision detail.total, precision: 2 %><%= current_user.currency %></td>
             </tr>
+          <% end %>
         <% end %>
         </tbody>
       </table>

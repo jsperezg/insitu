@@ -4,8 +4,12 @@
     <table class="table table-striped">
       <thead>
       <tr>
-        <th class="col-md-2 col-sm-2 col-xs-3"><%= model_class.human_attribute_name(:number) %></th>
-        <th class="col-md-5 col-sm-4 col-xs-5"><%= model_class.human_attribute_name(:customer_id) %></th>
+        <th class="col-md-2 col-sm-2 col-xs-3">
+          <%= filterrific_sorting_link(@filterrific, :number, label: model_class.human_attribute_name(:number)) %>
+        </th>
+        <th class="col-md-5 col-sm-4 col-xs-5">
+          <%= filterrific_sorting_link(@filterrific, :customer, label: model_class.human_attribute_name(:customer_id)) %>
+        </th>
         <th class="col-md-1 col-sm-2 hidden-xs text-center">
           <%= filterrific_sorting_link(@filterrific, :date, label: model_class.human_attribute_name(:date)) %>
         </th>
@@ -20,6 +24,7 @@
           <tr><td colspan="0"><%=t 'helpers.tables.empty' %></td></tr>
       <% end %>
       <% delivery_notes.each do |delivery_note| %>
+        <% cache delivery_note do %>
           <tr>
             <td><%= delivery_note.number %></td>
             <td><%= delivery_note.customer.name %></td>
@@ -55,6 +60,7 @@
               <% end %>
             </td>
           </tr>
+        <% end %>
       <% end %>
       </tbody>
     </table>
