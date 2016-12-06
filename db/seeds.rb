@@ -33,8 +33,8 @@ else
   init_default_settings
 
   [
-    {label_short: 'H', label_long:  'Horas'},
-    {label_short: 'UDS', label_long: 'Unidades'}
+    {label_short: 'H', label_long:  'Hours'},
+    {label_short: 'PCS', label_long: 'Pieces'}
   ].each do |unit|
       Unit.find_by(label_short: unit[:label_short]) || Unit.create(unit)
   end
@@ -48,5 +48,5 @@ else
     Vat.find_by(rate: vat[:rate]) || Vat.create(vat)
   end
 
-  PaymentMethod.find_by(name: 'Efectivo/Cash') || PaymentMethod.create(name: 'Efectivo/Cash', note_for_invoice: 'Pago al contado/Cash payment', default: true)
+  PaymentMethod.find_by(name: 'Cash') || PaymentMethod.create(name: 'Cash', note_for_invoice: 'Cash payment', default: true)
 end
