@@ -1,4 +1,4 @@
-json.array!(@estimates) do |estimate|
+json.estimates @estimates.each do |estimate|
   json.cache! estimate do
     json.extract! estimate, :id, :number, :customer_id, :estimate_status_id, :date, :valid_until
     json.estimate_details estimate.estimate_details do |detail|
