@@ -13,7 +13,7 @@
 /tmp
 
 # Ignore coverage test results
-/coverage
+/coverage/*
 
 # Ignore application configuration
 /config/application.yml
