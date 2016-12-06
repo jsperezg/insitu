@@ -24,7 +24,7 @@
       </thead>
       <tbody>
       <% if invoices.empty? %>
-          <tr><td colspan="0"><%=t 'helpers.tables.empty' %></td></tr>
+          <tr><td colspan="100%"><%=t 'helpers.tables.empty' %></td></tr>
       <% end %>
       <% invoices.each do |invoice| %>
         <% cache invoice do %>
