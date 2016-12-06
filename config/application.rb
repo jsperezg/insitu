@@ -34,5 +34,6 @@ module Fges
     # config.rocket_pants.cache
     config.rocket_pants.header_metadata = true
 
+    config.middleware.use Rack::Deflater
   end
 end
