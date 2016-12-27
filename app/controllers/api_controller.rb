@@ -1,7 +1,6 @@
 class ApiController < ActionController::Base
-  before_action :set_locale, :switch_tenant, :store_user
-
   acts_as_token_authentication_handler_for User, fallback: :none
+  before_action :set_locale, :switch_tenant, :store_user
 
   respond_to :json
 
