@@ -116,7 +116,7 @@ RSpec.describe EstimatesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        attributes_for(:estimate, date: Date.today + 10.days)
+        attributes_for(:estimate, date: Date.current.beginning_of_year + 10.days)
       }
 
       it "updates the requested estimate" do

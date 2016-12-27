@@ -141,7 +141,7 @@ class User < ActiveRecord::Base
   end
 
   def set_default_values
-    self.currency = '€' if self.currency.blank?
+    self.currency = 'EUR' if self.currency.blank?
     self.role_id = Role.find_by(description: 'User').try(:id) if self[:role_id].nil?
 
     if is_administrator?
