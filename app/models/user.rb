@@ -110,6 +110,10 @@ class User < ActiveRecord::Base
     self.country == 'ES' && !(self.tax_id =~ /^[a-z]\d{8}$/i).nil?
   end
 
+  def show_irpf?
+    self.country == 'ES' && (self.tax_id =~ /^[a-z]\d{8}$/i).nil?
+  end
+
   def skip_confirmation!
     self.confirmed_at = Time.now
   end
