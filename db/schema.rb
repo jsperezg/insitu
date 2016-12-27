@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804171937) do
+ActiveRecord::Schema.define(version: 20161227180717) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "name",             limit: 255, null: false
@@ -312,8 +312,10 @@ ActiveRecord::Schema.define(version: 20160804171937) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email",      limit: 255
-    t.string   "currency",               limit: 1,   default: "€",   null: false
+    t.string   "currency",               limit: 3,   default: "EUR", null: false
     t.string   "authentication_token",   limit: 30
+    t.string   "provider",               limit: 255
+    t.string   "uid",                    limit: 255
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree

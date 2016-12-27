@@ -36,7 +36,7 @@
             <td class="text-center hidden-xs hidden-sm"><%=ldate estimate.date %></td>
             <td><%= estimate.customer.try(:name) %></td>
             <td class="text-center hidden-xs hidden-sm"><%=ldate estimate.valid_until %></td>
-            <td class="text-right hidden-xs"><%= number_to_currency(estimate.total, unit: current_user.currency, format: '%n %u') %></td>
+            <td class="text-right hidden-xs"><%= number_to_currency(estimate.total, unit: current_currency_symbol, format: '%n %u') %></td>
             <td>
               <%= button_to edit_user_estimate_path(current_user, estimate),
                             method: :get,

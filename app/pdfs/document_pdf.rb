@@ -199,4 +199,10 @@ class DocumentPdf < Prawn::Document
   def data_cell(text, borders, padding, align = 'left'.to_sym)
     make_cell(content: text, borders: borders, padding: padding, align: align)
   end
+
+  def currency_symbol(user)
+    currency_code = user.try(:currency)
+    currency = ISO4217::Currency.from_code(currency_code) unless currency_code.blank?
+    currency.try(:symbol)
+  end
 end

@@ -26,6 +26,7 @@ gem 'ckeditor_rails'
 gem 'prawn'
 gem 'prawn-table'
 gem 'country_select', github: 'stefanpenner/country_select'
+gem 'currencies', :require => 'iso4217'
 
 gem 'sidekiq'
 gem 'apartment-sidekiq'

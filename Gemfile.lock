@@ -314,6 +314,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   cookies_eu
   country_select!
+  currencies
   devise (= 3.5.2)
   devise-async
   email_validator

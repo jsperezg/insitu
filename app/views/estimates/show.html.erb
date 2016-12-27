@@ -56,9 +56,9 @@
                 <td><%= detail.service.description %></td>
                 <td class="text-center"><%= detail.service.code %></td>
                 <td><%= detail.description %></td>
-                <td class="text-right"><%= number_with_precision(detail.price, precision: 2) %><%= current_user.currency %></td>
+                <td class="text-right"><%= number_with_precision(detail.price, precision: 2) %><%= current_currency_symbol %></td>
                 <td class="text-right"><%= detail.discount %>%</td>
-                <td class="text-right"><%= number_with_precision detail.total, precision: 2 %><%= current_user.currency %></td>
+                <td class="text-right"><%= number_with_precision detail.total, precision: 2 %><%= current_currency_symbol %></td>
               </tr>
             <% end %>
           <% end %>
@@ -75,7 +75,7 @@
         <table class="table">
           <tr>
             <th class="col-xs-9 text-right"><%= Estimate.human_attribute_name :total %>:</th>
-            <td class="text-right"><%= number_with_precision @estimate.total, precision: 2 %><%= current_user.currency %></td>
+            <td class="text-right"><%= number_with_precision @estimate.total, precision: 2 %><%= current_currency_symbol %></td>
           </tr>
         </table>
       </div>
