@@ -48,7 +48,7 @@ class Api::V1::SessionsController < Devise::SessionsController
               address: user.address,
               city: user.city,
               state: user.state,
-              coutry: user.country,
+              country: user.country,
               locale: user.locale,
               phone_number: user.phone_number,
               valid_until: user.valid_until,
