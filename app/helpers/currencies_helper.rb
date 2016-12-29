@@ -1,6 +1,6 @@
 module CurrenciesHelper
   def currency_options
-    ISO4217::Currency.currencies.collect { |c| [ "#{ c[1].name } (#{ c[1].symbol })", c[1].code ] }
+    ISO4217::Currency.currencies.collect { |c| [ "#{ c[1].code } #{ c[1].name } (#{ c[1].symbol })", c[1].code ] }
   end
 
   def current_currency_symbol
