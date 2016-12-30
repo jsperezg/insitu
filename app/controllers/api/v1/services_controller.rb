@@ -1,4 +1,4 @@
-class Api::V1::ServicesController < SecuredController
+class Api::V1::ServicesController < ApiController
   include Api
 
   before_action :set_service, only: [:show, :update, :destroy]

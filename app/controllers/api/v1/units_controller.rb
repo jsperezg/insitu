@@ -1,4 +1,4 @@
-class Api::V1::UnitsController < SecuredController
+class Api::V1::UnitsController < ApiController
   include Api
 
   before_action :set_unit, only: [:show, :update, :destroy]

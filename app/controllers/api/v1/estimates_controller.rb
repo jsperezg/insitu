@@ -1,4 +1,4 @@
-class Api::V1::EstimatesController < SecuredController
+class Api::V1::EstimatesController < ApiController
   include Api
 
   before_action :set_estimate, only: [:show, :print, :update, :destroy, :invoice]

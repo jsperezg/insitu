@@ -1,4 +1,4 @@
-class Api::V1::TasksController < SecuredController
+class Api::V1::TasksController < ApiController
   include Api
 
   before_action :set_task, only: [:show, :update, :destroy]

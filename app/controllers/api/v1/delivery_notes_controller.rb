@@ -1,4 +1,4 @@
-class Api::V1::DeliveryNotesController < SecuredController
+class Api::V1::DeliveryNotesController < ApiController
   include Api
 
   before_action :set_delivery_note, only: [:show, :print, :update, :destroy, :invoice]

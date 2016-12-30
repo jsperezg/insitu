@@ -1,4 +1,4 @@
-class Api::V1::InvoicesController < SecuredController
+class Api::V1::InvoicesController < ApiController
   include Api
 
   include InvoicingNotifications
