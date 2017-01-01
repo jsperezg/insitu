@@ -29,3 +29,7 @@
 .pull-down {
     margin-bottom: 14px;
 }
+
+.default-flag {
+    font-weight: bold;
+}

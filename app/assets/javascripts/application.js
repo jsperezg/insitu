@@ -29,4 +29,5 @@
 //= require nprogress-turbolinks
 //= require initialization
 //= require cookies_eu
+//= require data-confirm-modal
 //= require_tree ./autoload

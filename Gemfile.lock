@@ -97,6 +97,8 @@ GEM
       currencies (~> 0.4.2)
       i18n_data (~> 0.7.0)
     currencies (0.4.2)
+    data-confirm-modal (1.2.0)
+      railties (>= 3.0)
     debug_inspector (0.0.2)
     devise (3.5.2)
       bcrypt (~> 3.0)
@@ -315,6 +317,7 @@ DEPENDENCIES
   cookies_eu
   country_select!
   currencies
+  data-confirm-modal
   devise (= 3.5.2)
   devise-async
   email_validator

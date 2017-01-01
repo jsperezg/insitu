@@ -180,17 +180,9 @@
         </div><!-- /.content-wrapper -->
 
         <!-- Main Footer -->
-        <footer class="main-footer">
+        <footer class="main-footer hidden-xs">
           <%= render partial: 'layouts/footer' %>
         </footer>
-      <% end %>
-
-      <% unless current_user.is_premium? %>
-        <!-- Ads Sidebar -->
-        <aside class="control-sidebar control-sidebar-open control-sidebar-dark">
-        </aside><!-- /.control-sidebar -->
-
-        <div class="control-sidebar-bg"></div>
       <% end %>
     </div>
   </body>

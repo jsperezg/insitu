@@ -5,33 +5,39 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th class="col-md-9 col-sm-6 col-xs-5"><%= model_class.human_attribute_name(:name) %></th>
-            <th class="col-md-1 col-sm-2 col-xs-3"><%= model_class.human_attribute_name(:default) %></th>
-            <th class="col-md-1 col-sm-2 col-xs-2"></th>
-            <th class="col-md-1 col-sm-2 col-xs-2"></th>
+            <th class="col-md-9 col-sm-6 col-xs-8"><%= model_class.human_attribute_name(:name) %></th>
+            <th class="col-md-1 col-sm-2 hidden-xs"><%= model_class.human_attribute_name(:default) %></th>
+            <th class="col-md-1 col-sm-2 hidden-xs"></th>
+            <th class="col-md-1 col-sm-2 col-xs-4"></th>
           </tr>
         </thead>
         <tbody>
           <% if @payment_methods.empty? %>
-              <tr><td colspan="4"><%=t 'helpers.tables.empty' %></td></tr>
+              <tr><td colspan="100%"><%=t 'helpers.tables.empty' %></td></tr>
           <% end %>
           <% @payment_methods.each do |payment_method| %>
             <% cache payment_method do %>
               <tr>
                 <td>
-                  <%= best_in_place payment_method, :name, url: user_payment_method_path(current_user, payment_method, format: :json)  %>
+                  <span class="hidden-xs">
+                    <%= best_in_place payment_method, :name, url: user_payment_method_path(current_user, payment_method, format: :json)  %>
+                  </span>
+                  <span class="visible-xs">
+                    <%= link_to payment_method.name, edit_user_payment_method_path(current_user, payment_method),
+                                class: ('default-flag' if payment_method.default) %>
+                  </span>
                 </td>
-                <td>
+                <td class="hidden-xs">
                   <%= best_in_place payment_method, :default, as: :checkbox,
                                     collection: {'true': t(:checkbox_true), 'false': t(:checkbox_false) },
                                     url: user_payment_method_path(current_user, payment_method, format: :json) %>
                 </td>
-                <td>
+                <td class="hidden-xs">
                   <%= button_to edit_user_payment_method_path(current_user.id, payment_method),
                                 method: :get,
                                 class: 'btn btn-default btn-xs btn-block btn-flat' do %>
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    <span class="hidden-xs">
+                    <span class="hidden-sm-down">
                       <%=t 'helpers.links.edit' %>
                     </span>
                   <% end %>
@@ -57,7 +63,7 @@
 
   <div class="box-footer">
     <div class="row">
-      <div class="col-xs-3 col-sm-2 col-md-1">
+      <div class="col-xs-12 col-sm-2 col-md-1">
         <%= button_to t('helpers.links.new'),
             new_user_payment_method_path(current_user.id),
             method: :get,
