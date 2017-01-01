@@ -5,22 +5,29 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th class="col-md-1 col-sm-2 col-xs-2"><%= model_class.human_attribute_name(:label_short) %></th>
-            <th><%= model_class.human_attribute_name(:label_long) %></th>
-            <th class="col-md-1 col-sm-2 col-xs-2"></th>
-            <th class="col-md-1 col-sm-2 col-xs-2"></th>
+            <th class="col-md-1 col-sm-2 hidden-xs"><%= model_class.human_attribute_name(:label_short) %></th>
+            <th class="col-xs-8"><%= model_class.human_attribute_name(:label_long) %></th>
+            <th class="col-md-1 col-sm-2 hidden-xs"></th>
+            <th class="col-md-1 col-sm-2 col-xs-4"></th>
           </tr>
         </thead>
         <tbody>
           <% if @units.empty? %>
-            <tr><td colspan="4"><%=t 'helpers.tables.empty' %></td></tr>
+            <tr><td colspan="100%"><%=t 'helpers.tables.empty' %></td></tr>
           <% end %>
           <% @units.each do |unit| %>
             <% cache unit do %>
               <tr>
-                <td><%= best_in_place unit, :label_short, url: user_unit_path(current_user, unit, format: :json) %></td>
-                <td><%= best_in_place unit, :label_long, url: user_unit_path(current_user, unit, format: :json) %></td>
+                <td class="hidden-xs"><%= best_in_place unit, :label_short, url: user_unit_path(current_user, unit, format: :json) %></td>
                 <td>
+                  <span class="hidden-xs">
+                    <%= best_in_place unit, :label_long, url: user_unit_path(current_user, unit, format: :json) %>
+                  </span>
+                  <span class="visible-xs">
+                    <%= link_to unit.label_long, edit_user_unit_path(current_user, unit) %>
+                  </span>
+                </td>
+                <td class="hidden-xs">
                   <%= button_to edit_user_unit_path(current_user.id, unit),
                                 class: 'btn btn-default btn-xs btn-flat btn-block',
                                 method: :get do %>
@@ -50,7 +57,7 @@
   </div>
   <div class="box-footer">
     <div class="row">
-      <div class="col-md-1 col-sm-2 col-xs-3">
+      <div class="col-md-1 col-sm-2 col-xs-12">
         <%= button_to t('helpers.links.new'),
             new_user_unit_path(current_user.id),
             :class => 'btn btn-primary btn-flat btn-block',

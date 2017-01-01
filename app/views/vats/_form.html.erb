@@ -2,12 +2,12 @@
   <%= render partial: 'layouts/validation_errors', locals: { object: @vat } %>
 
   <div class="row">
-    <div class="form-group col-md-1 col-sm-2 col-xs-3">
+    <div class="form-group col-md-1 col-sm-2 col-xs-6">
       <%= f.label :label, :class => 'control-label' %>
       <%= f.text_field :label, :class => 'form-control input-sm', required: true, autofocus: true %>
     </div>
 
-    <div class="form-group col-md-2 col-sm-3 col-xs-4">
+    <div class="form-group col-md-2 col-sm-3 col-xs-6">
       <%= f.label :rate, :class => 'control-label' %>
       <div class="input-group">
         <%= f.number_field :rate, :class => 'form-control input-sm', min: 0, step: 1 %>
@@ -22,7 +22,7 @@
   </div>
 </div>
 <div class="box-footer">
-  <%= f.submit t(:save), :class => 'btn btn-primary btn-flat col-md-1 col-sm-2 col-xs-3', data: { disable_with: t('please_wait')} %>
+  <%= f.submit t(:save), :class => 'btn btn-primary btn-flat col-md-1 col-sm-2 col-xs-6', data: { disable_with: t('please_wait')} %>
   <%= link_to t('helpers.links.cancel'),
-            user_vats_path(current_user.id), :class => 'btn btn-default btn-flat col-md-1 col-sm-2 col-xs-3' %>
+            user_vats_path(current_user.id), :class => 'btn btn-default btn-flat col-md-1 col-sm-2 col-xs-6' %>
 </div>

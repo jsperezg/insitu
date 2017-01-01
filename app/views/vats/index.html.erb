@@ -5,11 +5,11 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th class="col-md-1 col-sm-1 col-xs-2 text-right"><%= model_class.human_attribute_name(:rate) %></th>
-            <th class="col-md-1 col-sm-1 col-xs-2"><%= model_class.human_attribute_name(:label) %></th>
-            <th><%= model_class.human_attribute_name :default %></th>
-            <th class="col-md-1 col-sm-2 col-xs-2"></th>
-            <th class="col-md-1 col-sm-2 col-xs-2"></th>
+            <th class="col-md-1 col-sm-1 hidden-xs text-right"><%= model_class.human_attribute_name(:rate) %></th>
+            <th class="col-md-1 col-sm-1 col-xs-8"><%= model_class.human_attribute_name(:label) %></th>
+            <th class="hidden-xs"><%= model_class.human_attribute_name :default %></th>
+            <th class="col-md-1 col-sm-2 hidden-xs"></th>
+            <th class="col-md-1 col-sm-2 col-xs-4"></th>
           </tr>
         </thead>
         <tbody>
@@ -19,14 +19,21 @@
           <% @vats.each do |vat| %>
             <% cache vat do %>
               <tr>
-                <td class="text-right"><%= best_in_place vat, :rate, url: user_vat_path(current_user, vat, format: :json) %></td>
-                <td><%= best_in_place vat, :label, url: user_vat_path(current_user, vat, format: :json) %></td>
+                <td class="text-right hidden-xs"><%= best_in_place vat, :rate, url: user_vat_path(current_user, vat, format: :json) %></td>
                 <td>
+                  <span class="hidden-xs">
+                    <%= best_in_place vat, :label, url: user_vat_path(current_user, vat, format: :json) %>
+                  </span>
+                  <span class="visible-xs">
+                    <%= link_to vat.label, edit_user_vat_path(current_user, vat), class: ('default-flag' if vat.default) %>
+                  </span>
+                </td>
+                <td class="hidden-xs">
                   <%= best_in_place vat, :default, as: :checkbox,
                                     collection: {'true': t(:checkbox_true), 'false': t(:checkbox_false) },
                                     url: user_vat_path(current_user, vat, format: :json) %>
                 </td>
-                <td>
+                <td class="hidden-xs">
                   <%= button_to edit_user_vat_path(current_user.id, vat), class: 'btn btn-default btn-xs btn-flat btn-block', method: :get do %>
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     <span class="hidden-xs">
@@ -54,7 +61,7 @@
   </div>
   <div class="box-footer">
     <div class="row">
-      <div class="col-xs-3 col-sm-2 col-md-1">
+      <div class="col-xs-12 col-sm-2 col-md-1">
         <%= button_to t('helpers.links.new'),
                 new_user_vat_path(current_user.id),
                 method: :get,
