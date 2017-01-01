@@ -3,15 +3,13 @@
 
   <div class=row>
     <% unless @delivery_note.new_record? %>
-      <div class="form-group col-md-1 col-sm-3 col-xs-4">
+      <div class="form-group col-md-1 col-sm-3 col-xs-6">
         <%= f.label :number, :class => 'control-label' %>
         <%= input_code f %>
       </div>
     <% end %>
 
-    <%= customer_field f, :customer_id, class: 'col-md-9 col-sm-6 col-xs-8', required: true %>
-
-    <div class="form-group col-md-2 col-sm-3 col-xs-4">
+    <div class="form-group col-md-2 col-sm-3 col-xs-6">
       <%= f.label :date, :class => 'control-label' %>
       <div class="input-group">
         <span class="input-group-addon">
@@ -20,6 +18,8 @@
         <%= f.text_field :date, class: 'form-control input-sm date', value: ldate(@delivery_note[:date]), required: true %>
       </div>
     </div>
+
+    <%= customer_field f, :customer_id, class: 'col-md-9 col-sm-6 col-xs-12', required: true %>
   </div>  
 
   <hr>
@@ -51,13 +51,13 @@
   <% unless @delivery_note.new_record? %>
       <%= link_to user_delivery_note_path(current_user, @delivery_note),
                   method: :get,
-                  class: 'btn btn-default btn-flat col-xs-3 col-sm-2 col-md-1' do %>
+                  class: 'btn btn-default btn-flat col-xs-6 col-sm-2 col-md-1' do %>
           <i class="fa fa-print" aria-hidden="true">
             <%=t 'helpers.links.print' %>
           </i>
       <% end %>
   <% end %>
 
-  <%= link_to t("helpers.links.cancel"),
-            user_delivery_notes_path(current_user), :class => 'btn btn-default btn-flat col-xs-3 col-sm-2 col-md-1' %>
+  <%= link_to t('helpers.links.back'),
+            user_delivery_notes_path(current_user), :class => 'btn btn-default btn-flat col-xs-6 col-sm-2 col-md-1' %>
 </div>

@@ -3,12 +3,12 @@
   <div class="box-body">
     <%= form_for_filterrific @filterrific do |f| %>
         <div class="row">
-          <div class="form-group col-md-2 col-xs-8 col-sm-3">
+          <div class="form-group col-md-2 hidden-xs col-sm-3">
             <%= f.label :with_number, model_class.human_attribute_name(:number), class: 'control-label' %>
             <%= f.text_field :with_number, class: 'filterrific-periodically-observed form-control input-sm' %>
           </div>
 
-          <div class="form-group col-md-2 hidden-xs hidden-sm">
+          <div class="form-group col-md-2 col-xs-7 hidden-sm">
             <%= f.label :with_date_ge, t('filterrific.starting_from_date'), :class => 'control-label' %>
             <div class="input-group date">
             <span class="input-group-addon">
@@ -23,7 +23,7 @@
                              class: 'col-md-2 hidden-xs col-sm-6',
                              filterrific: true %>
 
-          <%= link_to t('filterrific.reset_filters'), reset_filterrific_url, class: 'btn btn-default pull-down col-md-1 col-sm-2 col-xs-3' %>
+          <%= link_to t('filterrific.reset_filters'), reset_filterrific_url, class: 'btn btn-default pull-down col-md-1 col-sm-2 col-xs-4' %>
 
           <%# add an automated spinner to your form when the list is refreshed %>
           <%= render_filterrific_spinner %>
@@ -34,7 +34,7 @@
   </div>
   <div class="box-footer">
     <div class="row">
-      <div class="col-md-1 col-sm-2 col-xs-3">
+      <div class="col-md-1 col-sm-2 col-xs-12">
         <%= button_to t("helpers.links.new"),
                 new_user_estimate_path(current_user),
                 method: :get,

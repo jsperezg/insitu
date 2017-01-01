@@ -3,7 +3,7 @@
   <div class="box-body">
     <%= form_for_filterrific @filterrific do |f| %>
         <div class="row">
-          <div class="form-group col-md-4 col-sm-4 col-xs-4">
+          <div class="form-group col-md-4 col-sm-4 col-xs-7">
             <%= f.label :with_filter_criteria,
                         model_class.human_attribute_name(:name),
                         class: 'control-label' %>
@@ -18,7 +18,7 @@
                                       { class: 'filterrific-periodically-observed form-control input-sm' } %>
           </div>
 
-          <%= link_to t('filterrific.reset_filters'), reset_filterrific_url, class: 'btn btn-default pull-down col-md-1 col-sm-2 col-xs-3' %>
+          <%= link_to t('filterrific.reset_filters'), reset_filterrific_url, class: 'btn btn-default pull-down col-md-1 col-sm-2 col-xs-4' %>
 
           <%# add an automated spinner to your form when the list is refreshed %>
           <%= render_filterrific_spinner %>
@@ -29,7 +29,7 @@
   </div>
   <div class="box-footer">
     <div class="row">
-      <div class="col-md-1 col-sm-2 col-xs-3">
+      <div class="col-md-1 col-sm-2 col-xs-12">
         <%= button_to t('helpers.links.new'),
           new_user_project_path(current_user),
           class: 'btn btn-primary btn-flat btn-block',

@@ -5,14 +5,14 @@
   </div>
   <div class="box-body">
     <div class="table-responsive">
-      <table class="table table-striped">
+      <table class="table table-striped table-layout-fixed">
         <thead>
           <tr>
-            <th class="col-xs-8 col-md-8 col-sm-4"><%= model_class.human_attribute_name(:name) %></th>
+            <th class="col-xs-9 col-md-8 col-sm-4"><%= model_class.human_attribute_name(:name) %></th>
             <th class="hidden-xs col-md-1 col-sm-2 text-center"><%= model_class.human_attribute_name(:dead_line) %></th>
             <th class="hidden-xs col-md-1 col-sm-2 text-center"><%= model_class.human_attribute_name(:finish_date) %></th>
-            <th class="col-md-1 col-sm-2 col-xs-2"></th>
-            <th class="col-md-1 col-sm-2 col-xs-2"></th>
+            <th class="col-md-1 col-sm-2 hidden-xs"></th>
+            <th class="col-md-1 col-sm-2 col-xs-3"></th>
           </tr>
         </thead>
         <tbody>
@@ -23,19 +23,21 @@
             <% cache task do %>
               <%= task_tr task do %>
                 <td>
-                  <%= best_in_place task, :name,
-                                    url: user_project_task_path(current_user, task.project, task, format: :json) %>
+                  <span class="hidden-xs">
+                    <%= best_in_place task, :name, url: user_project_task_path(current_user, task.project, task, format: :json) %>
+                  </span>
+                  <div class="ellipsis">
+                    <%= link_to task.name, edit_user_project_task_path(current_user, task.project, task) %>
+                  </div>
                 </td>
                 <td class="hidden-xs text-center"><%= ldate task[:dead_line] %></td>
                 <td class="hidden-xs text-center"><%= ldate task[:finish_date] %></td>
-                <td>
+                <td class="hidden-xs">
                   <%= link_to edit_user_project_task_path(current_user, task.project, task),
                               class: 'btn btn-default btn-xs btn-flat btn-block',
                               method: :get do %>
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    <span class="hidden-xs">
-                      <%=t 'helpers.links.edit' %>
-                    </span>
+                    <%=t 'helpers.links.edit' %>
                   <% end %>
                 </td>
                 <td>
@@ -59,17 +61,17 @@
   <div class="box-footer">
     <%= button_to t("helpers.links.new"),
           new_user_project_task_path(current_user, @project),
-          class: 'btn btn-primary btn-flat col-xs-3 col-sm-2 col-md-1',
+          class: 'btn btn-primary btn-flat col-xs-4 col-sm-2 col-md-1',
           method: :get %>
 
     <%= button_to t('tasks.bill_finished'),
                     invoice_finished_user_project_tasks_path(current_user, @project),
-                    class: 'btn btn-default btn-flat col-xs-3 col-sm-2 col-md-1',
+                    class: 'btn btn-default btn-flat col-xs-4 col-sm-2 col-md-1',
                     method: :get %>
 
     <%= button_to t('helpers.links.back'),
                     user_projects_path(current_user),
-                    class: 'btn btn-default btn-flat col-xs-3 col-sm-2 col-md-1',
+                    class: 'btn btn-default btn-flat col-xs-4 col-sm-2 col-md-1',
                     method: :get %>
 
     <div class="col-xs-3 col-sm-6 col-md-9 text-right">

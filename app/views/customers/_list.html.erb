@@ -1,10 +1,10 @@
 <%- model_class = Customer -%>
 <div id="filterrific_results">
   <div class="table-responsive">
-    <table class="table table-striped">
+    <table class="table table-striped table-layout-fixed">
       <thead>
       <tr>
-        <th class="col-xs-8 col-md-3">
+        <th class="col-xs-9 col-md-3">
           <%= filterrific_sorting_link(@filterrific, :name, label: model_class.human_attribute_name(:name)) %>
         </th>
         <th class="hidden-xs hidden-sm col-md-3">
@@ -16,8 +16,8 @@
         <th class="hidden-xs col-md-3">
           <%= filterrific_sorting_link(@filterrific, 'contact email', label: model_class.human_attribute_name(:contact_email)) %>
         </th>
-        <th class="col-md-1 col-sm-2 col-xs-2"></th>
-        <th class="col-md-1 col-sm-2- col-xs-2"></th>
+        <th class="col-md-1 col-sm-2 hidden-xs"></th>
+        <th class="col-md-1 col-sm-2- col-xs-3"></th>
       </tr>
       </thead>
       <tbody>
@@ -27,11 +27,19 @@
       <% customers.each do |customer| %>
         <% cache customer do %>
           <tr>
-            <td><%= best_in_place customer, :name, url: user_customer_path(current_user, customer, format: :json) %></td>
+            <td>
+              <span class="hidden-xs">
+                <%= best_in_place customer, :name, url: user_customer_path(current_user, customer, format: :json) %>
+              </span>
+
+              <div class="ellipsis">
+                <%= link_to customer.name, edit_user_customer_path(current_user, customer) %>
+              </div>
+            </td>
             <td class="hidden-xs hidden-sm"><%= best_in_place customer, :contact_name, url: user_customer_path(current_user, customer, format: :json) %></td>
             <td class="hidden-xs"><%= best_in_place customer, :contact_phone, url: user_customer_path(current_user, customer, format: :json) %></td>
             <td class="hidden-xs"><%= best_in_place customer, :contact_email, url: user_customer_path(current_user, customer, format: :json) %></td>
-            <td>
+            <td class="hidden-xs">
               <%= button_to edit_user_customer_path(current_user, customer), class: 'btn btn-default btn-xs btn-flat btn-block', method: :get do %>
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                   <span class="hidden-xs">

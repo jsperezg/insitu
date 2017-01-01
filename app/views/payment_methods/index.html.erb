@@ -2,13 +2,13 @@
 <div class="box box-primary">
   <div class="box-body">
     <div class="table-responsive">
-      <table class="table table-striped">
+      <table class="table table-striped table-layout-fixed">
         <thead>
           <tr>
-            <th class="col-md-9 col-sm-6 col-xs-8"><%= model_class.human_attribute_name(:name) %></th>
+            <th class="col-md-9 col-sm-6 col-xs-9"><%= model_class.human_attribute_name(:name) %></th>
             <th class="col-md-1 col-sm-2 hidden-xs"><%= model_class.human_attribute_name(:default) %></th>
             <th class="col-md-1 col-sm-2 hidden-xs"></th>
-            <th class="col-md-1 col-sm-2 col-xs-4"></th>
+            <th class="col-md-1 col-sm-2 col-xs-3"></th>
           </tr>
         </thead>
         <tbody>
@@ -22,10 +22,10 @@
                   <span class="hidden-xs">
                     <%= best_in_place payment_method, :name, url: user_payment_method_path(current_user, payment_method, format: :json)  %>
                   </span>
-                  <span class="visible-xs">
+                  <div class="visible-xs ellipsis">
                     <%= link_to payment_method.name, edit_user_payment_method_path(current_user, payment_method),
                                 class: ('default-flag' if payment_method.default) %>
-                  </span>
+                  </div>
                 </td>
                 <td class="hidden-xs">
                   <%= best_in_place payment_method, :default, as: :checkbox,

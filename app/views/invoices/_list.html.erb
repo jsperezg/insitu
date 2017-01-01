@@ -1,10 +1,10 @@
 <%- model_class = Invoice -%>
 <div id="filterrific_results">
   <div class="table-responsive">
-    <table class="table table-striped">
+    <table class="table table-striped table-layout-fixed">
       <thead>
       <tr>
-        <th class="col-md-1 col-sm-2 col-xs-3">
+        <th class="col-md-1 col-sm-2 col-xs-4">
           <%= filterrific_sorting_link(@filterrific, :number, label: model_class.human_attribute_name(:number)) %>
         </th>
         <th class="col-md-1 hidden-sm hidden-xs text-center">
@@ -17,9 +17,9 @@
           <%= filterrific_sorting_link(@filterrific, 'paid on', label: model_class.human_attribute_name(:paid_on)) %>
         </th>
         <th class="col-md-1 col-sm-2 hidden-xs text-right"><%= model_class.human_attribute_name(:total) %></th>
-        <th class="col-md-1 col-sm-2 col-xs-2"></th>
+        <th class="col-md-1 col-sm-2 hidden-xs"></th>
         <th class="col-md-1 hidden-xs hidden-sm"></th>
-        <th class="col-md-1 col-sm-2 col-xs-2"></th>
+        <th class="col-md-1 col-sm-2 col-xs-3"></th>
       </tr>
       </thead>
       <tbody>
@@ -29,19 +29,27 @@
       <% invoices.each do |invoice| %>
         <% cache invoice do %>
           <%= invoice_tr invoice do %>
-            <td><%= invoice.number %></td>
+            <td>
+              <span class="hidden-xs"><%= invoice.number %></span>
+              <div class="visible-xs ellipsis">
+                <%= link_to invoice.number, edit_user_invoice_path(current_user, invoice) %>
+              </div>
+            </td>
             <td class="text-center hidden-sm hidden-xs"><%=ldate invoice.date %></td>
-            <td><%= invoice.customer.try(:name) %></td>
+            <td>
+              <span class="hidden-xs"><%= invoice.customer.try(:name) %></span>
+              <div class="visible-xs ellipsis">
+                <%= link_to invoice.customer.name, edit_user_invoice_path(current_user, invoice) %>
+              </div>
+            </td>
             <td class="text-center hidden-sm hidden-xs"><%=ldate invoice.paid_on %></td>
             <td class="text-right hidden-xs"><%= number_to_currency(invoice.total, unit: current_currency_symbol, format: '%n %u') %></td>
-            <td>
+            <td class="hidden-xs">
               <%= button_to edit_user_invoice_path(current_user, invoice),
                             method: :get,
                             :class => 'btn btn-default btn-xs btn-block btn-flat' do %>
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                  <span class="hidden-xs">
-                    <%=t 'helpers.links.edit' %>
-                  </span>
+                  <%=t 'helpers.links.edit' %>
               <% end %>
             </td>
             <td class="hidden-xs hidden-sm">

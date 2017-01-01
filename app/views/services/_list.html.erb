@@ -1,19 +1,19 @@
 <%- model_class = Service -%>
 <div id="filterrific_results">
   <div class="table-responsive">
-    <table class="table table-striped">
+    <table class="table table-striped table-layout-fixed">
       <thead>
       <tr>
-        <th class="col-md-1 col-sm-1 col-xs-2">
+        <th class="col-md-1 col-sm-1 hidden-xs">
           <%= filterrific_sorting_link(@filterrific, :code, label: model_class.human_attribute_name(:code)) %>
         </th>
-        <th>
+        <th class="col-xs-9">
           <%= filterrific_sorting_link(@filterrific, :description, label: model_class.human_attribute_name(:description)) %>
         </th>
         <th class="hidden-xs col-sm-1 col-md-1">
           <%= filterrific_sorting_link(@filterrific, :vat, label: model_class.human_attribute_name(:vat_id)) %>
         </th>
-        <th class="hidden-xs hidden-sm col-md-1">
+        <th class="hidden-xs hidden-sm col-md-1">col-xs-2
           <%= filterrific_sorting_link(@filterrific, :unit, label: model_class.human_attribute_name(:unit_id)) %>
         </th>
         <th class="hidden-xs col-sm-1 col-md-1 text-right">
@@ -22,19 +22,28 @@
         <th class="hidden-xs hidden-sm col-md-1">
           <%= filterrific_sorting_link(@filterrific, :active, label: model_class.human_attribute_name(:active)) %>
         </th>
-        <th class="col-md-1 col-sm-2 col-xs-2"></th>
-        <th class="col-md-1 col-sm-2 col-xs-2"></th>
+        <th class="col-md-1 col-sm-2 hidden-xs"></th>
+        <th class="col-md-1 col-sm-2 col-xs-3"></th>
       </tr>
       </thead>
       <tbody>
       <% if services.empty? %>
-          <tr><td colspan="7"><%=t 'helpers.tables.empty' %></td></tr>
+          <tr><td colspan="100%"><%=t 'helpers.tables.empty' %></td></tr>
       <% end %>
       <% services.each do |service| %>
         <% cache service do %>
           <tr>
-            <td><%= best_in_place service, :code, url: user_service_path(current_user, service, format: :json) %></td>
-            <td><%= best_in_place service, :description, url: user_service_path(current_user, service, format: :json) %></td>
+            <td class="hidden-xs">
+              <%= best_in_place service, :code, url: user_service_path(current_user, service, format: :json) %>
+            </td>
+            <td>
+              <span class="hidden-xs">
+                <%= best_in_place service, :description, url: user_service_path(current_user, service, format: :json) %>
+              </span>
+              <div class="visible-xs ellipsis">
+                <%= link_to service.description, edit_user_service_path(current_user, service) %>
+              </div>
+            </td>
             <td class="hidden-xs">
                 <%= best_in_place service, :vat_id, as: :select,
                                   collection: bip_vats_collection,
@@ -54,7 +63,7 @@
                     collection: {'true': t(:checkbox_true), 'false': t(:checkbox_false) },
                     url: user_service_path(current_user, service, format: :json) %>
             </td>
-            <td>
+            <td class="hidden-xs">
               <%= button_to edit_user_service_path(current_user.id, service),
                             class: 'btn btn-default btn-xs btn-flat btn-block',
                             method: :get do %>

@@ -12,9 +12,9 @@
           <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
         </div>
       </div><!-- /.box-header -->
-      <div class="box-body">
+      <div class="box-body hidden-xs">
         <div class="row">
-          <div class="col-xs-5 col-md-2 col-sm-3">
+          <div class="col-md-2 col-sm-3">
             <% unless data[:vat].empty? %>
               <h5 class="description-header text-center"><%=t 'dashboard.vat_resume' %></h5>
               <div class="table-responsive">
@@ -32,7 +32,7 @@
             <% end %>
           </div>
 
-          <div class="col-xs-7 col-md-10 col-sm-9">
+          <div class="col-md-10 col-sm-9">
             <% unless data[:customers].empty? %>
               <h5 class="description-header"><%=t 'dashboard.best_customers' %></h5>
               <div class="table-responsive">

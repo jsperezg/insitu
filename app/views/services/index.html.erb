@@ -3,7 +3,7 @@
   <div class="box-body">
     <%= form_for_filterrific @filterrific do |f| %>
         <div class="row">
-          <div class="form-group col-md-4 col-sm-5 col-xs-5">
+          <div class="form-group col-md-4 col-sm-5 col-xs-7">
             <%= f.label :with_filter_criteria,
                         "#{model_class.human_attribute_name(:code)}/#{model_class.human_attribute_name(:description)}",
                         class: 'control-label' %>
@@ -15,7 +15,7 @@
             <%= f.select :with_active_criteria, @filterrific.select_options[:with_active_criteria], {}, { class: 'filterrific-periodically-observed form-control input-sm' } %>
           </div>
 
-          <%= link_to t('filterrific.reset_filters'), reset_filterrific_url, class: 'btn btn-default pull-down col-md-1 col-sm-2 col-xs-2' %>
+          <%= link_to t('filterrific.reset_filters'), reset_filterrific_url, class: 'btn btn-default pull-down col-md-1 col-sm-2 col-xs-4' %>
 
           <%# add an automated spinner to your form when the list is refreshed %>
           <%= render_filterrific_spinner %>
@@ -26,7 +26,7 @@
   </div>
   <div class="box-footer">
     <div class="row">
-      <div class="col-md-1 col-sm-2 col-xs-3">
+      <div class="col-md-1 col-sm-2 col-xs-12">
         <%= button_to t('helpers.links.new'),
             new_user_service_path(current_user.id),
             method: :get,

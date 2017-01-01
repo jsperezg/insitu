@@ -1,7 +1,7 @@
 <%- model_class = Project -%>
 <div id="filterrific_results">
   <div class="table-responsive">
-    <table class="table table-striped">
+    <table class="table table-striped table-layout-fixed">
       <thead>
       <tr>
         <th class="col-md-8 col-xs-6 col-sm-4">
@@ -10,31 +10,33 @@
         <th class="hidden-xs col-md-1 col-sm-2">
           <%= filterrific_sorting_link(@filterrific, 'project status', label: model_class.human_attribute_name(:project_status_id)) %>
         </th>
-        <th class="col-md-1 col-sm-2 col-xs-2"></th>
-        <th class="col-md-1 col-sm-2 col-xs-2"></th>
-        <th class="col-md-1 col-sm-2 col-xs-2"></th>
+        <th class="col-md-1 col-sm-2 hidden-xs"></th>
+        <th class="col-md-1 col-sm-2 col-xs-3"></th>
+        <th class="col-md-1 col-sm-2 col-xs-3"></th>
       </tr>
       </thead>
       <tbody>
       <% if projects.empty? %>
-          <tr><td colspan="5"><%=t 'helpers.tables.empty' %></td></tr>
+          <tr><td colspan="100%"><%=t 'helpers.tables.empty' %></td></tr>
       <% end %>
       <% projects.each do |project| %>
         <% cache project do %>
           <tr>
             <td>
-              <%= best_in_place project, :name,
-                                url: user_project_path(current_user, project, format: :json)%>
+              <span class="hidden-xs">
+                <%= best_in_place project, :name, url: user_project_path(current_user, project, format: :json)%>
+              </span>
+              <div class="ellipsis">
+                <%= link_to project.name, edit_user_project_path(current_user, project) %>
+              </div>
             </td>
             <td class="hidden-xs"><%= project.project_status.locale_name %></td>
-            <td>
+            <td class="hidden-xs">
               <%= button_to edit_user_project_path(current_user, project),
                             class: 'btn btn-default btn-xs btn-block btn-flat',
                             method: :get do %>
                   <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                  <span class="hidden-xs">
-                    <%=t 'helpers.links.edit' %>
-                  </span>
+                  <%=t 'helpers.links.edit' %>
               <% end %>
             </td>
             <td>

@@ -33,3 +33,13 @@
 .default-flag {
     font-weight: bold;
 }
+
+.table-layout-fixed {
+    table-layout: fixed;
+}
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

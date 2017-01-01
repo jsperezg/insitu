@@ -12,18 +12,18 @@
     <% end %>
 
     <div class=row>
-      <div class="form-group col-xs-4 col-sm-3 col-md-2">
+      <div class="form-group col-xs-12 col-sm-3 col-md-2">
         <%= f.label :service_id, :class => 'control-label' %>
         <%= f.collection_select :service_id, Service.order(description: :asc), :id, :description,
                                 { prompt: true }, { class: 'form-control input-sm' } %>
       </div>
 
-      <div class="form-group col-xs-8 col-sm-9 col-md-7">
+      <div class="form-group col-xs-12 col-sm-9 col-md-7">
         <%= f.label :description, :class => 'control-label' %>
         <%= f.text_field :description, :class => 'form-control input-sm' %>
       </div>
 
-      <div class="form-group col-xs-5 col-sm-3 col-md-2">
+      <div class="form-group col-xs-12 col-sm-3 col-md-2">
         <%= f.label :date, class: 'control-label' %>
         <div class="input-group">
           <span class="input-group-addon">
@@ -33,7 +33,7 @@
         </div>
       </div>
 
-      <div class="form-group col-xs-7 col-sm-3 col-md-2">
+      <div class="form-group col-xs-12 col-sm-3 col-md-2">
         <%= f.label :time_spent, :class => 'control-label' %>
         <div class="input-group">
           <%= f.number_field :time_spent, :class => 'form-control input-sm' %>

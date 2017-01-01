@@ -14,7 +14,7 @@
       <%= f.select :priority, options_for_select(1..5, @task.priority), { prompt: false }, { class: 'form-control input-sm', required: true } %>
     </div>
 
-    <div class="form-group col-md-2 col-sm-3 col-xs-4">
+    <div class="form-group col-md-2 col-sm-3 col-xs-9">
       <%= f.label :dead_line, class: 'control-label' %>
       <div class="input-group">
         <span class="input-group-addon">
@@ -56,7 +56,7 @@
 
 </div>
 <div class="box-footer">
-  <%= f.submit t(:save), :class => 'btn btn-primary btn-flat col-md-1 col-sm-2 col-xs-3', data: { disable_with: t('please_wait')} %>
-  <%= link_to t("helpers.links.cancel"),
-            user_project_tasks_path(current_user, @project), :class => 'btn btn-default btn-flat col-md-1 col-sm-2 col-xs-3' %>
+  <%= f.submit t(:save), :class => 'btn btn-primary btn-flat col-md-1 col-sm-2 col-xs-6', data: { disable_with: t('please_wait')} %>
+  <%= link_to t('helpers.links.back'),
+            user_project_tasks_path(current_user, @project), :class => 'btn btn-default btn-flat col-md-1 col-sm-2 col-xs-6' %>
 </div>
