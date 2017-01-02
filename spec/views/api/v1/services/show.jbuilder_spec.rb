@@ -12,8 +12,8 @@ describe 'api/v1/services/show/', type: :view  do
     expect(service.key? 'id').to be_truthy
     expect(service.key? 'code').to be_truthy
     expect(service.key? 'description').to be_truthy
-    expect(service.key? 'vat_id').to be_truthy
-    expect(service.key? 'unit_id').to be_truthy
+    expect(service.key? 'vat').to be_truthy
+    expect(service.key? 'unit').to be_truthy
     expect(service.key? 'price').to be_truthy
   end
 end

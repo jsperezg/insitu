@@ -69,12 +69,10 @@ class EstimatesController < SecuredController
   # GET /estimates/new
   def new
     @estimate = Estimate.new
-    @estimate.estimate_details.build
   end
 
   # GET /estimates/1/edit
   def edit
-    @estimate.estimate_details.includes(service: [ :unit, :vat ]).build
   end
 
   # POST /estimates
