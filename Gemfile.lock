@@ -145,6 +145,8 @@ GEM
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (1.8.3)
+    knockoutjs-rails (3.4.0.1)
+      railties (>= 3.1, < 6)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -329,6 +331,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
+  knockoutjs-rails
   mysql2 (~> 0.4.0)
   nprogress-rails
   prawn

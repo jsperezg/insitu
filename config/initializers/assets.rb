@@ -8,6 +8,7 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w(_all-skins.css skin-blue.css )
+Rails.application.config.assets.precompile += %w(_all-skins.css skin-blue.css)
+Rails.application.config.assets.precompile += %w( estimates/edit_estimate_details.js )
 
 Rails.application.config.assets.precompile << /\.(?:gif|svg|eot|woff|ttf)\z/

@@ -30,4 +30,6 @@
 //= require initialization
 //= require cookies_eu
 //= require data-confirm-modal
+//= require knockout
+//= require knockout.mapping
 //= require_tree ./autoload

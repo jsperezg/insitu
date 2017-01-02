@@ -32,7 +32,7 @@
                 <%= best_in_place customer, :name, url: user_customer_path(current_user, customer, format: :json) %>
               </span>
 
-              <div class="ellipsis">
+              <div class="visible-xs ellipsis">
                 <%= link_to customer.name, edit_user_customer_path(current_user, customer) %>
               </div>
             </td>

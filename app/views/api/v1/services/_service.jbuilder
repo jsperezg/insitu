@@ -1,1 +1,1 @@
-json.extract! service, :id, :code, :description, :vat_id, :unit_id, :price, :active
+json.extract! service, :id, :code, :description, :vat, :unit, :price, :active

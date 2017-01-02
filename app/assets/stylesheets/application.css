@@ -43,3 +43,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.add-detail-button-wrapper {
+    margin: 0 0 15px 0;
+}
