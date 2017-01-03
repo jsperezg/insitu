@@ -1,98 +1,22 @@
-<%- model_class = DeliveryNote -%>
 <% content_for :title, "#{ DeliveryNote.model_name.human } #{ @delivery_note.number}" %>
+<div class="embed-responsive embed-responsive-4by3">
+  <object data="/pdfjs/web/viewer.html?file=<%= print_user_delivery_note_url(current_user.id, @delivery_note.id, format: :pdf) %>" class="embed-responsive-item"></object>
+</div>
+<br>
 
-<section class="invoice">
-  <!-- title row -->
-  <div class="row">
-    <!-- info row -->
-    <div class="row invoice-info">
-      <div class="col-sm-4 invoice-col">
-        <%= render 'layouts/user_address' %>
-      </div><!-- /.col -->
-      <div class="col-sm-4 invoice-col">
-        <%= render 'layouts/customer_address', customer: @delivery_note.customer %>
-      </div><!-- /.col -->
-      <div class="col-sm-4 invoice-col">
-        <table class="table table-condensed borderless">
-          <tr>
-            <th class="col-xs-9 text-right"><%= DeliveryNote.model_name.human %>:</th>
-            <td class="text-right"><%= @delivery_note.number %></td>
-          </tr>
-          <tr>
-            <th class="col-xs-9 text-right"><%= model_class.human_attribute_name(:date) %>:</th>
-            <td class="text-right"><%=l @delivery_note[:date] %></td>
-          </tr>
-        </table>
-      </div><!-- /.col -->
-    </div><!-- /.row -->
+<div class="row">
+  <div class="col-xs-12">
+    <%= link_to invoice_user_delivery_note_path(current_user.id, @delivery_note.id), class: 'btn btn-primary col-xs-6 col-md-1',
+                data: { confirm: t('helpers.links.confirm', :default => 'Are you sure?'), disable_with: t(:please_wait) } do %>
+        <i class="fa fa-money"></i> <%=t 'delivery_notes.invoice_title' %>
+    <% end %>
+
+    <%= link_to t('helpers.links.cancel'), edit_user_delivery_note_path(current_user, @delivery_note), class: 'btn btn-default col-xs-6 col-md-1 btn-flat pull-right' %>
+
+    <%= link_to forward_email_user_delivery_note_url(current_user.id, @delivery_note.id),
+                 class: 'btn btn-success hidden-xs btn-flat pull-right col-md-1',
+                 data: { disable_with: t(:please_wait) } do %>
+        <i class="fa fa-envelope"></i> <%=t 'helpers.send_by_email' %>
+    <% end %>
   </div>
-
-  <!-- Table row -->
-  <div class="row">
-    <div class="col-xs-12 table-responsive">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th class="text-right col-xs-1"><%= DeliveryNoteDetail.human_attribute_name :quantity %></th>
-          <th class="col-xs-2"><%= DeliveryNoteDetail.human_attribute_name :service_id %></th>
-          <th class="text-center col-xs-1"><%= Service.human_attribute_name :code %></th>
-          <th><%= DeliveryNoteDetail.human_attribute_name :custom_description %></th>
-          <th class="text-right col-xs-1"><%= DeliveryNoteDetail.human_attribute_name :price %></th>
-          <th class="text-right col-xs-1"><%= DeliveryNoteDetail.human_attribute_name :total %></th>
-        </tr>
-        </thead>
-        <tbody>
-        <% @delivery_note.delivery_note_details.each do |detail| %>
-          <% cache detail do %>
-            <tr>
-              <td class="text-right"><%= detail.quantity %></td>
-              <td><%= detail.service.description %></td>
-              <td class="text-center"><%= detail.service.code %></td>
-              <td><%= detail.custom_description %></td>
-              <td class="text-right"><%= number_with_precision detail.price, precision: 2 %><%= current_currency_symbol %></td>
-              <td class="text-right"><%= number_with_precision detail.total, precision: 2 %><%= current_currency_symbol %></td>
-            </tr>
-          <% end %>
-        <% end %>
-        </tbody>
-      </table>
-    </div><!-- /.col -->
-  </div><!-- /.row -->
-
-  <div class="row">
-    <!-- accepted payments column -->
-    <div class="col-xs-6"></div>
-    <div class="col-xs-6">
-      <div class="table-responsive">
-        <table class="table">
-          <tr>
-            <th class="col-xs-9 text-right"><%= DeliveryNote.human_attribute_name :total %>:</th>
-            <td class="text-right"><%= number_with_precision @delivery_note.total, precision: 2 %><%= current_currency_symbol %></td>
-          </tr>
-        </table>
-      </div>
-    </div><!-- /.col -->
-  </div><!-- /.row -->
-
-  <!-- this row will not appear when printing -->
-  <% unless action_name == 'print' %>
-      <div class="row no-print">
-        <div class="col-xs-12">
-          <%= link_to invoice_user_delivery_note_path(current_user.id, @delivery_note.id), class: 'btn btn-default col-xs-1',
-                      data: { confirm: t('helpers.links.confirm', :default => 'Are you sure?'), disable_with: t(:please_wait) } do %>
-              <i class="fa fa-money"></i> <%=t 'delivery_notes.invoice_title' %>
-          <% end %>
-
-          <%= link_to forward_email_user_delivery_note_url(current_user.id, @delivery_note.id),
-                       class: 'btn btn-success col-xs-1 btn-flat pull-right',
-                       data: { disable_with: t(:please_wait) } do %>
-              <i class="fa fa-envelope"></i> <%=t 'helpers.send_by_email' %>
-          <% end %>
-
-          <%= link_to print_user_delivery_note_url(current_user.id, @delivery_note.id, format: :pdf), class: 'btn btn-primary pull-right col-xs-1', target: '_blank' do %>
-              <i class="fa fa-download"></i> <%=t 'helpers.links.pdf' %>
-          <% end %>
-        </div>
-      </div>
-  <% end %>
-</section>
+</div>
