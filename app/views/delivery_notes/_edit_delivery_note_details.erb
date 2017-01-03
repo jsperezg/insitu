@@ -1,0 +1,121 @@
+<%- model_class = DeliveryNoteDetail -%>
+
+<%= javascript_include_tag 'delivery-notes/edit_delivery_note_details' %>
+
+<h4>Delivery Note details</h4>
+
+<span id="delivery_note_details">
+  <div class="row add-detail-button-wrapper">
+    <%= button_tag t(:add_detail), :class => 'btn btn-primary btn-flat col-xs-12', data: { bind: "click: add"} %>
+  </div>
+
+  <div class="panel-group" id="delivery_note_details_list" role="tablist" aria-multiselectable="true" data-bind="foreach: details">
+    <div class="panel" data-bind="css: { 'panel-success': id() !== null, 'panel-warning': id() === null }, visible: visible">
+      <div class="panel-heading" role="tab" data-bind="attr: { id: 'heading-delivery-note-detail-' + $index() }">
+        <h4 class="panel-title">
+          <div class="row">
+            <a class="collapsed col-xs-5 col-md-9" role="button" data-toggle="collapse" data-parent="#delivery_note_details_list" aria-expanded="false"
+               data-bind="attr: {
+                  href: '#collapse-delivery-note-detail-' + $index(),
+                  'aria-controls': 'collapse-delivery-note-detail-' + $index()
+                }">
+              <span data-bind="text: service.description"></span>
+            </a>
+
+            <p class="col-xs-4 col-md-2 text-right">
+              <span data-bind="text: total"></span>
+              <%= current_currency_symbol %>
+            </p>
+
+            <div class="col-xs-3 col-md-1">
+              <button data-bind="click: markAsDeleted"
+                      class="btn btn-xs btn-danger btn-block btn-flat">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                <span class="hidden-xs">
+                  <%=t 'helpers.links.destroy' %>
+                </span>
+              </button>
+            </div>
+          </div>
+        </h4>
+      </div>
+      <div class="panel-collapse collapse" role="tabpanel"
+           data-bind="attr: { 'aria-labelledby': 'heading-delivery-note-detail-' + $index(), id: 'collapse-delivery-note-detail-' + $index() }">
+        <div class="panel-body">
+          <input type="hidden" data-bind="value: deleted, attr: {
+                                    name: 'delivery_note[delivery_note_details_attributes][' + $index() + '][_destroy]',
+                                    id: 'delivery_note_delivery_note_details_attributes' + $index() + '__destroy'
+                                 }">
+
+          <input type="hidden" data-bind="value: id, attr: {
+                                    name: 'delivery_note[delivery_note_details_attributes][' + $index() + '][id]',
+                                    id: 'delivery_note_delivery_note_details_attributes_' + $index() + '_id'
+                                 }">
+
+          <input type="hidden" data-bind="attr: {
+                                    name: 'delivery_note[delivery_note_details_attributes][' + $index() + '][delivery_note_id]',
+                                    id: 'delivery_note_delivery_note_details_attributes_' + $index() + '_delivery_note_id'
+                                 }" value="<%= @delivery_note.id %>">
+
+          <div class="row">
+            <div class="form-group col-md-2 col-sm-4 col-xs-12">
+              <select class="form-control input-sm"
+                      data-bind="value: service_id,
+                                 attr: {
+                                    name: 'delivery_note[delivery_note_details_attributes][' + $index() + '][service_id]',
+                                    id: 'delivery_note_delivery_note_details_attributes_' + $index() + '_service_id'
+                                 }">
+                <%= service_options %>
+              </select>
+            </div>
+
+            <div class="form-group col-md-6 col-sm-8 col-xs-12">
+              <input type="text" data-toggle="tooltip" data-placement="top" class="form-control input-sm"
+                     data-bind="value: custom_description,
+                                 attr: {
+                                    name: 'delivery_note[delivery_note_details_attributes][' + $index() + '][custom_description]',
+                                    id: 'delivery_note_delivery_note_details_attributes_' + $index() + '_custom_description'
+                                 }"
+                     title="<%= model_class.human_attribute_name(:custom_description) %>"
+                     placeholder="<%= model_class.human_attribute_name(:custom_description) %>">
+            </div>
+
+            <div class="form-group col-md-2 col-sm-4 col-xs-6">
+              <div class="input-group">
+                <input type="number" class="form-control input-sm" data-toggle="tooltip" data-placement="top"
+                       data-bind="textInput: quantity,
+                                 attr: {
+                                    name: 'delivery_note[delivery_note_details_attributes][' + $index() + '][quantity]',
+                                    id: 'delivery_note_delivery_note_details_attributes_' + $index() + '_quantity'
+                                 }"
+                       title="<%= model_class.human_attribute_name(:quantity) %>"
+                       placeholder="<%= model_class.human_attribute_name(:quantity) %>"
+                       min="0"
+                       step="any">
+                <span class="input-group-addon" data-bind="text: service.unit.label_short"></span>
+              </div>
+            </div>
+
+            <div class="form-group col-md-2 col-sm-4 col-xs-6">
+              <div class="input-group">
+                <input type="number" class="form-control input-sm" data-toggle="tooltip" data-placement="top"
+                       data-bind="textInput: price,
+                                 attr: {
+                                    name: 'delivery_note[delivery_note_details_attributes][' + $index() + '][price]',
+                                    id: 'delivery_note_delivery_note_details_attributes_' + $index() + '_price'
+                                 }"
+                       title="<%= model_class.human_attribute_name(:price) %>"
+                       placeholder="<%= model_class.human_attribute_name(:price) %>"
+                       min="0"
+                       step="any">
+
+                <span class="input-group-addon"><%= current_currency_symbol %></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</span>
+

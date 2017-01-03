@@ -14,4 +14,8 @@ class AbstractDetail {
   emptyDetail() {
     return {};
   }
+
+  markAsDeleted() {
+    this.deleted(1);
+  }
 }

@@ -1,6 +1,6 @@
 //= require service-dependand-detail
 
-class EstimateDetail extends ServiceDependandDetail {
+class DeliveryNoteDetail extends ServiceDependandDetail {
   constructor (json) {
     super(json);
   }
@@ -8,10 +8,9 @@ class EstimateDetail extends ServiceDependandDetail {
   emptyDetail() {
     return {
       id: null,
-      description: '',
+      custom_description: '',
       quantity: null,
       price: null,
-      discount: 0,
       invoice_detail_id: null,
       total: 0.0,
       service_id: null

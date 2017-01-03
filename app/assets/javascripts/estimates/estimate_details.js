@@ -1,10 +1,7 @@
 //= require estimates/estimate_detail
+//= require 'abstract-details'
 
-class EstimateDetails {
-  constructor() {
-    this.details = ko.observableArray();
-  }
-
+class EstimateDetails extends AbstractDetails {
   refresh() {
     let id = $('#estimate_id').val();
 
@@ -25,9 +22,5 @@ class EstimateDetails {
 
   add() {
     this.details.unshift(new EstimateDetail());
-  }
-
-  isEmpty() {
-    return this.details().length === 0;
   }
 }

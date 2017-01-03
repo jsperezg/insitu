@@ -58,12 +58,10 @@ class DeliveryNotesController < SecuredController
   # GET /delivery_notes/new
   def new
     @delivery_note = DeliveryNote.new( date: DateTime.now )
-    detail = @delivery_note.delivery_note_details.build
   end
 
   # GET /delivery_notes/1/edit
   def edit
-    @delivery_note.delivery_note_details.build
   end
 
   # POST /delivery_notes
