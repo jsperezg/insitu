@@ -14,18 +14,18 @@ class ServiceDependandDetail extends AbstractDetail {
       this.discount = ko.observable(0);
     }
 
-    if (!defined(this.vat)) {
-      this.vat = ko.observable(0);
+    if (!defined(this.vat_rate)) {
+      this.vat_rate = ko.observable(0);
     }
 
     this.quantity.subscribe(this.calculateTotal, this);
     this.price.subscribe(this.calculateTotal, this);
     this.discount.subscribe(this.calculateTotal, this);
-    this.vat.subscribe(this.calculateTotal, this);
+    this.vat_rate.subscribe(this.calculateTotal, this);
   }
 
   calculateTotal() {
-    let value = this.quantity() * this.price() * ( 1 - (this.discount() / 100))  * ( 1 + (this.vat() / 100));
+    let value = this.quantity() * this.price() * ( 1 - (this.discount() / 100))  * ( 1 + (this.vat_rate() / 100));
 
     if (defined(value)) {
       value = value.toFixed(2);

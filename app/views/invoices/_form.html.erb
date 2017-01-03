@@ -1,6 +1,8 @@
 <div class="box-body">
   <%= render partial: 'layouts/validation_errors', locals: { object: @invoice } %>
 
+  <%= f.hidden_field :id %>
+
   <div class=row>
     <% unless @invoice.new_record? %>
       <div class="form-group col-md-2 col-xs-6">
@@ -40,8 +42,6 @@
       </div>
     </div>
 
-
-
     <div class="form-group col-md-2 col-xs-6">
       <%= f.label :paid_on, :class => 'control-label' %>
       <div class="input-group date">
@@ -53,43 +53,27 @@
     </div>
   </div>
 
-  <hr>
-  <table class="table table-striped" data-no-turbolink>
-    <thead>
-      <tr>
-        <th class="col-md-1 col-sm-2 col-xs-2"><%=t 'helpers.links.destroy' %></th>
-        <th class="col-md-9 col-sm-8 col-xs-6">
-          <%=t 'activerecord.attributes.invoice/invoice_details.service_id'%>
-        </th>
-        <th class="col-md-2 col-sm-2 col-xs-4">
-          <%=t 'activerecord.attributes.invoice/invoice_details.total'%>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= f.fields_for :invoice_details do |builder| %>
-        <%= render 'invoice_details', f: builder %>
-      <% end %>
-
-      <tr>
-        <td colspan="100%">
-          <%= f.submit t(:add_detail), :class => 'btn btn-primary btn-flat col-xs-12', data: { disable_with: t('please_wait')} %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <%= render 'edit_invoice_details' %>
 </div>
 <div class="box-footer">
+  <% if @invoice.new_record? %>
+      <%= f.submit t(:save), :class => 'btn btn-primary btn-flat col-xs-6 col-sm-2 col-md-1', data: { disable_with: t('please_wait')} %>
+      <%= link_to t('helpers.links.back'),
+                  user_invoices_path(current_user), :class => 'btn btn-default btn-flat col-xs-6 col-sm-2 col-md-1' %>
+  <% end %>
+
   <% unless @invoice.new_record? %>
+      <%= f.submit t(:save), :class => 'btn btn-primary btn-flat col-xs-4 col-sm-2 col-md-1', data: { disable_with: t('please_wait')} %>
+
       <%= link_to user_invoice_path(current_user, @invoice),
                   method: :get,
-                  class: 'btn btn-default btn-flat col-xs-6 col-sm-2 col-md-1' do %>
+                  class: 'btn btn-default btn-flat col-xs-4 col-sm-2 col-md-1' do %>
           <i class="fa fa-print" aria-hidden="true">
             <%=t 'helpers.links.print' %>
           </i>
       <% end %>
-  <% end %>
 
-  <%= link_to t("helpers.links.cancel"),
-            user_invoices_path(current_user), :class => 'btn btn-default btn-flat col-xs-6 col-sm-2 col-md-1' %>
+      <%= link_to t('helpers.links.cancel'),
+                  user_invoices_path(current_user), :class => 'btn btn-default btn-flat col-xs-4 col-sm-2 col-md-1' %>
+  <% end %>
 </div>

@@ -1,0 +1,150 @@
+<%- model_class = InvoiceDetail -%>
+
+<%= javascript_include_tag 'invoices/edit_invoice_details' %>
+
+<h4>Invoice details</h4>
+
+<span id="invoice_details">
+  <div class="row add-detail-button-wrapper">
+    <%= button_tag t(:add_detail), :class => 'btn btn-primary btn-flat col-xs-12', data: { bind: "click: add"} %>
+  </div>
+
+  <div class="panel-group" id="invoice_details_list" role="tablist" aria-multiselectable="true" data-bind="foreach: details">
+    <div class="panel" data-bind="css: { 'panel-success': id() !== null, 'panel-warning': id() === null }, visible: visible">
+      <div class="panel-heading" role="tab" data-bind="attr: { id: 'heading-invoice-detail-' + $index() }">
+        <h4 class="panel-title">
+          <div class="row">
+            <a class="collapsed col-xs-5 col-md-9" role="button" data-toggle="collapse" data-parent="#invoice_details_list" aria-expanded="false"
+               data-bind="attr: {
+                  href: '#collapse-invoice-detail-' + $index(),
+                  'aria-controls': 'collapse-invoice-detail-' + $index()
+                }">
+              <span data-bind="text: service.description"></span>
+            </a>
+
+            <p class="col-xs-4 col-md-2 text-right">
+              <span data-bind="text: total"></span>
+              <%= current_currency_symbol %>
+            </p>
+
+            <div class="col-xs-3 col-md-1">
+              <button data-bind="click: markAsDeleted"
+                      class="btn btn-xs btn-danger btn-block btn-flat">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                <span class="hidden-xs">
+                  <%=t 'helpers.links.destroy' %>
+                </span>
+              </button>
+            </div>
+          </div>
+        </h4>
+      </div>
+      <div class="panel-collapse collapse" role="tabpanel"
+           data-bind="attr: { 'aria-labelledby': 'heading-invoice-detail-' + $index(), id: 'collapse-invoice-detail-' + $index() }">
+        <div class="panel-body">
+          <input type="hidden" data-bind="value: deleted, attr: {
+                                    name: 'invoice[invoice_details_attributes][' + $index() + '][_destroy]',
+                                    id: 'invoice_invoice_details_attributes' + $index() + '__destroy'
+                                 }">
+
+          <input type="hidden" data-bind="value: id, attr: {
+                                    name: 'invoice[invoice_details_attributes][' + $index() + '][id]',
+                                    id: 'invoice_invoice_details_attributes_' + $index() + '_id'
+                                 }">
+
+          <input type="hidden" data-bind="attr: {
+                                    name: 'invoice[invoice_details_attributes][' + $index() + '][invoice_id]',
+                                    id: 'invoice_invoice_details_attributes_' + $index() + '_invoice_id'
+                                 }" value="<%= @invoice.id %>">
+
+          <div class="row">
+            <div class="form-group col-md-2 col-sm-4 col-xs-12">
+              <select class="form-control input-sm"
+                      data-bind="value: service_id,
+                                 attr: {
+                                    name: 'invoice[invoice_details_attributes][' + $index() + '][service_id]',
+                                    id: 'invoice_invoice_details_attributes_' + $index() + '_service_id'
+                                 }">
+                <%= service_options %>
+              </select>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-8 col-xs-12">
+              <input type="text" data-toggle="tooltip" data-placement="top" class="form-control input-sm"
+                     data-bind="value: description,
+                                 attr: {
+                                    name: 'invoice[invoice_details_attributes][' + $index() + '][description]',
+                                    id: 'invoice_invoice_details_attributes_' + $index() + '_description'
+                                 }"
+                     title="<%= model_class.human_attribute_name(:description) %>"
+                     placeholder="<%= model_class.human_attribute_name(:description) %>">
+            </div>
+
+            <div class="form-group col-md-2 col-sm-4 col-xs-6">
+              <div class="input-group">
+                <input type="number" class="form-control input-sm" data-toggle="tooltip" data-placement="top"
+                       data-bind="textInput: quantity,
+                                 attr: {
+                                    name: 'invoice[invoice_details_attributes][' + $index() + '][quantity]',
+                                    id: 'invoice_invoice_details_attributes_' + $index() + '_quantity'
+                                 }"
+                       title="<%= model_class.human_attribute_name(:quantity) %>"
+                       placeholder="<%= model_class.human_attribute_name(:quantity) %>"
+                       min="0"
+                       step="any">
+                <span class="input-group-addon" data-bind="text: service.unit.label_short"></span>
+              </div>
+            </div>
+
+            <div class="form-group col-md-2 col-sm-4 col-xs-6">
+              <div class="input-group">
+                <input type="number" class="form-control input-sm" data-toggle="tooltip" data-placement="top"
+                       data-bind="textInput: price,
+                                 attr: {
+                                    name: 'invoice[invoice_details_attributes][' + $index() + '][price]',
+                                    id: 'invoice_invoice_details_attributes_' + $index() + '_price'
+                                 }"
+                       title="<%= model_class.human_attribute_name(:price) %>"
+                       placeholder="<%= model_class.human_attribute_name(:price) %>"
+                       min="0"
+                       step="any">
+
+                <span class="input-group-addon"><%= current_currency_symbol %></span>
+              </div>
+            </div>
+
+            <div class="form-group col-md-1 col-sm-3 col-xs-12">
+              <select class="form-control input-sm" data-toggle="tooltip" data-placement="top"
+                  data-bind="value: vat_rate,
+                                 attr: {
+                                    name: 'invoice[invoice_details_attributes][' + $index() + '][vat_rate]',
+                                    id: 'invoice_invoice_details_attributes_' + $index() + '_vat_rate'
+                                 }"
+                  title="<%= model_class.human_attribute_name(:vat_rate) %>">
+                <%= options_for_select Vat.order(rate: :asc).map { |vat| [vat.label, vat.rate] } %>
+              </select>
+            </div>
+
+            <div class="form-group col-md-1 col-sm-4 col-xs-6">
+              <div class="input-group">
+                <input type="number" class="form-control input-sm" data-toggle="tooltip" data-placement="top"
+                       data-bind="textInput: discount,
+                                 attr: {
+                                    name: 'invoice[invoice_details_attributes][' + $index() + '][discount]',
+                                    id: 'invoice_invoice_details_attributes_' + $index() + '_discount'
+                                 }"
+                       title="<%= model_class.human_attribute_name(:discount) %>"
+                       placeholder="<%= model_class.human_attribute_name(:discount) %>"
+                       step="1"
+                       min="0"
+                       max="100">
+                <span class="input-group-addon">%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</span>
+

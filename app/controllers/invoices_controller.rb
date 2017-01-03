@@ -67,12 +67,10 @@ class InvoicesController < SecuredController
   def new
     payment_method = PaymentMethod.find_by(default: true)
     @invoice = Invoice.new(date: Date.today, payment_method: payment_method)
-    @invoice.invoice_details.build
   end
 
   # GET /invoices/1/edit
   def edit
-    @invoice.invoice_details.build
   end
 
   # POST /invoices
