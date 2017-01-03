@@ -12,5 +12,6 @@ Rails.application.config.assets.precompile += %w(_all-skins.css skin-blue.css)
 Rails.application.config.assets.precompile += %w( estimates/edit_estimate_details.js )
 Rails.application.config.assets.precompile += %w( delivery-notes/edit_delivery_note_details.js )
 Rails.application.config.assets.precompile += %w( invoices/edit_invoice_details.js )
+Rails.application.config.assets.precompile += %w( tasks/edit_time_logs.js )
 
 Rails.application.config.assets.precompile << /\.(?:gif|svg|eot|woff|ttf)\z/

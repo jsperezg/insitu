@@ -1,27 +1,29 @@
 //= require abstract-detail
 
-class ServiceDependandDetail extends AbstractDetail {
+class ServiceDependantDetail extends AbstractDetail {
   constructor(json) {
     super(json);
 
-    this.service = { id: ko.observable(), description: ko.observable(), unit: { label_short: ko.observable() } };
+    this.service = {id: ko.observable(), description: ko.observable(), unit: {label_short: ko.observable()}};
 
     this.service_id.subscribe(function (newValue) {
       this.findService(newValue);
     }, this);
 
-    if (!defined(this.discount)) {
-      this.discount = ko.observable(0);
-    }
+    if (defined(this.total)) {
+      if (!defined(this.discount)) {
+        this.discount = ko.observable(0);
+      }
 
-    if (!defined(this.vat_rate)) {
-      this.vat_rate = ko.observable(0);
-    }
+      if (!defined(this.vat_rate)) {
+        this.vat_rate = ko.observable(0);
+      }
 
-    this.quantity.subscribe(this.calculateTotal, this);
-    this.price.subscribe(this.calculateTotal, this);
-    this.discount.subscribe(this.calculateTotal, this);
-    this.vat_rate.subscribe(this.calculateTotal, this);
+      this.quantity.subscribe(this.calculateTotal, this);
+      this.price.subscribe(this.calculateTotal, this);
+      this.discount.subscribe(this.calculateTotal, this);
+      this.vat_rate.subscribe(this.calculateTotal, this);
+    }
   }
 
   calculateTotal() {

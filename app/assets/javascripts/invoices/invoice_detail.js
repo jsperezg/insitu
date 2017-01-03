@@ -1,10 +1,6 @@
-//= require service-dependand-detail
+//= require service-dependant-detail
 
-class InvoiceDetail extends ServiceDependandDetail {
-  constructor (json) {
-    super(json);
-  }
-
+class InvoiceDetail extends ServiceDependantDetail {
   emptyDetail() {
     return {
       id: null,
