@@ -1,140 +1,16 @@
-<%- model_class = Invoice -%>
 <% content_for :title, "#{ Invoice.model_name.human } #{ @invoice.number}" %>
+<div class="embed-responsive embed-responsive-4by3">
+  <object data="/pdfjs/web/viewer.html?file=<%= print_user_invoice_url(current_user.id, @invoice, format: :pdf) %>" class="embed-responsive-item"></object>
+</div>
+<br>
+<div class="row no-print">
+  <div class="col-xs-12">
+    <%= link_to t('helpers.links.cancel'), edit_user_invoice_path(current_user, @invoice), class: 'btn btn-default col-xs-12 col-md-1 btn-flat pull-right' %>
 
-<section class="invoice">
-  <!-- title row -->
-  <div class="row">
-
-    <!-- info row -->
-    <div class="row invoice-info">
-      <div class="col-sm-4 invoice-col">
-        <%= render 'layouts/user_address' %>
-      </div><!-- /.col -->
-      <div class="col-sm-4 invoice-col">
-        <%= render 'layouts/customer_address', customer: @invoice.customer %>
-      </div><!-- /.col -->
-      <div class="col-sm-4 invoice-col">
-        <table class="table table-condensed borderless">
-          <tr>
-            <th class="col-xs-8 text-right"><%= Invoice.model_name.human %>:</th>
-            <td class="text-right"><%= @invoice.number %></td>
-          </tr>
-          <tr>
-            <th class="col-xs-8 text-right"><%= model_class.human_attribute_name(:date) %>:</th>
-            <td class="text-right"><%=l @invoice[:date] %></td>
-          </tr>
-          <tr>
-            <th class="col-xs-8 text-right"><%= model_class.human_attribute_name(:payment_date) %>:</th>
-            <td class="text-right"><%=l @invoice[:payment_date] %></td>
-          </tr>
-        </table>
-      </div><!-- /.col -->
-    </div><!-- /.row -->
+    <%= link_to  forward_email_user_invoice_url(current_user.id, @invoice.id),
+                 class: 'btn btn-success col-md-1 hidden-xs btn-flat pull-right',
+                data: { disable_with: t(:please_wait) } do %>
+        <i class="fa fa-envelope"></i> <%=t 'helpers.send_by_email' %>
+    <% end %>
   </div>
-
-  <!-- Table row -->
-  <div class="row">
-    <div class="col-xs-12 table-responsive">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th class="text-right col-xs-1"><%= InvoiceDetail.human_attribute_name :quantity %></th>
-          <th class="col-xs-2"><%= InvoiceDetail.human_attribute_name :service_id %></th>
-          <th class="text-center col-xs-1"><%= Service.human_attribute_name :code %></th>
-          <th><%= InvoiceDetail.human_attribute_name :description %></th>
-          <th class="text-right col-xs-1"><%= InvoiceDetail.human_attribute_name :price %></th>
-          <% if @invoice.discount > 0 %>
-            <th class="text-right col-xs-1"><%= InvoiceDetail.human_attribute_name :discount %></th>
-          <% end %>
-          <th class="text-right col-xs-1"><%= InvoiceDetail.human_attribute_name :vat_rate %></th>
-          <th class="text-right col-xs-1"><%= InvoiceDetail.human_attribute_name :total %></th>
-        </tr>
-        </thead>
-        <tbody>
-        <% @invoice.invoice_details.each do |detail| %>
-          <% cache detail do %>
-            <tr>
-              <td class="text-right"><%= detail.quantity %></td>
-              <td><%= detail.service.description %></td>
-              <td class="text-center"><%= detail.service.code %></td>
-              <td><%= detail.description %></td>
-              <td class="text-right"><%= number_with_precision(detail.price, precision: 2) %><%= current_currency_symbol %></td>
-
-              <% if detail.discount > 0 %>
-                <td class="text-right"><%= detail.discount %>%</td>
-              <% end %>
-
-              <td class="text-right"><%= detail.vat_rate %>%</td>
-              <td class="text-right"><%= number_with_precision(detail.subtotal, precision: 2) %><%= current_currency_symbol %></td>
-            </tr>
-          <% end %>
-        <% end %>
-        </tbody>
-      </table>
-    </div><!-- /.col -->
-  </div><!-- /.row -->
-
-  <div class="row">
-    <!-- accepted payments column -->
-    <div class="col-xs-6">
-      <% unless @invoice.payment_method.try(:note_for_invoice).blank? %>
-        <div class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-          <%=raw @invoice.payment_method.note_for_invoice %>
-        </div>
-      <% end %>
-    </div>
-    <div class="col-xs-6 invoice-col">
-      <div class="table-responsive">
-        <table class="table table-condensed borderless">
-          <tr>
-            <th class="col-xs-9 text-right"><%= Invoice.human_attribute_name :subtotal %>:</th>
-            <td class="text-right"><%= number_with_precision(@invoice.subtotal, precision: 2) %><%= current_currency_symbol %></td>
-          </tr>
-
-          <% if @invoice.discount > 0 %>
-          <tr>
-            <th class="col-xs-9 text-right"><%= Invoice.human_attribute_name :discount %>:</th>
-            <td class="text-right red">-&nbsp;<%= number_with_precision(@invoice.discount, precision: 2) %><%= current_currency_symbol %></td>
-          </tr>
-          <% end %>
-
-          <% if @invoice.irpf > 0 %>
-          <tr>
-            <th class="col-xs-9 text-right"><%= Invoice.human_attribute_name :irpf %> (- <%= @invoice.irpf %>%):</th>
-            <td class="text-right red">-&nbsp;<%= number_with_precision(@invoice.applied_irpf, precision: 2) %><%= current_currency_symbol %></td>
-          </tr>
-          <% end %>
-
-          <% @invoice.tax.each do |key, value| %>
-            <tr>
-              <th class="col-xs-9 text-right"><%= Invoice.human_attribute_name :tax %> (<%= key %> %):</th>
-              <td class="text-right"><%= number_with_precision(value, precision: 2) %><%= current_currency_symbol %></td>
-            </tr>
-          <% end %>
-
-          <tr>
-            <th class="col-xs-9 text-right"><%= Invoice.human_attribute_name :total %>:</th>
-            <td class="text-right"><%= number_with_precision(@invoice.total, precision: 2) %><%= current_currency_symbol %></td>
-          </tr>
-        </table>
-      </div>
-    </div><!-- /.col -->
-  </div><!-- /.row -->
-
-  <!-- this row will not appear when printing -->
-  <% unless action_name == 'print' %>
-      <div class="row no-print">
-        <div class="col-xs-12">
-          <%= link_to  forward_email_user_invoice_url(current_user.id, @invoice.id),
-                       class: 'btn btn-success col-xs-1 btn-flat pull-right',
-                      data: { disable_with: t(:please_wait) } do %>
-              <i class="fa fa-envelope"></i> <%=t 'helpers.send_by_email' %>
-          <% end %>
-
-          <%= link_to print_user_invoice_url(current_user.id, @invoice.id, format: :pdf), class: 'btn btn-primary btn-flat col-xs-1 pull-right', target: '_blank' do %>
-              <i class="fa fa-download"></i> <%=t 'helpers.links.pdf' %>
-          <% end %>
-        </div>
-      </div>
-  <% end %>
-</section>
+</div>

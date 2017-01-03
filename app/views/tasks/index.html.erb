@@ -26,7 +26,7 @@
                   <span class="hidden-xs">
                     <%= best_in_place task, :name, url: user_project_task_path(current_user, task.project, task, format: :json) %>
                   </span>
-                  <div class="ellipsis">
+                  <div class="visible-xs ellipsis">
                     <%= link_to task.name, edit_user_project_task_path(current_user, task.project, task) %>
                   </div>
                 </td>
