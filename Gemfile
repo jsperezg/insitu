@@ -51,6 +51,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'jquery-turbolinks'
 gem 'cookies_eu'
 gem 'data-confirm-modal'
+gem 'pdfjs_rails'
 
 # JSON API -> Android / IOS integration
 gem 'simple_token_authentication', '~> 1.0'

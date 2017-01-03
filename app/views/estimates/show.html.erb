@@ -1,108 +1,24 @@
 <%- model_class = Estimate -%>
-  <% content_for :title, "#{ Estimate.model_name.human } #{ @estimate.number}" %>
+<% content_for :title, "#{ Estimate.model_name.human } #{ @estimate.number}" %>
 
-  <section class="invoice">
-    <!-- title row -->
-    <div class="row">
-      <!-- info row -->
-      <div class="row invoice-info">
-        <div class="col-sm-4 invoice-col">
-          <%= render 'layouts/user_address' %>
-        </div><!-- /.col -->
-        <div class="col-sm-4 invoice-col">
-          <%= render 'layouts/customer_address', customer: @estimate.customer %>
-        </div><!-- /.col -->
-        <div class="col-sm-4 invoice-col">
-          <table class="table table-condensed borderless">
-            <tr>
-              <th class="col-xs-9 text-right"><%= Estimate.model_name.human %>:</th>
-              <td class="text-right"><%= @estimate.number %></td>
-            </tr>
-            <tr>
-              <th class="col-xs-9 text-right"><%= model_class.human_attribute_name(:date) %>:</th>
-              <td class="text-right"><%=l @estimate[:date] %></td>
-            </tr>
-            <% unless @estimate.valid_until.nil? %>
-            <tr>
-              <th class="col-xs-9 text-right"><%= model_class.human_attribute_name(:valid_until) %>:</th>
-              <td class="text-right"><%=ldate @estimate.valid_until %></td>
-            </tr>
-            <% end %>
-          </table>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div>
+<div class="embed-responsive embed-responsive-4by3">
+  <object data="/pdfjs/web/viewer.html?file=<%= print_user_estimate_url(current_user.id, @estimate.id, format: :pdf) %>" class="embed-responsive-item"></object>
+</div>
+<br>
+<div class="row">
+  <div class="col-xs-12">
+    <%= link_to invoice_user_estimate_url(current_user.id, @estimate.id), class: 'btn btn-primary btn-flat col-xs-6 col-md-1',
+                data: { confirm: t('helpers.links.confirm', :default => 'Are you sure?'), disable_with: t(:please_wait) } do %>
+        <i class="fa fa-money"></i> <%=t 'estimates.invoice_title' %>
+    <% end %>
 
-  <!-- Table row -->
-  <div class="row">
-    <div class="col-xs-12 table-responsive">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th class="text-right col-xs-1"><%= EstimateDetail.human_attribute_name :quantity %></th>
-          <th class="col-xs-2"><%= EstimateDetail.human_attribute_name :service_id %></th>
-          <th class="text-center col-xs-1"><%= Service.human_attribute_name :code %></th>
-          <th><%= EstimateDetail.human_attribute_name :description %></th>
-          <th class="text-right col-xs-1"><%= EstimateDetail.human_attribute_name :price %></th>
-          <th class="text-right col-xs-1"><%= EstimateDetail.human_attribute_name :discount %></th>
-          <th class="text-right col-xs-1"><%= EstimateDetail.human_attribute_name :total %></th>
-        </tr>
-        </thead>
-        <tbody>
-          <% @estimate.estimate_details.each do |detail| %>
-            <% cache detail do %>
-              <tr>
-                <td class="text-right"><%= detail.quantity %></td>
-                <td><%= detail.service.description %></td>
-                <td class="text-center"><%= detail.service.code %></td>
-                <td><%= detail.description %></td>
-                <td class="text-right"><%= number_with_precision(detail.price, precision: 2) %><%= current_currency_symbol %></td>
-                <td class="text-right"><%= detail.discount %>%</td>
-                <td class="text-right"><%= number_with_precision detail.total, precision: 2 %><%= current_currency_symbol %></td>
-              </tr>
-            <% end %>
-          <% end %>
-        </tbody>
-      </table>
-    </div><!-- /.col -->
-  </div><!-- /.row -->
+    <%= link_to t('helpers.links.cancel'), edit_user_estimate_path(current_user, @estimate), class: 'btn btn-default col-xs-6 col-md-1 btn-flat pull-right' %>
 
-  <div class="row">
-    <!-- accepted payments column -->
-    <div class="col-xs-6"></div>
-    <div class="col-xs-6">
-      <div class="table-responsive">
-        <table class="table">
-          <tr>
-            <th class="col-xs-9 text-right"><%= Estimate.human_attribute_name :total %>:</th>
-            <td class="text-right"><%= number_with_precision @estimate.total, precision: 2 %><%= current_currency_symbol %></td>
-          </tr>
-        </table>
-      </div>
-    </div><!-- /.col -->
-  </div><!-- /.row -->
+    <%= link_to forward_email_user_estimate_url(current_user.id, @estimate.id),
+                class: 'btn btn-success hidden-xs col-md-1 btn-flat pull-right',
+                data: { confirm: t('helpers.links.confirm', :default => 'Are you sure?'), disable_with: t(:please_wait) } do %>
+        <i class="fa fa-envelope"></i> <%=t 'helpers.send_by_email' %>
+    <% end %>
+  </div>
+</div>
 
-  <!-- this row will not appear when printing -->
-  <% unless action_name == 'print' %>
-    <div class="row no-print">
-      <div class="col-xs-12">
-        <%= link_to invoice_user_estimate_url(current_user.id, @estimate.id), class: 'btn btn-default btn-flat col-xs-4 col-md-1',
-                    data: { confirm: t('helpers.links.confirm', :default => 'Are you sure?'), disable_with: t(:please_wait) } do %>
-            <i class="fa fa-money"></i> <%=t 'estimates.invoice_title' %>
-        <% end %>
-
-        <%= link_to t('helpers.links.cancel'), edit_user_estimate_path(current_user, @estimate), class: 'btn btn-default col-xs-4 col-md-1 btn-flat pull-right' %>
-
-        <%= link_to forward_email_user_estimate_url(current_user.id, @estimate.id),
-                     class: 'btn btn-success col-xs-4 col-md-1 btn-flat pull-right',
-                     data: { confirm: t('helpers.links.confirm', :default => 'Are you sure?'), disable_with: t(:please_wait) } do %>
-            <i class="fa fa-envelope"></i> <%=t 'helpers.send_by_email' %>
-        <% end %>
-
-        <%= link_to print_user_estimate_url(current_user.id, @estimate.id, format: :pdf), class: 'btn btn-primary col-xs-4 col-md-1 btn-flat pull-right' do %>
-            <i class="fa fa-download"></i> <%=t 'helpers.links.pdf' %>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-</section>
