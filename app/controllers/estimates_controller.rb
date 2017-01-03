@@ -40,7 +40,7 @@ class EstimatesController < SecuredController
       end
       format.pdf do
         pdf = EstimatePdf.new current_user, @estimate
-        send_data pdf.render, filename: "estimate_#{ @estimate.number.gsub('/', '_') }.pdf", type: 'application/pdf'
+        send_data pdf.render, filename: "estimate_#{ @estimate.number.gsub('/', '_') }.pdf", type: 'application/pdf', disposition: 'inline'
       end
     end
   end

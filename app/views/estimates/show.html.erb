@@ -86,18 +86,20 @@
   <% unless action_name == 'print' %>
     <div class="row no-print">
       <div class="col-xs-12">
-        <%= link_to invoice_user_estimate_url(current_user.id, @estimate.id), class: 'btn btn-default col-xs-1',
+        <%= link_to invoice_user_estimate_url(current_user.id, @estimate.id), class: 'btn btn-default btn-flat col-xs-4 col-md-1',
                     data: { confirm: t('helpers.links.confirm', :default => 'Are you sure?'), disable_with: t(:please_wait) } do %>
             <i class="fa fa-money"></i> <%=t 'estimates.invoice_title' %>
         <% end %>
 
+        <%= link_to t('helpers.links.cancel'), edit_user_estimate_path(current_user, @estimate), class: 'btn btn-default col-xs-4 col-md-1 btn-flat pull-right' %>
+
         <%= link_to forward_email_user_estimate_url(current_user.id, @estimate.id),
-                     class: 'btn btn-success col-xs-1 btn-flat pull-right',
+                     class: 'btn btn-success col-xs-4 col-md-1 btn-flat pull-right',
                      data: { confirm: t('helpers.links.confirm', :default => 'Are you sure?'), disable_with: t(:please_wait) } do %>
             <i class="fa fa-envelope"></i> <%=t 'helpers.send_by_email' %>
         <% end %>
 
-        <%= link_to print_user_estimate_url(current_user.id, @estimate.id, format: :pdf), class: 'btn btn-primary col-xs-1 pull-right', target: '_blank' do %>
+        <%= link_to print_user_estimate_url(current_user.id, @estimate.id, format: :pdf), class: 'btn btn-primary col-xs-4 col-md-1 btn-flat pull-right' do %>
             <i class="fa fa-download"></i> <%=t 'helpers.links.pdf' %>
         <% end %>
       </div>

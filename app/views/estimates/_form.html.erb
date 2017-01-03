@@ -61,6 +61,10 @@
         </i>
     <% end %>
 
+      <%= link_to print_user_estimate_url(current_user.id, @estimate.id, format: :pdf), class: 'btn btn-default col-xs-4 col-md-1 btn-flat' do %>
+          <i class="fa fa-download"></i> <%=t 'helpers.links.pdf' %>
+      <% end %>
+
     <%= link_to t('helpers.links.cancel'),
          user_estimates_path(current_user), :class => 'btn btn-default btn-flat col-xs-4 col-sm-2 col-md-1' %>
   <% end %>
