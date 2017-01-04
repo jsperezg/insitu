@@ -8,6 +8,9 @@ es:
       plan: Plan de precios
       user: Usuario
       payment: Pago
+      payment_method: Método de pago
+      vat: IVA
+      unit: Unidad de medida
     attributes:
       user:
         tax_id: NIF/CIF

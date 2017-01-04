@@ -8,6 +8,9 @@ en:
       plan: Price plan
       user: User
       payment: Payment
+      payment_method: Payment method
+      vat: VAT
+      unit: Measurement unit
     attributes:
       user:
         tax_id: VAT ID

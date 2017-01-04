@@ -65,6 +65,9 @@ es:
   sign_in_at: Acceso el
   auto: Auto
   add_detail: Añadir nueva fila
+  removal_confirmation: "Borrar %{model}: %{description}"
+  cancel: Cancelar
+  continue: Continuar
 
   payment_methods:
     title: Métodos de pago

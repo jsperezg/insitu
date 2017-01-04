@@ -44,7 +44,12 @@
                 <td>
                   <%= button_to user_vat_path(current_user.id, vat),
                               :method => :delete,
-                              :data => { :confirm => t('helpers.links.confirm', default: 'Are you sure?') },
+                              :data => {
+                                  'original-title'  => t('helpers.links.confirm', default: 'Are you sure?'),
+                                  confirm: t(:removal_confirmation, model: model_class.model_name.human, description: vat.label),
+                                  commit: t(:continue),
+                                  cancel: t(:cancel)
+                              },
                               :class => 'btn btn-xs btn-danger btn-flat btn-block' do %>
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                     <span class="hidden-xs">

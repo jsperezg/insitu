@@ -45,7 +45,13 @@
                 <td>
                   <%= button_to user_payment_method_path(current_user.id, payment_method),
                               method: :delete,
-                              data: { :confirm => t('helpers.links.confirm', default: 'Are you sure?') },
+                              data: {
+                                  'original-title' => t('helpers.links.confirm', default: 'Are you sure?'),
+                                  confirm: t(:removal_confirmation, model: PaymentMethod.model_name.human.downcase, description: payment_method.name),
+                                  commit: t(:continue),
+                                  cancel: t(:cancel)
+
+                              },
                               class: 'btn btn-xs btn-danger btn-block btn-flat' do %>
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                     <span class="hidden-xs">

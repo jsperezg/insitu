@@ -13,7 +13,7 @@
         <th class="hidden-xs col-sm-1 col-md-1">
           <%= filterrific_sorting_link(@filterrific, :vat, label: model_class.human_attribute_name(:vat_id)) %>
         </th>
-        <th class="hidden-xs hidden-sm col-md-1">col-xs-2
+        <th class="hidden-xs hidden-sm col-md-1">
           <%= filterrific_sorting_link(@filterrific, :unit, label: model_class.human_attribute_name(:unit_id)) %>
         </th>
         <th class="hidden-xs col-sm-1 col-md-1 text-right">
@@ -76,7 +76,12 @@
             <td>
               <%= button_to user_service_path(current_user.id, service),
                             :method => :delete,
-                            :data => { :confirm => t('helpers.links.confirm', :default => 'Are you sure?') },
+                            :data => {
+                                'original-title' => t('helpers.links.confirm', :default => 'Are you sure?'),
+                                confirm: t(:removal_confirmation, model: model_class.model_name.human, description: service.description),
+                                commit: t(:continue),
+                                cancel: t(:cancel)
+                            },
                             :class => 'btn btn-xs btn-danger btn-flat btn-block' do %>
                   <i class="fa fa-trash-o" aria-hidden="true"></i>
                   <span class="hidden-xs">
