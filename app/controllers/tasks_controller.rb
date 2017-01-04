@@ -19,13 +19,10 @@ class TasksController < SecuredController
   # GET /tasks/new
   def new
     @task = Task.new(project_id: @project.id)
-    @task.time_logs.build
   end
 
   # GET /tasks/1/edit
   def edit
-    @time_log = TimeLog.new
-    @task.time_logs.build
   end
 
   # POST /tasks

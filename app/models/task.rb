@@ -15,7 +15,7 @@ class Task < ActiveRecord::Base
   accepts_nested_attributes_for :time_logs, reject_if: proc { |attr|
     result = true
 
-    [:description, :time_spent, :date, :service_id].each do |attr_id|
+    [:description, :time_spent, :date].each do |attr_id|
       result = false unless attr[attr_id].blank?
     end
 

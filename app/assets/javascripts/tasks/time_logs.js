@@ -4,7 +4,7 @@
 class TimeLogs extends AbstractDetails {
   refresh() {
     let id = $('#task_id').val(),
-        project_id = $('#project_id').val();
+        project_id = $('#task_project_id').val();
 
     if (defined(id) && id !== '') {
       return $.ajax('/api/v1/projects/' + project_id + '/tasks/' + id + '.json').success(function (data) {

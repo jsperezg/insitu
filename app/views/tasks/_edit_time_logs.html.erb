@@ -1,0 +1,130 @@
+<%- model_class = TimeLog -%>
+<%= javascript_include_tag 'tasks/edit_time_logs' %>
+
+<span id="time_logs">
+  <div class="row add-detail-button-wrapper">
+    <%= button_tag t(:add_detail), :class => 'btn btn-primary btn-flat col-xs-12', data: { bind: "click: add"} %>
+  </div>
+
+  <div class="panel-group" id="time_logs_list" role="tablist" aria-multiselectable="true" data-bind="foreach: details">
+    <div class="panel" data-bind="css: { 'panel-success': id() !== null, 'panel-warning': id() === null }, visible: visible">
+      <div class="panel-heading" role="tab" data-bind="attr: { id: 'heading-time-log-' + $index() }">
+        <h4 class="panel-title">
+          <div class="row">
+            <a class="collapsed col-xs-9 col-md-11" role="button" data-toggle="collapse" data-parent="#time_logs_list" aria-expanded="false"
+               data-bind="attr: {
+                  href: '#collapse-time-log-' + $index(),
+                  'aria-controls': 'collapse-time-log-' + $index()
+                }">
+              <div class="ellipsis">
+                <span data-bind="text: service.description"></span>.
+                <span data-bind="text: description"></span>
+              </div>
+            </a>
+
+            <div class="col-xs-3 col-md-1">
+              <button data-bind="click: markAsDeleted"
+                      class="btn btn-xs btn-danger btn-block btn-flat">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                <span class="hidden-xs">
+                  <%=t 'helpers.links.destroy' %>
+                </span>
+              </button>
+            </div>
+          </div>
+        </h4>
+      </div>
+      <div class="panel-collapse collapse" role="tabpanel"
+           data-bind="attr: { 'aria-labelledby': 'heading-time-log-' + $index(), id: 'collapse-time-log-' + $index() }">
+        <div class="panel-body">
+          <input type="hidden" data-bind="value: deleted, attr: {
+                                    name: 'task[time_logs_attributes][' + $index() + '][_destroy]',
+                                    id: 'task_time_logs_attributes' + $index() + '__destroy'
+                                 }">
+
+          <input type="hidden" data-bind="value: id, attr: {
+                                    name: 'task[time_logs_attributes][' + $index() + '][id]',
+                                    id: 'task_time_logs_attributes_' + $index() + '_id'
+                                 }">
+
+          <input type="hidden" data-bind="attr: {
+                                    name: 'task[time_logs_attributes][' + $index() + '][task_id]',
+                                    id: 'task_time_logs_attributes_' + $index() + '_task_id'
+                                 }" value="<%= @task.id %>">
+
+
+          <div class="row">
+            <div class="form-group col-xs-12 col-sm-3 col-md-2">
+              <label class="control-label" data-bind="attr: { for: 'task_time_logs_attributes_' + $index() + '_service_id' }">
+                <%= t('activerecord.attributes.time_log.service_id') %>
+              </label>
+
+              <select class="form-control input-sm"
+                      data-bind="value: service_id,
+                                 attr: {
+                                    name: 'task[time_logs_attributes][' + $index() + '][service_id]',
+                                    id: 'task_time_logs_attributes_' + $index() + '_service_id'
+                                 }">
+                <%= service_options %>
+              </select>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-8 col-xs-12">
+              <label class="control-label" data-bind="attr: { for: 'task_time_logs_attributes_' + $index() + '_description' }">
+                <%= t('activerecord.attributes.time_log.description') %>
+              </label>
+              <input type="text" data-toggle="tooltip" data-placement="top" class="form-control input-sm"
+                     data-bind="value: description,
+                                 attr: {
+                                    name: 'task[time_logs_attributes][' + $index() + '][description]',
+                                    id: 'task_time_logs_attributes_' + $index() + '_description'
+                                 }"
+                     title="<%= model_class.human_attribute_name(:description) %>"
+                     placeholder="<%= model_class.human_attribute_name(:description) %>">
+            </div>
+
+            <div class="form-group col-xs-12 col-sm-3 col-md-2">
+              <label class="control-label" data-bind="attr: { for: 'task_time_logs_attributes_' + $index() + '_date' }">
+                <%= t('activerecord.attributes.time_log.date') %>
+              </label>
+
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <span class="fa fa-calendar"></span>
+                </span>
+
+                <input type="text" data-toggle="tooltip" data-placement="top" class="form-control input-sm date"
+                       data-bind="value: date,
+                                 attr: {
+                                    name: 'task[time_logs_attributes][' + $index() + '][date]',
+                                    id: 'task_time_logs_attributes_' + $index() + '_date'
+                                 }"
+                       title="<%= model_class.human_attribute_name(:date) %>"
+                       placeholder="<%= model_class.human_attribute_name(:date) %>">
+              </div>
+            </div>
+
+            <div class="form-group col-xs-12 col-sm-3 col-md-2">
+              <label class="control-label" data-bind="attr: { for: 'task_time_logs_attributes_' + $index() + '_time_spent' }">
+                <%= t('activerecord.attributes.time_log.time_spent') %>
+              </label>
+              <div class="input-group">
+                <input type="number" data-toggle="tooltip" data-placement="top" class="form-control input-sm"
+                       data-bind="value: time_spent,
+                                 attr: {
+                                    name: 'task[time_logs_attributes][' + $index() + '][time_spent]',
+                                    id: 'task_time_logs_attributes_' + $index() + '_time_spent'
+                                 }"
+                       title="<%= model_class.human_attribute_name(:time_spent) %>"
+                       placeholder="<%= model_class.human_attribute_name(:time_spent) %>"
+                       min="0"
+                       step="1">
+                <span class="input-group-addon">min.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</span>

@@ -41,7 +41,9 @@ class ServiceDependantDetail extends AbstractDetail {
       $.ajax('/api/v1/services/' + service_id + '.json').success(function (data) {
         ko.mapping.fromJS(data, {}, this.service);
 
-        this.updatePrice();
+        if (defined(this.total)) {
+          this.updatePrice();
+        }
       }.bind(this));
     }
   }
