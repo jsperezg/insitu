@@ -65,7 +65,7 @@ en:
   sign_in_at: Sign in at
   auto: Auto
   add_detail: Add another detail
-  removal_confirmation: "Remove %{model}: %{description}"
+  removal_confirmation: "Do you want to remove the %{model}: %{description}?"
   cancel: Cancel
   continue: Continue
 

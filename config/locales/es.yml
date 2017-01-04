@@ -65,7 +65,7 @@ es:
   sign_in_at: Acceso el
   auto: Auto
   add_detail: Añadir nueva fila
-  removal_confirmation: "Borrar %{model}: %{description}"
+  removal_confirmation: "¿Quieres borrar el registro de %{model}: %{description}?"
   cancel: Cancelar
   continue: Continuar
 
