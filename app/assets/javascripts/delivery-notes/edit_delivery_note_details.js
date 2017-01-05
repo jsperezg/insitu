@@ -1,6 +1,6 @@
 //= require delivery-notes/delivery_note_details
 
-$(document).ready(function() {
+$(document).on("page:change", function () {
   let detailsElement = document.getElementById('delivery_note_details'),
       details = new DeliveryNoteDetails();
 

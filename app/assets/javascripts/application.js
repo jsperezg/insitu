@@ -27,9 +27,9 @@
 //= require turbolinks
 //= require nprogress
 //= require nprogress-turbolinks
-//= require initialization
 //= require cookies_eu
 //= require data-confirm-modal
 //= require knockout
 //= require knockout.mapping
+//= require initialization
 //= require_tree ./autoload

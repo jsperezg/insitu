@@ -14,6 +14,15 @@ es:
       customer: Cliente
       project: Proyecto
       task: Tarea
+      estimate_detail:
+        one: Detalle del presupuesto
+        other: Detalles del presupuesto
+      delivery_note_detail:
+        one: Detalle del albarán
+        other: Detalles del albarán
+      invoice_detail:
+        one: Detalle de la factura
+        other: Detalles de la factura
 
     attributes:
       user:

@@ -1,6 +1,6 @@
 //= require tasks/time_logs
 
-$(document).ready(function() {
+$(document).on("page:change", function () {
   let detailsElement = document.getElementById('time_logs'),
       details = new TimeLogs();
 

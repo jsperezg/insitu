@@ -14,6 +14,15 @@ en:
       customer: Customer
       project: Project
       task: Task
+      estimate_detail:
+        one: Estimate detail
+        other: Estimate details
+      delivery_note_detail:
+        one: Delivery note detail
+        other: Delivery note details
+      invoice_detail:
+        one: Invoice detail
+        other: Invoice details
 
     attributes:
       user:

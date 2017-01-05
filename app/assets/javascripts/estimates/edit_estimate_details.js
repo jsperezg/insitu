@@ -1,6 +1,6 @@
 //= require estimates/estimate_details
 
-$(document).ready(function() {
+$(document).on("page:change", function () {
   let estimateDetailsElement = document.getElementById('estimate_details'),
       estimateDetails = new EstimateDetails();
 

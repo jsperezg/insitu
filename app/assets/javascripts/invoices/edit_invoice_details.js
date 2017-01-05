@@ -1,6 +1,6 @@
 //= require invoices/invoice_details
 
-$(document).ready(function() {
+$(document).on("page:change", function () {
   let detailsElement = document.getElementById('invoice_details'),
       details = new InvoiceDetails();
 

@@ -21,6 +21,8 @@ function activateBestInPlace() {
 }
 
 if (typeof jQuery !== 'undefined') {
+  $.ajaxSetup({ cache: false });
+
   $(document).on("page:change", function () {
     var documentIds = $(".document-id"),
         pullDownElements = $('.pull-down');
