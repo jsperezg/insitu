@@ -25,7 +25,7 @@
         <span class="input-group-addon">
           <span class="fa fa-calendar"></span>
         </span>
-        <%= f.text_field :date, class: 'form-control input-sm date', value: l(@estimate[:date]), required: true %>
+        <%= f.date_field :date, class: 'form-control input-sm', value: @estimate[:date], required: true %>
       </div>
     </div>
 
@@ -35,7 +35,7 @@
         <span class="input-group-addon">
           <span class="fa fa-calendar"></span>
         </span>
-        <%= f.text_field :valid_until, class: 'form-control input-sm date', value: ldate(@estimate[:valid_until]) %>
+        <%= f.date_field :valid_until, class: 'form-control input-sm', value: @estimate[:valid_until] %>
       </div>
     </div>
   </div>

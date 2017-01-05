@@ -17,7 +17,7 @@
         <span class="input-group-addon">
           <span class="fa fa-calendar"></span>
         </span>
-        <%= f.text_field :date, class: 'form-control input-sm date', value: l(@invoice[:date]), required: true %>
+        <%= f.date_field :date, class: 'form-control input-sm', value: @invoice[:date], required: true %>
       </div>
     </div>
 
@@ -35,9 +35,8 @@
         <span class="input-group-addon">
           <span class="fa fa-calendar"></span>
         </span>
-        <%= f.text_field :payment_date,
-                         class: 'form-control input-sm date',
-                         value: ldate(@invoice[:payment_date]),
+        <%= f.date_field :payment_date,
+                         class: 'form-control input-sm',
                          required: true  %>
       </div>
     </div>
@@ -48,7 +47,7 @@
         <span class="input-group-addon">
           <span class="fa fa-calendar"></span>
         </span>
-        <%= f.text_field :paid_on, class: 'form-control input-sm date', value: ldate(@invoice[:paid_on]) %>
+        <%= f.date_field :paid_on, class: 'form-control input-sm' %>
       </div>
     </div>
   </div>

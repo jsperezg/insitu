@@ -22,26 +22,11 @@ function activateBestInPlace() {
 
 if (typeof jQuery !== 'undefined') {
   $(document).on("page:change", function () {
-    var dateInputs = $("input.date"),
-        documentIds = $(".document-id"),
-        locale = document.documentElement.lang,
-        dateFormat = "yyyy-mm-dd",
-
+    var documentIds = $(".document-id"),
         pullDownElements = $('.pull-down');
 
     /* Activating Best In Place */
     activateBestInPlace();
-
-    //  date input.
-    if (dateInputs.length) {
-      switch (locale) {
-        case "es":
-          dateFormat = "dd/mm/yyyy";
-          break;
-      }
-
-      dateInputs.inputmask(dateFormat);
-    }
 
     if (documentIds.length) {
       documentIds.inputmask("A{1,3}/9999/999999");
