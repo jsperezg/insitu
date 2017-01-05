@@ -1,6 +1,6 @@
 //= require delivery-notes/delivery_note_details
 
-$(document).on("page:change", function () {
+let onPageLoad = function () {
   let detailsElement = document.getElementById('delivery_note_details'),
       details = new DeliveryNoteDetails();
 
@@ -16,4 +16,7 @@ $(document).on("page:change", function () {
   } else {
     details.add();
   }
-});
+};
+
+$(document).on("page:load", onPageLoad);
+$(document).ready(onPageLoad);

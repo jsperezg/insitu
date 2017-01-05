@@ -1,6 +1,6 @@
 //= require invoices/invoice_details
 
-$(document).on("page:change", function () {
+let onPageLoad = function () {
   let detailsElement = document.getElementById('invoice_details'),
       details = new InvoiceDetails();
 
@@ -16,4 +16,7 @@ $(document).on("page:change", function () {
   } else {
     details.add();
   }
-});
+};
+
+$(document).on("page:load", onPageLoad);
+$(document).ready(onPageLoad);
