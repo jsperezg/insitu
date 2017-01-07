@@ -1,5 +1,7 @@
 //= require service-dependant-detail
 
+'use strict';
+
 class DeliveryNoteDetail extends ServiceDependantDetail {
   emptyDetail() {
     return {

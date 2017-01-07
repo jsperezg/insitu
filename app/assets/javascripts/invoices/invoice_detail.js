@@ -1,5 +1,7 @@
 //= require service-dependant-detail
 
+'use strict';
+
 class InvoiceDetail extends ServiceDependantDetail {
   emptyDetail() {
     return {

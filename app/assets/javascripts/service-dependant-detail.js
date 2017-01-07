@@ -1,5 +1,7 @@
 //= require abstract-detail
 
+'use strict';
+
 class ServiceDependantDetail extends AbstractDetail {
   constructor(json) {
     super(json);

@@ -1,6 +1,8 @@
 //= require delivery-notes/delivery_note_detail
 //= require 'abstract-details'
 
+'use strict';
+
 class DeliveryNoteDetails extends AbstractDetails {
   refresh() {
     let id = $('#delivery_note_id').val();

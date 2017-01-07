@@ -1,5 +1,7 @@
 //= require estimates/estimate_details
 
+'use strict';
+
 let onPageLoad = function () {
   let estimateDetailsElement = document.getElementById('estimate_details'),
       estimateDetails = new EstimateDetails();
@@ -19,4 +21,3 @@ let onPageLoad = function () {
 };
 
 $(document).on("page:load", onPageLoad);
-$(document).ready(onPageLoad);

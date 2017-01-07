@@ -1,5 +1,7 @@
 //= require service-dependant-detail
 
+'use strict';
+
 class EstimateDetail extends ServiceDependantDetail {
   emptyDetail() {
     return {

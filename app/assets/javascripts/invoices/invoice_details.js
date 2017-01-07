@@ -1,6 +1,8 @@
 //= require invoices/invoice_detail
 //= require 'abstract-details'
 
+'use strict';
+
 class InvoiceDetails extends AbstractDetails {
   refresh() {
     let id = $('#invoice_id').val();

@@ -1,5 +1,7 @@
 //= require delivery-notes/delivery_note_details
 
+'use strict';
+
 let onPageLoad = function () {
   let detailsElement = document.getElementById('delivery_note_details'),
       details = new DeliveryNoteDetails();
@@ -19,4 +21,3 @@ let onPageLoad = function () {
 };
 
 $(document).on("page:load", onPageLoad);
-$(document).ready(onPageLoad);

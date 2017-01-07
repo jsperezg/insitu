@@ -1,3 +1,5 @@
+'use strict';
+
 class AbstractDetails {
   constructor() {
     this.details = ko.observableArray();

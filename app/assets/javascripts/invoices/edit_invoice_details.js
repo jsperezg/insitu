@@ -1,4 +1,5 @@
 //= require invoices/invoice_details
+'use strict';
 
 let onPageLoad = function () {
   let detailsElement = document.getElementById('invoice_details'),
@@ -19,4 +20,3 @@ let onPageLoad = function () {
 };
 
 $(document).on("page:load", onPageLoad);
-$(document).ready(onPageLoad);
