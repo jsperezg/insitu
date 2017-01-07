@@ -13,6 +13,8 @@
 //= require common
 //= require jquery
 //= require jquery.turbolinks
+//= require turbolinks
+//= require turbolinks-compatibility
 //= require jquery_ujs
 //= require ckeditor-jquery
 //= require twitter/bootstrap
@@ -24,7 +26,6 @@
 //= require filterrific/filterrific-jquery
 //= require fastclick
 //= require AdminLTE
-//= require turbolinks
 //= require nprogress
 //= require nprogress-turbolinks
 //= require cookies_eu
