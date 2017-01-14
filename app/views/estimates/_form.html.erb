@@ -55,6 +55,7 @@
 
     <%= link_to user_estimate_path(current_user, @estimate),
                   method: :get,
+                  data: { disable_with: t('please_wait') },
                   class: 'btn btn-default btn-flat col-xs-4 col-sm-2 col-md-1' do %>
         <i class="fa fa-print" aria-hidden="true">
           <%=t 'helpers.links.print' %>
