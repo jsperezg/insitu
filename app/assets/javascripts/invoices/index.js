@@ -4,12 +4,13 @@
 //= require_tree .
 //= require_self
 
-let onEditInvoiceDetailPageLoad = function () {
-  let detailsElement = document.getElementById('invoice_details');
+var onEditInvoiceDetailPageLoad = function () {
+  var detailsElement = document.getElementById('invoice_details');
 
   if (detailsElement) {
-    let details = new InvoiceDetails();
-    let request = details.refresh();
+    var details = new InvoiceDetails(),
+        request = details.refresh();
+
     if (request) {
       request.done(function () {
         if (details.isEmpty()) {

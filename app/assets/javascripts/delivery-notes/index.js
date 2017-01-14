@@ -2,11 +2,11 @@
 //= require_tree .
 //= require_self
 
-let onDeliveryNoteEditPageLoad = function () {
-  let detailsElement = document.getElementById('delivery_note_details');
+var onDeliveryNoteEditPageLoad = function () {
+  var detailsElement = document.getElementById('delivery_note_details');
 
   if (detailsElement) {
-    let details = new DeliveryNoteDetails(),
+    var details = new DeliveryNoteDetails(),
         request = details.refresh();
 
     if (request) {

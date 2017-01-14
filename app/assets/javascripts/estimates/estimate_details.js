@@ -1,23 +1,25 @@
-class EstimateDetails extends AbstractDetails {
-  refresh() {
-    let id = $('#estimate_id').val();
+var EstimateDetails = function () {
+  extend(this, new AbstractDetails());
+};
 
-    if (defined(id) && id !== '') {
-      return $.ajax('/api/v1/estimates/' + id + '.json').success(function (data) {
-        let i, l, details = [];
+EstimateDetails.prototype.refresh = function () {
+  var id = $('#estimate_id').val();
 
-        for (i = 0, l = data.estimate_details.length; i < l; i += 1) {
-          details.push(new EstimateDetail(data.estimate_details[i]));
-        }
+  if (defined(id) && id !== '') {
+    return $.ajax('/api/v1/estimates/' + id + '.json').success(function (data) {
+      var i, l, details = [];
 
-        this.details(details);
-      }.bind(this));
-    }
+      for (i = 0, l = data.estimate_details.length; i < l; i += 1) {
+        details.push(new EstimateDetail(data.estimate_details[i]));
+      }
 
-    return false;
+      this.details(details);
+    }.bind(this));
   }
 
-  add() {
-    this.details.unshift(new EstimateDetail());
-  }
-}
+  return false;
+};
+
+EstimateDetails.prototype.add = function () {
+  this.details.unshift(new EstimateDetail());
+};

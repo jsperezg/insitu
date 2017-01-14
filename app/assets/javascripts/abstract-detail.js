@@ -1,23 +1,13 @@
-//= require utils
+var AbstractDetail = function (json) {
+  this.json = json;
+  ko.mapping.fromJS(this.json, {}, this);
 
-'use strict';
+  this.deleted = ko.observable(0);
+  this.visible = ko.pureComputed(function () {
+    return this.deleted() !== 1;
+  }, this);
+};
 
-class AbstractDetail {
-  constructor(json) {
-    this.json = defined(json) ? json : this.emptyDetail();
-    ko.mapping.fromJS(this.json, {}, this);
-
-    this.deleted = ko.observable(0);
-    this.visible = ko.pureComputed(function () {
-      return this.deleted() !== 1;
-    }, this);
-  }
-
-  emptyDetail() {
-    return {};
-  }
-
-  markAsDeleted() {
-    this.deleted(1);
-  }
-}
+AbstractDetail.prototype.markAsDeleted = function () {
+  this.deleted(1);
+};

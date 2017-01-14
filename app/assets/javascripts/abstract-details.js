@@ -1,11 +1,7 @@
-'use strict';
+var AbstractDetails = function () {
+  this.details = ko.observableArray();
+};
 
-class AbstractDetails {
-  constructor() {
-    this.details = ko.observableArray();
-  }
-
-  isEmpty() {
-    return this.details().length === 0;
-  }
-}
+AbstractDetails.prototype.isEmpty = function () {
+  return this.details().length === 0;
+};

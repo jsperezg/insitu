@@ -1,27 +1,25 @@
+var InvoiceDetails = function () {
+  extend(this, new AbstractDetails());
+};
 
+InvoiceDetails.prototype.refresh = function () {
+  var id = $('#invoice_id').val();
 
-'use strict';
+  if (defined(id) && id !== '') {
+    return $.ajax('/api/v1/invoices/' + id + '.json').success(function (data) {
+      var i, l, details = [];
 
-class InvoiceDetails extends AbstractDetails {
-  refresh() {
-    let id = $('#invoice_id').val();
+      for (i = 0, l = data.invoice_details.length; i < l; i += 1) {
+        details.push(new InvoiceDetail(data.invoice_details[i]));
+      }
 
-    if (defined(id) && id !== '') {
-      return $.ajax('/api/v1/invoices/' + id + '.json').success(function (data) {
-        let i, l, details = [];
-
-        for (i = 0, l = data.invoice_details.length; i < l; i += 1) {
-          details.push(new InvoiceDetail(data.invoice_details[i]));
-        }
-
-        this.details(details);
-      }.bind(this));
-    }
-
-    return false;
+      this.details(details);
+    }.bind(this));
   }
 
-  add() {
-    this.details.unshift(new InvoiceDetail());
-  }
-}
+  return false;
+};
+
+InvoiceDetails.prototype.add = function () {
+  this.details.unshift(new InvoiceDetail());
+};

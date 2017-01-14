@@ -3,11 +3,11 @@
 //= require_tree .
 //= require_self
 
-let onEditEstimatePageLoad = function () {
-  let estimateDetailsElement = document.getElementById('estimate_details');
+var onEditEstimatePageLoad = function () {
+  var estimateDetailsElement = document.getElementById('estimate_details');
 
   if (estimateDetailsElement) {
-    let estimateDetails = new EstimateDetails(),
+    var estimateDetails = new EstimateDetails(),
         request = estimateDetails.refresh();
 
     if (request) {

@@ -3,11 +3,11 @@
 //= require_tree .
 //= require_self
 
-let onEditTimeLogsPageLoad = function () {
-  let detailsElement = document.getElementById('time_logs');
+var onEditTimeLogsPageLoad = function () {
+  var detailsElement = document.getElementById('time_logs');
 
   if (detailsElement) {
-    let details = new TimeLogs(),
+    var details = new TimeLogs(),
         request = details.refresh();
 
     if (request) {
