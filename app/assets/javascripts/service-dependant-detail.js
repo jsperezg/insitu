@@ -56,5 +56,5 @@ ServiceDependantDetail.prototype.updatePrice = function () {
 };
 
 ServiceDependantDetail.prototype.mustApplySavedPrice = function () {
-  return defined(this.json.service_id) && defined(this.json.price) && this.service_id() === this.json.service_id;
+  return defined(this.json.service_id) && defined(this.json.price) && parseInt(this.service_id(), 10) === parseInt(this.json.service_id, 10);
 };
