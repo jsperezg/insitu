@@ -1,8 +1,3 @@
-//= require estimates/estimate_detail
-//= require 'abstract-details'
-
-'use strict';
-
 class EstimateDetails extends AbstractDetails {
   refresh() {
     let id = $('#estimate_id').val();

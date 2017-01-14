@@ -1,5 +1,4 @@
-//= require invoices/invoice_detail
-//= require 'abstract-details'
+
 
 'use strict';
 

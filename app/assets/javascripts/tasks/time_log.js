@@ -1,4 +1,4 @@
-//= require service-dependant-detail
+
 
 class TimeLog extends ServiceDependantDetail {
   emptyDetail() {

@@ -1,5 +1,5 @@
 //= require tasks/time_log
-//= require 'abstract-details'
+
 
 class TimeLogs extends AbstractDetails {
   refresh() {

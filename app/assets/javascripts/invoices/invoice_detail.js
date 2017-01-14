@@ -1,4 +1,4 @@
-//= require service-dependant-detail
+
 
 'use strict';
 

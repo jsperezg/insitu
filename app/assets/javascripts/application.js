@@ -33,4 +33,8 @@
 //= require knockout
 //= require knockout.mapping
 //= require initialization
+//= require invoices/index
+//= require estimates/index
+//= require delivery-notes/index
+//= require tasks/index
 //= require_tree ./autoload

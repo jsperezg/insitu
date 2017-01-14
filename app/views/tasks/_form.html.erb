@@ -21,7 +21,7 @@
         <span class="input-group-addon">
           <span class="fa fa-calendar"></span>
         </span>
-        <%= f.date_field :dead_line, class: 'form-control input-sm date', value: ldate(@task[:dead_line]) %>
+        <%= f.date_field :dead_line, class: 'form-control input-sm', value: @task[:dead_line] %>
       </div>
     </div>
   </div>
@@ -39,7 +39,7 @@
           <span class="fa fa-calendar"></span>
         </span>
 
-        <%= f.date_field :finish_date, class: 'form-control input-sm date', value: ldate(@task[:finish_date]) %>
+        <%= f.date_field :finish_date, class: 'form-control input-sm', value: @task[:finish_date] %>
       </div>
     </div>
   </div>
