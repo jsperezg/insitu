@@ -36,6 +36,7 @@ en:
     paid: Paid
     default: Default
 
+  sign_in_using: Sign in using
   edit:  Edit
   update: Update
   destroy: Destroy

@@ -37,6 +37,7 @@ es:
     paid: Pagada
     default: Pendiente
 
+  sign_in_using: Acceder utilizando
   edit: Editar
   update: Actualizar
   destroy: Borrar

@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable, :async
+         :recoverable, :rememberable, :trackable, :validatable, :async, :omniauthable, :omniauth_providers => [:google_oauth2]
 
   belongs_to :role
   has_many :payments
@@ -117,6 +117,23 @@ class User < ActiveRecord::Base
   def skip_confirmation!
     self.confirmed_at = Time.now
   end
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.name = auth.info.name
+      user.skip_confirmation!
+    end
+  end
+
+  # def self.new_with_session(params, session)
+  #   super.tap do |user|
+  #     if data = session[:'devise.oauth_data'] && session[:'devise.oauth_data']['extra']['raw_info']
+  #       user.email = data["email"] if user.email.blank?
+  #     end
+  #   end
+  # end
 
   private
 
