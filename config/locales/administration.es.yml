@@ -1,5 +1,6 @@
 es:
   administration: Administración
+  ban_confirmation: "¿Cambiar el estado de ban para el usuario %{user}?"
 
   plans:
     plan: Plan
@@ -22,7 +23,7 @@ es:
     perpetual: Perpetua
     edit_title: Editar usuario
     ban_link: Ban
-    successfully_banned: El usuario fue baneado
+    successfully_banned: El usuario fue actualizado.
     account_blocked: Esta cuenta está bloqueada. Contacte con el administrador.
     account_premium_message: Estas usando una cuenta gratuita. Cambia a un plan premium para acceder a la web sin anuncios.
     premium_title: Subscripción Premium

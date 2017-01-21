@@ -1,5 +1,6 @@
 en:
   administration: Administration
+  ban_confirmation: "Toggle ban flag for user %{user}?"
 
   plans:
     plan: Plan
@@ -20,8 +21,8 @@ en:
     all: All
     perpetual: Perpetual
     edit_title: Edit user
-    ban_link: Ban
-    successfully_banned: The user has been banned.
+    ban_link: Toggle ban
+    successfully_banned: The user has updated.
     account_blocked: This account is blocked. Please contact the administrator.
     account_premium_message: You are using a free account. Change to premium to use the app without advertisments.
     premium_title: Premium subscription

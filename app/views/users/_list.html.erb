@@ -8,6 +8,7 @@
         <th class="col-xs-1"><%= model_class.human_attribute_name(:role_id) %></th>
         <th><%= model_class.human_attribute_name(:name) %></th>
         <th class="col-xs-1"><%= model_class.human_attribute_name(:valid_until) %></th>
+        <th class="col-xs-1"><%= model_class.human_attribute_name(:confirmed) %></th>
         <th class="col-xs-1"></th>
         <th class="col-xs-1"></th>
       </tr>
@@ -22,6 +23,7 @@
             <td><%= user.role.try(:description) %></td>
             <td><%= user.name %></td>
             <td><%= validity_date user %></td>
+            <td><%= user.confirmed? ? t(:yes) : t(:no) %></td>
             <td>
               <%= button_to edit_user_path(user),
                             :method => :get,
@@ -32,10 +34,15 @@
               <% end %>
             </td>
             <td>
-              <% if !user.is_administrator? and !user.banned? %>
+              <% unless user.is_administrator? %>
                 <%= button_to ban_user_path(user),
                               :method => :delete,
-                              :data => { :confirm => t('helpers.links.confirm', :default => 'Are you sure?') },
+                              :data => {
+                                  'original-title' => t('helpers.links.confirm', :default => 'Are you sure?'),
+                                  confirm: t(:ban_confirmation, user: user.email),
+                                  commit: t(:continue),
+                                  cancel: t(:cancel)
+                              },
                               :class => 'btn btn-xs btn-danger btn-flat btn-block' do %>
                     <i class="fa fa-pencil-square-o" aria-hidden="true">
                       <%=t 'users.ban_link' %>

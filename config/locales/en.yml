@@ -69,6 +69,8 @@ en:
   removal_confirmation: "Do you want to remove the %{model}: %{description}?"
   cancel: Cancel
   continue: Continue
+  yes: Yes
+  no: No
 
   payment_methods:
       title: Payment methods

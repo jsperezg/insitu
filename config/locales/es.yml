@@ -69,6 +69,8 @@ es:
   removal_confirmation: "¿Quieres borrar el registro de %{model}: %{description}?"
   cancel: Cancelar
   continue: Continuar
+  yes: Si
+  no: No
 
   payment_methods:
     title: Métodos de pago

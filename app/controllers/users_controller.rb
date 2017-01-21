@@ -46,7 +46,7 @@ class UsersController < AdminSecuredController
   end
 
   def ban
-    @user.banned = true
+    @user.banned = !@user.banned
     if @user.save
       redirect_to users_url, notice: t('users.successfully_banned')
     else
