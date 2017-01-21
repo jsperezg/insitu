@@ -11,7 +11,7 @@ server '46.4.12.7', user: 'rails', roles: %w{app db web}
 
 set :rails_env, 'production'
 set :rvm_type, :system
-set :rvm_ruby_version, 'ruby-2.3.0@rails4.2'
+set :rvm_ruby_version, 'ruby-2.3.3@rails4.2'
 
 # role-based syntax
 # ==================
