@@ -45,6 +45,7 @@ en:
         is_active: Active
         currency: Currency
         reset_password_token: Password change request
+        confirmed: Confirmed
 
       payment_method:
         name: Name

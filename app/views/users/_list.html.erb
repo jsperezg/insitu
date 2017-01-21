@@ -23,7 +23,11 @@
             <td><%= user.role.try(:description) %></td>
             <td><%= user.name %></td>
             <td><%= validity_date user %></td>
-            <td><%= user.confirmed? ? t(:yes) : t(:no) %></td>
+            <td>
+              <% if user.confirmed? %>
+                <i class="fa fa-check" aria-hidden="true"></i>
+              <% end %>
+            </td>
             <td>
               <%= button_to edit_user_path(user),
                             :method => :get,

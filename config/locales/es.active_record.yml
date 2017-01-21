@@ -45,6 +45,8 @@ es:
         is_active: Activo
         currency: Divisa
         reset_password_token: Solicitud para cambio de contraseña
+        confirmed: Confirmada
+
       payment_method:
         name: Nombre
         note_for_invoice: Anotación en factura
