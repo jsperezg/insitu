@@ -1,7 +1,7 @@
 $(document).ready(function () {
   'use strict';
 
-  let editor = $('.ckeditor');
+  var editor = $('.ckeditor');
 
   if (editor.length) {
     editor.ckeditor({
