@@ -8,7 +8,7 @@ class DeliveryNotesController < SecuredController
         DeliveryNote,
         params[:filterrific],
         default_filter_params: {
-            with_date_ge: I18n.l(Date.today.beginning_of_year),
+            with_date_ge: Date.today.beginning_of_year.strftime('%Y-%m-%d'),
             sorted_by: 'date_desc'
         }
     ) or return

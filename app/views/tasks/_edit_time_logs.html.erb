@@ -10,12 +10,14 @@
       <div class="panel-heading" role="tab" data-bind="attr: { id: 'heading-time-log-' + $index() }">
         <h4 class="panel-title">
           <div class="row">
-            <a class="collapsed col-xs-9 col-md-11" role="button" data-toggle="collapse" data-parent="#time_logs_list" aria-expanded="false"
+            <a class="collapsed col-xs-9 col-md-11" role="button" data-toggle="collapse" aria-expanded="false"
                data-bind="attr: {
                   href: '#collapse-time-log-' + $index(),
                   'aria-controls': 'collapse-time-log-' + $index()
-                }">
+                }, click: toggleExpanded">
               <div class="ellipsis">
+                <i class="fa" aria-hidden="true" data-bind="css: { 'fa-plus': collapsed, 'fa-minus': expanded }"></i>
+                &nbsp;
                 <span data-bind="text: service.description"></span>.
                 <span data-bind="text: description"></span>
               </div>

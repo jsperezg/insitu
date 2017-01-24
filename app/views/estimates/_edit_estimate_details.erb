@@ -12,12 +12,15 @@
       <div class="panel-heading" role="tab" data-bind="attr: { id: 'heading-estimate-detail-' + $index() }">
         <h4 class="panel-title">
           <div class="row">
-            <a class="collapsed col-xs-5 col-md-9" role="button" data-toggle="collapse" data-parent="#estimate_details_list" aria-expanded="false"
+            <a class="collapsed col-xs-5 col-md-9" role="button" data-toggle="collapse" aria-expanded="false"
                 data-bind="attr: {
                   href: '#collapse-estimate-detail-' + $index(),
                   'aria-controls': 'collapse-estimate-detail-' + $index()
-                }">
-              <span data-bind="text: service.description"></span>
+                }, click: toggleExpanded">
+              <div class="ellipsis">
+                <i class="fa" aria-hidden="true" data-bind="css: { 'fa-plus': collapsed, 'fa-minus': expanded }"></i>
+                <span data-bind="text: service.description"></span>
+              </div>
             </a>
 
             <p class="col-xs-4 col-md-2 text-right">

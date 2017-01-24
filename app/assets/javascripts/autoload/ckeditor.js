@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).on("page:change", function () {
   'use strict';
 
   var editor = $('.ckeditor');
