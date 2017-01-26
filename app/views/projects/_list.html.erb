@@ -4,14 +4,12 @@
     <table class="table table-striped table-layout-fixed">
       <thead>
       <tr>
-        <th class="col-md-8 col-xs-6 col-sm-4">
+        <th class="col-md-10 col-xs-9 col-sm-8">
           <%= filterrific_sorting_link(@filterrific, :name, label: model_class.human_attribute_name(:name)) %>
         </th>
         <th class="hidden-xs col-md-1 col-sm-2">
           <%= filterrific_sorting_link(@filterrific, 'project status', label: model_class.human_attribute_name(:project_status_id)) %>
         </th>
-        <th class="col-md-1 col-sm-2 hidden-xs"></th>
-        <th class="col-md-1 col-sm-2 col-xs-3"></th>
         <th class="col-md-1 col-sm-2 col-xs-3"></th>
       </tr>
       </thead>
@@ -31,39 +29,47 @@
               </div>
             </td>
             <td class="hidden-xs"><%= project.project_status.locale_name %></td>
-            <td class="hidden-xs">
-              <%= button_to edit_user_project_path(current_user, project),
-                            class: 'btn btn-default btn-xs btn-block btn-flat',
-                            method: :get do %>
-                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                  <%=t 'helpers.links.edit' %>
-              <% end %>
-            </td>
             <td>
-              <%= button_to user_project_tasks_path(current_user, project),
-                            class: 'btn btn-default btn-xs btn-block btn-flat',
-                            method: :get do %>
-                  <i class="fa fa-tasks" aria-hidden="true"></i>
-                  <span class="hidden-xs">
-                    <%=t 'tasks.title' %>
-                  </span>
-              <% end %>
-            </td>
-            <td>
-              <%= button_to user_project_path(current_user, project),
+              <div class="btn-group pull-right">
+                <button type="button" class="btn btn-primary btn-block btn-sm btn-flat dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-bars" aria-hidden="true"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                  <li>
+                    <%= link_to edit_user_project_path(current_user, project), method: :get do %>
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        <%=t 'helpers.links.edit' %>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to user_project_tasks_path(current_user, project), method: :get do %>
+                      <i class="fa fa-tasks" aria-hidden="true"></i>
+                      <%=t 'tasks.title' %>
+                    <% end %>
+                  </li>
+                  <li role="separator" class="divider"></li>
+                  <li>
+                    <%= link_to invoice_finished_user_project_tasks_path(current_user, project), method: :get do %>
+                        <i class="fa fa-money"></i>
+                        <%= t('tasks.bill_finished') %>
+                    <% end %>
+                  </li>
+                  <li role="separator" class="divider"></li>
+                  <li>
+                    <%= link_to user_project_path(current_user, project),
                             :method => :delete,
                             :data => {
                                 'original-title' => t('helpers.links.confirm', :default => 'Are you sure?'),
                                 confirm: t(:removal_confirmation, model: model_class.model_name.human.downcase, description: project.name),
                                 commit: t(:continue),
                                 cancel: t(:cancel)
-                            },
-                            :class => 'btn btn-xs btn-danger btn-block btn-flat' do %>
-                  <i class="fa fa-trash-o" aria-hidden="true"></i>
-                  <span class="hidden-xs">
-                    <%=t 'helpers.links.destroy' %>
-                  </span>
-              <% end %>
+                            } do %>
+                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+                      <%=t 'helpers.links.destroy' %>
+                    <% end %>
+                  </li>
+                </ul>
+              </div>
             </td>
           </tr>
         <% end %>
