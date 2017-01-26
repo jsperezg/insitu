@@ -45,15 +45,16 @@ class User < ActiveRecord::Base
   }
 
   scope :sorted_by, lambda { |sort_by|
-    case sort_by
-      when 'valid_until_asc'
-        order(valid_until: :asc)
+    parts = sort_by.match /^(.+)_(asc|desc)$/i
 
-      when 'valid_until_desc'
-        order(valid_until: :desc)
-
-      else
-        order(email: :asc)
+    if parts.nil?
+      order(email:  :asc)
+    elsif parts[1] == 'role'
+      joins(:role).order("roles.description #{ parts[2] }")
+    else
+      sort_criteria = {}
+      sort_criteria[parts[1].parameterize.underscore.to_sym] = parts[2].to_sym
+      order(sort_criteria)
     end
   }
 

@@ -4,13 +4,22 @@
     <table class="table table-striped">
       <thead>
       <tr>
-        <th class="col-xs-3"><%= model_class.human_attribute_name(:email) %></th>
-        <th class="col-xs-1"><%= model_class.human_attribute_name(:role_id) %></th>
-        <th><%= model_class.human_attribute_name(:name) %></th>
-        <th class="col-xs-1"><%= model_class.human_attribute_name(:valid_until) %></th>
-        <th class="col-xs-1"><%= model_class.human_attribute_name(:confirmed) %></th>
-        <th class="col-xs-1"></th>
-        <th class="col-xs-1"></th>
+        <th class="col-md-4 col-sm-10 col-xs-11">
+          <%= filterrific_sorting_link(@filterrific, :email, label: model_class.human_attribute_name(:email)) %>
+        </th>
+        <th class="col-md-1 hidden-xs hiddem-sm">
+          <%= filterrific_sorting_link(@filterrific, :role, label: model_class.human_attribute_name(:role_id)) %>
+        </th>
+        <th class="col-md-4 hidden-xs hidden-sm">
+          <%= filterrific_sorting_link(@filterrific, :name, label: model_class.human_attribute_name(:name)) %>
+        </th>
+        <th class="col-md-1 hidden-sm hidden-xs text-center">
+          <%= filterrific_sorting_link(@filterrific, :valid_until, label: model_class.human_attribute_name(:valid_until)) %>
+        </th>
+        <th class="col-md-1 col-sm-1 hidden-xs text-center">
+          <%= filterrific_sorting_link(@filterrific, :valid_until, label: model_class.human_attribute_name(:confirmed)) %>
+        </th>
+        <th class="col-md-1 col-xs-1 col-sm-1"></th>
       </tr>
       </thead>
       <tbody>
@@ -19,41 +28,9 @@
       <% end %>
       <% users.each do |user| %>
           <%= user_tr(user) do %>
-            <td><%= user.email %></td>
-            <td><%= user.role.try(:description) %></td>
-            <td><%= user.name %></td>
-            <td><%= validity_date user %></td>
-            <td>
-              <% if user.confirmed? %>
-                <i class="fa fa-check" aria-hidden="true"></i>
-              <% end %>
-            </td>
-            <td>
-              <%= button_to edit_user_path(user),
-                            :method => :get,
-                            :class => 'btn btn-xs btn-default btn-flat btn-block' do %>
-                  <i class="fa fa-pencil-square-o" aria-hidden="true">
-                    <%=t 'helpers.links.edit' %>
-                  </i>
-              <% end %>
-            </td>
-            <td>
-              <% unless user.is_administrator? %>
-                <%= button_to ban_user_path(user),
-                              :method => :delete,
-                              :data => {
-                                  'original-title' => t('helpers.links.confirm', :default => 'Are you sure?'),
-                                  confirm: t(:ban_confirmation, user: user.email),
-                                  commit: t(:continue),
-                                  cancel: t(:cancel)
-                              },
-                              :class => 'btn btn-xs btn-danger btn-flat btn-block' do %>
-                    <i class="fa fa-pencil-square-o" aria-hidden="true">
-                      <%=t 'users.ban_link' %>
-                    </i>
-                <% end %>
-              <% end %>
-            </td>
+            <% cache user do %>
+              <%= render 'user_row', user: user %>
+            <% end %>
           <% end %>
       <% end %>
       </tbody>
