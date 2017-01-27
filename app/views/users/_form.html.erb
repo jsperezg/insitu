@@ -2,16 +2,16 @@
   <%= render partial: 'layouts/validation_errors', locals: { object: @user } %>
 
   <div class="row">
-    <div class="form-group col-xs-2">
+    <div class="form-group col-md-2 col-xs-6">
       <%= f.label :valid_until, :class => 'control-label' %>
       <div class="input-group date">
         <span class="input-group-addon">
           <span class="fa fa-calendar"></span>
         </span>
-        <%= f.text_field :valid_until, class: 'form-control input-sm date', value: ldate(@user[:valid_until]), autofocus: true %>
+        <%= f.date_field :valid_until, class: 'form-control input-sm', value: @user[:valid_until], autofocus: true %>
       </div>
     </div>
-    <div class="form-group col-xs-2">
+    <div class="form-group col-md-2 col-xs-6">
       <%= f.label :role_id, :class => 'control-label' %>
       <%= f.collection_select :role_id, Role.order(description: :asc), :id, :description,
                               { prompt: true }, { class: 'form-control input-sm', required: true } %>
@@ -19,22 +19,22 @@
   </div>
 
   <div class=row>
-    <div class="form-group col-xs-2">
+    <div class="form-group col-md-2 col-sm-6 col-xs-12">
       <%= f.label :tax_id, class: 'control-label' %>
       <%= f.text_field :tax_id, class: 'form-control input-sm', readonly: true %>
     </div>
 
-    <div class="form-group col-xs-4">
+    <div class="form-group col-md-4 col-sm-6 col-xs-12">
       <%= f.label :name, class: 'control-label' %>
       <%= f.text_field :name, class: 'form-control input-sm', readonly: true %>
     </div>
 
-    <div class="form-group col-xs-4">
+    <div class="form-group col-md-4 col-sm-6 col-xs-12">
       <%= f.label :email, class: 'control-label'%>
       <%= f.email_field :email, class: 'form-control input-sm', readonly: true %>
     </div>
 
-    <div class="form-group col-xs-2">
+    <div class="form-group col-md-2 col-sm-6 col-xs-12">
       <%= f.label :phone_number, class: 'control-label'%>
       <%= f.text_field :phone_number, class: 'form-control input-sm', readonly: true %>
     </div>
@@ -46,22 +46,22 @@
   </div>
 
   <div class=row>
-    <div class="form-group col-xs-3">
+    <div class="form-group col-md-3 col-sm-8 col-xs-12">
       <%= f.label :city, class: 'control-label' %>
       <%= f.text_field :city, class: 'form-control input-sm', readonly: true %>
     </div>
 
-    <div class="form-group col-xs-2">
+    <div class="form-group col-md-2 col-sm-4 col-xs-12">
       <%= f.label :postal_code, class: 'control-label' %>
       <%= f.text_field :postal_code, class: 'form-control input-sm', readonly: true %>
     </div>
 
-    <div class="form-group col-xs-3">
+    <div class="form-group col-md-3 col-sm-6 col-xs-12">
       <%= f.label :state, class: 'control-label' %>
       <%= f.text_field :state, class: 'form-control input-sm', readonly: true %>
     </div>
 
-    <div class="form-group col-xs-4">
+    <div class="form-group col-md-4 col-sm-6 col-xs-12">
       <%= f.label :country, class: 'control-label' %>
       <%= f.country_select :country, { priority_countries: [ 'ES' ], include_blank: true }, { class: 'form-control input-sm', disabled: true } %>
     </div>
@@ -69,11 +69,11 @@
 </div>
 <div class="box-footer">
   <%= f.submit t(:update),
-               class: 'btn btn-primary btn-flat col-xs-1',
+               class: 'btn btn-primary btn-flat col-md-1 col-sm-3 col-xs-6',
                data: {
                    disable_with: t('please_wait'),
                    confirm: t('helpers.links.confirm', :default => 'Are you sure?')
                } %>
 
-  <%= link_to t("helpers.links.cancel"), users_path, :class => 'btn btn-default btn-flat col-xs-1' %>
+  <%= link_to t("helpers.links.cancel"), users_path, :class => 'btn btn-default btn-flat col-md-1 col-sm-3 col-xs-6' %>
 </div>
