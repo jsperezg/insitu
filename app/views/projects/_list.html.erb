@@ -77,5 +77,8 @@
       </tbody>
     </table>
   </div>
-  <%= will_paginate projects, renderer: BootstrapPagination::Rails %>
+  <%= will_paginate projects, renderer: BootstrapPagination::Rails,
+                    class: 'pagination pagination-sm',
+                    next_label: '<i class="fa fa-step-forward" aria-hidden="true"></i>',
+                    previous_label: '<i class="fa fa-step-backward" aria-hidden="true"></i>' %>
 </div>

@@ -84,7 +84,10 @@
                     method: :get %>
 
     <div class="col-xs-3 col-sm-6 col-md-9 text-right">
-      <%= will_paginate @tasks, renderer: BootstrapPagination::Rails, class: 'pagination-flat' %>
+      <%= will_paginate @tasks, renderer: BootstrapPagination::Rails,
+                        class: 'pagination pagination-sm',
+                        next_label: '<i class="fa fa-step-forward" aria-hidden="true"></i>',
+                        previous_label: '<i class="fa fa-step-backward" aria-hidden="true"></i>' %>
     </div>
   </div>
 </div>
