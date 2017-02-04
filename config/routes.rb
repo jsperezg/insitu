@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       get :renew_sent
     end
 
-    resources :dashboard
+    resources :dashboard, only: [:index]
     resources :payment_methods
     resources :services
     resources :vats

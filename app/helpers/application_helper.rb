@@ -131,6 +131,6 @@ module ApplicationHelper
   end
 
   def previous_url
-    session[:previous_url]
+    session[:previous_url] || user_dashboard_index_url(current_user.id)
   end
 end
