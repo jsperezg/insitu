@@ -5,7 +5,7 @@
 <br>
 <div class="row no-print">
   <div class="col-xs-12">
-    <%= link_to t('helpers.links.cancel'), edit_user_invoice_path(current_user, @invoice), class: 'btn btn-default col-xs-12 col-md-1 btn-flat pull-right' %>
+    <%= link_to t('helpers.links.cancel'), previous_url, class: 'btn btn-default col-xs-12 col-md-1 btn-flat pull-right' %>
 
     <%= link_to  forward_email_user_invoice_url(current_user.id, @invoice.id),
                  class: 'btn btn-success col-md-1 hidden-xs btn-flat pull-right',

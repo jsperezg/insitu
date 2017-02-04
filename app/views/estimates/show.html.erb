@@ -11,7 +11,7 @@
         <i class="fa fa-money"></i> <%=t 'estimates.invoice_title' %>
     <% end %>
 
-    <%= link_to t('helpers.links.cancel'), edit_user_estimate_path(current_user, @estimate), class: 'btn btn-default col-xs-6 col-md-1 btn-flat pull-right' %>
+    <%= link_to t('helpers.links.cancel'), previous_url, class: 'btn btn-default col-xs-6 col-md-1 btn-flat pull-right' %>
 
     <%= link_to forward_email_user_estimate_url(current_user.id, @estimate.id),
                 class: 'btn btn-success hidden-xs col-md-1 btn-flat pull-right',

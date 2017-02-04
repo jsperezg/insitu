@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :set_locale, :validate_secure_request, :switch_tenant, :store_user
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :save_previous_url
 
   private
 
@@ -52,5 +53,9 @@ class ApplicationController < ActionController::Base
 
   def store_user
     Thread.current[:user] = current_user
+  end
+
+  def save_previous_url
+    session[:previous_url] = URI(request.referer || '').path
   end
 end

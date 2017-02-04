@@ -11,7 +11,7 @@
         <i class="fa fa-money"></i> <%=t 'delivery_notes.invoice_title' %>
     <% end %>
 
-    <%= link_to t('helpers.links.cancel'), edit_user_delivery_note_path(current_user, @delivery_note), class: 'btn btn-default col-xs-6 col-md-1 btn-flat pull-right' %>
+    <%= link_to t('helpers.links.cancel'), previous_url, class: 'btn btn-default col-xs-6 col-md-1 btn-flat pull-right' %>
 
     <%= link_to forward_email_user_delivery_note_url(current_user.id, @delivery_note.id),
                  class: 'btn btn-success hidden-xs btn-flat pull-right col-md-1',

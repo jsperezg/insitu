@@ -129,4 +129,8 @@ module ApplicationHelper
 
     content_tag :div, content, class: content_class
   end
+
+  def previous_url
+    session[:previous_url]
+  end
 end
