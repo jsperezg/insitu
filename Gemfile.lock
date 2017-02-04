@@ -289,6 +289,7 @@ GEM
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
+    smarter_csv (1.1.4)
     sort_alphabetical (1.0.2)
       unicode_utils (>= 1.2.2)
     spring (1.3.6)
@@ -383,6 +384,7 @@ DEPENDENCIES
   sidekiq-client-cli
   simple_token_authentication (~> 1.0)
   simplecov
+  smarter_csv
   spring
   therubyracer
   turbolinks (~> 5.0.0)

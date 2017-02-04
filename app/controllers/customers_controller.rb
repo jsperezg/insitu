@@ -1,3 +1,5 @@
+require 'csv_import_service'
+
 class CustomersController < SecuredController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
@@ -86,6 +88,13 @@ class CustomersController < SecuredController
         format.json { render json: @customer.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def csv_template
+    import_service = CSVImportService.new(Customer, [
+        :tax_id, :name, :contact_name, :contact_phone, :contact_email, :address, :city, :country, :postal_code, :state, :send_invoices_to
+    ])
+    send_data import_service.template, type: Mime::CSV, filename: "#{ Customer.model_name.human }.csv"
   end
 
   private

@@ -1,4 +1,6 @@
 <%- model_class = Customer -%>
+<%= render partial: 'csv_import' %>
+
 <div class="box box-primary">
   <div class="box-body">
     <%= form_for_filterrific @filterrific do |f| %>
@@ -21,13 +23,15 @@
     <%= render partial: 'list', locals: { customers: @customers } %>
   </div>
   <div class="box-footer">
-    <div class="row">
-      <div class="col-md-1 col-sm-2 col-xs-12">
-        <%= button_to t('helpers.links.new'),
-            new_user_customer_path(current_user),
-            class: 'btn btn-primary btn-block btn-flat',
-            method: :get%>
-      </div>
-    </div>
+    <%= button_to t('helpers.links.new'),
+        new_user_customer_path(current_user),
+        class: 'btn btn-primary btn-flat col-md-1 col-sm-2 col-xs-12 ',
+        method: :get%>
+
+    <%= link_to '#', class: 'btn btn-default btn-flat col-md-1 col-sm-2 hidden-xs',
+                    data: { toggle: 'modal', target: '#csv-import-customers'} do %>
+            <i class="fa fa-folder-open-o" aria-hidden="true"></i>
+            <%=t :import %>
+    <% end %>
   </div>
 </div>

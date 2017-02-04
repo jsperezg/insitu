@@ -69,6 +69,8 @@ en:
   removal_confirmation: "Do you want to remove the %{model}: %{description}?"
   cancel: Cancel
   continue: Continue
+  import: Import
+  csv_import: Import from CSV
 
   payment_methods:
       title: Payment methods

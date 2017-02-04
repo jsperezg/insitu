@@ -69,6 +69,8 @@ es:
   removal_confirmation: "¿Quieres borrar el registro de %{model}: %{description}?"
   cancel: Cancelar
   continue: Continuar
+  import: Importar
+  csv_import: Importar desde CSV
 
   payment_methods:
     title: Métodos de pago

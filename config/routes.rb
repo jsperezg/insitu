@@ -15,7 +15,11 @@ Rails.application.routes.draw do
     resources :services
     resources :vats
     resources :units
-    resources :customers
+    resources :customers do
+      collection do
+        get :csv_template
+      end
+    end
 
     resources :invoices  do
       member do

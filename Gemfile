@@ -59,6 +59,7 @@ gem 'simple_token_authentication', '~> 1.0'
 gem 'rack-cors', :require => 'rack/cors'
 
 gem 'omniauth-google-oauth2'
+gem 'smarter_csv'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

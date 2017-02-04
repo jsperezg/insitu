@@ -1,0 +1,17 @@
+<div id="csv-import-customers" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><%=t :csv_import %></h4>
+      </div>
+      <div class="modal-body">
+        <%= link_to t(:template_file), csv_template_user_customers_path(current_user), data: { turbolinks: false } %>
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"><%=t :cancel %></button>
+      </div>
+    </div>
+  </div>
+</div>
