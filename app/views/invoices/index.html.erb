@@ -3,6 +3,7 @@
 <div class="box">
   <div class="box-body">
     <%= form_for_filterrific @filterrific do |f| %>
+        <%= f.hidden_field :sorted_by %>
       <div class="row">
         <div class="form-group col-md-2 hidden-xs col-sm-3">
           <%= f.label :with_number, model_class.human_attribute_name(:number), class: 'control-label' %>

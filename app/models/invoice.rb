@@ -143,7 +143,7 @@ class Invoice < ActiveRecord::Base
     parts = sort_by.split('_')
 
     if parts.empty?
-      order(date:  :asc)
+      order(date:  :desc)
     elsif parts[0] == 'customer'
       joins(:customer).order("customers.name #{ parts[1] }")
     else
