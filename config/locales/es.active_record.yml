@@ -11,7 +11,10 @@ es:
       payment_method: Método de pago
       vat: IVA
       unit: Unidad de medida
-      customer: Cliente
+      customer:
+        one: Cliente
+        other: Clientes
+
       project: Proyecto
       task: Tarea
       estimate_detail:

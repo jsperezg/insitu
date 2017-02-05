@@ -94,7 +94,7 @@ class CustomersController < SecuredController
     import_service = CSVImportService.new(Customer, [
         :tax_id, :name, :contact_name, :contact_phone, :contact_email, :address, :city, :country, :postal_code, :state, :send_invoices_to
     ])
-    send_data import_service.template, type: Mime::CSV, filename: "#{ Customer.model_name.human }.csv"
+    send_data import_service.template, type: Mime::CSV, filename: "#{ Customer.model_name.human(count: 2) }.csv"
   end
 
   private

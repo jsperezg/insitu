@@ -71,6 +71,7 @@ es:
   continue: Continuar
   import: Importar
   csv_import: Importar desde CSV
+  template_file: Plantilla
 
   payment_methods:
     title: Métodos de pago

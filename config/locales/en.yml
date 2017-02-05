@@ -71,6 +71,7 @@ en:
   continue: Continue
   import: Import
   csv_import: Import from CSV
+  template_file: Template file
 
   payment_methods:
       title: Payment methods

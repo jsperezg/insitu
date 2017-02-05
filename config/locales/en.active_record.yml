@@ -11,7 +11,10 @@ en:
       payment_method: Payment method
       vat: VAT
       unit: Measurement unit
-      customer: Customer
+      customer:
+       one: Customer
+       other: Customers
+
       project: Project
       task: Task
       estimate_detail:
