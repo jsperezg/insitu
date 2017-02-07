@@ -102,8 +102,8 @@ class CustomersController < SecuredController
     customer_converter = CsvToCustomerConverter.new
     import_service = CSVImportService.new(customer_converter)
 
-    import_service.import Rails.root.join('public', 'uploads', csv.path)
-    redirect_to user_customers_path(current_user)
+    result = import_service.import Rails.root.join('public', 'uploads', csv.path)
+    redirect_to user_customers_path(current_user), flash: { error: result.join('<br>') }
   end
 
   private

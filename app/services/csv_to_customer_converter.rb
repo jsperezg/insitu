@@ -17,7 +17,10 @@ class CsvToCustomerConverter
 
   def create(row)
     model_data = parse(row)
-    @model.create(model_data)
+    customer = @model.new(model_data)
+    customer.save
+
+    customer.errors.full_messages
   end
 
   def template
