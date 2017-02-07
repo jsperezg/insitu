@@ -33,12 +33,22 @@ module CustomersHelper
         content << form.label(method, class: 'control-label', for: "#{ form.object_name }_#{ method }_finder")
       end
 
-      content << text_field_tag("#{ form.object_name }_#{ method }_finder",
+
+      content << content_tag(:div, class: 'input-group') do
+        button_group = []
+
+        button_group << text_field_tag("#{ form.object_name }_#{ method }_finder",
                                 value,
                                 class: options[:input_class],
                                 placeholder: I18n.t('customers.select_customer_placeholder'),
                                 required: options[:required])
 
+        button_group << content_tag(:div, class: 'input-group-btn') do
+          button_tag t(:new), class: 'btn btn-default btn-sm', type: 'button'
+        end
+
+        raw(button_group.join(''))
+      end
 
       content << form.hidden_field(method, class: hidden_class)
       raw(content.join(''))

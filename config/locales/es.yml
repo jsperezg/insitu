@@ -76,6 +76,7 @@ es:
   csv_import_help: Selecciona el archivo CSV a importar.
   open: Abrir
   import: Importar
+  new: Nuevo
 
   payment_methods:
     title: Métodos de pago

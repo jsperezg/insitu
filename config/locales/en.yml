@@ -76,6 +76,7 @@ en:
   csv_import_help: Select the CSV file to be imported.
   open: Open
   import: Import
+  new: New
 
   payment_methods:
       title: Payment methods
