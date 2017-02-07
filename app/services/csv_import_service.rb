@@ -1,37 +1,16 @@
-require 'csv'
+require 'smarter_csv'
 
 class CSVImportService
-  def initialize(model, attributes)
-    @model = model
-    @attributes = attributes
+  def initialize(converter)
+    @converter = converter
   end
 
-  def template
-    csv_string = CSV.generate do |csv|
-      csv << header_row
-      csv << example_row
+  def import(filename)
+    File.open(filename,'r:bom|utf-8') do |f|
+      rows = SmarterCSV.process(f, { keep_original_headers: true }.merge(@converter.import_options))
+      rows.each do |row|
+        @converter.create(row)
+      end
     end
-
-    csv_string
-  end
-
-  private
-
-  def header_row
-    row = []
-    @attributes.each do |attribute|
-      row << @model.human_attribute_name(attribute)
-    end
-
-    row
-  end
-
-  def example_row
-    row = []
-    @attributes.each do |attribute|
-      row << attribute.to_s
-    end
-
-    row
   end
 end

@@ -72,6 +72,10 @@ en:
   import: Import
   csv_import: Import from CSV
   template_file: Template file
+  select_csv_file: Select CSV file
+  csv_import_help: Select the CSV file to be imported.
+  open: Open
+  import: Import
 
   payment_methods:
       title: Payment methods

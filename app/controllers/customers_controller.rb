@@ -1,4 +1,5 @@
 require 'csv_import_service'
+require 'csv_to_customer_converter'
 
 class CustomersController < SecuredController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
@@ -91,10 +92,18 @@ class CustomersController < SecuredController
   end
 
   def csv_template
-    import_service = CSVImportService.new(Customer, [
-        :tax_id, :name, :contact_name, :contact_phone, :contact_email, :address, :city, :country, :postal_code, :state, :send_invoices_to
-    ])
-    send_data import_service.template, type: Mime::CSV, filename: "#{ Customer.model_name.human(count: 2) }.csv"
+    customer_converter = CsvToCustomerConverter.new
+    send_data customer_converter.template, type: Mime::CSV, filename: "#{ Customer.model_name.human(count: 2) }.csv"
+  end
+
+  def csv_import
+    csv = params[:csv_file]
+
+    customer_converter = CsvToCustomerConverter.new
+    import_service = CSVImportService.new(customer_converter)
+
+    import_service.import Rails.root.join('public', 'uploads', csv.path)
+    redirect_to user_customers_path(current_user)
   end
 
   private

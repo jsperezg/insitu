@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :customers do
       collection do
         get :csv_template
+        post :csv_import
       end
     end
 

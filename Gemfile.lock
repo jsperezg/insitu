@@ -59,6 +59,7 @@ GEM
       railties (>= 3.2)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-filestyle-rails (1.2.1)
     builder (3.2.2)
     capistrano (3.7.1)
       airbrussh (>= 1.0.0)
@@ -344,6 +345,7 @@ DEPENDENCIES
   apartment
   apartment-sidekiq
   best_in_place (~> 3.0.1)
+  bootstrap-filestyle-rails
   capistrano (~> 3.4)
   capistrano-bundler (~> 1.1.2)
   capistrano-figaro-yml (~> 1.0.2)

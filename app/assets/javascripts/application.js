@@ -18,6 +18,7 @@
 //= require jquery_ujs
 //= require ckeditor-jquery
 //= require twitter/bootstrap
+//= require bootstrap-filestyle
 //= require best_in_place
 //= require jquery-ui
 //= require best_in_place.jquery-ui
