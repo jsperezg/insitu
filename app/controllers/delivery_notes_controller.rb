@@ -1,5 +1,6 @@
 class DeliveryNotesController < SecuredController
   before_action :set_delivery_note, only: [:show, :print, :forward_email, :edit, :update, :destroy, :invoice]
+  before_action :init_new_customer, only: [:edit, :new]
 
   # GET /delivery_notes
   # GET /delivery_notes.json
@@ -177,4 +178,8 @@ class DeliveryNotesController < SecuredController
         ]
       )
     end
+
+  def init_new_customer
+    @customer = Customer.new
+  end
 end

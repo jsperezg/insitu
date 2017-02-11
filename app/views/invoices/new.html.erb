@@ -1,3 +1,4 @@
+<%= render 'customers/create_customer_modal' %>
 <div class="box">
   <%= form_for @invoice, url: user_invoices_path(current_user) do |f| %>
     <%= render :partial => 'form',  locals: { f: f } %>

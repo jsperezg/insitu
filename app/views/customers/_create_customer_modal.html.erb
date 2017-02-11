@@ -1,0 +1,19 @@
+
+<%= form_for @customer,  url: user_customers_path(current_user), remote: true, html: { class: 'customer', role: 'form' } do |f| %>
+  <div id="create-customer-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><%=t :new %> <%=t Customer.model_name.human %></h4>
+        </div>
+        <div class="modal-body">
+          <%= render :partial => 'customers/form_fields', locals: { f: f } %>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit t(:save), :class => 'btn btn-primary btn-flat col-xs-6 col-sm-2 col-md-1', data: { disable_with: t('please_wait')} %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

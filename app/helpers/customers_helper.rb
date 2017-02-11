@@ -44,7 +44,9 @@ module CustomersHelper
                                 required: options[:required])
 
         button_group << content_tag(:div, class: 'input-group-btn') do
-          button_tag t(:new), class: 'btn btn-default btn-sm', type: 'button'
+          button_tag t(:new), class: 'btn btn-default btn-sm',
+                     type: 'button',
+                     data: { toggle: 'modal', target: '#create-customer-modal'}
         end
 
         raw(button_group.join(''))

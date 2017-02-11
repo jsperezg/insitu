@@ -1,5 +1,6 @@
 class EstimatesController < SecuredController
   before_action :set_estimate, only: [:show, :print, :forward_email, :edit, :update, :destroy, :invoice]
+  before_action :init_new_customer, only: [:edit, :new]
 
   # GET /estimates
   # GET /estimates.json
@@ -183,23 +184,26 @@ class EstimatesController < SecuredController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_estimate
-      @estimate = Estimate.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def estimate_params
-      params.require(:estimate).permit(
-        :date,
-        :number,
-        :customer_id,
-        :valid_until,
-        :estimate_status_id,
-        estimate_details_attributes: [
-          :id, :estimate_id, :service_id, :quantity, :price,
-          :discount, :description, :_destroy
-        ]
-      )
-    end
+  def set_estimate
+    @estimate = Estimate.find(params[:id])
+  end
+
+  def estimate_params
+    params.require(:estimate).permit(
+      :date,
+      :number,
+      :customer_id,
+      :valid_until,
+      :estimate_status_id,
+      estimate_details_attributes: [
+        :id, :estimate_id, :service_id, :quantity, :price,
+        :discount, :description, :_destroy
+      ]
+    )
+  end
+
+  def init_new_customer
+    @customer = Customer.new
+  end
 end

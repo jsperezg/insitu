@@ -2,6 +2,7 @@ class InvoicesController < SecuredController
   include InvoicingNotifications
 
   before_action :set_invoice, only: [:show, :print, :forward_email, :edit, :update, :destroy]
+  before_action :init_new_customer, only: [:edit, :new]
 
   # GET /invoices
   # GET /invoices.json
@@ -156,5 +157,9 @@ class InvoicesController < SecuredController
         :discount, :description, :_destroy
       ]
     )
+  end
+
+  def init_new_customer
+    @customer = Customer.new
   end
 end
