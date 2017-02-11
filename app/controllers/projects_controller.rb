@@ -1,6 +1,5 @@
 class ProjectsController < SecuredController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  before_action :init_new_customer, only: [:edit, :new]
 
   # GET /projects
   # GET /projects.json
@@ -83,9 +82,5 @@ class ProjectsController < SecuredController
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_params
     params.require(:project).permit(:name, :project_status_id, :customer_id)
-  end
-
-  def init_new_customer
-    @customer = Customer.new
   end
 end

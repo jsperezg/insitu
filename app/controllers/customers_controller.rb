@@ -53,7 +53,7 @@ class CustomersController < SecuredController
     respond_to do |format|
       if @customer.save
         format.html { redirect_to user_customers_url(current_user), notice: t(:successfully_created, item: t('customers.customer')) }
-        format.json { render :show, status: :created, location: @customer }
+        format.json { render :show, status: :created }
       else
         format.html { render :new }
         format.json { render json: @customer.errors, status: :unprocessable_entity }

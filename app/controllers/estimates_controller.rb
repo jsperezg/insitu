@@ -1,6 +1,5 @@
 class EstimatesController < SecuredController
   before_action :set_estimate, only: [:show, :print, :forward_email, :edit, :update, :destroy, :invoice]
-  before_action :init_new_customer, only: [:edit, :new]
 
   # GET /estimates
   # GET /estimates.json
@@ -201,9 +200,5 @@ class EstimatesController < SecuredController
         :discount, :description, :_destroy
       ]
     )
-  end
-
-  def init_new_customer
-    @customer = Customer.new
   end
 end

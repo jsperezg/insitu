@@ -1,4 +1,5 @@
 <div class="box-body">
+  <%= render partial: 'layouts/validation_errors', locals: { object: @customer } %>
   <%= render 'form_fields', f: f %>
 </div>
 <div class="box-footer">

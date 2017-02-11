@@ -1,5 +1,7 @@
 
-<%= form_for @customer,  url: user_customers_path(current_user), remote: true, html: { class: 'customer', role: 'form' } do |f| %>
+<%= form_for Customer.new,  url: user_customers_path(current_user, format: :json),
+             remote: true,
+             html: { class: 'customer', role: 'form', id: 'new-customer-inline' } do |f| %>
   <div id="create-customer-modal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">

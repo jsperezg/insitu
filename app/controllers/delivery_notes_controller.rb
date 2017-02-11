@@ -1,6 +1,5 @@
 class DeliveryNotesController < SecuredController
   before_action :set_delivery_note, only: [:show, :print, :forward_email, :edit, :update, :destroy, :invoice]
-  before_action :init_new_customer, only: [:edit, :new]
 
   # GET /delivery_notes
   # GET /delivery_notes.json
@@ -162,24 +161,21 @@ class DeliveryNotesController < SecuredController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_delivery_note
-      @delivery_note = DeliveryNote.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def delivery_note_params
-      params.require(:delivery_note).permit(
-        :number,
-        :customer_id,
-        :date,
-        delivery_note_details_attributes: [
-          :id, :delivery_note_id, :service_id, :quantity, :price, :custom_description, :_destroy
-        ]
-      )
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_delivery_note
+    @delivery_note = DeliveryNote.find(params[:id])
+  end
 
-  def init_new_customer
-    @customer = Customer.new
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def delivery_note_params
+    params.require(:delivery_note).permit(
+      :number,
+      :customer_id,
+      :date,
+      delivery_note_details_attributes: [
+        :id, :delivery_note_id, :service_id, :quantity, :price, :custom_description, :_destroy
+      ]
+    )
   end
 end

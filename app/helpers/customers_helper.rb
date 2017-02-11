@@ -1,6 +1,10 @@
 module CustomersHelper
+  #TODO refactor this function to simplify how it works.
   def customer_field(form, method, options)
     content = []
+
+    create_customer_button = true
+    create_customer_button = options[:create_customer_button] if options.key? :create_customer_button
 
     # class for input.
     if options.key? :class
@@ -34,22 +38,31 @@ module CustomersHelper
       end
 
 
-      content << content_tag(:div, class: 'input-group') do
-        button_group = []
+      if create_customer_button
+        content << content_tag(:div, class: 'input-group') do
+          button_group = []
 
-        button_group << text_field_tag("#{ form.object_name }_#{ method }_finder",
-                                value,
-                                class: options[:input_class],
-                                placeholder: I18n.t('customers.select_customer_placeholder'),
-                                required: options[:required])
+          button_group << text_field_tag("#{ form.object_name }_#{ method }_finder",
+                                  value,
+                                  class: options[:input_class],
+                                  placeholder: I18n.t('customers.select_customer_placeholder'),
+                                  required: options[:required])
 
-        button_group << content_tag(:div, class: 'input-group-btn') do
-          button_tag t(:new), class: 'btn btn-default btn-sm',
-                     type: 'button',
-                     data: { toggle: 'modal', target: '#create-customer-modal'}
+
+            button_group << content_tag(:div, class: 'input-group-btn') do
+              button_tag t(:new), class: 'btn btn-default btn-sm',
+                         type: 'button',
+                         data: { toggle: 'modal', target: '#create-customer-modal'}
+          end
+
+          raw(button_group.join(''))
         end
-
-        raw(button_group.join(''))
+      else
+        content << text_field_tag("#{ form.object_name }_#{ method }_finder",
+                       value,
+                       class: options[:input_class],
+                       placeholder: I18n.t('customers.select_customer_placeholder'),
+                       required: options[:required])
       end
 
       content << form.hidden_field(method, class: hidden_class)
