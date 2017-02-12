@@ -251,7 +251,7 @@ en:
             contact_email:
               invalid: 'seems to be invalid.'
             tax_id:
-              taken: ': Is already associated to another customer.'
+              taken: Is already associated to another customer.
             irpf:
               not_a_number: is not a number.
               not_an_integer: is not an integer value.

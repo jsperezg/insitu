@@ -254,7 +254,7 @@ es:
             contact_email:
               invalid: tiene un formato incorrecto.
             tax_id:
-              taken: ': Ya está asociado a otro cliente.'
+              taken: Ya está asociado a otro cliente.
             irpf:
               not_a_number: no es un número.
               not_an_integer: no admite decimales.
