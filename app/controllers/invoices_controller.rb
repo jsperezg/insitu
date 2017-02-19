@@ -105,6 +105,10 @@ class InvoicesController < SecuredController
   # PATCH/PUT /invoices/1.json
   def update
     Invoice.transaction do
+      if current_user.update(user_params)
+        current_user.reload
+      end
+
       @invoice.apply_irpf(current_user)
 
       respond_to do |format|

@@ -54,6 +54,7 @@
                         <%=t 'helpers.links.edit' %>
                     <% end %>
                   </li>
+                  <% if current_user.can_invoice? %>
                   <li>
                     <%= link_to user_invoice_path(current_user, invoice) do %>
                       <i class="fa fa-print" aria-hidden="true"></i>
@@ -67,6 +68,7 @@
                       <%=t 'helpers.send_by_email' %>
                     <% end %>
                   </li>
+                  <% end %>
                   <% unless invoice.paid? %>
                     <li role="separator" class="divider"></li>
                     <li>
