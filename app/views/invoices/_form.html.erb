@@ -3,6 +3,10 @@
 
   <%= f.hidden_field :id %>
 
+  <% unless current_user.can_invoice? %>
+      <%= render partial: 'users/invoicing_data' %>
+  <% end %>
+
   <div class=row>
     <% unless @invoice.new_record? %>
       <div class="form-group col-md-2 col-xs-6">

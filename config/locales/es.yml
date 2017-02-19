@@ -124,7 +124,6 @@ es:
     create_title: Nueva factura
     edit_title: Editar factura
     print_title: Imprimir factura
-    missing_user_data: Debes completar los datos de tu ficha en 'Mi perfil' antes de poder facturar.
 
   delivery_notes:
     delivery_note: Albarán

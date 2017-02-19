@@ -77,6 +77,10 @@ class InvoicesController < SecuredController
   # POST /invoices.json
   def create
     Invoice.transaction do
+      if current_user.update(user_params)
+        current_user.reload
+      end
+
       @invoice = Invoice.new(invoice_params)
 
       @invoice.apply_irpf(current_user)
@@ -143,18 +147,23 @@ class InvoicesController < SecuredController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def invoice_params
-    params.require(:invoice).permit(
-      :date,
-      :number,
-      :payment_method_id,
-      :customer_id,
-      :payment_date,
-      :paid_on,
-      :invoice_status_id,
-      invoice_details_attributes: [
-        :id, :invoice_id, :service_id, :vat_rate, :quantity, :price,
-        :discount, :description, :_destroy
-      ]
-    )
+    params
+        .require(:invoice).permit(
+          :date,
+          :number,
+          :payment_method_id,
+          :customer_id,
+          :payment_date,
+          :paid_on,
+          :invoice_status_id,
+          invoice_details_attributes: [
+            :id, :invoice_id, :service_id, :vat_rate, :quantity, :price,
+            :discount, :description, :_destroy
+          ]
+        )
+  end
+
+  def user_params
+    params.require(:user).permit(:tax_id, :name, :address, :postal_code, :country)
   end
 end

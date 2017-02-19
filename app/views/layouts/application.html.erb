@@ -144,11 +144,9 @@
               <ul class="treeview-menu">
                 <li><%= link_to t('dashboard.title'), user_dashboard_index_path(current_user.id) %></li>
                 <li><%= link_to t('projects.title'), user_projects_path(current_user.id)%></li>
-                <% if current_user.can_invoice? %>
-                  <li><%= link_to t('estimates.title'), user_estimates_path(current_user.id) %></li>
-                  <li><%= link_to t('delivery_notes.title'), user_delivery_notes_path(current_user.id) %></li>
-                  <li><%= link_to t('invoices.title'), user_invoices_path(current_user.id) %></li>
-                <% end %>
+                <li><%= link_to t('estimates.title'), user_estimates_path(current_user.id) %></li>
+                <li><%= link_to t('delivery_notes.title'), user_delivery_notes_path(current_user.id) %></li>
+                <li><%= link_to t('invoices.title'), user_invoices_path(current_user.id) %></li>
               </ul>
             </li>
 
