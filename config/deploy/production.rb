@@ -10,8 +10,8 @@
 server '46.4.12.7', user: 'rails', roles: %w{app db web}
 
 set :rails_env, 'production'
-set :rvm_type, :system
-set :rvm_ruby_version, 'ruby-2.3.3@rails4.2'
+set :rbenv_type, :user
+set :rbenv_ruby, 'ruby-2.3.3'
 
 # role-based syntax
 # ==================
@@ -33,7 +33,7 @@ set :rvm_ruby_version, 'ruby-2.3.3@rails4.2'
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
 
-set :linked_files, %w(config/application.yml config/sidekiq.yml config/database.yml .ruby-version)
+set :linked_files, %w(config/application.yml config/sidekiq.yml config/database.yml)
 
 # Custom SSH Options
 # ==================
