@@ -61,6 +61,7 @@ gem 'rack-cors', :require => 'rack/cors'
 
 gem 'omniauth-google-oauth2'
 gem 'smarter_csv'
+gem 'dalli', group: :production
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

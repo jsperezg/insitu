@@ -1,6 +1,4 @@
 class Vat < ActiveRecord::Base
-	include ApartmentCacheKeyGenerator
-
 	has_many :services, dependent: :restrict_with_error
 
 	validates :label, presence: true

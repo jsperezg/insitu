@@ -103,6 +103,7 @@ GEM
       currencies (~> 0.4.2)
       i18n_data (~> 0.7.0)
     currencies (0.4.2)
+    dalli (2.7.6)
     data-confirm-modal (1.2.0)
       railties (>= 3.0)
     debug_inspector (0.0.2)
@@ -357,6 +358,7 @@ DEPENDENCIES
   cookies_eu
   country_select!
   currencies
+  dalli
   data-confirm-modal
   devise (= 3.5.2)
   devise-async

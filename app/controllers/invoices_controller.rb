@@ -77,7 +77,7 @@ class InvoicesController < SecuredController
   # POST /invoices.json
   def create
     Invoice.transaction do
-      if current_user.update(user_params)
+      if params.key?(:user) and current_user.update(user_params)
         current_user.reload
       end
 
@@ -105,7 +105,7 @@ class InvoicesController < SecuredController
   # PATCH/PUT /invoices/1.json
   def update
     Invoice.transaction do
-      if current_user.update(user_params)
+      if params.key?(:user) and current_user.update(user_params)
         current_user.reload
       end
 

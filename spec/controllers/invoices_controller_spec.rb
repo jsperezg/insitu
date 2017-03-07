@@ -80,7 +80,7 @@ RSpec.describe InvoicesController, type: :controller do
     context "with valid params" do
       it "creates a new Invoice" do
         expect {
-          post :create, {:invoice => valid_attributes, user_id: @user.id}
+          post :create, {:invoice => valid_attributes, user_id: @user.id }
         }.to change(Invoice, :count).by(1)
       end
 

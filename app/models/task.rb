@@ -1,6 +1,4 @@
 class Task < ActiveRecord::Base
-  include ApartmentCacheKeyGenerator
-
   belongs_to :project
 
   has_many :time_logs, dependent: :destroy

@@ -1,6 +1,4 @@
 class Service < ActiveRecord::Base
-  include ApartmentCacheKeyGenerator
-
   filterrific(
       default_filter_params: {
           sorted_by: 'code_asc',
