@@ -11,7 +11,7 @@ server 'billing.insitu.tools', user: 'rails', roles: %w{app db web}
 
 set :rails_env, 'production'
 set :rbenv_type, :user
-set :rbenv_ruby, 'ruby-2.3.3'
+set :rbenv_ruby, '2.3.3'
 
 # role-based syntax
 # ==================
