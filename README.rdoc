@@ -1,5 +1,13 @@
 == README
 
+= Rake tasks
+
+rake insitu:drop_user[user@domain.com]
+
+= Sidekiq
+
+Install equired packages.
+
 # apt-get install redis-server redis-tools
 
 1) 1st time
@@ -8,6 +16,23 @@ cap production setup
 
 2) then and following times
 cap production deploy
+
+Additionally the rails user must have a .bash_profile that loads the rbenv environment.
+
+rails@billing:~$ cat .bash_profile
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+Copy the sidekiq script to /etc/init.d
+
+and
+
+# sudo update-rc.d sidekiq defaults 99
+
+
+In order to manually execute sidekiq
+rails@billing:/opt/insitu/current$ bundle exec sidekiq -d -l log/sidekiq.log -C config/sidekiq.yml -e production
+
 
 
 rails@billing:/opt/insitu/current$ redis-cli
