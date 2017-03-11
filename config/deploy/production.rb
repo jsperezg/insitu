@@ -7,7 +7,7 @@
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
-server '46.4.12.7', user: 'rails', roles: %w{app db web}
+server 'billing.insitu.tools', user: 'rails', roles: %w{app db web}
 
 set :rails_env, 'production'
 set :rbenv_type, :user
