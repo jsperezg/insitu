@@ -26,9 +26,8 @@ require 'capistrano/deploy'
 require 'capistrano/rbenv'
 require 'capistrano/figaro_yml'
 require 'capistrano/rails'
-
-# require "capistrano/scm/git"
-# install_plugin Capistrano::SCM::Git
+require "capistrano/scm/git"
+install_plugin Capistrano::SCM::Git
 
 # require 'capistrano/passenger'
 
