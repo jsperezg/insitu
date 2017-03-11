@@ -77,6 +77,7 @@ es:
   open: Abrir
   import: Importar
   new: Nuevo
+  data_of_the_issuer: Datos del emisor
 
   payment_methods:
     title: Métodos de pago
