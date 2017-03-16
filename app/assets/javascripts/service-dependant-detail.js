@@ -36,7 +36,7 @@ ServiceDependantDetail.prototype.calculateTotal = function () {
 };
 
 ServiceDependantDetail.prototype.findService = function (service_id) {
-  if (this.service.id() !== parseInt(service_id, 10)) {
+  if (service_id != undefined && this.service.id() !== parseInt(service_id, 10)) {
     $.ajax('/api/v1/services/' + service_id + '.json').success(function (data) {
       ko.mapping.fromJS(data, {}, this.service);
 
