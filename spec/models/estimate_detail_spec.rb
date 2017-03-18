@@ -1,13 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe EstimateDetail, type: :model do
-  it "service_id is mandatory" do
-		estimate_detail = EstimateDetail.new
-		estimate_detail.save
-
-		expect(estimate_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :service_id )}
-	end
-
 	describe "quantity" do
 		it "is mandatory" do
 			estimate_detail = EstimateDetail.new

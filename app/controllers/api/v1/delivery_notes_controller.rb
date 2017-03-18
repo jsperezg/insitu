@@ -84,7 +84,7 @@ class Api::V1::DeliveryNotesController < ApiController
             vat_rate: detail.service.vat.rate,
             price: detail.price,
             discount: 0,
-            description: detail.custom_description,
+            description: detail.description,
             quantity: detail.quantity
         )
 
@@ -114,7 +114,7 @@ class Api::V1::DeliveryNotesController < ApiController
         :customer_id,
         :date,
         delivery_note_details_attributes: [
-            :id, :delivery_note_id, :service_id, :quantity, :price, :custom_description, :_destroy
+            :id, :delivery_note_id, :service_id, :quantity, :price, :description, :_destroy
         ]
     )
   end

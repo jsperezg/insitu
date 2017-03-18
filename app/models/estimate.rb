@@ -27,13 +27,7 @@ class Estimate < ActiveRecord::Base
   validate :number_format
 
   accepts_nested_attributes_for :estimate_details, reject_if: proc { |attr|
-    result = false
-
-    [:service_id, :quantity, :price].each do |attr_id|
-      result = true if attr[attr_id].blank?
-    end
-
-    result
+    attr[:service_id].blank? and attr[:quantity].blank? and attr[:price].blank? and attr[:description].blank?
   }, :allow_destroy => true
 
   after_initialize :set_default_values, if: :new_record?

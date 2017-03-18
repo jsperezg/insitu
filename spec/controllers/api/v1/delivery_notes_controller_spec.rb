@@ -170,7 +170,7 @@ RSpec.describe Api::V1::DeliveryNotesController, type: :controller do
       delivery_note.delivery_note_details.each do |details|
         expect(details.invoice_detail_id).not_to be_nil
 
-        expect(details.invoice_detail.description).to eq(details.custom_description)
+        expect(details.invoice_detail.description).to eq(details.description)
         expect(details.invoice_detail.quantity).to eq(details.quantity)
         expect(details.invoice_detail.service_id).to eq(details.service_id)
         expect(details.invoice_detail.vat_rate).to eq(details.invoice_detail.service.vat.rate)

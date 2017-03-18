@@ -5,13 +5,6 @@ RSpec.describe InvoiceDetail, type: :model do
     Thread.current[:user] = create(:user)
   end
 
-  it "service_id is mandatory" do
-		invoice_detail = InvoiceDetail.new
-		invoice_detail.save
-
-		expect(invoice_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :service_id )}
-	end
-
 	describe "quantity" do
 		it "is mandatory" do
       invoice_detail = InvoiceDetail.new

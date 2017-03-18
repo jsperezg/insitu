@@ -84,8 +84,8 @@ class DeliveryNotePdf < DocumentPdf
     ]
 
     @delivery_note.delivery_note_details.each do |detail|
-      description = detail.custom_description
-      description = detail.service.description if detail.custom_description.blank?
+      description = detail.description
+      description = detail.service.description if detail.description.blank?
 
       details << [
           data_cell("#{ detail.quantity }", data_borders, default_padding),

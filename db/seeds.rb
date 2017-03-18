@@ -43,7 +43,7 @@ else
     { label: '0%', rate: 0 },
     { label: '4%', rate: 4 },
     { label: '10%', rate: 10 },
-    { label: '21%', rate: 21 }
+    { label: '21%', rate: 21, default: true }
   ].each do |vat|
     Vat.find_by(rate: vat[:rate]) || Vat.create(vat)
   end

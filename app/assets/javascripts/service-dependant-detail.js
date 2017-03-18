@@ -1,9 +1,18 @@
 //=require abstract-detail
+//=require vats
 
 var ServiceDependantDetail = function (json) {
   extend(this, new AbstractDetail(json));
 
   this.service = {id: ko.observable(), description: ko.observable(), unit: {label_short: ko.observable()}};
+
+  this.detailDescription = ko.pureComputed(function () {
+    if (defined(this.service.description())) {
+      return this.service.description() + ': ' + this.description();
+    }
+
+    return this.description();
+  }, this);
 
   this.service_id.subscribe(function (newValue) {
     this.findService(newValue);
@@ -17,6 +26,10 @@ var ServiceDependantDetail = function (json) {
     if (!defined(this.vat_rate)) {
       this.vat_rate = ko.observable(0);
     }
+
+    Vats.findDefaultVat(function (defaultVat) {
+      this.vat_rate(defaultVat.rate);
+    }.bind(this));
 
     this.quantity.subscribe(this.calculateTotal, this);
     this.price.subscribe(this.calculateTotal, this);

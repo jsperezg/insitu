@@ -5,7 +5,6 @@ class InvoiceDetail < ActiveRecord::Base
   has_one :estimate_detail, dependent: :nullify
   has_one :delivery_note_detail, dependent: :nullify
 
-  validates :service_id, presence: true
   validates :vat_rate, presence: true, numericality: { greater_than_or_equal_to: 0, only_integer: true }
   validates :price, presence: true, numericality: { greater_than: 0 }
   validates :quantity, presence: true, numericality: { greater_than: 0 }

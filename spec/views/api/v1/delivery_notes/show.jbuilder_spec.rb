@@ -23,7 +23,7 @@ describe 'api/v1/delivery_notes/show/', type: :view  do
     delivery_note['delivery_note_details'].each do |detail|
       expect(detail.key? 'id').to be_truthy
       expect(detail.key? 'service_id').to be_truthy
-      expect(detail.key? 'custom_description').to be_truthy
+      expect(detail.key? 'description').to be_truthy
       expect(detail.key? 'quantity').to be_truthy
       expect(detail.key? 'price').to be_truthy
       expect(detail.key? 'invoice_detail_id').to be_truthy

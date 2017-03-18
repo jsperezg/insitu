@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170115164251) do
+ActiveRecord::Schema.define(version: 20170318065041) do
 
   create_table "customers", force: :cascade do |t|
     t.string   "name",             limit: 255, null: false
@@ -32,14 +32,14 @@ ActiveRecord::Schema.define(version: 20170115164251) do
   end
 
   create_table "delivery_note_details", force: :cascade do |t|
-    t.integer  "delivery_note_id",   limit: 4,                           null: false
-    t.integer  "service_id",         limit: 4,                           null: false
-    t.decimal  "quantity",                       precision: 7, scale: 2, null: false
-    t.decimal  "price",                          precision: 7, scale: 2, null: false
-    t.string   "custom_description", limit: 255
-    t.datetime "created_at",                                             null: false
-    t.datetime "updated_at",                                             null: false
-    t.integer  "invoice_detail_id",  limit: 4
+    t.integer  "delivery_note_id",  limit: 4,                           null: false
+    t.integer  "service_id",        limit: 4
+    t.decimal  "quantity",                      precision: 7, scale: 2, null: false
+    t.decimal  "price",                         precision: 7, scale: 2, null: false
+    t.string   "description",       limit: 255
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
+    t.integer  "invoice_detail_id", limit: 4
   end
 
   add_index "delivery_note_details", ["delivery_note_id"], name: "index_delivery_note_details_on_delivery_note_id", using: :btree
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20170115164251) do
 
   create_table "estimate_details", force: :cascade do |t|
     t.integer  "estimate_id",       limit: 4,                                       null: false
-    t.integer  "service_id",        limit: 4,                                       null: false
+    t.integer  "service_id",        limit: 4
     t.string   "description",       limit: 255
     t.decimal  "quantity",                      precision: 7, scale: 2,             null: false
     t.decimal  "price",                         precision: 7, scale: 2,             null: false
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 20170115164251) do
 
   create_table "invoice_details", force: :cascade do |t|
     t.integer  "invoice_id",  limit: 4,                                       null: false
-    t.integer  "service_id",  limit: 4,                                       null: false
+    t.integer  "service_id",  limit: 4
     t.string   "description", limit: 255
     t.integer  "vat_rate",    limit: 4,                                       null: false
     t.decimal  "price",                   precision: 7, scale: 2,             null: false

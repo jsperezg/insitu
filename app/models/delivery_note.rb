@@ -19,7 +19,7 @@ class DeliveryNote < ActiveRecord::Base
   has_many :delivery_note_details, :dependent => :destroy
 
   accepts_nested_attributes_for :delivery_note_details, reject_if: proc { |attr|
-    attr[:service_id].blank? and attr[:quantity].blank? and attr[:price].blank? and attr[:custom_description].blank?
+    attr[:service_id].blank? and attr[:quantity].blank? and attr[:price].blank? and attr[:description].blank?
   }, :allow_destroy => true
 
   validates :customer_id, presence: true

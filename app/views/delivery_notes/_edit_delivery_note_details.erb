@@ -19,8 +19,7 @@
                 }, click: toggleExpanded">
               <div class="ellipsis">
                 <i class="fa" aria-hidden="true" data-bind="css: { 'fa-plus': collapsed, 'fa-minus': expanded }"></i>
-                <span data-bind="text: service.description"></span>.
-                <span data-bind="text: custom_description"></span>
+                <span data-bind="text: detailDescription"></span>
               </div>
             </a>
 
@@ -73,13 +72,13 @@
 
             <div class="form-group col-md-6 col-sm-8 col-xs-12">
               <input type="text" data-toggle="tooltip" data-placement="top" class="form-control input-sm"
-                     data-bind="value: custom_description,
+                     data-bind="value: description,
                                  attr: {
-                                    name: 'delivery_note[delivery_note_details_attributes][' + $index() + '][custom_description]',
-                                    id: 'delivery_note_delivery_note_details_attributes_' + $index() + '_custom_description'
+                                    name: 'delivery_note[delivery_note_details_attributes][' + $index() + '][description]',
+                                    id: 'delivery_note_delivery_note_details_attributes_' + $index() + '_description'
                                  }"
-                     title="<%= model_class.human_attribute_name(:custom_description) %>"
-                     placeholder="<%= model_class.human_attribute_name(:custom_description) %>">
+                     title="<%= model_class.human_attribute_name(:description) %>"
+                     placeholder="<%= model_class.human_attribute_name(:description) %>">
             </div>
 
             <div class="form-group col-md-2 col-sm-4 col-xs-6">

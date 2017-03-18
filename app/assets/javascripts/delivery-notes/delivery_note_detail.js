@@ -5,7 +5,7 @@ var DeliveryNoteDetail = function (json) {
 DeliveryNoteDetail.prototype.emptyDetail = function () {
   return {
     id: null,
-    custom_description: '',
+    description: '',
     quantity: null,
     price: null,
     invoice_detail_id: null,

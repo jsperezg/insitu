@@ -108,13 +108,13 @@ en:
         quantity: Quantity
         price: Price
         total: Total
-        custom_description: Custom description
+        description: Description
       delivery_note_detail:
         service_id: Description
         quantity: Quantity
         price: Price
         total: Total
-        custom_description: Custom description
+        description: Description
       invoice:
         number: Number
         date: Date

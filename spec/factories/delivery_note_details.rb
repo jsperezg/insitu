@@ -3,7 +3,7 @@ FactoryGirl.define do
 		delivery_note_id { DeliveryNote.first.try(:id) || create(:delivery_note).id }
   	service_id { Service.first.try(:id) || create(:service).id }
 
-		sequence :custom_description do |n|
+		sequence :description do |n|
 			"delivery note #{n}"
     end
 
