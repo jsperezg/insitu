@@ -29,7 +29,7 @@ class ServicesController < SecuredController
 
   # GET /services/new
   def new
-    @service = Service.new
+    @service = Service.new(vat_id: Vat.find_by(default: true)&.id)
   end
 
   # GET /services/1/edit

@@ -7,11 +7,17 @@ var ServiceDependantDetail = function (json) {
   this.service = {id: ko.observable(), description: ko.observable(), unit: {label_short: ko.observable()}};
 
   this.detailDescription = ko.pureComputed(function () {
-    if (defined(this.service.description())) {
-      return this.service.description() + ': ' + this.description();
+    var label = [];
+
+    if (defined(this.service) && defined(this.service.description()) && this.service.description() !== "") {
+      label.push(this.service.description());
     }
 
-    return this.description();
+    if (defined(this.description()) && this.description() !== "") {
+      label.push(this.description());
+    }
+
+    return label.join(": ");
   }, this);
 
   this.service_id.subscribe(function (newValue) {
@@ -49,7 +55,7 @@ ServiceDependantDetail.prototype.calculateTotal = function () {
 };
 
 ServiceDependantDetail.prototype.findService = function (service_id) {
-  if (service_id != undefined && this.service.id() !== parseInt(service_id, 10)) {
+  if (defined(service_id) && service_id !== "" && this.service.id() !== parseInt(service_id, 10)) {
     $.ajax('/api/v1/services/' + service_id + '.json').success(function (data) {
       ko.mapping.fromJS(data, {}, this.service);
 
@@ -57,6 +63,9 @@ ServiceDependantDetail.prototype.findService = function (service_id) {
         this.updatePrice();
       }
     }.bind(this));
+  } else {
+    this.service.id(null);
+    this.service.description(null);
   }
 };
 

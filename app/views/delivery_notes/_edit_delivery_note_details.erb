@@ -66,13 +66,14 @@
                                     name: 'delivery_note[delivery_note_details_attributes][' + $index() + '][service_id]',
                                     id: 'delivery_note_delivery_note_details_attributes_' + $index() + '_service_id'
                                  }">
+                <option value=""></option>
                 <%= service_options %>
               </select>
             </div>
 
             <div class="form-group col-md-6 col-sm-8 col-xs-12">
               <input type="text" data-toggle="tooltip" data-placement="top" class="form-control input-sm"
-                     data-bind="value: description,
+                     data-bind="textInput: description,
                                  attr: {
                                     name: 'delivery_note[delivery_note_details_attributes][' + $index() + '][description]',
                                     id: 'delivery_note_delivery_note_details_attributes_' + $index() + '_description'
