@@ -46,148 +46,148 @@ RSpec.describe DeliveryNotesController, type: :controller do
     sign_out @user
   end
 
-  describe "GET #index" do
-    it "assigns all delivery_notes as @delivery_notes" do
+  describe 'GET #index' do
+    it 'assigns all delivery_notes as @delivery_notes' do
       delivery_note = DeliveryNote.create! valid_attributes
-      get :index, { user_id: @user.id }
+      get :index, params: { user_id: @user.id }
       expect(assigns(:delivery_notes)).to eq([delivery_note])
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested delivery_note as @delivery_note" do
+  describe 'GET #show' do
+    it 'assigns the requested delivery_note as @delivery_note' do
       delivery_note = DeliveryNote.create! valid_attributes
-      get :show, { :id => delivery_note.to_param, user_id: @user.id }
+      get :show, params: { id: delivery_note.to_param, user_id: @user.id }
       expect(assigns(:delivery_note)).to eq(delivery_note)
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new delivery_note as @delivery_note" do
-      get :new, { user_id: @user.id }
+  describe 'GET #new' do
+    it 'assigns a new delivery_note as @delivery_note' do
+      get :new, params: { user_id: @user.id }
       expect(assigns(:delivery_note)).to be_a_new(DeliveryNote)
     end
   end
 
-  describe "GET #edit" do
-    it "assigns the requested delivery_note as @delivery_note" do
+  describe 'GET #edit' do
+    it 'assigns the requested delivery_note as @delivery_note' do
       delivery_note = DeliveryNote.create! valid_attributes
-      get :edit, {:id => delivery_note.to_param, user_id: @user.id }
+      get :edit, params: { id: delivery_note.to_param, user_id: @user.id }
       expect(assigns(:delivery_note)).to eq(delivery_note)
     end
   end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new DeliveryNote" do
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new DeliveryNote' do
         expect {
-          post :create, {:delivery_note => valid_attributes, user_id: @user.id}
+          post :create, params: { delivery_note: valid_attributes, user_id: @user.id }
         }.to change(DeliveryNote, :count).by(1)
       end
 
-      it "assigns a newly created delivery_note as @delivery_note" do
-        post :create, {:delivery_note => valid_attributes, user_id: @user.id}
+      it 'assigns a newly created delivery_note as @delivery_note' do
+        post :create, params: { delivery_note: valid_attributes, user_id: @user.id }
         expect(assigns(:delivery_note)).to be_a(DeliveryNote)
         expect(assigns(:delivery_note)).to be_persisted
       end
 
-      it "redirects to the created delivery_note" do
-        post :create, {:delivery_note => valid_attributes, user_id: @user.id}
+      it 'redirects to the created delivery_note' do
+        post :create, params: { delivery_note: valid_attributes, user_id: @user.id }
         expect(response).to redirect_to(edit_user_delivery_note_path(@user, DeliveryNote.last))
       end
     end
 
-    context "with invalid params" do
-      it "assigns a newly created but unsaved delivery_note as @delivery_note" do
-        post :create, {:delivery_note => invalid_attributes, user_id: @user.id }
+    context 'with invalid params' do
+      it 'assigns a newly created but unsaved delivery_note as @delivery_note' do
+        post :create, params: { delivery_note: invalid_attributes, user_id: @user.id }
         expect(assigns(:delivery_note)).to be_a_new(DeliveryNote)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:delivery_note => invalid_attributes, user_id: @user.id}
-        expect(response).to render_template("new")
+        post :create, params: { delivery_note: invalid_attributes, user_id: @user.id }
+        expect(response).to render_template('new')
       end
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
+  describe 'PUT #update' do
+    context 'with valid params' do
       let(:new_attributes) {
         new_date = DateTime.now.utc.beginning_of_day - 7.days
 
         attributes_for :delivery_note, date: new_date, number: "T/#{new_date.year}/999999"
       }
 
-      it "updates the requested delivery_note" do
+      it 'updates the requested delivery_note' do
         delivery_note = DeliveryNote.create! valid_attributes
-        put :update, {:id => delivery_note.to_param, :delivery_note => new_attributes, user_id: @user.id}
-        delivery_note.reload        
+        put :update, params: { id: delivery_note.to_param, delivery_note: new_attributes, user_id: @user.id }
+        delivery_note.reload
 
         expect(delivery_note.date.strftime('%Y-%m-%d')).to eq((DateTime.now.utc.beginning_of_day - 7.days).strftime('%Y-%m-%d'))
       end
 
-      it "assigns the requested delivery_note as @delivery_note" do
+      it 'assigns the requested delivery_note as @delivery_note' do
         delivery_note = DeliveryNote.create! valid_attributes
-        put :update, {:id => delivery_note.to_param, :delivery_note => valid_attributes, user_id: @user.id}
+        put :update, params: { id: delivery_note.to_param, delivery_note: valid_attributes, user_id: @user.id }
         expect(assigns(:delivery_note)).to eq(delivery_note)
       end
 
-      it "redirects to the delivery_note" do
+      it 'redirects to the delivery_note' do
         delivery_note = DeliveryNote.create! valid_attributes
-        put :update, {:id => delivery_note.to_param, :delivery_note => valid_attributes, user_id: @user.id}
+        put :update, params: { id: delivery_note.to_param, delivery_note: valid_attributes, user_id: @user.id }
         expect(response).to redirect_to(edit_user_delivery_note_path(@user, DeliveryNote.last))
       end
     end
 
-    context "with invalid params" do
-      it "assigns the delivery_note as @delivery_note" do
+    context 'with invalid params' do
+      it 'assigns the delivery_note as @delivery_note' do
         delivery_note = DeliveryNote.create! valid_attributes
-        put :update, {:id => delivery_note.to_param, :delivery_note => invalid_attributes, user_id: @user.id}
+        put :update, params: { id: delivery_note.to_param, delivery_note: invalid_attributes, user_id: @user.id }
         expect(assigns(:delivery_note)).to eq(delivery_note)
       end
 
       it "re-renders the 'edit' template" do
         delivery_note = DeliveryNote.create! valid_attributes
-        put :update, {:id => delivery_note.to_param, :delivery_note => invalid_attributes, user_id: @user.id}
-        expect(response).to render_template("edit")
+        put :update, params: { id: delivery_note.to_param, delivery_note: invalid_attributes, user_id: @user.id }
+        expect(response).to render_template('edit')
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested delivery_note" do
+  describe 'DELETE #destroy' do
+    it 'destroys the requested delivery_note' do
       delivery_note = DeliveryNote.create! valid_attributes
       expect {
-        delete :destroy, {:id => delivery_note.to_param, user_id: @user.id}
+        delete :destroy, params: { id: delivery_note.to_param, user_id: @user.id }
       }.to change(DeliveryNote, :count).by(-1)
     end
 
-    it "redirects to the delivery_notes list" do
+    it 'redirects to the delivery_notes list' do
       delivery_note = DeliveryNote.create! valid_attributes
-      delete :destroy, {:id => delivery_note.to_param, user_id: @user.id}
+      delete :destroy, params: { id: delivery_note.to_param, user_id: @user.id }
       expect(response).to redirect_to(user_delivery_notes_url(@user))
     end
   end
 
-  describe "GET #invoice" do
+  describe 'GET #invoice' do
     before(:each) do
       PaymentMethod.first || create(:payment_method)
       Service.first || create(:service)
       InvoiceStatus.first || create(:invoice_status)
     end
 
-    it "Warns when nothing to invoice" do
+    it 'Warns when nothing to invoice' do
       delivery_note = create(:delivery_note)
 
-      get :invoice, { user_id: @user, id: delivery_note }
+      get :invoice, params: { user_id: @user, id: delivery_note }
       expect(response).to redirect_to(edit_user_delivery_note_path(@user, delivery_note))
       expect(flash[:alert]).to eq(I18n.t('delivery_notes.nothing_to_invoice'))
     end
 
-    it "Generates invoice " do
+    it 'Generates invoice' do
       delivery_note = DeliveryNote.create! valid_attributes
 
-      get :invoice, { user_id: @user, id: delivery_note }
+      get :invoice, params: { user_id: @user, id: delivery_note }
 
       delivery_note.reload
 
@@ -204,12 +204,12 @@ RSpec.describe DeliveryNotesController, type: :controller do
       end
     end
 
-    it "Fails when no paying method available" do
+    it 'Fails when no paying method available' do
       PaymentMethod.delete_all
 
       delivery_note = DeliveryNote.create! valid_attributes
 
-      get :invoice, { user_id: @user, id: delivery_note }
+      get :invoice, params: { user_id: @user, id: delivery_note }
 
       expect(response).to redirect_to edit_user_delivery_note_path(@user.id, delivery_note)
       expect(flash[:alert]).to eq(I18n.t('payment_methods.not_found'))
@@ -218,7 +218,7 @@ RSpec.describe DeliveryNotesController, type: :controller do
 
 
 
-  describe "GET #forward_email" do
+  describe 'GET #forward_email' do
     let(:customer_without_email_delivery_note) {
       customer = create(:customer, contact_email: nil)
       delivery_note = attributes_for :delivery_note, customer_id: customer.id
@@ -227,14 +227,13 @@ RSpec.describe DeliveryNotesController, type: :controller do
       delivery_note
     }
 
-    it "fails for customers without email" do
+    it 'fails for customers without email' do
       delivery_note = DeliveryNote.create! customer_without_email_delivery_note
 
-      get :forward_email, { user_id: @user, id: delivery_note }
+      get :forward_email, params: { user_id: @user, id: delivery_note }
 
       expect(response).to redirect_to(user_delivery_note_path(@user.id, delivery_note.id))
       expect(flash[:error]).to eq(I18n.t('helpers.customer_mail_missing'))
     end
   end
-
 end

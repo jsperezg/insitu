@@ -45,17 +45,30 @@ class Payment < ApplicationRecord
   belongs_to :user
 
   def receiver_email_is_valid
-    errors[:receiver_email] = I18n.t('activerecord.errors.models.payment.attributes.receiver_email.invalid_value', email: receiver_email ) if receiver_email != Rails.configuration.x.paypal_receiver_email
+    if receiver_email != Rails.configuration.x.paypal_receiver_email
+      errors.add(
+        :receiver_email,
+        I18n.t('activerecord.errors.models.payment.attributes.receiver_email.invalid_value', email: receiver_email )
+      )
+    end
   end
 
   def payment_currency_is_valid
-    errors[:mc_currency] = I18n.t('activerecord.errors.models.payment.attributes.mc_currency.invalid_value') if mc_currency != 'EUR'
+    if mc_currency != 'EUR'
+      errors.add(
+        :mc_currency,
+        I18n.t('activerecord.errors.models.payment.attributes.mc_currency.invalid_value')
+      )
+    end
   end
 
   def payment_amount_is_valid
     unless plan.nil?
       expected_amount = plan.price * (1 + plan.vat_rate / 100.0)
-      errors[:mc_gross] = I18n.t('activerecord.errors.models.payment.attributes.mc_gross.invalid_value') if mc_gross != expected_amount
+      errors.add(
+        :mc_gross,
+        I18n.t('activerecord.errors.models.payment.attributes.mc_gross.invalid_value')
+      ) if mc_gross != expected_amount
     end
   end
 

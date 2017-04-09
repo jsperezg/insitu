@@ -46,127 +46,126 @@ RSpec.describe VatsController, type: :controller do
     sign_out @user
   end
 
-  describe "GET #index" do
-    it "assigns all vats as @vats" do
+  describe 'GET #index' do
+    it 'assigns all vats as @vats' do
       vat = Vat.create! valid_attributes
-      get :index, { user_id: @user.id }
+      get :index, params: { user_id: @user.id }
       expect(assigns(:vats)).to include(vat)
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested vat as @vat" do
+  describe 'GET #show' do
+    it 'assigns the requested vat as @vat' do
       vat = Vat.create! valid_attributes
-      get :show, {:id => vat.to_param, user_id: @user.id }
+      get :show, params: { id: vat.to_param, user_id: @user.id }
       expect(assigns(:vat)).to eq(vat)
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new vat as @vat" do
-      get :new, { user_id: @user.id  }
+  describe 'GET #new' do
+    it 'assigns a new vat as @vat' do
+      get :new, params: { user_id: @user.id  }
       expect(assigns(:vat)).to be_a_new(Vat)
     end
   end
 
-  describe "GET #edit" do
-    it "assigns the requested vat as @vat" do
+  describe 'GET #edit' do
+    it 'assigns the requested vat as @vat' do
       vat = Vat.create! valid_attributes
-      get :edit, {:id => vat.to_param, user_id: @user.id }
+      get :edit, params: { id: vat.to_param, user_id: @user.id }
       expect(assigns(:vat)).to eq(vat)
     end
   end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Vat" do
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new Vat' do
         expect {
-          post :create, {:vat => valid_attributes, user_id: @user.id }
+          post :create, params: { vat: valid_attributes, user_id: @user.id }
         }.to change(Vat, :count).by(1)
       end
 
-      it "assigns a newly created vat as @vat" do
-        post :create, {:vat => valid_attributes, user_id: @user.id }
+      it 'assigns a newly created vat as @vat' do
+        post :create, params: { vat: valid_attributes, user_id: @user.id }
         expect(assigns(:vat)).to be_a(Vat)
         expect(assigns(:vat)).to be_persisted
       end
 
-      it "redirects to the created vat" do
-        post :create, {:vat => valid_attributes, user_id: @user.id }
+      it 'redirects to the created vat' do
+        post :create, params: { vat: valid_attributes, user_id: @user.id }
         expect(response).to redirect_to(user_vats_path(@user.id))
       end
     end
 
-    context "with invalid params" do
-      it "assigns a newly created but unsaved vat as @vat" do
-        post :create, {:vat => invalid_attributes, user_id: @user.id }
+    context 'with invalid params' do
+      it 'assigns a newly created but unsaved vat as @vat' do
+        post :create, params: { vat: invalid_attributes, user_id: @user.id }
         expect(assigns(:vat)).to be_a_new(Vat)
         expect(assigns(:vat)).not_to be_persisted
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:vat => invalid_attributes, user_id: @user.id }
-        expect(response).to render_template("new")
+        post :create, params: { vat: invalid_attributes, user_id: @user.id }
+        expect(response).to render_template('new')
       end
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
+  describe '"PUT #update" 'do
+    context 'with valid params' do
       let(:new_attributes) {
         { label: '16%', rate: 16 }
       }
 
-      it "updates the requested vat" do
+      it 'updates the requested vat' do
         vat = Vat.create! valid_attributes
-        put :update, {:id => vat.to_param, :vat => new_attributes, user_id: @user.id }
+        put :update, params: { id: vat.to_param, vat: new_attributes, user_id: @user.id }
         vat.reload
         
         expect(vat[:label]).to eq(new_attributes[:label])
         expect(vat[:rate]).to eq(new_attributes[:rate])
       end
 
-      it "assigns the requested vat as @vat" do
+      it 'assigns the requested vat as @vat' do
         vat = Vat.create! valid_attributes
-        put :update, {:id => vat.to_param, :vat => valid_attributes, user_id: @user.id }
+        put :update, params: { id: vat.to_param, vat: valid_attributes, user_id: @user.id }
         expect(assigns(:vat)).to eq(vat)
       end
 
-      it "redirects to the vat" do
+      it 'redirects to the vat' do
         vat = Vat.create! valid_attributes
-        put :update, {:id => vat.to_param, :vat => valid_attributes, user_id: @user.id }
+        put :update, params: { id: vat.to_param, vat: valid_attributes, user_id: @user.id }
         expect(response).to redirect_to(user_vats_path(@user.id))
       end
     end
 
-    context "with invalid params" do
-      it "assigns the vat as @vat" do
+    context 'with invalid params' do
+      it 'assigns the vat as @vat' do
         vat = Vat.create! valid_attributes
-        put :update, {:id => vat.to_param, :vat => invalid_attributes, user_id: @user.id }
+        put :update, params: { id: vat.to_param, vat: invalid_attributes, user_id: @user.id }
         expect(assigns(:vat)).to eq(vat)
       end
 
       it "re-renders the 'edit' template" do
         vat = Vat.create! valid_attributes
-        put :update, {:id => vat.to_param, :vat => invalid_attributes, user_id: @user.id }
-        expect(response).to render_template("edit")
+        put :update, params: { id: vat.to_param, vat: invalid_attributes, user_id: @user.id }
+        expect(response).to render_template('edit')
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested vat" do
+  describe 'DELETE #destroy' do
+    it 'destroys the requested vat' do
       vat = Vat.create! valid_attributes
       expect {
-        delete :destroy, {:id => vat.to_param, user_id: @user.id }
+        delete :destroy, params: { id: vat.to_param, user_id: @user.id }
       }.to change(Vat, :count).by(-1)
     end
 
-    it "redirects to the vats list" do
+    it 'redirects to the vats list' do
       vat = Vat.create! valid_attributes
-      delete :destroy, {:id => vat.to_param, user_id: @user.id }
+      delete :destroy, params: { id: vat.to_param, user_id: @user.id }
       expect(response).to redirect_to(user_vats_path(@user.id))
     end
   end
-
 end
