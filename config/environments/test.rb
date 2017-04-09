@@ -13,8 +13,11 @@ Rails.application.configure do
   config.eager_load = false
 
   # Configure static file server for tests with Cache-Control for performance.
-  config.serve_static_files   = true
-  config.static_cache_control = 'public, max-age=3600'
+  config.public_file_server.enabled = true
+  config.public_file_server.headers = {
+    'Cache-Control' => 'public, max-age=3600'
+  }
+
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
@@ -49,4 +52,6 @@ Rails.application.configure do
   config.x.paypal_validate_ipn_user_agent = 'Insitu test'
   config.x.paypal_receiver_email = 'jsperezg-facilitator@gmail.com'
   config.x.paypal_billing_account = 'jsperezg@gmail.com'
+
+  config.action_mailer.perform_caching = false
 end

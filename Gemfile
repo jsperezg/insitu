@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby "2.3.3"
+ruby '2.3.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.6'
+gem 'rails', '5.0.2'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.4.0'
 # Use SCSS for stylesheets
@@ -15,7 +15,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 
-gem 'devise', '3.5.2'
+gem 'devise'
 gem 'devise-async'
 gem 'apartment'
 gem 'twitter-bootstrap-rails'
