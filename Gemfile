@@ -89,11 +89,10 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5gem'
   gem 'rails-controller-testing', require: false
   gem 'factory_girl_rails',  '~> 4.0'
-  gem 'rspec-sidekiq'
   gem 'faker'
 
   # Deployment with capistrano
-  gem "capistrano", "~> 3.4"
+  gem 'capistrano', '~> 3.4'
   gem 'capistrano-figaro-yml', '~> 1.0.2'
   gem 'capistrano-rbenv', '~> 2.0'
   gem 'capistrano-bundler', '~> 1.1.2'
@@ -103,4 +102,5 @@ end
 
 group :test do
   gem 'simplecov', require: false
+  gem 'rspec-sidekiq'
 end

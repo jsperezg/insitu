@@ -26,5 +26,4 @@ var onEditTimeLogsPageLoad = function () {
   }
 };
 
-$(document).on("page:load", onEditTimeLogsPageLoad);
-$(document).ready(onEditTimeLogsPageLoad);
+$(document).on("turbolinks:load", onEditTimeLogsPageLoad);

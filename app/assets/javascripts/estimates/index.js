@@ -26,5 +26,4 @@ var onEditEstimatePageLoad = function () {
   }
 };
 
-$(document).on("page:load", onEditEstimatePageLoad);
-$(document).ready(onEditEstimatePageLoad);
+$(document).on("turbolinks:load", onEditEstimatePageLoad);

@@ -25,5 +25,5 @@ var onDeliveryNoteEditPageLoad = function () {
   }
 };
 
-$(document).on("page:load", onDeliveryNoteEditPageLoad);
+$(document).on("turbolinks:load", onDeliveryNoteEditPageLoad);
 $(document).ready(onDeliveryNoteEditPageLoad);
