@@ -27,6 +27,6 @@ class IpnListenerController < ApplicationController
       logger.error e
     end
 
-    render :nothing => true, status: status
+    head status
   end
 end
