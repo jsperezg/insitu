@@ -9,7 +9,7 @@ RSpec.describe Api::V1::RegistrationsController, type: :controller do
   it 'allows user registration without confirmation required' do
     email = Faker::Internet.email
 
-    post :create, format: :json, user: { email: email, password: 'Abcd1234', password_confirmation: 'Abcd1234'}
+    post :create, params: { format: :json, user: { email: email, password: 'Abcd1234', password_confirmation: 'Abcd1234'} }
     expect(response.status).to eq(200)
 
     user = User.find_by(email: email)
@@ -20,7 +20,7 @@ RSpec.describe Api::V1::RegistrationsController, type: :controller do
   it  'returns user attributes after registration' do
     email = Faker::Internet.email
 
-    post :create, format: :json, user: { email: email, password: 'Abcd1234', password_confirmation: 'Abcd1234'}
+    post :create, params: { format: :json, user: { email: email, password: 'Abcd1234', password_confirmation: 'Abcd1234'} }
     expect(response.status).to eq(200)
 
     user = User.find_by(email: email)

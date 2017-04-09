@@ -45,61 +45,61 @@ RSpec.describe Api::V1::ServicesController, type: :controller do
     sign_out @user
   end
 
-  describe "GET #index" do
-    it "assigns all services as @services" do
+  describe 'GET #index' do
+    it 'assigns all services as @services' do
       service = Service.create! valid_attributes
-      get :index, { format: :json }
+      get :index, params: { format: :json }
       expect(assigns(:services)).to include(service)
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested service as @service" do
+  describe 'GET #show' do
+    it 'assigns the requested service as @service' do
       service = Service.create! valid_attributes
-      get :show, { id: service.to_param, format: :json }
+      get :show, params: { id: service.to_param, format: :json }
       expect(assigns(:service)).to eq(service)
     end
   end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Service" do
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new Service' do
         expect {
-          post :create, { service: valid_attributes, format: :json }
+          post :create, params: { service: valid_attributes, format: :json }
         }.to change(Service, :count).by(1)
       end
 
-      it "assigns a newly created service as @service" do
-        post :create, { service: valid_attributes, format: :json }
+      it 'assigns a newly created service as @service' do
+        post :create, params: { service: valid_attributes, format: :json }
         expect(assigns(:service)).to be_a(Service)
         expect(assigns(:service)).to be_persisted
       end
 
-      it "returns 200 - ok" do
-        post :create, { :service => valid_attributes, format: :json}
+      it 'returns 200 - ok' do
+        post :create, params: { service: valid_attributes, format: :json }
         expect(response).to have_http_status(:ok)
       end
     end
 
-    context "with invalid params" do
-      it "assigns a newly created but unsaved service as @service" do
-        post :create, { :service => invalid_attributes}
+    context 'with invalid params' do
+      it 'assigns a newly created but unsaved service as @service' do
+        post :create, params: { service: invalid_attributes }
         expect(assigns(:service)).to be_a_new(Service)
       end
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
+  describe 'PUT #update' do
+    context 'with valid params' do
       let(:new_attributes) {
         new_attributes = attributes_for :service
         new_attributes[:description] = 'Modified description'
         new_attributes
       }
 
-      it "updates the requested service" do
+      it 'updates the requested service' do
         service = Service.create! valid_attributes
-        put :update, { :id => service.to_param, :service => new_attributes }
+        put :update, params: { id: service.to_param, service: new_attributes }
         service.reload
 
         new_attributes.each do |key, value|
@@ -107,41 +107,40 @@ RSpec.describe Api::V1::ServicesController, type: :controller do
         end
       end
 
-      it "assigns the requested service as @service" do
+      it 'assigns the requested service as @service' do
         service = Service.create! valid_attributes
-        put :update, { :id => service.to_param, :service => valid_attributes }
+        put :update, params: { id: service.to_param, service: valid_attributes }
         expect(assigns(:service)).to eq(service)
       end
 
-      it "returns 200 - ok" do
+      it 'returns 200 - ok' do
         service = Service.create! valid_attributes
-        put :update, { :id => service.to_param, :service => valid_attributes }
+        put :update, params: { id: service.to_param, :service => valid_attributes }
         expect(response).to have_http_status(:ok)
       end
     end
 
-    context "with invalid params" do
-      it "assigns the service as @service" do
+    context 'with invalid params' do
+      it 'assigns the service as @service' do
         service = Service.create! valid_attributes
-        put :update, { :id => service.to_param, :service => invalid_attributes}
+        put :update, params: { id: service.to_param, service: invalid_attributes }
         expect(assigns(:service)).to eq(service)
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested service" do
+  describe 'DELETE #destroy' do
+    it 'destroys the requested service' do
       service = Service.create! valid_attributes
       expect {
-        delete :destroy, { :id => service.to_param}
+        delete :destroy, params: { id: service.to_param }
       }.to change(Service, :count).by(-1)
     end
 
-    it "redirects to the services list" do
+    it 'redirects to the services list' do
       service = Service.create! valid_attributes
-      delete :destroy, { :id => service.to_param}
+      delete :destroy, params: { id: service.to_param }
       expect(response).to have_http_status(:ok)
     end
   end
-
 end

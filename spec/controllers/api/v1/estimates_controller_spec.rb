@@ -58,51 +58,51 @@ RSpec.describe Api::V1::EstimatesController, type: :controller do
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested estimate as @estimate" do
+  describe 'GET #show' do
+    it 'assigns the requested estimate as @estimate' do
       estimate = Estimate.create! valid_attributes
-      get :show, {:id => estimate.to_param}
+      get :show, params: { id: estimate.to_param}
       expect(assigns(:estimate)).to eq(estimate)
     end
   end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Estimate" do
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new Estimate' do
         expect {
-          post :create, {:estimate => valid_attributes}
+          post :create, params: { estimate: valid_attributes }
         }.to change(Estimate, :count).by(1)
       end
 
-      it "assigns a newly created estimate as @estimate" do
-        post :create, {:estimate => valid_attributes}
+      it 'assigns a newly created estimate as @estimate' do
+        post :create, params: { estimate: valid_attributes}
         expect(assigns(:estimate)).to be_a(Estimate)
         expect(assigns(:estimate)).to be_persisted
       end
 
-      it "returns 200 - ok" do
-        post :create, {:estimate => valid_attributes}
+      it 'returns 200 - ok' do
+        post :create, params: { estimate: valid_attributes }
         expect(response).to have_http_status(:ok)
       end
     end
 
-    context "with invalid params" do
-      it "assigns a newly created but unsaved estimate as @estimate" do
-        post :create, {:estimate => invalid_attributes}
+    context 'with invalid params' do
+      it 'assigns a newly created but unsaved estimate as @estimate' do
+        post :create, params: { estimate: invalid_attributes}
         expect(assigns(:estimate)).to be_a_new(Estimate)
       end
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
+  describe 'PUT #update' do
+    context 'with valid params' do
       let(:new_attributes) {
         attributes_for(:estimate, date: Date.current.beginning_of_year + 10.days)
       }
 
-      it "updates the requested estimate" do
+      it 'updates the requested estimate' do
         estimate = Estimate.create! valid_attributes
-        put :update, {:id => estimate.to_param, :estimate => new_attributes}
+        put :update, params: { id: estimate.to_param, estimate: new_attributes}
         estimate.reload
 
         new_attributes.each do |key, value|
@@ -110,54 +110,54 @@ RSpec.describe Api::V1::EstimatesController, type: :controller do
         end
       end
 
-      it "assigns the requested estimate as @estimate" do
+      it 'assigns the requested estimate as @estimate' do
         estimate = Estimate.create! valid_attributes
-        put :update, {:id => estimate.to_param, :estimate => valid_attributes}
+        put :update, params: { id: estimate.to_param, estimate: valid_attributes}
         expect(assigns(:estimate)).to eq(estimate)
       end
 
-      it "returns 200 - ok" do
+      it 'returns 200 - ok' do
         estimate = Estimate.create! valid_attributes
-        put :update, {:id => estimate.to_param, :estimate => valid_attributes}
+        put :update, params: { id: estimate.to_param, estimate: valid_attributes}
         expect(response).to have_http_status(:ok)
       end
     end
 
-    context "with invalid params" do
-      it "assigns the estimate as @estimate" do
+    context 'with invalid params' do
+      it 'assigns the estimate as @estimate' do
         estimate = Estimate.create! valid_attributes
-        put :update, {:id => estimate.to_param, :estimate => invalid_attributes}
+        put :update, params: { id: estimate.to_param, estimate: invalid_attributes }
         expect(assigns(:estimate)).to eq(estimate)
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested estimate" do
+  describe 'DELETE #destroy' do
+    it 'destroys the requested estimate' do
       estimate = Estimate.create! valid_attributes
       expect {
-        delete :destroy, {user_id: @user.id, :id => estimate.to_param}
+        delete :destroy, params: {user_id: @user.id, id: estimate.to_param}
       }.to change(Estimate, :count).by(-1)
     end
 
-    it "returns 200 - ok" do
+    it 'returns 200 - ok' do
       estimate = Estimate.create! valid_attributes
-      delete :destroy, {user_id: @user.id, :id => estimate.to_param}
+      delete :destroy, params: {user_id: @user.id, id: estimate.to_param}
       expect(response).to have_http_status(:ok)
     end
   end
 
-  describe "GET #invoice" do
+  describe 'GET #invoice' do
     before(:each) do
       PaymentMethod.first || create(:payment_method)
       Service.first || create(:service)
       InvoiceStatus.first || create(:invoice_status)
     end
 
-    it "Warns when nothing to invoice" do
+    it 'Warns when nothing to invoice' do
       estimate = create(:estimate)
 
-      get :invoice, { user_id: @user, id: estimate }
+      get :invoice, params: { user_id: @user, id: estimate }
       expect(response).to have_http_status(:ok)
 
       json = JSON.parse(response.body)
@@ -165,10 +165,10 @@ RSpec.describe Api::V1::EstimatesController, type: :controller do
       expect(json['errors'][0]).to eq(I18n.t('estimates.nothing_to_invoice'))
     end
 
-    it "Generates invoice " do
+    it 'Generates invoice' do
       estimate = Estimate.create! valid_attributes
 
-      get :invoice, { user_id: @user, id: estimate }
+      get :invoice, params: { user_id: @user, id: estimate }
 
       estimate.reload
 
@@ -185,13 +185,13 @@ RSpec.describe Api::V1::EstimatesController, type: :controller do
       expect(response).to have_http_status(:ok)
     end
 
-    it  'Generates the invoice for spanish customers' do
+    it 'Generates the invoice for spanish customers' do
       @user.update_attributes(country: 'ES', tax_id: '48299472R')
 
       estimate = Estimate.create! valid_attributes
       estimate.customer.update_attributes(irpf: 16)
 
-      get :invoice, { user_id: @user, id: estimate }
+      get :invoice, params: { user_id: @user, id: estimate }
 
       estimate.reload
       invoice = estimate.estimate_details.first.invoice_detail.invoice
@@ -199,12 +199,12 @@ RSpec.describe Api::V1::EstimatesController, type: :controller do
       expect(invoice.irpf).to eq(16)
     end
 
-    it "Fails when no paying method available" do
+    it 'Fails when no paying method available' do
       PaymentMethod.delete_all
 
       estimate = Estimate.create! valid_attributes
 
-      get :invoice, { user_id: @user, id: estimate }
+      get :invoice, params: { user_id: @user, id: estimate }
       expect(response).to have_http_status(:ok)
 
       json = JSON.parse(response.body)

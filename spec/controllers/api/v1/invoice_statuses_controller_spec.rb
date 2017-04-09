@@ -36,20 +36,20 @@ RSpec.describe Api::V1::InvoiceStatusesController, type: :controller do
     sign_out @user
   end
 
-  describe "GET #index" do
-    it "assigns all invoice statuses as @invoice_statuses" do
+  describe 'GET #index' do
+    it 'assigns all invoice statuses as @invoice_statuses' do
       status = InvoiceStatus.create(valid_attributes)
 
-      get :index, { format: :json }
+      get :index, params: { format: :json }
       expect(assigns(:invoice_statuses)).to include(status)
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested invoice status as @invoice_status" do
+  describe 'GET #show' do
+    it 'assigns the requested invoice status as @invoice_status' do
       status = InvoiceStatus.create(valid_attributes)
 
-      get :show, { id: status.id, format: :json }
+      get :show, params: { id: status.id, format: :json }
       expect(assigns(:invoice_status)).to eq(status)
     end
   end

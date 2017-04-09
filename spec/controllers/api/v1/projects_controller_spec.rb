@@ -45,59 +45,59 @@ RSpec.describe Api::V1::ProjectsController, type: :controller do
     sign_out @user
   end
 
-  describe "GET #index" do
-    it "assigns all projects as @projects" do
+  describe 'GET #index' do
+    it 'assigns all projects as @projects' do
       project = Project.create! valid_attributes
-      get :index, { format: :json }
+      get :index, params: { format: :json }
       expect(assigns(:projects)).to eq([project])
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested project as @project" do
+  describe 'GET #show' do
+    it 'assigns the requested project as @project' do
       project = Project.create! valid_attributes
-      get :show, { format: :json, :id => project.to_param}
+      get :show, params: { format: :json, id: project.to_param }
       expect(assigns(:project)).to eq(project)
     end
   end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Project" do
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new Project' do
         expect {
-          post :create, {:project => valid_attributes}
+          post :create, params: { project: valid_attributes }
         }.to change(Project, :count).by(1)
       end
 
-      it "assigns a newly created project as @project" do
-        post :create, {:project => valid_attributes}
+      it 'assigns a newly created project as @project' do
+        post :create, params: { project: valid_attributes }
         expect(assigns(:project)).to be_a(Project)
         expect(assigns(:project)).to be_persisted
       end
 
-      it "returns 200 - ok" do
-        post :create, {:project => valid_attributes, format: :json }
+      it 'returns 200 - ok' do
+        post :create, params: { project: valid_attributes, format: :json }
         expect(response).to have_http_status(:ok)
       end
     end
 
-    context "with invalid params" do
-      it "assigns a newly created but unsaved project as @project" do
-        post :create, {user_id: @user.id, :project => invalid_attributes}
+    context 'with invalid params' do
+      it 'assigns a newly created but unsaved project as @project' do
+        post :create, params: { user_id: @user.id, project: invalid_attributes }
         expect(assigns(:project)).to be_a_new(Project)
       end
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
+  describe 'PUT #update' do
+    context 'with valid params' do
       let(:new_attributes) {
         attributes_for :project
       }
 
-      it "updates the requested project" do
+      it 'updates the requested project' do
         project = Project.create! valid_attributes
-        put :update, {:id => project.to_param, :project => new_attributes}
+        put :update, params: { id: project.to_param, project: new_attributes }
         project.reload
 
         new_attributes.each do |key, value|
@@ -105,41 +105,40 @@ RSpec.describe Api::V1::ProjectsController, type: :controller do
         end
       end
 
-      it "assigns the requested project as @project" do
+      it 'assigns the requested project as @project' do
         project = Project.create! valid_attributes
-        put :update, {user_id: @user.id, :id => project.to_param, :project => valid_attributes}
+        put :update, params: { user_id: @user.id, id: project.to_param, project: valid_attributes }
         expect(assigns(:project)).to eq(project)
       end
 
-      it "returns 200 - ok" do
+      it 'returns 200 - ok' do
         project = Project.create! valid_attributes
-        put :update, { :id => project.to_param, :project => valid_attributes}
+        put :update, params: { id: project.to_param, project: valid_attributes}
         expect(response).to have_http_status(:ok)
       end
     end
 
-    context "with invalid params" do
-      it "assigns the project as @project" do
+    context 'with invalid params' do
+      it 'assigns the project as @project' do
         project = Project.create! valid_attributes
-        put :update, {user_id: @user.id, :id => project.to_param, :project => invalid_attributes}
+        put :update, params: { user_id: @user.id, id: project.to_param, project: invalid_attributes }
         expect(assigns(:project)).to eq(project)
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested project" do
+  describe 'DELETE #destroy' do
+    it 'destroys the requested project' do
       project = Project.create! valid_attributes
       expect {
-        delete :destroy, {user_id: @user.id, :id => project.to_param}
+        delete :destroy, params: { user_id: @user.id, id: project.to_param }
       }.to change(Project, :count).by(-1)
     end
 
-    it "returns 200 - ok" do
+    it 'returns 200 - ok' do
       project = Project.create! valid_attributes
-      delete :destroy, { :id => project.to_param}
+      delete :destroy, params: { id: project.to_param }
       expect(response).to have_http_status(:ok)
     end
   end
-
 end

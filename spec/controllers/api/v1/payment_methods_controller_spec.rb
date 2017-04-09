@@ -43,90 +43,90 @@ RSpec.describe Api::V1::PaymentMethodsController, type: :controller do
     sign_out @user
   end
 
-  describe "GET #index" do
-    it "assigns all payment_methods as @payment_methods" do
+  describe 'GET #index' do
+    it 'assigns all payment_methods as @payment_methods' do
       payment_method = PaymentMethod.create! valid_attributes
-      get :index, { format: :json }
+      get :index, params: { format: :json }
       expect(assigns(:payment_methods)).to include(payment_method)
     end
   end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new PaymentMethod" do
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new PaymentMethod' do
         expect {
-          post :create, { :payment_method => valid_attributes, format: :json }
+          post :create, params: { payment_method: valid_attributes, format: :json }
         }.to change(PaymentMethod, :count).by(1)
       end
 
-      it "assigns a newly created payment_method as @payment_method" do
-        post :create, { :payment_method => valid_attributes, format: :json }
+      it 'assigns a newly created payment_method as @payment_method' do
+        post :create, params: { payment_method: valid_attributes, format: :json }
         expect(assigns(:payment_method)).to be_a(PaymentMethod)
         expect(assigns(:payment_method)).to be_persisted
       end
 
-      it "returns 200 - ok" do
-        post :create, { :payment_method => valid_attributes, format: :json }
+      it 'returns 200 - ok' do
+        post :create, params: { payment_method: valid_attributes, format: :json }
         expect(response).to have_http_status(:ok)
       end
     end
 
-    context "with invalid params" do
-      it "assigns a newly created but unsaved payment_method as @payment_method" do
-        post :create, { :payment_method => invalid_attributes, format: :json }
+    context 'with invalid params' do
+      it 'assigns a newly created but unsaved payment_method as @payment_method' do
+        post :create, params: { payment_method: invalid_attributes, format: :json }
         expect(assigns(:payment_method)).to be_a_new(PaymentMethod)
         expect(assigns(:payment_method)).not_to be_persisted
       end
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
+  describe 'PUT #update' do
+    context 'with valid params' do
       let(:new_attributes) {
         attributes_for :payment_method
       }
 
-      it "updates the requested payment_method" do
+      it 'updates the requested payment_method' do
         payment_method = PaymentMethod.create! valid_attributes
-        put :update, { :id => payment_method.to_param, :payment_method => new_attributes, format: :json }
+        put :update, params: { id: payment_method.to_param, payment_method: new_attributes, format: :json }
         payment_method.reload
         expect(payment_method[:name]).to eq(new_attributes[:name])
         expect(payment_method[:note_for_invoice]).to eq(new_attributes[:note_for_invoice])
       end
 
-      it "assigns the requested payment_method as @payment_method" do
+      it 'assigns the requested payment_method as @payment_method' do
         payment_method = PaymentMethod.create! valid_attributes
-        put :update, { :id => payment_method.to_param, :payment_method => valid_attributes, format: :json }
+        put :update, params: { id: payment_method.to_param, payment_method: valid_attributes, format: :json }
         expect(assigns(:payment_method)).to eq(payment_method)
       end
 
-      it "returns 200 - ok" do
+      it 'returns 200 - ok' do
         payment_method = PaymentMethod.create! valid_attributes
-        put :update, { :id => payment_method.to_param, :payment_method => valid_attributes, format: :json }
+        put :update, params:  { id: payment_method.to_param, payment_method: valid_attributes, format: :json }
         expect(response).to have_http_status(:ok)
       end
     end
 
-    context "with invalid params" do
-      it "assigns the payment_method as @payment_method" do
+    context 'with invalid params' do
+      it 'assigns the payment_method as @payment_method' do
         payment_method = PaymentMethod.create! valid_attributes
-        put :update, { :id => payment_method.to_param, :payment_method => invalid_attributes, format: :json}
+        put :update, params: { id: payment_method.to_param, payment_method: invalid_attributes, format: :json }
         expect(assigns(:payment_method)).to eq(payment_method)
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested payment_method" do
+  describe 'DELETE #destroy' do
+    it 'destroys the requested payment_method' do
       payment_method = PaymentMethod.create! valid_attributes
       expect {
-        delete :destroy, { :id => payment_method.to_param, format: :json }
+        delete :destroy, params: { id: payment_method.to_param, format: :json }
       }.to change(PaymentMethod, :count).by(-1)
     end
 
-    it "returns 200 - ok" do
+    it 'returns 200 - ok' do
       payment_method = PaymentMethod.create! valid_attributes
-      delete :destroy, { :id => payment_method.to_param, format: :json }
+      delete :destroy, params: { id: payment_method.to_param, format: :json }
       expect(response).to have_http_status(:ok)
     end
   end

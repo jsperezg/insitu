@@ -46,101 +46,100 @@ RSpec.describe Api::V1::VatsController, type: :controller do
     sign_out @user
   end
 
-  describe "GET #index" do
-    it "assigns all vats as @vats" do
+  describe 'GET #index' do
+    it 'assigns all vats as @vats' do
       vat = Vat.create! valid_attributes
-      get :index, { format: :json }
+      get :index, params: { format: :json }
       expect(assigns(:vats)).to include(vat)
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested vat as @vat" do
+  describe 'GET #show' do
+    it 'assigns the requested vat as @vat' do
       vat = Vat.create! valid_attributes
-      get :show, {:id => vat.to_param, format: :json }
+      get :show, params: { id: vat.to_param, format: :json }
       expect(assigns(:vat)).to eq(vat)
     end
   end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Vat" do
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new Vat' do
         expect {
-          post :create, {:vat => valid_attributes, format: :json }
+          post :create, params: { vat: valid_attributes, format: :json }
         }.to change(Vat, :count).by(1)
       end
 
-      it "assigns a newly created vat as @vat" do
-        post :create, {:vat => valid_attributes, format: :json }
+      it 'assigns a newly created vat as @vat' do
+        post :create, params: { vat: valid_attributes, format: :json }
         expect(assigns(:vat)).to be_a(Vat)
         expect(assigns(:vat)).to be_persisted
       end
 
-      it "returns 200 - ok" do
-        post :create, { :vat => valid_attributes, format: :json}
+      it 'returns 200 - ok' do
+        post :create, params: { vat: valid_attributes, format: :json }
         expect(response).to have_http_status(:ok)
       end
     end
 
-    context "with invalid params" do
-      it "assigns a newly created but unsaved vat as @vat" do
-        post :create, {:vat => invalid_attributes, format: :json }
+    context 'with invalid params' do
+      it 'assigns a newly created but unsaved vat as @vat' do
+        post :create, params: { vat: invalid_attributes, format: :json }
         expect(assigns(:vat)).to be_a_new(Vat)
         expect(assigns(:vat)).not_to be_persisted
       end
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
+  describe 'PUT #update' do
+    context 'with valid params' do
       let(:new_attributes) {
         { label: '16%', rate: 16 }
       }
 
-      it "updates the requested vat" do
+      it 'updates the requested vat' do
         vat = Vat.create! valid_attributes
-        put :update, {:id => vat.to_param, :vat => new_attributes, format: :json }
+        put :update, params: { id: vat.to_param, vat: new_attributes, format: :json }
         vat.reload
 
         expect(vat[:label]).to eq(new_attributes[:label])
         expect(vat[:rate]).to eq(new_attributes[:rate])
       end
 
-      it "assigns the requested vat as @vat" do
+      it 'assigns the requested vat as @vat' do
         vat = Vat.create! valid_attributes
-        put :update, {:id => vat.to_param, :vat => valid_attributes, response: :json }
+        put :update, params: { id: vat.to_param, vat: valid_attributes, response: :json }
         expect(assigns(:vat)).to eq(vat)
       end
 
-      it "returns 200 - ok" do
+      it 'returns 200 - ok' do
         vat = Vat.create! valid_attributes
-        put :update, {:id => vat.to_param, :vat => valid_attributes, response: :json }
+        put :update, params: { id: vat.to_param, vat: valid_attributes, response: :json }
         expect(response).to have_http_status(:ok)
       end
     end
 
-    context "with invalid params" do
-      it "assigns the vat as @vat" do
+    context 'with invalid params' do
+      it 'assigns the vat as @vat' do
         vat = Vat.create! valid_attributes
-        put :update, {:id => vat.to_param, :vat => invalid_attributes, response: :json }
+        put :update, params: { id: vat.to_param, vat: invalid_attributes, response: :json }
         expect(assigns(:vat)).to eq(vat)
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested vat" do
+  describe 'DELETE #destroy' do
+    it 'destroys the requested vat' do
       vat = Vat.create! valid_attributes
       expect {
-        delete :destroy, {:id => vat.to_param, response: :json }
+        delete :destroy, params: { id: vat.to_param, response: :json }
       }.to change(Vat, :count).by(-1)
     end
 
-    it "returns 200 - ok" do
+    it 'returns 200 - ok' do
       vat = Vat.create! valid_attributes
-      delete :destroy, {:id => vat.to_param, response: :json }
+      delete :destroy, params: { id: vat.to_param, response: :json }
       expect(response).to have_http_status(:ok)
     end
   end
-
 end

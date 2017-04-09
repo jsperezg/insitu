@@ -44,59 +44,59 @@ RSpec.describe Api::V1::TasksController, type: :controller do
     sign_out @user
   end
 
-  describe "GET #index" do
-    it "assigns all tasks as @tasks" do
+  describe 'GET #index' do
+    it 'assigns all tasks as @tasks' do
       task = Task.create! valid_attributes
-      get :index, { project_id: @project.id }
+      get :index, params: { project_id: @project.id }
       expect(assigns(:tasks)).to eq([task])
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested task as @task" do
+  describe 'GET #show' do
+    it 'assigns the requested task as @task' do
       task = Task.create! valid_attributes
-      get :show, {project_id: @project, :id => task.to_param}
+      get :show, params: { project_id: @project, id: task.to_param }
       expect(assigns(:task)).to eq(task)
     end
   end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Task" do
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new Task' do
         expect {
-          post :create, {project_id: @project, :task => valid_attributes}
+          post :create, params: { project_id: @project, task: valid_attributes }
         }.to change(Task, :count).by(1)
       end
 
-      it "assigns a newly created task as @task" do
-        post :create, {project_id: @project, :task => valid_attributes}
+      it 'assigns a newly created task as @task' do
+        post :create, params: { project_id: @project, task: valid_attributes }
         expect(assigns(:task)).to be_a(Task)
         expect(assigns(:task)).to be_persisted
       end
 
-      it "returns 200 - ok" do
-        post :create, {project_id: @project, :task => valid_attributes}
+      it 'returns 200 - ok' do
+        post :create, params: { project_id: @project, task: valid_attributes }
         expect(response).to have_http_status(:ok)
       end
     end
 
-    context "with invalid params" do
-      it "assigns a newly created but unsaved task as @task" do
-        post :create, {project_id: @project, :task => invalid_attributes}
+    context 'with invalid params' do
+      it 'assigns a newly created but unsaved task as @task' do
+        post :create, params: { project_id: @project, task: invalid_attributes }
         expect(assigns(:task)).to be_a_new(Task)
       end
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
+  describe 'PUT #update' do
+    context 'with valid params' do
       let(:new_attributes) {
         attributes_for :task
       }
 
-      it "updates the requested task" do
+      it 'updates the requested task' do
         task = Task.create! valid_attributes
-        put :update, {project_id: @project, :id => task.to_param, :task => new_attributes}
+        put :update, params: { project_id: @project, id: task.to_param, task: new_attributes }
         task.reload
 
         new_attributes.each do |key, value|
@@ -104,54 +104,54 @@ RSpec.describe Api::V1::TasksController, type: :controller do
         end
       end
 
-      it "assigns the requested task as @task" do
+      it 'assigns the requested task as @task' do
         task = Task.create! valid_attributes
-        put :update, {project_id: @project, :id => task.to_param, :task => valid_attributes}
+        put :update, params: { project_id: @project, id: task.to_param, task: valid_attributes }
         expect(assigns(:task)).to eq(task)
       end
 
-      it "returns 200 - ok" do
+      it 'returns 200 - ok' do
         task = Task.create! valid_attributes
-        put :update, {project_id: @project, :id => task.to_param, :task => valid_attributes}
+        put :update, params: { project_id: @project, id: task.to_param, task: valid_attributes }
         expect(response).to have_http_status(:ok)
       end
     end
 
-    context "with invalid params" do
-      it "assigns the task as @task" do
+    context 'with invalid params' do
+      it 'assigns the task as @task' do
         task = Task.create! valid_attributes
-        put :update, {project_id: @project, :id => task.to_param, :task => invalid_attributes}
+        put :update, params: { project_id: @project, id: task.to_param, task: invalid_attributes }
         expect(assigns(:task)).to eq(task)
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested task" do
+  describe 'DELETE #destroy' do
+    it 'destroys the requested task' do
       task = Task.create! valid_attributes
       expect {
-        delete :destroy, {project_id: @project, :id => task.to_param}
+        delete :destroy, params: { project_id: @project, id: task.to_param }
       }.to change(Task, :count).by(-1)
     end
 
-    it "returns 200 - ok" do
+    it 'returns 200 - ok' do
       task = Task.create! valid_attributes
-      delete :destroy, {project_id: @project, :id => task.to_param}
+      delete :destroy, params: { project_id: @project, id: task.to_param }
       expect(response).to have_http_status(:ok)
     end
   end
 
-  describe "GET #invoice_finished" do
+  describe 'GET #invoice_finished' do
     before(:each) do
       PaymentMethod.first || create(:payment_method)
       Service.first || create(:service)
       InvoiceStatus.first || create(:invoice_status)
     end
 
-    it "Warns when nothing to invoice" do
-      task = Task.create! valid_attributes
+    it 'Warns when nothing to invoice' do
+      Task.create! valid_attributes
 
-      get :invoice_finished, { user_id: @user, project_id: @project }
+      get :invoice_finished, params: { user_id: @user, project_id: @project }
       expect(response).to have_http_status(:ok)
 
       json = JSON.parse(response.body)
@@ -159,22 +159,22 @@ RSpec.describe Api::V1::TasksController, type: :controller do
       expect(json['errors'][0]).to eq(I18n.t('tasks.no_pending_tasks'))
     end
 
-    it "Generates invoice with all pending time logs" do
+    it 'Generates invoice with all pending time logs' do
       task = Task.create! valid_attributes
       2.times do |i|
         TimeLog.create!(
-            description: "time log #{ i + 1 }",
-            date: Date.today,
-            time_spent: (i + 1) * 60,
-            task_id: task.id,
-            service_id: Service.first.id
+          description: "time log #{i + 1}",
+          date: Date.today,
+          time_spent: (i + 1) * 60,
+          task_id: task.id,
+          service_id: Service.first.id
         )
       end
 
       task.finish_date = Date.today
       task.save
 
-      get :invoice_finished, { user_id: @user, project_id: @project }
+      get :invoice_finished, params: { user_id: @user, project_id: @project }
 
       task.reload
 
@@ -191,24 +191,24 @@ RSpec.describe Api::V1::TasksController, type: :controller do
       end
     end
 
-    it "Fails when no paying method available" do
+    it 'Fails when no paying method available' do
       PaymentMethod.delete_all
 
       task = Task.create! valid_attributes
       2.times do |i|
         TimeLog.create!(
-            description: "time log #{ i + 1 }",
-            date: Date.today,
-            time_spent: (i + 1) * 60,
-            task_id: task.id,
-            service_id: Service.first.id
+          description: "time log #{i + 1}",
+          date: Date.today,
+          time_spent: (i + 1) * 60,
+          task_id: task.id,
+          service_id: Service.first.id
         )
       end
 
       task.finish_date = Date.today
       task.save
 
-      get :invoice_finished, { user_id: @user, project_id: @project }
+      get :invoice_finished, params: { user_id: @user, project_id: @project }
 
       expect(response).to have_http_status(:ok)
       json = JSON.parse(response.body)
