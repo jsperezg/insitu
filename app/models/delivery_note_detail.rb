@@ -1,4 +1,5 @@
-class DeliveryNoteDetail < ActiveRecord::Base
+# Delivery Note Detail
+class DeliveryNoteDetail < ApplicationRecord
   belongs_to :delivery_note, touch: true
   belongs_to :service
   belongs_to :invoice_detail
@@ -6,7 +7,9 @@ class DeliveryNoteDetail < ActiveRecord::Base
   validates :quantity, presence: true, numericality: { greater_than: 0 }
   validates :price, presence: true, numericality: { greater_than: 0 }
 
-	def total
-		price * quantity if price.present? && quantity.present?
-	end
+  def total
+    price * quantity if
+      price.present? &&
+      quantity.present?
+  end
 end

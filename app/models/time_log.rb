@@ -1,4 +1,4 @@
-class TimeLog < ActiveRecord::Base
+class TimeLog < ApplicationRecord
   belongs_to :task, touch: true
   belongs_to :service
   belongs_to :invoice_detail

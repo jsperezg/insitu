@@ -1,3 +1,4 @@
+require 'rails-controller-testing'
 require 'rails_helper'
 
 RSpec.describe Api::V1::SessionsController, type: :controller do
@@ -7,7 +8,7 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
   end
 
   it 'login' do
-    post :create, format: :json, session: { email: @user.email, password: 'Abcd1234'}
+    post :create, params: { format: :json, session: { email: @user.email, password: 'Abcd1234'} }
     expect(response.status).to eq(200)
     json_response = JSON.parse(response.body, {:symbolize_names => true})
     expect(json_response[:id]).to eq(@user.id)
@@ -16,7 +17,7 @@ RSpec.describe Api::V1::SessionsController, type: :controller do
   end
 
   it  'logout' do
-    post :create, format: :json, session: { email: @user.email, password: 'Abcd1234'}
+    post :create, params: { format: :json, session: { email: @user.email, password: 'Abcd1234'} }
     expect(response.status).to eq(200)
 
     sign_in @user

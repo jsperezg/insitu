@@ -1,4 +1,5 @@
-class EstimateStatus < ActiveRecord::Base
+# Estimate status
+class EstimateStatus < ApplicationRecord
   has_many :estimates
 
   def locale_name

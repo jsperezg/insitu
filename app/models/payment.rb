@@ -1,4 +1,4 @@
-class Payment < ActiveRecord::Base
+class Payment < ApplicationRecord
   enum payment_status: {
       canceled_reversal: 'Canceled_Reversal',
       completed: 'Completed',

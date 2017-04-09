@@ -1,4 +1,4 @@
-class InvoiceDetail < ActiveRecord::Base
+class InvoiceDetail < ApplicationRecord
   belongs_to :invoice, touch: true
   belongs_to :service
   has_one :time_log, dependent: :nullify
@@ -56,28 +56,28 @@ class InvoiceDetail < ActiveRecord::Base
                        .sum('(1 - discount / 100) * price * quantity')
 
     result[:discounts] = InvoiceDetail
-                             .includes(:invoice)
-                             .where('invoices.date': interval)
-                             .sum('(discount / 100) * price * quantity')
+      .includes(:invoice)
+      .where('invoices.date': interval)
+      .sum('(discount / 100) * price * quantity')
 
     result[:tax] = InvoiceDetail
-                       .includes(invoice: [ :customer ])
-                       .where('invoices.date': interval)
-                       .where.not('customers.irpf': nil)
-                       .sum('(1 - discount / 100) * price * quantity * (customers.irpf / 100)') unless user.has_cif?
+      .includes(invoice: [ :customer ])
+      .where('invoices.date': interval)
+      .where.not('customers.irpf': nil)
+      .sum('(1 - discount / 100) * price * quantity * (customers.irpf / 100)') unless user.has_cif?
 
     result[:vat] = InvoiceDetail
-                       .includes(:invoice)
-                       .where('invoices.date': interval)
-                       .where.not(vat_rate: 0)
-                       .group(:vat_rate)
-                       .sum('(1 - discount / 100) * price * quantity * (vat_rate / 100)')
+      .includes(:invoice)
+      .where('invoices.date': interval)
+      .where.not(vat_rate: 0)
+      .group(:vat_rate)
+      .sum('(1 - discount / 100) * price * quantity * (vat_rate / 100)')
 
     customers = InvoiceDetail
-                    .includes(invoice: [ :customer ])
-                    .where('invoices.date': interval)
-                    .group('customers.name')
-                    .sum('(1 - discount / 100) * price * quantity')
+      .includes(invoice: [ :customer ])
+      .where('invoices.date': interval)
+      .group('customers.name')
+      .sum('(1 - discount / 100) * price * quantity')
     result[:customers] = customers.select { |t| customers[t] >= 3000 }
 
     result

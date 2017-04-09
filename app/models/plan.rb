@@ -1,4 +1,4 @@
-class Plan < ActiveRecord::Base
+class Plan < ApplicationRecord
   filterrific(
       default_filter_params: {
           sorted_by: 'months_asc'

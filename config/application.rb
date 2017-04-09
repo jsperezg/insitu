@@ -21,9 +21,6 @@ module Fges
     I18n.config.enforce_available_locales = false
     config.i18n.default_locale = :en
 
-    # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
-
     # Autoload libraries in lib folder
     config.autoload_paths << Rails.root.join('lib')
 

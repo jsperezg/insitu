@@ -1,12 +1,13 @@
-class Customer < ActiveRecord::Base
+# Customer model.
+class Customer < ApplicationRecord
   filterrific(
-      default_filter_params: {
-          sorted_by: 'name_asc'
-      },
-      available_filters: [
-          :with_filter_criteria,
-          :sorted_by
-      ]
+    default_filter_params: {
+      sorted_by: 'name_asc'
+    },
+    available_filters: %i(
+      with_filter_criteria
+      sorted_by
+    )
   )
 
   self.per_page = DEFAULT_ITEMS_PER_PAGE
@@ -29,7 +30,7 @@ class Customer < ActiveRecord::Base
   validates :name, presence: true
   validates :contact_email, email: { allow_blank: true }
   validates :send_invoices_to, email: { allow_blank: true }
-  validates :tax_id, uniqueness: { case_sensitive: false, allow_blank: true}
+  validates :tax_id, uniqueness: { case_sensitive: false, allow_blank: true }
   validates :irpf, numericality: { greater_than_or_equal_to: 0, only_integer: true, allow_blank: true }
 
   has_many :invoices, dependent: :restrict_with_error
@@ -47,17 +48,22 @@ class Customer < ActiveRecord::Base
   end
 
   def can_invoice?
-    self.tax_id.present? and
-        self.name.present? and
-        self.address.present? and
-        self.postal_code.present? and
-        self.country.present?
+    tax_id.present? &&
+      name.present? &&
+      address.present? &&
+      postal_code.present? &&
+      country.present?
   end
 
   def validate_referential_integrity
-    return true if invoices.count == 0 and estimates.count == 0 and delivery_notes.count == 0
+    return true if
+      invoices.count.zero? &&
+      estimates.count.zero? &&
+      delivery_notes.count.zero?
 
-    errors.add(:base, I18n.t('activerecord.errors.models.customer.used_elsewhere'))
-    false
+    errors.add(:base,
+               I18n.t('activerecord.errors.models.customer.used_elsewhere'))
+
+    throw(:abort)
   end
 end

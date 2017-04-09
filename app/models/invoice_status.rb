@@ -1,4 +1,4 @@
-class InvoiceStatus < ActiveRecord::Base
+class InvoiceStatus < ApplicationRecord
   validates :name, presence: true
   has_many :invoices
 

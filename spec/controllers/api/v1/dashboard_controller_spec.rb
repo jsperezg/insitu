@@ -1,3 +1,4 @@
+require 'rails-controller-testing'
 require 'rails_helper'
 
 RSpec.describe Api::V1::DashboardController, type: :controller do
@@ -12,9 +13,9 @@ RSpec.describe Api::V1::DashboardController, type: :controller do
     sign_out @user
   end
 
-  describe "GET #index" do
-    it "Return totals for four periods" do
-      get :index, {user_id: @user.id, format: :json }
+  describe 'GET #index' do
+    it 'Return totals for four periods' do
+      get :index, params: { user_id: @user.id, format: :json }
       expect(assigns(:reports).key?(:past_year)).to be_truthy
       expect(assigns(:reports).key?(:current_year)).to be_truthy
       expect(assigns(:reports).key?(:current_month)).to be_truthy

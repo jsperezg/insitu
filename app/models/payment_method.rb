@@ -1,4 +1,4 @@
-class PaymentMethod < ActiveRecord::Base
+class PaymentMethod < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   after_save :maintain_default_flag
@@ -17,9 +17,9 @@ class PaymentMethod < ActiveRecord::Base
   end
 
   def validate_referential_integrity
-    return true if invoices.count == 0
+    return true if invoices.count.zero?
 
     errors.add(:base, I18n.t('activerecord.errors.models.payment_method.used_elsewhere'))
-    false
+    throw(:abort)
   end
 end

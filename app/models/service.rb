@@ -1,4 +1,4 @@
-class Service < ActiveRecord::Base
+class Service < ApplicationRecord
   filterrific(
       default_filter_params: {
           sorted_by: 'code_asc',
@@ -75,6 +75,7 @@ class Service < ActiveRecord::Base
     return true if invoice_details.count == 0 and estimate_details.count == 0 and delivery_note_details.count == 0
 
     errors.add(:base, I18n.t('activerecord.errors.models.service.used_elsewhere'))
-    false
+
+    throw(:abort)
   end
 end

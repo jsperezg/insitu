@@ -1,33 +1,33 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   acts_as_token_authenticatable
 
   filterrific(
-      default_filter_params: {
-          sorted_by: 'valid_until_asc',
-          with_active_criteria: 'active'
-      },
-      available_filters: [
-          :with_filter_criteria,
-          :with_active_criteria,
-          :sorted_by
-      ]
+    default_filter_params: {
+      sorted_by: 'valid_until_asc',
+      with_active_criteria: 'active'
+    },
+    available_filters: %i(
+      with_filter_criteria
+      with_active_criteria
+      sorted_by
+    )
   )
 
   self.per_page = DEFAULT_ITEMS_PER_PAGE
 
   def self.options_for_sorted_by
     [
-        [ "#{ Service.human_attribute_name(:valid_until) } (#{I18n.t('filterrific.sort_alpha_asc')})", 'valid_until_asc'],
-        [ "#{ Service.human_attribute_name(:valid_until) } (#{I18n.t('filterrific.sort_alpha_desc')})", 'valid_until_desc']
+      [ "#{Service.human_attribute_name(:valid_until)} (#{I18n.t('filterrific.sort_alpha_asc')})", 'valid_until_asc'],
+      [ "#{Service.human_attribute_name(:valid_until)} (#{I18n.t('filterrific.sort_alpha_desc')})", 'valid_until_desc']
     ]
   end
 
   def self.active_filter_options
     [
-        [I18n.t('users.all'), 'all'],
-        [I18n.t('users.only_premium'), 'premium'],
-        [I18n.t('users.vip'), 'vip'],
-        [I18n.t('users.only_free'), 'free']
+      [I18n.t('users.all'), 'all'],
+      [I18n.t('users.only_premium'), 'premium'],
+      [I18n.t('users.vip'), 'vip'],
+      [I18n.t('users.only_free'), 'free']
     ]
   end
 
@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable, :async, :omniauthable, :omniauth_providers => [:google_oauth2]
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2]
 
   belongs_to :role
   has_many :payments
@@ -79,8 +79,8 @@ class User < ActiveRecord::Base
   # Available locales
   def self.available_locales
     [
-        { id: 'es', description: 'Español' },
-        { id: 'en', description: 'English' }
+      { id: 'es', description: 'Español' },
+      { id: 'en', description: 'English' }
     ]
   end
 
@@ -92,10 +92,10 @@ class User < ActiveRecord::Base
   end
 
   def can_invoice?
-    self.tax_id.present? and
-        self.name.present? and
-        self.address.present? and
-        self.postal_code.present? and
+    self.tax_id.present? &&
+        self.name.present? &&
+        self.address.present? &&
+        self.postal_code.present? &&
         self.country.present?
   end
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "units/edit", type: :view do
+RSpec.describe 'units/edit', type: :view do
   before(:each) do
     @user = create(:user)
     sign_in @user
@@ -14,10 +14,10 @@ RSpec.describe "units/edit", type: :view do
     sign_out @user
   end
 
-  it "renders the edit unit form" do
+  it 'renders the edit unit form' do
     render
 
-    assert_select "form[action=?][method=?]", user_unit_path(@user, @unit), "post" do
+    assert_select 'form[action=?][method=?]', user_unit_path(@user, @unit), 'post' do
     end
   end
 end

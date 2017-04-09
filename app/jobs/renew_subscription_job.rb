@@ -1,4 +1,4 @@
-class RenewSubscriptionJob < ActiveJob::Base
+class RenewSubscriptionJob < ApplicationJob
   include InvoicingNotifications
 
   queue_as :urgent
@@ -22,7 +22,7 @@ class RenewSubscriptionJob < ActiveJob::Base
       invoice = generate_invoice(payment)
       send_invoice_by_email(billing_account, invoice)
     rescue => e
-        raise e
+      raise e
     ensure
       Appartment::Tenant.switch! unless Rails.env.test?
     end
@@ -30,12 +30,12 @@ class RenewSubscriptionJob < ActiveJob::Base
 
   def generate_invoice(payment)
     invoice = Invoice.create!(
-        date: payment.payment_date,
-        payment_method_id: find_or_create_payment_method('Paypal').try(:id),
-        customer_id: find_or_create_customer(payment.user).try(:id),
-        invoice_status_id: InvoiceStatus.find_by(name: 'invoice_status.paid').try(:id),
-        payment_date: payment.payment_date,
-        paid_on: payment.payment_date
+      date: payment.payment_date,
+      payment_method_id: find_or_create_payment_method('Paypal').try(:id),
+      customer_id: find_or_create_customer(payment.user).try(:id),
+      invoice_status_id: InvoiceStatus.find_by(name: 'invoice_status.paid').try(:id),
+      payment_date: payment.payment_date,
+      paid_on: payment.payment_date
     )
 
     InvoiceDetail.create!(

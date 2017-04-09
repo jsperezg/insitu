@@ -1,4 +1,4 @@
-class Vat < ActiveRecord::Base
+class Vat < ApplicationRecord
 	has_many :services, dependent: :restrict_with_error
 
 	validates :label, presence: true

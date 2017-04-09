@@ -1,26 +1,30 @@
-class DeliveryNote < ActiveRecord::Base
-	include SequenceGenerator
+# Delivery note.
+class DeliveryNote < ApplicationRecord
+  include SequenceGenerator
 
   filterrific(
-      default_filter_params: {
-          sorted_by: 'date_desc'
-      },
-      available_filters: [
-          :with_number,
-          :with_date_ge,
-          :with_customer,
-          :sorted_by
-      ]
+    default_filter_params: {
+      sorted_by: 'date_desc'
+    },
+    available_filters: %i(
+      with_number
+      with_date_ge
+      with_customer
+      sorted_by
+    )
   )
 
   self.per_page = DEFAULT_ITEMS_PER_PAGE
 
   belongs_to :customer
-  has_many :delivery_note_details, :dependent => :destroy
+  has_many :delivery_note_details, dependent: :destroy
 
   accepts_nested_attributes_for :delivery_note_details, reject_if: proc { |attr|
-    attr[:service_id].blank? and attr[:quantity].blank? and attr[:price].blank? and attr[:description].blank?
-  }, :allow_destroy => true
+    attr[:service_id].blank? &&
+      attr[:quantity].blank? &&
+      attr[:price].blank? &&
+      attr[:description].blank?
+  }, allow_destroy: true
 
   validates :customer_id, presence: true
   validates :date, presence: true
@@ -30,9 +34,7 @@ class DeliveryNote < ActiveRecord::Base
   before_validation :set_number
 
   after_save do
-    unless self.date.nil?
-      increase_id self
-    end
+    increase_id self unless date.nil?
   end
 
   def total
@@ -51,11 +53,9 @@ class DeliveryNote < ActiveRecord::Base
 
   scope :with_date_ge, lambda { |date|
     match = date.match(/(\d{2})\/(\d{2})\/(\d{4})/i)
-    if match
-      date = "#{match[3]}-#{match[2]}-#{match[1]}"
-    end
+    date = "#{match[3]}-#{match[2]}-#{match[1]}" if match
 
-    where("date >= :date", { date: date })
+    where('date >= :date', { date: date })
   }
 
   scope :with_customer, lambda { |customer_id|
@@ -68,7 +68,7 @@ class DeliveryNote < ActiveRecord::Base
     if parts.empty?
       order(date:  :desc)
     elsif parts[0] == 'customer'
-      joins(:customer).order("customers.name #{ parts[1] }")
+      joins(:customer).order("customers.name #{parts[1]}")
     else
       sort_criteria = {}
       sort_criteria[parts[0].parameterize.underscore.to_sym] = parts[1].to_sym
@@ -79,15 +79,15 @@ class DeliveryNote < ActiveRecord::Base
   private
 
   def set_number
-    unless self.date.nil?
-      self.number ||= generate_id(self.model_name.human, self.date.year)
-    end
+    self.number ||= generate_id(model_name.human, date.year) unless date.nil?
   end
 
   def number_format
-    unless is_number_valid?(self.number, self.date)
-      year = self.date.try(:year) || Date.today.year
-      errors.add(:number, I18n.t('activerecord.errors.models.delivery_note.attributes.number.invalid_format', year: year))
+    unless is_number_valid?(number, date)
+      year = date.try(:year) || Date.today.year
+      errors.add(:number,
+                 I18n.t('activerecord.errors.models.delivery_note.attributes.number.invalid_format',
+                        year: year))
     end
   end
 end

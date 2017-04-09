@@ -1,4 +1,5 @@
-class EstimateDetail < ActiveRecord::Base
+# Estimate detail
+class EstimateDetail < ApplicationRecord
   belongs_to :estimate, touch: true
   belongs_to :service
   belongs_to :invoice_detail
