@@ -1,7 +1,7 @@
 # Delivery Note Detail
 class DeliveryNoteDetail < ApplicationRecord
   belongs_to :delivery_note, touch: true
-  belongs_to :service
+  belongs_to :service, optional: true
   belongs_to :invoice_detail
 
   validates :quantity, presence: true, numericality: { greater_than: 0 }

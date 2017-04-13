@@ -1,7 +1,7 @@
 # Estimate detail
 class EstimateDetail < ApplicationRecord
   belongs_to :estimate, touch: true
-  belongs_to :service
+  belongs_to :service, optional: true
   belongs_to :invoice_detail
 
   validates :price, presence: true, numericality: { greater_than: 0 }
