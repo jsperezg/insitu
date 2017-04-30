@@ -14,4 +14,13 @@ namespace :insitu do
     end
   end
 
+  desc 'Show user statistics'
+  task statistics: :environment do
+    User.find_each do |user|
+      Apartment::Tenant.switch! user.try(:tenant)
+
+      invoices_count = Invoice.count
+      puts "#{ user.email } has #{ invoices_count } #{Invoice.model_name.human(count: invoices_count)}"
+    end
+  end
 end

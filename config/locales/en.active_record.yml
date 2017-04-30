@@ -3,7 +3,9 @@ en:
     models:
       service: Service
       estimate: Estimate
-      invoice: Invoice
+      invoice:
+        one: Invoice
+        other: Invoices
       delivery_note: Delivery note
       plan: Price plan
       user: User

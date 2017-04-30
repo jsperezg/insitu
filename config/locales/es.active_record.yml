@@ -3,7 +3,9 @@ es:
     models:
       service: Servicio
       estimate: Presupuesto
-      invoice: Factura
+      invoice:
+        one: Factura
+        other: Facturas
       delivery_note: Albarán
       plan: Plan de precios
       user: Usuario
