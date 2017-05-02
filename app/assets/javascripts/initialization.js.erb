@@ -23,7 +23,7 @@ function activateBestInPlace() {
 if (typeof jQuery !== 'undefined') {
   $.ajaxSetup({ cache: false });
 
-  $(document).on("page:change", function () {
+  document.addEventListener("turbolinks:load", function() {
     var documentIds = $(".document-id"),
         pullDownElements = $('.pull-down');
 

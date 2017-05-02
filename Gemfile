@@ -20,7 +20,9 @@ gem 'sidekiq-client-cli'
 gem 'twitter-bootstrap-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.0.2'
+#TODO: Replace with rails 5.0.3 as soon as it becomes stable.
+# gem 'rails', '5.0.2'
+gem 'rails', github: 'rails/rails', branch: '5-0-stable'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.4.0'
 # Use SCSS for stylesheets

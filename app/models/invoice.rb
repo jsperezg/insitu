@@ -140,13 +140,13 @@ class Invoice < ApplicationRecord
     parts = sort_by.split('_')
 
     if parts.empty?
-      order(date:  :desc)
+      order(date:  :desc).includes(:customer, :invoice_status, :invoice_details)
     elsif parts[0] == 'customer'
-      joins(:customer).order("customers.name #{ parts[1] }")
+      joins(:customer).order("customers.name #{ parts[1] }").incluces(:invoice_status, :invoice_details)
     else
       sort_criteria = {}
       sort_criteria[parts[0].parameterize.underscore.to_sym] = parts[1].to_sym
-      order(sort_criteria)
+      order(sort_criteria).includes(:customer, :invoice_status, :invoice_details)
     end
   }
 

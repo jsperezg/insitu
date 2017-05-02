@@ -2,7 +2,7 @@
   'use strict';
 
   function enableCKEditor() {
-    var editor = $('.ckeditor');
+    var editor = $('.ckeditoritem');
     if (editor.length) {
       editor.ckeditor({
         title: false,
@@ -15,6 +15,7 @@
     }
   }
 
-  $(document).on("turbolinks:load", enableCKEditor);
-  $(document).ajaxComplete(enableCKEditor);
+  document.addEventListener("turbolinks:load", function() {
+    enableCKEditor();
+  });
 })();

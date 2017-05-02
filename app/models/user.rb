@@ -76,6 +76,8 @@ class User < ApplicationRecord
   after_commit :destroy_tenant, on: :destroy
   before_validation :set_default_values
 
+  default_scope { includes(:role) }
+
   # Available locales
   def self.available_locales
     [
