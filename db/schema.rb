@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170318065041) do
+ActiveRecord::Schema.define(version: 20170501120000) do
+
+  create_table "ar_internal_metadata", primary_key: "key", force: :cascade do |t|
+    t.string   "value",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string   "name",             limit: 255, null: false
@@ -133,11 +139,11 @@ ActiveRecord::Schema.define(version: 20170318065041) do
   add_index "invoices", ["payment_method_id"], name: "index_invoices_on_payment_method_id", using: :btree
 
   create_table "payment_methods", force: :cascade do |t|
-    t.string   "name",             limit: 255,                 null: false
-    t.string   "note_for_invoice", limit: 255
-    t.boolean  "default",                      default: false, null: false
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.string   "name",             limit: 255,                   null: false
+    t.text     "note_for_invoice", limit: 65535
+    t.boolean  "default",                        default: false, null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
   end
 
   create_table "payments", force: :cascade do |t|

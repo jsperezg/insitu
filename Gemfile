@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby "2.3.3"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.6'
+gem 'rails', '~> 4.2', '>= 4.2.6'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.4.0'
 # Use SCSS for stylesheets
@@ -72,12 +72,20 @@ gem 'dalli', group: :production
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Access an IRB console on exception pages or by using <%= console %> in views
+gem 'web-console', '~> 2.0', group: :development
+
+# Deployment with capistrano
+gem 'capistrano', '~> 3.4', group: :development
+gem 'capistrano-figaro-yml', '~> 1.0.2', group: :development
+gem 'capistrano-rbenv', '~> 2.0', group: :development
+gem 'capistrano-bundler', '~> 1.1.2', group: :development
+gem 'capistrano-rails', '~> 1.1', group: :development
+gem 'capistrano-passenger', group: :development
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  # gem 'byebug'
-
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'byebug'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
@@ -85,14 +93,6 @@ group :development, :test do
   gem 'factory_girl_rails',  '~> 4.0'
   gem 'rspec-sidekiq'
   gem 'faker'
-
-  # Deployment with capistrano
-  gem "capistrano", "~> 3.4"
-  gem 'capistrano-figaro-yml', '~> 1.0.2'
-  gem 'capistrano-rbenv', '~> 2.0'
-  gem 'capistrano-bundler', '~> 1.1.2'
-  gem 'capistrano-rails', '~> 1.1'
-  gem 'capistrano-passenger'
 end
 
 group :test do
