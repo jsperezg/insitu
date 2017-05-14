@@ -182,8 +182,8 @@ RSpec.describe EstimatesController, type: :controller do
     it 'Warns when nothing to invoice' do
       estimate = create(:estimate)
 
-      get :invoice, { user_id: @user, id: estimate }
-      expect(response).to redirect_to(edit_user_estimate_path(@user, estimate))
+      get :invoice, {user_id: @user, id: estimate}
+      expect(response).to redirect_to(user_estimates_path(@user))
       expect(flash[:alert]).to eq(I18n.t('estimates.nothing_to_invoice'))
     end
 
@@ -228,12 +228,12 @@ RSpec.describe EstimatesController, type: :controller do
 
       get :invoice, { user_id: @user, id: estimate }
 
-      expect(response).to redirect_to edit_user_estimate_path(@user.id, estimate)
+      expect(response).to redirect_to user_estimates_path(@user.id)
       expect(flash[:alert]).to eq(I18n.t('payment_methods.not_found'))
     end
   end
 
-  describe "GET #forward_email" do
+  describe 'GET #forward_email' do
     let(:customer_without_email_estimate) {
       customer = create(:customer, contact_email: nil)
       estimate = attributes_for :estimate, customer_id: customer.id
@@ -242,7 +242,7 @@ RSpec.describe EstimatesController, type: :controller do
       estimate
     }
 
-    it "fails for customers without email" do
+    it 'fails for customers without email' do
       estimate = Estimate.create! customer_without_email_estimate
 
       get :forward_email, { user_id: @user, id: estimate }

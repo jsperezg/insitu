@@ -2,7 +2,7 @@
   'use strict';
 
   function enableCKEditor() {
-    var editor = $('.ckeditor');
+    var editor = $('.rich_editor');
     if (editor.length) {
       editor.ckeditor({
         title: false,

@@ -168,22 +168,22 @@ RSpec.describe DeliveryNotesController, type: :controller do
     end
   end
 
-  describe "GET #invoice" do
+  describe 'GET #invoice' do
     before(:each) do
       PaymentMethod.first || create(:payment_method)
       Service.first || create(:service)
       InvoiceStatus.first || create(:invoice_status)
     end
 
-    it "Warns when nothing to invoice" do
+    it 'Warns when nothing to invoice' do
       delivery_note = create(:delivery_note)
 
       get :invoice, { user_id: @user, id: delivery_note }
-      expect(response).to redirect_to(edit_user_delivery_note_path(@user, delivery_note))
+      expect(response).to redirect_to(user_delivery_notes_path(@user))
       expect(flash[:alert]).to eq(I18n.t('delivery_notes.nothing_to_invoice'))
     end
 
-    it "Generates invoice " do
+    it 'Generates invoice' do
       delivery_note = DeliveryNote.create! valid_attributes
 
       get :invoice, { user_id: @user, id: delivery_note }
@@ -203,21 +203,21 @@ RSpec.describe DeliveryNotesController, type: :controller do
       end
     end
 
-    it "Fails when no paying method available" do
+    it 'Fails when no paying method available' do
       PaymentMethod.delete_all
 
       delivery_note = DeliveryNote.create! valid_attributes
 
-      get :invoice, { user_id: @user, id: delivery_note }
+      get :invoice, {user_id: @user, id: delivery_note}
 
-      expect(response).to redirect_to edit_user_delivery_note_path(@user.id, delivery_note)
+      expect(response).to redirect_to user_delivery_notes_path(@user.id)
       expect(flash[:alert]).to eq(I18n.t('payment_methods.not_found'))
     end
   end
 
 
 
-  describe "GET #forward_email" do
+  describe 'GET #forward_email' do
     let(:customer_without_email_delivery_note) {
       customer = create(:customer, contact_email: nil)
       delivery_note = attributes_for :delivery_note, customer_id: customer.id
@@ -226,10 +226,10 @@ RSpec.describe DeliveryNotesController, type: :controller do
       delivery_note
     }
 
-    it "fails for customers without email" do
+    it 'fails for customers without email' do
       delivery_note = DeliveryNote.create! customer_without_email_delivery_note
 
-      get :forward_email, { user_id: @user, id: delivery_note }
+      get :forward_email, {user_id: @user, id: delivery_note}
 
       expect(response).to redirect_to(user_delivery_note_path(@user.id, delivery_note.id))
       expect(flash[:error]).to eq(I18n.t('helpers.customer_mail_missing'))

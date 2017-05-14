@@ -7,7 +7,8 @@
   </div>
   <div class="form-group">
     <%= f.label :note_for_invoice, :class => 'control-label' %>
-    <%= f.text_area :note_for_invoice, :class => 'form-control input-sm ckeditor', title: PaymentMethod.human_attribute_name(:note_for_invoice) %>
+    <%= f.text_area :note_for_invoice, :class => 'form-control input-sm rich_editor',
+                    title: PaymentMethod.human_attribute_name(:note_for_invoice) %>
   </div>
   <div class="checkbox">
     <label>
@@ -18,5 +19,5 @@
 <div class="box-footer">
   <%= f.submit t(:save), :class => 'btn btn-primary btn-flat col-md-1 col-sm-2 col-xs-6', data: { disable_with: t('please_wait')} %>
   <%= link_to t('helpers.links.cancel'),
-          user_payment_methods_path(current_user.id), :class => 'btn btn-default btn-flat col-md-1 col-sm-2 col-xs-6' %>
+          user_payment_methods_path(current_user.id), class: 'btn btn-default btn-flat col-md-1 col-sm-2 col-xs-6' %>
 </div>
