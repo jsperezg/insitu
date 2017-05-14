@@ -14,4 +14,12 @@ namespace :insitu do
     end
   end
 
+  desc 'Statistics'
+  task statistics: :environment do
+    User.find_each do |user|
+      Apartment::Tenant.switch user.tenant do
+        puts "#{user.email} (#{user.current_sign_in_at}): I: #{Invoice.count}, D: #{DeliveryNote.count}, E: #{Estimate.count}, C: #{Customer.count}"
+      end
+    end
+  end
 end
