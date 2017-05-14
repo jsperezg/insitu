@@ -116,47 +116,17 @@ class DeliveryNotesController < SecuredController
   end
 
   def invoice
-    payment_method = PaymentMethod.find_by(default: true) || PaymentMethod.first
-    unless payment_method
-      flash[:alert] = t('payment_methods.not_found')
-      redirect_to edit_user_delivery_note_path(current_user, @delivery_note)
-      return
-    end
-
-    Invoice.transaction do
-      invoice = Invoice.create(
-          date: Date.today,
-          payment_date: Date.today + 15.days,
-          customer_id: @delivery_note.customer_id,
-          payment_method_id: PaymentMethod.first.id
-      )
+    begin
+      invoice_generator = InvoiceGenerator.new
+      invoice = invoice_generator.from_delivery_note(@delivery_note)
 
       invoice.apply_irpf(current_user)
+      invoice.save!
 
-      # Iterate over estimate details.
-      details = DeliveryNoteDetail.where(delivery_note_id: @delivery_note.id, invoice_detail_id: nil)
-      details.each do |detail|
-        invoice_detail = InvoiceDetail.create(
-            invoice_id: invoice.id,
-            service_id: detail.service_id,
-            vat_rate: detail.service.vat.rate,
-            price: detail.price,
-            discount: 0,
-            description: detail.description,
-            quantity: detail.quantity
-        )
-
-        detail.invoice_detail_id = invoice_detail.id
-        detail.save
-      end
-
-      if invoice.invoice_details.empty?
-        flash[:alert] = t('delivery_notes.nothing_to_invoice')
-        redirect_to edit_user_delivery_note_path(current_user, @delivery_note)
-        raise ActiveRecord::Rollback
-      else
-        redirect_to edit_user_invoice_path(current_user, invoice)
-      end
+      redirect_to edit_user_invoice_path(current_user, invoice)
+    rescue => error
+      flash[:alert] = t(error.message, default: error.message)
+      redirect_to user_delivery_notes_path(current_user)
     end
   end
 

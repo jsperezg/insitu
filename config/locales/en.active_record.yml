@@ -320,7 +320,7 @@ en:
               blank: 'is mandatory.'
             customer_id:
               blank: 'is mandatory.'
-              invalid_format: The customer data is uncomplete. Can't save the invoice.
+              invalid_format: ": The customer data is incomplete. Can't save the invoice."
             payment_date:
               blank: is mandatory.
               invalid_value: is invalid.

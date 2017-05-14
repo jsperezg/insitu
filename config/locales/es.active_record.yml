@@ -323,7 +323,7 @@ es:
               blank: 'es obligatoria.'
             customer_id:
               blank: es obligatorio.
-              invalid_format: Faltan datos en la ficha del cliente para poder facturar.
+              invalid_format: ": Faltan datos en la ficha del cliente para poder facturar."
             payment_date:
               blank: es obligatoria.
               invalid_value: es inválida.
