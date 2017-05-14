@@ -52,22 +52,22 @@ RSpec.describe EstimatesController, type: :controller do
   describe 'GET #index' do
     it 'assigns all estimates as @estimates' do
       estimate = Estimate.create! valid_attributes
-      get :index, { user_id: @user.id }
+      get :index, {user_id: @user.id}
       expect(assigns(:estimates)).to eq([estimate])
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested estimate as @estimate" do
+  describe 'GET #show' do
+    it 'assigns the requested estimate as @estimate' do
       estimate = Estimate.create! valid_attributes
-      get :show, {user_id: @user.id, :id => estimate.to_param}
+      get :show, {user_id: @user.id, id: estimate.to_param}
       expect(assigns(:estimate)).to eq(estimate)
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new estimate as @estimate" do
-      get :new, { user_id: @user.id }
+  describe 'GET #new' do
+    it 'assigns a new estimate as @estimate' do
+      get :new, {user_id: @user.id}
       expect(assigns(:estimate)).to be_a_new(Estimate)
     end
   end
@@ -179,7 +179,7 @@ RSpec.describe EstimatesController, type: :controller do
       InvoiceStatus.first || create(:invoice_status)
     end
 
-    it "Warns when nothing to invoice" do
+    it 'Warns when nothing to invoice' do
       estimate = create(:estimate)
 
       get :invoice, { user_id: @user, id: estimate }
@@ -187,10 +187,10 @@ RSpec.describe EstimatesController, type: :controller do
       expect(flash[:alert]).to eq(I18n.t('estimates.nothing_to_invoice'))
     end
 
-    it "Generates invoice " do
+    it 'Generates invoice' do
       estimate = Estimate.create! valid_attributes
 
-      get :invoice, { user_id: @user, id: estimate }
+      get :invoice, {user_id: @user, id: estimate}
 
       estimate.reload
 
@@ -207,13 +207,13 @@ RSpec.describe EstimatesController, type: :controller do
       expect(response).to redirect_to(edit_user_invoice_path(@user, estimate.estimate_details.first.invoice_detail.invoice_id))
     end
 
-    it  'Generates the invoice for spanish customers' do
+    it 'Generates the invoice for spanish customers' do
       @user.update_attributes(country: 'ES', tax_id: '48299472R')
 
       estimate = Estimate.create! valid_attributes
       estimate.customer.update_attributes(irpf: 16)
 
-      get :invoice, { user_id: @user, id: estimate }
+      get :invoice, {user_id: @user, id: estimate}
 
       estimate.reload
       invoice = estimate.estimate_details.first.invoice_detail.invoice
@@ -221,7 +221,7 @@ RSpec.describe EstimatesController, type: :controller do
       expect(invoice.irpf).to eq(16)
     end
 
-    it "Fails when no paying method available" do
+    it 'Fails when no paying method available' do
       PaymentMethod.delete_all
 
       estimate = Estimate.create! valid_attributes

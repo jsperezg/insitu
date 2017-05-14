@@ -27,5 +27,4 @@ var onEditInvoiceDetailPageLoad = function () {
   }
 };
 
-$(document).on("page:load", onEditInvoiceDetailPageLoad);
-$(document).ready(onEditInvoiceDetailPageLoad);
+document.addEventListener("turbolinks:load", onEditInvoiceDetailPageLoad);

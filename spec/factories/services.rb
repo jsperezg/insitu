@@ -1,14 +1,13 @@
 FactoryGirl.define do
   factory :service do
     sequence :code do |n|
-      "BS/#{ n.to_s.rjust(4) }"
+      "BS/#{n.to_s.rjust(4)}"
     end
 
-    description "Body shoping"
-    vat_id { Vat.first.try(:id) || create(:vat).id }
+    description 'Body shopping'
+    vat_id {Vat.find_by(default: true)&.id || Vat.create(label: '21%', rate: 21, default: true).id}
     unit_id { Unit.first.try(:id) || create(:unit).id }
     price 25
     active true
   end
-
 end

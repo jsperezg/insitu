@@ -33,9 +33,11 @@ var ServiceDependantDetail = function (json) {
       this.vat_rate = ko.observable(0);
     }
 
-    Vats.findDefaultVat(function (defaultVat) {
-      this.vat_rate(defaultVat.rate);
-    }.bind(this));
+    if (!defined(this.vat_rate())) {
+      Vats.findDefaultVat(function (defaultVat) {
+        this.vat_rate(defaultVat.rate);
+      }.bind(this));
+    }
 
     this.quantity.subscribe(this.calculateTotal, this);
     this.price.subscribe(this.calculateTotal, this);
