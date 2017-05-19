@@ -15,27 +15,32 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 
+gem 'apartment'
+gem 'apartment-sidekiq'
+gem 'best_in_place', '~> 3.0.1'
+gem 'bootstrap-filestyle-rails'
+gem 'chartkick'
+gem 'ckeditor_rails'
+gem 'country_select', github: 'stefanpenner/country_select'
+gem 'currencies', :require => 'iso4217'
+gem 'dalli', group: :production
 gem 'devise', '3.5.2'
 gem 'devise-async'
-gem 'apartment'
-gem 'twitter-bootstrap-rails'
 gem 'email_validator'
-gem 'best_in_place', '~> 3.0.1'
+gem 'figaro'
+gem 'filterrific'
+
+gem 'twitter-bootstrap-rails'
+
 gem 'jquery-ui-rails'
 gem 'knockoutjs-rails'
 gem 'will_paginate-bootstrap'
-gem 'bootstrap-filestyle-rails'
-gem 'ckeditor_rails'
+
 gem 'prawn'
 gem 'prawn-table'
-gem 'country_select', github: 'stefanpenner/country_select'
-gem 'currencies', :require => 'iso4217'
 
 gem 'sidekiq'
-gem 'apartment-sidekiq'
 gem 'sidekiq-client-cli'
-gem 'figaro'
-gem 'filterrific'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -61,7 +66,7 @@ gem 'rack-cors', :require => 'rack/cors'
 
 gem 'omniauth-google-oauth2'
 gem 'smarter_csv'
-gem 'dalli', group: :production
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

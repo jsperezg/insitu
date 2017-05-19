@@ -13,3 +13,9 @@ json.customers do
     json.set! name, total
   end
 end
+
+json.services do
+  period_data[:services].each do |name, total|
+    json.set! name, total
+  end
+end

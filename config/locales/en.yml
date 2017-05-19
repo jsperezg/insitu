@@ -170,4 +170,6 @@ en:
     discounts: Discounts
     tax: IRPF
     vat_resume: VAT totals
-    best_customers: Best customers
+    customers: Customers
+    totals: Totals
+    services: Services

@@ -12,70 +12,29 @@
           <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
         </div>
       </div><!-- /.box-header -->
-      <div class="box-body hidden-xs">
+      <div class="box-body">
         <div class="row">
-          <div class="col-md-2 col-sm-3">
-            <% unless data[:vat].empty? %>
-              <h5 class="description-header text-center"><%=t 'dashboard.vat_resume' %></h5>
-              <div class="table-responsive">
-                <table class="table table-striped">
-                  <tbody>
-                  <% data[:vat].each do |rate, total| %>
-                      <tr>
-                        <td class="text-right"><%= rate %> %</td>
-                        <td class="text-right"><%= number_with_precision(total, precision: 2) %> <%= current_currency_symbol %></td>
-                      </tr>
-                  <% end %>
-                  </tbody>
-                </table>
-              </div>
-            <% end %>
+          <div class="col-md-3 col-sm-3">
+            <h5 class="description-header text-center"><%=t 'dashboard.vat_resume' %></h5>
+            <%= pie_chart data[:vat], donut: true %>
           </div>
 
-          <div class="col-md-10 col-sm-9">
-            <% unless data[:customers].empty? %>
-              <h5 class="description-header"><%=t 'dashboard.best_customers' %></h5>
-              <div class="table-responsive">
-                <table class="table table-striped">
-                  <tbody>
-                  <% data[:customers].each do |name, total| %>
-                      <tr>
-                        <td><%= name %></td>
-                        <td class="text-right"><%= number_with_precision(total, precision: 2) %> <%= current_currency_symbol %></td>
-                      </tr>
-                  <% end %>
-                  </tbody>
-                </table>
-              </div>
-            <% end %>
+          <div class="col-md-3 col-sm-3">
+              <h5 class="description-header text-center"><%=t 'dashboard.totals' %></h5>
+              <%= pie_chart data[:totals], donut: true %>
+          </div>
+
+          <div class="col-md-3 col-sm-3">
+            <h5 class="description-header text-center"><%=t 'dashboard.customers' %></h5>
+            <%= pie_chart data[:customers], donut: true %>
+          </div>
+
+          <div class="col-md-3 col-sm-3">
+            <h5 class="description-header text-center"><%=t 'dashboard.services' %></h5>
+            <%= pie_chart data[:services], donut: true %>
           </div>
         </div>
       </div><!-- ./box-body -->
-      <div class="box-footer">
-        <div class="row">
-          <div class="col-md-4 col-sm-4 col-xs-6">
-            <div class="description-block border-right">
-              <h5 class="description-header"><%= number_with_precision(data[:net], precision: 2) %> <%= current_currency_symbol %></h5>
-              <span class="description-text"><%=t 'dashboard.net' %></span>
-            </div><!-- /.description-block -->
-          </div><!-- /.col -->
-          <div class="col-md-4 col-sm-4 hidden-xs">
-            <div class="description-block border-right">
-
-              <h5 class="description-header"><%= number_with_precision(data[:discounts], precision: 2) %> <%= current_currency_symbol %></h5>
-              <span class="description-text"><%=t 'dashboard.discounts' %></span>
-            </div><!-- /.description-block -->
-          </div><!-- /.col -->
-          <% unless current_user.show_irpf? %>
-              <div class="col-md-4 col-sm-4 col-xs-6">
-                <div class="description-block border-right">
-                  <h5 class="description-header"><%= number_with_precision(data[:tax], precision: 2) %> <%= current_currency_symbol %></h5>
-                  <span class="description-text"><%=t 'dashboard.tax' %></span>
-                </div><!-- /.description-block -->
-              </div><!-- /.col -->
-          <% end %>
-        </div><!-- /.row -->
-      </div>
     </div><!-- /.box -->
   </div><!-- /.col -->
 </div><!-- /.row -->

@@ -31,6 +31,8 @@
 //= require nprogress-turbolinks
 //= require cookies_eu
 //= require data-confirm-modal
+//= require highcharts
+//= require chartkick
 //= require knockout
 //= require knockout.mapping
 //= require initialization

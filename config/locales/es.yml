@@ -169,4 +169,6 @@ es:
     discounts: Descuento
     tax: IRPF
     vat_resume: Resumen IVA
-    best_customers: Clientes VIP
+    customers: Clientes
+    totals: Totales
+    services: Servicios
