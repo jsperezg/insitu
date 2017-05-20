@@ -42,80 +42,80 @@ RSpec.describe CustomersController, type: :controller do
     sign_out @user
   end
 
-  describe "GET #index" do
-    it "assigns all customers as @customers" do
+  describe 'GET #index' do
+    it 'assigns all customers as @customers' do
       customer = Customer.create! valid_attributes
       get :index, {user_id: @user.id}
       expect(assigns(:customers)).to eq([customer])
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested customer as @customer" do
+  describe 'GET #show' do
+    it 'assigns the requested customer as @customer' do
       customer = Customer.create! valid_attributes
-      get :show, {user_id: @user.id, :id => customer.to_param}
+      get :show, {user_id: @user.id, id: customer.to_param}
       expect(assigns(:customer)).to eq(customer)
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new customer as @customer" do
+  describe 'GET #new' do
+    it 'assigns a new customer as @customer' do
       get :new, {user_id: @user.id}
       expect(assigns(:customer)).to be_a_new(Customer)
     end
   end
 
-  describe "GET #edit" do
-    it "assigns the requested customer as @customer" do
+  describe 'GET #edit' do
+    it 'assigns the requested customer as @customer' do
       customer = Customer.create! valid_attributes
-      get :edit, {user_id: @user.id, :id => customer.to_param}
+      get :edit, {user_id: @user.id, id: customer.to_param}
       expect(assigns(:customer)).to eq(customer)
     end
   end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Customer" do
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new Customer' do
         expect {
-          post :create, {user_id: @user.id, :customer => valid_attributes}
+          post :create, {user_id: @user.id, customer: valid_attributes}
         }.to change(Customer, :count).by(1)
       end
 
-      it "assigns a newly created customer as @customer" do
-        post :create, {user_id: @user.id, :customer => valid_attributes}
+      it 'assigns a newly created customer as @customer' do
+        post :create, {user_id: @user.id, customer: valid_attributes}
         expect(assigns(:customer)).to be_a(Customer)
         expect(assigns(:customer)).to be_persisted
       end
 
-      it "redirects to customers list" do
-        post :create, { user_id: @user.id, :customer => valid_attributes}
+      it 'redirects to customers list' do
+        post :create, { user_id: @user.id, customer: valid_attributes}
         expect(response).to redirect_to(user_customers_url(@user))
       end
     end
 
-    context "with invalid params" do
-      it "assigns a newly created but unsaved customer as @customer" do
-        post :create, {user_id: @user.id, :customer => invalid_attributes}
+    context 'with invalid params' do
+      it 'assigns a newly created but unsaved customer as @customer' do
+        post :create, {user_id: @user.id, customer: invalid_attributes}
         expect(assigns(:customer)).to be_a_new(Customer)
         expect(assigns(:customer)).not_to be_persisted
       end
 
       it "re-renders the 'new' template" do
-        post :create, {user_id: @user.id, :customer => invalid_attributes}
-        expect(response).to render_template("new")
+        post :create, {user_id: @user.id, customer: invalid_attributes}
+        expect(response).to render_template('new')
       end
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
+  describe 'PUT #update' do
+    context 'with valid params' do
       let(:new_attributes) {
         attributes_for :customer
       }
 
-      it "updates the requested customer" do
+      it 'updates the requested customer' do
         customer = Customer.create! valid_attributes
-        put :update, {user_id: @user.id, :id => customer.to_param, :customer => new_attributes}
+        put :update, {user_id: @user.id, id: customer.to_param, customer: new_attributes}
         customer.reload
 
         new_attributes.each do |key, value|
@@ -123,47 +123,63 @@ RSpec.describe CustomersController, type: :controller do
         end
       end
 
-      it "assigns the requested customer as @customer" do
+      it 'assigns the requested customer as @customer' do
         customer = Customer.create! valid_attributes
-        put :update, {user_id: @user.id, :id => customer.to_param, :customer => valid_attributes}
+        put :update, {user_id: @user.id, id: customer.to_param, customer: valid_attributes}
         expect(assigns(:customer)).to eq(customer)
       end
 
       it "redirects to the customers list" do
         customer = Customer.create! valid_attributes
-        put :update, {user_id: @user.id, :id => customer.to_param, :customer => valid_attributes}
+        put :update, {user_id: @user.id, id: customer.to_param, customer: valid_attributes}
         expect(response).to redirect_to(user_customers_url(@user))
       end
     end
 
-    context "with invalid params" do
-      it "assigns the customer as @customer" do
+    context 'with invalid params' do
+      it 'assigns the customer as @customer' do
         customer = Customer.create! valid_attributes
-        put :update, {user_id: @user.id, :id => customer.to_param, :customer => invalid_attributes}
+        put :update, {user_id: @user.id, id: customer.to_param, customer: invalid_attributes}
         expect(assigns(:customer)).to eq(customer)
       end
 
       it "re-renders the 'edit' template" do
         customer = Customer.create! valid_attributes
-        put :update, {user_id: @user.id, :id => customer.to_param, :customer => invalid_attributes}
-        expect(response).to render_template("edit")
+        put :update, {user_id: @user.id, id: customer.to_param, customer: invalid_attributes}
+        expect(response).to render_template('edit')
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested customer" do
+  describe 'DELETE #destroy' do
+    it 'destroys the requested customer' do
       customer = Customer.create! valid_attributes
       expect {
-        delete :destroy, {user_id: @user.id, :id => customer.to_param}
+        delete :destroy, {user_id: @user.id, id: customer.to_param}
       }.to change(Customer, :count).by(-1)
     end
 
-    it "redirects to the customers list" do
+    it 'redirects to the customers list' do
       customer = Customer.create! valid_attributes
-      delete :destroy, {user_id: @user.id, :id => customer.to_param}
+      delete :destroy, {user_id: @user.id, id: customer.to_param}
       expect(response).to redirect_to(user_customers_url(@user))
     end
   end
 
+  describe 'POST #csv_import' do
+    before :each do
+      @file = fixture_file_upload('csv/customers.csv', 'text/csv')
+    end
+
+    it 'Creates a new customer' do
+      expect {
+        post :csv_import, {user_id: @user.id, csv_file: @file}
+      }.to change(Customer, :count).by(2)
+    end
+
+    it 'Redirects to services list' do
+      post :csv_import, {user_id: @user.id, csv_file: @file}
+      expect(response).to redirect_to(user_customers_url(@user.id))
+    end
+  end
 end
