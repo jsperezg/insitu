@@ -1,7 +1,9 @@
 es:
   activerecord:
     models:
-      service: Servicio
+      service:
+        one: Servicio
+        other: Servicios
       estimate: Presupuesto
       invoice: Factura
       delivery_note: Albarán
@@ -58,6 +60,7 @@ es:
         code: Código
         description: Descripción
         vat_id: IVA
+        vat: IVA
         unit_id: Unidades
         unit: Unidades
         price: Precio

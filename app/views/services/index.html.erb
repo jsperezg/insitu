@@ -1,4 +1,6 @@
 <%- model_class = Service -%>
+<%= render partial: 'csv_import' %>
+
 <div class="box box-primary">
   <div class="box-body">
     <%= form_for_filterrific @filterrific do |f| %>
@@ -13,10 +15,12 @@
 
         <div class="form-group col-md-2 hidden-sm hidden-xs">
           <%= f.label :with_active_criteria, model_class.human_attribute_name(:active), class: 'control-label' %>
-          <%= f.select :with_active_criteria, @filterrific.select_options[:with_active_criteria], {}, { class: 'filterrific-periodically-observed form-control input-sm' } %>
+          <%= f.select :with_active_criteria, @filterrific.select_options[:with_active_criteria], {},
+                       { class: 'filterrific-periodically-observed form-control input-sm' } %>
         </div>
 
-        <%= link_to t('filterrific.reset_filters'), reset_filterrific_url, class: 'btn btn-default pull-down col-md-1 col-sm-2 col-xs-4' %>
+        <%= link_to t('filterrific.reset_filters'), reset_filterrific_url,
+                    class: 'btn btn-default pull-down col-md-1 col-sm-2 col-xs-4' %>
 
         <%# add an automated spinner to your form when the list is refreshed %>
         <%= render_filterrific_spinner %>
@@ -27,12 +31,16 @@
   </div>
   <div class="box-footer">
     <div class="row">
-      <div class="col-md-1 col-sm-2 col-xs-12">
-        <%= button_to t('helpers.links.new'),
+      <%= button_to t('helpers.links.new'),
             new_user_service_path(current_user.id),
             method: :get,
-            :class => 'btn btn-primary btn-flat btn-block' %>
-      </div>
+            class: 'btn btn-primary btn-flat col-md-1 col-sm-2 col-xs-12' %>
+
+      <%= link_to '#', class: 'btn btn-default btn-flat col-md-1 col-sm-2 hidden-xs',
+                  data: { toggle: 'modal', target: '#csv-import-services'} do %>
+          <i class="fa fa-folder-open-o" aria-hidden="true"></i>
+          <%=t :import %>
+      <% end %>
     </div>
   </div>
 </div>

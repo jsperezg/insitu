@@ -82,6 +82,21 @@ class ServicesController < SecuredController
     end
   end
 
+  def csv_template
+    customer_converter = CsvToServiceConverter.new
+    send_data customer_converter.template, type: Mime::CSV, filename: "#{ Service.model_name.human(count: 2) }.csv"
+  end
+
+  def csv_import
+    csv = params[:csv_file]
+
+    converter = CsvToServiceConverter.new
+    import_service = CSVImportService.new(converter)
+
+    result = import_service.import Rails.root.join('public', 'uploads', csv.path)
+    redirect_to user_services_path(current_user), flash: { error: result.join('<br>') }
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_service

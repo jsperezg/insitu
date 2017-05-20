@@ -1,7 +1,9 @@
 en:
   activerecord:
     models:
-      service: Service
+      service:
+        one: Service
+        other: Services
       estimate: Estimate
       invoice: Invoice
       delivery_note: Delivery note
@@ -57,11 +59,12 @@ en:
       service:
         code: Code
         description: Description
+        vat_id: VAT
         vat: VAT
+        unit_id: Unit Id
         unit: Units
         price: Price
         active: Active
-        unit_id: Unit Id
       customer:
         name: Name
         tax_id: TAX Id.

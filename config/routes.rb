@@ -12,7 +12,13 @@ Rails.application.routes.draw do
 
     resources :dashboard, only: [:index]
     resources :payment_methods
-    resources :services
+    resources :services do
+      collection do
+        get :csv_template
+        post :csv_import
+      end
+    end
+
     resources :vats
     resources :units
     resources :customers do
