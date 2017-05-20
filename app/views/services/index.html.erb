@@ -30,17 +30,15 @@
     <%= render partial: 'list', locals: { services: @services } %>
   </div>
   <div class="box-footer">
-    <div class="row">
-      <%= button_to t('helpers.links.new'),
-            new_user_service_path(current_user.id),
-            method: :get,
-            class: 'btn btn-primary btn-flat col-md-1 col-sm-2 col-xs-12' %>
+    <%= button_to t('helpers.links.new'),
+          new_user_service_path(current_user.id),
+          method: :get,
+          class: 'btn btn-primary btn-flat col-md-1 col-sm-2 col-xs-12' %>
 
-      <%= link_to '#', class: 'btn btn-default btn-flat col-md-1 col-sm-2 hidden-xs',
-                  data: { toggle: 'modal', target: '#csv-import-services'} do %>
-          <i class="fa fa-folder-open-o" aria-hidden="true"></i>
-          <%=t :import %>
-      <% end %>
-    </div>
+    <%= link_to '#', class: 'btn btn-default btn-flat col-md-1 col-sm-2 hidden-xs',
+                data: { toggle: 'modal', target: '#csv-import-services'} do %>
+        <i class="fa fa-folder-open-o" aria-hidden="true"></i>
+        <%=t :import %>
+    <% end %>
   </div>
 </div>

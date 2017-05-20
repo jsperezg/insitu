@@ -33,6 +33,9 @@ Rails.application.routes.draw do
         get :print
         get :forward_email
       end
+      collection do
+        post :csv_export
+      end
     end
 
     resources :delivery_notes  do

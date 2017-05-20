@@ -142,6 +142,14 @@ class InvoicesController < SecuredController
     end
   end
 
+  def csv_export
+    from_date = Date.parse(params[:from_date])
+    to_date = Date.parse(params[:to_date])
+    invoices = Invoice.includes(:customer, :invoice_details).where(date: from_date..to_date)
+    exporter = CSVExport.new(%i(number customer date paid_on applied_irpf accumulated_tax subtotal))
+    send_data exporter.run(invoices), type: Mime::CSV, filename: 'invoices.csv'
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

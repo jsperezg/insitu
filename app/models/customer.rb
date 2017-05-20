@@ -60,4 +60,8 @@ class Customer < ActiveRecord::Base
     errors.add(:base, I18n.t('activerecord.errors.models.customer.used_elsewhere'))
     false
   end
+
+  def to_s
+    name
+  end
 end

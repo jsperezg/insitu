@@ -76,8 +76,12 @@ es:
   csv_import_help: Selecciona el archivo CSV a importar.
   open: Abrir
   import: Importar
+  export: Exportar
   new: Nuevo
   data_of_the_issuer: Datos del emisor
+  from_date: Desde
+  to_date: Hasta
+  close: Cerrar
 
   payment_methods:
     title: Métodos de pago

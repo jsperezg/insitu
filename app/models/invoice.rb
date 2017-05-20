@@ -79,6 +79,16 @@ class Invoice < ActiveRecord::Base
     result
   end
 
+  def accumulated_tax
+    result = 0
+
+    self.invoice_details.each do |detail|
+      result += detail.tax
+    end
+
+    result
+  end
+
   def discount
     result = 0
 

@@ -1,5 +1,5 @@
 <%- model_class = Invoice -%>
-
+<%= render partial: 'csv_export' %>
 <div class="box">
   <div class="box-body">
     <%= form_for_filterrific @filterrific do |f| %>
@@ -35,13 +35,14 @@
     <%= render partial: 'list', locals: { invoices: @invoices } %>
   </div>
   <div class="box-footer">
-    <div class="row">
-      <div class="col-md-1 col-sm-2 col-xs-12">
-        <%= button_to t("helpers.links.new"),
-            new_user_invoice_path(current_user),
-            method: :get,
-            class: 'btn btn-primary btn-flat btn-block' %>
-        </div>
-      </div>
+    <%= button_to t("helpers.links.new"),
+        new_user_invoice_path(current_user),
+        method: :get,
+        class: 'btn btn-primary btn-flat col-md-1 col-sm-2 col-xs-12' %>
+    <%= link_to '#', class: 'btn btn-default btn-flat col-md-1 col-sm-2 hidden-xs',
+                data: { toggle: 'modal', target: '#csv-export-invoices'} do %>
+        <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+        <%=t :export %>
+    <% end %>
   </div>
 </div>
