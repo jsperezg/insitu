@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170501120000) do
+ActiveRecord::Schema.define(version: 20170521065518) do
 
   create_table "ar_internal_metadata", primary_key: "key", force: :cascade do |t|
     t.string   "value",      limit: 255
@@ -322,6 +322,10 @@ ActiveRecord::Schema.define(version: 20170501120000) do
     t.string   "authentication_token",   limit: 30
     t.string   "provider",               limit: 255
     t.string   "uid",                    limit: 255
+    t.string   "logo_file_name",         limit: 255
+    t.string   "logo_content_type",      limit: 255
+    t.integer  "logo_file_size",         limit: 4
+    t.datetime "logo_updated_at"
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree

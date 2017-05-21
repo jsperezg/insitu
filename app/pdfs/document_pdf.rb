@@ -24,6 +24,10 @@ class DocumentPdf < Prawn::Document
   end
 
   def generate_header
+    if @current_user.logo.present?
+      image @current_user.logo.path(:medium), at: bounds.top_left, fit: [75, 25]
+    end
+
     bounding_box([0, header_top], width: header_width, height: HEADER_HEIGHT + DOCUMENT_DATA_HEIGHT + DOCUMENT_CONDITIONS) do
       document_data
       user_data
@@ -160,7 +164,7 @@ class DocumentPdf < Prawn::Document
   end
 
   def footer_totals
-    text "footer totals"
+    text 'footer totals'
     transparent (0.5) { stroke_bounds }
   end
 
@@ -171,9 +175,9 @@ class DocumentPdf < Prawn::Document
   end
 
   def body_details
-    text "body"
+    text 'body'
     start_new_page
-    text "body 2"
+    text 'body 2'
     transparent (0.5) { stroke_bounds }
   end
 

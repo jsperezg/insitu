@@ -13,12 +13,12 @@ class InvoicePdf < DocumentPdf
     font DEFAULT_FONT, style: :bold
     font_size 24
 
-    cell_invoice = header_cell("#{ Invoice.model_name.human }", default_borders, default_padding)
-    cell_invoice_number = header_cell(@invoice.number, default_borders, default_padding, :right)
+    cell_invoice = header_cell('', default_borders, default_padding)
+    cell_invoice_number = header_cell("#{ Invoice.model_name.human }: #{@invoice.number}", default_borders, default_padding, :right)
 
     t = make_table([
       [cell_invoice, cell_invoice_number]
-    ], { column_widths: [ header_width / 2, header_width / 2 ]})
+    ], { column_widths: [ header_width*0.33, header_width*0.66 ]})
 
     t.draw
   end

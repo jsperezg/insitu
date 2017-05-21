@@ -21,32 +21,34 @@ gem 'best_in_place', '~> 3.0.1'
 gem 'bootstrap-filestyle-rails'
 gem 'chartkick'
 gem 'ckeditor_rails'
+gem 'cookies_eu'
 gem 'country_select', github: 'stefanpenner/country_select'
-gem 'currencies', :require => 'iso4217'
+gem 'currencies', require: 'iso4217'
 gem 'dalli', group: :production
+gem 'data-confirm-modal'
 gem 'devise', '3.5.2'
 gem 'devise-async'
 gem 'email_validator'
 gem 'figaro'
 gem 'filterrific'
-
-gem 'twitter-bootstrap-rails'
-
+gem 'jquery-rails'
+gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
 gem 'knockoutjs-rails'
-gem 'will_paginate-bootstrap'
-
+gem 'nprogress-rails'
+gem 'omniauth-google-oauth2'
+gem 'paperclip', '~> 5.0.0'
+gem 'pdfjs_rails'
 gem 'prawn'
 gem 'prawn-table'
-
+gem 'rack-cors', require: 'rack/cors'
 gem 'sidekiq'
 gem 'sidekiq-client-cli'
-
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'simple_token_authentication', '~> 1.0'
+gem 'smarter_csv'
 gem 'turbolinks', '~> 5.0.0'
-gem 'nprogress-rails'
+gem 'twitter-bootstrap-rails'
+gem 'will_paginate-bootstrap'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
@@ -55,49 +57,31 @@ gem  'yajl-ruby'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'jquery-turbolinks'
-gem 'cookies_eu'
-gem 'data-confirm-modal'
-gem 'pdfjs_rails'
-
-# JSON API -> Android / IOS integration
-gem 'simple_token_authentication', '~> 1.0'
-gem 'rack-cors', :require => 'rack/cors'
-
-gem 'omniauth-google-oauth2'
-gem 'smarter_csv'
-
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+group :development do
+  gem 'capistrano', '~> 3.4'
+  gem 'capistrano-bundler', '~> 1.1.2'
+  gem 'capistrano-figaro-yml', '~> 1.0.2'
+  gem 'capistrano-passenger'
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-rbenv', '~> 2.0'
 
-# Access an IRB console on exception pages or by using <%= console %> in views
-gem 'web-console', '~> 2.0', group: :development
-
-# Deployment with capistrano
-gem 'capistrano', '~> 3.4', group: :development
-gem 'capistrano-figaro-yml', '~> 1.0.2', group: :development
-gem 'capistrano-rbenv', '~> 2.0', group: :development
-gem 'capistrano-bundler', '~> 1.1.2', group: :development
-gem 'capistrano-rails', '~> 1.1', group: :development
-gem 'capistrano-passenger', group: :development
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+end
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'rspec-rails', '~> 3.0'
-  gem 'factory_girl_rails',  '~> 4.0'
-  gem 'rspec-sidekiq'
+  gem 'factory_girl_rails', '~> 4.0'
   gem 'faker'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'rspec-sidekiq'
+  gem 'spring'
 end
 
 group :test do

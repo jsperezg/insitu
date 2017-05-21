@@ -13,26 +13,14 @@ class EstimatePdf < DocumentPdf
     font DEFAULT_FONT, style: :bold
     font_size 24
 
-    cell_invoice = header_cell("#{ Estimate.model_name.human }", default_borders, default_padding)
-    cell_invoice_number = header_cell(@estimate.number, default_borders, default_padding, :right)
+    cell_invoice = header_cell('', default_borders, default_padding)
+    cell_invoice_number = header_cell("#{Estimate.model_name.human}: #{@estimate.number}", default_borders, default_padding, :right)
 
     t = make_table([
       [cell_invoice, cell_invoice_number]
-    ], { column_widths: [ header_width / 2, header_width / 2 ]})
+    ], { column_widths: [ header_width*0.33, header_width*0.66 ]})
 
     t.draw
-
-
-    #
-    # details << [
-    #     header_cell("#{ Estimate.model_name.human }:", default_borders, default_padding),
-    #     data_cell(@estimate.number, default_borders, default_padding)
-    # ]
-    #
-
-    #
-    # t = make_table(details)
-    # t.draw
   end
 
   def compose_document_conditions

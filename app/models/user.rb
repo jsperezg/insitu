@@ -2,32 +2,33 @@ class User < ActiveRecord::Base
   acts_as_token_authenticatable
 
   filterrific(
-      default_filter_params: {
-          sorted_by: 'valid_until_asc',
-          with_active_criteria: 'active'
-      },
-      available_filters: [
-          :with_filter_criteria,
-          :with_active_criteria,
-          :sorted_by
-      ]
+    default_filter_params: {
+      sorted_by: 'valid_until_asc',
+      with_active_criteria: 'active'
+    },
+    available_filters: %i(with_filter_criteria with_active_criteria sorted_by)
   )
+
+  has_attached_file :logo,
+                    styles: { medium: '300x100', thumb: '44x44' },
+                    default_url: '/images/:style/missing.png'
+  validates_attachment_content_type :logo, content_type: %r{\Aimage/.*\z}
 
   self.per_page = DEFAULT_ITEMS_PER_PAGE
 
   def self.options_for_sorted_by
     [
-        [ "#{ Service.human_attribute_name(:valid_until) } (#{I18n.t('filterrific.sort_alpha_asc')})", 'valid_until_asc'],
-        [ "#{ Service.human_attribute_name(:valid_until) } (#{I18n.t('filterrific.sort_alpha_desc')})", 'valid_until_desc']
+      ["#{Service.human_attribute_name(:valid_until)} (#{I18n.t('filterrific.sort_alpha_asc')})", 'valid_until_asc'],
+      ["#{Service.human_attribute_name(:valid_until)} (#{I18n.t('filterrific.sort_alpha_desc')})", 'valid_until_desc']
     ]
   end
 
   def self.active_filter_options
     [
-        [I18n.t('users.all'), 'all'],
-        [I18n.t('users.only_premium'), 'premium'],
-        [I18n.t('users.vip'), 'vip'],
-        [I18n.t('users.only_free'), 'free']
+      [I18n.t('users.all'), 'all'],
+      [I18n.t('users.only_premium'), 'premium'],
+      [I18n.t('users.vip'), 'vip'],
+      [I18n.t('users.only_free'), 'free']
     ]
   end
 
@@ -37,20 +38,20 @@ class User < ActiveRecord::Base
 
   scope :with_active_criteria, lambda { |filter |
     case filter
-      when 'vip' then where(valid_until: nil)
-      when 'free' then where('valid_until <= ?', Date.today)
-      when 'premium' then where('valid_until > ? or valid_until is null', Date.today)
-      else all
+    when 'vip' then where(valid_until: nil)
+    when 'free' then where('valid_until <= ?', Date.today)
+    when 'premium' then where('valid_until > ? or valid_until is null', Date.today)
+    else all
     end
   }
 
   scope :sorted_by, lambda { |sort_by|
-    parts = sort_by.match /^(.+)_(asc|desc)$/i
+    parts = sort_by.match(/^(.+)_(asc|desc)$/i)
 
     if parts.nil?
-      order(email:  :asc)
+      order(email: :asc)
     elsif parts[1] == 'role'
-      joins(:role).order("roles.description #{ parts[2] }")
+      joins(:role).order("roles.description #{parts[2]}")
     else
       sort_criteria = {}
       sort_criteria[parts[1].parameterize.underscore.to_sym] = parts[2].to_sym
@@ -66,7 +67,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable, :validatable, :async, :omniauthable, :omniauth_providers => [:google_oauth2]
+         :recoverable, :rememberable, :trackable, :validatable, :async, :omniauthable,
+         omniauth_providers: [:google_oauth2]
 
   belongs_to :role
   has_many :payments
@@ -79,8 +81,8 @@ class User < ActiveRecord::Base
   # Available locales
   def self.available_locales
     [
-        { id: 'es', description: 'Español' },
-        { id: 'en', description: 'English' }
+      { id: 'es', description: 'Español' },
+      { id: 'en', description: 'English' }
     ]
   end
 
@@ -92,27 +94,27 @@ class User < ActiveRecord::Base
   end
 
   def can_invoice?
-    self.tax_id.present? and
-        self.name.present? and
-        self.address.present? and
-        self.postal_code.present? and
-        self.country.present?
+    tax_id.present? &&
+      name.present? &&
+      address.present? &&
+      postal_code.present? &&
+      country.present?
   end
 
   def is_premium?
-    self.valid_until.nil? || self.valid_until > Date.today
+    valid_until.nil? || valid_until > Date.today
   end
 
   def is_administrator?
-    self.role.try(:description) == 'Administrator'
+    role.try(:description) == 'Administrator'
   end
 
   def has_cif?
-    self.country == 'ES' && !(self.tax_id =~ /^[a-z]\d{8}$/i).nil?
+    country == 'ES' && !(tax_id =~ /^[a-z]\d{8}$/i).nil?
   end
 
   def show_irpf?
-    self.country == 'ES' && (self.tax_id =~ /^[a-z]\d{8}$/i).nil?
+    country == 'ES' && (tax_id =~ /^[a-z]\d{8}$/i).nil?
   end
 
   def skip_confirmation!
@@ -163,7 +165,7 @@ class User < ActiveRecord::Base
   end
 
   def set_default_values
-    self.currency = 'EUR' if self.currency.blank?
+    self.currency = 'EUR' if currency.blank?
     self.role_id = Role.find_by(description: 'User').try(:id) if self[:role_id].nil?
 
     if is_administrator?
