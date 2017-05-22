@@ -5,17 +5,17 @@
       <%= devise_error_messages! %>
 
       <div class="row">
-        <div class="col-lg-1 col-md-1 hidden-xs">
-          <%= image_tag resource.logo.url(:thumb), class: 'img-responsive' if resource.logo.exists? %>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="form-group col-lg-2 hidden-xs">
+        <div class="form-group col-lg-4 hidden-xs">
           <%= f.label :logo, class: 'control-label' %>
           <%= f.file_field :logo, class: 'filestyle', data:{ buttonText: t(:open), icon: false } %>
         </div>
 
+        <div class="col-lg-8 hidden-xs">
+          <%= image_tag resource.logo.url(:reduced), class: 'img-responsive pull-right' if resource.logo.exists? %>
+        </div>
+      </div>
+
+      <div class="row">
         <div class="form-group col-lg-2 col-xs-6 hidden">
           <%= label_tag :valid_until, User.human_attribute_name(:valid_until), class: 'control-label' %>
           <%= text_field_tag :valid_until, validity_date(current_user), readonly: true, class: 'form-control input-sm' %>

@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   )
 
   has_attached_file :logo,
-                    styles: { medium: '300x100', thumb: '44x44' },
+                    styles: { medium: '300x100', reduced: '222x74' },
                     default_url: '/images/:style/missing.png'
   validates_attachment_content_type :logo, content_type: %r{\Aimage/.*\z}
 
