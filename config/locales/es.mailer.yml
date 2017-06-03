@@ -8,15 +8,15 @@ es:
     customer_mail_missing: El cliente no tiene direcciónes de correo definidas.
   invoice_mailer:
     send_to_customer:
-      subject: Factura %{invoice_number} from %{customer_name}
+      subject: Factura %{invoice_number} de %{customer_name}
       body_1: "Le adjuntamos la factura por los servicios prestados."
       body_2: "Esperamos que haya quedado satisfecho con nuestros servicios."
   delivery_note_mailer:
     send_to_customer:
-      subject: Albarán %{delivery_note_number} from %{customer_name}
+      subject: Albarán %{delivery_note_number} de %{customer_name}
       body_1: "Le adjuntamos el albarán de entrega por los servicios prestados."
       body_2: "Esperamos que haya quedado satisfecho con nuestros servicios."
   estimate_mailer:
       send_to_customer:
-        subject: Presupuesto %{estimate_number} from %{customer_name}
+        subject: Presupuesto %{estimate_number} de %{customer_name}
         body_1: "Le adjuntamos el presupuesto con para los servicios solicitados."
