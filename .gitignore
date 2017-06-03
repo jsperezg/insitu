@@ -21,5 +21,7 @@
 # Ignore paypal settings
 /config/paypal.yml
 
+/public/system/*
+
 .idea
 .rubocop.yml
