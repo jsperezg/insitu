@@ -5,22 +5,22 @@
 
   <div class=row>
     <% unless @estimate.new_record? %>
-      <div class="form-group col-md-1 col-sm-3 col-xs-6">
-        <%= f.label :number, :class => 'control-label' %>
+      <div class="form-group col-lg-1 col-md-3 col-sm-3 col-xs-6">
+        <%= f.label :number, class: 'control-label' %>
         <%= input_code f %>
       </div>
 
-      <div class="form-group col-md-1 col-sm-4 col-xs-6">
-        <%= f.label :estimate_status_id, :class => 'control-label' %>
+      <div class="form-group col-lg-1 col-md-3 col-sm-4 col-xs-6">
+        <%= f.label :estimate_status_id, class: 'control-label' %>
         <%= f.collection_select :estimate_status_id, EstimateStatus.order(id: :asc), :id, :locale_name,
                                 { prompt: true }, { class: 'form-control input-sm', required: true } %>
       </div>
     <% end %>
 
-    <%= customer_field f, :customer_id, class: 'col-md-6 col-sm-9 col-xs-12', required: true %>
+    <%= customer_field f, :customer_id, class: 'col-lg-6 col-md-6 col-sm-9 col-xs-12', required: true %>
 
-    <div class="form-group col-md-2 col-sm-4 col-xs-6">
-      <%= f.label :date, :class => 'control-label' %>
+    <div class="form-group col-lg-2 col-md-3 col-sm-4 col-xs-6">
+      <%= f.label :date, class: 'control-label' %>
       <div class="input-group">
         <span class="input-group-addon">
           <span class="fa fa-calendar"></span>
@@ -29,8 +29,8 @@
       </div>
     </div>
 
-    <div class="form-group col-md-2 col-sm-4 col-xs-6">
-      <%= f.label :valid_until, :class => 'control-label' %>
+    <div class="form-group col-lg-2 col-md-3 col-sm-4 col-xs-6">
+      <%= f.label :valid_until, class: 'control-label' %>
       <div class="input-group">
         <span class="input-group-addon">
           <span class="fa fa-calendar"></span>
@@ -45,24 +45,26 @@
 
 <div class="box-footer">
   <% if @estimate.new_record? %>
-    <%= f.submit t(:save), :class => 'btn btn-primary btn-flat col-xs-6 col-sm-2 col-md-1', data: { disable_with: t('please_wait')} %>
+    <%= f.submit t(:save), class: 'btn btn-primary btn-flat col-lg-1 col-md-2 col-sm-3 col-xs-6',
+                 data: { disable_with: t('please_wait')} %>
     <%= link_to t('helpers.links.back'),
-              user_estimates_path(current_user), :class => 'btn btn-default btn-flat col-xs-6 col-sm-2 col-md-1' %>
+              user_estimates_path(current_user), class: 'btn btn-default btn-flat col-lg-1 col-md-2 col-sm-3 col-xs-6' %>
   <% end %>
 
   <% unless @estimate.new_record? %>
-    <%= f.submit t(:save), :class => 'btn btn-primary btn-flat col-xs-4 col-sm-2 col-md-1', data: { disable_with: t('please_wait')} %>
+    <%= f.submit t(:save), class: 'btn btn-primary btn-flat col-lg-1 col-md-2 col-sm-3 col-xs-4',
+                 data: { disable_with: t('please_wait')} %>
 
     <%= link_to user_estimate_path(current_user, @estimate),
                   method: :get,
                   data: { disable_with: t('please_wait') },
-                  class: 'btn btn-default btn-flat col-xs-4 col-sm-2 col-md-1' do %>
+                  class: 'btn btn-default btn-flat col-lg-1 col-md-2 col-sm-3 col-xs-4' do %>
         <i class="fa fa-print" aria-hidden="true">
           <%=t 'helpers.links.print' %>
         </i>
     <% end %>
 
     <%= link_to t('helpers.links.cancel'),
-         user_estimates_path(current_user), :class => 'btn btn-default btn-flat col-xs-4 col-sm-2 col-md-1' %>
+         user_estimates_path(current_user), class: 'btn btn-default btn-flat col-lg-1 col-md-2 col-sm-3 col-xs-4' %>
   <% end %>
 </div>

@@ -12,7 +12,7 @@
       <div class="panel-heading" role="tab" data-bind="attr: { id: 'heading-delivery-note-detail-' + $index() }">
         <h4 class="panel-title">
           <div class="row">
-            <a class="collapsed col-xs-5 col-md-9" role="button" data-toggle="collapse" aria-expanded="false"
+            <a class="collapsed col-lg-9 col-md-8 col-xs-5" role="button" data-toggle="collapse" aria-expanded="false"
                data-bind="attr: {
                   href: '#collapse-delivery-note-detail-' + $index(),
                   'aria-controls': 'collapse-delivery-note-detail-' + $index()
@@ -23,12 +23,12 @@
               </div>
             </a>
 
-            <p class="col-xs-4 col-md-2 text-right">
+            <p class="col-lg-2 col-md-2 col-xs-4 text-right">
               <span data-bind="text: total"></span>
               <%= current_currency_symbol %>
             </p>
 
-            <div class="col-xs-3 col-md-1">
+            <div class="col-lg-1 col-md-2 col-xs-3">
               <button data-bind="click: markAsDeleted"
                       class="btn btn-xs btn-danger btn-block btn-flat">
                 <i class="fa fa-trash-o" aria-hidden="true"></i>
