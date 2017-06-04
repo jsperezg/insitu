@@ -14,22 +14,22 @@
       </div><!-- /.box-header -->
       <div class="box-body">
         <div class="row">
-          <div class="col-md-3 col-sm-3">
+          <div class="col-lg-3 col-md-6 col-sm-6">
             <h5 class="description-header text-center"><%=t 'dashboard.vat_resume' %></h5>
             <%= pie_chart data[:vat], donut: true %>
           </div>
 
-          <div class="col-md-3 col-sm-3">
+          <div class="col-lg-3 col-md-6 col-sm-6">
               <h5 class="description-header text-center"><%=t 'dashboard.totals' %></h5>
               <%= pie_chart data[:totals], donut: true %>
           </div>
 
-          <div class="col-md-3 col-sm-3">
+          <div class="col-lg-3 col-md-6 col-sm-6">
             <h5 class="description-header text-center"><%=t 'dashboard.customers' %></h5>
             <%= pie_chart data[:customers], donut: true %>
           </div>
 
-          <div class="col-md-3 col-sm-3">
+          <div class="col-lg-3 col-md-6 col-sm-6">
             <h5 class="description-header text-center"><%=t 'dashboard.services' %></h5>
             <%= pie_chart data[:services], donut: true %>
           </div>

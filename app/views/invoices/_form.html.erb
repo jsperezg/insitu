@@ -16,13 +16,13 @@
 
   <div class=row>
     <% unless @invoice.new_record? %>
-      <div class="form-group col-md-2 col-xs-6">
+      <div class="form-group col-lg-3 col-md-3 col-xs-6">
         <%= f.label :number, :class => 'control-label' %>
         <%= input_code f %>
       </div>
     <% end %>
 
-    <div class="form-group col-md-2 col-xs-6">
+    <div class="form-group col-lg-3 col-md-4 col-xs-6">
       <%= f.label :date, :class => 'control-label' %>
       <div class="input-group date">
         <span class="input-group-addon">
@@ -32,15 +32,15 @@
       </div>
     </div>
 
-    <%= customer_field f, :customer_id, class: 'col-md-2 col-xs-12', required: true %>
+    <%= customer_field f, :customer_id, class: 'col-lg-4 col-md-5 col-xs-12', required: true %>
 
-    <div class="form-group col-md-2 col-xs-12">
+    <div class="form-group col-lg-2 col-md-3 col-xs-12">
       <%= f.label :payment_method_id, :class => 'control-label' %>
       <%= f.collection_select :payment_method_id, PaymentMethod.order(name: :asc), :id, :name,
                               { prompt: true }, { class: 'form-control input-sm', required: true } %>
     </div>
 
-    <div class="form-group col-md-2 col-xs-6">
+    <div class="form-group col-lg-3 col-md-4 col-xs-6">
       <%= f.label :payment_date, :class => 'control-label' %>
       <div class="input-group date">
         <span class="input-group-addon">
@@ -52,7 +52,7 @@
       </div>
     </div>
 
-    <div class="form-group col-md-2 col-xs-6">
+    <div class="form-group col-lg-3 col-md-4 col-xs-6">
       <%= f.label :paid_on, :class => 'control-label' %>
       <div class="input-group date">
         <span class="input-group-addon">
@@ -67,19 +67,21 @@
 </div>
 <div class="box-footer">
   <% if @invoice.new_record? %>
-      <%= f.submit t(:save), :class => 'btn btn-primary btn-flat col-xs-6 col-sm-2 col-md-1', data: { disable_with: t('please_wait')} %>
+      <%= f.submit t(:save), :class => 'btn btn-primary btn-flat col-lg-1 col-md-2 col-sm-3 col-xs-6',
+                   data: { disable_with: t('please_wait')} %>
       <%= link_to t('helpers.links.back'),
-                  user_invoices_path(current_user), :class => 'btn btn-default btn-flat col-xs-6 col-sm-2 col-md-1' %>
+                  user_invoices_path(current_user), :class => 'btn btn-default btn-flat col-lg-1 col-md-2 col-sm-3 col-xs-6' %>
   <% end %>
 
   <% unless @invoice.new_record? %>
-      <%= f.submit t(:save), :class => 'btn btn-primary btn-flat col-xs-4 col-sm-2 col-md-1', data: { disable_with: t('please_wait')} %>
+      <%= f.submit t(:save), :class => 'btn btn-primary btn-flat col-lg-1 col-md-2 col-sm-3 col-xs-4',
+                   data: { disable_with: t('please_wait')} %>
 
       <% if current_user.can_invoice? %>
         <%= link_to user_invoice_path(current_user, @invoice),
                     method: :get,
                     data: { disable_with: t('please_wait') },
-                    class: 'btn btn-default btn-flat col-xs-4 col-sm-2 col-md-1' do %>
+                    class: 'btn btn-default btn-flat col-lg-1 col-md-2 col-sm-3 col-xs-4' do %>
             <i class="fa fa-print" aria-hidden="true">
               <%=t 'helpers.links.print' %>
             </i>
@@ -87,6 +89,6 @@
       <% end %>
 
       <%= link_to t('helpers.links.cancel'),
-                  user_invoices_path(current_user), :class => 'btn btn-default btn-flat col-xs-4 col-sm-2 col-md-1' %>
+                  user_invoices_path(current_user), :class => 'btn btn-default btn-flat col-lg-1 col-md-2 col-sm-3 col-xs-4' %>
   <% end %>
 </div>

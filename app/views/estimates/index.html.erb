@@ -4,12 +4,12 @@
     <%= form_for_filterrific @filterrific do |f| %>
       <%= f.hidden_field :sorted_by %>
       <div class="row">
-        <div class="form-group col-md-2 hidden-xs col-sm-3">
+        <div class="form-group col-lg-2 col-md-3 hidden-xs col-sm-3">
           <%= f.label :with_number, model_class.human_attribute_name(:number), class: 'control-label' %>
           <%= f.text_field :with_number, class: 'filterrific-periodically-observed form-control input-sm' %>
         </div>
 
-        <div class="form-group col-md-2 col-xs-7 hidden-sm">
+        <div class="form-group col-lg-2 col-md-3 col-xs-7 hidden-sm">
           <%= f.label :with_date_ge, t('filterrific.starting_from_date'), :class => 'control-label' %>
           <div class="input-group date">
           <span class="input-group-addon">
@@ -21,11 +21,12 @@
 
         <%= customer_field f, :with_customer,
                            label: model_class.human_attribute_name(:customer_id),
-                           class: 'col-md-2 hidden-xs col-sm-6',
+                           class: 'col-lg-2 col-md-4 hidden-xs col-sm-6',
                            create_customer_button: false,
                            filterrific: true %>
 
-        <%= link_to t('filterrific.reset_filters'), reset_filterrific_url, class: 'btn btn-default pull-down col-md-1 col-sm-2 col-xs-4' %>
+        <%= link_to t('filterrific.reset_filters'), reset_filterrific_url,
+                    class: 'btn btn-default pull-down col-lg-1 col-md-1 col-sm-2 col-xs-4' %>
 
         <%# add an automated spinner to your form when the list is refreshed %>
         <%= render_filterrific_spinner %>
@@ -36,7 +37,7 @@
   </div>
   <div class="box-footer">
     <div class="row">
-      <div class="col-md-1 col-sm-2 col-xs-12">
+      <div class="col-lg-1 col-md-2 col-sm-2 col-xs-12">
         <%= button_to t("helpers.links.new"),
                 new_user_estimate_path(current_user),
                 method: :get,

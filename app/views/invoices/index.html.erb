@@ -5,28 +5,30 @@
     <%= form_for_filterrific @filterrific do |f| %>
       <%= f.hidden_field :sorted_by %>
       <div class="row">
-        <div class="form-group col-md-2 hidden-xs col-sm-3">
+        <div class="form-group col-lg-2 col-md-2 hidden-xs col-sm-3">
           <%= f.label :with_number, model_class.human_attribute_name(:number), class: 'control-label' %>
           <%= f.text_field :with_number, class: 'filterrific-periodically-observed form-control input-sm' %>
         </div>
 
-        <div class="form-group col-md-2 hidden-sm col-xs-7">
+        <div class="form-group col-lg-2 col-md-3 hidden-sm col-xs-7">
           <%= f.label :with_date_ge, t('filterrific.starting_from_date'), :class => 'control-label' %>
           <div class="input-group date">
             <span class="input-group-addon">
               <span class="fa fa-calendar"></span>
             </span>
-            <%= f.date_field :with_date_ge, class: 'form-control input-sm filterrific-periodically-observed', value: @filterrific.with_date_ge %>
+            <%= f.date_field :with_date_ge, class: 'form-control input-sm filterrific-periodically-observed',
+                             value: @filterrific.with_date_ge %>
           </div>
         </div>
 
         <%= customer_field f, :with_customer,
                            label: model_class.human_attribute_name(:customer_id),
-                           class: 'col-md-2 col-sm-5 hidden-xs',
+                           class: 'col-lg-2 col-md-3 col-sm-5 hidden-xs',
                            create_customer_button: false,
                            filterrific: true %>
 
-        <%= link_to t('filterrific.reset_filters'), reset_filterrific_url, class: 'btn btn-default pull-down col-md-1 col-sm-2 col-xs-4' %>
+        <%= link_to t('filterrific.reset_filters'), reset_filterrific_url,
+                    class: 'btn btn-default pull-down col-lg-1 col-md-1 col-sm-2 col-xs-4' %>
 
         <%= render_filterrific_spinner %>
       </div>
@@ -38,8 +40,8 @@
     <%= button_to t("helpers.links.new"),
         new_user_invoice_path(current_user),
         method: :get,
-        class: 'btn btn-primary btn-flat col-md-1 col-sm-2 col-xs-12' %>
-    <%= link_to '#', class: 'btn btn-default btn-flat col-md-1 col-sm-2 hidden-xs',
+        class: 'btn btn-primary btn-flat col-lg-1 col-md-2 col-sm-2 col-xs-12' %>
+    <%= link_to '#', class: 'btn btn-default btn-flat col-lg-1 col-md-2 col-sm-2 hidden-xs',
                 data: { toggle: 'modal', target: '#csv-export-invoices'} do %>
         <i class="fa fa-file-excel-o" aria-hidden="true"></i>
         <%=t :export %>

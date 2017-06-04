@@ -4,22 +4,22 @@
     <table class="table table-striped table-layout-fixed">
       <thead>
       <tr>
-        <th class="col-md-1 col-xs-4 col-sm-2">
+        <th class="col-lg-2 col-md-2 col-xs-4 col-sm-2">
           <%= filterrific_sorting_link(@filterrific, :number, label: model_class.human_attribute_name(:number)) %>
         </th>
-        <th class="col-md-1 hidden-xs hidden-sm text-center">
+        <th class="col-lg-1 col-md-2 hidden-xs hidden-sm text-center">
           <%= filterrific_sorting_link(@filterrific, :date, label: model_class.human_attribute_name(:date)) %>
         </th>
-        <th class="col-md-7 col-xs-4 col-sm-7">
+        <th class="col-lg-6 col-md-3 col-xs-4 col-sm-7">
           <%= filterrific_sorting_link(@filterrific, :customer, label: model_class.human_attribute_name(:customer_id)) %>
         </th>
-        <th class="col-md-1 hidden-xs hidden-sm text-center">
+        <th class="col-lg-1 col-md-2 hidden-xs hidden-sm text-center">
           <%= filterrific_sorting_link(@filterrific, 'valid until', label: model_class.human_attribute_name(:valid_until)) %>
         </th>
-        <th class="col-md-1 col-sm-2 hidden-xs text-right">
+        <th class="col-lg-1 col-md-2 col-sm-2 hidden-xs text-right">
           <%= model_class.human_attribute_name(:total) %>
         </th>
-        <th class="col-md-1 col-sm-2 col-xs-3"></th>
+        <th class="col-lg-1 col-md-1 col-sm-2 col-xs-3"></th>
       </tr>
       </thead>
       <tbody>
