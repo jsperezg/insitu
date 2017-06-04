@@ -30,7 +30,7 @@ var ServiceDependantDetail = function (json) {
     }
 
     if (!defined(this.vat_rate)) {
-      this.vat_rate = ko.observable(0);
+      this.vat_rate = ko.observable();
     }
 
     if (!defined(this.vat_rate())) {
@@ -60,6 +60,7 @@ ServiceDependantDetail.prototype.findService = function (service_id) {
   if (defined(service_id) && service_id !== "" && this.service.id() !== parseInt(service_id, 10)) {
     $.ajax('/api/v1/services/' + service_id + '.json').success(function (data) {
       ko.mapping.fromJS(data, {}, this.service);
+      this.vat_rate(data.vat.rate);
 
       if (defined(this.total)) {
         this.updatePrice();
