@@ -65,8 +65,8 @@ class User < ActiveRecord::Base
   validate :ban_administrators
 
   # Include default devise modules. Others available are:
-  # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable,
+  # :lockable, :timeoutable and # :confirmable
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :async, :omniauthable,
          omniauth_providers: [:google_oauth2]
 
