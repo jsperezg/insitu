@@ -13,9 +13,6 @@ set :deploy_to, '/opt/insitu'
 
 
 set :keep_assets, 2
-set :passenger_restart_with_sudo, true
-
-
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -30,7 +27,7 @@ set :passenger_restart_with_sudo, true
 # set :pty, true
 
 # Default value for :linked_files is []
-# set :linked_files, fetch(:linked_files, []).push('config/application.yml')
+set :linked_files, fetch(:linked_files, []).push('config/application.yml', 'config/database.yml', 'config/secrets.yml', 'config/sidekiq.yml')
 
 # Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets')
@@ -52,3 +49,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 #   end
 #
 # end
+
+before :deploy, 'linked_files:upload_files'
+
+set :bundle_jobs, 8
