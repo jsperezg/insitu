@@ -67,6 +67,7 @@ group :development do
   gem 'capistrano', '~> 3.4'
   gem 'capistrano-bundler', '~> 1.1.2'
   gem 'capistrano-figaro-yml', '~> 1.0.2'
+  gem 'capistrano-linked-files'
   gem 'capistrano-passenger'
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano-rbenv', '~> 2.0'

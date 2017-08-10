@@ -72,6 +72,8 @@ GEM
     capistrano-figaro-yml (1.0.5)
       capistrano (~> 3.1)
       sshkit (~> 1.2, >= 1.2.0)
+    capistrano-linked-files (1.2.0)
+      capistrano (~> 3.1)
     capistrano-passenger (0.2.0)
       capistrano (~> 3.0)
     capistrano-rails (1.2.3)
@@ -364,6 +366,7 @@ DEPENDENCIES
   capistrano (~> 3.4)
   capistrano-bundler (~> 1.1.2)
   capistrano-figaro-yml (~> 1.0.2)
+  capistrano-linked-files
   capistrano-passenger
   capistrano-rails (~> 1.1)
   capistrano-rbenv (~> 2.0)
