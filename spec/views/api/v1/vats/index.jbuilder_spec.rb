@@ -1,11 +1,15 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe 'api/v1/vats/index', type: :view  do
+describe 'api/v1/vats/index', type: :view do
   before do
     @vats = []
 
+    Vat.delete_all
+
     2.times do |i|
-      @vats << create(:vat)
+      @vats << Vat.create(label: "#{i} %", rate: i)
     end
 
     assign(:vat, @vats)
@@ -15,14 +19,14 @@ describe 'api/v1/vats/index', type: :view  do
     render
 
     json = JSON.parse(rendered)
-    expect(json.key? "vats").to be_truthy
+    expect(json).to have_key('vats')
     expect(json['vats'].length).to be(2)
 
     json['vats'].each do |vat|
-      expect(vat.key? 'id').to be_truthy
-      expect(vat.key? 'label').to be_truthy
-      expect(vat.key? 'rate').to be_truthy
-      expect(vat.key? 'default').to be_truthy
+      expect(vat).to have_key('id')
+      expect(vat).to have_key('label')
+      expect(vat).to have_key('rate')
+      expect(vat).to have_key('default')
     end
   end
 end

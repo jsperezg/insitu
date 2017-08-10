@@ -2,15 +2,10 @@ class Invoice < ActiveRecord::Base
   include SequenceGenerator
 
   filterrific(
-      default_filter_params: {
-          sorted_by: 'date_desc'
-      },
-      available_filters: [
-          :with_number,
-          :with_date_ge,
-          :with_customer,
-          :sorted_by
-      ]
+    default_filter_params: {
+      sorted_by: 'date_desc'
+    },
+    available_filters: %i(with_number with_date_ge with_customer sorted_by)
   )
 
   self.per_page = DEFAULT_ITEMS_PER_PAGE
@@ -18,7 +13,7 @@ class Invoice < ActiveRecord::Base
   belongs_to :payment_method
   belongs_to :customer
   belongs_to :invoice_status
-  has_many :invoice_details, :dependent => :destroy
+  has_many :invoice_details, dependent: :destroy
 
   validates :date, presence: true
   validates :payment_method_id, presence: true
@@ -29,22 +24,32 @@ class Invoice < ActiveRecord::Base
   validate :number_format
   validate :valid_customer
 
-  accepts_nested_attributes_for :invoice_details, reject_if: proc { |attr|
+  accepts_nested_attributes_for :invoice_details, reject_if: proc {|attr|
     result = true
 
-    [:date, :payment_method_id, :customer_id, :payment_date, :price, :quantity].each do |attr_id|
+    %i(date payment_method_id customer_id payment_date price quantity).each do |attr_id|
       result = false unless attr[attr_id].blank?
     end
 
     result
-  }, :allow_destroy => true
+  }, allow_destroy: true
 
   after_initialize :set_default_values, if: :new_record?
   before_validation :set_default_values
   before_validation :set_invoice_number
 
-  after_save do
+  after_create do
     increase_id self
+  end
+
+  after_update do
+    unless number == number_was
+      decrease_id self if number_was == last_invoice_number
+    end
+  end
+
+  after_destroy  do
+    decrease_id  self if number == last_invoice_number
   end
 
   def total
@@ -141,7 +146,7 @@ class Invoice < ActiveRecord::Base
       date = "#{match[3]}-#{match[2]}-#{match[1]}"
     end
 
-    where("date >= :date", { date: date })
+    where('date >= :date', { date: date })
   }
 
   scope :with_customer, lambda { |customer_id|
@@ -183,20 +188,29 @@ class Invoice < ActiveRecord::Base
   end
 
   def set_invoice_number
-    unless self.date.nil?
-      if self.customer.try(:billing_serie).blank?
-        self.number ||= generate_id(self.model_name.human, self.date.year)
-      else
-        self.number ||= generate_id(self.customer.billing_serie.capitalize, self.date.year)
-      end
-    end
+    self.number ||= next_invoice_number
+  end
+
+  def next_invoice_number
+    return if date.nil?
+    billing_serie = model_name.human
+    billing_serie = customer.billing_serie.capitalize unless customer&.billing_serie.blank?
+
+    generate_id(billing_serie, date.year)
+  end
+
+  def last_invoice_number
+    return if date.nil?
+    billing_serie = model_name.human
+    billing_serie = customer.billing_serie.capitalize unless customer&.billing_serie.blank?
+
+    last_id(billing_serie, date.year)
   end
 
   def number_format
-    unless is_number_valid?(self.number, self.date)
-      year = self.date.try(:year) || Date.today.year
-      errors.add(:number, I18n.t('activerecord.errors.models.invoice.attributes.number.invalid_format', year: year))
-    end
+    return if is_number_valid?(self.number, self.date)
+    year = self.date.try(:year) || Date.today.year
+    errors.add(:number, I18n.t('activerecord.errors.models.invoice.attributes.number.invalid_format', year: year))
   end
 
   def valid_customer

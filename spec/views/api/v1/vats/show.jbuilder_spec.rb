@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'api/v1/vats/show/', type: :view  do
   before do
+    Vat.delete_all
     assign(:vat, create(:vat))
   end
 
@@ -9,9 +12,9 @@ describe 'api/v1/vats/show/', type: :view  do
     render
 
     vat = JSON.parse(rendered)
-    expect(vat.key? 'id').to be_truthy
-    expect(vat.key? 'label').to be_truthy
-    expect(vat.key? 'rate').to be_truthy
-    expect(vat.key? 'default').to be_truthy
+    expect(vat).to  have_key('id')
+    expect(vat).to have_key('label')
+    expect(vat).to have_key('rate')
+    expect(vat).to have_key('default')
   end
 end

@@ -5,36 +5,38 @@ RSpec.describe Invoice, type: :model do
     Thread.current[:user] = User.first || create(:user)
   end
 
-  it 'date is mandatory' do
-  	invoice = Invoice.new
-  	invoice.save
+  describe 'Validations' do
+    it 'date is mandatory' do
+      invoice = Invoice.new
+      invoice.save
 
-  	expect(invoice.errors).to satisfy { |errors| !errors.empty? && errors.key?( :date )}
+      expect(invoice.errors).to have_key(:date)
+    end
+
+    it 'payment method is mandatory' do
+      invoice = Invoice.new
+      invoice.save
+
+      expect(invoice.errors).to have_key(:payment_method_id)
+    end
+
+    it 'customer is mandatory' do
+      invoice = Invoice.new
+      invoice.save
+
+      expect(invoice.errors).to have_key(:customer_id)
+    end
+
+    it 'payment date is mandatory' do
+      invoice = Invoice.new
+      invoice.save
+
+      expect(invoice.errors).to have_key(:payment_date)
+    end
   end
 
-  it 'payment method is mandatory' do
-  	invoice = Invoice.new
-  	invoice.save
-
-  	expect(invoice.errors).to satisfy { |errors| !errors.empty? && errors.key?( :payment_method_id )}
-  end
-
-  it 'customer is mandatory' do
-  	invoice = Invoice.new
-  	invoice.save
-
-  	expect(invoice.errors).to satisfy { |errors| !errors.empty? && errors.key?( :customer_id )}
-  end
-
-  it 'payment date is mandatory' do
-    invoice = Invoice.new
-    invoice.save
-
-    expect(invoice.errors).to satisfy { |errors| !errors.empty? && errors.key?( :payment_date )}
-  end
-
-  describe 'Invoice serie' do
-  	it 'generic serie' do
+  describe 'Invoice series' do
+    it 'generic series' do
       customer = create(:customer, billing_serie: nil)
       invoice = create(:invoice, customer_id: customer.id)
 
@@ -44,72 +46,103 @@ RSpec.describe Invoice, type: :model do
       expect(invoice.number).to start_with(Invoice.model_name.human[0].capitalize)
     end
 
-    it 'custom serie' do
+    it 'custom series' do
       customer = create(:customer, billing_serie: 'A')
       invoice = create(:invoice, customer_id: customer.id)
 
       invoice.reload
 
-      expect(invoice.errors.empty?).to be(true)
+      expect(invoice.errors).to be_empty
       expect(invoice.number).to start_with('A')
-      expect(invoice.number).to end_with('001')
+      expect(invoice.number).to end_with('00001')
 
       another_invoice = create(:invoice, customer_id: customer.id)
 
       another_invoice.reload
 
-      expect(another_invoice.errors.empty?).to be(true)
+      expect(another_invoice.errors).to be_empty
       expect(another_invoice.number).to start_with('A')
-      expect(another_invoice.number).to end_with('002')
+      expect(another_invoice.number).to end_with('00002')
     end
 
     it 'do not allow duplicates' do
-      invoice = build(:invoice, number: "I/#{ Date.today.year }/000001")
+      invoice = build(:invoice, number: "I/#{Date.today.year}/000001")
       invoice.save
 
-      expect(invoice.errors.empty?).to be(true)
+      expect(invoice.errors).to be_empty
 
-      another_invoice = build(:invoice, number: "I/#{ Date.today.year }/000001")
+      another_invoice = build(:invoice, number: "I/#{Date.today.year}/000001")
       another_invoice.save
 
-      expect(another_invoice.errors).to satisfy { |errors| errors.key? :number }
+      expect(another_invoice.errors).to have_key(:number)
     end
 
-    it 'update default serie for invoices' do
+    it 'update default series for invoices' do
       customer = create(:customer, billing_serie: nil)
 
-      invoice = build(:invoice, number: "X/#{ Date.today.year }/000001", customer_id: customer.id)
+      invoice = build(:invoice, number: "X/#{Date.today.year}/000001", customer_id: customer.id)
       invoice.save
 
-      expect(invoice.errors.empty?).to be(true)
+      expect(invoice.errors).to be_empty
 
       another_invoice = create(:invoice, customer_id: customer.id)
       another_invoice.reload
 
-      expect(another_invoice.number).to eq("X/#{ Date.today.year }/000002")
+      expect(another_invoice.number).to eq("X/#{Date.today.year}/000002")
+    end
+
+    it 'Sequence is updated after updating invoices' do
+      customer = create(:customer, billing_serie: 'A')
+      invoice = create(:invoice, customer_id: customer.id)
+      expect(invoice.number).to end_with('000001')
+
+      other_invoice = create(:invoice, customer_id: customer.id)
+      expect(other_invoice.number).to end_with('000002')
+
+      invoice.destroy
+
+      other_invoice.number = invoice.number
+      expect(other_invoice.save).to be_truthy
+
+      invoice = create(:invoice, customer_id: customer.id)
+      expect(invoice.number).to end_with('000002')
+    end
+
+    it 'Sequence is updated after removing last invoice' do
+      customer = create(:customer, billing_serie: 'A')
+      invoice = create(:invoice, customer_id: customer.id)
+      expect(invoice.number).to end_with('000001')
+
+      other_invoice = create(:invoice, customer_id: customer.id)
+      expect(other_invoice.number).to end_with('000002')
+
+      other_invoice.destroy
+
+      other_invoice = create(:invoice, customer_id: customer.id)
+      expect(other_invoice.number).to end_with('000002')
     end
   end
 
   describe 'Number format validation' do
     it 'First capital letter' do
-      invoice = build(:invoice, number: "i/#{ Date.today.year }/000001")
+      invoice = build(:invoice, number: "i/#{Date.today.year}/000001")
       invoice.save
 
-      expect(invoice.errors).to satisfy { |errors| errors.key? :number }
+      expect(invoice.errors).to have_key(:number)
     end
 
     it 'Same year as bill' do
-      invoice = build(:invoice, number: "i/#{ Date.today.year + 1 }/000001")
+      invoice = build(:invoice, number: "i/#{Date.today.year + 1}/000001")
       invoice.save
 
-      expect(invoice.errors).to satisfy { |errors| errors.key? :number }
+      expect(invoice.errors).to have_key(:number)
     end
 
     it '6 digits' do
-      invoice = build(:invoice, number: "i/#{ Date.today.year}/xxxxxx")
+      invoice = build(:invoice, number: "i/#{Date.today.year}/xxxxxx")
       invoice.save
 
-      expect(invoice.errors).to satisfy { |errors| errors.key? :number }
+      expect(invoice.errors).to have_key(:number)
     end
   end
 
@@ -127,13 +160,13 @@ RSpec.describe Invoice, type: :model do
       customer = create(:customer, irpf: 15, country: 'ES')
       invoice = attributes_for(:invoice, customer_id: customer.id, irpf: 15)
 
-      invoice.merge(invoice_details_attributes: [ attributes_for(:invoice_detail, invoice_id: nil) ])
+      invoice.merge(invoice_details_attributes: [attributes_for(:invoice_detail, invoice_id: nil)])
     }
 
     let(:irpf_0) {
       invoice = attributes_for(:invoice, irpf: 0)
 
-      invoice.merge(invoice_details_attributes: [ attributes_for(:invoice_detail, invoice_id: nil) ])
+      invoice.merge(invoice_details_attributes: [attributes_for(:invoice_detail, invoice_id: nil)])
     }
 
     it 'irpf 15%' do
