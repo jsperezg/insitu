@@ -55,7 +55,7 @@ class Invoice < ActiveRecord::Base
   def total
     result = 0
 
-    self.invoice_details.each do |detail|
+    invoice_details.each do |detail|
       result += detail.total
     end
 
