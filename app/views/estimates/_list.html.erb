@@ -31,8 +31,7 @@
         <% cache estimate do %>
           <%= estimate_tr estimate do %>
             <td>
-              <span class="hidden-xs"><%= estimate.number %></span>
-              <div class="visible-xs ellipsis">
+              <div class="ellipsis">
                 <%= link_to estimate.number, edit_user_estimate_path(current_user, estimate) %>
               </div>
             </td>

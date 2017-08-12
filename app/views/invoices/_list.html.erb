@@ -28,8 +28,7 @@
         <% cache invoice do %>
           <%= invoice_tr invoice do %>
             <td>
-              <span class="hidden-xs"><%= invoice.number %></span>
-              <div class="visible-xs ellipsis">
+              <div class="ellipsis">
                 <%= link_to invoice.number, edit_user_invoice_path(current_user, invoice) %>
               </div>
             </td>

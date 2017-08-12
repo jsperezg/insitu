@@ -39,10 +39,16 @@
       <%= link_to user_delivery_note_path(current_user, @delivery_note),
                   method: :get,
                   data: { disable_with: t('please_wait') },
-                  class: 'btn btn-default btn-flat col-lg-1 col-md-2 col-sm-3 col-xs-4' do %>
+                  class: 'btn btn-default btn-flat col-lg-1 col-md-2 col-sm-3 hidden-xs' do %>
           <i class="fa fa-print" aria-hidden="true">
             <%=t 'helpers.links.print' %>
           </i>
+      <% end %>
+
+      <%= link_to forward_email_user_delivery_note_url(current_user, @delivery_note),
+                  data: { disable_with: t(:please_wait) },
+                  class: 'btn btn-default btn-flat col-lg-1 col-md-2 col-sm-3 col-xs-4' do %>
+          <i class="fa fa-envelope"></i> <%=t 'helpers.send_by_email' %>
       <% end %>
 
       <%= link_to t('helpers.links.cancel'),

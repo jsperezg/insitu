@@ -25,8 +25,7 @@
         <% cache delivery_note do %>
           <tr>
             <td>
-              <span class="hidden-xs"><%= delivery_note.number %></span>
-              <div class="visible-xs ellipsis">
+              <div class="ellipsis">
                 <%= link_to delivery_note.number, edit_user_delivery_note_path(current_user, delivery_note) %>
               </div>
             </td>
