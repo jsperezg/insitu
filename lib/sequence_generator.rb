@@ -1,10 +1,10 @@
 module SequenceGenerator
   include Settings
 
-  def generate_id(model_name, year)
+  def generate_id(model_name, year, n = 1)
     # Get serie.
     key = find_or_create_key("#{model_name}.serie", SettingKey.data_types[:string])
-    serie_value = find_or_create_value(key, model_name[0].capitalize)
+    serie_value = find_or_create_value(key, model_name[0..n].upcase)
 
     # Get value
     key = find_or_create_key("#{model_name}.#{year}", SettingKey.data_types[:integer])

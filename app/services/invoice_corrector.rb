@@ -2,6 +2,8 @@
 
 # Service that amend invoices
 class InvoiceCorrector
+  include SequenceGenerator
+
   def initialize(invoice)
     @invoice = invoice
   end
@@ -17,8 +19,11 @@ class InvoiceCorrector
   private
 
   def create_cancellation_header
+    date = DateTime.now
+
     Invoice.create!(
-      date: DateTime.now,
+      number: generate_id('AI', date.year, 2),
+      date: date,
       customer_id: @invoice.customer_id,
       invoice_status_id: InvoiceStatus.default&.id,
       irpf: @invoice.irpf,

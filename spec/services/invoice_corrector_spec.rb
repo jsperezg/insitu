@@ -30,12 +30,14 @@ describe InvoiceCorrector do
     end
 
     it 'Amended invoices use a different series' do
-      expect(@amending_invoice.number[0]).not_to eq(@invoice.number[0])
+      idx = @amending_invoice.number.index('/')
+      expect(@amending_invoice.number[0..idx]).not_to eq(@invoice.number[0..idx])
     end
 
     it 'Canceling an invoice do not overrides original invoice series' do
       invoice2 = create(:invoice)
-      expect(invoice2.number[0]).to eq(@invoice.number[0])
+      idx = invoice2.number.index('/')
+      expect(invoice2.number[0..idx]).to eq(@invoice.number[0..idx])
     end
   end
 end
