@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Class that represents an invoice.
 class Invoice < ActiveRecord::Base
   include SequenceGenerator
 
@@ -5,7 +8,7 @@ class Invoice < ActiveRecord::Base
     default_filter_params: {
       sorted_by: 'date_desc'
     },
-    available_filters: %i(with_number with_date_ge with_customer sorted_by)
+    available_filters: %i[with_number with_date_ge with_customer sorted_by]
   )
 
   self.per_page = DEFAULT_ITEMS_PER_PAGE
@@ -15,20 +18,23 @@ class Invoice < ActiveRecord::Base
   belongs_to :invoice_status
   has_many :invoice_details, dependent: :destroy
 
+  has_many :amending_invoices, class_name: 'Invoice', foreign_key: 'amended_invoice_id'
+  belongs_to :amended_invoice, class_name: 'Invoice'
+
   validates :date, presence: true
-  validates :payment_method_id, presence: true
+  validates :payment_method_id, presence: true, unless: :amending_invoice?
   validates :customer_id, presence: true
-  validates :payment_date, presence: true
+  validates :payment_date, presence: true, unless: :amending_invoice?
   validates :invoice_status_id, presence: true
   validates :number, presence: true, uniqueness: true
   validate :number_format
   validate :valid_customer
 
-  accepts_nested_attributes_for :invoice_details, reject_if: proc {|attr|
+  accepts_nested_attributes_for :invoice_details, reject_if: proc { |attr|
     result = true
 
-    %i(date payment_method_id customer_id payment_date price quantity).each do |attr_id|
-      result = false unless attr[attr_id].blank?
+    %i[date payment_method_id customer_id payment_date price quantity].each do |id|
+      result = false unless attr[id].blank?
     end
 
     result
@@ -65,7 +71,7 @@ class Invoice < ActiveRecord::Base
   def subtotal
     result = 0
 
-    self.invoice_details.each do |detail|
+    invoice_details.each do |detail|
       result += detail.subtotal
     end
 
@@ -76,7 +82,7 @@ class Invoice < ActiveRecord::Base
     result = {
     }
 
-    self.invoice_details.each do |detail|
+    invoice_details.each do |detail|
       result[detail.vat_rate] = 0 unless result.key?(detail.vat_rate)
       result[detail.vat_rate] += detail.tax
     end
@@ -87,7 +93,7 @@ class Invoice < ActiveRecord::Base
   def accumulated_tax
     result = 0
 
-    self.invoice_details.each do |detail|
+    invoice_details.each do |detail|
       result += detail.tax
     end
 
@@ -97,7 +103,7 @@ class Invoice < ActiveRecord::Base
   def discount
     result = 0
 
-    self.invoice_details.each do |detail|
+    invoice_details.each do |detail|
       result += detail.applied_discount
     end
 
@@ -108,50 +114,46 @@ class Invoice < ActiveRecord::Base
     result = 0
     gross_amount = subtotal - discount
     irpf_value = irpf || 0
-    if irpf_value > 0
-      result = gross_amount * irpf / 100.0
-    end
+    result = gross_amount * irpf_value / 100.0 if irpf_value.positive?
 
     result
   end
 
   def apply_irpf(user)
-    self.irpf = self.customer.try(:irpf) || 0
+    self.irpf = customer&.irpf || 0
     self.irpf = 0 if user.has_cif?
   end
 
   def created?
-    self.invoice_status.nil? || self.invoice_status.name == 'invoice_status.created'
+    invoice_status.nil? || invoice_status.name == 'invoice_status.created'
   end
 
   def sent?
-    self.invoice_status.try(:name) == 'invoice_status.sent'
+    invoice_status&.name == 'invoice_status.sent'
   end
 
   def paid?
-    self.invoice_status.try(:name) == 'invoice_status.paid'
+    invoice_status&.name == 'invoice_status.paid'
   end
 
   def default?
-    self.invoice_status.try(:name) == 'invoice_status.default' || (!created? && self.payment_date < Date.today)
+    invoice_status&.name == 'invoice_status.default' || (!created? && payment_date < Date.today)
   end
 
-  scope :with_number, lambda { |number|
-    where('number like :number', { number: "#{number}%" })
-  }
+  def amending_invoice?
+    !amended_invoice_id.nil?
+  end
+
+  scope :with_number, ->(number) { where('number like ?', "#{number}%") }
 
   scope :with_date_ge, lambda { |date|
     match = date.match(/(\d{2})\/(\d{2})\/(\d{4})/i)
-    if match
-      date = "#{match[3]}-#{match[2]}-#{match[1]}"
-    end
+    date = "#{match[3]}-#{match[2]}-#{match[1]}" if match
 
-    where('date >= :date', { date: date })
+    where('date >= ?', date)
   }
 
-  scope :with_customer, lambda { |customer_id|
-    where(customer_id: customer_id)
-  }
+  scope :with_customer, ->(customer_id) { where(customer_id: customer_id) }
 
   scope :sorted_by, lambda { |sort_by|
     parts = sort_by.split('_')
@@ -159,7 +161,7 @@ class Invoice < ActiveRecord::Base
     if parts.empty?
       order(date:  :desc)
     elsif parts[0] == 'customer'
-      joins(:customer).order("customers.name #{ parts[1] }")
+      joins(:customer).order("customers.name #{parts[1]}")
     else
       sort_criteria = {}
       sort_criteria[parts[0].parameterize.underscore.to_sym] = parts[1].to_sym
@@ -170,21 +172,21 @@ class Invoice < ActiveRecord::Base
   private
 
   def set_default_values
-    if !self.paid? && self.paid_on.present?
-      self.invoice_status_id = InvoiceStatus.find_by(name: 'invoice_status.paid').try(:id)
-    elsif self.default?
-      self.invoice_status_id = InvoiceStatus.find_by(name: 'invoice_status.default').try(:id)
+    if !paid? && paid_on.present?
+      self.invoice_status_id = InvoiceStatus.paid&.id
+    elsif default?
+      self.invoice_status_id = InvoiceStatus.default&.id
     else
-      self.invoice_status_id ||= InvoiceStatus.find_by(name: 'invoice_status.created').try(:id)
+      self.invoice_status_id ||= InvoiceStatus.created&.id
     end
 
     # By default: payment date is the invoice date + 15 days.
-    self.payment_date = self.date + 15.days if self.date.present? and !self.payment_date.present?
+    self.payment_date = date + 15.days if date.present? && !payment_date.present?
 
     # Establish the default payment method
-    self.payment_method_id = PaymentMethod.find_by(default: true).try(:id) if self.payment_method_id.nil?
+    self.payment_method_id ||= PaymentMethod.default&.id
 
-    self.irpf = 0 if self.irpf.nil?
+    self.irpf = 0 if irpf.nil?
   end
 
   def set_invoice_number
@@ -193,28 +195,28 @@ class Invoice < ActiveRecord::Base
 
   def next_invoice_number
     return if date.nil?
-    billing_serie = model_name.human
-    billing_serie = customer.billing_serie.capitalize unless customer&.billing_serie.blank?
+    billing_series = model_name.human
+    billing_series = customer.billing_serie.capitalize unless customer&.billing_serie.blank?
 
-    generate_id(billing_serie, date.year)
+    generate_id(billing_series, date.year)
   end
 
   def last_invoice_number
     return if date.nil?
-    billing_serie = model_name.human
-    billing_serie = customer.billing_serie.capitalize unless customer&.billing_serie.blank?
+    billing_series = model_name.human
+    billing_series = customer.billing_serie.capitalize unless customer&.billing_serie.blank?
 
-    last_id(billing_serie, date.year)
+    last_id(billing_series, date.year)
   end
 
   def number_format
-    return if is_number_valid?(self.number, self.date)
-    year = self.date.try(:year) || Date.today.year
+    return if is_number_valid?(number, date)
+    year = date&.year || Date.today.year
     errors.add(:number, I18n.t('activerecord.errors.models.invoice.attributes.number.invalid_format', year: year))
   end
 
   def valid_customer
-    if self.customer.present? and !customer.can_invoice?
+    if customer.present? && !customer.can_invoice?
       errors.add(:customer_id, I18n.t('activerecord.errors.models.invoice.attributes.customer_id.invalid_format'))
     end
   end

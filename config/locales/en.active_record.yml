@@ -131,6 +131,7 @@ en:
         tax: Tax
         irpf: I.R.P.F.
         total: Total
+        amended_invoice: Amended invoice
       invoice_detail:
         invoice_id: Invoice
         service_id: Item

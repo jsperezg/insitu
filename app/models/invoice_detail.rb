@@ -7,7 +7,7 @@ class InvoiceDetail < ActiveRecord::Base
 
   validates :vat_rate, presence: true, numericality: {greater_than_or_equal_to: 0, only_integer: true}
   validates :price, presence: true, numericality: {greater_than: 0}
-  validates :quantity, presence: true, numericality: {greater_than: 0}
+  validates :quantity, presence: true, numericality: {greater_than: 0}, unless: :amending_invoice?
   validates :discount, presence: true, numericality: {greater_than_or_equal_to: 0, only_integer: true}
 
   after_initialize :set_default_values, if: :new_record?
@@ -97,6 +97,10 @@ class InvoiceDetail < ActiveRecord::Base
                          .sum('truncate((1 - discount / 100) * price * quantity, 2)')
 
     result
+  end
+
+  def amending_invoice?
+    invoice&.amending_invoice?
   end
 
   private

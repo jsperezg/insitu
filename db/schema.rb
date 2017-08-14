@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170521065518) do
+ActiveRecord::Schema.define(version: 20170813082940) do
 
   create_table "ar_internal_metadata", primary_key: "key", force: :cascade do |t|
     t.string   "value",      limit: 255
@@ -121,16 +121,17 @@ ActiveRecord::Schema.define(version: 20170521065518) do
   end
 
   create_table "invoices", force: :cascade do |t|
-    t.string   "number",            limit: 255, null: false
-    t.date     "date",                          null: false
-    t.integer  "payment_method_id", limit: 4,   null: false
-    t.integer  "customer_id",       limit: 4,   null: false
-    t.integer  "invoice_status_id", limit: 4,   null: false
-    t.date     "payment_date",                  null: false
+    t.string   "number",             limit: 255, null: false
+    t.date     "date",                           null: false
+    t.integer  "payment_method_id",  limit: 4
+    t.integer  "customer_id",        limit: 4,   null: false
+    t.integer  "invoice_status_id",  limit: 4,   null: false
+    t.date     "payment_date"
     t.date     "paid_on"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.integer  "irpf",              limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "irpf",               limit: 4
+    t.integer  "amended_invoice_id", limit: 4
   end
 
   add_index "invoices", ["customer_id"], name: "index_invoices_on_customer_id", using: :btree
