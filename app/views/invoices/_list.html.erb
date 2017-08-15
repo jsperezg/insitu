@@ -68,7 +68,7 @@
                     <% end %>
                   </li>
                   <% end %>
-                  <% unless invoice.paid? %>
+                  <% if invoice.deletion_allowed? %>
                     <li role="separator" class="divider"></li>
                     <li>
                       <%= link_to user_invoice_path(current_user, invoice),

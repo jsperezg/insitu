@@ -55,7 +55,7 @@ class Invoice < ActiveRecord::Base
   end
 
   after_destroy  do
-    decrease_id  self if number == last_invoice_number
+    decrease_id  self
   end
 
   def total
@@ -168,6 +168,15 @@ class Invoice < ActiveRecord::Base
       order(sort_criteria)
     end
   }
+
+  def destroy
+    raise I18n.t('activerecord.errors.models.invoice.deletion_is_not_allowed') unless deletion_allowed?
+    super
+  end
+
+  def deletion_allowed?
+    number == last_invoice_number && !paid?
+  end
 
   private
 

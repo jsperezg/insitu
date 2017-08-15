@@ -317,6 +317,7 @@ en:
               greater_than: "must be greater than %{count}."
               not_a_number: "must be a number."
         invoice:
+          deletion_is_not_allowed: Deletion is not allowed. Try canceling the invoice instead.
           attributes:
             number:
               blank: is mandatory.

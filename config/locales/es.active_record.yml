@@ -320,6 +320,7 @@ es:
               greater_than: 'debe ser mayor que %{count}.'
               not_a_number: "debe ser un número."
         invoice:
+          deletion_is_not_allowed: No se puede borrar la factura. Intenta cancelarla en su lugar.
           attributes:
             number:
               blank: es obligatorio.

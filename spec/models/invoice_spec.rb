@@ -92,20 +92,14 @@ RSpec.describe Invoice, type: :model do
     end
 
     it 'Sequence is updated after updating invoices' do
-      customer = create(:customer, billing_serie: 'A')
-      invoice = create(:invoice, customer_id: customer.id)
-      expect(invoice.number).to end_with('000001')
-
-      other_invoice = create(:invoice, customer_id: customer.id)
-      expect(other_invoice.number).to end_with('000002')
-
-      invoice.destroy
-
-      other_invoice.number = invoice.number
-      expect(other_invoice.save).to be_truthy
-
-      invoice = create(:invoice, customer_id: customer.id)
+      invoice = create(:invoice, number: "A/#{DateTime.now.year}/000002")
       expect(invoice.number).to end_with('000002')
+
+      invoice.number = "A/#{DateTime.now.year}/000001"
+      expect(invoice.save).to be_truthy
+
+      other_invoice = create(:invoice)
+      expect(other_invoice.number).to end_with('000002')
     end
 
     it 'Sequence is updated after removing last invoice' do
@@ -215,6 +209,23 @@ RSpec.describe Invoice, type: :model do
 
       invoice = Invoice.new
       expect(invoice.payment_method_id).to eq(default_payment_method.id)
+    end
+  end
+
+  describe 'Invoice deletion' do
+    before(:each) do
+      @invoice = create(:invoice)
+    end
+
+    it 'Last invoice of serie can be deleted' do
+      expect(@invoice.deletion_allowed?).to be_truthy
+      expect { @invoice.destroy }.to change(Invoice, :count).by(-1)
+    end
+
+    it 'Deletion of any other invoice will result into an exception' do
+      create(:invoice)
+      expect(@invoice.deletion_allowed?).to be_falsey
+      expect { @invoice.destroy }.to raise_error
     end
   end
 end

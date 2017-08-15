@@ -19,14 +19,12 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe InvoicesController, type: :controller do
-
   # This should return the minimal set of attributes required to create a valid
   # Invoice. As you add validations to Invoice, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     invoice = attributes_for(:invoice)
-
-    invoice.merge(invoice_details_attributes: [ attributes_for(:invoice_detail, invoice_id: nil) ])
+    invoice.merge(invoice_details_attributes: [attributes_for(:invoice_detail, invoice_id: nil)])
   }
 
   let(:invalid_attributes) {
@@ -44,80 +42,80 @@ RSpec.describe InvoicesController, type: :controller do
     sign_out @user
   end
 
-  describe "GET #index" do
-    it "assigns all invoices as @invoices" do
+  describe 'GET #index' do
+    it 'assigns all invoices as @invoices' do
       invoice = Invoice.create! valid_attributes
-      get :index, {user_id: @user.id}
+      get :index, user_id: @user.id
 
       expect(assigns(:invoices)).to eq([invoice])
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested invoice as @invoice" do
+  describe 'GET #show' do
+    it 'assigns the requested invoice as @invoice' do
       invoice = Invoice.create! valid_attributes
-      get :show, {:id => invoice.to_param, user_id: @user.id}
+      get :show, id: invoice.to_param, user_id: @user.id
       expect(assigns(:invoice)).to eq(invoice)
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new invoice as @invoice" do
-      get :new, {user_id: @user.id}
+  describe 'GET #new' do
+    it 'assigns a new invoice as @invoice' do
+      get :new, user_id: @user.id
       expect(assigns(:invoice)).to be_a_new(Invoice)
     end
   end
 
-  describe "GET #edit" do
-    it "assigns the requested invoice as @invoice" do
+  describe 'GET #edit' do
+    it 'assigns the requested invoice as @invoice' do
       invoice = Invoice.create! valid_attributes
-      get :edit, {:id => invoice.to_param, user_id: @user.id}
+      get :edit, id: invoice.to_param, user_id: @user.id
       expect(assigns(:invoice)).to eq(invoice)
     end
   end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Invoice" do
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new Invoice' do
         expect {
-          post :create, {:invoice => valid_attributes, user_id: @user.id }
+          post :create, invoice: valid_attributes, user_id: @user.id
         }.to change(Invoice, :count).by(1)
       end
 
-      it "assigns a newly created invoice as @invoice" do
-        post :create, {:invoice => valid_attributes, user_id: @user.id}
+      it 'assigns a newly created invoice as @invoice' do
+        post :create, invoice: valid_attributes, user_id: @user.id
         expect(assigns(:invoice)).to be_a(Invoice)
         expect(assigns(:invoice)).to be_persisted
       end
 
-      it "redirects to the created invoice" do
-        post :create, {:invoice => valid_attributes, user_id: @user.id}
+      it 'redirects to the created invoice' do
+        post :create, invoice: valid_attributes, user_id: @user.id
         expect(response).to redirect_to(edit_user_invoice_url(@user, Invoice.last))
       end
     end
 
-    context "with invalid params" do
-      it "assigns a newly created but unsaved invoice as @invoice" do
-        post :create, {:invoice => invalid_attributes, user_id: @user.id}
+    context 'with invalid params' do
+      it 'assigns a newly created but unsaved invoice as @invoice' do
+        post :create, invoice: invalid_attributes, user_id: @user.id
         expect(assigns(:invoice)).to be_a_new(Invoice)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:invoice => invalid_attributes, user_id: @user.id}
-        expect(response).to render_template("new")
+        post :create, invoice: invalid_attributes, user_id: @user.id
+        expect(response).to render_template('new')
       end
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
+  describe 'PUT #update' do
+    context 'with valid params' do
       let(:new_attributes) {
         attributes_for(:invoice)
       }
 
-      it "updates the requested invoice" do
+      it 'updates the requested invoice' do
         invoice = Invoice.create! valid_attributes
-        put :update, {:id => invoice.to_param, :invoice => new_attributes, user_id: @user.id}
+        put :update, id: invoice.to_param, invoice: new_attributes, user_id: @user.id
         invoice.reload
 
         new_attributes.each do |key, value|
@@ -127,62 +125,62 @@ RSpec.describe InvoicesController, type: :controller do
         end
       end
 
-      it "assigns the requested invoice as @invoice" do
+      it 'assigns the requested invoice as @invoice' do
         invoice = Invoice.create! valid_attributes
-        put :update, {:id => invoice.to_param, :invoice => valid_attributes, user_id: @user.id}
+        put :update, id: invoice.to_param, invoice: valid_attributes, user_id: @user.id
         expect(assigns(:invoice)).to eq(invoice)
       end
 
-      it "redirects to the invoice" do
+      it 'redirects to the invoice' do
         invoice = Invoice.create! valid_attributes
-        put :update, {:id => invoice.to_param, :invoice => valid_attributes, user_id: @user.id}
+        put :update, id: invoice.to_param, invoice: valid_attributes, user_id: @user.id
         expect(response).to redirect_to(edit_user_invoice_url(@user, invoice))
       end
     end
 
-    context "with invalid params" do
-      it "assigns the invoice as @invoice" do
+    context 'with invalid params' do
+      it 'assigns the invoice as @invoice' do
         invoice = Invoice.create! valid_attributes
-        put :update, {:id => invoice.to_param, :invoice => invalid_attributes, user_id: @user.id}
+        put :update, id: invoice.to_param, invoice: invalid_attributes, user_id: @user.id
         expect(assigns(:invoice)).to eq(invoice)
       end
 
       it "re-renders the 'edit' template" do
         invoice = Invoice.create! valid_attributes
-        put :update, {:id => invoice.to_param, :invoice => invalid_attributes, user_id: @user.id}
-        expect(response).to render_template("edit")
+        put :update, id: invoice.to_param, invoice: invalid_attributes, user_id: @user.id
+        expect(response).to render_template('edit')
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested invoice" do
+  describe 'DELETE #destroy' do
+    it 'destroys the requested invoice' do
       invoice = Invoice.create! valid_attributes
       expect {
-        delete :destroy, {:id => invoice.to_param, user_id: @user.id}
+        delete :destroy, id: invoice.to_param, user_id: @user.id
       }.to change(Invoice, :count).by(-1)
     end
 
-    it "redirects to the invoices list" do
+    it 'redirects to the invoices list' do
       invoice = Invoice.create! valid_attributes
-      delete :destroy, {:id => invoice.to_param, user_id: @user.id}
+      delete :destroy, id: invoice.to_param, user_id: @user.id
       expect(response).to redirect_to(user_invoices_url(@user.id))
     end
   end
 
-  describe "GET #forward_email" do
+  describe 'GET #forward_email' do
     let(:customer_without_email_invoice) {
       customer = create(:customer, contact_email: nil)
       invoice = attributes_for :invoice, customer_id: customer.id
-      invoice.merge(invoice_details_attributes: [ attributes_for(:invoice_detail, invoice_id: nil) ])
+      invoice.merge(invoice_details_attributes: [attributes_for(:invoice_detail, invoice_id: nil)])
 
       invoice
     }
 
-    it "fails for customers without email" do
+    it 'fails for customers without email' do
       invoice = Invoice.create! customer_without_email_invoice
 
-      get :forward_email, { user_id: @user, id: invoice }
+      get :forward_email, user_id: @user, id: invoice
 
       expect(response).to redirect_to(user_invoice_path(@user.id, invoice.id))
       expect(flash[:error]).to eq(I18n.t('helpers.customer_mail_missing'))

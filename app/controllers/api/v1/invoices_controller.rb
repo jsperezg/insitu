@@ -13,8 +13,7 @@ class Api::V1::InvoicesController < ApiController
 
   # GET /invoices/1
   # GET /invoices/1.json
-  def show
-  end
+  def show; end
 
   def print
     if @invoice.created?
@@ -28,7 +27,7 @@ class Api::V1::InvoicesController < ApiController
       end
       format.pdf do
         pdf = InvoicePdf.new current_user, @invoice
-        send_data pdf.render, filename: "invoice_#{ @invoice.number.gsub('/', '_') }.pdf", type: 'application/pdf'
+        send_data pdf.render, filename: "invoice_#{@invoice.number.gsub('/', '_')}.pdf", type: 'application/pdf'
       end
     end
   end
@@ -66,8 +65,12 @@ class Api::V1::InvoicesController < ApiController
   # DELETE /invoices/1
   # DELETE /invoices/1.json
   def destroy
-    @invoice.destroy
-    render json: ResponseFactory.get_response_for(@invoice)
+    begin
+      @invoice.destroy
+      render json: ResponseFactory.get_response_for(@invoice)
+    rescue => e
+      render json: ResponseFactory.error_response(e.message)
+    end
   end
 
   private
@@ -80,17 +83,17 @@ class Api::V1::InvoicesController < ApiController
   # Never trust parameters from the scary internet, only allow the white list through.
   def invoice_params
     params.require(:invoice).permit(
-        :date,
-        :number,
-        :payment_method_id,
-        :customer_id,
-        :payment_date,
-        :paid_on,
-        :invoice_status_id,
-        invoice_details_attributes: [
-            :id, :invoice_id, :service_id, :vat_rate, :quantity, :price,
-            :discount, :description, :_destroy
-        ]
+      :date,
+      :number,
+      :payment_method_id,
+      :customer_id,
+      :payment_date,
+      :paid_on,
+      :invoice_status_id,
+      invoice_details_attributes: %i[
+        id invoice_id service_id vat_rate quantity price
+        discount description _destroy
+      ]
     )
   end
 end

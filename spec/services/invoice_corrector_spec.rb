@@ -11,7 +11,7 @@ describe InvoiceCorrector do
     end
 
     it 'Creates an amending invoice' do
-      expect(@amending_invoice).not_to  be_nil
+      expect(@amending_invoice).not_to be_nil
     end
 
     it 'amending invoices is accessible from invoice object' do
