@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
         I18n.locale = current_user.locale
       end
     rescue => e
-      logger.error  "Failed to set locale: #{ e }"
+      logger.error "Failed to set locale: #{ e }"
     end
   end
 
@@ -31,8 +31,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) { |u|
       u.permit(
         :password, :password_confirmation, :current_password,
-        :tax_id, :name, :address, :city, :country, :state, :postal_code, :phone_number, :locale, :currency,
-        :logo
+        :tax_id, :name, :address, :city, :country, :state, :postal_code,
+        :phone_number, :locale, :currency, :logo
       )
     }
   end
@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
 
   def switch_tenant
     unless Rails.env.test?
-      Apartment::Tenant.switch! current_user.try(:tenant)
+      Apartment::Tenant.switch! current_user&.tenant
     end
   end
 

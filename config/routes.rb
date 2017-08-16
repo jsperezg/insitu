@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       member do
         get :print
         get :forward_email
+        delete :cancel
       end
       collection do
         post :csv_export

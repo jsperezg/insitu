@@ -129,6 +129,11 @@ en:
     create_title: New invoice
     edit_title: Edit invoice
     print_title: Print invoice
+    list:
+      cancel: Cancel
+      cancel_confirmation: Do you want to cancel the invoice %{number}?
+    cancel:
+      success: The invoice have been successfully cancelled.
 
   delivery_notes:
     delivery_note: Delivery note

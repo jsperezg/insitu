@@ -62,7 +62,9 @@ module SequenceGenerator
   end
 
   def get_model_name(entity, number_parts)
-    if entity.customer.try(:billing_serie).blank? or (!entity.is_a? Invoice)
+    return number_parts[:serie] if entity.is_a?(Invoice) && entity.amending_invoice?
+
+    if entity.customer.try(:billing_serie).blank? || (!entity.is_a? Invoice)
       model_name = self.model_name.human
 
       # Update the serie
@@ -76,6 +78,7 @@ module SequenceGenerator
     else
       model_name = entity.customer.billing_serie.capitalize
     end
+
     model_name
   end
 

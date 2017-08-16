@@ -33,14 +33,15 @@ class Invoice < ActiveRecord::Base
   accepts_nested_attributes_for :invoice_details, reject_if: proc { |attr|
     result = true
 
-    %i[date payment_method_id customer_id payment_date price quantity].each do |id|
+    attrs = %i[date payment_method_id customer_id payment_date price quantity]
+    attrs.each do |id|
       result = false unless attr[id].blank?
     end
 
     result
   }, allow_destroy: true
 
-  after_initialize :set_default_values, if: :new_record?
+  after_initialize :set_default_values
   before_validation :set_default_values
   before_validation :set_invoice_number
 
@@ -133,7 +134,7 @@ class Invoice < ActiveRecord::Base
   end
 
   def paid?
-    invoice_status&.name == 'invoice_status.paid'
+    invoice_status&.name == 'invoice_status.paid' || !paid_on.nil?
   end
 
   def default?
@@ -145,6 +146,7 @@ class Invoice < ActiveRecord::Base
   end
 
   scope :with_number, ->(number) { where('number like ?', "#{number}%") }
+  scope :with_customer, ->(customer_id) { where(customer_id: customer_id) }
 
   scope :with_date_ge, lambda { |date|
     match = date.match(/(\d{2})\/(\d{2})\/(\d{4})/i)
@@ -152,8 +154,6 @@ class Invoice < ActiveRecord::Base
 
     where('date >= ?', date)
   }
-
-  scope :with_customer, ->(customer_id) { where(customer_id: customer_id) }
 
   scope :sorted_by, lambda { |sort_by|
     parts = sort_by.split('_')
@@ -204,18 +204,19 @@ class Invoice < ActiveRecord::Base
 
   def next_invoice_number
     return if date.nil?
-    billing_series = model_name.human
-    billing_series = customer.billing_serie.capitalize unless customer&.billing_serie.blank?
-
     generate_id(billing_series, date.year)
   end
 
   def last_invoice_number
     return if date.nil?
-    billing_series = model_name.human
-    billing_series = customer.billing_serie.capitalize unless customer&.billing_serie.blank?
-
     last_id(billing_series, date.year)
+  end
+
+  def billing_series
+    return 'AI' if amending_invoice?
+    return customer.billing_serie.capitalize unless customer&.billing_serie.blank?
+
+    model_name.human
   end
 
   def number_format

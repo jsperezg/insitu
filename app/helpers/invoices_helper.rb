@@ -1,18 +1,17 @@
+# frozen_string_literal: true
+
 module InvoicesHelper
   def invoice_tr(invoice)
-
-    if invoice.paid?
-      tr_class = 'success'
-    elsif invoice.default?
-      tr_class = 'danger'
-    elsif invoice.sent?
-      tr_class = 'info'
-    else
-      tr_class = 'active'
-    end
-
-    content_tag(:tr, class: tr_class) do
+    content_tag(:tr, class: tr_class_for(invoice)) do
       yield
     end
+  end
+
+  def tr_class_for(invoice)
+    return 'active' if invoice.amending_invoice?
+    return 'success' if invoice.paid?
+    return 'danger' if invoice.default?
+    return 'info' if invoice.sent?
+    'active'
   end
 end

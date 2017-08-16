@@ -4,7 +4,9 @@
 class InvoicesController < SecuredController
   include InvoicingNotifications
 
-  before_action :set_invoice, only: %i[show print forward_email edit update destroy]
+  before_action :set_invoice, only: %i[
+    show print forward_email edit update destroy
+  ]
 
   # GET /invoices
   # GET /invoices.json
@@ -140,12 +142,32 @@ class InvoicesController < SecuredController
           redirect_to user_invoices_url(current_user),
                       notice: t(:successfully_destroyed, item: t('invoices.invoice'))
         }
-        format.json {head :no_content}
+        format.json { head :no_content }
       end
     rescue => e
       respond_to do |format|
-        format.html {redirect_to user_invoices_url(current_user), alert: e.message}
-        format.json {render json: {error: e.message}, status: :not_acceptable}
+        format.html { redirect_to user_invoices_url(current_user), alert: e.message }
+        format.json { render json: { error: e.message }, status: :not_acceptable }
+      end
+    end
+  end
+
+  def cancel
+    original_invoice = Invoice.find(params[:id])
+    service = InvoiceCorrector.new(original_invoice)
+    begin
+      @invoice = service.cancel
+      respond_to do |format|
+        format.html {
+          redirect_to edit_user_invoice_path(current_user, @invoice),
+                      notice: t('.success')
+        }
+        format.json { render :show, status: :ok, location: @invoice }
+      end
+    rescue => e
+      respond_to do |format|
+        format.html { redirect_to user_invoices_url(current_user), alert: e.record.errors.full_messages.join('<br>') }
+        format.json { render json: {error: e.record.errors.full_messages}, status: :not_acceptable }
       end
     end
   end
@@ -153,8 +175,12 @@ class InvoicesController < SecuredController
   def csv_export
     from_date = Date.parse(params[:from_date])
     to_date = Date.parse(params[:to_date])
-    invoices = Invoice.includes(:customer, :invoice_details).where(date: from_date..to_date)
-    exporter = CSVExport.new(%i(number customer date paid_on applied_irpf accumulated_tax subtotal))
+    invoices = Invoice
+               .includes(:customer, :invoice_details)
+               .where(date: from_date..to_date)
+    exporter = CSVExport.new(%i[
+      number customer date paid_on applied_irpf accumulated_tax subtotal
+    ])
     send_data exporter.run(invoices), type: Mime::CSV, filename: 'invoices.csv'
   end
 

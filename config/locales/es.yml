@@ -129,6 +129,11 @@ es:
     create_title: Nueva factura
     edit_title: Editar factura
     print_title: Imprimir factura
+    list:
+      cancel: Cancelar
+      cancel_confirmation: ¿Deseas cancelar la factura %{number}?
+    cancel:
+      success: La factura ha sido correctamente cancelada.
 
   delivery_notes:
     delivery_note: Albarán
