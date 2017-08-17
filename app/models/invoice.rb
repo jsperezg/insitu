@@ -213,7 +213,7 @@ class Invoice < ActiveRecord::Base
   end
 
   def billing_series
-    return 'AI' if amending_invoice?
+    return AMENDING_INVOICE_SERIES if amending_invoice?
     return customer.billing_serie.capitalize unless customer&.billing_serie.blank?
 
     model_name.human

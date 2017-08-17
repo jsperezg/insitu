@@ -20,4 +20,8 @@ class InvoiceStatus < ActiveRecord::Base
   def self.created
     InvoiceStatus.find_by(name: 'invoice_status.created')
   end
+
+  def self.sent
+    InvoiceStatus.find_by(name: 'invoice_status.sent')
+  end
 end

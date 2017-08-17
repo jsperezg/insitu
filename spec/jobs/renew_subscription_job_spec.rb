@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe RenewSubscriptionJob, type: :job do
   describe('Generates invoice') do
     before(:each) do
-      InvoiceStatus.find_by(name: 'invoice_status.paid') || InvoiceStatus.create!(name: 'invoice_status.paid')
+      InvoiceStatus.paid || InvoiceStatus.create!(name: 'invoice_status.paid')
       @payment = create(:payment)
     end
 
@@ -59,7 +59,7 @@ RSpec.describe RenewSubscriptionJob, type: :job do
 
       expect(invoice.date.strftime('%Y-%m-%d')).to eq(payment_date)
       expect(invoice.payment_method_id).to eq(PaymentMethod.find_by(name: 'Paypal').id)
-      expect(invoice.invoice_status_id).to eq(InvoiceStatus.find_by(name: 'invoice_status.paid').try(:id))
+      expect(invoice.invoice_status_id).to eq(InvoiceStatus.paid&.id)
       expect(invoice.payment_date.strftime('%Y-%m-%d')).to eq(payment_date)
       expect(invoice.paid_on.strftime('%Y-%m-%d')).to eq(payment_date)
 
@@ -85,7 +85,7 @@ RSpec.describe RenewSubscriptionJob, type: :job do
     before(:each) do
       User.find_by(email: Rails.configuration.x.paypal_billing_account) || create(:user, email: Rails.configuration.x.paypal_billing_account)
 
-      InvoiceStatus.find_by(name: 'invoice_status.paid') || InvoiceStatus.create!(name: 'invoice_status.paid')
+      InvoiceStatus.paid || InvoiceStatus.create!(name: 'invoice_status.paid')
       @payment = create(:payment)
     end
 

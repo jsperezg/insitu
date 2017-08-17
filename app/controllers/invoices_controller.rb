@@ -35,7 +35,7 @@ class InvoicesController < SecuredController
 
   def print
     if @invoice.created?
-      @invoice.invoice_status = InvoiceStatus.find_by(name: 'invoice_status.sent')
+      @invoice.invoice_status = InvoiceStatus.sent
       @invoice.save
     end
 
@@ -52,7 +52,7 @@ class InvoicesController < SecuredController
 
   def forward_email
     if @invoice.created?
-      @invoice.invoice_status = InvoiceStatus.find_by(name: 'invoice_status.sent')
+      @invoice.invoice_status = InvoiceStatus.sent
       @invoice.save
     end
 

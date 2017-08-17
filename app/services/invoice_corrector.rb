@@ -22,7 +22,7 @@ class InvoiceCorrector
     date = DateTime.now
 
     Invoice.create!(
-      number: generate_id('AI', date.year, 2),
+      number: generate_id(AMENDING_INVOICE_SERIES, date.year, 2),
       date: date,
       customer_id: @invoice.customer_id,
       invoice_status_id: InvoiceStatus.default&.id,

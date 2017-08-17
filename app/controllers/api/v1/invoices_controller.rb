@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class Api::V1::InvoicesController < ApiController
   include Api
 
   include InvoicingNotifications
 
-  before_action :set_invoice, only: [:show, :print, :update, :destroy]
+  before_action :set_invoice, only: %i[show print update destroy]
 
   # GET /invoices
   # GET /invoices.json
@@ -17,7 +19,7 @@ class Api::V1::InvoicesController < ApiController
 
   def print
     if @invoice.created?
-      @invoice.invoice_status = InvoiceStatus.find_by(name: 'invoice_status.sent')
+      @invoice.invoice_status = InvoiceStatus.sent
       @invoice.save!
     end
 
@@ -67,6 +69,17 @@ class Api::V1::InvoicesController < ApiController
   def destroy
     begin
       @invoice.destroy
+      render json: ResponseFactory.get_response_for(@invoice)
+    rescue => e
+      render json: ResponseFactory.error_response(e.message)
+    end
+  end
+
+  def cancel
+    original_invoice = Invoice.find(params[:id])
+    service = InvoiceCorrector.new(original_invoice)
+    begin
+      @invoice = service.cancel
       render json: ResponseFactory.get_response_for(@invoice)
     rescue => e
       render json: ResponseFactory.error_response(e.message)

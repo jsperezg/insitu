@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  root :to => "invoices#index"
+  root to: 'invoices#index'
 
   devise_for :users, controllers: { sessions: 'users/sessions', omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  resources :users, only: [ :index, :edit, :update ] do
+  resources :users, only: %i[index edit update] do
     member do
       delete :ban
       get :renew
@@ -28,7 +30,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :invoices  do
+    resources :invoices do
       member do
         get :print
         get :forward_email
@@ -39,7 +41,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :delivery_notes  do
+    resources :delivery_notes do
       member do
         get :print
         get :forward_email
@@ -68,44 +70,44 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :estimate_statuses, only: [:index, :show]
-      resources :invoice_statuses, only: [:index, :show]
-      resources :project_statuses, only: [:index, :show]
+      resources :estimate_statuses, only: %i[index show]
+      resources :invoice_statuses, only: %i[index show]
+      resources :project_statuses, only: %i[index show]
       resources :plans, only: [:index]
       resources :dashboard, only: [:index]
-      resources :customers, only: [:index, :show, :create, :update, :destroy]
-      resources :payment_methods, only: [:index, :show, :create, :update, :destroy]
-      resources :services, only: [ :index, :show, :create, :update, :destroy ]
-      resources :units, only: [:index, :show, :create, :update, :destroy]
-      resources :vats, only: [:index, :show, :create, :update, :destroy]
-      resources :projects, only: [:index, :show, :create, :update, :destroy] do
-        resources :tasks, only: [:index, :show, :create, :update, :destroy] do
+      resources :customers, only: %i[index show create update destroy]
+      resources :payment_methods, only: %i[index show create update destroy]
+      resources :services, only: %i[index show create update destroy]
+      resources :units, only: %i[index show create update destroy]
+      resources :vats, only: %i[index show create update destroy]
+      resources :projects, only: %i[index show create update destroy] do
+        resources :tasks, only: %i[index show create update destroy] do
           collection do
             get :invoice_finished
           end
         end
       end
 
-      resources :estimates, only: [:index, :show, :create, :update, :destroy] do
+      resources :estimates, only: %i[index show create update destroy] do
         member do
           get :print
           get :invoice
         end
       end
 
-      resources :delivery_notes, only: [:index, :show, :create, :update, :destroy] do
+      resources :delivery_notes, only: %i[index show create update destroy] do
         member do
           get :print
           get :invoice
         end
       end
 
-      resources :invoices, only: [:index, :show, :create, :update, :destroy] do
+      resources :invoices, only: %i[index show create update destroy] do
         member do
           get :print
+          delete :cancel
         end
       end
-
 
       devise_scope :user do
         post 'sessions' => 'sessions#create', :as => 'login'
@@ -116,60 +118,4 @@ Rails.application.routes.draw do
   end
 
   resources :ipn_listener, only: [:create]
-
-
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end

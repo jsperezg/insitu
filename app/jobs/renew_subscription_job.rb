@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RenewSubscriptionJob < ActiveJob::Base
   include InvoicingNotifications
 
@@ -30,18 +32,18 @@ class RenewSubscriptionJob < ActiveJob::Base
 
   def generate_invoice(payment)
     invoice = Invoice.create!(
-        date: payment.payment_date,
-        payment_method_id: find_or_create_payment_method('Paypal').try(:id),
-        customer_id: find_or_create_customer(payment.user).try(:id),
-        invoice_status_id: InvoiceStatus.find_by(name: 'invoice_status.paid').try(:id),
-        payment_date: payment.payment_date,
-        paid_on: payment.payment_date
+      date: payment.payment_date,
+      payment_method_id: find_or_create_payment_method('Paypal').try(:id),
+      customer_id: find_or_create_customer(payment.user).try(:id),
+      invoice_status_id: InvoiceStatus.paid&.id,
+      payment_date: payment.payment_date,
+      paid_on: payment.payment_date
     )
 
     InvoiceDetail.create!(
       invoice_id: invoice.id,
       service_id: find_or_create_service(payment.plan).id,
-      description: "Renovación #{ payment.plan.months } meses/#{ payment.plan.months } months renewal",
+      description: "Renovación #{payment.plan.months} meses/#{payment.plan.months} months renewal",
       vat_rate: payment.plan.vat_rate,
       price: payment.plan.price,
       quantity: 1,
@@ -94,11 +96,11 @@ class RenewSubscriptionJob < ActiveJob::Base
     service = Service.find_by(description: plan.description, active: true)
     if service.nil?
       service = Service.create!(
-          code: "S/#{ Time.now.strftime('%Y%m%d') }/#{ plan.months }",
-          description: plan.description,
-          vat_id: find_or_create_vat(plan.vat_rate).id,
-          unit_id: find_or_create_unit('Months').id,
-          price: plan.price
+        code: "S/#{Time.now.strftime('%Y%m%d')}/#{plan.months}",
+        description: plan.description,
+        vat_id: find_or_create_vat(plan.vat_rate).id,
+        unit_id: find_or_create_unit('Months').id,
+        price: plan.price
       )
     end
 
@@ -109,9 +111,9 @@ class RenewSubscriptionJob < ActiveJob::Base
     vat = Vat.find_by(rate: vat_rate)
     if vat.nil?
       vat = Vat.create!(
-         rate: vat_rate,
-         label: "#{vat_rate} %",
-         default: false
+        rate: vat_rate,
+        label: "#{vat_rate} %",
+        default: false
       )
     end
 
@@ -122,8 +124,8 @@ class RenewSubscriptionJob < ActiveJob::Base
     unit = Unit.find_by(label_long: label)
     if unit.nil?
       unit = Unit.create!(
-         label_long: label,
-         label_short: label[0, 1].upcase
+        label_long: label,
+        label_short: label[0, 1].upcase
       )
     end
 
