@@ -145,7 +145,7 @@ class DocumentPdf < Prawn::Document
   end
 
   def generate_footer_notes
-    bounding_box([0, bounds.top], width: footer_width * 0.66, height: FOOTER_HEIGHT) do
+    bounding_box([0, bounds.top], width: footer_width * 0.66 - 10, height: FOOTER_HEIGHT) do
       footer_notes
     end
   end

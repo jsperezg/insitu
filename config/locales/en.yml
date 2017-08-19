@@ -129,6 +129,7 @@ en:
     create_title: New invoice
     edit_title: Edit invoice
     print_title: Print invoice
+    amended_invoice_annotation: This invoice amends invoice with number %{number} generated on %{date}
     list:
       cancel: Cancel
       cancel_confirmation: Do you want to cancel the invoice %{number}?

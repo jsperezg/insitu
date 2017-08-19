@@ -129,6 +129,7 @@ es:
     create_title: Nueva factura
     edit_title: Editar factura
     print_title: Imprimir factura
+    amended_invoice_annotation: Esta factura corrige la factura número %{number} generada el %{date}
     list:
       cancel: Cancelar
       cancel_confirmation: ¿Deseas cancelar la factura %{number}?

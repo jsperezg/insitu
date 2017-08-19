@@ -27,7 +27,8 @@ class InvoiceCorrector
       customer_id: @invoice.customer_id,
       invoice_status_id: InvoiceStatus.default&.id,
       irpf: @invoice.irpf,
-      amended_invoice_id: @invoice.id
+      amended_invoice_id: @invoice.id,
+      payment_method_id: @invoice.payment_method_id
     )
   end
 
