@@ -34,11 +34,6 @@ class InvoicesController < SecuredController
   def show; end
 
   def print
-    if @invoice.created?
-      @invoice.invoice_status = InvoiceStatus.sent
-      @invoice.save
-    end
-
     respond_to do |format|
       format.html do
         render :show, layout: 'print'
