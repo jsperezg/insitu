@@ -51,15 +51,17 @@ class InvoicesController < SecuredController
       @invoice.save
     end
 
+    return_url = request.referer || user_invoice_path(current_user.id, @invoice.id)
+
     if @invoice.customer.contact_email.blank? && @invoice.customer.send_invoices_to.blank?
       flash[:error] = t('helpers.customer_mail_missing')
-      redirect_to user_invoice_path(current_user.id, @invoice.id)
+      redirect_to return_url
       return
     end
 
     send_invoice_by_email(current_user, @invoice)
 
-    redirect_to user_invoice_path(current_user.id, @invoice.id), notice: t('helpers.email_successfully_sent')
+    redirect_to return_url, notice: t('helpers.email_successfully_sent')
   end
 
   # GET /invoices/new
