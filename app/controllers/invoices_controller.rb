@@ -87,15 +87,17 @@ class InvoicesController < SecuredController
 
       respond_to do |format|
         if @invoice.save
-          format.html {
+          format.html do
             redirect_to edit_user_invoice_url(current_user, @invoice),
                         notice: t(:successfully_created, item: t('invoices.invoice'))
-          }
+          end
 
           format.json { render :show, status: :created, location: @invoice }
         else
           format.html { render :new }
-          format.json { render json: @invoice.errors, status: :unprocessable_entity }
+          format.json do
+            render json: @invoice.errors, status: :unprocessable_entity
+          end
         end
       end
     end
@@ -113,17 +115,19 @@ class InvoicesController < SecuredController
 
       respond_to do |format|
         if @invoice.update(invoice_params)
-          format.html {
+          format.html do
             redirect_to edit_user_invoice_path(current_user, @invoice),
                         notice: t(:successfully_updated, item: t('invoices.invoice'))
-          }
+          end
           format.json { render :show, status: :ok, location: @invoice }
         else
-          format.html {
+          format.html do
             @invoice.invoice_details.build
             render :edit
-          }
-          format.json { render json: @invoice.errors, status: :unprocessable_entity }
+          end
+          format.json do
+            render json: @invoice.errors, status: :unprocessable_entity
+          end
         end
       end
     end
@@ -135,16 +139,20 @@ class InvoicesController < SecuredController
     begin
       @invoice.destroy
       respond_to do |format|
-        format.html {
+        format.html do
           redirect_to user_invoices_url(current_user),
                       notice: t(:successfully_destroyed, item: t('invoices.invoice'))
-        }
+        end
         format.json { head :no_content }
       end
     rescue => e
       respond_to do |format|
-        format.html { redirect_to user_invoices_url(current_user), alert: e.message }
-        format.json { render json: { error: e.message }, status: :not_acceptable }
+        format.html do
+          redirect_to user_invoices_url(current_user), alert: e.message
+        end
+        format.json do
+          render json: { error: e.message }, status: :not_acceptable
+        end
       end
     end
   end
@@ -155,10 +163,10 @@ class InvoicesController < SecuredController
     begin
       @invoice = service.cancel
       respond_to do |format|
-        format.html {
+        format.html do
           redirect_to edit_user_invoice_path(current_user, @invoice),
                       notice: t('.success')
-        }
+        end
         format.json { render :show, status: :ok, location: @invoice }
       end
     rescue => e

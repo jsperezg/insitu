@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# Controller that delivery notes from UI
 class DeliveryNotesController < SecuredController
-  before_action :set_delivery_note, only: [:show, :print, :forward_email, :edit, :update, :destroy, :invoice]
+  before_action :set_delivery_note, only: %i[show print forward_email edit update destroy invoice]
 
   # GET /delivery_notes
   # GET /delivery_notes.json
@@ -8,10 +11,10 @@ class DeliveryNotesController < SecuredController
         DeliveryNote,
         params[:filterrific],
         default_filter_params: {
-            with_date_ge: Date.today.beginning_of_year.strftime('%Y-%m-%d'),
-            sorted_by: 'date_desc'
+          with_date_ge: Date.today.beginning_of_year.strftime('%Y-%m-%d'),
+          sorted_by: 'date_desc'
         }
-    ) or return
+    ) || return
 
     @delivery_notes = @filterrific.find.page(params[:page])
 
@@ -24,8 +27,7 @@ class DeliveryNotesController < SecuredController
 
   # GET /delivery_notes/1
   # GET /delivery_notes/1.json
-  def show
-  end
+  def show; end
 
   def print
     respond_to do |format|
@@ -40,19 +42,24 @@ class DeliveryNotesController < SecuredController
   end
 
   def forward_email
-    if @delivery_note.customer.contact_email.blank? and @delivery_note.customer.send_invoices_to.blank?
+    return_url = request.referer || user_delivery_note_path(current_user.id, @delivery_note.id)
+
+    if @delivery_note.customer.contact_email.blank? && @delivery_note.customer.send_invoices_to.blank?
       flash[:error] = t('helpers.customer_mail_missing')
-      redirect_to user_delivery_note_path(current_user.id, @delivery_note.id)
+      redirect_to return_url
       return
     end
 
-    file_name = Rails.root.join('tmp',"delivery_note_#{ current_user.id }_#{ @delivery_note.number.gsub('/', '_') }_#{ Time.now.to_i }.pdf")
+    file_name = Rails.root.join(
+      'tmp',
+      "delivery_note_#{current_user.id}_#{@delivery_note.number.gsub('/', '_')}_#{Time.now.to_i}.pdf"
+    )
 
     pdf = DeliveryNotePdf.new current_user, @delivery_note
     pdf.render_file(file_name)
 
     DeliveryNoteMailer.send_to_customer(current_user, @delivery_note, file_name.to_s, I18n.locale.to_s).deliver_later
-    redirect_to user_delivery_note_path(current_user.id, @delivery_note.id), notice: t('helpers.email_successfully_sent')
+    redirect_to return_url, notice: t('helpers.email_successfully_sent')
   end
 
   # GET /delivery_notes/new
@@ -61,8 +68,7 @@ class DeliveryNotesController < SecuredController
   end
 
   # GET /delivery_notes/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /delivery_notes
   # POST /delivery_notes.json
@@ -72,8 +78,10 @@ class DeliveryNotesController < SecuredController
 
       respond_to do |format|
         if @delivery_note.save
-          format.html { redirect_to edit_user_delivery_note_path(current_user, @delivery_note),
-                        notice: t(:successfully_created, item: t('delivery_notes.delivery_note')) }
+          format.html do
+            redirect_to edit_user_delivery_note_path(current_user, @delivery_note),
+                        notice: t(:successfully_created, item: t('delivery_notes.delivery_note'))
+          end
           format.json { render :show, status: :created, location: @delivery_note }
         else
           format.html { render :new }
@@ -89,16 +97,20 @@ class DeliveryNotesController < SecuredController
     DeliveryNote.transaction do
       respond_to do |format|
         if @delivery_note.update(delivery_note_params)
-          format.html { redirect_to edit_user_delivery_note_path(current_user, @delivery_note),
-                        notice: t(:successfully_updated, item: t('delivery_notes.delivery_note')) }
+          format.html do
+            redirect_to edit_user_delivery_note_path(current_user, @delivery_note),
+                        notice: t(:successfully_updated, item: t('delivery_notes.delivery_note'))
+          end
           format.json { render :show, status: :ok, location: @delivery_note }
         else
-          format.html {
+          format.html do
             @delivery_note.delivery_note_details.build
             render :edit
-          }
+          end
 
-          format.json { render json: @delivery_note.errors, status: :unprocessable_entity }
+          format.json do
+            render json: @delivery_note.errors, status: :unprocessable_entity
+          end
         end
       end
     end
@@ -109,8 +121,10 @@ class DeliveryNotesController < SecuredController
   def destroy
     @delivery_note.destroy
     respond_to do |format|
-      format.html { redirect_to user_delivery_notes_url(current_user),
-                    notice: t(:successfully_destroyed, item: t('delivery_notes.delivery_note')) }
+      format.html do
+        redirect_to user_delivery_notes_url(current_user),
+                    notice: t(:successfully_destroyed, item: t('delivery_notes.delivery_note'))
+      end
       format.json { head :no_content }
     end
   end
@@ -137,14 +151,15 @@ class DeliveryNotesController < SecuredController
     @delivery_note = DeliveryNote.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet,
+  # only allow the white list through.
   def delivery_note_params
     params.require(:delivery_note).permit(
       :number,
       :customer_id,
       :date,
-      delivery_note_details_attributes: [
-        :id, :delivery_note_id, :service_id, :quantity, :price, :description, :_destroy
+      delivery_note_details_attributes: %i[
+        id delivery_note_id service_id quantity price description _destroy
       ]
     )
   end

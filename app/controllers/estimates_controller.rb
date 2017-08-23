@@ -1,17 +1,20 @@
+# frozen_string_literal: true
+
+# Controller that estimates from UI
 class EstimatesController < SecuredController
-  before_action :set_estimate, only: [:show, :print, :forward_email, :edit, :update, :destroy, :invoice]
+  before_action :set_estimate, only: %i[show print forward_email edit update destroy invoice]
 
   # GET /estimates
   # GET /estimates.json
   def index
     @filterrific = initialize_filterrific(
-        Estimate,
-        params[:filterrific],
-        default_filter_params: {
-            with_date_ge: Date.today.beginning_of_year.strftime('%Y-%m-%d'),
-            sorted_by: 'date_desc'
-        }
-    ) or return
+      Estimate,
+      params[:filterrific],
+      default_filter_params: {
+        with_date_ge: Date.today.beginning_of_year.strftime('%Y-%m-%d'),
+        sorted_by: 'date_desc'
+      }
+    ) || return
 
     @estimates = @filterrific.find.page(params[:page])
 
@@ -24,8 +27,7 @@ class EstimatesController < SecuredController
 
   # GET /estimates/1
   # GET /estimates/1.json
-  def show
-  end
+  def show; end
 
   # GET /estimates/1/print
   def print
@@ -46,9 +48,11 @@ class EstimatesController < SecuredController
   end
 
   def forward_email
-    if @estimate.customer.contact_email.blank? and @estimate.customer.send_invoices_to.blank?
+    return_url = request.referer || user_estimate_path(current_user.id, @estimate.id)
+
+    if @estimate.customer.contact_email.blank? && @estimate.customer.send_invoices_to.blank?
       flash[:error] = t('helpers.customer_mail_missing')
-      redirect_to user_estimate_path(current_user.id, @estimate.id)
+      redirect_to return_url
       return
     end
 
@@ -57,13 +61,16 @@ class EstimatesController < SecuredController
       @estimate.save
     end
 
-    file_name = Rails.root.join('tmp', "estimate_#{ current_user.id }_#{ @estimate.number.gsub('/', '_') }_#{ Time.now.to_i }.pdf")
+    file_name = Rails.root.join(
+      'tmp',
+      "estimate_#{current_user.id}_#{@estimate.number.gsub('/', '_')}_#{Time.now.to_i}.pdf"
+    )
 
     pdf = EstimatePdf.new current_user, @estimate
     pdf.render_file(file_name)
 
     EstimateMailer.send_to_customer(current_user, @estimate, file_name.to_s, I18n.locale.to_s).deliver_later
-    redirect_to user_estimate_path(current_user.id, @estimate.id), notice: t('helpers.email_successfully_sent')
+    redirect_to return_url, notice: t('helpers.email_successfully_sent')
   end
 
   # GET /estimates/new
@@ -72,8 +79,7 @@ class EstimatesController < SecuredController
   end
 
   # GET /estimates/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /estimates
   # POST /estimates.json
@@ -83,14 +89,16 @@ class EstimatesController < SecuredController
 
       respond_to do |format|
         if @estimate.save
-          format.html {
+          format.html do
             redirect_to edit_user_estimate_url(current_user, @estimate),
-            notice: t(:successfully_created, item: t('estimates.estimate'))
-          }
+                        notice: t(:successfully_created, item: t('estimates.estimate'))
+          end
           format.json { render :show, status: :created, location: @estimate }
         else
           format.html { render :new }
-          format.json { render json: @estimate.errors, status: :unprocessable_entity }
+          format.json do
+            render json: @estimate.errors, status: :unprocessable_entity
+          end
         end
       end
     end
@@ -102,17 +110,19 @@ class EstimatesController < SecuredController
     Estimate.transaction do
       respond_to do |format|
         if @estimate.update(estimate_params)
-          format.html {
+          format.html do
             redirect_to edit_user_estimate_url(current_user, @estimate),
                         notice: t(:successfully_updated, item: t('estimates.estimate'))
-          }
-          format.json { render :show, status: :ok, location: @estimate }
+          end
+          format.json {render :show, status: :ok, location: @estimate}
         else
-          format.html {
-            @estimate.estimate_details.includes(service: [ :unit, :vat ]).build
+          format.html do
+            @estimate.estimate_details.includes(service: %i[unit vat]).build
             render :edit
-          }
-          format.json { render json: @estimate.errors, status: :unprocessable_entity }
+          end
+          format.json do
+            render json: @estimate.errors, status: :unprocessable_entity
+          end
         end
       end
     end
@@ -125,9 +135,9 @@ class EstimatesController < SecuredController
     respond_to do |format|
       format.html {
         redirect_to user_estimates_url(current_user),
-        notice: t(:successfully_destroyed, item: t('estimates.estimate'))
+                    notice: t(:successfully_destroyed, item: t('estimates.estimate'))
       }
-      format.json { head :no_content }
+      format.json {head :no_content}
     end
   end
 
@@ -159,9 +169,9 @@ class EstimatesController < SecuredController
       :customer_id,
       :valid_until,
       :estimate_status_id,
-      estimate_details_attributes: [
-        :id, :estimate_id, :service_id, :quantity, :price,
-        :discount, :description, :_destroy
+      estimate_details_attributes: %i[
+        id estimate_id service_id quantity price
+        discount description _destroy
       ]
     )
   end
