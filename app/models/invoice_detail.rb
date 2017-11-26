@@ -5,12 +5,21 @@ class InvoiceDetail < ActiveRecord::Base
   has_one :estimate_detail, dependent: :nullify
   has_one :delivery_note_detail, dependent: :nullify
 
-  validates :vat_rate, presence: true, numericality: {greater_than_or_equal_to: 0, only_integer: true}
-  validates :price, presence: true, numericality: {greater_than: 0}
-  validates :quantity, presence: true, numericality: {greater_than: 0}, unless: :amending_invoice?
-  validates :discount, presence: true, numericality: {greater_than_or_equal_to: 0, only_integer: true}
+  validates :vat_rate,
+            presence: true,
+            numericality: { greater_than_or_equal_to: 0, only_integer: true }
 
-  after_initialize :set_default_values, if: :new_record?
+  validates :price, presence: true, numericality: { greater_than: 0 }
+
+  validates :quantity,
+            presence: true,
+            numericality: { greater_than: 0 }, unless: :amending_invoice?
+
+  validates :discount,
+            presence: true,
+            numericality: { greater_than_or_equal_to: 0, only_integer: true }
+
+  after_initialize :set_default_values
 
   def subtotal
     if price.present? && quantity.present?
@@ -106,6 +115,7 @@ class InvoiceDetail < ActiveRecord::Base
   private
 
   def set_default_values
-    self.vat_rate = Vat.find_by(default: true).try(:rate) if self.vat_rate.nil?
+    return if new_record?
+    self.vat_rate ||= Vat.find_by(default: true)&.rate
   end
 end

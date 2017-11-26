@@ -13,33 +13,34 @@ class Task < ActiveRecord::Base
   accepts_nested_attributes_for :time_logs, reject_if: proc { |attr|
     result = true
 
-    [:description, :time_spent, :date].each do |attr_id|
+    %i[description time_spent date].each do |attr_id|
       result = false unless attr[attr_id].blank?
     end
 
     result
-  }, :allow_destroy => true
+  }, allow_destroy: true
 
   def self.retrieve_project_tasks(project_id)
     Task.includes(:project).where(project_id: project_id)
   end
 
   def self.retrieve_finished_tasks(project_id)
-    self.retrieve_project_tasks(project_id).where.not(finish_date: :nil)
+    retrieve_project_tasks(project_id).where.not(finish_date: :nil)
   end
 
   def invoice_timelogs_into(invoice)
     time_logs = TimeLog.where(task_id: self.id, invoice_detail_id: nil)
     time_logs.each do |time_log|
-      invoice_detail = InvoiceDetail.create!(
-          invoice_id: invoice.id,
-          service_id: time_log.service_id,
-          vat_rate: time_log.service.vat.rate,
-          price: time_log.service.price,
-          discount: 0,
-          description: time_log.description,
-          quantity: time_log.time_spent / 60
+      invoice_detail = InvoiceDetail.new(
+        invoice_id: invoice.id,
+        service_id: time_log.service_id,
+        vat_rate: time_log.service.vat.rate,
+        price: time_log.service.price,
+        discount: 0,
+        description: time_log.description,
+        quantity: time_log.time_spent / 60.0
       )
+      invoice_detail.save!
 
       time_log.invoice_detail_id = invoice_detail.id
       time_log.save!
