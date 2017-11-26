@@ -64,7 +64,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'unicorn'
 
 group :development do
-  gem 'capistrano', '~> 3.4'
+  gem 'capistrano', '~> 3.9'
   gem 'capistrano-bundler', '~> 1.1.2'
   gem 'capistrano-figaro-yml', '~> 1.0.2'
   gem 'capistrano-linked-files'
