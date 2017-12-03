@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Class encapsulates CRUD operations for invoice details.
 class InvoiceDetail < ActiveRecord::Base
   belongs_to :invoice, touch: true
   belongs_to :service
@@ -22,27 +25,23 @@ class InvoiceDetail < ActiveRecord::Base
   after_initialize :set_default_values
 
   def subtotal
-    if price.present? && quantity.present?
-      price * quantity
-    end
+    return unless price.present? && quantity.present?
+    price * quantity
   end
 
   def applied_discount
-    if price.present? && quantity.present? && discount.present?
-      discount / 100.0 * subtotal
-    end
+    return unless price.present? && quantity.present? && discount.present?
+    discount / 100.0 * subtotal
   end
 
   def tax
-    if price.present? && quantity.present? && discount.present? && vat_rate.present?
-      (1 - (discount / 100.0)) * price * quantity * (vat_rate / 100.0)
-    end
+    return unless price.present? && quantity.present? && discount.present? && vat_rate.present?
+    (1 - (discount / 100.0)) * price * quantity * (vat_rate / 100.0)
   end
 
   def total
-    if price.present? && quantity.present? && discount.present? && vat_rate.present?
-      (1 - (discount / 100.0)) * price * quantity * (1 + (vat_rate / 100.0))
-    end
+    return unless price.present? && quantity.present? && discount.present? && vat_rate.present?
+    (1 - (discount / 100.0)) * price * quantity * (1 + (vat_rate / 100.0))
   end
 
   def self.calculate_totals_for(user)
@@ -115,7 +114,7 @@ class InvoiceDetail < ActiveRecord::Base
   private
 
   def set_default_values
-    return if new_record?
-    self.vat_rate ||= Vat.find_by(default: true)&.rate
+    self.discount ||= 0
+    self.vat_rate ||= Vat.default&.rate
   end
 end

@@ -1,11 +1,12 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
   factory :vat do
-    sequence :label do |n|
-      "#{22 + n} %"
-    end
+    sequence(:rate, 23) { |n| n }
+    label { "#{rate} %" }
 
-    sequence :rate do |n|
-      22 + n
+    trait :default do
+      default true
     end
   end
 end
