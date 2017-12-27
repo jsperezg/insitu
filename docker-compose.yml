@@ -20,6 +20,10 @@ services:
       - "1234:1234"
     depends_on:
       - db
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USER: root
+      DATABASE_PASSWORD: a01677
 volumes:
   mysql-data:
     driver: local
