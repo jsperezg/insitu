@@ -13,7 +13,7 @@ RSpec.describe IpnListenerController, type: :controller do
       end
 
       it 'referred subscription is renewed' do
-        user = create(:expired_user)
+        user = create(:user, :expired)
 
         post :create, paypal_renewal_request(user)
 
@@ -22,7 +22,7 @@ RSpec.describe IpnListenerController, type: :controller do
       end
 
       it 'payment is created' do
-        user = create(:expired_user)
+        user = create(:user, :expired)
 
         post :create, paypal_renewal_request(user)
 
@@ -31,7 +31,7 @@ RSpec.describe IpnListenerController, type: :controller do
       end
 
       it 'Invoicing task is invoked' do
-        user = create(:expired_user)
+        user = create(:user, :expired)
 
         expect(RenewSubscriptionJob).to receive(:perform_now)
         post :create, paypal_renewal_request(user)
@@ -49,7 +49,7 @@ RSpec.describe IpnListenerController, type: :controller do
       end
 
       it 'referred subscription remains unchanged' do
-        user = create(:expired_user)
+        user = create(:user, :expired)
 
         post :create, paypal_renewal_request(user)
 

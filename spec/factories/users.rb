@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
   factory :user, class: User do
-    name { "#{Faker::Name.first_name} #{ Faker::Name.last_name }" }
+    name { "#{Faker::Name.first_name} #{Faker::Name.last_name}" }
     tax_id { Faker::Company.swedish_organisation_number }
     address { Faker::Address.street_address }
     city { Faker::Address.city }
@@ -12,33 +14,14 @@ FactoryGirl.define do
     password 'change_me'
     password_confirmation 'change_me'
     currency 'EUR'
-  end
+    terms_of_service '1'
 
-  factory :expired_user, class: User do
-    email { Faker::Internet.email }
+    trait :admin do
+      role_id { Role.find_by(description: 'Administrator')&.id || create(:admin_role)&.id }
+    end
 
-    valid_until { Date.today - 7.days }
-
-    name { "#{Faker::Name.first_name} #{ Faker::Name.last_name }" }
-    tax_id { Faker::Company.swedish_organisation_number }
-    address { Faker::Address.street_address }
-    city { Faker::Address.city }
-    postal_code { Faker::Address.postcode }
-    state { Faker::Address.state }
-    country { Faker::Address.country_code }
-    currency  'EUR'
-
-    password 'change_me'
-    password_confirmation 'change_me'
-  end
-
-  factory :admin_user, class: User do
-    email { Faker::Internet.email }
-
-    role_id { Role.find_by(description: 'Administrator').try(:id) || create(:admin_role).try(:id) }
-    currency 'EUR'
-
-    password 'change_me'
-    password_confirmation 'change_me'
+    trait :expired do
+      valid_until { Date.today - 7.days }
+    end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class InvoiceDetail < ActiveRecord::Base
   belongs_to :invoice, touch: true
   belongs_to :service
@@ -97,8 +99,6 @@ class InvoiceDetail < ActiveRecord::Base
                         .group('IfNull(services.description, "n/a")')
                         .sum('truncate((1 - discount / 100) * invoice_details.price * quantity, 2)')
 
-
-
     result[:customers] = InvoiceDetail
                          .includes(invoice: [:customer])
                          .where('invoices.date': interval)
@@ -115,7 +115,6 @@ class InvoiceDetail < ActiveRecord::Base
   private
 
   def set_default_values
-    return if new_record?
     self.vat_rate ||= Vat.find_by(default: true)&.rate
   end
 end

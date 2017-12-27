@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# This model represents a service user.
 class User < ActiveRecord::Base
   acts_as_token_authenticatable
 
@@ -6,7 +9,7 @@ class User < ActiveRecord::Base
       sorted_by: 'valid_until_asc',
       with_active_criteria: 'active'
     },
-    available_filters: %i(with_filter_criteria with_active_criteria sorted_by)
+    available_filters: %i[with_filter_criteria with_active_criteria sorted_by]
   )
 
   has_attached_file :logo,
@@ -36,7 +39,7 @@ class User < ActiveRecord::Base
     where('email like :filter', filter: "%#{filter}%")
   }
 
-  scope :with_active_criteria, lambda { |filter |
+  scope :with_active_criteria, lambda { |filter|
     case filter
     when 'vip' then where(valid_until: nil)
     when 'free' then where('valid_until <= ?', Date.today)
@@ -61,8 +64,11 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true
   validates :encrypted_password, presence: true
-  validates :currency, presence:  true
+  validates :currency, presence: true
   validate :ban_administrators
+
+  validates :terms_of_service, acceptance: true, allow_nil: false, if: :new_record?
+  attr_accessor :terms_of_service
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and # :confirmable
@@ -87,10 +93,9 @@ class User < ActiveRecord::Base
   end
 
   def country_name
-    unless country.blank?
-      value = ISO3166::Country[country]
-      value.translations[I18n.locale.to_s] || value.name
-    end
+    return if country.blank?
+    value = ISO3166::Country[country]
+    value.translations[I18n.locale.to_s] || value.name
   end
 
   def can_invoice?
@@ -124,7 +129,7 @@ class User < ActiveRecord::Base
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
+      user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.name
       user.skip_confirmation!
     end
@@ -141,27 +146,24 @@ class User < ActiveRecord::Base
   private
 
   def init_tenant_name
-    if self[:tenant].blank?
-      if Rails.env.production?
-        self[:tenant] = "user_#{ self[:id] }"
-      else
-        self[:tenant] = "user_#{ self[:id] }_#{ Rails.env }"
-      end
+    return unless self[:tenant].blank?
+    self[:tenant] = if Rails.env.production?
+                      "user_#{self[:id]}"
+                    else
+                      "user_#{self[:id]}_#{Rails.env}"
+                    end
 
-      save!
-    end  
+    save!
   end
 
   def init_tenant
-    unless Rails.env.test?
-      Apartment::Tenant.create(self[:tenant])
-    end
+    return if Rails.env.test?
+    Apartment::Tenant.create(self[:tenant])
   end
 
   def destroy_tenant
-    unless Rails.env.test?
-      Apartment::Tenant.drop(self[:tenant])
-    end
+    return if Rails.env.test?
+    Apartment::Tenant.drop(self[:tenant])
   end
 
   def set_default_values
@@ -171,12 +173,12 @@ class User < ActiveRecord::Base
     if is_administrator?
       self.valid_until = nil
     else
-      self.valid_until = Date.today if self.valid_until.nil?
+      self.valid_until = Date.today if valid_until.nil?
     end
   end
 
   def ban_administrators
-    if is_administrator? and self.banned
+    if is_administrator? && self.banned
       errors.add(:role_id, I18n.t('activerecord.errors.models.user.attributes.role_id.admin_banned'))
     end
   end

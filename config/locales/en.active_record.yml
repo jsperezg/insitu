@@ -53,6 +53,7 @@ en:
         confirmed: Confirmed
         logo_content_type: Logo content type
         logo: Logo
+        terms_of_service: I have read and accept the terms and conditions of the service
 
       payment_method:
         name: Name
@@ -237,6 +238,8 @@ en:
               invalid: has expired. Request a new password reset and try again.
             logo_content_type:
               invalid: Invalid file type. An image file was expected.
+            terms_of_service:
+              accepted: must be checked.
         service:
           used_elsewhere: This service is being referenced from one or more documents and can not be deleted.
           attributes:

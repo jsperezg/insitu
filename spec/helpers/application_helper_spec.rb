@@ -1,9 +1,10 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
+require 'rails_helper'
 
 RSpec.describe ApplicationHelper, type: :helper do
   it 'has_role' do
-    allow(helper).to receive(:current_user).and_return(create(:admin_user))
+    allow(helper).to receive(:current_user).and_return(create(:user, :admin))
     html_block = helper.has_role?('dummy|Administrator') do
       'Administrator'
     end

@@ -1,24 +1,19 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-# index, ban edit update destroy
+  let(:valid_attributes) { attributes_for :user, :admin }
 
-  # This should return the minimal set of attributes required to create a valid
-  # Unit. As you add validations to Unit, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    attributes_for :admin_user
-  }
-
-  let(:invalid_attributes) {
+  let(:invalid_attributes) do
     {
-        role_id:  Role.find_by(description: 'Administrator').try(:id) || create(:admin_role).try(:id),
-        valid_until: nil
+      role_id: Role.find_by(description: 'Administrator')&.id || create(:admin_role)&.id,
+      valid_until: nil
     }
-  }
+  end
 
   before(:each) do
-    @user = create(:admin_user)
+    @user = create(:user, :admin)
     sign_in @user
 
     Thread.current[:user] = @user
@@ -28,8 +23,8 @@ RSpec.describe UsersController, type: :controller do
     sign_out @user
   end
 
-  describe "GET #index" do
-    it "assigns all users as @users" do
+  describe 'GET #index' do
+    it 'assigns all users as @users' do
       user = User.create! valid_attributes
       get :index
       expect(assigns(:users)).to include(user)

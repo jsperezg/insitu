@@ -37,11 +37,11 @@ RSpec.describe User, type: :model do
     end
 
     it "can't be banned" do
-      user = create(:admin_user)
+      user = create(:user, :admin)
       user.banned = true
       expect(user.save).to be_falsey
 
-      expect(user.errors).to satisfy { |errors| errors.key?( :role_id )}
+      expect(user.errors).to have_key :role_id
     end
   end
 

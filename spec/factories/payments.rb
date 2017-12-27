@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
   factory :payment do
     txn_id '9GR92966H7651493J'
@@ -5,7 +7,7 @@ FactoryGirl.define do
     receiver_email { Rails.configuration.x.paypal_receiver_email }
     receiver_id 'RYG2VVDDN76XA'
     residence_country 'ES'
-    user_id { create(:expired_user).try(:id) }
+    user_id { create(:user, :expired)&.id }
     payer_id 'RYG2VVDDN76XA'
     payer_email { Faker::Internet.free_email }
     payer_status 'verified'
