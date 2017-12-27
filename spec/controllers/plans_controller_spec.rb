@@ -33,7 +33,7 @@ RSpec.describe PlansController, type: :controller do
   }
 
   before(:each) do
-    @user = create(:admin_user)
+    @user = create(:user, :admin)
     sign_in @user
 
     Thread.current[:user] = @user

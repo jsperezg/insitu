@@ -18,7 +18,7 @@ class Api::V1::SessionsController < Devise::SessionsController
       return
     end
 
-    if email.blank? or password.blank?
+    if email.blank? || password.blank?
       render status: 400, json: { message: 'The request MUST contain the user email and password.' }
       return
     end

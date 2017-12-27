@@ -53,6 +53,7 @@ es:
         confirmed: Confirmada
         logo_content_type: Tipo de archivo
         logo: Logotipo
+        terms_of_service: He leído y acepto los términos y condiciones del servicio
 
       payment_method:
         name: Nombre
@@ -239,6 +240,8 @@ es:
               invalid: ha caducado. Solicita un nuevo cambio de contraseña e intentalo de nuevo.
             logo_content_type:
               invalid: Tipo de archivo inválido. Se esperaba una imagen.
+            terms_of_service:
+              accepted: debe estar seleccionado.
 
         service:
           used_elsewhere: Este servicio está siendo referenciado desde algún documento y no puede ser borrado.

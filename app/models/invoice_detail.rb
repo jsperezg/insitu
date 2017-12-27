@@ -96,8 +96,6 @@ class InvoiceDetail < ActiveRecord::Base
                         .group('IfNull(services.description, "n/a")')
                         .sum('truncate((1 - discount / 100) * invoice_details.price * quantity, 2)')
 
-
-
     result[:customers] = InvoiceDetail
                          .includes(invoice: [:customer])
                          .where('invoices.date': interval)

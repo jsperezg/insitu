@@ -8,5 +8,11 @@ FactoryGirl.define do
     trait :default do
       default true
     end
+
+    trait :default do
+      label '22 %'
+      rate 22
+      default true
+    end
   end
 end

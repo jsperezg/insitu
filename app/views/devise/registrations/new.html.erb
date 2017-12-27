@@ -9,13 +9,13 @@
       <%= devise_error_messages! %>
 
       <div class="form-group">
-        <%= f.label :email,  t(:email) %>
+        <%= f.label :email %>
         <%= f.email_field :email, autofocus: true, class:'form-control', placeholder: t(:fill_email) %>
       </div>
 
       <div class="form-group">
-        <%= f.label :password, t(:password) %>
-        <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+        <%= f.label :password %>
+        <%= f.password_field :password, autocomplete: 'off', class: 'form-control' %>
 
         <% if @minimum_password_length %>
         <p class="help-block"><%= t(:minimum_length, len: @minimum_password_length) %><p class="help-block">
@@ -23,8 +23,17 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :password_confirmation, t(:passsword_confirmation) %>
-        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control' %>
+      </div>
+
+      <div class="form-check">
+        <%= f.label :terms_of_service, class: 'form-check-label' do %>
+          <%= f.check_box :terms_of_service %>
+          <%= link_to User.human_attribute_name(:terms_of_service),
+                      "#{root_url}/terms_and_conditions.html",
+                      target: '_blank' %>
+        <% end %>
       </div>
 
       <div class="form-group">
@@ -32,6 +41,6 @@
       </div>
     <% end %>
 
-    <%= render "devise/shared/links" %>
+    <%= render 'devise/shared/links' %>
   </div><!-- /.login-box-body -->
 </div><
