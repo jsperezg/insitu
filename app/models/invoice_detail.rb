@@ -115,6 +115,7 @@ class InvoiceDetail < ActiveRecord::Base
   private
 
   def set_default_values
+    return if new_record?
     self.vat_rate ||= Vat.find_by(default: true)&.rate
   end
 end

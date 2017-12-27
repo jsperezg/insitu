@@ -12,6 +12,10 @@ class Vat < ActiveRecord::Base
 
   after_save :maintain_default_flag
 
+  def self.default
+    Vat.find_by(default: true)
+  end
+
   private
 
   def maintain_default_flag

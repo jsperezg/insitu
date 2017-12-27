@@ -81,13 +81,6 @@ RSpec.describe InvoiceDetail, type: :model do
 
       expect(invoice_detail.errors).to have_key :vat_rate
     end
-
-    it 'is initialized to default vat rate' do
-      vat_rate = create(:vat, default: true)
-
-      invoice_detail = InvoiceDetail.new
-      expect(invoice_detail.vat_rate).to eq(vat_rate.rate)
-    end
   end
 
   describe 'discount' do
@@ -122,7 +115,7 @@ RSpec.describe InvoiceDetail, type: :model do
 
   describe 'removing invoice details' do
     let(:invoice_detail) { create(:invoice_detail) }
-    
+
     it 'leaves time log record pending for invoice' do
       time_log = create(:time_log, invoice_detail_id: invoice_detail.id)
 
