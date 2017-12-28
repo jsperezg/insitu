@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'vats/edit', type: :view do
   let(:user) { create(:user) }
-  let(:vat) { create(:vat) }
+  let(:vat) { Vat.first || create(:vat) }
 
   before(:each) do
     sign_in user
