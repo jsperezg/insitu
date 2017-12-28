@@ -123,7 +123,7 @@
                                     id: 'invoice_invoice_details_attributes_' + $index() + '_vat_rate'
                                  }"
                   title="<%= model_class.human_attribute_name(:vat_rate) %>">
-                <%= options_for_select Vat.order(rate: :asc).map { |vat| [vat.label, vat.rate] } %>
+                <%= vat_options_for_select :rate %>
               </select>
             </div>
 

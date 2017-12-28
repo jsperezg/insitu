@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# VAT rates controller
 class VatsController < SecuredController
-  before_action :set_vat, only: [:show, :edit, :update, :destroy]
+  before_action :set_vat, only: %i[show edit update destroy]
 
   # GET /vats
   # GET /vats.json
@@ -9,8 +12,7 @@ class VatsController < SecuredController
 
   # GET /vats/1
   # GET /vats/1.json
-  def show
-  end
+  def show; end
 
   # GET /vats/new
   def new
@@ -18,8 +20,7 @@ class VatsController < SecuredController
   end
 
   # GET /vats/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /vats
   # POST /vats.json
@@ -62,13 +63,14 @@ class VatsController < SecuredController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_vat
-      @vat = Vat.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def vat_params
-      params.require(:vat).permit(:label, :rate, :default)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_vat
+    @vat = Vat.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def vat_params
+    params.require(:vat).permit(:rate, :default)
+  end
 end

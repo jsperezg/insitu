@@ -3,10 +3,9 @@
 # Controller that manages invoice actions from the UI.
 class InvoicesController < SecuredController
   include InvoicingNotifications
+  include VatSelector
 
-  before_action :set_invoice, only: %i[
-    show print forward_email edit update destroy
-  ]
+  before_action :set_invoice, only: %i[show print forward_email edit update destroy]
 
   # GET /invoices
   # GET /invoices.json

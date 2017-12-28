@@ -1,5 +1,10 @@
+# frozen_string_literal: true
+
+# Controller for services related actions
 class ServicesController < SecuredController
-  before_action :set_service, only: [:show, :edit, :update, :destroy]
+  include VatSelector
+
+  before_action :set_service, only: %i[show edit update destroy]
 
   # GET /services
   # GET /services.json
@@ -24,8 +29,7 @@ class ServicesController < SecuredController
 
   # GET /services/1
   # GET /services/1.json
-  def show
-  end
+  def show; end
 
   # GET /services/new
   def new
@@ -33,8 +37,7 @@ class ServicesController < SecuredController
   end
 
   # GET /services/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /services
   # POST /services.json
@@ -98,13 +101,14 @@ class ServicesController < SecuredController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_service
-      @service = Service.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def service_params
-      params.require(:service).permit(:code, :description, :vat_id, :unit_id, :price, :active)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_service
+    @service = Service.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def service_params
+    params.require(:service).permit(:code, :description, :vat_id, :unit_id, :price, :active)
+  end
 end
