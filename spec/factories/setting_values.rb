@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :setting_value do
     value_i 1
 value_s "MyString"

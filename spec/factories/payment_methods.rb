@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :payment_method do
     sequence :name do |n|
       "Payment method #{n}"

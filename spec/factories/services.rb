@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :service do
     sequence :code do |n|
       "BS/#{n.to_s.rjust(4)}"
