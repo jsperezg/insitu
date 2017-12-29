@@ -150,12 +150,14 @@ es:
   delivery_note_details:
     delivery_note_detail: Detalle albarán
     title: Detalle albarán
+
   vats:
     title: Tipos de IVA
     create_title: Crear tipo de IVA
     edit_title: Editar tipo de IVA
     vat: IVA
-
+    tooltip: Gestiona los tipos de IVA disponibles.
+    help: Aquí puedes definir los tipos de IVA disponibles.
   units:
     title: Medidas
     unit: Medida

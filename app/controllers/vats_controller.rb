@@ -23,43 +23,29 @@ class VatsController < SecuredController
   def edit; end
 
   # POST /vats
-  # POST /vats.json
   def create
     @vat = Vat.new(vat_params)
 
-    respond_to do |format|
-      if @vat.save
-        format.html { redirect_to user_vats_path(current_user.id), notice: t(:successfully_created, item: t('vats.vat')) }
-        format.json { render :show, status: :created, location: @vat }
-      else
-        format.html { render :new }
-        format.json { render json: @vat.errors, status: :unprocessable_entity }
-      end
+    if @vat.save
+      redirect_to user_vats_path(current_user.id), notice: t(:successfully_created, item: t('vats.vat'))
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /vats/1
-  # PATCH/PUT /vats/1.json
   def update
-    respond_to do |format|
-      if @vat.update(vat_params)
-        format.html { redirect_to user_vats_path(current_user.id), notice: t(:successfully_updated, item: t('vats.vat')) }
-        format.json { respond_with_bip @vat }
-      else
-        format.html { render :edit }
-        format.json { respond_with_bip @vat }
-      end
+    if @vat.update(vat_params)
+      redirect_to user_vats_path(current_user.id), notice: t(:successfully_updated, item: t('vats.vat'))
+    else
+      render :edit
     end
   end
 
   # DELETE /vats/1
-  # DELETE /vats/1.json
   def destroy
     @vat.destroy
-    respond_to do |format|
-      format.html { redirect_to user_vats_path(current_user.id), notice: t(:successfully_destroyed, item: t('vats.vat')) }
-      format.json { head :no_content }
-    end
+    redirect_to user_vats_path(current_user.id), notice: t(:successfully_destroyed, item: t('vats.vat'))
   end
 
   private

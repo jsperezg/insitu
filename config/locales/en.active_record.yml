@@ -155,8 +155,7 @@ en:
         label_short: Label
         label_long: Description
       vat:
-        label: Label
-        rate: Value
+        rate: VAT (%)
         default: Default
       estimate:
         number: Number

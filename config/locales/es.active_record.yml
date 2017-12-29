@@ -156,8 +156,7 @@ es:
         label_short: Etiqueta
         label_long: Descripción
       vat:
-        label: Etiqueta
-        rate: Valor
+        rate: IVA (%)
         default: Por defecto
       estimate:
         number: Número

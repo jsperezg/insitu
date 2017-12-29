@@ -156,6 +156,8 @@ en:
     create_title: Create VAT rate
     edit_title: Edit VAT rate
     vat: VAT
+    tooltip: Manage the available VAT rates.
+    help: You can define here the available VAT rates.
 
   units:
     title: Measurement units
