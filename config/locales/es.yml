@@ -158,11 +158,14 @@ es:
     vat: IVA
     tooltip: Gestiona los tipos de IVA disponibles.
     help: Aquí puedes definir los tipos de IVA disponibles.
+
   units:
     title: Medidas
     unit: Medida
     edit_title: Editar medida
     create_title: Crear medida
+    tooltip: Aquí puedes definir las unidades de medida para los servicios ofrecidos.
+    help: Define las unidades de medida que mejor aplican a los servicios ofrecidos, como piezas u horas.
 
   estimates:
     title: Presupuestos

@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
+# Controller for unit related actions
 class UnitsController < SecuredController
-  before_action :set_unit, only: [:show, :edit, :update, :destroy]
+  before_action :set_unit, only: %i[show edit update destroy]
 
   # GET /units
   # GET /units.json
@@ -9,8 +12,7 @@ class UnitsController < SecuredController
 
   # GET /units/1
   # GET /units/1.json
-  def show
-  end
+  def show; end
 
   # GET /units/new
   def new
@@ -18,63 +20,46 @@ class UnitsController < SecuredController
   end
 
   # GET /units/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /units
-  # POST /units.json
   def create
     @unit = Unit.new(unit_params)
 
-    respond_to do |format|
-      if @unit.save
-        format.html { redirect_to user_units_path(current_user.id), notice: t(:successfully_created, item: t('units.unit')) }
-        format.json { render :show, status: :created, location: @unit }
-      else
-        format.html { render :new }
-        format.json { render json: @unit.errors, status: :unprocessable_entity }
-      end
+    if @unit.save
+      redirect_to user_units_path(current_user.id), notice: t(:successfully_created, item: t('units.unit'))
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /units/1
-  # PATCH/PUT /units/1.jsonservice
   def update
-    respond_to do |format|
-      if @unit.update(unit_params)
-        format.html { redirect_to user_units_path(current_user.id), notice: t(:successfully_updated, item: t('units.unit')) }
-        format.json { respond_with_bip @unit }
-      else
-        format.html { render :edit }
-        format.json { respond_with_bip @unit }
-      end
+    if @unit.update(unit_params)
+      redirect_to user_units_path(current_user.id), notice: t(:successfully_updated, item: t('units.unit'))
+    else
+      render :edit
     end
   end
 
   # DELETE /units/1
-  # DELETE /units/1.json
   def destroy
     if @unit.destroy
-      respond_to do |format|
-        format.html { redirect_to user_units_path(current_user.id), notice: t(:successfully_destroyed, item: t('units.unit')) }
-        format.json { head :no_content }
-      end
+      redirect_to user_units_path(current_user.id), notice: t(:successfully_destroyed, item: t('units.unit'))
     else
-      respond_to do |format|
-        format.html { redirect_to user_units_path(current_user.id), alert: @unit.errors.full_messages.join('<br>') }
-        format.json { render json: @unit.errors, status: :unprocessable_entity }
-      end
+      redirect_to user_units_path(current_user.id), alert: @unit.errors.full_messages.join('<br>')
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_unit
-      @unit = Unit.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def unit_params
-      params.require(:unit).permit(:label_short, :label_long)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_unit
+    @unit = Unit.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def unit_params
+    params.require(:unit).permit(:label_short, :label_long)
+  end
 end

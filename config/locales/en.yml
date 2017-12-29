@@ -164,6 +164,8 @@ en:
     unit: Measurement unit
     edit_title: Edit measurement unit
     create_title: Create measurement unit
+    tooltip: You can define here the units used to measure the services that you offer.
+    help: Define the measurement units that better apply to the offered services, like pieces or hours.
 
   estimates:
     title: Estimates
