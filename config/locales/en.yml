@@ -84,8 +84,10 @@ en:
   close: Close
 
   payment_methods:
-      title: Payment methods
-      not_found: No payment methods defined. Can't generate invoice.
+    title: Payment methods
+    not_found: No payment methods defined. Can't generate invoice.
+    tooltip: Manage how do you want to get paid.
+    help: Create or edit payment methods. The text that you type into the Note for invoice field will appear at the bottom of your invoices.
 
   services:
     service: Service

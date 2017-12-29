@@ -86,6 +86,8 @@ es:
   payment_methods:
     title: Métodos de pago
     not_found: No hay métodos de pago definidos. No se puede facturar.
+    tooltip: Gestiona como quieres recibir cobros.
+    help: Crea o edita formas de pago. El texto que introduzcas en la caja de 'Anotación en factura' aparecerá al pié de tus facturas con dicha forma de pago.
 
   services:
     service: Servicio
