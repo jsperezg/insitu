@@ -2,10 +2,11 @@
 
 require 'rails_helper'
 
-describe 'api/v1/vats/show/', type: :view  do
+describe 'api/v1/vats/show/', type: :view do
+  let(:vat) { Vat.first || create(:vat) }
+
   before do
-    Vat.delete_all
-    assign(:vat, create(:vat))
+    assign(:vat, vat)
   end
 
   it 'Renders the requested vat' do
@@ -13,7 +14,6 @@ describe 'api/v1/vats/show/', type: :view  do
 
     vat = JSON.parse(rendered)
     expect(vat).to  have_key('id')
-    expect(vat).to have_key('label')
     expect(vat).to have_key('rate')
     expect(vat).to have_key('default')
   end

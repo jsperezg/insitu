@@ -82,10 +82,13 @@ es:
   from_date: Desde
   to_date: Hasta
   close: Cerrar
+  cancel_account_confirmation: ¿Estas seguro de que quieres cancelar tu cuenta en InSitu y borrar todos los datos? Esta acción es irreversible.
 
   payment_methods:
     title: Métodos de pago
     not_found: No hay métodos de pago definidos. No se puede facturar.
+    tooltip: Gestiona como quieres recibir cobros.
+    help: Crea o edita formas de pago. El texto que introduzcas en la caja de 'Anotación en factura' aparecerá al pié de tus facturas con dicha forma de pago.
 
   services:
     service: Servicio
@@ -95,6 +98,8 @@ es:
     all_records: Todos
     only_active: Solo activos
     only_inactive: Solo inactivos
+    tooltip: Gestiona los servicios ofrecidos y el catálogo de productos.
+    help: Desde esta vista puedes gestionar los datos de los productos y servicios que ofreces a tus clientes.
 
   customers:
     customer: Cliente
@@ -102,12 +107,15 @@ es:
     create_title: Nuevo cliente
     edit_title: Editar cliente
     select_customer_placeholder: Teclea para buscar clientes
+    tooltip: Gestiona los datos de tus clientes.
+    help: Gestiona los datos de tus clientes tales como sus nombres, información de facturación y contacto.
 
   projects:
     project: Proyecto
     title: Proyectos
     create_title: Nuevo proyecto
     edit_title: Editar proyecto
+    tooltip: Gestión de proyectos y time tracker.
 
   tasks:
     task: Tarea
@@ -130,6 +138,8 @@ es:
     edit_title: Editar factura
     print_title: Imprimir factura
     amended_invoice_annotation: Esta factura corrige la factura número %{number} generada el %{date}
+    tooltip: Crea facturas para tus clientes.
+    help: Crea facturas para tus clientes, exportalas a formato PDF o remítelas por correo electrónico.
     list:
       cancel: Cancelar
       cancel_confirmation: ¿Deseas cancelar la factura %{number}?
@@ -144,21 +154,28 @@ es:
     print_title: Imprimir albarán
     nothing_to_invoice: Albarán vacio. No se puede generar la factura.
     invoice_title: Facturar
+    tooltip: Gestiona los albaranes para tus clientes.
+    help: Crea albaranes para tus clientes. Genera la factura desde el albarán en un solo click.
 
   delivery_note_details:
     delivery_note_detail: Detalle albarán
     title: Detalle albarán
+
   vats:
     title: Tipos de IVA
     create_title: Crear tipo de IVA
     edit_title: Editar tipo de IVA
     vat: IVA
+    tooltip: Gestiona los tipos de IVA disponibles.
+    help: Aquí puedes definir los tipos de IVA disponibles.
 
   units:
     title: Medidas
     unit: Medida
     edit_title: Editar medida
     create_title: Crear medida
+    tooltip: Aquí puedes definir las unidades de medida para los servicios ofrecidos.
+    help: Define las unidades de medida que mejor aplican a los servicios ofrecidos, como piezas u horas.
 
   estimates:
     title: Presupuestos
@@ -168,6 +185,8 @@ es:
     create_title: Crear presupuesto
     nothing_to_invoice: Presupuesto vacio. No se puede generar la factura.
     invoice_title: Facturar
+    tooltip: Crea presupuestos para tus clientes.
+    help: Crea presupuestos para tus clientes. Gestiona su estado, genera la factura desde el presupuesto en un solo click.
 
   dashboard:
     title: Panel de control
@@ -182,3 +201,5 @@ es:
     customers: Clientes
     totals: Totales
     services: Servicios
+    tooltip: En esta sección tienes una vista general del estado de tu negocio.
+    help: Aquí puedes ver los totales para el ejercicio y mes actual, los últimos 12 meses o el ejercicio anterior. Los periodos sin datos no serán mostrados.

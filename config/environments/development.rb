@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
+  # Settings specified here will take precedence over those in
+  # config/application.rb.
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -30,8 +33,8 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  # Asset digests allow you to set far-future HTTP expiration dates on all assets,
-  # yet still be able to expire them through the digest params.
+  # Asset digests allow you to set far-future HTTP expiration dates on all
+  # assets yet still be able to expire them through the digest params.
   config.assets.digest = true
 
   # Adds additional error checking when serving assets at runtime.
@@ -48,16 +51,16 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      address: 'mail.your-server.de',
-      port: 587,
-      domain: 'insitu.tools',
-      user_name: ENV['mail_username'],
-      password: ENV['mail_password'],
-      authentication: :plain,
-      enable_starttls_auto: true
+    address: 'mail.your-server.de',
+    port: 587,
+    domain: 'insitu.tools',
+    user_name: ENV['mail_username'],
+    password: ENV['mail_password'],
+    authentication: :plain,
+    enable_starttls_auto: true
   }
 
-  Rails.application.routes.default_url_options[:host] = "localhost:3000"
+  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
 
   # Paypal integration
   config.x.paypal_validate_ipn_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_notify-validate'

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :estimate_detail do
     estimate_id { Estimate.first.try(:id) || create(:estimate).id }
     service_id { Service.first.try(:id) || create(:service).try(:id) }

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :plan do
     sequence :description do |n|
       "#{ n } month"

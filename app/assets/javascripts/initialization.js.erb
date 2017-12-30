@@ -1,34 +1,9 @@
-function activateBestInPlace() {
-  var bestInPlace = $(".best_in_place");
-
-  if (bestInPlace.length) {
-    bestInPlace.best_in_place();
-
-    jQuery(document).on('best_in_place:error', function (event, request, error) {
-      'use strict';
-      // Display all error messages from server side validation
-      jQuery.each(jQuery.parseJSON(request.responseText), function (index, value) {
-        var container = jQuery('#bip_error_message');
-
-        if (typeof value === "object") {value = index + " " + value.toString(); }
-
-        container.html(value);
-        container.show();
-        window.setTimeout(function() { container.hide(); }, 2000);
-      });
-    });
-  }
-}
-
 if (typeof jQuery !== 'undefined') {
   $.ajaxSetup({ cache: false });
 
   $(document).on("page:change", function () {
     var documentIds = $(".document-id"),
         pullDownElements = $('.pull-down');
-
-    /* Activating Best In Place */
-    activateBestInPlace();
 
     if (documentIds.length) {
       documentIds.inputmask("A{1,3}/9999/999999");

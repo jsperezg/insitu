@@ -1,5 +1,21 @@
-<%= render 'resume', title: t('dashboard.current_year'), data: @reports[:current_year], collapsed: false %>
-<%= render 'resume', title: t('dashboard.current_month'), data: @reports[:current_month], collapsed: false %>
-<%= render 'resume', title: t('dashboard.last_year'), data: @reports[:last_year], collapsed: true %>
-<%= render 'resume', title: t('dashboard.past_year'), data: @reports[:past_year], collapsed: true %>
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading"><%=t 'dashboard.tooltip' %></h4>
+  <p><%=t 'dashboard.help' %></p>
+</div>
+
+<% unless @reports[:current_year][:totals][:net].zero? %>
+  <%= render 'resume', title: t('dashboard.current_year'), data: @reports[:current_year], collapsed: false %>
+<% end %>
+
+<% unless @reports[:current_month][:totals][:net].zero? %>
+  <%= render 'resume', title: t('dashboard.current_month'), data: @reports[:current_month], collapsed: false %>
+<% end %>
+
+<% unless @reports[:last_year][:totals][:net].zero? %>
+  <%= render 'resume', title: t('dashboard.last_year'), data: @reports[:last_year], collapsed: true %>
+<% end %>
+
+<% unless @reports[:past_year][:totals][:net].zero? %>
+  <%= render 'resume', title: t('dashboard.past_year'), data: @reports[:past_year], collapsed: true %>
+<% end %>
 

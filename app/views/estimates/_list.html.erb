@@ -10,7 +10,7 @@
         <th class="col-lg-1 col-md-2 hidden-xs hidden-sm text-center">
           <%= filterrific_sorting_link(@filterrific, :date, label: model_class.human_attribute_name(:date)) %>
         </th>
-        <th class="col-lg-6 col-md-3 col-xs-4 col-sm-7">
+        <th class="col-lg-5 col-md-3 col-xs-4 col-sm-6">
           <%= filterrific_sorting_link(@filterrific, :customer, label: model_class.human_attribute_name(:customer_id)) %>
         </th>
         <th class="col-lg-1 col-md-2 hidden-xs hidden-sm text-center">
@@ -19,12 +19,12 @@
         <th class="col-lg-1 col-md-2 col-sm-2 hidden-xs text-right">
           <%= model_class.human_attribute_name(:total) %>
         </th>
-        <th class="col-lg-1 col-md-1 col-sm-2 col-xs-3"></th>
+        <th class="col-lg-2 col-md-1 col-sm-3 col-xs-4"></th>
       </tr>
       </thead>
       <tbody>
       <% if estimates.empty? %>
-          <tr><td colspan="100%"><%=t 'helpers.tables.empty' %></td></tr>
+        <tr><td colspan="100%"><%=t 'helpers.tables.empty' %></td></tr>
       <% end %>
 
       <% estimates.each do |estimate| %>
@@ -46,57 +46,42 @@
             </td>
             <td class="text-center hidden-xs hidden-sm"><%=ldate estimate.valid_until %></td>
             <td class="text-right hidden-xs"><%= number_to_currency(estimate.total, unit: current_currency_symbol, format: '%n %u') %></td>
-            <td>
-              <div class="btn-group pull-right">
-                <button type="button" class="btn btn-primary btn-block btn-sm btn-flat dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-bars" aria-hidden="true"></i>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li>
-                    <%= link_to edit_user_estimate_path(current_user, estimate),
-                                  method: :get do %>
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                        <%=t 'helpers.links.edit' %>
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to user_estimate_path(current_user, estimate),
-                                method: :get do %>
-                      <i class="fa fa-print" aria-hidden="true"></i>
-                      <%=t 'helpers.links.print' %>
+            <td class="text-right">
+              <%= link_to edit_user_estimate_path(current_user, estimate),
+                          title: t('helpers.links.edit'),
+                          class: 'hidden-xs hidden-sm' do %>
+                <i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i>
+              <% end %>
 
-                    <% end %>
-                  </li>
-                  <li role="separator" class="divider"></li>
-                  <li>
-                    <%= link_to forward_email_user_estimate_url(current_user, estimate),
-                              data: { confirm: t('helpers.links.confirm', :default => 'Are you sure?'), disable_with: t(:please_wait) } do %>
-                        <i class="fa fa-envelope"></i> <%=t 'helpers.send_by_email' %>
-                    <% end %>
-                  </li>
-                  <li role="separator" class="divider"></li>
-                  <li>
-                    <%= link_to invoice_user_estimate_url(current_user, estimate),
-                                data: { confirm: t('helpers.links.confirm', :default => 'Are you sure?'), disable_with: t(:please_wait) } do %>
-                        <i class="fa fa-money"></i> <%=t 'estimates.invoice_title' %>
-                    <% end %>
-                  </li>
-                  <li role="separator" class="divider"></li>
-                  <li>
-                    <%= link_to user_estimate_path(current_user, estimate),
-                          :method => :delete,
-                          :data => {
+              <%= link_to user_estimate_path(current_user, estimate),
+                          title: t('helpers.links.print'),
+                          class: 'hidden-xs hidden-sm' do %>
+                <i class="fa fa-2x fa-print" aria-hidden="true"></i>
+              <% end %>
+
+              <%= link_to forward_email_user_estimate_url(current_user, estimate),
+                          data: { confirm: t('helpers.links.confirm', default: 'Are you sure?'), disable_with: t(:please_wait) },
+                          title: t('helpers.send_by_email') do %>
+                <i class="fa fa-2x fa-envelope"></i>
+              <% end %>
+
+              <%= link_to invoice_user_estimate_url(current_user, estimate),
+                          data: { confirm: t('helpers.links.confirm', default: 'Are you sure?'), disable_with: t(:please_wait) },
+                          title: t('estimates.invoice_title') do %>
+                <i class="fa fa-2x fa-money"></i>
+              <% end %>
+
+              <%= link_to user_estimate_path(current_user, estimate),
+                          method: :delete,
+                          title: t('helpers.links.destroy'),
+                          data: {
                               'original-title' => t('helpers.links.confirm', :default => 'Are you sure?'),
                               confirm: t(:removal_confirmation, model: model_class.model_name.human.downcase, description: estimate.number),
                               commit: t(:continue),
                               cancel: t(:cancel)
                           } do %>
-                      <i class="fa fa-trash-o" aria-hidden="true"></i>
-                      <%=t 'helpers.links.destroy' %>
-                    <% end %>
-                  </li>
-                </ul>
-              </div>
+                <i class="fa fa-2x fa-trash-o" aria-hidden="true"></i>
+              <% end %>
             </td>
           <% end %>
         <% end %>

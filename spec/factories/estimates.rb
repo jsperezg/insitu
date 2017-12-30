@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :estimate do
     customer_id { Customer.first.try(:id) || create(:customer).try(:id) }
     date { Date.today }

@@ -2,7 +2,7 @@ include Settings
 
 config = Rails.configuration.database_configuration
 
-if Apartment::Tenant.current_tenant.blank? or Apartment::Tenant.current_tenant == config[Rails.env]['database']
+if Apartment::Tenant.current.blank? or Apartment::Tenant.current == config[Rails.env]['database']
   %w(project_status.active project_status.suspended project_status.cancelled project_status.closed).each do |state|
       ProjectStatus.find_by(name: state) || ProjectStatus.create(name: state)
   end

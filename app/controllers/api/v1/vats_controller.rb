@@ -44,6 +44,7 @@ class Api::V1::VatsController < ApiController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_vat
     @vat = Vat.find(params[:id])
@@ -51,6 +52,6 @@ class Api::V1::VatsController < ApiController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def vat_params
-    params.require(:vat).permit(:label, :rate, :default)
+    params.require(:vat).permit(:rate, :default)
   end
 end

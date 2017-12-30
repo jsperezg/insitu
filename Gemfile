@@ -17,8 +17,8 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'apartment'
 gem 'apartment-sidekiq'
-gem 'best_in_place', '~> 3.0.1'
 gem 'bootstrap-filestyle-rails'
+gem 'cancancan', '~> 2.0'
 gem 'chartkick'
 gem 'ckeditor_rails'
 gem 'cookies_eu'
@@ -42,6 +42,7 @@ gem 'pdfjs_rails'
 gem 'prawn'
 gem 'prawn-table'
 gem 'rack-cors', require: 'rack/cors'
+gem 'rectify'
 gem 'sidekiq'
 gem 'sidekiq-client-cli'
 gem 'simple_token_authentication', '~> 1.0'
@@ -52,7 +53,7 @@ gem 'will_paginate-bootstrap'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
-gem  'yajl-ruby'
+gem 'yajl-ruby'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
@@ -64,7 +65,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'unicorn'
 
 group :development do
-  gem 'capistrano', '~> 3.4'
+  gem 'capistrano', '~> 3.9'
   gem 'capistrano-bundler', '~> 1.1.2'
   gem 'capistrano-figaro-yml', '~> 1.0.2'
   gem 'capistrano-linked-files'
@@ -78,7 +79,7 @@ end
 
 group :development, :test do
   gem 'byebug'
-  gem 'factory_girl_rails', '~> 4.0'
+  gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails', '~> 3.0'
   gem 'rspec-sidekiq'
@@ -86,6 +87,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'simplecov', require: false
   gem 'database_cleaner'
+  gem 'simplecov', require: false
 end

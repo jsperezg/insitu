@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :unit do
     sequence :label_short do |n|
       "U#{n}"

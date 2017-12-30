@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :time_log do
     sequence :description do |n|
       "Time log #{ n }"

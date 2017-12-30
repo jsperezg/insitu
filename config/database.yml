@@ -13,9 +13,10 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 3
-  username: jsperezg
-  password: a01677
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   socket: /var/run/mysqld/mysqld.sock
+  host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
 
 development:
   <<: *default

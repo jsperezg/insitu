@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'vats/edit', type: :view do
   let(:user) { create(:user) }
-  let(:vat) { Vat.default || create(:vat, :default) }
+  let(:vat) { Vat.first || create(:vat) }
 
   before(:each) do
     sign_in user
@@ -17,7 +17,6 @@ RSpec.describe 'vats/edit', type: :view do
     render
 
     assert_select 'form[action=?][method=?]', user_vat_path(user, vat), 'post' do
-      assert_select 'input#vat_label[name=?]', 'vat[label]'
       assert_select 'input#vat_rate[name=?]', 'vat[rate]'
     end
   end

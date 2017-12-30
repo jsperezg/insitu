@@ -44,14 +44,10 @@ class TasksController < SecuredController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
-    respond_to do |format|
-      if @task.update(task_params)
-        format.html { redirect_to edit_user_project_task_url(current_user, @project, @task), notice: t(:successfully_updated, item: t('tasks.task')) }
-        format.json { respond_with_bip @task }
-      else
-        format.html { render :edit }
-        format.json { respond_with_bip @task }
-      end
+    if @task.update(task_params)
+      redirect_to edit_user_project_task_url(current_user, @project, @task), notice: t(:successfully_updated, item: t('tasks.task'))
+    else
+      render :edit
     end
   end
 
