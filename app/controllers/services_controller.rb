@@ -10,13 +10,13 @@ class ServicesController < SecuredController
   # GET /services.json
   def index
     @filterrific = initialize_filterrific(
-        Service,
-        params[:filterrific],
-        select_options: {
-            with_active_criteria: Service.active_filter_options
-        }
+      Service,
+      params[:filterrific],
+      select_options: {
+        with_active_criteria: Service.active_filter_options
+      }
 
-    ) or return
+    ) || return
 
     @services = @filterrific.find.page(params[:page])
 
@@ -40,32 +40,22 @@ class ServicesController < SecuredController
   def edit; end
 
   # POST /services
-  # POST /services.json
   def create
     @service = Service.new(service_params)
 
-    respond_to do |format|
-      if @service.save
-        format.html { redirect_to user_services_path(current_user.id), notice: t(:successfully_created, item: t('services.service')) }
-        format.json { render :show, status: :created, location: @service }
-      else
-        format.html { render :new }
-        format.json { render json: @service.errors, status: :unprocessable_entity }
-      end
+    if @service.save
+      redirect_to user_services_path(current_user.id), notice: t(:successfully_created, item: t('services.service'))
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /services/1
-  # PATCH/PUT /services/1.json
   def update
-    respond_to do |format|
-      if @service.update(service_params)
-        format.html { redirect_to user_services_path(current_user.id), notice: t(:successfully_updated, item: t('services.service')) }
-        format.json { respond_with_bip @service }
-      else
-        format.html { render :edit }
-        format.json { respond_with_bip @service }
-      end
+    if @service.update(service_params)
+      redirect_to user_services_path(current_user.id), notice: t(:successfully_updated, item: t('services.service'))
+    else
+      render :edit
     end
   end
 
@@ -73,21 +63,15 @@ class ServicesController < SecuredController
   # DELETE /services/1.json
   def destroy
     if @service.destroy
-      respond_to do |format|
-        format.html { redirect_to user_services_url(current_user.id), notice: t(:successfully_destroyed, item: t('services.service')) }
-        format.json { head :no_content }
-      end
+      redirect_to user_services_url(current_user.id), notice: t(:successfully_destroyed, item: t('services.service'))
     else
-      respond_to do |format|
-        format.html { redirect_to user_services_url(current_user.id), alert: @service.errors.full_messages.join('<br>') }
-        format.json { render json: @service.errors, status: :unprocessable_entity }
-      end
+      redirect_to user_services_url(current_user.id), alert: @service.errors.full_messages.join('<br>')
     end
   end
 
   def csv_template
     customer_converter = CsvToServiceConverter.new
-    send_data customer_converter.template, type: Mime::CSV, filename: "#{ Service.model_name.human(count: 2) }.csv"
+    send_data customer_converter.template, type: Mime::CSV, filename: "#{Service.model_name.human(count: 2)}.csv"
   end
 
   def csv_import

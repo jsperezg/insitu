@@ -97,6 +97,8 @@ es:
     all_records: Todos
     only_active: Solo activos
     only_inactive: Solo inactivos
+    tooltip: Gestiona los servicios ofrecidos y el catálogo de productos.
+    help: Desde esta vista puedes gestionar los datos de los productos y servicios que ofreces a tus clientes.
 
   customers:
     customer: Cliente

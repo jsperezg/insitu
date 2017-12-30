@@ -97,6 +97,8 @@ en:
     all_records: All records
     only_active: Only active
     only_inactive: Only inactive
+    tooltip: Manage the services offered and the product catalog.
+    help: From this view you can manage the data for the products and services that you offer to your customers.
 
   customers:
     customer: Customer
