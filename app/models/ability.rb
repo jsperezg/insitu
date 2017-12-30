@@ -16,12 +16,13 @@ class Ability
 
     alias_action :index, :show, :new, :create, :edit, :update, :destroy, to: :crud
 
-    can :crud, User if user.administrator?
+    can :crud, User
     can :ban, User do |insitu_user|
-      user.administrator? && !insitu_user.administrator?
+      !insitu_user.administrator?
     end
 
-    can :manage, Plan if user.administrator?
+    can :manage, Plan
+    can :manage, Project
   end
 
   def define_user_permissions(user)

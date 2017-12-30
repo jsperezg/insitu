@@ -115,6 +115,7 @@ es:
     title: Proyectos
     create_title: Nuevo proyecto
     edit_title: Editar proyecto
+    tooltip: Gestión de proyectos y time tracker.
 
   tasks:
     task: Tarea

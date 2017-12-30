@@ -115,6 +115,7 @@ en:
     title: Projects
     create_title: New project
     edit_title: Edit project
+    tooltip: Project management and time tracker.
 
   tasks:
     task: Task
