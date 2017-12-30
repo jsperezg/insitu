@@ -110,12 +110,22 @@
       </div>
     </div>
     <div class="box-footer">
-      <%= f.submit t(:update), class: 'btn btn-primary btn-block btn-flat', data: { disable_with: t('please_wait')} %>
+      <%= f.submit t(:update),
+                   class: 'btn btn-primary btn-block btn-flat',
+                   data: { disable_with: t('please_wait')} %>
 
-      <% has_role?('Usuario') do %>
-        <p class="pull-right">
-          <%= button_to t(:cancel_account), registration_path(resource_name), data: { confirm: t(:are_you_sure) }, method: :delete, class: 'btn btn-danger' %>
-        </p>
+      <% if can? :destroy, current_user %>
+        <br>
+        <%= button_to t(:cancel_account),
+                      registration_path(resource_name),
+                      data: {
+                          'original-title' => t('helpers.links.confirm', default: 'Are you sure?'),
+                          confirm: t(:cancel_account_confirmation),
+                          commit: t(:continue),
+                          cancel: t(:cancel)
+                      },
+                      method: :delete,
+                      class: 'btn btn-danger btn-block btn-flat' %>
       <% end %>
     </div>
   </div>

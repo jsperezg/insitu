@@ -1,6 +1,6 @@
 json.net period_data[:net]
 json.discounts period_data[:discounts]
-json.tax period_data[:tax] unless current_user.has_cif?
+json.tax period_data[:tax] if current_user.show_irpf?
 
 json.vat do
   period_data[:vat].each do |rate, total|
@@ -8,8 +8,10 @@ json.vat do
   end
 end
 
-json.customers do
-  period_data[:customers].each do |name, total|
-    json.set! name, total
+if period_data[:customers]
+  json.customers do
+    period_data[:customers].each do |name, total|
+      json.set! name, total
+    end
   end
 end

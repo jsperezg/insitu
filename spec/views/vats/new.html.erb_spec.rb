@@ -17,7 +17,6 @@ RSpec.describe 'vats/new', type: :view do
     render
 
     assert_select 'form[action=?][method=?]', user_vats_path(user), 'post' do
-      assert_select 'input#vat_label[name=?]', 'vat[label]'
       assert_select 'input#vat_rate[name=?]', 'vat[rate]'
     end
   end

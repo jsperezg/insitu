@@ -12,9 +12,7 @@ class RenewSubscriptionJob < ActiveJob::Base
 
   def perform(*payment_id)
     payment = Payment.find_by(id: payment_id)
-    unless payment.nil?
-      send_invoice(payment)
-    end
+    send_invoice(payment) unless payment.nil?
   end
 
   def send_invoice(payment)
@@ -24,7 +22,7 @@ class RenewSubscriptionJob < ActiveJob::Base
       invoice = generate_invoice(payment)
       send_invoice_by_email(billing_account, invoice)
     rescue => e
-        raise e
+      raise e
     ensure
       Appartment::Tenant.switch! unless Rails.env.test?
     end
@@ -55,9 +53,7 @@ class RenewSubscriptionJob < ActiveJob::Base
 
   def find_or_create_payment_method(method_name)
     payment_method = PaymentMethod.find_by(name: method_name)
-    if payment_method.nil?
-      payment_method = PaymentMethod.create!(name: method_name)
-    end
+    payment_method = PaymentMethod.create!(name: method_name) if payment_method.nil?
 
     payment_method
   end
@@ -112,7 +108,6 @@ class RenewSubscriptionJob < ActiveJob::Base
     if vat.nil?
       vat = Vat.create!(
         rate: vat_rate,
-        label: "#{vat_rate} %",
         default: false
       )
     end
