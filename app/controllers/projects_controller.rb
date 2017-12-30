@@ -1,13 +1,18 @@
+# frozen_string_literal: true
+
+# Controller in charge of managing projects
 class ProjectsController < SecuredController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: %i[show edit update destroy]
 
   # GET /projects
   # GET /projects.json
   def index
+    authorize! :index, Project
+
     @filterrific = initialize_filterrific(
-        Project,
-        params[:filterrific]
-    ) or return
+      Project,
+      params[:filterrific]
+    ) || return
 
     @projects = @filterrific.find.page(params[:page])
 
@@ -21,20 +26,24 @@ class ProjectsController < SecuredController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    authorize! :show, @project
   end
 
   # GET /projects/new
   def new
+    authorize! :create, Project
     @project = Project.new(project_status: ProjectStatus.find_by(name: 'project_status.active'))
   end
 
   # GET /projects/1/edit
   def edit
+    authorize! :update, @project
   end
 
   # POST /projects
   # POST /projects.json
   def create
+    authorize! :create, Project
     @project = Project.new(project_params)
 
     respond_to do |format|
@@ -51,6 +60,7 @@ class ProjectsController < SecuredController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+    authorize! :update, @project
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to user_projects_path(current_user), notice: t(:successfully_updated, item: t('projects.project')) }
@@ -65,6 +75,7 @@ class ProjectsController < SecuredController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
+    authorize! :destroy, @project
     @project.destroy
     respond_to do |format|
       format.html { redirect_to user_projects_url(current_user), notice: t(:successfully_destroyed, item: t('projects.project')) }
