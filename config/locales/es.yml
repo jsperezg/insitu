@@ -152,6 +152,8 @@ es:
     print_title: Imprimir albarán
     nothing_to_invoice: Albarán vacio. No se puede generar la factura.
     invoice_title: Facturar
+    tooltip: Gestiona los albaranes para tus clientes.
+    help: Crea albaranes para tus clientes. Genera la factura desde el albarán en un solo click.
 
   delivery_note_details:
     delivery_note_detail: Detalle albarán

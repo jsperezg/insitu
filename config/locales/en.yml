@@ -152,6 +152,8 @@ en:
     print_title: Print delivery note
     nothing_to_invoice: This delivery note is empty. Can't generate invoice.
     invoice_title: Invoice
+    tooltip: Manage the delivery notes for your customers.
+    help: Create delivery notes for your customers. Generate the invoice from the delivery note in a single click.
 
   delivery_notes_details:
     delivery_note_detail: Delivery note details
