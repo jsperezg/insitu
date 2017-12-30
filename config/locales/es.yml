@@ -82,6 +82,7 @@ es:
   from_date: Desde
   to_date: Hasta
   close: Cerrar
+  cancel_account_confirmation: ¿Estas seguro de que quieres cancelar tu cuenta en InSitu y borrar todos los datos? Esta acción es irreversible.
 
   payment_methods:
     title: Métodos de pago
@@ -193,3 +194,5 @@ es:
     customers: Clientes
     totals: Totales
     services: Servicios
+    tooltip: En esta sección tienes una vista general del estado de tu negocio.
+    help: Aquí puedes ver los totales para el ejercicio y mes actual, los últimos 12 meses o el ejercicio anterior. Los periodos sin datos no serán mostrados.

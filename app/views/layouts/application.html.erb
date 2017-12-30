@@ -142,7 +142,7 @@
             <li class="treeview">
               <a href="#"><i class="fa fa-cog"></i> <span><%=t :production %></span> <i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><%= link_to t('dashboard.title'), user_dashboard_index_path(current_user.id) %></li>
+                <li><%= link_to t('dashboard.title'), user_dashboard_index_path(current_user.id), title: t('dashboard.tooltip') %></li>
                 <li><%= link_to t('projects.title'), user_projects_path(current_user.id)%></li>
                 <li><%= link_to t('estimates.title'), user_estimates_path(current_user.id) %></li>
                 <li><%= link_to t('delivery_notes.title'), user_delivery_notes_path(current_user.id) %></li>
@@ -150,12 +150,17 @@
               </ul>
             </li>
 
-            <%= has_role?('Administrator') do %>
+            <% if can?(:crud, User) || can?(:manage, Plan) %>
               <li class="treeview">
                 <a href="#"><i class="fa fa-users"></i> <span><%=t :administration %></span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                  <li class="hidden-xs"><%= link_to t('plans.title'), plans_path %></li>
-                  <li><%= link_to t('users.title'), users_path %></li>
+                  <% if can? :manage, Plan %>
+                    <li class="hidden-xs"><%= link_to t('plans.title'), plans_path %></li>
+                  <% end %>
+
+                  <% if can?(:crud, User) %>
+                    <li><%= link_to t('users.title'), users_path %></li>
+                  <% end %>
                 </ul>
               </li>
             <% end %>

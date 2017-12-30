@@ -1,22 +1,27 @@
+# frozen_string_literal: true
+
+# Controller for user management.
 class UsersController < AdminSecuredController
-  before_action :set_user, only: [:edit, :update, :ban]
-  before_action :check_admin_role, except: [ :renew ]
+  before_action :set_user, only: %i[edit update ban]
+  before_action :check_admin_role, except: :renew
 
   # GET /users
   # GET /users.json
   def index
+    authorize! :index, User
+
     @filterrific = initialize_filterrific(
-        User,
-        params[:filterrific],
-        default_filter_params: {
-            sorted_by: 'valid_until_asc',
-            with_active_criteria: 'all'
-        },
-        select_options: {
-            sorted_by: User.options_for_sorted_by,
-            with_active_criteria: User.active_filter_options
-        }
-    ) or return
+      User,
+      params[:filterrific],
+      default_filter_params: {
+        sorted_by: 'valid_until_asc',
+        with_active_criteria: 'all'
+      },
+      select_options: {
+        sorted_by: User.options_for_sorted_by,
+        with_active_criteria: User.active_filter_options
+      }
+    ) || return
 
     @users = @filterrific.find.page(params[:page])
 
@@ -29,23 +34,24 @@ class UsersController < AdminSecuredController
 
   # GET /users/1/edit
   def edit
+    authorize! :edit, @user
   end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to  users_url, notice: t(:successfully_updated, item: t('users.user')) }
-        format.json { respond_with_bip @user }
-      else
-        format.html { render :edit }
-        format.json { respond_with_bip @user }
-      end
+    authorize! :update, @user
+
+    if @user.update(user_params)
+      redirect_to users_url, notice: t(:successfully_updated, item: t('users.user'))
+    else
+      render :edit
     end
   end
 
   def ban
+    authorize! :ban, @user
+
     @user.banned = !@user.banned
     if @user.save
       redirect_to users_url, notice: t('users.successfully_banned')

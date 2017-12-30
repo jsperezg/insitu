@@ -82,6 +82,7 @@ en:
   from_date: From date
   to_date: To date
   close: Close
+  cancel_account_confirmation: Are you sure you want to cancel your InSitu account and delete all your data? This action is irreversible.
 
   payment_methods:
     title: Payment methods
@@ -193,3 +194,5 @@ en:
     customers: Customers
     totals: Totals
     services: Services
+    tooltip: In this section you have an overview of the status of your business.
+    help: Here you can see the totals for the current year and month, the last 12 months or the previous year. Periods without data will not be shown.

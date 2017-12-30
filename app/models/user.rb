@@ -110,7 +110,7 @@ class User < ActiveRecord::Base
     valid_until.nil? || valid_until > Date.today
   end
 
-  def is_administrator?
+  def administrator?
     role.try(:description) == 'Administrator'
   end
 
@@ -170,15 +170,15 @@ class User < ActiveRecord::Base
     self.currency = 'EUR' if currency.blank?
     self.role_id = Role.find_by(description: 'User').try(:id) if self[:role_id].nil?
 
-    if is_administrator?
+    if administrator?
       self.valid_until = nil
     else
-      self.valid_until = Date.today if valid_until.nil?
+      self.valid_until ||= Date.today
     end
   end
 
   def ban_administrators
-    if is_administrator? && self.banned
+    if administrator? && banned
       errors.add(:role_id, I18n.t('activerecord.errors.models.user.attributes.role_id.admin_banned'))
     end
   end
