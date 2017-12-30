@@ -17,7 +17,6 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'apartment'
 gem 'apartment-sidekiq'
-gem 'best_in_place', '~> 3.0.1'
 gem 'bootstrap-filestyle-rails'
 gem 'cancancan', '~> 2.0'
 gem 'chartkick'

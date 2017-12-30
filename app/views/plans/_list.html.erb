@@ -17,33 +17,27 @@
           <tr><td colspan="7"><%=t 'helpers.tables.empty' %></td></tr>
       <% end %>
       <% plans.each do |plan| %>
-          <tr>
-            <td><%= best_in_place plan, :description, url: plan_path(plan, format: :json) %></td>
-            <td class="text-right"><%= best_in_place plan, :months, url: plan_path(plan, format: :json) %></td>
-            <td class="text-right">
-              <%= best_in_place plan, :price,
-                                display_with: :number_to_currency, helper_options: { unit: current_currency_symbol, precision: 2, format: '%n %u'},
-                                url: plan_path(plan, format: :json) %>
-            </td>
-            <td class="text-right">
-              <%= best_in_place plan, :vat_rate, url: plan_path(plan, format: :json) %> %
-            </td>
-            <td>
-              <%= best_in_place plan, :is_active, as: :checkbox,
-                                collection: {'true': t(:checkbox_true), 'false': t(:checkbox_false) },
-                                url: plan_path(plan, format: :json) %>
-            </td>
-            <td>
-              <%= button_to plan_path(plan),
-                            :method => :delete,
-                            :data => { :confirm => t('helpers.links.confirm', :default => 'Are you sure?') },
-                            :class => 'btn btn-xs btn-danger btn-flat btn-block' do %>
-                  <i class="fa fa-trash-o" aria-hidden="true">
-                    <%=t 'helpers.links.destroy' %>
-                  </i>
-              <% end %>
-            </td>
-          </tr>
+        <tr>
+          <td><%= plan.description %></td>
+          <td class="text-right"><%= plan.months %></td>
+          <td class="text-right">
+            <%= number_to_currency plan.price, unit: current_currency_symbol, precision: 2, format: '%n %u' %>
+          </td>
+          <td class="text-right">
+            <%= number_to_percentage plan.vat_rate, precision: 0 %>
+          </td>
+          <td><%= plan.is_active ? t(:checkbox_true) : t(:checkbox_false) %></td>
+          <td>
+            <%= button_to plan_path(plan),
+                          method: :delete,
+                          data: { confirm: t('helpers.links.confirm', default: 'Are you sure?') },
+                          class: 'btn btn-xs btn-danger btn-flat btn-block' do %>
+                <i class="fa fa-trash-o" aria-hidden="true">
+                  <%=t 'helpers.links.destroy' %>
+                </i>
+            <% end %>
+          </td>
+        </tr>
       <% end %>
       </tbody>
     </table>

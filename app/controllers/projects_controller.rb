@@ -61,14 +61,10 @@ class ProjectsController < SecuredController
   # PATCH/PUT /projects/1.json
   def update
     authorize! :update, @project
-    respond_to do |format|
-      if @project.update(project_params)
-        format.html { redirect_to user_projects_path(current_user), notice: t(:successfully_updated, item: t('projects.project')) }
-        format.json { respond_with_bip @project }
-      else
-        format.html { render :edit }
-        format.json { respond_with_bip @project }
-      end
+    if @project.update(project_params)
+      redirect_to user_projects_path(current_user), notice: t(:successfully_updated, item: t('projects.project'))
+    else
+      render :edit
     end
   end
 
