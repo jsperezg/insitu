@@ -106,6 +106,8 @@ es:
     create_title: Nuevo cliente
     edit_title: Editar cliente
     select_customer_placeholder: Teclea para buscar clientes
+    tooltip: Gestiona los datos de tus clientes.
+    help: Gestiona los datos de tus clientes tales como sus nombres, información de facturación y contacto.
 
   projects:
     project: Proyecto

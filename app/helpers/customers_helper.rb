@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CustomersHelper
   def customer_field(form, method, options)
     content = []
@@ -40,26 +42,34 @@ module CustomersHelper
     end
   end
 
+  def link_to_contact_email(customer)
+    return if customer.contact_name.blank?
+    return customer.contact_name if customer.contact_email.blank?
+
+    link_to customer.contact_name, "mailto:#{customer.contact_email}"
+  end
+
   def create_customer_tag
     content_tag(:div, class: 'input-group-btn') do
-      button_tag t(:new), class: 'btn btn-default btn-sm',
+      button_tag t(:new),
+                 class: 'btn btn-default btn-sm',
                  type: 'button',
-                 data: {toggle: 'modal', target: '#create-customer-modal'}
+                 data: { toggle: 'modal', target: '#create-customer-modal' }
     end
   end
 
   def customer_label_tag(form, method, options)
     if options.key? :label
-      form.label(method, options[:label], class: 'control-label', for: "#{ form.object_name }_#{ method }_finder")
+      form.label(method, options[:label], class: 'control-label', for: "#{form.object_name}_#{method}_finder")
     else
-      form.label(method, class: 'control-label', for: "#{ form.object_name }_#{ method }_finder")
+      form.label(method, class: 'control-label', for: "#{form.object_name}_#{method}_finder")
     end
   end
 
   def find_customer_tag(form, method, options)
     value = customer_field_value(form)
 
-    text_field_tag("#{ form.object_name }_#{ method }_finder",
+    text_field_tag("#{form.object_name}_#{method}_finder",
                    value,
                    class: options[:input_class],
                    placeholder: I18n.t('customers.select_customer_placeholder'),
@@ -77,4 +87,3 @@ module CustomersHelper
     value
   end
 end
-

@@ -106,6 +106,8 @@ en:
     create_title: New customer
     edit_title: Edit customer
     select_customer_placeholder: Type something to start searching customers.
+    tooltip: Manage your customers' data.
+    help: Manage your customers data such as their names, contact data and billing information.
 
   projects:
     project: Project
