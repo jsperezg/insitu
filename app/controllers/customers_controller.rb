@@ -41,13 +41,14 @@ class CustomersController < SecuredController
   def edit; end
 
   # POST /customers
+  # POST /customers.json
   def create
     @customer = Customer.new(customer_params)
 
     if @customer.save
-      redirect_to user_customers_url(current_user), notice: t(:successfully_created, item: t('customers.customer'))
+      respond_to_create_success
     else
-      render :new
+      respond_to_create_failure(@customer)
     end
   end
 
@@ -91,6 +92,20 @@ class CustomersController < SecuredController
   # Use callbacks to share common setup or constraints between actions.
   def set_customer
     @customer = Customer.find(params[:id])
+  end
+
+  def respond_to_create_failure(customer)
+    respond_to do |format|
+      format.html { render :new }
+      format.json { render json: customer.errors, status: :unprocessable_entity }
+    end
+  end
+
+  def respond_to_create_success
+    respond_to do |format|
+      format.html { redirect_to user_customers_url(current_user), notice: t(:successfully_created, item: t('customers.customer')) }
+      format.json { render :show, status: :created }
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
