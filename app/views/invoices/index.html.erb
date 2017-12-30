@@ -1,4 +1,10 @@
 <%- model_class = Invoice -%>
+
+<div class="alert alert-success" role="alert">
+  <h4 class="alert-heading"><%=t 'invoices.tooltip' %></h4>
+  <p><%=t 'invoices.help' %></p>
+</div>
+
 <%= render partial: 'csv_export' %>
 <div class="box">
   <div class="box-body">

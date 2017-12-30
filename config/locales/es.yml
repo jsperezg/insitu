@@ -138,6 +138,8 @@ es:
     edit_title: Editar factura
     print_title: Imprimir factura
     amended_invoice_annotation: Esta factura corrige la factura número %{number} generada el %{date}
+    tooltip: Crea facturas para tus clientes.
+    help: Crea facturas para tus clientes, exportalas a formato PDF o remítelas por correo electrónico.
     list:
       cancel: Cancelar
       cancel_confirmation: ¿Deseas cancelar la factura %{number}?
