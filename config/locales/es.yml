@@ -181,6 +181,8 @@ es:
     create_title: Crear presupuesto
     nothing_to_invoice: Presupuesto vacio. No se puede generar la factura.
     invoice_title: Facturar
+    tooltip: Crea presupuestos para tus clientes.
+    help: Crea presupuestos para tus clientes. Gestiona su estado, genera la factura desde el presupuesto en un solo click.
 
   dashboard:
     title: Panel de control

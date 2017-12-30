@@ -146,7 +146,7 @@
                 <% if can? :manage, Project %>
                   <li><%= link_to t('projects.title'), user_projects_path(current_user.id), title: t('projects.tooltip') %></li>
                 <% end %>
-                <li><%= link_to t('estimates.title'), user_estimates_path(current_user.id) %></li>
+                <li><%= link_to t('estimates.title'), user_estimates_path(current_user.id), title: t('estimates.tooltip') %></li>
                 <li><%= link_to t('delivery_notes.title'), user_delivery_notes_path(current_user.id) %></li>
                 <li><%= link_to t('invoices.title'), user_invoices_path(current_user.id) %></li>
               </ul>

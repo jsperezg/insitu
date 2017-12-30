@@ -4,7 +4,7 @@ en:
       service:
         one: Service
         other: Services
-      estimate: Estimate
+      estimate: Budget
       invoice: Invoice
       delivery_note: Delivery note
       plan: Price plan
@@ -20,8 +20,8 @@ en:
       project: Project
       task: Task
       estimate_detail:
-        one: Estimate detail
-        other: Estimate details
+        one: Budget detail
+        other: Budget details
       delivery_note_detail:
         one: Delivery note detail
         other: Delivery note details

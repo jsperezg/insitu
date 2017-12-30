@@ -37,11 +37,11 @@
     <%= render partial: 'list', locals: { invoices: @invoices } %>
   </div>
   <div class="box-footer">
-    <%= button_to t("helpers.links.new"),
+    <%= button_to t('helpers.links.new'),
         new_user_invoice_path(current_user),
         method: :get,
-        class: 'btn btn-primary btn-flat col-lg-1 col-md-2 col-sm-2 col-xs-12' %>
-    <%= link_to '#', class: 'btn btn-default btn-flat col-lg-1 col-md-2 col-sm-2 hidden-xs',
+        class: 'btn btn-primary btn-flat col-lg-1 col-md-2 col-sm-3 col-xs-12' %>
+    <%= link_to '#', class: 'btn btn-default btn-flat col-lg-1 col-md-2 col-sm-3 hidden-xs',
                 data: { toggle: 'modal', target: '#csv-export-invoices'} do %>
         <i class="fa fa-file-excel-o" aria-hidden="true"></i>
         <%=t :export %>

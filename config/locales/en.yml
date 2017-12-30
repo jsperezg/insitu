@@ -174,13 +174,15 @@ en:
     help: Define the measurement units that better apply to the offered services, like pieces or hours.
 
   estimates:
-    title: Estimates
-    estimate: Estimate
-    edit_title: Edit estimate
-    create_title: Create estimate
-    print_title: Print estimate
-    nothing_to_invoice: Empty estimate. Can't generate the invoice.
+    title: Budgets
+    estimate: Budget
+    edit_title: Edit butdget
+    create_title: Create budget
+    print_title: Print budget
+    nothing_to_invoice: Empty budget. Can't generate the invoice.
     invoice_title: Invoice
+    tooltip: Create budgets for your customers.
+    help: Create budgets for your customers. Manage its status, generate the invoice from the budget in a single click.
 
   dashboard:
     title: Dashboard
