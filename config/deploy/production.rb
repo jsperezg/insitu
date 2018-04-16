@@ -12,7 +12,7 @@ server 'localhost', user: 'jsperezg', roles: %w{app db web}
 set :branch, 'master'
 set :rails_env, 'production'
 set :rbenv_type, :user
-set :rbenv_ruby, '2.3.3'
+set :rbenv_ruby, '2.3.1'
 
 # role-based syntax
 # ==================
