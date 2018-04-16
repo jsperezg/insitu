@@ -7,7 +7,7 @@
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
-server 'billing.insitu.tools', user: 'rails', roles: %w{app db web}
+server 'localhost', user: 'jsperezg', roles: %w{app db web}
 
 set :branch, 'master'
 set :rails_env, 'production'
