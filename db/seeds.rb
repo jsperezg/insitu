@@ -19,9 +19,9 @@ if Apartment::Tenant.current.blank? or Apartment::Tenant.current == config[Rails
     Role.find_by(description: role) || Role.create(description: role)
   end
 
-  admin = User.find_by(email: 'jsperezg@gmail.com')
+  admin = User.find_by(email: 'admin@example.org')
   if admin.nil?
-    admin = User.create(:email => 'jsperezg@gmail.com', :password => 'change_me', :password_confirmation => 'change_me', confirmed_at: DateTime.now)
+    admin = User.create(email: 'admin@example.org', password: 'change_me', password_confirmation: 'change_me', confirmed_at: DateTime.now)
   end
 
   admin_role = Role.find_by(description: 'Administrator')
