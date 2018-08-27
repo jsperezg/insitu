@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
   validates :currency, presence: true
   validate :ban_administrators
 
-  validates :terms_of_service, acceptance: true, allow_nil: false, if: :new_record?
+  validates :terms_of_service, acceptance: { accept: true }, allow_nil: false, if: :new_record?
   attr_accessor :terms_of_service
 
   # Include default devise modules. Others available are:
@@ -126,6 +126,11 @@ class User < ActiveRecord::Base
     self.confirmed_at = Time.now
   end
 
+  def to_s
+    return name unless name.blank?
+    email
+  end
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
@@ -178,8 +183,8 @@ class User < ActiveRecord::Base
   end
 
   def ban_administrators
-    if administrator? && banned
-      errors.add(:role_id, I18n.t('activerecord.errors.models.user.attributes.role_id.admin_banned'))
-    end
+    return unless administrator?
+    return unless banned?
+    errors.add(:role_id, I18n.t('activerecord.errors.models.user.attributes.role_id.admin_banned'))
   end
 end

@@ -80,7 +80,7 @@
                   <%= image_tag image_url('user.png'), class: 'user-image', alt: 'User image' %>
 
                   <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                  <span class="hidden-xs"><%= current_user.name || current_user.email %></span>
+                  <span class="hidden-xs"><%= current_user %></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- The user image in the menu -->

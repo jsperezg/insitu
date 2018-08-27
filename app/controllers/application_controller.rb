@@ -42,11 +42,9 @@ class ApplicationController < ActionController::Base
 
   # If user is trying to access another user account
   def validate_secure_request
-    if user_signed_in? && params.key?(:user_id)
-      if current_user.id.to_s != params[:user_id]
-        sign_out current_user
-      end
-    end
+    return unless user_signed_in?
+    return unless params.key?(:user_id)
+    sign_out current_user if current_user.id.to_s != params[:user_id]
   end
 
   def switch_tenant
