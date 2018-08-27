@@ -10,85 +10,50 @@
         <th class="col-xs-9">
           <%= filterrific_sorting_link(@filterrific, :description, label: model_class.human_attribute_name(:description)) %>
         </th>
-        <th class="hidden-xs col-lg-1 col-md-1 col-sm-1">
-          <%= filterrific_sorting_link(@filterrific, :vat, label: model_class.human_attribute_name(:vat_id)) %>
-        </th>
-        <th class="hidden-xs hidden-sm col-lg-1 col-md-2">
-          <%= filterrific_sorting_link(@filterrific, :unit, label: model_class.human_attribute_name(:unit_id)) %>
-        </th>
         <th class="hidden-xs col-lg-1 col-md-2 col-sm-2 text-right">
           <%= filterrific_sorting_link(@filterrific, :price, label: model_class.human_attribute_name(:price)) %>
-        </th>
-        <th class="hidden-xs hidden-sm col-lg-1 col-md-2">
-          <%= filterrific_sorting_link(@filterrific, :active, label: model_class.human_attribute_name(:active)) %>
         </th>
         <th class="col-lg-1 col-md-1 col-sm-2 col-xs-3"></th>
       </tr>
       </thead>
       <tbody>
       <% if services.empty? %>
-          <tr><td colspan="100%"><%=t 'helpers.tables.empty' %></td></tr>
+        <tr><td colspan="100%"><%=t 'helpers.tables.empty' %></td></tr>
       <% end %>
       <% services.each do |service| %>
         <% cache service do %>
           <tr>
             <td class="hidden-xs">
-              <%= best_in_place service, :code, url: user_service_path(current_user, service, format: :json) %>
+              <%= link_to service.code, edit_user_service_path(current_user, service) %>
             </td>
             <td>
-              <span class="hidden-xs">
-                <%= best_in_place service, :description, url: user_service_path(current_user, service, format: :json) %>
-              </span>
-              <div class="visible-xs ellipsis">
+              <div class="ellipsis">
                 <%= link_to service.description, edit_user_service_path(current_user, service) %>
               </div>
             </td>
-            <td class="hidden-xs">
-                <%= best_in_place service, :vat_id, as: :select,
-                                  collection: bip_vats_collection,
-                                  url: user_service_path(current_user, service, format: :json)%>
-            </td>
-            <td class="hidden-xs hidden-sm">
-                <%= best_in_place service, :unit_id, as: :select,
-                      collection: bip_units_collection,
-                      url: user_service_path(current_user, service, format: :json)%>
-            </td>
             <td class="text-right hidden-xs">
-              <%= best_in_place service, :price, display_with: :number_to_currency, helper_options: { unit: current_currency_symbol, precision: 2, format: '%n %u'},
-                                url: user_service_path(current_user, service, format: :json) %>
+              <%= number_to_currency service.price, unit: current_currency_symbol, precision: 2, format: '%n %u' %>
+              /
+              <%= service.unit.label_short %>
             </td>
-            <td class="hidden-xs hidden-sm">
-              <%= best_in_place service, :active, as: :checkbox,
-                    collection: {'true': t(:checkbox_true), 'false': t(:checkbox_false) },
-                    url: user_service_path(current_user, service, format: :json) %>
-            </td>
-            <td>
-              <div class="btn-group pull-right">
-                <button type="button" class="btn btn-primary btn-block btn-sm btn-flat dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-bars" aria-hidden="true"></i>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li>
-                    <%= link_to edit_user_service_path(current_user, service), method: :get do %>
-                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                      <%=t 'helpers.links.edit' %>
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to user_service_path(current_user.id, service),
-                            :method => :delete,
-                            :data => {
-                                'original-title' => t('helpers.links.confirm', :default => 'Are you sure?'),
-                                confirm: t(:removal_confirmation, model: model_class.model_name.human, description: service.description),
-                                commit: t(:continue),
-                                cancel: t(:cancel)
-                            } do %>
-                      <i class="fa fa-trash-o" aria-hidden="true"></i>
-                      <%=t 'helpers.links.destroy' %>
-                    <% end %>
-                  </li>
-                </ul>
-              </div>
+            <td class="text-right">
+              <%= link_to edit_user_service_path(current_user, service),
+                          title: t('helpers.links.edit'),
+                          class: 'hidden-xs' do %>
+                <i class="fa fa-2x fa-pencil-square-o" aria-hidden="true"></i>
+              <% end %>
+
+              <%= link_to user_service_path(current_user.id, service),
+                          method: :delete,
+                          title: t('helpers.links.destroy'),
+                          data: {
+                              'original-title' => t('helpers.links.confirm', :default => 'Are you sure?'),
+                              confirm: t(:removal_confirmation, model: model_class.model_name.human, description: service.description),
+                              commit: t(:continue),
+                              cancel: t(:cancel)
+                          } do %>
+                <i class="fa fa-2x fa-trash-o" aria-hidden="true"></i>
+              <% end %>
             </td>
           </tr>
         <% end %>

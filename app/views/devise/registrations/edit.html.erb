@@ -1,7 +1,7 @@
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
-  <input type=password name=dummy_password class=hidden>
-  <div class="box box-primary">
+<div class="box box-primary">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
     <div class="box-body">
+      <input type=password name=dummy_password class=hidden>
       <%= devise_error_messages! %>
 
       <div class="row">
@@ -110,13 +110,24 @@
       </div>
     </div>
     <div class="box-footer">
-      <%= f.submit t(:update), class: 'btn btn-primary btn-block btn-flat', data: { disable_with: t('please_wait')} %>
+      <%= f.submit t(:update),
+                   class: 'btn btn-primary btn-block btn-flat',
+                   data: { disable_with: t('please_wait')} %>
 
-      <% has_role?('Usuario') do %>
-        <p class="pull-right">
-          <%= button_to t(:cancel_account), registration_path(resource_name), data: { confirm: t(:are_you_sure) }, method: :delete, class: 'btn btn-danger' %>
-        </p>
-      <% end %>
     </div>
-  </div>
-<% end %>
+  <% end %>
+
+  <% if can? :destroy, current_user %>
+    <%= button_to t(:cancel_account),
+                  registration_path(resource_name),
+                  data: {
+                      'original-title' => t('helpers.links.confirm', default: 'Are you sure?'),
+                      confirm: t(:cancel_account_confirmation),
+                      commit: t(:continue),
+                      cancel: t(:cancel)
+                  },
+                  method: :delete,
+                  class: 'btn btn-danger btn-block btn-flat' %>
+  <% end %>
+
+</div>

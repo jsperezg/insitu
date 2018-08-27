@@ -21,10 +21,7 @@
         <% cache project do %>
           <tr>
             <td>
-              <span class="hidden-xs">
-                <%= best_in_place project, :name, url: user_project_path(current_user, project, format: :json)%>
-              </span>
-              <div class="visible-xs ellipsis">
+              <div class="ellipsis">
                 <%= link_to project.name, edit_user_project_path(current_user, project) %>
               </div>
             </td>

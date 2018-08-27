@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :payment do
     txn_id '9GR92966H7651493J'
     business { Rails.configuration.x.paypal_receiver_email }

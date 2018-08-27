@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :customer do
     sequence :name do |n|
       "Customer #{n}"

@@ -2,9 +2,8 @@
 
 ## Installing requirements.
 
-```
-$ sudo apt-get install imagemagick -y
-$ apt-get -y install redis-server redis-tools
+```bash
+sudo apt-get -y  install imagemagick redis-server redis-tools nginx passenger
 ```
 
 ## Rake tasks

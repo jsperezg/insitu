@@ -3,7 +3,7 @@
 
   <div class="row">
     <div class="form-group col-md-2 col-xs-6">
-      <%= f.label :valid_until, :class => 'control-label' %>
+      <%= f.label :valid_until, class: 'control-label' %>
       <div class="input-group date">
         <span class="input-group-addon">
           <span class="fa fa-calendar"></span>
@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="form-group col-md-2 col-xs-6">
-      <%= f.label :role_id, :class => 'control-label' %>
+      <%= f.label :role_id, class: 'control-label' %>
       <%= f.collection_select :role_id, Role.order(description: :asc), :id, :description,
                               { prompt: true }, { class: 'form-control input-sm', required: true } %>
     </div>
@@ -72,8 +72,8 @@
                class: 'btn btn-primary btn-flat col-md-1 col-sm-3 col-xs-6',
                data: {
                    disable_with: t('please_wait'),
-                   confirm: t('helpers.links.confirm', :default => 'Are you sure?')
+                   confirm: t('helpers.links.confirm', default: 'Are you sure?')
                } %>
 
-  <%= link_to t("helpers.links.cancel"), users_path, :class => 'btn btn-default btn-flat col-md-1 col-sm-3 col-xs-6' %>
+  <%= link_to t('helpers.links.cancel'), users_path, class: 'btn btn-default btn-flat col-md-1 col-sm-3 col-xs-6' %>
 </div>

@@ -1,8 +1,17 @@
-# Common configuration.
+require: rubocop-rspec
+
 AllCops:
-  Exclude:
-    - 'node_modules/**/*'
-    - 'vendor/**/*'
+  TargetRubyVersion: 2.4.4
 
 Metrics/LineLength:
-  Max: 130
+  Max: 120
+
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'test/**/*.rb'
+    - 'spec/**/*.rb'
+
+Documentation:
+  Enabled: false

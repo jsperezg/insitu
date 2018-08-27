@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
   validates :currency, presence: true
   validate :ban_administrators
 
-  validates :terms_of_service, acceptance: true, allow_nil: false, if: :new_record?
+  validates :terms_of_service, acceptance: { accept: true }, allow_nil: false, if: :new_record?
   attr_accessor :terms_of_service
 
   # Include default devise modules. Others available are:
@@ -110,7 +110,7 @@ class User < ActiveRecord::Base
     valid_until.nil? || valid_until > Date.today
   end
 
-  def is_administrator?
+  def administrator?
     role.try(:description) == 'Administrator'
   end
 
@@ -124,6 +124,11 @@ class User < ActiveRecord::Base
 
   def skip_confirmation!
     self.confirmed_at = Time.now
+  end
+
+  def to_s
+    return name unless name.blank?
+    email
   end
 
   def self.from_omniauth(auth)
@@ -170,16 +175,16 @@ class User < ActiveRecord::Base
     self.currency = 'EUR' if currency.blank?
     self.role_id = Role.find_by(description: 'User').try(:id) if self[:role_id].nil?
 
-    if is_administrator?
+    if administrator?
       self.valid_until = nil
     else
-      self.valid_until = Date.today if valid_until.nil?
+      self.valid_until ||= Date.today
     end
   end
 
   def ban_administrators
-    if is_administrator? && self.banned
-      errors.add(:role_id, I18n.t('activerecord.errors.models.user.attributes.role_id.admin_banned'))
-    end
+    return unless administrator?
+    return unless banned?
+    errors.add(:role_id, I18n.t('activerecord.errors.models.user.attributes.role_id.admin_banned'))
   end
 end

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.3'
+ruby '2.4.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2', '>= 4.2.6'
@@ -17,8 +17,8 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'apartment'
 gem 'apartment-sidekiq'
-gem 'best_in_place', '~> 3.0.1'
 gem 'bootstrap-filestyle-rails'
+gem 'cancancan', '~> 2.0'
 gem 'chartkick'
 gem 'ckeditor_rails'
 gem 'cookies_eu'
@@ -37,11 +37,12 @@ gem 'jquery-ui-rails'
 gem 'knockoutjs-rails'
 gem 'nprogress-rails'
 gem 'omniauth-google-oauth2'
-gem 'paperclip', '~> 5.0.0'
+gem 'paperclip', '~> 5.2.0'
 gem 'pdfjs_rails'
 gem 'prawn'
 gem 'prawn-table'
 gem 'rack-cors', require: 'rack/cors'
+gem 'rectify'
 gem 'sidekiq'
 gem 'sidekiq-client-cli'
 gem 'simple_token_authentication', '~> 1.0'
@@ -72,13 +73,16 @@ group :development do
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano-rbenv', '~> 2.0'
 
+  gem 'rubocop', require: false
+  gem 'rubocop-rspec'
+
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 end
 
 group :development, :test do
   gem 'byebug'
-  gem 'factory_girl_rails', '~> 4.0'
+  gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails', '~> 3.0'
   gem 'rspec-sidekiq'
@@ -86,6 +90,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'simplecov', require: false
   gem 'database_cleaner'
+  gem 'simplecov', require: false
 end

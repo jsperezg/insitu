@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :invoice do
   	date { Date.today }
   	payment_method_id { PaymentMethod.first.try(:id) || create(:payment_method).try(:id) }

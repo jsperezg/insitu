@@ -82,10 +82,13 @@ en:
   from_date: From date
   to_date: To date
   close: Close
+  cancel_account_confirmation: Are you sure you want to cancel your InSitu account and delete all your data? This action is irreversible.
 
   payment_methods:
-      title: Payment methods
-      not_found: No payment methods defined. Can't generate invoice.
+    title: Payment methods
+    not_found: No payment methods defined. Can't generate invoice.
+    tooltip: Manage how do you want to get paid.
+    help: Create or edit payment methods. The text that you type into the Note for invoice field will appear at the bottom of your invoices.
 
   services:
     service: Service
@@ -95,6 +98,8 @@ en:
     all_records: All records
     only_active: Only active
     only_inactive: Only inactive
+    tooltip: Manage the services offered and the product catalog.
+    help: From this view you can manage the data for the products and services that you offer to your customers.
 
   customers:
     customer: Customer
@@ -102,12 +107,15 @@ en:
     create_title: New customer
     edit_title: Edit customer
     select_customer_placeholder: Type something to start searching customers.
+    tooltip: Manage your customers' data.
+    help: Manage your customers data such as their names, contact data and billing information.
 
   projects:
     project: Project
     title: Projects
     create_title: New project
     edit_title: Edit project
+    tooltip: Project management and time tracker.
 
   tasks:
     task: Task
@@ -130,6 +138,8 @@ en:
     edit_title: Edit invoice
     print_title: Print invoice
     amended_invoice_annotation: This invoice amends invoice with number %{number} generated on %{date}
+    tooltip: Create invoices for your customers.
+    help: Create invoices for your customers, export them to PDF format or send them by email.
     list:
       cancel: Cancel
       cancel_confirmation: Do you want to cancel the invoice %{number}?
@@ -144,6 +154,8 @@ en:
     print_title: Print delivery note
     nothing_to_invoice: This delivery note is empty. Can't generate invoice.
     invoice_title: Invoice
+    tooltip: Manage the delivery notes for your customers.
+    help: Create delivery notes for your customers. Generate the invoice from the delivery note in a single click.
 
   delivery_notes_details:
     delivery_note_detail: Delivery note details
@@ -154,21 +166,27 @@ en:
     create_title: Create VAT rate
     edit_title: Edit VAT rate
     vat: VAT
+    tooltip: Manage the available VAT rates.
+    help: You can define here the available VAT rates.
 
   units:
     title: Measurement units
     unit: Measurement unit
     edit_title: Edit measurement unit
     create_title: Create measurement unit
+    tooltip: You can define here the units used to measure the services that you offer.
+    help: Define the measurement units that better apply to the offered services, like pieces or hours.
 
   estimates:
-    title: Estimates
-    estimate: Estimate
-    edit_title: Edit estimate
-    create_title: Create estimate
-    print_title: Print estimate
-    nothing_to_invoice: Empty estimate. Can't generate the invoice.
+    title: Budgets
+    estimate: Budget
+    edit_title: Edit butdget
+    create_title: Create budget
+    print_title: Print budget
+    nothing_to_invoice: Empty budget. Can't generate the invoice.
     invoice_title: Invoice
+    tooltip: Create budgets for your customers.
+    help: Create budgets for your customers. Manage its status, generate the invoice from the budget in a single click.
 
   dashboard:
     title: Dashboard
@@ -183,3 +201,5 @@ en:
     customers: Customers
     totals: Totals
     services: Services
+    tooltip: In this section you have an overview of the status of your business.
+    help: Here you can see the totals for the current year and month, the last 12 months or the previous year. Periods without data will not be shown.

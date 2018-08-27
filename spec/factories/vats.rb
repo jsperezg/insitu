@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :vat do
     sequence(:rate, 23) { |n| n }
-    label { "#{rate} %" }
+    default false
 
     trait :default do
       default true
