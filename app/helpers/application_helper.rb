@@ -1,16 +1,16 @@
 module ApplicationHelper
-	def has_role?(role_name, &block)
-		if role_name.split('|').include? current_user.role.try(:description)
+  def has_role?(role_name, &block)
+    if role_name.split('|').include? current_user.role.try(:description)
       capture(&block)
-		end
-	end
+    end
+  end
 
-	def ldate(object, options = {})
-		object.present? ? localize(object, options) : ''
-	end
+  def ldate(object, options = {})
+    object.present? ? localize(object, options) : ''
+  end
 
-	# Helper that generates the navigation breadcrumb for each page.
-	def content_header
+  # Helper that generates the navigation breadcrumb for each page.
+  def content_header
     controller_name_sym = controller_name.to_sym
     action_name_sym = action_name.to_sym
     tag_content = []
@@ -108,7 +108,7 @@ module ApplicationHelper
         end
       end
 
-      return  link_parameters
+      return link_parameters
     end
 
     '#'

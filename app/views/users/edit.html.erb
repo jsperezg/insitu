@@ -1,5 +1,5 @@
 <div class="box box-primary">
   <%= form_for @user, url: user_path(@user), html: { class: 'user', role: 'form' } do |f| %>
-      <%= render :partial => 'form', locals: { f: f } %>
+    <%= render partial: 'form', locals: { f: f } %>
   <% end %>
 </div>
