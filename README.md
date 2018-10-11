@@ -1,5 +1,27 @@
 # README
 
+## Enhancing InSitu.
+
+InSitu comes with support for docker-compose for test/development environment. In order to prepare your environment you shoul execute the following:
+
+```bash
+docker-compose build
+docker-compose run insitu bash
+rake db:create
+rake db:migrate
+rake db:seed
+rake db:test:prepare
+```
+
+After that you should be ready to start enhancing InSitu. In order to run the app just execute
+
+```bash
+docker-compose up
+```
+
+The default user is admin@example.org and its password is change_me.
+
+
 ## Installing requirements.
 
 ```bash
