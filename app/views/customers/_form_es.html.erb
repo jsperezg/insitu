@@ -1,4 +1,4 @@
-<% if current_user.country == 'ES' && !current_user.has_cif? %>
+<% if current_user.country == 'ES' && !current_user.cif? %>
   <div class="row">
     <div class="form-group col-xs-4 col-sm-3 col-md-2">
       <%= f.label :irpf, :class => 'control-label' %>

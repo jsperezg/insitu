@@ -7,8 +7,6 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 1ns1tu
-    ports:
-      - "3307:3306"
   insitu:
     build: .
     entrypoint: /insitu/bin/entrypoint.sh

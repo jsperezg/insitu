@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def has_role?(role_name, &block)
     if role_name.split('|').include? current_user.role.try(:description)
@@ -31,7 +33,6 @@ module ApplicationHelper
       begin
         if NAVIGATION_RULES[controller_name_sym][action_name_sym].key? :parent
           tag_content << content_tag(:ol, class: 'breadcrumb') do
-
             # Active element.
             nav_content << content_tag(:li, class: 'active') do
               begin
@@ -118,13 +119,13 @@ module ApplicationHelper
     options ||= {}
 
     options[:class] = 'form-control input-sm document-id' unless options.key? :class
-    options[:class] = "#{ options[:class] } document-id" unless options[:class].include? 'document-id'
+    options[:class] = "#{options[:class]} document-id" unless options[:class].include? 'document-id'
 
-    form.text_field :number, class: options[:class], required: true, autofocus: true, style: "text-transform:uppercase"
+    form.text_field :number, class: options[:class], required: true, autofocus: true, style: 'text-transform:uppercase'
   end
 
   def premium_wrapper_tag(&block)
-    content_class = current_user.is_premium? ? '' : 'control-sidebar-open'
+    content_class = current_user.premium? ? '' : 'control-sidebar-open'
     content = capture(&block)
 
     content_tag :div, content, class: content_class

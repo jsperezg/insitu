@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe IpnListenerController, type: :controller do
@@ -18,7 +20,7 @@ RSpec.describe IpnListenerController, type: :controller do
         post :create, paypal_renewal_request(user)
 
         user.reload
-        expect(user.is_premium?).to be_truthy
+        expect(user).to be_premium
       end
 
       it 'payment is created' do
@@ -54,7 +56,7 @@ RSpec.describe IpnListenerController, type: :controller do
         post :create, paypal_renewal_request(user)
 
         user.reload
-        expect(user.is_premium?).to be_falsey
+        expect(user).not_to be_premium
       end
     end
 

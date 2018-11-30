@@ -11,10 +11,10 @@ FactoryBot.define do
     country { Faker::Address.country_code }
 
     email { Faker::Internet.email }
-    password 'change_me'
-    password_confirmation 'change_me'
-    currency 'EUR'
-    terms_of_service '1'
+    password { 'change_me' }
+    password_confirmation { 'change_me' }
+    currency { 'EUR' }
+    terms_of_service { true }
 
     trait :admin do
       role_id { Role.find_by(description: 'Administrator')&.id || create(:admin_role)&.id }

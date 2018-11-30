@@ -1,10 +1,10 @@
 # frozen_string_literal: true
-#
+
 class Api::V1::RegistrationsController < Devise::RegistrationsController
   respond_to :json
 
   def create
-    build_resource(sign_up_params.merge(terms_of_service: '1'))
+    build_resource(sign_up_params.merge(terms_of_service: true))
     resource.skip_confirmation!
     if resource.save
       sign_in resource

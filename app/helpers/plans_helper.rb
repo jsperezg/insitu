@@ -1,37 +1,39 @@
+# frozen_string_literal: true
+
 module PlansHelper
   require 'open-uri'
 
   def payment_buttons_tag
-    unless current_user.is_premium?
-      plans = Plan.where(is_active: true).order(months: :asc)
+    return if current_user.premium?
 
-      content_tag :div, class: :row do
-        buttons = []
+    plans = Plan.where(is_active: true).order(months: :asc)
 
-        plans.each do |plan|
-          buttons << content_tag(:div, class: 'col-xs-4') do
-            form_tag("#{ paypal_base_url }/cgi-bin/webscr", method: :post, authenticity_token: false, enforce_utf8: false, target: '_top' ) do
-              content_tag(:div, class: 'panel panel-info') do
-                panel_elements = []
+    content_tag :div, class: :row do
+      buttons = []
 
-                panel_elements << plan_header_tag(plan)
+      plans.each do |plan|
+        buttons << content_tag(:div, class: 'col-xs-4') do
+          form_tag("#{paypal_base_url}/cgi-bin/webscr", method: :post, authenticity_token: false, enforce_utf8: false, target: '_top') do
+            content_tag(:div, class: 'panel panel-info') do
+              panel_elements = []
 
-                panel_elements << content_tag(:div, class: 'panel-body') do
-                    elements = []
-                    elements << plan_price_tag(plan)
-                    elements  << paypal_payment_tag(plan)
+              panel_elements << plan_header_tag(plan)
 
-                    elements.join('').html_safe
-                end
+              panel_elements << content_tag(:div, class: 'panel-body') do
+                elements = []
+                elements << plan_price_tag(plan)
+                elements << paypal_payment_tag(plan)
 
-                panel_elements.join('').html_safe
+                elements.join('').html_safe
               end
+
+              panel_elements.join('').html_safe
             end
           end
         end
-
-        buttons.join('').html_safe
       end
+
+      buttons.join('').html_safe
     end
   end
 
@@ -45,7 +47,7 @@ module PlansHelper
     plan_price = []
 
     plan_price << content_tag(:h4, number_to_currency(plan.price, :precision => 2, unit: '€', format: '%n %u'), class: 'text-center')
-    plan_price << content_tag(:h5, "(#{ plan.vat_rate }% excl.)", class: 'text-center')
+    plan_price << content_tag(:h5, "(#{plan.vat_rate}% excl.)", class: 'text-center')
 
     plan_price.join('').html_safe
   end
@@ -74,10 +76,10 @@ module PlansHelper
     elements << hidden_field_tag('cancel_url', renew_user_url(current_user))
     elements << image_submit_tag('https://www.paypalobjects.com/webstatic/en_US/btn/btn_buynow_cc_171x47.png',
                                  {
-                                     border: 0,
-                                     name: 'submit',
-                                     alt: 'PayPal. La forma rápida y segura de pagar en Internet.',
-                                     class: 'center-block'
+                                   border: 0,
+                                   name: 'submit',
+                                   alt: 'PayPal. La forma rápida y segura de pagar en Internet.',
+                                   class: 'center-block'
                                  })
     elements.join('').html_safe
   end
@@ -101,10 +103,9 @@ module PlansHelper
   def calculate_ipn_listener_url
     if Rails.env.development?
       remote_ip = open('http://whatismyip.akamai.com').read
-      "http://#{ remote_ip }#{ ipn_listener_index_path }"
+      "http://#{remote_ip}#{ipn_listener_index_path}"
     else
       ipn_listener_index_url
     end
   end
-
 end

@@ -94,6 +94,7 @@ class User < ActiveRecord::Base
 
   def country_name
     return if country.blank?
+
     value = ISO3166::Country[country]
     value.translations[I18n.locale.to_s] || value.name
   end
@@ -106,7 +107,7 @@ class User < ActiveRecord::Base
       country.present?
   end
 
-  def is_premium?
+  def premium?
     valid_until.nil? || valid_until > Date.today
   end
 
@@ -114,7 +115,7 @@ class User < ActiveRecord::Base
     role.try(:description) == 'Administrator'
   end
 
-  def has_cif?
+  def cif?
     country == 'ES' && !(tax_id =~ /^[a-z]\d{8}$/i).nil?
   end
 
@@ -128,6 +129,7 @@ class User < ActiveRecord::Base
 
   def to_s
     return name unless name.blank?
+
     email
   end
 
@@ -152,6 +154,7 @@ class User < ActiveRecord::Base
 
   def init_tenant_name
     return unless self[:tenant].blank?
+
     self[:tenant] = if Rails.env.production?
                       "user_#{self[:id]}"
                     else
@@ -185,6 +188,7 @@ class User < ActiveRecord::Base
   def ban_administrators
     return unless administrator?
     return unless banned?
+
     errors.add(:role_id, I18n.t('activerecord.errors.models.user.attributes.role_id.admin_banned'))
   end
 end

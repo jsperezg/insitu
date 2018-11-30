@@ -122,7 +122,7 @@ class Invoice < ActiveRecord::Base
 
   def apply_irpf(user)
     self.irpf = customer&.irpf || 0
-    self.irpf = 0 if user.has_cif?
+    self.irpf = 0 if user.cif?
   end
 
   def created?

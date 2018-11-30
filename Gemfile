@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.4'
 
@@ -26,7 +29,7 @@ gem 'country_select', github: 'stefanpenner/country_select'
 gem 'currencies', require: 'iso4217'
 gem 'dalli', group: :production
 gem 'data-confirm-modal'
-gem 'devise', '3.5.2'
+gem 'devise', '~> 3.5.4'
 gem 'devise-async'
 gem 'email_validator'
 gem 'figaro'
@@ -65,6 +68,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'unicorn'
 
 group :development do
+  gem 'bundler-audit'
+
   gem 'capistrano', '~> 3.9'
   gem 'capistrano-bundler', '~> 1.1.2'
   gem 'capistrano-figaro-yml', '~> 1.0.2'
