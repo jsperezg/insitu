@@ -1,20 +1,22 @@
+# frozen_string_literal: true
+
 class Project < ActiveRecord::Base
   filterrific(
-      default_filter_params: {
-        sorted_by: 'name_asc',
-        with_status: ProjectStatus.find_by(name: 'project_status.active').try(:id)
-      },
-      available_filters: [
-        :with_name,
-        :with_status,
-        :sorted_by
-      ]
+    default_filter_params: {
+      sorted_by: 'name_asc',
+      with_status: ProjectStatus.find_by(name: 'project_status.active').try(:id)
+    },
+    available_filters: %i[
+      with_name
+      with_status
+      sorted_by
+    ]
   )
 
   self.per_page = DEFAULT_ITEMS_PER_PAGE
 
   scope :with_name, lambda { |name|
-    where('name like :name', { name: "%#{name}%" })
+    where('name like :name', name: "%#{name}%")
   }
 
   scope :with_status, lambda { |status_id|
@@ -27,7 +29,7 @@ class Project < ActiveRecord::Base
     if parts.empty?
       order(name:  :asc)
     elsif parts[0] == 'project status'
-      joins(:project_status).order("project_statuses.name #{ parts[1] }")
+      joins(:project_status).order("project_statuses.name #{parts[1]}")
     else
       sort_criteria = {}
       sort_criteria[parts[0].to_sym] = parts[1].to_sym

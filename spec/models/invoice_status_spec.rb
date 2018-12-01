@@ -1,10 +1,17 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe InvoiceStatus, type: :model do
-  it 'name is mandatory' do
-    status = InvoiceStatus.new
-    status.save
+  subject { build :invoice_status, name: name }
 
-    expect(status.errors).to satisfy { |errors| errors.key? :name }
+  let(:name) { Faker::Lorem.word }
+
+  it { is_expected.to be_valid }
+
+  context 'when name is blank' do
+    let(:name) { nil }
+
+    it { is_expected.not_to be_valid }
   end
 end

@@ -1,18 +1,23 @@
-class Api::V1::ProjectStatusesController < ApiController
-  include Api
+# frozen_string_literal: true
 
-  before_action :set_project_status, only: [:show]
+module Api
+  module V1
+    class ProjectStatusesController < ApiController
+      include Api
 
-  def index
-    @project_statuses = ProjectStatus.all
-  end
+      before_action :set_project_status, only: [:show]
 
-  def show
-  end
+      def index
+        @project_statuses = ProjectStatus.all
+      end
 
-  private
+      def show; end
 
-  def set_project_status
-    @project_status = ProjectStatus.find(params[:id])
+      private
+
+      def set_project_status
+        @project_status = ProjectStatus.find(params[:id])
+      end
+    end
   end
 end

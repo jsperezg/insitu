@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'csv'
 class CsvToServiceConverter < CsvToModelConverter
   def initialize
     @model = Service
-    @attributes = %i(code description vat_id unit_id price)
+    @attributes = %i[code description vat_id unit_id price]
   end
 
   def import_options

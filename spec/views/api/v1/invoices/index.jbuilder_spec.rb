@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe 'api/v1/invoices/index', type: :view  do
-  let(:valid_attributes) {
+describe 'api/v1/invoices/index', type: :view do
+  let(:valid_attributes) do
     invoice = attributes_for(:invoice)
 
-    invoice.merge(invoice_details_attributes: [ attributes_for(:invoice_detail, invoice_id: nil) ])
-  }
+    invoice.merge(invoice_details_attributes: [attributes_for(:invoice_detail, invoice_id: nil)])
+  end
 
   before do
     invoices = []
@@ -18,30 +20,28 @@ describe 'api/v1/invoices/index', type: :view  do
     render
 
     json = JSON.parse(rendered)
-    expect(json.key? 'invoices').to be_truthy
+    expect(json).to be_key('invoices')
     expect(json['invoices'].length).to eq(1)
 
     json['invoices'].each do |invoice|
-      expect(invoice.key? 'id').to be_truthy
-      expect(invoice.key? 'number').to be_truthy
-      expect(invoice.key? 'date').to be_truthy
-      expect(invoice.key? 'payment_method_id').to be_truthy
-      expect(invoice.key? 'customer_id').to be_truthy
-      expect(invoice.key? 'invoice_status_id').to be_truthy
-      expect(invoice.key? 'payment_date').to be_truthy
-      expect(invoice.key? 'paid_on').to be_truthy
-      expect(invoice.key? 'irpf').to be_truthy
+      expect(invoice).to be_key('id')
+      expect(invoice).to be_key('number')
+      expect(invoice).to be_key('date')
+      expect(invoice).to be_key('payment_method_id')
+      expect(invoice).to be_key('customer_id')
+      expect(invoice).to be_key('invoice_status_id')
+      expect(invoice).to be_key('payment_date')
+      expect(invoice).to be_key('paid_on')
+      expect(invoice).to be_key('irpf')
       expect(invoice['invoice_details'].length).to eq(1)
 
-      invoice['invoice_details'].each do |detail|
-        expect(detail.key? 'id').to be_truthy
-        expect(detail.key? 'service_id').to be_truthy
-        expect(detail.key? 'description').to be_truthy
-        expect(detail.key? 'quantity').to be_truthy
-        expect(detail.key? 'price').to be_truthy
-        expect(detail.key? 'discount').to be_truthy
-        expect(detail.key? 'vat_rate').to be_truthy
-      end
+      expect(invoice['invoice_details']).to all(be_key('id'))
+      expect(invoice['invoice_details']).to all(be_key('service_id'))
+      expect(invoice['invoice_details']).to all(be_key('description'))
+      expect(invoice['invoice_details']).to all(be_key('quantity'))
+      expect(invoice['invoice_details']).to all(be_key('price'))
+      expect(invoice['invoice_details']).to all(be_key('discount'))
+      expect(invoice['invoice_details']).to all(be_key('vat_rate'))
     end
   end
 end

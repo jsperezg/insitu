@@ -3,139 +3,125 @@
 require 'rails_helper'
 
 RSpec.describe InvoiceDetail, type: :model do
-  let!(:default_vat) { create(:vat, :default, rate: 21) }
-  let(:quantity) { nil }
-  let(:price) { nil }
-  let(:vat_rate) { nil }
-  let(:discount) { nil }
-  let(:invoice_detail) do
-    InvoiceDetail.new(
-      quantity: quantity,
-      price: price,
-      vat_rate: vat_rate,
-      discount: discount
-    )
-  end
+  subject(:invoice_detail) { InvoiceDetail.new(attributes) }
 
-  before do
-    invoice_detail.validate
-  end
+  let(:attributes) { attributes_for :invoice_detail }
 
-  context 'quantity' do
-    context 'is nil' do
-      it 'raises error' do
-        expect(invoice_detail.errors).to have_key :quantity
-      end
+  describe 'validations' do
+    it { is_expected.to be_valid }
+
+    context 'when quantity is nil' do
+      let(:attributes) { attributes_for :invoice_detail, quantity: nil }
+
+      it { is_expected.not_to be_valid }
     end
 
-    context 'is not a number' do
-      let(:quantity) { 'asdf' }
+    context 'when quantity is not a number' do
+      let(:attributes) { attributes_for :invoice_detail, quantity: 'asdf' }
 
-      it 'raises error' do
-        expect(invoice_detail.errors).to have_key :quantity
-      end
+      it { is_expected.not_to be_valid }
     end
 
-    context 'is zero' do
-      let(:quantity) { 0 }
+    context 'when quantity is zero' do
+      let(:attributes) { attributes_for :invoice_detail, quantity: 0 }
 
-      it 'raises error' do
-        expect(invoice_detail.errors).to have_key :quantity
-      end
-    end
-  end
-
-  context 'price' do
-    context 'is nil' do
-      it 'raises an error' do
-        expect(invoice_detail.errors).to have_key :price
-      end
+      it { is_expected.not_to be_valid }
     end
 
-    context 'is not a number' do
-      let(:price) { 'asdf' }
+    context 'when price is nil' do
+      let(:attributes) { attributes_for :invoice_detail, price: nil }
 
-      it 'raises an error' do
-        expect(invoice_detail.errors).to have_key :price
-      end
+      it { is_expected.not_to be_valid }
     end
 
-    context 'is negative' do
-      let(:price) { -1 }
+    context 'when price is not a number' do
+      let(:attributes) { attributes_for :invoice_detail, price: 'asdf' }
 
-      it 'raises an error' do
-        expect(invoice_detail.errors).to have_key :price
-      end
-    end
-  end
-
-  context 'vat rate' do
-    context 'is not a number' do
-      let(:vat_rate) { 'asdf' }
-
-      it 'raises an error' do
-        expect(invoice_detail.errors).to have_key :vat_rate
-      end
+      it { is_expected.not_to be_valid }
     end
 
-    context 'is lower than zero' do
-      let(:vat_rate) { -1 }
+    context 'when prize is less than zero' do
+      let(:attributes) { attributes_for :invoice_detail, price: -1 }
 
-      it 'raises an error' do
-        expect(invoice_detail.errors).to have_key :vat_rate
-      end
+      it { is_expected.not_to be_valid }
     end
 
-    context 'is a decimal' do
-      let(:vat_rate) { 1.1 }
+    context 'when vat rate is nil' do
+      let(:attributes) { attributes_for :invoice_detail, vat_rate: nil }
 
-      it 'raises an error' do
-        expect(invoice_detail.errors).to have_key :vat_rate
-      end
+      it { is_expected.not_to be_valid }
     end
 
-    context 'fallback to default vat rate' do
-      it 'vat_rate is initialized with default vat rate' do
-        expect(invoice_detail.vat_rate).to eq(Vat.default.rate)
-      end
+    context 'when vat rate is not a number' do
+      let(:attributes) { attributes_for :invoice_detail, vat_rate: 'asdf' }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'when vat rate is less than zero' do
+      let(:attributes) { attributes_for :invoice_detail, vat_rate: -1 }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'when vat rate is decimal value' do
+      let(:attributes) { attributes_for :invoice_detail, vat_rate: 1.1 }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'when discount is not a number' do
+      let(:attributes) { attributes_for :invoice_detail, discount: 'asdf' }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'when vat discount less than zero' do
+      let(:attributes) { attributes_for :invoice_detail, discount: -1 }
+
+      it { is_expected.not_to be_valid }
     end
   end
 
-  context 'discount' do
-    it 'fallbacks to zero' do
-      expect(invoice_detail.discount).to eq(0)
-    end
+  describe 'default values' do
+    context 'when vat rate is nil' do
+      subject(:invoice_detail) { create :invoice_detail, vat_rate: nil }
 
-    context 'is not a number' do
-      let(:discount) { 'asdf' }
+      before do
+        create(:vat, :default, rate: 21)
+      end
 
-      it 'raises an error' do
-        expect(invoice_detail.errors).to have_key :discount
+      it { is_expected.to be_valid }
+
+      it 'fallbacks to default vat rate' do
+        expect(invoice_detail.vat_rate).to eq(21)
       end
     end
 
-    context 'is less than zero' do
-      let(:discount) { -1 }
+    context 'when discount is nil' do
+      subject(:invoice_detail) { create :invoice_detail, discount: nil }
 
-      it 'raises an error' do
-        expect(invoice_detail.errors).to have_key :discount
+      it { is_expected.to be_valid }
+
+      it 'fallbacks to zero' do
+        expect(invoice_detail.discount).to be_zero
       end
     end
   end
 
-  context 'totals' do
+  describe '#total' do
+    subject(:invoice_detail) { InvoiceDetail.new(quantity: 1.0, price: 100.0, vat_rate: 21.0, discount: 10.0) }
+
     it 'total includes discount, vat, price and quantity' do
-      r = InvoiceDetail.new(quantity: 1.0, price: 100.0, vat_rate: 21.0, discount: 10.0)
-      expect(r.total).to eq(108.9)
+      expect(invoice_detail.total).to eq(108.9)
     end
   end
 
-  context 'removing invoice details' do
-    let(:invoice_detail) { create(:invoice_detail) }
+  context 'when removing invoice details' do
+    subject(:invoice_detail) { create(:invoice_detail) }
 
     it 'leaves time log record pending for invoice' do
       time_log = create(:time_log, invoice_detail_id: invoice_detail.id)
-
       invoice_detail.destroy
 
       time_log.reload
@@ -152,7 +138,6 @@ RSpec.describe InvoiceDetail, type: :model do
 
     it 'leaves delivery note record pending for invoice' do
       delivery_note_detail = create(:delivery_note_detail, invoice_detail_id: invoice_detail.id)
-
       invoice_detail.destroy
 
       delivery_note_detail.reload

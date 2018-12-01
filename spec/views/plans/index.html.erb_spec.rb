@@ -4,7 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'plans/index', type: :view do
   let(:user) { create(:user, :admin) }
-  before(:each) do
+
+  before do
     sign_in user
     assign(:plans, create_list(:plan, 2))
 
@@ -12,7 +13,7 @@ RSpec.describe 'plans/index', type: :view do
     allow(view).to receive(:will_paginate).and_return('filterrific paginator')
   end
 
-  after(:each) do
+  after do
     sign_out user
   end
 

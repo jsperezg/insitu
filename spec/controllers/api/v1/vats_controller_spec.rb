@@ -4,14 +4,15 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::VatsController, type: :controller do
   let(:valid_attributes) { attributes_for :vat }
+  let(:vat) { Vat.create! valid_attributes }
   let(:invalid_attributes) { attributes_for :vat, rate: -1 }
   let(:user) { User.first || create(:user) }
 
-  before(:each) do
+  before do
     sign_in user
   end
 
-  after(:each) do
+  after do
     sign_out user
   end
 
@@ -41,7 +42,6 @@ RSpec.describe Api::V1::VatsController, type: :controller do
 
       it 'assigns a newly created vat as @vat' do
         post :create, vat: valid_attributes, format: :json
-        expect(assigns(:vat)).to be_a(Vat)
         expect(assigns(:vat)).to be_persisted
       end
 
@@ -54,7 +54,6 @@ RSpec.describe Api::V1::VatsController, type: :controller do
     context 'with invalid params' do
       it 'assigns a newly created but unsaved vat as @vat' do
         post :create, vat: invalid_attributes, format: :json
-        expect(assigns(:vat)).to be_a_new(Vat)
         expect(assigns(:vat)).not_to be_persisted
       end
     end
@@ -67,7 +66,6 @@ RSpec.describe Api::V1::VatsController, type: :controller do
       end
 
       it 'updates the requested vat' do
-        vat = Vat.create! valid_attributes
         put :update, id: vat.to_param, vat: new_attributes, format: :json
         vat.reload
 
@@ -76,13 +74,11 @@ RSpec.describe Api::V1::VatsController, type: :controller do
       end
 
       it 'assigns the requested vat as @vat' do
-        vat = Vat.create! valid_attributes
         put :update, id: vat.to_param, vat: valid_attributes, response: :json
         expect(assigns(:vat)).to eq(vat)
       end
 
       it 'returns 200 - ok' do
-        vat = Vat.create! valid_attributes
         put :update, id: vat.to_param, vat: valid_attributes, response: :json
         expect(response).to have_http_status(:ok)
       end
@@ -90,7 +86,6 @@ RSpec.describe Api::V1::VatsController, type: :controller do
 
     context 'with invalid params' do
       it 'assigns the vat as @vat' do
-        vat = Vat.create! valid_attributes
         put :update, id: vat.to_param, vat: invalid_attributes, response: :json
         expect(assigns(:vat)).to eq(vat)
       end
@@ -99,14 +94,13 @@ RSpec.describe Api::V1::VatsController, type: :controller do
 
   describe 'DELETE #destroy' do
     it 'destroys the requested vat' do
-      vat = Vat.create! valid_attributes
+      vat = create(:vat)
       expect do
         delete :destroy, id: vat.to_param, response: :json
       end.to change(Vat, :count).by(-1)
     end
 
     it 'returns 200 - ok' do
-      vat = Vat.create! valid_attributes
       delete :destroy, id: vat.to_param, response: :json
       expect(response).to have_http_status(:ok)
     end

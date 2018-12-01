@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class InvoiceGenerator
   attr_accessor :payment_method
 
@@ -17,8 +19,8 @@ class InvoiceGenerator
 
       # Iterate over estimate details.
       details = EstimateDetail
-                  .includes(service: [:vat])
-                  .where(estimate_id: estimate.id, invoice_detail_id: nil)
+                .includes(service: [:vat])
+                .where(estimate_id: estimate.id, invoice_detail_id: nil)
       details.each do |detail|
         invoice_detail = InvoiceDetail.create(
           invoice_id: invoice.id,
@@ -46,8 +48,8 @@ class InvoiceGenerator
 
       # Iterate over estimate details.
       details = DeliveryNoteDetail
-                  .includes(service: [:vat])
-                  .where(delivery_note_id: delivery_note.id, invoice_detail_id: nil)
+                .includes(service: [:vat])
+                .where(delivery_note_id: delivery_note.id, invoice_detail_id: nil)
       details.each do |detail|
         invoice_detail = InvoiceDetail.create(
           invoice_id: invoice.id,
@@ -64,6 +66,7 @@ class InvoiceGenerator
       end
 
       raise 'delivery_notes.nothing_to_invoice' if invoice.invoice_details.empty?
+
       return invoice
     end
   end
@@ -78,9 +81,7 @@ class InvoiceGenerator
       payment_method_id: @payment_method.id
     )
 
-    if invoice.invalid?
-      raise invoice.errors.full_messages.join(', ')
-    end
+    raise invoice.errors.full_messages.join(', ') if invoice.invalid?
 
     invoice
   end

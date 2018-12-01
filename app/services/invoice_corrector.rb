@@ -19,7 +19,7 @@ class InvoiceCorrector
   private
 
   def create_cancellation_header
-    date = DateTime.now
+    date = Date.today
 
     Invoice.create!(
       number: generate_id(AMENDING_INVOICE_SERIES, date.year, 2),
@@ -33,16 +33,18 @@ class InvoiceCorrector
   end
 
   def create_cancellation_details(amended_invoice)
-    @invoice.invoice_details.each do |detail|
-      InvoiceDetail.create!(
-        invoice_id: amended_invoice.id,
-        service_id: detail.service_id,
-        description: detail.description,
-        vat_rate: detail.vat_rate,
-        price: detail.price,
-        quantity: -detail.quantity,
-        discount: detail.discount
-      )
-    end
+    @invoice.invoice_details.each { |detail| create_cancellation_detail(amended_invoice, detail) }
+  end
+
+  def create_cancellation_detail(amended_invoice, detail)
+    InvoiceDetail.create!(
+      invoice_id: amended_invoice.id,
+      service_id: detail.service_id,
+      description: detail.description,
+      vat_rate: detail.vat_rate,
+      price: detail.price,
+      quantity: -detail.quantity,
+      discount: detail.discount
+    )
   end
 end

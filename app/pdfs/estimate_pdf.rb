@@ -1,5 +1,6 @@
-class EstimatePdf < DocumentPdf
+# frozen_string_literal: true
 
+class EstimatePdf < DocumentPdf
   def initialize(current_user, estimate)
     @estimate = estimate
 
@@ -17,8 +18,8 @@ class EstimatePdf < DocumentPdf
     cell_invoice_number = header_cell("#{Estimate.model_name.human}: #{@estimate.number}", default_borders, default_padding, :right)
 
     t = make_table([
-      [cell_invoice, cell_invoice_number]
-    ], { column_widths: [ header_width*0.33, header_width*0.66 ]})
+                     [cell_invoice, cell_invoice_number]
+                   ], column_widths: [header_width * 0.33, header_width * 0.66])
 
     t.draw
   end
@@ -37,15 +38,15 @@ class EstimatePdf < DocumentPdf
 
       conditions = []
 
-      conditions << header_cell("#{ Estimate.human_attribute_name(:date) }:", default_borders, default_padding)
+      conditions << header_cell("#{Estimate.human_attribute_name(:date)}:", default_borders, default_padding)
       conditions << data_cell(I18n.l(@estimate[:date]), default_borders, default_padding)
 
       unless @estimate.valid_until.nil?
-        conditions << header_cell("#{ Estimate.human_attribute_name(:valid_until) }:", default_borders, default_padding)
+        conditions << header_cell("#{Estimate.human_attribute_name(:valid_until)}:", default_borders, default_padding)
         conditions << data_cell(I18n.l(@estimate[:valid_until]), default_borders, default_padding)
       end
 
-      t = make_table([ conditions ], { column_widths: [ column_title_width, column_data_width, column_title_width, column_data_width ]})
+      t = make_table([conditions], column_widths: [column_title_width, column_data_width, column_title_width, column_data_width])
       t.draw
     end
   end
@@ -57,16 +58,16 @@ class EstimatePdf < DocumentPdf
     totals = []
 
     totals << [
-        header_cell("#{ Estimate.human_attribute_name :total }:", default_borders, default_padding, :right),
-        data_cell("#{ number_with_precision @estimate.total, precision: 2 } #{ currency_symbol(@current_user) }", default_borders, default_padding, :right)
+      header_cell("#{Estimate.human_attribute_name :total}:", default_borders, default_padding, :right),
+      data_cell("#{number_with_precision @estimate.total, precision: 2} #{currency_symbol(@current_user)}", default_borders, default_padding, :right)
     ]
 
     font DEFAULT_FONT, style: :normal
     font_size 10
 
     column_widths = [
-        bounds.right * 60 / 100,
-        bounds.right * 40 / 100,
+      bounds.right * 60 / 100,
+      bounds.right * 40 / 100
     ]
 
     t = make_table(totals, column_widths: column_widths, cell_style: { size: 12 })
@@ -82,11 +83,11 @@ class EstimatePdf < DocumentPdf
     details = []
 
     details << [
-        header_cell(EstimateDetail.human_attribute_name(:quantity), header_borders, header_padding),
-        header_cell(EstimateDetail.human_attribute_name(:description), header_borders, header_padding),
-        header_cell(EstimateDetail.human_attribute_name(:price), header_borders, header_padding, :right),
-        header_cell(EstimateDetail.human_attribute_name(:discount), header_borders, header_padding, :right),
-        header_cell(EstimateDetail.human_attribute_name(:total), header_borders, header_padding, :right)
+      header_cell(EstimateDetail.human_attribute_name(:quantity), header_borders, header_padding),
+      header_cell(EstimateDetail.human_attribute_name(:description), header_borders, header_padding),
+      header_cell(EstimateDetail.human_attribute_name(:price), header_borders, header_padding, :right),
+      header_cell(EstimateDetail.human_attribute_name(:discount), header_borders, header_padding, :right),
+      header_cell(EstimateDetail.human_attribute_name(:total), header_borders, header_padding, :right)
     ]
 
     @estimate.estimate_details.each do |detail|
@@ -94,20 +95,20 @@ class EstimatePdf < DocumentPdf
       description = detail.service.description if detail.description.blank?
 
       details << [
-          data_cell("#{ detail.quantity }", data_borders, default_padding),
-          data_cell(description, data_borders, default_padding),
-          data_cell("#{ number_with_precision(detail.price, precision: 2)} #{ currency_symbol(@current_user) }", data_borders, default_padding, :right),
-          data_cell("#{ detail.discount} %", data_borders, default_padding, :right),
-          data_cell("#{ number_with_precision(detail.total, precision: 2) } #{ currency_symbol(@current_user) }", data_borders, default_padding, :right)
+        data_cell(detail.quantity.to_s, data_borders, default_padding),
+        data_cell(description, data_borders, default_padding),
+        data_cell("#{number_with_precision(detail.price, precision: 2)} #{currency_symbol(@current_user)}", data_borders, default_padding, :right),
+        data_cell("#{detail.discount} %", data_borders, default_padding, :right),
+        data_cell("#{number_with_precision(detail.total, precision: 2)} #{currency_symbol(@current_user)}", data_borders, default_padding, :right)
       ]
     end
 
     column_widths = [
-        body_width * 10 / 100,
-        body_width * 45 / 100,
-        body_width * 15 / 100,
-        body_width * 15 / 100,
-        body_width * 15 / 100
+      body_width * 10 / 100,
+      body_width * 45 / 100,
+      body_width * 15 / 100,
+      body_width * 15 / 100,
+      body_width * 15 / 100
     ]
 
     t = make_table(details, header: true, column_widths: column_widths, cell_style: { size: 12 })

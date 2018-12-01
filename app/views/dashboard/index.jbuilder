@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.past_year do
   json.partial! 'dashboard_element', period_data: @reports[:past_year]
 end

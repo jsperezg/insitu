@@ -166,11 +166,13 @@ class User < ActiveRecord::Base
 
   def init_tenant
     return if Rails.env.test?
+
     Apartment::Tenant.create(self[:tenant])
   end
 
   def destroy_tenant
     return if Rails.env.test?
+
     Apartment::Tenant.drop(self[:tenant])
   end
 

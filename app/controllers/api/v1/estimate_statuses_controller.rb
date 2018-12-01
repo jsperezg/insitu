@@ -1,18 +1,23 @@
-class Api::V1::EstimateStatusesController < ApiController
-  include Api
+# frozen_string_literal: true
 
-  before_action :set_estimate_status, only: [:show]
+module Api
+  module V1
+    class EstimateStatusesController < ApiController
+      include Api
 
-  def index
-    @estimate_statuses = EstimateStatus.all
-  end
+      before_action :set_estimate_status, only: [:show]
 
-  def show
-  end
+      def index
+        @estimate_statuses = EstimateStatus.all
+      end
 
-  private
+      def show; end
 
-  def set_estimate_status
-    @estimate_status = EstimateStatus.find(params[:id])
+      private
+
+      def set_estimate_status
+        @estimate_status = EstimateStatus.find(params[:id])
+      end
+    end
   end
 end

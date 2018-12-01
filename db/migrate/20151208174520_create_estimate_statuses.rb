@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateEstimateStatuses < ActiveRecord::Migration
   def change
     create_table :estimate_statuses do |t|

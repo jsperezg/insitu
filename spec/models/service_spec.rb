@@ -1,122 +1,75 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Service, type: :model do
-  before(:all) do
-    @user_sequence = rand(10000) if @user_sequence.nil?
-    @user_sequence += 1
+  subject(:service) { build :service, attributes }
 
-    Thread.current[:user] = create(:user, email: "user_#{@user_sequence}@domain.com")
-    Vat.first || create(:vat)
-    Unit.first || create(:unit)
+  let(:attributes) { attributes_for :service }
+
+  it { is_expected.to be_valid }
+
+  describe 'model validation' do
+    context 'when code is missing' do
+      let(:attributes) { attributes_for :service, code: '' }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'when code already exists' do
+      let(:another_service) { create :service }
+      let(:attributes) { attributes_for :service, code: another_service.code }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'when description is missing' do
+      let(:attributes) { attributes_for :service, description: '' }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'when price is missing' do
+      let(:attributes) { attributes_for :service, price: nil }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'when price is negative' do
+      let(:attributes) { attributes_for :service, price: -1 }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'when vat is missing' do
+      let(:attributes) { attributes_for :service, vat: nil }
+
+      it { is_expected.not_to be_valid }
+    end
+
+    context 'when unit is missing' do
+      let(:attributes) { attributes_for :service, unit: nil }
+
+      it { is_expected.not_to be_valid }
+    end
   end
 
-  it 'code is mandatory' do
-    service = Service.new(
-      description: 'It has a description',
-      price: 1.0,
-      vat: Vat.first,
-      unit: Unit.first
-    )
-    service.save
-
-    expect(service.errors).to satisfy { |errors| !errors.empty? && errors.key?( :code )}
-  end
-
-  it 'code is unique' do
-    Service.create!(
-      code:  'a code',
-      description: 'It has a description',
-      price: 1.0,
-      vat: Vat.first,
-      unit: Unit.first
-    )
-
-    another_service = Service.new(
-      code:  'a code',
-      description: 'It has a description',
-      price: 1.0,
-      vat: Vat.first,
-      unit: Unit.first
-    )
-    another_service.save
-
-    expect(another_service.errors).to satisfy { |errors| !errors.empty? && errors.key?( :code )}
-  end
-
-  it 'description is mandatory' do
-    service = Service.new(
-      code: 'a code',
-      price: 1.0,
-      vat: Vat.first,
-      unit: Unit.first
-    )
-    service.save
-
-    expect(service.errors).to satisfy { |errors| !errors.empty? && errors.key?( :description )}
-  end
-
-  it 'price is mandatory' do
-    service = Service.new(
-      code:  'a code',
-      description: 'It has a description',
-      vat: Vat.first,
-      unit: Unit.first
-    )
-    service.save
-
-    expect(service.errors).to satisfy { |errors| !errors.empty? && errors.key?( :price )}
-
-  end
-
-  it 'price is positive' do
-    service = Service.new(
-      code:  'a code',
-      description: 'It has a description',
-      price: -1,
-      vat: Vat.first,
-      unit: Unit.first
-    )
-    service.save
-
-    expect(service.errors).to satisfy { |errors| !errors.empty? && errors.key?( :price )}
-  end
-
-  it 'vat is mandatory' do
-    service = Service.new(
-      code:  'a code',
-      description: 'It has a description',
-      price: 1,
-      unit: Unit.first
-    )
-    service.save
-
-    expect(service.errors).to satisfy { |errors| !errors.empty? && errors.key?( :vat )}
-
-  end
-
-  it 'unit is mandatory' do
-    service = Service.new(
-      code:  'a code',
-      description: 'It has a description',
-      price: 1,
-      vat: Vat.first
-    )
-    service.save
-
-    expect(service.errors).to satisfy { |errors| !errors.empty? && errors.key?( :unit )}
-  end
-
-  it 'active defaults to true' do
-    service = Service.new(
-        code:  'a code',
+  describe 'default values' do
+    subject(:service) do
+      Service.new(
+        code: 'a code',
         description: 'It has a description',
         price: 1,
         unit: Unit.first,
         vat: Vat.first
-    )
-    expect(service.save).to be_truthy
+      )
+    end
 
-    service.reload
-    expect(service.active).to be_truthy
+    before do
+      service.save
+      service.reload
+    end
+
+    it { is_expected.to be_active }
   end
 end

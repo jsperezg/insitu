@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateDeliveryNoteDetails < ActiveRecord::Migration
   def change
     create_table :delivery_note_details do |t|

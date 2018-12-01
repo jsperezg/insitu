@@ -54,12 +54,12 @@ class DeliveryNote < ActiveRecord::Base
     result
   end
 
-  scope :with_number, ->(number) { where('number like :number', {number: "#{number}%"}) }
+  scope :with_number, ->(number) { where('number like :number', number: "#{number}%") }
 
   scope :with_date_ge, lambda { |date|
-    match = date.match(/(\d{2})\/(\d{2})\/(\d{4})/i)
+    match = date.match(%r((\d{2})\/(\d{2})\/(\d{4}))i)
     date = "#{match[3]}-#{match[2]}-#{match[1]}" if match
-    where('date >= :date', {date: date})
+    where('date >= :date', date: date)
   }
 
   scope :with_customer, ->(customer_id) { where(customer_id: customer_id) }
@@ -82,17 +82,20 @@ class DeliveryNote < ActiveRecord::Base
 
   def set_number
     return if date.nil?
+
     self.number ||= generate_id(model_name.human, date.year)
   end
 
   def number_format
-    return if is_number_valid?(self.number, date)
+    return if number_valid?(self.number, date)
+
     year = date&.year || Date.today.year
     errors.add(:number, I18n.t('activerecord.errors.models.delivery_note.attributes.number.invalid_format', year: year))
   end
 
   def last_document_number
     return if date.nil?
+
     last_id(model_name.human, date.year)
   end
 end

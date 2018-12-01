@@ -15,7 +15,6 @@ class ServicesController < SecuredController
       select_options: {
         with_active_criteria: Service.active_filter_options
       }
-
     ) || return
 
     @services = @filterrific.find.page(params[:page])

@@ -13,14 +13,14 @@ class Plan < ActiveRecord::Base
 
   def self.options_for_sorted_by
     [
-      [ "#{Service.human_attribute_name(:description)} (#{I18n.t('filterrific.sort_alpha_asc')})", 'description_asc'],
-      [ "#{Service.human_attribute_name(:description)} (#{I18n.t('filterrific.sort_alpha_desc')})", 'description_desc'],
-      [ "#{Service.human_attribute_name(:months)} (#{I18n.t('filterrific.sort_alpha_asc')})", 'months_asc'],
-      [ "#{Service.human_attribute_name(:months)} (#{I18n.t('filterrific.sort_alpha_desc')})", 'months_desc'],
-      [ "#{Service.human_attribute_name(:price)} (#{I18n.t('filterrific.sort_alpha_asc')})", 'price_asc'],
-      [ "#{Service.human_attribute_name(:price)} (#{I18n.t('filterrific.sort_alpha_desc')})", 'price_desc'],
-      [ "#{Service.human_attribute_name(:is_active)} (#{I18n.t('filterrific.sort_alpha_desc')})", 'is_active_asc'],
-      [ "#{Service.human_attribute_name(:is_active)} (#{I18n.t('filterrific.sort_alpha_desc')})", 'is_active_desc']
+      ["#{Service.human_attribute_name(:description)} (#{I18n.t('filterrific.sort_alpha_asc')})", 'description_asc'],
+      ["#{Service.human_attribute_name(:description)} (#{I18n.t('filterrific.sort_alpha_desc')})", 'description_desc'],
+      ["#{Service.human_attribute_name(:months)} (#{I18n.t('filterrific.sort_alpha_asc')})", 'months_asc'],
+      ["#{Service.human_attribute_name(:months)} (#{I18n.t('filterrific.sort_alpha_desc')})", 'months_desc'],
+      ["#{Service.human_attribute_name(:price)} (#{I18n.t('filterrific.sort_alpha_asc')})", 'price_asc'],
+      ["#{Service.human_attribute_name(:price)} (#{I18n.t('filterrific.sort_alpha_desc')})", 'price_desc'],
+      ["#{Service.human_attribute_name(:is_active)} (#{I18n.t('filterrific.sort_alpha_desc')})", 'is_active_asc'],
+      ["#{Service.human_attribute_name(:is_active)} (#{I18n.t('filterrific.sort_alpha_desc')})", 'is_active_desc']
     ]
   end
 
@@ -87,6 +87,7 @@ class Plan < ActiveRecord::Base
 
   def set_default_values
     return unless new_record?
+
     self.is_active = true
   end
 end

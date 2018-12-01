@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TranslateCurrentlyDefinedCurrencies < ActiveRecord::Migration
   def change
     User.all.each do |user|
@@ -5,9 +7,7 @@ class TranslateCurrentlyDefinedCurrencies < ActiveRecord::Migration
         user.currency = 'USD'
       else
         currencies = ISO4217::Currency.list_from_symbol(user.currency)
-        unless currencies.empty?
-          user.currency = currencies.first[1].code
-        end
+        user.currency = currencies.first[1].code unless currencies.empty?
       end
 
       user.save

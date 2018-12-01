@@ -31,10 +31,7 @@ class EstimatesController < SecuredController
 
   # GET /estimates/1/print
   def print
-    unless @estimate.sent?
-      @estimate.estimate_status = EstimateStatus.find_by(name: 'estimate_status.sent')
-      @estimate.save
-    end
+    @estimate.sent!
 
     respond_to do |format|
       format.html do
@@ -42,7 +39,7 @@ class EstimatesController < SecuredController
       end
       format.pdf do
         pdf = EstimatePdf.new current_user, @estimate
-        send_data pdf.render, filename: "estimate_#{ @estimate.number.gsub('/', '_') }.pdf", type: 'application/pdf', disposition: 'inline'
+        send_data pdf.render, filename: "estimate_#{@estimate.number.tr('/', '_')}.pdf", type: 'application/pdf', disposition: 'inline'
       end
     end
   end
@@ -56,14 +53,11 @@ class EstimatesController < SecuredController
       return
     end
 
-    unless @estimate.sent?
-      @estimate.estimate_status = EstimateStatus.find_by(name: 'estimate_status.sent')
-      @estimate.save
-    end
+    @estimate.sent!
 
     file_name = Rails.root.join(
       'tmp',
-      "estimate_#{current_user.id}_#{@estimate.number.gsub('/', '_')}_#{Time.now.to_i}.pdf"
+      "estimate_#{current_user.id}_#{@estimate.number.tr('/', '_')}_#{Time.now.to_i}.pdf"
     )
 
     pdf = EstimatePdf.new current_user, @estimate
@@ -114,7 +108,7 @@ class EstimatesController < SecuredController
             redirect_to edit_user_estimate_url(current_user, @estimate),
                         notice: t(:successfully_updated, item: t('estimates.estimate'))
           end
-          format.json {render :show, status: :ok, location: @estimate}
+          format.json { render :show, status: :ok, location: @estimate }
         else
           format.html do
             @estimate.estimate_details.includes(service: %i[unit vat]).build
@@ -133,27 +127,25 @@ class EstimatesController < SecuredController
   def destroy
     @estimate.destroy
     respond_to do |format|
-      format.html {
+      format.html do
         redirect_to user_estimates_url(current_user),
                     notice: t(:successfully_destroyed, item: t('estimates.estimate'))
-      }
-      format.json {head :no_content}
+      end
+      format.json { head :no_content }
     end
   end
 
   def invoice
-    begin
-      invoice_generator = InvoiceGenerator.new
-      invoice = invoice_generator.from_estimate(@estimate)
+    invoice_generator = InvoiceGenerator.new
+    invoice = invoice_generator.from_estimate(@estimate)
 
-      invoice.apply_irpf(current_user)
-      invoice.save!
+    invoice.apply_irpf(current_user)
+    invoice.save!
 
-      redirect_to edit_user_invoice_path(current_user, invoice)
-    rescue => error
-      flash[:alert] = t(error.message)
-      redirect_to user_estimates_path(current_user)
-    end
+    redirect_to edit_user_invoice_path(current_user, invoice)
+  rescue StandardError => error
+    flash[:alert] = t(error.message)
+    redirect_to user_estimates_path(current_user)
   end
 
   private

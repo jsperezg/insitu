@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Invoice, type: :model do
-  before(:each) do
+  before do
     Thread.current[:user] = User.first || create(:user)
   end
 
@@ -92,10 +94,10 @@ RSpec.describe Invoice, type: :model do
     end
 
     it 'Sequence is updated after updating invoices' do
-      invoice = create(:invoice, number: "A/#{DateTime.now.year}/000002")
+      invoice = create(:invoice, number: "A/#{Date.today.year}/000002")
       expect(invoice.number).to end_with('000002')
 
-      invoice.number = "A/#{DateTime.now.year}/000001"
+      invoice.number = "A/#{Date.today.year}/000001"
       expect(invoice.save).to be_truthy
 
       other_invoice = create(:invoice)
@@ -150,18 +152,18 @@ RSpec.describe Invoice, type: :model do
   end
 
   describe 'billing process' do
-    let(:irpf_15) {
+    let(:irpf_15) do
       customer = create(:customer, irpf: 15, country: 'ES')
       invoice = attributes_for(:invoice, customer_id: customer.id, irpf: 15)
 
       invoice.merge(invoice_details_attributes: [attributes_for(:invoice_detail, invoice_id: nil)])
-    }
+    end
 
-    let(:irpf_0) {
+    let(:irpf_0) do
       invoice = attributes_for(:invoice, irpf: 0)
 
       invoice.merge(invoice_details_attributes: [attributes_for(:invoice_detail, invoice_id: nil)])
-    }
+    end
 
     it 'irpf 15%' do
       invoice = Invoice.create! irpf_15
@@ -176,7 +178,7 @@ RSpec.describe Invoice, type: :model do
       expect(invoice.applied_irpf).to eq(gross_total * invoice.irpf / 100)
 
       tax_total = 0
-      invoice.tax.each do |key, value|
+      invoice.tax.each do |key, _value|
         tax_total += invoice.tax[key]
       end
 
@@ -195,7 +197,7 @@ RSpec.describe Invoice, type: :model do
       expect(invoice.applied_irpf).to eq(0)
 
       tax_total = 0
-      invoice.tax.each do |key, value|
+      invoice.tax.each do |key, _value|
         tax_total += invoice.tax[key]
       end
 
@@ -213,19 +215,18 @@ RSpec.describe Invoice, type: :model do
   end
 
   describe 'Invoice deletion' do
-    before(:each) do
-      @invoice = create(:invoice)
-    end
+    let(:invoice) { create(:invoice) }
 
     it 'Last invoice of serie can be deleted' do
-      expect(@invoice.deletion_allowed?).to be_truthy
-      expect { @invoice.destroy }.to change(Invoice, :count).by(-1)
+      expect(invoice).to be_deletion_allowed
+      expect { invoice.destroy }.to change(Invoice, :count).by(-1)
     end
 
     it 'Deletion of any other invoice will result into an exception' do
+      invoice = create(:invoice)
       create(:invoice)
-      expect(@invoice.deletion_allowed?).to be_falsey
-      expect { @invoice.destroy }.to raise_error
+      expect(invoice).not_to be_deletion_allowed
+      expect { invoice.destroy }.to raise_error(I18n.t('activerecord.errors.models.invoice.deletion_is_not_allowed'))
     end
   end
 end

@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'vats/edit', type: :view do
   let(:user) { create(:user) }
   let(:vat) { Vat.first || create(:vat) }
 
-  before(:each) do
+  before do
     sign_in user
     assign(:vat, vat)
   end
 
-  after(:each) do
+  after do
     sign_out user
   end
 

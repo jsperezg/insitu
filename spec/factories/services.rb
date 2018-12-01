@@ -6,10 +6,10 @@ FactoryBot.define do
       "BS/#{n.to_s.rjust(4)}"
     end
 
-    description 'Body shopping'
-    vat_id {Vat.find_by(default: true)&.id || Vat.create(rate: 21, default: true).id}
+    description { 'Body shopping' }
+    vat_id { Vat.find_by(default: true)&.id || Vat.create(rate: 21, default: true).id }
     unit_id { Unit.first.try(:id) || create(:unit).id }
-    price 25
-    active true
+    price { 25 }
+    active { true }
   end
 end

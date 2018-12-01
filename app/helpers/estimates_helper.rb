@@ -1,20 +1,21 @@
+# frozen_string_literal: true
+
 module EstimatesHelper
   def estimate_tr(estimate)
-
-    if estimate.accepted?
-      tr_class = 'success'
-    else
-      if estimate.rejected?
-        tr_class = 'danger'
-      elsif estimate.sent?
-        tr_class = 'info'
-      else
-        tr_class = 'active'
-      end
-    end
-
-    content_tag(:tr, class: tr_class) do
+    content_tag(:tr, class: estimate_tr_class(estimate)) do
       yield
+    end
+  end
+
+  def estimate_tr_class(estimate)
+    if estimate.accepted?
+      'success'
+    elsif estimate.rejected?
+      'danger'
+    elsif estimate.sent?
+      'info'
+    else
+      'active'
     end
   end
 end

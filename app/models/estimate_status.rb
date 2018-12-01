@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EstimateStatus < ActiveRecord::Base
   has_many :estimates
 

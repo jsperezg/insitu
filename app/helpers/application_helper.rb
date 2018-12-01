@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  def has_role?(role_name, &block)
-    if role_name.split('|').include? current_user.role.try(:description)
-      capture(&block)
-    end
+  def role?(role_name, &block)
+    capture(&block) if role_name.split('|').include? current_user.role.try(:description)
   end
 
   def ldate(object, options = {})
@@ -23,7 +21,7 @@ module ApplicationHelper
       tag_content << content_tag(:h1) do
         begin
           I18n.t(NAVIGATION_RULES[controller_name_sym][action_name_sym][:title])
-        rescue => e
+        rescue StandardError => e
           Rails.logger.error e
           "#{controller_name}.#{action_name}"
         end
@@ -37,7 +35,7 @@ module ApplicationHelper
             nav_content << content_tag(:li, class: 'active') do
               begin
                 I18n.t(NAVIGATION_RULES[controller_name_sym][action_name_sym][:title])
-              rescue => e
+              rescue StandardError => e
                 Rails.logger.error e
                 "#{controller_name}.#{action_name}"
               end
@@ -46,13 +44,11 @@ module ApplicationHelper
             # Iterate over parents
             parent_key = NAVIGATION_RULES[controller_name_sym][action_name_sym][:parent]
 
-            if parent_key.is_a? Symbol
-              element = NAVIGATION_RULES[parent_key]
-            elsif parent_key.is_a? Hash
-              element = NAVIGATION_RULES[parent_key[:controller]][parent_key[:action]]
-            else
-              element = nil
-            end
+            element = if parent_key.is_a? Symbol
+                        NAVIGATION_RULES[parent_key]
+                      elsif parent_key.is_a? Hash
+                        NAVIGATION_RULES[parent_key[:controller]][parent_key[:action]]
+                      end
 
             until element.nil?
               current_content = []
@@ -60,34 +56,30 @@ module ApplicationHelper
               begin
                 nav_content << content_tag(:li) do
                   link_to(link_details(parent_key)) do
-                    unless element[:icon].blank?
-                      current_content << content_tag(:i, nil, class: element[:icon])
-                    end
+                    current_content << content_tag(:i, nil, class: element[:icon]) unless element[:icon].blank?
 
                     current_content << I18n.t(element[:title])
 
                     raw(current_content.join(''))
                   end
                 end
-              rescue => e
+              rescue StandardError => e
                 Rails.logger.error e
               end
 
               parent_key = element[:parent]
 
-              if parent_key.is_a? Symbol
-                element = NAVIGATION_RULES[parent_key]
-              elsif parent_key.is_a? Hash
-                element = NAVIGATION_RULES[parent_key[:controller]][parent_key[:action]]
-              else
-                element = nil
-              end
+              element = if parent_key.is_a? Symbol
+                          NAVIGATION_RULES[parent_key]
+                        elsif parent_key.is_a? Hash
+                          NAVIGATION_RULES[parent_key[:controller]][parent_key[:action]]
+                        end
             end
 
             raw(nav_content.reverse.join(''))
           end
         end
-      rescue => e
+      rescue StandardError => e
         Rails.logger.error e
       end
 
@@ -97,22 +89,18 @@ module ApplicationHelper
 
   # This method generates a hash with all required elements for a navigation bar's link.
   def link_details(parent_key)
-    if parent_key.is_a? Hash
-      link_parameters = {
-        controller: parent_key[:controller],
-        action: parent_key[:action]
-      }
+    return '#' unless parent_key.is_a? Hash
 
-      unless parent_key[:params].nil?
-        parent_key[:params].each do |param_key|
-          link_parameters[param_key] = params[param_key]
-        end
-      end
+    link_parameters = {
+      controller: parent_key[:controller],
+      action: parent_key[:action]
+    }
 
-      return link_parameters
+    parent_key[:params]&.each do |param_key|
+      link_parameters[param_key] = params[param_key]
     end
 
-    '#'
+    link_parameters
   end
 
   def input_code(form, options = nil)

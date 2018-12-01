@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -58,7 +60,7 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
-  config.cache_store = :dalli_store, '127.0.0.1', { :namespace => -> { Apartment::Tenant.current }, expires_in: 1.day, compress: true }
+  config.cache_store = :dalli_store, '127.0.0.1', { namespace: -> { Apartment::Tenant.current }, expires_in: 1.day, compress: true }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
@@ -87,15 +89,15 @@ Rails.application.configure do
   config.action_mailer.logger = Logger.new 'log/ActionMailer.log'
   config.action_mailer.logger.level = Logger::DEBUG
 
-  config.action_mailer.default :charset => 'utf-8'
+  config.action_mailer.default charset: 'utf-8'
   config.action_mailer.smtp_settings = {
-      address: 'mail.your-server.de',
-      port: 587,
-      domain: 'insitu.tools',
-      user_name: ENV['mail_username'],
-      password: ENV['mail_password'],
-      authentication: :plain,
-      enable_starttls_auto: true
+    address: 'mail.your-server.de',
+    port: 587,
+    domain: 'insitu.tools',
+    user_name: ENV['mail_username'],
+    password: ENV['mail_password'],
+    authentication: :plain,
+    enable_starttls_auto: true
   }
 
   Rails.application.routes.default_url_options[:host] = 'billing.insitu.tools'

@@ -41,6 +41,7 @@ class Customer < ActiveRecord::Base
 
   def country_name
     return if country.blank?
+
     value = ISO3166::Country[country]
     value.translations[I18n.locale.to_s] || value.name
   end

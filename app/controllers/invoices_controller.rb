@@ -39,7 +39,7 @@ class InvoicesController < SecuredController
       end
       format.pdf do
         pdf = InvoicePdf.new current_user, @invoice
-        send_data pdf.render, filename: "invoice_#{@invoice.number.gsub('/', '_')}.pdf", type: 'application/pdf'
+        send_data pdf.render, filename: "invoice_#{@invoice.number.tr('/', '_')}.pdf", type: 'application/pdf'
       end
     end
   end
@@ -76,9 +76,7 @@ class InvoicesController < SecuredController
   # POST /invoices.json
   def create
     Invoice.transaction do
-      if params.key?(:user) && current_user.update(user_params)
-        current_user.reload
-      end
+      current_user.reload if params.key?(:user) && current_user.update(user_params)
 
       @invoice = Invoice.new(invoice_params)
 
@@ -106,9 +104,7 @@ class InvoicesController < SecuredController
   # PATCH/PUT /invoices/1.json
   def update
     Invoice.transaction do
-      if params.key?(:user) && current_user.update(user_params)
-        current_user.reload
-      end
+      current_user.reload if params.key?(:user) && current_user.update(user_params)
 
       @invoice.apply_irpf(current_user)
 
@@ -135,23 +131,21 @@ class InvoicesController < SecuredController
   # DELETE /invoices/1
   # DELETE /invoices/1.json
   def destroy
-    begin
-      @invoice.destroy
-      respond_to do |format|
-        format.html do
-          redirect_to user_invoices_url(current_user),
-                      notice: t(:successfully_destroyed, item: t('invoices.invoice'))
-        end
-        format.json { head :no_content }
+    @invoice.destroy
+    respond_to do |format|
+      format.html do
+        redirect_to user_invoices_url(current_user),
+                    notice: t(:successfully_destroyed, item: t('invoices.invoice'))
       end
-    rescue => e
-      respond_to do |format|
-        format.html do
-          redirect_to user_invoices_url(current_user), alert: e.message
-        end
-        format.json do
-          render json: { error: e.message }, status: :not_acceptable
-        end
+      format.json { head :no_content }
+    end
+  rescue StandardError => e
+    respond_to do |format|
+      format.html do
+        redirect_to user_invoices_url(current_user), alert: e.message
+      end
+      format.json do
+        render json: { error: e.message }, status: :not_acceptable
       end
     end
   end
@@ -168,10 +162,10 @@ class InvoicesController < SecuredController
         end
         format.json { render :show, status: :ok, location: @invoice }
       end
-    rescue => e
+    rescue StandardError => e
       respond_to do |format|
         format.html { redirect_to user_invoices_url(current_user), alert: e.record.errors.full_messages.join('<br>') }
-        format.json { render json: {error: e.record.errors.full_messages}, status: :not_acceptable }
+        format.json { render json: { error: e.record.errors.full_messages }, status: :not_acceptable }
       end
     end
   end
@@ -183,8 +177,8 @@ class InvoicesController < SecuredController
                .includes(:customer, :invoice_details)
                .where(date: from_date..to_date)
     exporter = CSVExport.new(%i[
-      number customer date paid_on applied_irpf accumulated_tax subtotal
-    ])
+                               number customer date paid_on applied_irpf accumulated_tax subtotal
+                             ])
     send_data exporter.run(invoices), type: Mime::CSV, filename: 'invoices.csv'
   end
 

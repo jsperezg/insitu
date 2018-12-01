@@ -6,25 +6,25 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Invoice. As you add validations to Invoice, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
+  let(:valid_attributes) do
     invoice = attributes_for(:invoice)
 
-    invoice.merge(invoice_details_attributes: [ attributes_for(:invoice_detail, invoice_id: nil) ])
-  }
-
-  let(:invalid_attributes) {
-    attributes_for(:invoice, date: nil)
-  }
-
-  before(:each) do
-    @user = User.first || create(:user)
-    sign_in @user
-
-    Thread.current[:user] = @user
+    invoice.merge(invoice_details_attributes: [attributes_for(:invoice_detail, invoice_id: nil)])
   end
 
-  after(:each) do
-    sign_out @user
+  let(:invalid_attributes) do
+    attributes_for(:invoice, date: nil)
+  end
+
+  let(:user) { User.first || create(:user) }
+
+  before do
+    sign_in user
+    Thread.current[:user] = user
+  end
+
+  after do
+    sign_out user
   end
 
   describe 'GET #index' do
@@ -47,9 +47,9 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
   describe 'POST #create' do
     context 'with valid params' do
       it 'creates a new Invoice' do
-        expect {
+        expect do
           post :create, invoice: valid_attributes
-        }.to change(Invoice, :count).by(1)
+        end.to change(Invoice, :count).by(1)
       end
 
       it 'assigns a newly created invoice as @invoice' do
@@ -59,7 +59,7 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
       end
 
       it 'returns HTTP 200' do
-        post :create, invoice: valid_attributes, user_id: @user.id
+        post :create, invoice: valid_attributes, user_id: user.id
         expect(response).to have_http_status(:ok)
       end
     end
@@ -74,9 +74,9 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
 
   describe 'PUT #update' do
     context 'with valid params' do
-      let(:new_attributes) {
+      let(:new_attributes) do
         attributes_for(:invoice)
-      }
+      end
 
       it 'updates the requested invoice' do
         invoice = Invoice.create! valid_attributes
@@ -84,9 +84,7 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
         invoice.reload
 
         new_attributes.each do |key, value|
-          unless key == :irpf
-            expect(invoice[key]).to eq(value), "#{key}, #{invoice[key]} != #{value}"
-          end
+          expect(invoice[key]).to eq(value), "#{key}, #{invoice[key]} != #{value}" unless key == :irpf
         end
       end
 
@@ -98,7 +96,7 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
 
       it 'Returns HTTP 200' do
         invoice = Invoice.create! valid_attributes
-        put :update, id: invoice.to_param, invoice: valid_attributes, user_id: @user.id
+        put :update, id: invoice.to_param, invoice: valid_attributes, user_id: user.id
         expect(response).to have_http_status(:ok)
       end
     end
@@ -115,9 +113,9 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
   describe 'DELETE #destroy' do
     it 'destroys the requested invoice' do
       invoice = Invoice.create! valid_attributes
-      expect {
+      expect do
         delete :destroy, id: invoice.to_param
-      }.to change(Invoice, :count).by(-1)
+      end.to change(Invoice, :count).by(-1)
     end
 
     it 'Returns HTTP 200' do
@@ -130,8 +128,8 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
   describe 'DELETE #cancel' do
     it 'creates an amending invoice' do
       invoice = Invoice.create! valid_attributes
-      delete :cancel, id: invoice.to_param, user_id: @user.id
-      expect(assigns(:invoice)).to  be_amending_invoice
+      delete :cancel, id: invoice.to_param, user_id: user.id
+      expect(assigns(:invoice)).to be_amending_invoice
     end
   end
 end

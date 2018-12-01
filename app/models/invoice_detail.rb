@@ -22,25 +22,29 @@ class InvoiceDetail < ActiveRecord::Base
             presence: true,
             numericality: { greater_than_or_equal_to: 0, only_integer: true }
 
-  after_initialize :set_default_values
+  before_validation :set_default_values
 
   def subtotal
     return unless price.present? && quantity.present?
+
     price * quantity
   end
 
   def applied_discount
     return unless price.present? && quantity.present? && discount.present?
+
     discount / 100.0 * subtotal
   end
 
   def tax
     return unless price.present? && quantity.present? && discount.present? && vat_rate.present?
+
     (1 - (discount / 100.0)) * price * quantity * (vat_rate / 100.0)
   end
 
   def total
     return unless price.present? && quantity.present? && discount.present? && vat_rate.present?
+
     (1 - (discount / 100.0)) * price * quantity * (1 + (vat_rate / 100.0))
   end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :unit do
     sequence :label_short do |n|
@@ -8,5 +10,4 @@ FactoryBot.define do
       "Unit #{n}"
     end
   end
-
 end

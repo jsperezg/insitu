@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePayments < ActiveRecord::Migration
   def change
     create_table :payments do |t|
@@ -30,7 +32,6 @@ class CreatePayments < ActiveRecord::Migration
 
       t.string :charset
       t.string :notify_version, limit: 25
-
 
       # https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNandPDTVariables/
       # {
@@ -76,9 +77,7 @@ class CreatePayments < ActiveRecord::Migration
       # "payment_gross"=>"",
       # }
 
-
       t.timestamps null: false
-
     end
   end
 end

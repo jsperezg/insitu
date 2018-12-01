@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NotifyPaymentErrorMailer < ApplicationMailer
   def notify_payment_error(to)
     @error_message = error_message

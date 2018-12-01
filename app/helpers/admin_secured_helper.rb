@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 module AdminSecuredHelper
-  def is_admin?
-    current_user.role.try(:description) == 'Administrator'
+  def admin?
+    current_user.role&.description == 'Administrator'
   end
 end

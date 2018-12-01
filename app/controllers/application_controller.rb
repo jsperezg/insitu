@@ -44,11 +44,13 @@ class ApplicationController < ActionController::Base
   def validate_secure_request
     return unless user_signed_in?
     return unless params.key?(:user_id)
+
     sign_out current_user if current_user.id.to_s != params[:user_id]
   end
 
   def switch_tenant
     return if Rails.env.test?
+
     Apartment::Tenant.switch! current_user&.tenant
   end
 

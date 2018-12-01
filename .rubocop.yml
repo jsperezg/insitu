@@ -2,9 +2,15 @@ require: rubocop-rspec
 
 AllCops:
   TargetRubyVersion: 2.4.4
+  Exclude:
+    - 'db/migrate/*.rb'
+    - 'db/schema.rb'
+    - 'bin/*'
 
 Metrics/LineLength:
-  Max: 120
+  Exclude:
+    - 'config/initializers/devise.rb'
+  Max: 150
 
 Metrics/BlockLength:
   Exclude:
@@ -12,6 +18,14 @@ Metrics/BlockLength:
     - '**/*.rake'
     - 'test/**/*.rb'
     - 'spec/**/*.rb'
+    - 'config/environments/*.rb'
+    - 'config/routes.rb'
 
 Documentation:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
   Enabled: false

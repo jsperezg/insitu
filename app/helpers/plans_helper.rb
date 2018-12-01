@@ -46,7 +46,7 @@ module PlansHelper
   def plan_price_tag(plan)
     plan_price = []
 
-    plan_price << content_tag(:h4, number_to_currency(plan.price, :precision => 2, unit: '€', format: '%n %u'), class: 'text-center')
+    plan_price << content_tag(:h4, number_to_currency(plan.price, precision: 2, unit: '€', format: '%n %u'), class: 'text-center')
     plan_price << content_tag(:h5, "(#{plan.vat_rate}% excl.)", class: 'text-center')
 
     plan_price.join('').html_safe
@@ -75,12 +75,10 @@ module PlansHelper
     elements << hidden_field_tag('return_url', renew_sent_user_url(current_user))
     elements << hidden_field_tag('cancel_url', renew_user_url(current_user))
     elements << image_submit_tag('https://www.paypalobjects.com/webstatic/en_US/btn/btn_buynow_cc_171x47.png',
-                                 {
-                                   border: 0,
-                                   name: 'submit',
-                                   alt: 'PayPal. La forma rápida y segura de pagar en Internet.',
-                                   class: 'center-block'
-                                 })
+                                 border: 0,
+                                 name: 'submit',
+                                 alt: 'PayPal. La forma rápida y segura de pagar en Internet.',
+                                 class: 'center-block')
     elements.join('').html_safe
   end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.cache! @task do
   json.extract! @task, :id, :name, :description, :project_id, :finish_date, :dead_line, :priority
   json.time_logs @task.time_logs do |time_log|

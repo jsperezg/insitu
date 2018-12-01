@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DocumentPdf < Prawn::Document
   include ActionView::Helpers::NumberHelper
   include Prawn::Measurements
@@ -24,9 +26,7 @@ class DocumentPdf < Prawn::Document
   end
 
   def generate_header
-    if @current_user.logo.present?
-      image @current_user.logo.path(:medium), at: bounds.top_left, fit: [75, 25]
-    end
+    image @current_user.logo.path(:medium), at: bounds.top_left, fit: [75, 25] if @current_user.logo.present?
 
     bounding_box([0, header_top], width: header_width, height: HEADER_HEIGHT + DOCUMENT_DATA_HEIGHT + DOCUMENT_CONDITIONS) do
       document_data
@@ -56,11 +56,9 @@ class DocumentPdf < Prawn::Document
 
         font_size 12
         text @current_user[:address]
-        text "#{ @current_user[:city] }, #{ @current_user[:state] } #{ @current_user[:postal_code ]} (#{ @current_user.country_name })"
+        text "#{@current_user[:city]}, #{@current_user[:state]} #{@current_user[:postal_code]} (#{@current_user.country_name})"
 
-        unless @current_user[:phone_number].blank?
-          text @current_user[:phone_number]
-        end
+        text @current_user[:phone_number] unless @current_user[:phone_number].blank?
 
         text @current_user[:email]
       end
@@ -83,11 +81,9 @@ class DocumentPdf < Prawn::Document
 
         font_size 12
         text @customer[:address]
-        text "#{ @customer[:city] }, #{ @customer[:state] } #{ @customer[:postal_code ]} (#{ @customer.country_name })"
+        text "#{@customer[:city]}, #{@customer[:state]} #{@customer[:postal_code]} (#{@customer.country_name})"
 
-        unless @customer[:phone_number].blank?
-          text @customer[:phone_number]
-        end
+        text @customer[:phone_number] unless @customer[:phone_number].blank?
 
         text @customer[:email]
       end
@@ -105,11 +101,11 @@ class DocumentPdf < Prawn::Document
   end
 
   def compose_document_conditions
-    text "Document conditions"
+    text 'Document conditions'
   end
 
   def document_details
-    text "define your own document_details method."
+    text 'define your own document_details method.'
     transparent (0.5) { stroke_bounds }
   end
 
@@ -117,7 +113,7 @@ class DocumentPdf < Prawn::Document
     header_width / 2
   end
 
-  def header_block_left (index)
+  def header_block_left(index)
     header_block_width * index
   end
 
@@ -150,8 +146,7 @@ class DocumentPdf < Prawn::Document
     end
   end
 
-  def footer_notes
-  end
+  def footer_notes; end
 
   def generate_footer_totals
     bounding_box([footer_width * 0.66, bounds.top], width: footer_totals_width, height: FOOTER_HEIGHT) do

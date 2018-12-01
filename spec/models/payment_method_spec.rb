@@ -1,22 +1,24 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe PaymentMethod, type: :model do
-  before(:each) do
+  before do
     Thread.current[:user] = create(:user)
   end
 
-  it "Name is mandatory: Nil is not a valid value" do
+  it 'Name is mandatory: Nil is not a valid value' do
     payment_method = PaymentMethod.new
     payment_method.save
 
-    expect(payment_method.errors).to satisfy { |errors| !errors.empty? && errors.key?( :name )}
+    expect(payment_method.errors).to be_key :name
   end
 
-  it "Name is mandatory: blank is not a valid value" do
+  it 'Name is mandatory: blank is not a valid value' do
     payment_method = PaymentMethod.new(name: '')
     payment_method.save
 
-    expect(payment_method.errors).to satisfy { |errors| !errors.empty? && errors.key?( :name )}
+    expect(payment_method.errors).to be_key :name
   end
 
   it 'name is unique' do
@@ -25,7 +27,7 @@ RSpec.describe PaymentMethod, type: :model do
     r = PaymentMethod.new(name: 'one payment method')
     r.save
 
-    expect(r.errors).to satisfy { |errors| errors.key? :name }
+    expect(r.errors).to be_key :name
   end
 
   describe 'default flag' do

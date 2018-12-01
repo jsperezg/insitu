@@ -1,21 +1,23 @@
+# frozen_string_literal: true
+
 class Payment < ActiveRecord::Base
   enum payment_status: {
-      canceled_reversal: 'Canceled_Reversal',
-      completed: 'Completed',
-      created: 'Created',
-      denied: 'Denied',
-      expired: 'Expired',
-      failed: 'Failed',
-      pending: 'Pending',
-      refunded: 'Refunded',
-      reversed: 'Reversed',
-      processed: 'Processed',
-      voided: 'Voided'
+    canceled_reversal: 'Canceled_Reversal',
+    completed: 'Completed',
+    created: 'Created',
+    denied: 'Denied',
+    expired: 'Expired',
+    failed: 'Failed',
+    pending: 'Pending',
+    refunded: 'Refunded',
+    reversed: 'Reversed',
+    processed: 'Processed',
+    voided: 'Voided'
   }
 
   validates :txn_id, presence: true, uniqueness: true, length: { maximum: 19 }
   validates :business, presence: true, length: { maximum: 127 }
-  validates :receiver_email, presence: true, length: { maximum:  127 }
+  validates :receiver_email, presence: true, length: { maximum: 127 }
   validates :receiver_id, presence: true, length: { maximum: 13 }
   validates :residence_country, length: { maximum: 2 }
   validates :user_id, presence: true
@@ -45,7 +47,9 @@ class Payment < ActiveRecord::Base
   belongs_to :user
 
   def receiver_email_is_valid
-    errors[:receiver_email] = I18n.t('activerecord.errors.models.payment.attributes.receiver_email.invalid_value', email: receiver_email ) if receiver_email != Rails.configuration.x.paypal_receiver_email
+    return if receiver_email == Rails.configuration.x.paypal_receiver_email
+
+    errors[:receiver_email] = I18n.t('activerecord.errors.models.payment.attributes.receiver_email.invalid_value', email: receiver_email)
   end
 
   def payment_currency_is_valid
@@ -53,19 +57,19 @@ class Payment < ActiveRecord::Base
   end
 
   def payment_amount_is_valid
-    unless plan.nil?
-      expected_amount = plan.price * (1 + plan.vat_rate / 100.0)
-      errors[:mc_gross] = I18n.t('activerecord.errors.models.payment.attributes.mc_gross.invalid_value') if mc_gross != expected_amount
-    end
+    return if plan.nil?
+
+    expected_amount = plan.price * (1 + plan.vat_rate / 100.0)
+    errors[:mc_gross] = I18n.t('activerecord.errors.models.payment.attributes.mc_gross.invalid_value') if mc_gross != expected_amount
   end
 
   def renew_user
     user = self.user
-    user.valid_until = self.payment_date + self.plan.months.months
+    user.valid_until = payment_date + plan.months.months
     user.save!
 
-    self.processed_at = DateTime.now
-    self.save!
+    self.processed_at = Time.now
+    save!
   end
 
   private :receiver_email_is_valid, :payment_currency_is_valid

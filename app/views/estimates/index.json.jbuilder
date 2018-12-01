@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.estimates @estimates.each do |estimate|
   json.cache! estimate do
     json.extract! estimate, :id, :number, :customer_id, :estimate_status_id, :date, :valid_until

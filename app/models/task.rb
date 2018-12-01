@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Task < ActiveRecord::Base
   belongs_to :project
 
@@ -29,7 +31,7 @@ class Task < ActiveRecord::Base
   end
 
   def invoice_timelogs_into(invoice)
-    time_logs = TimeLog.where(task_id: self.id, invoice_detail_id: nil)
+    time_logs = TimeLog.where(task_id: id, invoice_detail_id: nil)
     time_logs.each do |time_log|
       invoice_detail = InvoiceDetail.new(
         invoice_id: invoice.id,

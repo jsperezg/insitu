@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class CreateInvoices < ActiveRecord::Migration
   def change
     create_table :invoices do |t|
-      t.string :number, length: 25, null: false, blank:  false
+      t.string :number, length: 25, null: false, blank: false
       t.date :date, null: false
       t.references :payment_method, index: true, foreign_key: true, null: false
       t.references :customer, index: true, foreign_key: true, null: false

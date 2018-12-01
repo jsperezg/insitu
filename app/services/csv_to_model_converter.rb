@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CsvToModelConverter
   def create(row)
     model_data = parse(row)
@@ -18,8 +20,6 @@ class CsvToModelConverter
 
   def parse(row)
     result = {}
-
-    converters = import_options[:value_converters]
 
     @attributes.each do |attribute|
       human_readable = @model.human_attribute_name(attribute)

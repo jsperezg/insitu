@@ -9,6 +9,10 @@ class PaymentMethod < ActiveRecord::Base
   has_many :invoices
   before_destroy :validate_referential_integrity
 
+  def self.default
+    PaymentMethod.find_by(default: true)
+  end
+
   private
 
   def maintain_default_flag
@@ -24,9 +28,5 @@ class PaymentMethod < ActiveRecord::Base
 
     errors.add(:base, I18n.t('activerecord.errors.models.payment_method.used_elsewhere'))
     false
-  end
-
-  def self.default
-    PaymentMethod.find_by(default: true)
   end
 end

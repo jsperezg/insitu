@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -266,8 +268,8 @@ Devise.setup do |config|
 end
 
 Rails.application.config.to_prepare do
-  Devise::SessionsController.layout proc { |controller| user_signed_in? ? 'application' : 'sign_in' }
-  Devise::RegistrationsController.layout proc { |controller| user_signed_in? ? 'application' : 'sign_in' }
-  Devise::ConfirmationsController.layout proc { user_signed_in? ? 'application' : 'sign_in' }
-  Devise::PasswordsController.layout proc { user_signed_in? ? 'application' : 'sign_in' }
+  Devise::SessionsController.layout ->(_controller) { user_signed_in? ? 'application' : 'sign_in' }
+  Devise::RegistrationsController.layout ->(_controller) { user_signed_in? ? 'application' : 'sign_in' }
+  Devise::ConfirmationsController.layout -> { user_signed_in? ? 'application' : 'sign_in' }
+  Devise::PasswordsController.layout -> { user_signed_in? ? 'application' : 'sign_in' }
 end

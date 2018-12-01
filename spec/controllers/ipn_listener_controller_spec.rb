@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe IpnListenerController, type: :controller do
-  describe "POST #create" do
-    context "VERIFIED response" do
-      before(:each) do
+  describe 'POST #create' do
+    context 'when VERIFIED response' do
+      before do
         allow_any_instance_of(IpnListenerController).to receive(:validate_ipn_notification).and_return('VERIFIED')
       end
 
@@ -40,8 +40,8 @@ RSpec.describe IpnListenerController, type: :controller do
       end
     end
 
-    context "INVALID response" do
-      before(:each) do
+    context 'when INVALID response' do
+      before do
         allow_any_instance_of(IpnListenerController).to receive(:validate_ipn_notification).and_return('INVALID')
       end
 
@@ -60,8 +60,8 @@ RSpec.describe IpnListenerController, type: :controller do
       end
     end
 
-    context "Other responses" do
-      before(:each) do
+    context 'when Other responses' do
+      before do
         allow_any_instance_of(IpnListenerController).to receive(:validate_ipn_notification).and_return('WTF')
       end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # config valid only for current version of Capistrano
 lock '3.10.0'
 
@@ -10,7 +12,6 @@ set :repo_url, 'git@bitbucket.org:insituinvoicing/fideliges.git'
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, '/var/www/my_app_name'
 set :deploy_to, '/opt/insitu'
-
 
 set :keep_assets, 2
 

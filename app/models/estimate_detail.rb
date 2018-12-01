@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EstimateDetail < ActiveRecord::Base
   belongs_to :estimate, touch: true
   belongs_to :service
@@ -8,8 +10,6 @@ class EstimateDetail < ActiveRecord::Base
   validates :discount, presence: true, numericality: { greater_than_or_equal_to: 0, only_integer: true }
 
   def total
-    if price.present? && quantity.present? && discount.present?
-      ( 1 - (discount / 100.0)) * price * quantity
-    end
+    (1 - (discount / 100.0)) * price * quantity if price.present? && quantity.present? && discount.present?
   end
 end

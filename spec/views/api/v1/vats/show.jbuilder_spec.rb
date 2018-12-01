@@ -13,7 +13,7 @@ describe 'api/v1/vats/show/', type: :view do
     render
 
     vat = JSON.parse(rendered)
-    expect(vat).to  have_key('id')
+    expect(vat).to have_key('id')
     expect(vat).to have_key('rate')
     expect(vat).to have_key('default')
   end
