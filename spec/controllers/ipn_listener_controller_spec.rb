@@ -6,7 +6,7 @@ RSpec.describe IpnListenerController, type: :controller do
   describe 'POST #create' do
     context 'when VERIFIED response' do
       before do
-        allow_any_instance_of(IpnListenerController).to receive(:validate_ipn_notification).and_return('VERIFIED')
+        allow(controller).to receive(:validate_ipn_notification).and_return('VERIFIED')
       end
 
       it 'returns OK response code' do
@@ -42,7 +42,7 @@ RSpec.describe IpnListenerController, type: :controller do
 
     context 'when INVALID response' do
       before do
-        allow_any_instance_of(IpnListenerController).to receive(:validate_ipn_notification).and_return('INVALID')
+        allow(controller).to receive(:validate_ipn_notification).and_return('INVALID')
       end
 
       it 'returns OK response code' do
@@ -62,7 +62,7 @@ RSpec.describe IpnListenerController, type: :controller do
 
     context 'when Other responses' do
       before do
-        allow_any_instance_of(IpnListenerController).to receive(:validate_ipn_notification).and_return('WTF')
+        allow(controller).to receive(:validate_ipn_notification).and_return('WTF')
       end
 
       it 'returns unprocessable entity response code' do

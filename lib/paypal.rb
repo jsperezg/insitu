@@ -57,7 +57,7 @@ module Paypal
     payment.plan = Plan.find(params[:item_number])
 
     with_locale(:en) do
-      payment.payment_date = Date.parse(params[:payment_date]).new_offset(0)
+      payment.payment_date = Date.parse(params[:payment_date])
     end
   end
 end

@@ -106,7 +106,7 @@ class DocumentPdf < Prawn::Document
 
   def document_details
     text 'define your own document_details method.'
-    transparent (0.5) { stroke_bounds }
+    transparent(0.5) { stroke_bounds }
   end
 
   def header_block_width
@@ -160,7 +160,7 @@ class DocumentPdf < Prawn::Document
 
   def footer_totals
     text 'footer totals'
-    transparent (0.5) { stroke_bounds }
+    transparent(0.5) { stroke_bounds }
   end
 
   def generate_body
@@ -173,7 +173,7 @@ class DocumentPdf < Prawn::Document
     text 'body'
     start_new_page
     text 'body 2'
-    transparent (0.5) { stroke_bounds }
+    transparent(0.5) { stroke_bounds }
   end
 
   def body_top
