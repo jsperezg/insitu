@@ -39,6 +39,8 @@ class Customer < ActiveRecord::Base
 
   before_destroy :validate_referential_integrity
 
+  scope :with_name, ->(name) { where('name like ?', "%#{name}%") unless name.blank? }
+
   def country_name
     return if country.blank?
 

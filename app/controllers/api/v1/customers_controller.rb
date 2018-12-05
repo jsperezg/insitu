@@ -8,7 +8,7 @@ module Api
       before_action :set_customer, only: %i[show update destroy]
 
       def index
-        @customers = Customer.order(name: :asc)
+        @customers = Customer.with_name(params[:name]).order(name: :asc)
       end
 
       def show; end

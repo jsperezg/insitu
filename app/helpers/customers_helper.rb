@@ -23,7 +23,7 @@ module CustomersHelper
     hidden_class = ''
     hidden_class = 'filterrific-periodically-observed' if options[:filterrific]
 
-    content_tag(:div, class: options[:class], url_source: user_customers_path(current_user, format: :json)) do
+    content_tag(:div, class: options[:class], url_source: api_v1_customers_path(format: :json)) do
       content << customer_label_tag(form, method, options)
 
       content << if create_customer_button
