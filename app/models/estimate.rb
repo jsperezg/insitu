@@ -31,21 +31,20 @@ class Estimate < ActiveRecord::Base
       attr[:description].blank?
   }, allow_destroy: true
 
-  after_initialize :set_default_values, if: :new_record?
   before_validation :set_default_values
 
   after_create do
-    increase_id self
+    increase_id
   end
 
   after_update do
     unless number == number_was
-      decrease_id self if number_was == last_document_number
+      decrease_id if number_was == last_document_number
     end
   end
 
-  after_destroy  do
-    decrease_id  self if number == last_document_number
+  after_destroy do
+    decrease_id if number == last_document_number
   end
 
   def total
@@ -108,10 +107,8 @@ class Estimate < ActiveRecord::Base
 
   def set_default_values
     self.estimate_status_id ||= EstimateStatus.find_by(name: 'estimate_status.created')&.id
-
-    self.number ||= generate_id(model_name.human, date.year) unless date.nil?
-
     self.date ||= Date.today
+    self.number ||= generate_id(model_name.human, date.year)
   end
 
   def validate_valid_until
@@ -121,7 +118,7 @@ class Estimate < ActiveRecord::Base
   end
 
   def number_format
-    return if number_valid?(self.number, self.date)
+    return if number_valid?(self.date)
 
     year = self.date&.year || Date.today.year
     errors.add(:number, I18n.t('activerecord.errors.models.estimate.attributes.number.invalid_format', year: year))

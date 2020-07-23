@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
   validates :currency, presence: true
   validate :ban_administrators
 
-  validates :terms_of_service, acceptance: { accept: true }, allow_nil: false, if: :new_record?
+  validates :terms_of_service, acceptance: { accept: '1' }, allow_nil: false, if: :new_record?
   attr_accessor :terms_of_service
 
   # Include default devise modules. Others available are:

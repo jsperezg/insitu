@@ -29,7 +29,7 @@
 
       <div class="form-check">
         <%= f.label :terms_of_service, class: 'form-check-label' do %>
-          <%= f.check_box :terms_of_service %>
+          <%= f.check_box :terms_of_service  %>
           <%= link_to User.human_attribute_name(:terms_of_service),
                       "#{root_url}/terms_and_conditions.html",
                       target: '_blank' %>

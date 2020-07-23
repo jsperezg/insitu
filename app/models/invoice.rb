@@ -46,17 +46,17 @@ class Invoice < ActiveRecord::Base
   before_validation :set_invoice_number
 
   after_create do
-    increase_id self
+    increase_id
   end
 
   after_update do
     unless number == number_was
-      decrease_id self if number_was == last_invoice_number
+      decrease_id if number_was == last_invoice_number
     end
   end
 
-  after_destroy  do
-    decrease_id  self
+  after_destroy do
+    decrease_id
   end
 
   def total
@@ -223,7 +223,7 @@ class Invoice < ActiveRecord::Base
   end
 
   def number_format
-    return if number_valid?(number, date)
+    return if number_valid?(date)
 
     year = date&.year || Date.today.year
     errors.add(:number, I18n.t('activerecord.errors.models.invoice.attributes.number.invalid_format', year: year))
