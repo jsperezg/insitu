@@ -52,7 +52,6 @@ class Customer < ActiveRecord::Base
     tax_id.present? &&
       name.present? &&
       address.present? &&
-      postal_code.present? &&
       country.present?
   end
 
