@@ -27,17 +27,17 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:account_update) do |u|
-      u.permit(
-        :password, :password_confirmation, :current_password,
-        :tax_id, :name, :address, :city, :country, :state, :postal_code,
-        :phone_number, :locale, :currency, :logo
-      )
-    end
+    devise_parameter_sanitizer.permit(
+      :account_update, 
+      keys: %i[password password_confirmation current_password
+             tax_id name address city country state postal_code
+             phone_number locale currency logo]
+    )
 
-    devise_parameter_sanitizer.for(:sign_up) do |u|
-      u.permit(:email, :password, :password_confirmation, :terms_of_service)
-    end
+    devise_parameter_sanitizer.permit(
+      :sign_up,
+      keys: %i[email password password_confirmation terms_of_service]
+    )
   end
 
   # If user is trying to access another user account

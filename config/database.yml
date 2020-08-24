@@ -15,7 +15,7 @@ default: &default
   pool: 3
   username: <%= ENV['DATABASE_USER'] %>
   password: <%= ENV['DATABASE_PASSWORD'] %>
-  socket: /var/run/mysqld/mysqld.sock
+  PORT: <%= ENV['DATABASE_PORT'] || 3306 %>
   host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
 
 development:
