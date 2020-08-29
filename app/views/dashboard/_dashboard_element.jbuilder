@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 json.net period_data[:net]
 json.discounts period_data[:discounts]
-json.tax period_data[:tax] unless current_user.has_cif?
+json.tax period_data[:tax] unless current_user.cif?
 
 json.vat do
   period_data[:vat].each do |rate, total|

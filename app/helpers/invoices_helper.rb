@@ -12,6 +12,7 @@ module InvoicesHelper
     return 'success' if invoice.paid?
     return 'danger' if invoice.default?
     return 'info' if invoice.sent?
+
     'active'
   end
 end

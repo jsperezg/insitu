@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe IpnListenerController, type: :controller do
-  describe "POST #create" do
-    context "VERIFIED response" do
-      before(:each) do
-        allow_any_instance_of(IpnListenerController).to receive(:validate_ipn_notification).and_return('VERIFIED')
+  describe 'POST #create' do
+    context 'when VERIFIED response' do
+      before do
+        allow(controller).to receive(:validate_ipn_notification).and_return('VERIFIED')
       end
 
       it 'returns OK response code' do
@@ -18,7 +20,7 @@ RSpec.describe IpnListenerController, type: :controller do
         post :create, paypal_renewal_request(user)
 
         user.reload
-        expect(user.is_premium?).to be_truthy
+        expect(user).to be_premium
       end
 
       it 'payment is created' do
@@ -38,9 +40,9 @@ RSpec.describe IpnListenerController, type: :controller do
       end
     end
 
-    context "INVALID response" do
-      before(:each) do
-        allow_any_instance_of(IpnListenerController).to receive(:validate_ipn_notification).and_return('INVALID')
+    context 'when INVALID response' do
+      before do
+        allow(controller).to receive(:validate_ipn_notification).and_return('INVALID')
       end
 
       it 'returns OK response code' do
@@ -54,13 +56,13 @@ RSpec.describe IpnListenerController, type: :controller do
         post :create, paypal_renewal_request(user)
 
         user.reload
-        expect(user.is_premium?).to be_falsey
+        expect(user).not_to be_premium
       end
     end
 
-    context "Other responses" do
-      before(:each) do
-        allow_any_instance_of(IpnListenerController).to receive(:validate_ipn_notification).and_return('WTF')
+    context 'when Other responses' do
+      before do
+        allow(controller).to receive(:validate_ipn_notification).and_return('WTF')
       end
 
       it 'returns unprocessable entity response code' do

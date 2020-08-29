@@ -1,27 +1,23 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe 'api/v1/units/index', type: :view  do
+describe 'api/v1/units/index', type: :view do
+  let(:units) { create_list :unit, 2 }
+
   before do
-    @units = []
-
-    2.times do |i|
-      @units << create(:unit)
-    end
-
-    assign(:unit, @units)
+    assign(:units, units)
   end
 
   it 'Renders a list of units' do
     render
 
     json = JSON.parse(rendered)
-    expect(json.key? "units").to be_truthy
+    expect(json).to be_key('units')
     expect(json['units'].length).to be(2)
 
-    json['units'].each do |unit|
-      expect(unit.key? 'id').to be_truthy
-      expect(unit.key? 'label_short').to be_truthy
-      expect(unit.key? 'label_long').to be_truthy
-    end
+    expect(json['units']).to all(be_key('id'))
+    expect(json['units']).to all(be_key('label_short'))
+    expect(json['units']).to all(be_key('label_long'))
   end
 end

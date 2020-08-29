@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe TimeLog, type: :model do
@@ -5,48 +7,48 @@ RSpec.describe TimeLog, type: :model do
     time_log = TimeLog.new
     time_log.save
 
-    expect(time_log.errors).to satisfy { |errors| !errors.empty? && errors.key?( :description )}
+    expect(time_log.errors).to be_key :description
   end
 
   it 'time_spent is mandatory' do
     time_log = TimeLog.new
     time_log.save
 
-    expect(time_log.errors).to satisfy { |errors| errors.key? :time_spent }
+    expect(time_log.errors).to be_key :time_spent
   end
 
   it 'time_spent is a number' do
     time_log = TimeLog.new(time_spent: 'asdf')
     time_log.save
 
-    expect(time_log.errors).to satisfy { |errors| errors.key? :time_spent }
+    expect(time_log.errors).to be_key :time_spent
   end
 
   it 'time_spent is a integer' do
     time_log = TimeLog.new(time_spent: 1.2)
     time_log.save
 
-    expect(time_log.errors).to satisfy { |errors| errors.key? :time_spent }
+    expect(time_log.errors).to be_key :time_spent
   end
 
   it 'time_spent is greater than zero' do
     time_log = TimeLog.new(time_spent: -1)
     time_log.save
 
-    expect(time_log.errors).to satisfy { |errors| errors.key? :time_spent }
+    expect(time_log.errors).to be_key :time_spent
   end
 
   it 'service_id is mandatory' do
     time_log = TimeLog.new
     time_log.save
 
-    expect(time_log.errors).to satisfy { |errors| !errors.empty? && errors.key?( :service_id )}
+    expect(time_log.errors).to be_key :service_id
   end
 
   it 'date is mandatory' do
     time_log = TimeLog.new
     time_log.save
 
-    expect(time_log.errors).to satisfy { |errors| errors.key? :date }
+    expect(time_log.errors).to be_key :date
   end
 end

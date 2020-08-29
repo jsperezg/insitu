@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 # Specs in this file have access to a helper object that includes
@@ -11,8 +13,8 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe EstimatesHelper, type: :helper do
-  describe "estimate_tr" do
-    it "accepted estimate" do
+  describe 'estimate_tr' do
+    it 'accepted estimate' do
       estimate = create(:estimate, estimate_status_id: create(:estimate_status, name: 'estimate_status.accepted').try(:id))
 
       html_row = helper.estimate_tr(estimate) do
@@ -21,7 +23,7 @@ RSpec.describe EstimatesHelper, type: :helper do
       expect(html_row).to include('success')
     end
 
-    it "created estimate" do
+    it 'created estimate' do
       estimate = create(:estimate, estimate_status_id: create(:estimate_status, name: 'estimate-status.created').try(:id))
 
       html_row = helper.estimate_tr(estimate) do
@@ -30,7 +32,7 @@ RSpec.describe EstimatesHelper, type: :helper do
       expect(html_row).to include('active')
     end
 
-    it "sent estimate" do
+    it 'sent estimate' do
       estimate = create(:estimate, estimate_status_id: create(:estimate_status, name: 'estimate_status.sent').try(:id))
 
       html_row = helper.estimate_tr(estimate) do

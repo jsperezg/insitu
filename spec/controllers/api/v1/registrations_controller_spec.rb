@@ -9,11 +9,11 @@ RSpec.describe Api::V1::RegistrationsController, type: :controller do
       email: email,
       password: 'Abcd1234',
       password_confirmation: 'Abcd1234',
-      terms_and_conditions: '1'
+      terms_and_conditions: true
     }
   end
 
-  before(:each) do
+  before do
     @request.env['devise.mapping'] = Devise.mappings[:user]
   end
 

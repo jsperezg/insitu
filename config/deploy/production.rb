@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
@@ -7,7 +9,7 @@
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
-server 'localhost', user: 'jsperezg', roles: %w{app db web}
+server 'localhost', user: 'jsperezg', roles: %w[app db web]
 
 set :branch, 'master'
 set :rails_env, 'production'
@@ -34,7 +36,7 @@ set :rbenv_ruby, '2.3.1'
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
 
-set :linked_files, %w(config/application.yml config/sidekiq.yml config/database.yml)
+set :linked_files, %w[config/application.yml config/sidekiq.yml config/database.yml]
 
 # Custom SSH Options
 # ==================
@@ -44,11 +46,10 @@ set :linked_files, %w(config/application.yml config/sidekiq.yml config/database.
 #
 # Global options
 # --------------
-set :ssh_options, {
-  keys: [ "#{ENV['HOME'] }/.ssh/id_rsa" ],
-  forward_agent: true,
-  auth_methods: %w(publickey password)
-}
+set :ssh_options,
+    keys: ["#{ENV['HOME']}/.ssh/id_rsa"],
+    forward_agent: true,
+    auth_methods: %w[publickey password]
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------

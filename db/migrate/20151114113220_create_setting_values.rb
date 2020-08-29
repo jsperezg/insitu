@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateSettingValues < ActiveRecord::Migration
   def change
     create_table :setting_values do |t|
@@ -5,8 +7,8 @@ class CreateSettingValues < ActiveRecord::Migration
       t.string :value_s
       t.boolean :value_b
       t.date :value_d
-      
-      t.references :setting_key, index: true, foreign_key: true      
+
+      t.references :setting_key, index: true, foreign_key: true
 
       t.timestamps null: false
     end

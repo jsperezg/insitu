@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   class ResponseFactory
     def self.get_response_for(model)
@@ -9,7 +11,7 @@ module Api
     end
 
     def self.error_response(message)
-      { error: true, errors: [ message ] }
+      { error: true, errors: [message] }
     end
   end
 end

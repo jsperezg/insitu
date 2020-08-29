@@ -1,0 +1,62 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1ns1tu
+  insitu:
+    build: .
+    entrypoint: /insitu/bin/entrypoint.sh
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/insitu:delegated
+      - bundle:/usr/local/bundle:delegated
+      - "$SSH_AUTH_SOCK:/tmp/agent.sock"
+    environment:
+      - SSH_AUTH_SOCK=/tmp/agent.sock
+      - REDIS_PROVIDER=redis://redis:6379
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=1ns1tu
+      - DATABASE_HOST=db
+
+    ports:
+      - "3000:3000"
+      - "1666:1666"
+    links:
+      - db
+      - redis
+  redis:
+    image: redis:alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    expose:
+      - "6379"
+    volumes:
+      - redis-data:/data:delegated
+  sidekiq:
+    depends_on:
+      - 'db'
+      - 'redis'
+    build: .
+    command: sidekiq -C config/sidekiq.yml
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/insitu:delegated
+      - bundle:/usr/local/bundle:delegated
+      - "$SSH_AUTH_SOCK:/tmp/agent.sock"
+    environment:
+      - SSH_AUTH_SOCK=/tmp/agent.sock
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=1ns1tu
+      - DATABASE_HOST=db
+    ports:
+      - "2666:1666"
+volumes:
+  mysql-data: {}
+  redis-data: {}
+  bundle: {}

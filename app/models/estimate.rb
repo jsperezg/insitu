@@ -31,21 +31,20 @@ class Estimate < ActiveRecord::Base
       attr[:description].blank?
   }, allow_destroy: true
 
-  after_initialize :set_default_values, if: :new_record?
   before_validation :set_default_values
 
   after_create do
-    increase_id self
+    increase_id
   end
 
   after_update do
     unless number == number_was
-      decrease_id self if number_was == last_document_number
+      decrease_id if number_was == last_document_number
     end
   end
 
-  after_destroy  do
-    decrease_id  self if number == last_document_number
+  after_destroy do
+    decrease_id if number == last_document_number
   end
 
   def total
@@ -73,10 +72,17 @@ class Estimate < ActiveRecord::Base
     estimate_status&.name == 'estimate_status.sent'
   end
 
+  def sent!
+    return if sent?
+
+    self.estimate_status = EstimateStatus.find_by(name: 'estimate_status.sent')
+    save!
+  end
+
   scope :with_number, ->(number) { where('number like :number', number: "#{number}%") }
 
   scope :with_date_ge, lambda { |date|
-    match = date.match(/(\d{2})\/(\d{2})\/(\d{4})/i)
+    match = date.match(%r((\d{2})\/(\d{2})\/(\d{4}))i)
     date = "#{match[3]}-#{match[2]}-#{match[1]}" if match
     where('date >= :date', date: date)
   }
@@ -101,28 +107,26 @@ class Estimate < ActiveRecord::Base
 
   def set_default_values
     self.estimate_status_id ||= EstimateStatus.find_by(name: 'estimate_status.created')&.id
-
-    unless date.nil?
-      self.number ||= generate_id(model_name.human, date.year)
-    end
-
     self.date ||= Date.today
+    self.number ||= generate_id(model_name.human, date.year)
   end
 
   def validate_valid_until
-    if !valid_until.nil? and !date.nil? and valid_until < date
-      errors.add(:valid_until, I18n.t('activerecord.errors.models.estimate.attributes.valid_until.invalid_value'))
-    end
+    return unless !valid_until.nil? && !date.nil? && (valid_until < date)
+
+    errors.add(:valid_until, I18n.t('activerecord.errors.models.estimate.attributes.valid_until.invalid_value'))
   end
 
   def number_format
-    return if is_number_valid?(self.number, self.date)
+    return if number_valid?(self.date)
+
     year = self.date&.year || Date.today.year
     errors.add(:number, I18n.t('activerecord.errors.models.estimate.attributes.number.invalid_format', year: year))
   end
 
   def last_document_number
     return if date.nil?
+
     last_id(model_name.human, date.year)
   end
 end

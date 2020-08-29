@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'smarter_csv'
 
 class CSVImportService
@@ -8,7 +10,7 @@ class CSVImportService
   def import(filename)
     errors = []
     File.open(filename, 'r:bom|utf-8') do |f|
-      rows = SmarterCSV.process(f, {keep_original_headers: true}.merge(@converter.import_options))
+      rows = SmarterCSV.process(f, { keep_original_headers: true }.merge(@converter.import_options))
       row_number = 1
       rows.each do |row|
         errors += process_errors(@converter.create(row), row_number)

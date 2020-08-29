@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe 'api/v1/invoice_statuses/show/', type: :view  do
+describe 'api/v1/invoice_statuses/show/', type: :view do
   before do
     assign(:invoice_status, InvoiceStatus.create(name: 'status'))
   end
@@ -9,7 +11,7 @@ describe 'api/v1/invoice_statuses/show/', type: :view  do
     render
 
     json = JSON.parse(rendered)
-    expect(json.key? "id").to be_truthy
-    expect(json.key? "name").to be_truthy
+    expect(json).to be_key('id')
+    expect(json).to be_key('name')
   end
 end

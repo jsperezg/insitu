@@ -1,17 +1,21 @@
+# frozen_string_literal: true
+
 module TasksHelper
   def task_tr(task)
-    if !task.finish_date.nil?
-      tr_class = 'success'
-    elsif task.dead_line.nil? || task.dead_line > Date.today
-      tr_class = 'active'
-    elsif task.dead_line == Date.today
-      tr_class = 'warning'
-    else
-      tr_class = 'danger'
-    end
-
-    content_tag(:tr, class: tr_class) do
+    content_tag(:tr, class: task_tr_class(task)) do
       yield
+    end
+  end
+
+  def task_tr_class(task)
+    if !task.finish_date.nil?
+      'success'
+    elsif task.dead_line.nil? || task.dead_line > Date.today
+      'active'
+    elsif task.dead_line == Date.today
+      'warning'
+    else
+      'danger'
     end
   end
 end

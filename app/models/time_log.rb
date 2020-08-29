@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TimeLog < ActiveRecord::Base
   belongs_to :task, touch: true
   belongs_to :service

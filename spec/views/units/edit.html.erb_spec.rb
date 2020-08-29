@@ -1,23 +1,27 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "units/edit", type: :view do
-  before(:each) do
-    @user = create(:user)
-    sign_in @user
+RSpec.describe 'units/edit', type: :view do
+  let(:user) { create :user }
+  let(:unit) { create :unit }
 
-    Thread.current[:user] = @user
+  before do
+    sign_in user
 
-    @unit = assign(:unit, create(:unit))
+    Thread.current[:user] = user
+
+    assign(:unit, unit)
   end
 
-  after(:each) do
-    sign_out @user
+  after do
+    sign_out user
   end
 
-  it "renders the edit unit form" do
+  it 'renders the edit unit form' do
     render
 
-    assert_select "form[action=?][method=?]", user_unit_path(@user, @unit), "post" do
+    assert_select 'form[action=?][method=?]', user_unit_path(user, unit), 'post' do
     end
   end
 end

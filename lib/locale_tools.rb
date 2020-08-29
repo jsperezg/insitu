@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module LocaleTools
   def with_locale(locale)
     current_locale = I18n.locale

@@ -46,17 +46,17 @@ class Invoice < ActiveRecord::Base
   before_validation :set_invoice_number
 
   after_create do
-    increase_id self
+    increase_id
   end
 
   after_update do
     unless number == number_was
-      decrease_id self if number_was == last_invoice_number
+      decrease_id if number_was == last_invoice_number
     end
   end
 
-  after_destroy  do
-    decrease_id  self
+  after_destroy do
+    decrease_id
   end
 
   def total
@@ -122,7 +122,7 @@ class Invoice < ActiveRecord::Base
 
   def apply_irpf(user)
     self.irpf = customer&.irpf || 0
-    self.irpf = 0 if user.has_cif?
+    self.irpf = 0 if user.cif?
   end
 
   def created?
@@ -149,7 +149,7 @@ class Invoice < ActiveRecord::Base
   scope :with_customer, ->(customer_id) { where(customer_id: customer_id) }
 
   scope :with_date_ge, lambda { |date|
-    match = date.match(/(\d{2})\/(\d{2})\/(\d{4})/i)
+    match = date.match(%r((\d{2})\/(\d{2})\/(\d{4}))i)
     date = "#{match[3]}-#{match[2]}-#{match[1]}" if match
 
     where('date >= ?', date)
@@ -171,6 +171,7 @@ class Invoice < ActiveRecord::Base
 
   def destroy
     raise I18n.t('activerecord.errors.models.invoice.deletion_is_not_allowed') unless deletion_allowed?
+
     super
   end
 
@@ -204,11 +205,13 @@ class Invoice < ActiveRecord::Base
 
   def next_invoice_number
     return if date.nil?
+
     generate_id(billing_series, date.year)
   end
 
   def last_invoice_number
     return if date.nil?
+
     last_id(billing_series, date.year)
   end
 
@@ -220,14 +223,15 @@ class Invoice < ActiveRecord::Base
   end
 
   def number_format
-    return if is_number_valid?(number, date)
+    return if number_valid?(date)
+
     year = date&.year || Date.today.year
     errors.add(:number, I18n.t('activerecord.errors.models.invoice.attributes.number.invalid_format', year: year))
   end
 
   def valid_customer
-    if customer.present? && !customer.can_invoice?
-      errors.add(:customer_id, I18n.t('activerecord.errors.models.invoice.attributes.customer_id.invalid_format'))
-    end
+    return unless customer.present? && !customer.can_invoice?
+
+    errors.add(:customer_id, I18n.t('activerecord.errors.models.invoice.attributes.customer_id.invalid_format'))
   end
 end

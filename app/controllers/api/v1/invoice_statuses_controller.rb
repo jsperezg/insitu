@@ -1,18 +1,23 @@
-class Api::V1::InvoiceStatusesController < ApiController
-  include Api
+# frozen_string_literal: true
 
-  before_action :set_invoice_status, only: [:show]
+module Api
+  module V1
+    class InvoiceStatusesController < ApiController
+      include Api
 
-  def index
-    @invoice_statuses = InvoiceStatus.all
-  end
+      before_action :set_invoice_status, only: [:show]
 
-  def show
-  end
+      def index
+        @invoice_statuses = InvoiceStatus.all
+      end
 
-  private
+      def show; end
 
-  def set_invoice_status
-    @invoice_status = InvoiceStatus.find(params[:id])
+      private
+
+      def set_invoice_status
+        @invoice_status = InvoiceStatus.find(params[:id])
+      end
+    end
   end
 end

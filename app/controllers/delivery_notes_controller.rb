@@ -8,12 +8,12 @@ class DeliveryNotesController < SecuredController
   # GET /delivery_notes.json
   def index
     @filterrific = initialize_filterrific(
-        DeliveryNote,
-        params[:filterrific],
-        default_filter_params: {
-          with_date_ge: Date.today.beginning_of_year.strftime('%Y-%m-%d'),
-          sorted_by: 'date_desc'
-        }
+      DeliveryNote,
+      params[:filterrific],
+      default_filter_params: {
+        with_date_ge: Date.today.beginning_of_year.strftime('%Y-%m-%d'),
+        sorted_by: 'date_desc'
+      }
     ) || return
 
     @delivery_notes = @filterrific.find.page(params[:page])
@@ -36,7 +36,7 @@ class DeliveryNotesController < SecuredController
       end
       format.pdf do
         pdf = DeliveryNotePdf.new current_user, @delivery_note
-        send_data pdf.render, filename: "delivery_note_#{ @delivery_note.number.gsub('/', '_') }.pdf", type: 'application/pdf'
+        send_data pdf.render, filename: "delivery_note_#{@delivery_note.number.tr('/', '_')}.pdf", type: 'application/pdf'
       end
     end
   end
@@ -52,7 +52,7 @@ class DeliveryNotesController < SecuredController
 
     file_name = Rails.root.join(
       'tmp',
-      "delivery_note_#{current_user.id}_#{@delivery_note.number.gsub('/', '_')}_#{Time.now.to_i}.pdf"
+      "delivery_note_#{current_user.id}_#{@delivery_note.number.tr('/', '_')}_#{Time.now.to_i}.pdf"
     )
 
     pdf = DeliveryNotePdf.new current_user, @delivery_note
@@ -64,7 +64,7 @@ class DeliveryNotesController < SecuredController
 
   # GET /delivery_notes/new
   def new
-    @delivery_note = DeliveryNote.new( date: DateTime.now )
+    @delivery_note = DeliveryNote.new(date: Date.today)
   end
 
   # GET /delivery_notes/1/edit
@@ -130,18 +130,16 @@ class DeliveryNotesController < SecuredController
   end
 
   def invoice
-    begin
-      invoice_generator = InvoiceGenerator.new
-      invoice = invoice_generator.from_delivery_note(@delivery_note)
+    invoice_generator = InvoiceGenerator.new
+    invoice = invoice_generator.from_delivery_note(@delivery_note)
 
-      invoice.apply_irpf(current_user)
-      invoice.save!
+    invoice.apply_irpf(current_user)
+    invoice.save!
 
-      redirect_to edit_user_invoice_path(current_user, invoice)
-    rescue => error
-      flash[:alert] = t(error.message, default: error.message)
-      redirect_to user_delivery_notes_path(current_user)
-    end
+    redirect_to edit_user_invoice_path(current_user, invoice)
+  rescue StandardError => error
+    flash[:alert] = t(error.message, default: error.message)
+    redirect_to user_delivery_notes_path(current_user)
   end
 
   private

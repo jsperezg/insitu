@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApiController < ActionController::Base
   acts_as_token_authentication_handler_for User, fallback: :none
   before_action :set_locale, :switch_tenant, :store_user
@@ -7,21 +9,17 @@ class ApiController < ActionController::Base
   private
 
   def set_locale
-    begin
-      if current_user.try(:locale).blank?
-        I18n.locale = 'en'
-      else
-        I18n.locale = current_user.locale
-      end
-    rescue => e
-      logger.error  "Failed to set locale: #{ e }"
-    end
+    I18n.locale = if current_user.try(:locale).blank?
+                    'en'
+                  else
+                    current_user.locale
+                  end
+  rescue StandardError => e
+    logger.error "Failed to set locale: #{e}"
   end
 
   def switch_tenant
-    unless Rails.env.test?
-      Apartment::Tenant.switch! current_user.try(:tenant)
-    end
+    Apartment::Tenant.switch! current_user.try(:tenant) unless Rails.env.test?
   end
 
   def store_user

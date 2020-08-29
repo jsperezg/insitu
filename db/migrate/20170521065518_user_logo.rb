@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserLogo < ActiveRecord::Migration
   def up
     add_attachment :users, :logo

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.net period_data[:net]
 json.discounts period_data[:discounts]
 json.tax period_data[:tax] if current_user.show_irpf?

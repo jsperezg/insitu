@@ -8,34 +8,34 @@ module CustomersHelper
     create_customer_button = options[:create_customer_button] if options.key? :create_customer_button
 
     # class for input.
-    if options.key? :class
-      options[:class] = "form-group customer-selector #{ options[:class]} "
-    else
-      options[:class] = 'form-group customer-selector'
-    end
+    options[:class] = if options.key? :class
+                        "form-group customer-selector #{options[:class]} "
+                      else
+                        'form-group customer-selector'
+                      end
 
-    if options.key? :input_class
-      options[:input_class] = "form-control input-sm #{ options[:input_class]}"
-    else
-      options[:input_class] = 'form-control input-sm'
-    end
+    options[:input_class] = if options.key? :input_class
+                              "form-control input-sm #{options[:input_class]}"
+                            else
+                              'form-control input-sm'
+                            end
 
     hidden_class = ''
     hidden_class = 'filterrific-periodically-observed' if options[:filterrific]
 
-    content_tag(:div, class: options[:class], url_source: user_customers_path(current_user, format: :json)) do
+    content_tag(:div, class: options[:class], url_source: api_v1_customers_path(format: :json)) do
       content << customer_label_tag(form, method, options)
 
-      if create_customer_button
-        content << content_tag(:div, class: 'input-group') do
-          button_group = []
-          button_group << find_customer_tag(form, method, options)
-          button_group << create_customer_tag
-          raw(button_group.join(''))
-        end
-      else
-        content << find_customer_tag(form, method, options)
-      end
+      content << if create_customer_button
+                   content_tag(:div, class: 'input-group') do
+                     button_group = []
+                     button_group << find_customer_tag(form, method, options)
+                     button_group << create_customer_tag
+                     raw(button_group.join(''))
+                   end
+                 else
+                   find_customer_tag(form, method, options)
+                 end
 
       content << form.hidden_field(method, class: hidden_class)
       raw(content.join(''))

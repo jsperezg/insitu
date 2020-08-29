@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe DeliveryNote, type: :model do
-  before(:each) do
+  before do
     Thread.current[:user] = User.first || create(:user)
   end
 

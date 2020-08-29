@@ -1,6 +1,8 @@
-class SettingKey < ActiveRecord::Base
-	validates :name, presence: true, uniqueness: { case_sensitive: false }
-	validates :data_type, presence: true
+# frozen_string_literal: true
 
-	enum data_type: [:integer, :string, :boolean, :date_time]
+class SettingKey < ActiveRecord::Base
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :data_type, presence: true
+
+  enum data_type: %i[integer string boolean date_time]
 end

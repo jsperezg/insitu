@@ -7,11 +7,11 @@ RSpec.describe VatsController, type: :controller do
   let(:invalid_attributes) { attributes_for :vat, rate: -1 }
   let(:user) { User.first || create(:user) }
 
-  before(:each) do
+  before do
     sign_in user
   end
 
-  after(:each) do
+  after do
     sign_out user
   end
 
@@ -56,7 +56,6 @@ RSpec.describe VatsController, type: :controller do
 
       it 'assigns a newly created vat as @vat' do
         post :create, vat: valid_attributes, user_id: user.id
-        expect(assigns(:vat)).to be_a(Vat)
         expect(assigns(:vat)).to be_persisted
       end
 
@@ -70,7 +69,6 @@ RSpec.describe VatsController, type: :controller do
       it 'assigns a newly created but unsaved vat as @vat' do
         post :create, vat: invalid_attributes, user_id: user.id
         expect(assigns(:vat)).to be_a_new(Vat)
-        expect(assigns(:vat)).not_to be_persisted
       end
 
       it "'re-renders the 'new' template'" do

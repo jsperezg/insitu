@@ -29,7 +29,7 @@ RSpec.describe InvoicesController, type: :routing do
     end
 
     it 'routes to #create' do
-      expect(post:'/users/1/invoices').to route_to('invoices#create', user_id: '1')
+      expect(post: '/users/1/invoices').to route_to('invoices#create', user_id: '1')
     end
 
     it 'routes to #update via PUT' do

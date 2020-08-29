@@ -1,28 +1,24 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe 'api/v1/payment_methods/index', type: :view  do
+describe 'api/v1/payment_methods/index', type: :view do
+  let(:payment_methods) { create_list :payment_method, 2 }
+
   before do
-    @payment_methods = []
-
-    2.times do |i|
-      @payment_methods << create(:payment_method)
-    end
-
-    assign(:payment_methods, @payment_methods)
+    assign(:payment_methods, payment_methods)
   end
 
   it 'Renders a list of payment methods' do
     render
 
     json = JSON.parse(rendered)
-    expect(json.key? "payment_methods").to be_truthy
+    expect(json).to be_key('payment_methods')
     expect(json['payment_methods'].length).to be(2)
 
-    json['payment_methods'].each do |payment_method|
-      expect(payment_method.key? 'id').to be_truthy
-      expect(payment_method.key? 'name').to be_truthy
-      expect(payment_method.key? 'note_for_invoice').to be_truthy
-      expect(payment_method.key? 'default').to be_truthy
-    end
+    expect(json['payment_methods']).to all(be_key('id'))
+    expect(json['payment_methods']).to all(be_key('name'))
+    expect(json['payment_methods']).to all(be_key('note_for_invoice'))
+    expect(json['payment_methods']).to all(be_key('default'))
   end
 end

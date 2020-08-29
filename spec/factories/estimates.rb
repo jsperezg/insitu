@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :estimate do
     customer_id { Customer.first.try(:id) || create(:customer).try(:id) }

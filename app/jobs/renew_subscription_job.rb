@@ -21,7 +21,7 @@ class RenewSubscriptionJob < ActiveJob::Base
       Apartment::Tenant.switch! billing_account.try(:tenant) unless Rails.env.test?
       invoice = generate_invoice(payment)
       send_invoice_by_email(billing_account, invoice)
-    rescue => e
+    rescue StandardError => e
       raise e
     ensure
       Appartment::Tenant.switch! unless Rails.env.test?
@@ -29,14 +29,7 @@ class RenewSubscriptionJob < ActiveJob::Base
   end
 
   def generate_invoice(payment)
-    invoice = Invoice.create!(
-      date: payment.payment_date,
-      payment_method_id: find_or_create_payment_method('Paypal').try(:id),
-      customer_id: find_or_create_customer(payment.user).try(:id),
-      invoice_status_id: InvoiceStatus.paid&.id,
-      payment_date: payment.payment_date,
-      paid_on: payment.payment_date
-    )
+    invoice = invoice_header_for(payment)
 
     InvoiceDetail.create!(
       invoice_id: invoice.id,
@@ -44,11 +37,21 @@ class RenewSubscriptionJob < ActiveJob::Base
       description: "Renovación #{payment.plan.months} meses/#{payment.plan.months} months renewal",
       vat_rate: payment.plan.vat_rate,
       price: payment.plan.price,
-      quantity: 1,
-      discount: 0
+      quantity: 1
     )
 
     invoice
+  end
+
+  def invoice_header_for(payment)
+    Invoice.create!(
+      date: payment.payment_date,
+      payment_method_id: find_or_create_payment_method('Paypal').try(:id),
+      customer_id: find_or_create_customer(payment.user).try(:id),
+      invoice_status_id: InvoiceStatus.paid&.id,
+      payment_date: payment.payment_date,
+      paid_on: payment.payment_date
+    )
   end
 
   def find_or_create_payment_method(method_name)
@@ -59,20 +62,9 @@ class RenewSubscriptionJob < ActiveJob::Base
   end
 
   def find_or_create_customer(user)
-    customer  = Customer.find_by(tax_id: user.tax_id, country: user.country)
+    customer = Customer.find_by(tax_id: user.tax_id, country: user.country)
     if customer.nil?
-      customer = Customer.create!(
-        tax_id: user.tax_id,
-        country: user.country,
-        name: user.name,
-        address: user.address,
-        city: user.city,
-        postal_code: user.postal_code,
-        state: user.state,
-        contact_email: user.email,
-        contact_phone: user.phone_number,
-        irpf: 0
-      )
+      customer = create_customer_for(user)
     else
       Customer.update_attributes!(
         name: user.name,
@@ -86,6 +78,21 @@ class RenewSubscriptionJob < ActiveJob::Base
     end
 
     customer
+  end
+
+  def create_customer_for(user)
+    Customer.create!(
+      tax_id: user.tax_id,
+      country: user.country,
+      name: user.name,
+      address: user.address,
+      city: user.city,
+      postal_code: user.postal_code,
+      state: user.state,
+      contact_email: user.email,
+      contact_phone: user.phone_number,
+      irpf: 0
+    )
   end
 
   def find_or_create_service(plan)

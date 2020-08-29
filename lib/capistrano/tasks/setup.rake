@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :setup do
   desc 'copy sidekiq.yml file.'
   task :copy_sidekiq_yml do
@@ -7,4 +9,3 @@ namespace :setup do
     end
   end
 end
-

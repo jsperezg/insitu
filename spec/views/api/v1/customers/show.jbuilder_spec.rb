@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe 'api/v1/customers/show/', type: :view  do
+describe 'api/v1/customers/show/', type: :view do
   before do
     assign(:customer, create(:customer))
   end
@@ -9,19 +11,19 @@ describe 'api/v1/customers/show/', type: :view  do
     render
 
     customer = JSON.parse(rendered)
-    expect(customer.key? 'id').to be_truthy
-    expect(customer.key? 'name').to be_truthy
-    expect(customer.key? 'tax_id').to be_truthy
-    expect(customer.key? 'billing_serie').to be_truthy
-    expect(customer.key? 'irpf').to be_truthy
-    expect(customer.key? 'contact_name').to be_truthy
-    expect(customer.key? 'contact_phone').to be_truthy
-    expect(customer.key? 'contact_email').to be_truthy
-    expect(customer.key? 'address').to be_truthy
-    expect(customer.key? 'city').to be_truthy
-    expect(customer.key? 'postal_code').to be_truthy
-    expect(customer.key? 'state').to be_truthy
-    expect(customer.key? 'country').to be_truthy
-    expect(customer.key? 'send_invoices_to').to be_truthy
+    expect(customer).to be_key('id')
+    expect(customer).to be_key('name')
+    expect(customer).to be_key('tax_id')
+    expect(customer).to be_key('billing_serie')
+    expect(customer).to be_key('irpf')
+    expect(customer).to be_key('contact_name')
+    expect(customer).to be_key('contact_phone')
+    expect(customer).to be_key('contact_email')
+    expect(customer).to be_key('address')
+    expect(customer).to be_key('city')
+    expect(customer).to be_key('postal_code')
+    expect(customer).to be_key('state')
+    expect(customer).to be_key('country')
+    expect(customer).to be_key('send_invoices_to')
   end
 end

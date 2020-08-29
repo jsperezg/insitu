@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SettingValue < ActiveRecord::Base
   belongs_to :setting_key
 

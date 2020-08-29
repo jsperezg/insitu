@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateVats < ActiveRecord::Migration
   def change
     create_table :vats do |t|

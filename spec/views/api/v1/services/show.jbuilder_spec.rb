@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe 'api/v1/services/show/', type: :view  do
+describe 'api/v1/services/show/', type: :view do
   before do
     assign(:service, create(:service))
   end
@@ -9,11 +11,11 @@ describe 'api/v1/services/show/', type: :view  do
     render
 
     service = JSON.parse(rendered)
-    expect(service.key? 'id').to be_truthy
-    expect(service.key? 'code').to be_truthy
-    expect(service.key? 'description').to be_truthy
-    expect(service.key? 'vat').to be_truthy
-    expect(service.key? 'unit').to be_truthy
-    expect(service.key? 'price').to be_truthy
+    expect(service).to be_key('id')
+    expect(service).to be_key('code')
+    expect(service).to be_key('description')
+    expect(service).to be_key('vat')
+    expect(service).to be_key('unit')
+    expect(service).to be_key('price')
   end
 end

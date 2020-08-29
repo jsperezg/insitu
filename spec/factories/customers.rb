@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :customer do
     sequence :name do |n|
@@ -8,10 +10,10 @@ FactoryBot.define do
       "tax_id_#{n}"
     end
 
-    billing_serie 'A'
-    irpf 15
+    billing_serie { 'A' }
+    irpf { 15 }
 
-    contact_name { "Contact: #{ name }" }
+    contact_name { "Contact: #{name}" }
 
     sequence :contact_phone do |n|
       "6870#{n}"
@@ -21,9 +23,8 @@ FactoryBot.define do
       "address_#{n}@domain.com"
     end
 
-    postal_code '00000'
-    country 'ES'
-    address 'test street, 1'
+    postal_code { '00000' }
+    country { 'ES' }
+    address { 'test street, 1' }
   end
-
 end

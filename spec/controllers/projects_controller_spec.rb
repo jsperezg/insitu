@@ -11,11 +11,11 @@ RSpec.describe ProjectsController, type: :controller do
     }
   end
 
-  before(:each) do
+  before do
     sign_in user
   end
 
-  after(:each) do
+  after do
     sign_out user
   end
 
@@ -36,7 +36,7 @@ RSpec.describe ProjectsController, type: :controller do
   end
 
   describe 'GET #new' do
-    before(:each) do
+    before do
       ProjectStatus.find_by(name: 'project_status.active') || ProjectStatus.create!(name: 'project_status.active')
     end
 
@@ -69,7 +69,6 @@ RSpec.describe ProjectsController, type: :controller do
 
       it 'assigns a newly created project as @project' do
         post :create, user_id: user.id, project: valid_attributes
-        expect(assigns(:project)).to be_a(Project)
         expect(assigns(:project)).to be_persisted
       end
 
@@ -95,9 +94,9 @@ RSpec.describe ProjectsController, type: :controller do
   describe 'PUT #update' do
     context 'with valid params' do
       let(:new_attributes) { attributes_for :project }
+      let(:project) { Project.create! valid_attributes }
 
       it 'updates the requested project' do
-        project = Project.create! valid_attributes
         put :update, user_id: user.id, id: project.to_param, project: new_attributes
         project.reload
 
@@ -107,13 +106,11 @@ RSpec.describe ProjectsController, type: :controller do
       end
 
       it 'assigns the requested project as @project' do
-        project = Project.create! valid_attributes
         put :update, user_id: user.id, id: project.to_param, project: valid_attributes
         expect(assigns(:project)).to eq(project)
       end
 
       it 'redirects to the projects list' do
-        project = Project.create! valid_attributes
         put :update, user_id: user.id, id: project.to_param, project: valid_attributes
         expect(response).to redirect_to(user_projects_url(user))
       end

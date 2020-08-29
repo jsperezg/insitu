@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
-class Api::V1::DashboardController < ApiController
-  def index
-    @reports = TotalsCalculator.for(current_user)
+module Api
+  module V1
+    class DashboardController < ApiController
+      def index
+        @reports = TotalsCalculator.for(current_user)
+      end
+    end
   end
 end

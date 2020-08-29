@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 # Specs in this file have access to a helper object that includes
@@ -11,16 +13,16 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe TasksHelper, type: :helper do
-  describe "task_tr" do
-    it "on finished task" do
-      task = create(:task, finish_date: DateTime.now - 1.day)
+  describe 'task_tr' do
+    it 'on finished task' do
+      task = create(:task, finish_date: Time.now - 1.day)
       html_row = helper.task_tr(task) do
       end
 
       expect(html_row).to include('success')
     end
 
-    it "on active task" do
+    it 'on active task' do
       task = create(:task, finish_date: nil, dead_line: nil)
       html_row = helper.task_tr(task) do
       end
@@ -28,7 +30,7 @@ RSpec.describe TasksHelper, type: :helper do
       expect(html_row).to include('active')
     end
 
-    it "on finishing task" do
+    it 'on finishing task' do
       task = create(:task, finish_date: nil, dead_line: Date.today)
       html_row = helper.task_tr(task) do
       end
@@ -36,7 +38,7 @@ RSpec.describe TasksHelper, type: :helper do
       expect(html_row).to include('warning')
     end
 
-    it "on outdated task" do
+    it 'on outdated task' do
       task = create(:task, finish_date: nil, dead_line: Date.today - 1.day)
       html_row = helper.task_tr(task) do
       end

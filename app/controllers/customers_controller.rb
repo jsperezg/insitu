@@ -8,24 +8,10 @@ class CustomersController < SecuredController
   before_action :set_customer, only: %i[show edit update destroy]
 
   # GET /customers
-  # GET /customers.json
   def index
-    @filterrific = initialize_filterrific(
-      Customer,
-      params[:filterrific]
-    ) || return
-
     respond_to do |format|
-      format.html { @customers = @filterrific.find.page(params[:page]) }
-      format.js { @customers = @filterrific.find.page(params[:page]) }
-
-      format.json do
-        @customers = if params[:name]
-                       Customer.where('name like ?', "%#{params[:name]}%").order(name: :asc)
-                     else
-                       Customer.order(name: :asc)
-                     end
-      end
+      format.html { @customers = filterrific.find.page(params[:page]) }
+      format.js { @customers = filterrific.find.page(params[:page]) }
     end
   end
 
@@ -106,6 +92,13 @@ class CustomersController < SecuredController
       format.html { redirect_to user_customers_url(current_user), notice: t(:successfully_created, item: t('customers.customer')) }
       format.json { render :show, status: :created }
     end
+  end
+
+  def filterrific
+    @filterrific ||= initialize_filterrific(
+      Customer,
+      params[:filterrific]
+    ) || return
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,20 +1,21 @@
+# frozen_string_literal: true
+
 class TasksController < SecuredController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: %i[show edit update destroy]
   before_action :set_project
 
   # GET /tasks
   # GET /tasks.json
   def index
     @tasks = Task
-                 .retrieve_project_tasks(params[:project_id])
-                 .paginate(page: params[:page], per_page: DEFAULT_ITEMS_PER_PAGE)
-                 .order(finish_date: :asc, priority: :desc, dead_line: :asc)
+             .retrieve_project_tasks(params[:project_id])
+             .paginate(page: params[:page], per_page: DEFAULT_ITEMS_PER_PAGE)
+             .order(finish_date: :asc, priority: :desc, dead_line: :asc)
   end
 
   # GET /tasks/1
   # GET /tasks/1.json
-  def show
-  end
+  def show; end
 
   # GET /tasks/new
   def new
@@ -22,8 +23,7 @@ class TasksController < SecuredController
   end
 
   # GET /tasks/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /tasks
   # POST /tasks.json
@@ -98,24 +98,25 @@ class TasksController < SecuredController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params[:id])
-    end
 
-    def set_project
-      @project = Project.find(params[:project_id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_task
+    @task = Task.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def task_params
-      params
-          .require(:task)
-          .permit(
-              :name, :description, :project_id, :finished, :finish_date, :dead_line, :priority,
-              time_logs_attributes: [
-                  :id, :task_id, :description, :time_spent, :date, :service_id, :_destroy
-              ]
-          )
-    end
+  def set_project
+    @project = Project.find(params[:project_id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def task_params
+    params
+      .require(:task)
+      .permit(
+        :name, :description, :project_id, :finished, :finish_date, :dead_line, :priority,
+        time_logs_attributes: %i[
+          id task_id description time_spent date service_id _destroy
+        ]
+      )
+  end
 end

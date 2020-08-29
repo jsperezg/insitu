@@ -1,77 +1,79 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe EstimateDetail, type: :model do
-	describe "quantity" do
-		it "is mandatory" do
-			estimate_detail = EstimateDetail.new
-  		estimate_detail.save
+  describe 'quantity' do
+    it 'is mandatory' do
+      estimate_detail = EstimateDetail.new
+      estimate_detail.save
 
-  		expect(estimate_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :quantity )}
-  	end
+      expect(estimate_detail.errors).to be_key :quantity
+    end
 
-		it "must be a number" do
-			estimate_detail = EstimateDetail.new(quantity: 'asdf')
-			estimate_detail.save
+    it 'must be a number' do
+      estimate_detail = EstimateDetail.new(quantity: 'asdf')
+      estimate_detail.save
 
-			expect(estimate_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :quantity )}
-		end
+      expect(estimate_detail.errors).to be_key :quantity
+    end
 
-		it "is greater than zero" do
-			estimate_detail = EstimateDetail.new(quantity: 0)
-			estimate_detail.save
+    it 'is greater than zero' do
+      estimate_detail = EstimateDetail.new(quantity: 0)
+      estimate_detail.save
 
-			expect(estimate_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :quantity )}
-		end
-	end
+      expect(estimate_detail.errors).to be_key :quantity
+    end
+  end
 
-	describe "price" do
-		it "is mandatory" do
-			estimate_detail = EstimateDetail.new
-			estimate_detail.save
+  describe 'price' do
+    it 'is mandatory' do
+      estimate_detail = EstimateDetail.new
+      estimate_detail.save
 
-			expect(estimate_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :price )}
-		end
+      expect(estimate_detail.errors).to be_key :price
+    end
 
-		it "must be a number" do
-			estimate_detail = EstimateDetail.new(price: 'asdf')
-			estimate_detail.save
+    it 'must be a number' do
+      estimate_detail = EstimateDetail.new(price: 'asdf')
+      estimate_detail.save
 
-			expect(estimate_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :price )}
-		end
+      expect(estimate_detail.errors).to be_key :price
+    end
 
-		it "is greater than zero" do
-			estimate_detail = EstimateDetail.new(price: 0)
-			estimate_detail.save
+    it 'is greater than zero' do
+      estimate_detail = EstimateDetail.new(price: 0)
+      estimate_detail.save
 
-			expect(estimate_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :price )}
-		end
-	end
+      expect(estimate_detail.errors).to be_key :price
+    end
+  end
 
-  describe "discount" do
-		it "is zero by default" do
-			estimate_detail = EstimateDetail.new
-  		estimate_detail.save
+  describe 'discount' do
+    it 'is zero by default' do
+      estimate_detail = EstimateDetail.new
+      estimate_detail.save
 
-  		expect(estimate_detail.discount).to equal (0)
-  	end
+      expect(estimate_detail.discount).to equal 0
+    end
 
-		it "must be a number" do
-			estimate_detail = EstimateDetail.new(discount: 'asdf')
-			estimate_detail.save
+    it 'must be a number' do
+      estimate_detail = EstimateDetail.new(discount: 'asdf')
+      estimate_detail.save
 
-			expect(estimate_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :discount )}
-		end
+      expect(estimate_detail.errors).to be_key :discount
+    end
 
-		it "is greater or equal to zero" do
-			estimate_detail = EstimateDetail.new(discount: -1)
-			estimate_detail.save
+    it 'is greater or equal to zero' do
+      estimate_detail = EstimateDetail.new(discount: -1)
+      estimate_detail.save
 
-			expect(estimate_detail.errors).to satisfy { |errors| !errors.empty? && errors.key?( :discount )}
-		end
-	end
+      expect(estimate_detail.errors).to be_key :discount
+    end
+  end
 
-	it "total is quatity x price" do
-		delivery_note_detail = EstimateDetail.new(quantity: 10.0, price: 18.0, discount: 0)
-		expect(delivery_note_detail.total).to eq(180.0)
+  it 'total is quatity x price' do
+    delivery_note_detail = EstimateDetail.new(quantity: 10.0, price: 18.0, discount: 0)
+    expect(delivery_note_detail.total).to eq(180.0)
   end
 end

@@ -27,12 +27,12 @@ $(document).on("page:change", function () {
             name: $(searchInput).val()
           },
           success: function(data, textStatus, jqXHR) {
-            var i, l = data.length, found = [];
+            var i, customers = data.customers, l = customers.length, found = [];
 
             for (i = 0; i < l; i += 1) {
               found.push({
-                id: data[i].id,
-                label: data[i].name
+                id: customers[i].id,
+                label: customers[i].name
               });
             }
 

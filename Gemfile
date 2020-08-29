@@ -1,6 +1,9 @@
-source 'https://rubygems.org'
+# frozen_string_literal: true
 
-ruby '2.4.4'
+source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
+ruby '2.6.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2', '>= 4.2.6'
@@ -26,11 +29,10 @@ gem 'country_select', github: 'stefanpenner/country_select'
 gem 'currencies', require: 'iso4217'
 gem 'dalli', group: :production
 gem 'data-confirm-modal'
-gem 'devise', '3.5.2'
-gem 'devise-async'
+gem 'devise', '~> 4.4.0'
 gem 'email_validator'
 gem 'figaro'
-gem 'filterrific'
+gem 'filterrific', '~> 4.0.1'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
@@ -65,6 +67,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'unicorn'
 
 group :development do
+  gem 'bundler-audit'
+
   gem 'capistrano', '~> 3.9'
   gem 'capistrano-bundler', '~> 1.1.2'
   gem 'capistrano-figaro-yml', '~> 1.0.2'

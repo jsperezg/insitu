@@ -39,8 +39,11 @@ class Customer < ActiveRecord::Base
 
   before_destroy :validate_referential_integrity
 
+  scope :with_name, ->(name) { where('name like ?', "%#{name}%") unless name.blank? }
+
   def country_name
     return if country.blank?
+
     value = ISO3166::Country[country]
     value.translations[I18n.locale.to_s] || value.name
   end
@@ -49,7 +52,6 @@ class Customer < ActiveRecord::Base
     tax_id.present? &&
       name.present? &&
       address.present? &&
-      postal_code.present? &&
       country.present?
   end
 

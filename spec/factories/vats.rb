@@ -3,10 +3,10 @@
 FactoryBot.define do
   factory :vat do
     sequence(:rate, 23) { |n| n }
-    default false
+    default { false }
 
     trait :default do
-      default true
+      default { true }
     end
   end
 end
