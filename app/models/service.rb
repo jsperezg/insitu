@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Model that represents a product or service offered to the customers.
-class Service < ActiveRecord::Base
+class Service < ApplicationRecord
   filterrific(
     default_filter_params: {
       sorted_by: 'code_asc',

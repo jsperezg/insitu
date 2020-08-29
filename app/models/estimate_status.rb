@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class EstimateStatus < ActiveRecord::Base
+class EstimateStatus < ApplicationRecord
   has_many :estimates
 
   def locale_name

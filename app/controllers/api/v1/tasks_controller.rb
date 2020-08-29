@@ -66,7 +66,7 @@ module Api
           invoice.apply_irpf(current_user)
 
           # Iterate over finished tasks.
-          tasks = Task.retrieve_project_tasks(@project.id).where.not(finish_date: :nil)
+          tasks = Task.retrieve_project_tasks(@project.id).where.not(finish_date: nil)
           tasks.each do |task|
             task.invoice_timelogs_into(invoice)
           end

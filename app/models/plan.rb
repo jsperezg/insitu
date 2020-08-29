@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # This model represent a prizing plan for Insitu service
-class Plan < ActiveRecord::Base
+class Plan < ApplicationRecord
   filterrific(
     default_filter_params: {
       sorted_by: 'months_asc'

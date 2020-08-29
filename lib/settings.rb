@@ -11,16 +11,16 @@ module Settings
     value = SettingValue.find_by(setting_key: key.id)
     if value.nil? && !default.nil?
       value = case key[:data_type]
-              when SettingKey.data_types[:string]
+              when 'string'
                 SettingValue.create(setting_key_id: key.id, value_s: default)
 
-              when SettingKey.data_types[:integer]
+              when 'integer'
                 SettingValue.create(setting_key_id: key.id, value_i: default)
 
-              when SettingKey.data_types[:boolean]
+              when 'boolean'
                 SettingValue.create(setting_key_id: key.id, value_b: default)
 
-              when SettingKey.data_types[:date_time]
+              when 'date_time'
                 SettingValue.create(setting_key_id: key.id, value_d: default)
 
               else

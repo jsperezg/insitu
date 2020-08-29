@@ -3,14 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::DeliveryNotesController, type: :controller do
-  # This should return the minimal set of attributes required to create a valid
-  # DeliveryNote. As you add validations to DeliveryNote, be sure to
-  # adjust the attributes here as well.
   let(:valid_attributes) do
-    delivery_note = attributes_for :delivery_note
-    delivery_note.merge(delivery_note_details_attributes: [attributes_for(:delivery_note_detail, delivery_note_id: nil)])
-
-    delivery_note
+    {
+      customer_id: create(:customer).id,
+      date: Time.now,
+      delivery_note_details_attributes: [attributes_for(:delivery_note_detail, delivery_note_id: nil)]
+    }
   end
 
   let(:invalid_attributes) do
@@ -30,7 +28,7 @@ RSpec.describe Api::V1::DeliveryNotesController, type: :controller do
 
   describe 'GET #index' do
     it 'assigns all delivery_notes as @delivery_notes' do
-      delivery_note = DeliveryNote.create! valid_attributes
+      delivery_note = create(:delivery_note)
       get :index
       expect(assigns(:delivery_notes)).to eq([delivery_note])
     end
@@ -38,8 +36,8 @@ RSpec.describe Api::V1::DeliveryNotesController, type: :controller do
 
   describe 'GET #show' do
     it 'assigns the requested delivery_note as @delivery_note' do
-      delivery_note = DeliveryNote.create! valid_attributes
-      get :show, id: delivery_note.to_param
+      delivery_note = create(:delivery_note)
+      get :show, params: { id: delivery_note.to_param }
       expect(assigns(:delivery_note)).to eq(delivery_note)
     end
   end
@@ -48,25 +46,25 @@ RSpec.describe Api::V1::DeliveryNotesController, type: :controller do
     context 'with valid params' do
       it 'creates a new DeliveryNote' do
         expect do
-          post :create, delivery_note: valid_attributes
+          post :create, params: { delivery_note: valid_attributes }
         end.to change(DeliveryNote, :count).by(1)
       end
 
       it 'assigns a newly created delivery_note as @delivery_note' do
-        post :create, delivery_note: valid_attributes
+        post :create, params: { delivery_note: valid_attributes }
         expect(assigns(:delivery_note)).to be_a(DeliveryNote)
         expect(assigns(:delivery_note)).to be_persisted
       end
 
       it 'returns 200 - ok' do
-        post :create, delivery_note: valid_attributes, user_id: user.id
+        post :create, params: { delivery_note: valid_attributes, user_id: user.id }
         expect(response).to have_http_status(:ok)
       end
     end
 
     context 'with invalid params' do
       it 'assigns a newly created but unsaved delivery_note as @delivery_note' do
-        post :create, delivery_note: invalid_attributes
+        post :create, params: { delivery_note: invalid_attributes }
         expect(assigns(:delivery_note)).to be_a_new(DeliveryNote)
       end
     end
@@ -77,12 +75,16 @@ RSpec.describe Api::V1::DeliveryNotesController, type: :controller do
       let(:new_attributes) do
         new_date = Time.now.utc.beginning_of_day - 7.days
 
-        attributes_for :delivery_note, date: new_date, number: "T/#{new_date.year}/999999"
+        {
+          customer_id: create(:customer).id,
+          date: Time.now.utc.beginning_of_day - 7.days,
+          number: "T/#{new_date.year}/999999"
+        }
       end
 
       it 'updates the requested delivery_note' do
         delivery_note = DeliveryNote.create! valid_attributes
-        put :update, id: delivery_note.to_param, delivery_note: new_attributes
+        put :update, params: { id: delivery_note.to_param, delivery_note: new_attributes }
         delivery_note.reload
 
         expect(delivery_note.date.strftime('%Y-%m-%d')).to eq((Time.now.utc.beginning_of_day - 7.days).strftime('%Y-%m-%d'))
@@ -90,13 +92,13 @@ RSpec.describe Api::V1::DeliveryNotesController, type: :controller do
 
       it 'assigns the requested delivery_note as @delivery_note' do
         delivery_note = DeliveryNote.create! valid_attributes
-        put :update, id: delivery_note.to_param, delivery_note: valid_attributes
+        put :update, params: { id: delivery_note.to_param, delivery_note: valid_attributes }
         expect(assigns(:delivery_note)).to eq(delivery_note)
       end
 
       it 'Returns HTTP 200' do
         delivery_note = DeliveryNote.create! valid_attributes
-        put :update, id: delivery_note.to_param, delivery_note: valid_attributes, user_id: user.id
+        put :update, params: { id: delivery_note.to_param, delivery_note: valid_attributes, user_id: user.id }
         expect(response).to have_http_status(:ok)
       end
     end
@@ -104,7 +106,7 @@ RSpec.describe Api::V1::DeliveryNotesController, type: :controller do
     context 'with invalid params' do
       it 'assigns the delivery_note as @delivery_note' do
         delivery_note = DeliveryNote.create! valid_attributes
-        put :update, id: delivery_note.to_param, delivery_note: invalid_attributes
+        put :update, params: { id: delivery_note.to_param, delivery_note: invalid_attributes }
         expect(assigns(:delivery_note)).to eq(delivery_note)
       end
     end
@@ -114,13 +116,13 @@ RSpec.describe Api::V1::DeliveryNotesController, type: :controller do
     it 'destroys the requested delivery_note' do
       delivery_note = DeliveryNote.create! valid_attributes
       expect do
-        delete :destroy, id: delivery_note.to_param, user_id: user.id
+        delete :destroy, params: { id: delivery_note.to_param, user_id: user.id }
       end.to change(DeliveryNote, :count).by(-1)
     end
 
     it 'Returns 200' do
       delivery_note = DeliveryNote.create! valid_attributes
-      delete :destroy, id: delivery_note.to_param, user_id: user.id
+      delete :destroy, params: { id: delivery_note.to_param, user_id: user.id }
       expect(response).to have_http_status(:ok)
     end
   end
@@ -135,7 +137,7 @@ RSpec.describe Api::V1::DeliveryNotesController, type: :controller do
     it 'Warns when nothing to invoice' do
       delivery_note = create(:delivery_note)
 
-      get :invoice, user_id: user, id: delivery_note
+      get :invoice, params: { user_id: user.to_param, id: delivery_note.to_param }
       expect(response).to have_http_status(:ok)
 
       json = JSON.parse(response.body)
@@ -144,9 +146,9 @@ RSpec.describe Api::V1::DeliveryNotesController, type: :controller do
     end
 
     it 'Generates invoice ' do
-      delivery_note = DeliveryNote.create! valid_attributes
+      delivery_note = create(:delivery_note)
 
-      get :invoice, user_id: user, id: delivery_note
+      get :invoice, params: { user_id: user.to_param, id: delivery_note.to_param }
 
       delivery_note.reload
 
@@ -168,7 +170,7 @@ RSpec.describe Api::V1::DeliveryNotesController, type: :controller do
 
       delivery_note = DeliveryNote.create! valid_attributes
 
-      get :invoice, user_id: user, id: delivery_note
+      get :invoice, params: { user_id: user.to_param, id: delivery_note.to_param }
       expect(response).to have_http_status(:ok)
 
       json = JSON.parse(response.body)

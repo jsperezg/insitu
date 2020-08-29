@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # This model represents a service user.
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   acts_as_token_authenticatable
 
   filterrific(
@@ -76,7 +76,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
          omniauth_providers: [:google_oauth2]
 
-  belongs_to :role
+  belongs_to :role, optional: true
   has_many :payments
 
   after_save :init_tenant_name

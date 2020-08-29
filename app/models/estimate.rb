@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class that represents an estimate.
-class Estimate < ActiveRecord::Base
+class Estimate < ApplicationRecord
   include SequenceGenerator
 
   filterrific(

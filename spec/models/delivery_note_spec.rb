@@ -3,22 +3,27 @@
 require 'rails_helper'
 
 RSpec.describe DeliveryNote, type: :model do
+  subject { build :delivery_note, customer: customer, date: date }
+
+  let(:customer) { create :customer }
+  let(:date) { Time.now }
+
   before do
     Thread.current[:user] = User.first || create(:user)
   end
 
-  it 'customer is mandatory' do
-    deliver_note = DeliveryNote.new
-    deliver_note.save
+  it { is_expected.to be_valid }
 
-    expect(deliver_note.errors).to have_key(:customer_id)
+  describe 'when customer is nil' do
+    let(:customer) { nil }
+
+    it { is_expected.not_to be_valid }
   end
 
-  it 'date is mandatory' do
-    deliver_note = DeliveryNote.new
-    deliver_note.save
+  describe 'when date is nil' do
+    let(:date) { nil }
 
-    expect(deliver_note.errors).to have_key(:date)
+    it { is_expected.not_to be_valid }
   end
 
   describe 'Delivery note series' do
@@ -108,12 +113,12 @@ RSpec.describe DeliveryNote, type: :model do
     end
   end
 
-  it 'valid delivery  notes' do
+  it 'valid delivery notes' do
     10.times do
       delivery_note = build(:delivery_note)
       delivery_note.save
 
-      expect(delivery_note.errors).to be_empty
+      expect(delivery_note).to be_valid
     end
   end
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RenewSubscriptionJob < ActiveJob::Base
+class RenewSubscriptionJob < ApplicationJob
   include InvoicingNotifications
 
   queue_as :urgent
@@ -24,7 +24,7 @@ class RenewSubscriptionJob < ActiveJob::Base
     rescue StandardError => e
       raise e
     ensure
-      Appartment::Tenant.switch! unless Rails.env.test?
+      Apartment::Tenant.switch! unless Rails.env.test?
     end
   end
 
@@ -66,15 +66,7 @@ class RenewSubscriptionJob < ActiveJob::Base
     if customer.nil?
       customer = create_customer_for(user)
     else
-      Customer.update_attributes!(
-        name: user.name,
-        address: user.address,
-        city: user.city,
-        postal_code: user.postal_code,
-        state: user.state,
-        contact_email: user.email,
-        contact_phone: user.phone_number
-      )
+      update_customer(customer, user)
     end
 
     customer
@@ -95,19 +87,33 @@ class RenewSubscriptionJob < ActiveJob::Base
     )
   end
 
+  def update_customer(customer, user)
+    customer.update_attributes!(
+      name: user.name,
+      address: user.address,
+      city: user.city,
+      postal_code: user.postal_code,
+      state: user.state,
+      contact_email: user.email,
+      contact_phone: user.phone_number
+    )
+  end
+
   def find_or_create_service(plan)
     service = Service.find_by(description: plan.description, active: true)
-    if service.nil?
-      service = Service.create!(
-        code: "S/#{Time.now.strftime('%Y%m%d')}/#{plan.months}",
-        description: plan.description,
-        vat_id: find_or_create_vat(plan.vat_rate).id,
-        unit_id: find_or_create_unit('Months').id,
-        price: plan.price
-      )
-    end
+    return service if service.present?
 
-    service
+    create_service(plan)
+  end
+
+  def create_service(plan)
+    Service.create!(
+      code: "S/#{Time.now.strftime('%Y%m%d')}/#{plan.months}",
+      description: plan.description,
+      vat_id: find_or_create_vat(plan.vat_rate).id,
+      unit_id: find_or_create_unit('Months').id,
+      price: plan.price
+    )
   end
 
   def find_or_create_vat(vat_rate)

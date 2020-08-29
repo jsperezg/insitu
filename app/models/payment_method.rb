@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Class that represents a paymentd method.
-class PaymentMethod < ActiveRecord::Base
+# Class that represents a payment method.
+class PaymentMethod < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   after_save :maintain_default_flag

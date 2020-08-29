@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 # Class encapsulates CRUD operations for invoice details.
-class InvoiceDetail < ActiveRecord::Base
+class InvoiceDetail < ApplicationRecord
   belongs_to :invoice, touch: true
-  belongs_to :service
+  belongs_to :service, optional: true
   has_one :time_log, dependent: :nullify
   has_one :estimate_detail, dependent: :nullify
   has_one :delivery_note_detail, dependent: :nullify

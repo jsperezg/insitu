@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Task < ActiveRecord::Base
+class Task < ApplicationRecord
   belongs_to :project
 
   has_many :time_logs, dependent: :destroy
