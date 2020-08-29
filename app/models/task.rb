@@ -27,7 +27,7 @@ class Task < ApplicationRecord
   end
 
   def self.retrieve_finished_tasks(project_id)
-    retrieve_project_tasks(project_id).where.not(finish_date: :nil)
+    retrieve_project_tasks(project_id).where.not(finish_date: nil)
   end
 
   def invoice_timelogs_into(invoice)
