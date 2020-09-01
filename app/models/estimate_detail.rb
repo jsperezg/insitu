@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class EstimateDetail < ActiveRecord::Base
+class EstimateDetail < ApplicationRecord
   belongs_to :estimate, touch: true
-  belongs_to :service
-  belongs_to :invoice_detail
+  belongs_to :service, optional: true
+  belongs_to :invoice_detail, optional: true
 
   validates :price, presence: true, numericality: { greater_than: 0 }
   validates :quantity, presence: true, numericality: { greater_than: 0 }

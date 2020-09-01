@@ -4,11 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'delivery_notes/edit', type: :view do
   let(:user) { User.first || create(:user) }
-  let(:delivery_note) do
-    delivery_note_attrs = attributes_for :delivery_note
-    delivery_note_attrs.merge(delivery_note_details_attributes: [attributes_for(:delivery_note_detail, delivery_note_id: nil)])
-    DeliveryNote.create!(delivery_note_attrs)
-  end
+  let(:delivery_note) { create :delivery_note }
 
   before do
     sign_in user

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SettingKey < ActiveRecord::Base
+class SettingKey < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :data_type, presence: true
 

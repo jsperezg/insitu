@@ -74,13 +74,18 @@ RSpec.describe Api::V1::EstimatesController, type: :controller do
 
   describe 'PUT #update' do
     context 'with valid params' do
+      let(:estimate) { create(:estimate) }
       let(:new_attributes) do
-        attributes_for(:estimate, date: Date.current.beginning_of_year + 10.days)
+        {
+          date: Date.current.beginning_of_year + 10.days,
+          customer_id: create(:customer).id,
+          valid_until: Date.today + 60.days,
+          estimate_status_id: EstimateStatus.sent.id
+        }
       end
 
       it 'updates the requested estimate' do
-        estimate = Estimate.create! valid_attributes
-        put :update, id: estimate.to_param, estimate: new_attributes
+        put :update, params: { id: estimate.to_param, estimate: new_attributes }, format: :json
         estimate.reload
 
         new_attributes.each do |key, value|
@@ -89,14 +94,12 @@ RSpec.describe Api::V1::EstimatesController, type: :controller do
       end
 
       it 'assigns the requested estimate as @estimate' do
-        estimate = Estimate.create! valid_attributes
-        put :update, id: estimate.to_param, estimate: valid_attributes
+        put :update, params: { id: estimate.to_param, estimate: valid_attributes }, format: :json
         expect(assigns(:estimate)).to eq(estimate)
       end
 
       it 'returns 200 - ok' do
-        estimate = Estimate.create! valid_attributes
-        put :update, id: estimate.to_param, estimate: valid_attributes
+        put :update, params: { id: estimate.to_param, estimate: valid_attributes }, format: :json
         expect(response).to have_http_status(:ok)
       end
     end
@@ -104,7 +107,7 @@ RSpec.describe Api::V1::EstimatesController, type: :controller do
     context 'with invalid params' do
       it 'assigns the estimate as @estimate' do
         estimate = Estimate.create! valid_attributes
-        put :update, id: estimate.to_param, estimate: invalid_attributes
+        put :update, params: { id: estimate.to_param, estimate: invalid_attributes }, format: :json
         expect(assigns(:estimate)).to eq(estimate)
       end
     end
@@ -114,7 +117,7 @@ RSpec.describe Api::V1::EstimatesController, type: :controller do
     it 'destroys the requested estimate' do
       estimate = Estimate.create! valid_attributes
       expect do
-        delete :destroy, user_id: user.id, id: estimate.to_param
+        delete :destroy, params: { user_id: user.id, id: estimate.to_param }, format: :json
       end.to change(Estimate, :count).by(-1)
     end
 

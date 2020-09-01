@@ -3,15 +3,16 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let!(:user_role) { create(:role) }
-  let!(:admin_role) { create(:admin_role) }
+  subject { build(:user) }
+
+  it { is_expected.to be_valid }
 
   describe 'default values' do
     it 'User role by default' do
       user = create(:user, role_id: nil)
       user.reload
 
-      expect(user.role_id).to eq(user_role.id)
+      expect(user.role_id).not_to be_nil
     end
 
     it 'Currency defaults to EUR' do
@@ -29,7 +30,7 @@ RSpec.describe User, type: :model do
 
       expect(user.valid_until).not_to be_nil
 
-      user.role_id = admin_role.id
+      user.role = Role.admin
       expect(user.save).to be_truthy
 
       user.reload

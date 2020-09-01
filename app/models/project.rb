@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Project < ActiveRecord::Base
+class Project < ApplicationRecord
   filterrific(
     default_filter_params: {
       sorted_by: 'name_asc',

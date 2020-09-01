@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Model that represents a product or service offered to the customers.
-class Service < ActiveRecord::Base
+class Service < ApplicationRecord
   filterrific(
     default_filter_params: {
       sorted_by: 'code_asc',
@@ -51,7 +51,7 @@ class Service < ActiveRecord::Base
   validates :vat, presence: true
   validates :unit, presence: true
 
-  after_initialize :set_default_values
+  before_validation :set_default_values
 
   has_many :invoice_details, dependent: :restrict_with_error
   has_many :estimate_details, dependent: :restrict_with_error
@@ -67,7 +67,7 @@ class Service < ActiveRecord::Base
   end
 
   def validate_referential_integrity
-    return true if invoice_details.count.zero? && estimate_details.count.zero? && delivery_note_details.count.zero?
+    return true if invoice_details.empty? && estimate_details.empty? && delivery_note_details.empty?
 
     errors.add(:base, I18n.t('activerecord.errors.models.service.used_elsewhere'))
     false

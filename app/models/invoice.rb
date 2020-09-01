@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class that represents an invoice.
-class Invoice < ActiveRecord::Base
+class Invoice < ApplicationRecord
   include SequenceGenerator
 
   filterrific(
@@ -19,7 +19,7 @@ class Invoice < ActiveRecord::Base
   has_many :invoice_details, dependent: :destroy
 
   has_many :amending_invoices, class_name: 'Invoice', foreign_key: 'amended_invoice_id'
-  belongs_to :amended_invoice, class_name: 'Invoice'
+  belongs_to :amended_invoice, class_name: 'Invoice', optional: true
 
   validates :date, presence: true
   validates :payment_method_id, presence: true, unless: :amending_invoice?

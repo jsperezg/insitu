@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class TimeLog < ActiveRecord::Base
+class TimeLog < ApplicationRecord
   belongs_to :task, touch: true
-  belongs_to :service
-  belongs_to :invoice_detail
+  belongs_to :service, optional: true
+  belongs_to :invoice_detail, optional: true
 
   validates :description, presence: true
   validates :time_spent, presence: true, numericality: { only_integer: true, greater_than: 0 }

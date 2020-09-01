@@ -36,7 +36,7 @@ RSpec.describe Api::V1::CustomersController, type: :controller do
   describe 'GET #show' do
     it 'assigns the requested customer as @customer' do
       customer = Customer.create! valid_attributes
-      get :show, id: customer.to_param, format: :json
+      get :show, params: { id: customer.to_param }, format: :json
       expect(assigns(:customer)).to eq(customer)
     end
   end

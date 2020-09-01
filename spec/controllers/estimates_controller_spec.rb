@@ -95,13 +95,17 @@ RSpec.describe EstimatesController, type: :controller do
   describe 'PUT #update' do
     context 'with valid params' do
       let(:new_attributes) do
-        attributes_for(:estimate, date: Date.current.beginning_of_year + 10.days)
+        {
+          date: Date.current.beginning_of_year + 10.days,
+          customer_id: create(:customer).id,
+          valid_until: Date.today + 60.days,
+          estimate_status_id: EstimateStatus.sent.id
+        }
       end
-
-      let(:estimate) { Estimate.create! valid_attributes }
+      let(:estimate) { create(:estimate) }
 
       it 'updates the requested estimate' do
-        put :update, user_id: user.id, id: estimate.to_param, estimate: new_attributes
+        put :update, params: { user_id: user.id, id: estimate.to_param, estimate: new_attributes }
         estimate.reload
 
         new_attributes.each do |key, value|
@@ -110,12 +114,12 @@ RSpec.describe EstimatesController, type: :controller do
       end
 
       it 'assigns the requested estimate as @estimate' do
-        put :update, user_id: user.id, id: estimate.to_param, estimate: valid_attributes
+        put :update, params: { user_id: user.id, id: estimate.to_param, estimate: valid_attributes }
         expect(assigns(:estimate)).to eq(estimate)
       end
 
       it 'redirects to the estimate' do
-        put :update, user_id: user.id, id: estimate.to_param, estimate: valid_attributes
+        put :update, params: { user_id: user.id, id: estimate.to_param, estimate: valid_attributes }
         expect(response).to redirect_to(edit_user_estimate_url(user, Estimate.last))
       end
     end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class that represents the invoice status
-class InvoiceStatus < ActiveRecord::Base
+class InvoiceStatus < ApplicationRecord
   validates :name, presence: true
   has_many :invoices
 

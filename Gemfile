@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2', '>= 4.2.6'
+gem 'rails', '~> 5.0'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.4.0'
 # Use SCSS for stylesheets
@@ -32,7 +32,7 @@ gem 'data-confirm-modal'
 gem 'devise', '~> 4.7.1'
 gem 'email_validator'
 gem 'figaro'
-gem 'filterrific', '~> 4.0.1'
+gem 'filterrific', '~> 5.2.1'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
@@ -77,7 +77,7 @@ group :development do
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano-rbenv', '~> 2.0'
 
-  gem 'rubocop', require: false
+  gem 'rubocop'
   gem 'rubocop-rspec'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
@@ -95,5 +95,6 @@ end
 
 group :test do
   gem 'database_cleaner'
+  gem 'rails-controller-testing'
   gem 'simplecov', require: false
 end

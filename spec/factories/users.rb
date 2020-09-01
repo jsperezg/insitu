@@ -14,7 +14,7 @@ FactoryBot.define do
     password { 'change_me' }
     password_confirmation { 'change_me' }
     currency { 'EUR' }
-    terms_of_service { true }
+    terms_of_service { '1' }
 
     trait :admin do
       role_id { Role.find_by(description: 'Administrator')&.id || create(:admin_role)&.id }

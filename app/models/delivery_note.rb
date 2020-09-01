@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class represents a delivery note.
-class DeliveryNote < ActiveRecord::Base
+class DeliveryNote < ApplicationRecord
   include SequenceGenerator
 
   filterrific(
@@ -23,7 +23,7 @@ class DeliveryNote < ActiveRecord::Base
       attr[:description].blank?
   }, allow_destroy: true
 
-  validates :customer_id, presence: true
+  validates :customer, presence: true
   validates :date, presence: true
   validates :number, presence: true, uniqueness: true
   validate :number_format

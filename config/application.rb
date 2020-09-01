@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require File.expand_path('boot', __dir__)
-
+require_relative 'boot'
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
@@ -22,9 +21,6 @@ module Fges
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     I18n.config.enforce_available_locales = false
     config.i18n.default_locale = :en
-
-    # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
 
     # Autoload libraries in lib folder
     config.autoload_paths << Rails.root.join('lib')

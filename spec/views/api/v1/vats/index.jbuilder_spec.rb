@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe 'api/v1/vats/index', type: :view do
-  let(:vats) { Vat.all }
+  let(:vats) { create_list(:vat, 5) }
 
   before do
     assign(:vats, vats)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Entity that maintains the available VAT rates for a user.
-class Vat < ActiveRecord::Base
+class Vat < ApplicationRecord
   has_many :services, dependent: :restrict_with_error
 
   validates :rate,

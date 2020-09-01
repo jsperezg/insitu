@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # This model represents a customer.
-class Customer < ActiveRecord::Base
+class Customer < ApplicationRecord
   filterrific(
     default_filter_params: {
       sorted_by: 'name_asc'
