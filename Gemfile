@@ -29,7 +29,7 @@ gem 'country_select', github: 'stefanpenner/country_select'
 gem 'currencies', require: 'iso4217'
 gem 'dalli', group: :production
 gem 'data-confirm-modal'
-gem 'devise', '~> 4.4.0'
+gem 'devise', '~> 4.7.1'
 gem 'email_validator'
 gem 'figaro'
 gem 'filterrific', '~> 4.0.1'
