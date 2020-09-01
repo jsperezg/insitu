@@ -51,7 +51,7 @@ class Service < ApplicationRecord
   validates :vat, presence: true
   validates :unit, presence: true
 
-  after_initialize :set_default_values
+  before_validation :set_default_values
 
   has_many :invoice_details, dependent: :restrict_with_error
   has_many :estimate_details, dependent: :restrict_with_error
@@ -67,7 +67,7 @@ class Service < ApplicationRecord
   end
 
   def validate_referential_integrity
-    return true if invoice_details.count.zero? && estimate_details.count.zero? && delivery_note_details.count.zero?
+    return true if invoice_details.empty? && estimate_details.empty? && delivery_note_details.empty?
 
     errors.add(:base, I18n.t('activerecord.errors.models.service.used_elsewhere'))
     false

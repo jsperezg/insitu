@@ -19,7 +19,7 @@ class Estimate < ApplicationRecord
 
   validates :customer_id, presence: true
   validates :date, presence: true
-  validates :estimate_status_id, presence: true
+  validates :estimate_status, presence: true
   validate :validate_valid_until
   validates :number, presence: true, uniqueness: true
   validate :number_format
@@ -75,7 +75,7 @@ class Estimate < ApplicationRecord
   def sent!
     return if sent?
 
-    self.estimate_status = EstimateStatus.find_by(name: 'estimate_status.sent')
+    self.estimate_status = EstimateStatus.sent
     save!
   end
 
@@ -106,7 +106,7 @@ class Estimate < ApplicationRecord
   private
 
   def set_default_values
-    self.estimate_status_id ||= EstimateStatus.find_by(name: 'estimate_status.created')&.id
+    self.estimate_status_id ||= EstimateStatus.created.id
     self.date ||= Date.today
     self.number ||= generate_id(model_name.human, date.year)
   end

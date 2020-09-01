@@ -28,11 +28,9 @@ RSpec.describe Estimate, type: :model do
     expect(estimate.errors).to have_key(:valid_until)
   end
 
-  it 'status is mandatory' do
-    estimate = Estimate.new
-    estimate.save
-
-    expect(estimate.errors).to have_key(:estimate_status_id)
+  it 'status fallbacks to the default value' do
+    estimate = create(:estimate, estimate_status: nil)
+    expect(estimate.estimate_status).to eq(EstimateStatus.created)
   end
 
   describe 'Estimate series' do

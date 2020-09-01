@@ -56,18 +56,7 @@ RSpec.describe Service, type: :model do
 
   describe 'default values' do
     subject(:service) do
-      Service.new(
-        code: 'a code',
-        description: 'It has a description',
-        price: 1,
-        unit: Unit.first,
-        vat: Vat.first
-      )
-    end
-
-    before do
-      service.save
-      service.reload
+      create(:service, active: nil)
     end
 
     it { is_expected.to be_active }
