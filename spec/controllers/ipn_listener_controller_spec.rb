@@ -17,7 +17,7 @@ RSpec.describe IpnListenerController, type: :controller do
       it 'referred subscription is renewed' do
         user = create(:user, :expired)
 
-        post :create, paypal_renewal_request(user)
+        post :create, params: paypal_renewal_request(user)
 
         user.reload
         expect(user).to be_premium
@@ -26,7 +26,7 @@ RSpec.describe IpnListenerController, type: :controller do
       it 'payment is created' do
         user = create(:user, :expired)
 
-        post :create, paypal_renewal_request(user)
+        post :create, params: paypal_renewal_request(user)
 
         payment = Payment.find_by(user_id: user.id)
         expect(payment).not_to be_nil
@@ -36,7 +36,7 @@ RSpec.describe IpnListenerController, type: :controller do
         user = create(:user, :expired)
 
         expect(RenewSubscriptionJob).to receive(:perform_now)
-        post :create, paypal_renewal_request(user)
+        post :create, params: paypal_renewal_request(user)
       end
     end
 
@@ -53,7 +53,7 @@ RSpec.describe IpnListenerController, type: :controller do
       it 'referred subscription remains unchanged' do
         user = create(:user, :expired)
 
-        post :create, paypal_renewal_request(user)
+        post :create, params: paypal_renewal_request(user)
 
         user.reload
         expect(user).not_to be_premium

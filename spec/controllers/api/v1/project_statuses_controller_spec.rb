@@ -31,7 +31,7 @@ RSpec.describe Api::V1::ProjectStatusesController, type: :controller do
     it 'assigns the requested project status as @project_status' do
       status = ProjectStatus.create(valid_attributes)
 
-      get :show, id: status.id, format: :json
+      get :show, params: { id: status.id }, format: :json
       expect(assigns(:project_status)).to eq(status)
     end
   end

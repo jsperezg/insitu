@@ -49,18 +49,18 @@ class Payment < ApplicationRecord
   def receiver_email_is_valid
     return if receiver_email == Rails.configuration.x.paypal_receiver_email
 
-    errors[:receiver_email] = I18n.t('activerecord.errors.models.payment.attributes.receiver_email.invalid_value', email: receiver_email)
+    errors.add(:receiver_email, I18n.t('activerecord.errors.models.payment.attributes.receiver_email.invalid_value', email: receiver_email))
   end
 
   def payment_currency_is_valid
-    errors[:mc_currency] = I18n.t('activerecord.errors.models.payment.attributes.mc_currency.invalid_value') if mc_currency != 'EUR'
+    errors.add(:mc_currency, I18n.t('activerecord.errors.models.payment.attributes.mc_currency.invalid_value')) if mc_currency != 'EUR'
   end
 
   def payment_amount_is_valid
     return if plan.nil?
 
     expected_amount = plan.price * (1 + plan.vat_rate / 100.0)
-    errors[:mc_gross] = I18n.t('activerecord.errors.models.payment.attributes.mc_gross.invalid_value') if mc_gross != expected_amount
+    errors.add(:mc_gross, I18n.t('activerecord.errors.models.payment.attributes.mc_gross.invalid_value')) if mc_gross != expected_amount
   end
 
   def renew_user

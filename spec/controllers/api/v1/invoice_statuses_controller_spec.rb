@@ -31,7 +31,7 @@ RSpec.describe Api::V1::InvoiceStatusesController, type: :controller do
     it 'assigns the requested invoice status as @invoice_status' do
       status = InvoiceStatus.create(valid_attributes)
 
-      get :show, id: status.id, format: :json
+      get :show, params: { id: status.id }, format: :json
       expect(assigns(:invoice_status)).to eq(status)
     end
   end

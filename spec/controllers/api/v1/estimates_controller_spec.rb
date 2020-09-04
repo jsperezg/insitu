@@ -39,7 +39,7 @@ RSpec.describe Api::V1::EstimatesController, type: :controller do
   describe 'GET #show' do
     it 'assigns the requested estimate as @estimate' do
       estimate = Estimate.create! valid_attributes
-      get :show, id: estimate.to_param
+      get :show, params: { id: estimate.to_param }, format: :json
       expect(assigns(:estimate)).to eq(estimate)
     end
   end
@@ -48,25 +48,25 @@ RSpec.describe Api::V1::EstimatesController, type: :controller do
     context 'with valid params' do
       it 'creates a new Estimate' do
         expect do
-          post :create, estimate: valid_attributes
+          post :create, params: { estimate: valid_attributes }, format: :json
         end.to change(Estimate, :count).by(1)
       end
 
       it 'assigns a newly created estimate as @estimate' do
-        post :create, estimate: valid_attributes
+        post :create, params: { estimate: valid_attributes }, format: :json
         expect(assigns(:estimate)).to be_a(Estimate)
         expect(assigns(:estimate)).to be_persisted
       end
 
       it 'returns 200 - ok' do
-        post :create, estimate: valid_attributes
+        post :create, params: { estimate: valid_attributes }, format: :json
         expect(response).to have_http_status(:ok)
       end
     end
 
     context 'with invalid params' do
       it 'assigns a newly created but unsaved estimate as @estimate' do
-        post :create, estimate: invalid_attributes
+        post :create, params: { estimate: invalid_attributes }, format: :json
         expect(assigns(:estimate)).to be_a_new(Estimate)
       end
     end
@@ -123,7 +123,7 @@ RSpec.describe Api::V1::EstimatesController, type: :controller do
 
     it 'returns 200 - ok' do
       estimate = Estimate.create! valid_attributes
-      delete :destroy, user_id: user.id, id: estimate.to_param
+      delete :destroy, params: { user_id: user.id, id: estimate.to_param }, format: :json
       expect(response).to have_http_status(:ok)
     end
   end
@@ -138,7 +138,7 @@ RSpec.describe Api::V1::EstimatesController, type: :controller do
     it 'Warns when nothing to invoice' do
       estimate = create(:estimate)
 
-      get :invoice, user_id: user, id: estimate
+      get :invoice, params: { user_id: user, id: estimate.to_param }, format: :json
       expect(response).to have_http_status(:ok)
 
       json = JSON.parse(response.body)
@@ -149,7 +149,7 @@ RSpec.describe Api::V1::EstimatesController, type: :controller do
     it 'Generates invoice ' do
       estimate = Estimate.create! valid_attributes
 
-      get :invoice, user_id: user, id: estimate
+      get :invoice, params: { user_id: user, id: estimate.to_param }, format: :json
 
       estimate.reload
 
@@ -172,7 +172,7 @@ RSpec.describe Api::V1::EstimatesController, type: :controller do
       estimate = Estimate.create! valid_attributes
       estimate.customer.update_attributes(irpf: 16)
 
-      get :invoice, user_id: user, id: estimate
+      get :invoice, params: { user_id: user, id: estimate.to_param }, format: :json
 
       estimate.reload
       invoice = estimate.estimate_details.first.invoice_detail.invoice
@@ -185,7 +185,7 @@ RSpec.describe Api::V1::EstimatesController, type: :controller do
 
       estimate = Estimate.create! valid_attributes
 
-      get :invoice, user_id: user, id: estimate
+      get :invoice, params: { user_id: user, id: estimate.to_param }, format: :json
       expect(response).to have_http_status(:ok)
 
       json = JSON.parse(response.body)
