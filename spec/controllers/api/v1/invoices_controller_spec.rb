@@ -30,7 +30,7 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
   describe 'GET #index' do
     it 'assigns all invoices as @invoices' do
       invoice = Invoice.create! valid_attributes
-      get :index
+      get :index, format: :json
 
       expect(assigns(:invoices)).to eq([invoice])
     end
@@ -39,7 +39,7 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
   describe 'GET #show' do
     it 'assigns the requested invoice as @invoice' do
       invoice = Invoice.create! valid_attributes
-      get :show, id: invoice.to_param
+      get :show, params: { id: invoice.to_param }, format: :json
       expect(assigns(:invoice)).to eq(invoice)
     end
   end
@@ -48,25 +48,25 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
     context 'with valid params' do
       it 'creates a new Invoice' do
         expect do
-          post :create, invoice: valid_attributes
+          post :create, params: { invoice: valid_attributes }, format: :json
         end.to change(Invoice, :count).by(1)
       end
 
       it 'assigns a newly created invoice as @invoice' do
-        post :create, invoice: valid_attributes
+        post :create, params: { invoice: valid_attributes }, format: :json
         expect(assigns(:invoice)).to be_a(Invoice)
         expect(assigns(:invoice)).to be_persisted
       end
 
       it 'returns HTTP 200' do
-        post :create, invoice: valid_attributes, user_id: user.id
+        post :create, params: { invoice: valid_attributes, user_id: user.id }, format: :json
         expect(response).to have_http_status(:ok)
       end
     end
 
     context 'with invalid params' do
       it 'assigns a newly created but unsaved invoice as @invoice' do
-        post :create, invoice: invalid_attributes
+        post :create, params: { invoice: invalid_attributes }, format: :json
         expect(assigns(:invoice)).to be_a_new(Invoice)
       end
     end
@@ -80,7 +80,7 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
 
       it 'updates the requested invoice' do
         invoice = Invoice.create! valid_attributes
-        put :update, id: invoice.to_param, invoice: new_attributes
+        put :update, params: { id: invoice.to_param, invoice: new_attributes }, format: :json
         invoice.reload
 
         new_attributes.each do |key, value|
@@ -90,13 +90,13 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
 
       it 'assigns the requested invoice as @invoice' do
         invoice = Invoice.create! valid_attributes
-        put :update, id: invoice.to_param, invoice: valid_attributes
+        put :update, params: { id: invoice.to_param, invoice: valid_attributes }, format: :json
         expect(assigns(:invoice)).to eq(invoice)
       end
 
       it 'Returns HTTP 200' do
         invoice = Invoice.create! valid_attributes
-        put :update, id: invoice.to_param, invoice: valid_attributes, user_id: user.id
+        put :update, params: { id: invoice.to_param, invoice: valid_attributes, user_id: user.id }, format: :json
         expect(response).to have_http_status(:ok)
       end
     end
@@ -104,7 +104,7 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
     context 'with invalid params' do
       it 'assigns the invoice as @invoice' do
         invoice = Invoice.create! valid_attributes
-        put :update, id: invoice.to_param, invoice: invalid_attributes
+        put :update, params: { id: invoice.to_param, invoice: invalid_attributes }, format: :json
         expect(assigns(:invoice)).to eq(invoice)
       end
     end
@@ -114,13 +114,13 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
     it 'destroys the requested invoice' do
       invoice = Invoice.create! valid_attributes
       expect do
-        delete :destroy, id: invoice.to_param
+        delete :destroy, params: { id: invoice.to_param }, format: :json
       end.to change(Invoice, :count).by(-1)
     end
 
     it 'Returns HTTP 200' do
       invoice = Invoice.create! valid_attributes
-      delete :destroy, id: invoice.to_param
+      delete :destroy, params: { id: invoice.to_param }, format: :json
       expect(response).to have_http_status(:ok)
     end
   end
@@ -128,7 +128,7 @@ RSpec.describe Api::V1::InvoicesController, type: :controller do
   describe 'DELETE #cancel' do
     it 'creates an amending invoice' do
       invoice = Invoice.create! valid_attributes
-      delete :cancel, id: invoice.to_param, user_id: user.id
+      delete :cancel, params: { id: invoice.to_param, user_id: user.id }, format: :json
       expect(assigns(:invoice)).to be_amending_invoice
     end
   end

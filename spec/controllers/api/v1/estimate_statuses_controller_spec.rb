@@ -30,7 +30,7 @@ RSpec.describe Api::V1::EstimateStatusesController, type: :controller do
     it 'assigns the requested estimate status as @estimate_status' do
       estimate_status = EstimateStatus.create(valid_attributes)
 
-      get :show, id: estimate_status.id, format: :json
+      get :show, params: { id: estimate_status.id }, format: :json
       expect(assigns(:estimate_status)).to eq(estimate_status)
     end
   end

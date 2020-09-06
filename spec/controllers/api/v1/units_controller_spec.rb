@@ -30,7 +30,7 @@ RSpec.describe Api::V1::UnitsController, type: :controller do
   describe 'GET #show' do
     it 'assigns the requested unit as @unit' do
       unit = Unit.create! valid_attributes
-      get :show, id: unit.to_param, format: :json
+      get :show, params: { id: unit.to_param }, format: :json
       expect(assigns(:unit)).to eq(unit)
     end
   end
@@ -39,24 +39,24 @@ RSpec.describe Api::V1::UnitsController, type: :controller do
     context 'with valid params' do
       it 'creates a new Unit' do
         expect do
-          post :create, unit: valid_attributes, format: :json
+          post :create, params: { unit: valid_attributes }, format: :json
         end.to change(Unit, :count).by(1)
       end
 
       it 'assigns a newly created unit as @unit' do
-        post :create, unit: valid_attributes, format: :json
+        post :create, params: { unit: valid_attributes }, format: :json
         expect(assigns(:unit)).to be_persisted
       end
 
       it 'returns 200 - ok' do
-        post :create, unit: valid_attributes, format: :json
+        post :create, params: { unit: valid_attributes }, format: :json
         expect(response).to have_http_status(:ok)
       end
     end
 
     context 'with invalid params' do
       it 'assigns a newly created but unsaved unit as @unit' do
-        post :create, unit: invalid_attributes, format: :json
+        post :create, params: { unit: invalid_attributes }, format: :json
         expect(assigns(:unit)).to be_a_new(Unit)
       end
     end
@@ -71,7 +71,7 @@ RSpec.describe Api::V1::UnitsController, type: :controller do
       let(:unit) { Unit.create! valid_attributes }
 
       it 'updates the requested unit' do
-        put :update, id: unit.to_param, unit: new_attributes, format: :json
+        put :update, params: { id: unit.to_param, unit: new_attributes }, format: :json
         unit.reload
 
         expect(unit[:label_short]).to eq(new_attributes[:label_short])
@@ -79,12 +79,12 @@ RSpec.describe Api::V1::UnitsController, type: :controller do
       end
 
       it 'assigns the requested unit as @unit' do
-        put :update, id: unit.to_param, unit: valid_attributes, format: :json
+        put :update, params: { id: unit.to_param, unit: valid_attributes }, format: :json
         expect(assigns(:unit)).to eq(unit)
       end
 
       it 'returns 200 - ok' do
-        put :update, id: unit.to_param, unit: valid_attributes, format: :json
+        put :update, params: { id: unit.to_param, unit: valid_attributes }, format: :json
         expect(response).to have_http_status(:ok)
       end
     end
@@ -92,7 +92,7 @@ RSpec.describe Api::V1::UnitsController, type: :controller do
     context 'with invalid params' do
       it 'assigns the unit as @unit' do
         unit = Unit.create! valid_attributes
-        put :update, id: unit.to_param, unit: invalid_attributes, format: :json
+        put :update, params: { id: unit.to_param, unit: invalid_attributes }, format: :json
         expect(assigns(:unit)).to eq(unit)
       end
     end
@@ -104,12 +104,12 @@ RSpec.describe Api::V1::UnitsController, type: :controller do
     it 'destroys the requested unit' do
       unit = create(:unit)
       expect do
-        delete :destroy, id: unit.to_param, format: :json
+        delete :destroy, params: { id: unit.to_param }, format: :json
       end.to change(Unit, :count).by(-1)
     end
 
     it 'returns 200 - ok' do
-      delete :destroy, id: unit.to_param, format: :json
+      delete :destroy, params: { id: unit.to_param }, format: :json
       expect(response).to have_http_status(:ok)
     end
   end

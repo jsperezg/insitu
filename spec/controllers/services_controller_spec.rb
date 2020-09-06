@@ -27,7 +27,7 @@ RSpec.describe ServicesController, type: :controller do
   describe 'GET #index' do
     it 'assigns all services as @services' do
       service = Service.create! valid_attributes
-      get :index, user_id: user.id
+      get :index, params: { user_id: user.id }
       expect(assigns(:services)).to include(service)
     end
   end
@@ -35,14 +35,14 @@ RSpec.describe ServicesController, type: :controller do
   describe 'GET #show' do
     it 'assigns the requested service as @service' do
       service = Service.create! valid_attributes
-      get :show, user_id: user.id, id: service.to_param
+      get :show, params: { user_id: user.id, id: service.to_param }
       expect(assigns(:service)).to eq(service)
     end
   end
 
   describe 'GET #new' do
     it 'assigns a new service as @service' do
-      get :new, user_id: user.id
+      get :new, params: { user_id: user.id }
       expect(assigns(:service)).to be_a_new(Service)
     end
   end
@@ -50,7 +50,7 @@ RSpec.describe ServicesController, type: :controller do
   describe 'GET #edit' do
     it 'assigns the requested service as @service' do
       service = Service.create! valid_attributes
-      get :edit, user_id: user.id, id: service.to_param
+      get :edit, params: { user_id: user.id, id: service.to_param }
       expect(assigns(:service)).to eq(service)
     end
   end
@@ -59,29 +59,29 @@ RSpec.describe ServicesController, type: :controller do
     context 'with valid params' do
       it 'creates a new Service' do
         expect do
-          post :create, user_id: user.id, service: valid_attributes
+          post :create, params: { user_id: user.id, service: valid_attributes }
         end.to change(Service, :count).by(1)
       end
 
       it 'assigns a newly created service as @service' do
-        post :create, user_id: user.id, service: valid_attributes
+        post :create, params: { user_id: user.id, service: valid_attributes }
         expect(assigns(:service)).to be_persisted
       end
 
       it 'redirects to services list' do
-        post :create, user_id: user.id, service: valid_attributes
+        post :create, params: { user_id: user.id, service: valid_attributes }
         expect(response).to redirect_to(user_services_path(user.id))
       end
     end
 
     context 'with invalid params' do
       it 'assigns a newly created but unsaved service as @service' do
-        post :create, user_id: user.id, service: invalid_attributes
+        post :create, params: { user_id: user.id, service: invalid_attributes }
         expect(assigns(:service)).to be_a_new(Service)
       end
 
       it "re-renders the 'new' template" do
-        post :create, user_id: user.id, service: invalid_attributes
+        post :create, params: { user_id: user.id, service: invalid_attributes }
         expect(response).to render_template('new')
       end
     end
@@ -98,7 +98,7 @@ RSpec.describe ServicesController, type: :controller do
       let(:service) { Service.create! valid_attributes }
 
       it 'updates the requested service' do
-        put :update, user_id: user.id, id: service.to_param, service: new_attributes
+        put :update, params: { user_id: user.id, id: service.to_param, service: new_attributes }
         service.reload
 
         new_attributes.each do |key, value|
@@ -107,12 +107,12 @@ RSpec.describe ServicesController, type: :controller do
       end
 
       it 'assigns the requested service as @service' do
-        put :update, user_id: user.id, id: service.to_param, service: valid_attributes
+        put :update, params: { user_id: user.id, id: service.to_param, service: valid_attributes }
         expect(assigns(:service)).to eq(service)
       end
 
       it 'redirects to the services list' do
-        put :update, user_id: user.id, id: service.to_param, service: valid_attributes
+        put :update, params: { user_id: user.id, id: service.to_param, service: valid_attributes }
         expect(response).to redirect_to(user_services_path(user.id))
       end
     end
@@ -120,13 +120,13 @@ RSpec.describe ServicesController, type: :controller do
     context 'with invalid params' do
       it 'assigns the service as @service' do
         service = Service.create! valid_attributes
-        put :update, user_id: user.id, id: service.to_param, service: invalid_attributes
+        put :update, params: { user_id: user.id, id: service.to_param, service: invalid_attributes }
         expect(assigns(:service)).to eq(service)
       end
 
       it "re-renders the 'edit' template" do
         service = Service.create! valid_attributes
-        put :update, user_id: user.id, id: service.to_param, service: invalid_attributes
+        put :update, params: { user_id: user.id, id: service.to_param, service: invalid_attributes }
         expect(response).to render_template('edit')
       end
     end
@@ -136,13 +136,13 @@ RSpec.describe ServicesController, type: :controller do
     it 'destroys the requested service' do
       service = Service.create! valid_attributes
       expect do
-        delete :destroy, user_id: user.id, id: service.to_param
+        delete :destroy, params: { user_id: user.id, id: service.to_param }
       end.to change(Service, :count).by(-1)
     end
 
     it 'redirects to the services list' do
       service = Service.create! valid_attributes
-      delete :destroy, user_id: user.id, id: service.to_param
+      delete :destroy, params: { user_id: user.id, id: service.to_param }
       expect(response).to redirect_to(user_services_url(user.id))
     end
   end
@@ -152,12 +152,12 @@ RSpec.describe ServicesController, type: :controller do
 
     it 'Creates a new service' do
       expect do
-        post :csv_import, user_id: user.id, csv_file: file
+        post :csv_import, params: { user_id: user.id, csv_file: file }
       end.to change(Service, :count).by(2)
     end
 
     it 'Redirects to services list' do
-      post :csv_import, user_id: user.id, csv_file: file
+      post :csv_import, params: { user_id: user.id, csv_file: file }
       expect(response).to redirect_to(user_services_url(user.id))
     end
   end

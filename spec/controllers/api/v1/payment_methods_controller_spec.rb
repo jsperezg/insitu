@@ -37,25 +37,25 @@ RSpec.describe Api::V1::PaymentMethodsController, type: :controller do
     context 'with valid params' do
       it 'creates a new PaymentMethod' do
         expect do
-          post :create, payment_method: valid_attributes, format: :json
+          post :create, params: { payment_method: valid_attributes }, format: :json
         end.to change(PaymentMethod, :count).by(1)
       end
 
       it 'assigns a newly created payment_method as @payment_method' do
-        post :create, payment_method: valid_attributes, format: :json
+        post :create, params: { payment_method: valid_attributes }, format: :json
         expect(assigns(:payment_method)).to be_a(PaymentMethod)
         expect(assigns(:payment_method)).to be_persisted
       end
 
       it 'returns 200 - ok' do
-        post :create, payment_method: valid_attributes, format: :json
+        post :create, params: { payment_method: valid_attributes }, format: :json
         expect(response).to have_http_status(:ok)
       end
     end
 
     context 'with invalid params' do
       it 'assigns a newly created but unsaved payment_method as @payment_method' do
-        post :create, payment_method: invalid_attributes, format: :json
+        post :create, params: { payment_method: invalid_attributes }, format: :json
         expect(assigns(:payment_method)).to be_a_new(PaymentMethod)
         expect(assigns(:payment_method)).not_to be_persisted
       end
@@ -70,7 +70,7 @@ RSpec.describe Api::V1::PaymentMethodsController, type: :controller do
 
       it 'updates the requested payment_method' do
         payment_method = PaymentMethod.create! valid_attributes
-        put :update, id: payment_method.to_param, payment_method: new_attributes, format: :json
+        put :update, params: { id: payment_method.to_param, payment_method: new_attributes }, format: :json
         payment_method.reload
         expect(payment_method[:name]).to eq(new_attributes[:name])
         expect(payment_method[:note_for_invoice]).to eq(new_attributes[:note_for_invoice])
@@ -78,13 +78,13 @@ RSpec.describe Api::V1::PaymentMethodsController, type: :controller do
 
       it 'assigns the requested payment_method as @payment_method' do
         payment_method = PaymentMethod.create! valid_attributes
-        put :update, id: payment_method.to_param, payment_method: valid_attributes, format: :json
+        put :update, params: { id: payment_method.to_param, payment_method: valid_attributes }, format: :json
         expect(assigns(:payment_method)).to eq(payment_method)
       end
 
       it 'returns 200 - ok' do
         payment_method = PaymentMethod.create! valid_attributes
-        put :update, id: payment_method.to_param, payment_method: valid_attributes, format: :json
+        put :update, params: { id: payment_method.to_param, payment_method: valid_attributes }, format: :json
         expect(response).to have_http_status(:ok)
       end
     end
@@ -92,7 +92,7 @@ RSpec.describe Api::V1::PaymentMethodsController, type: :controller do
     context 'with invalid params' do
       it 'assigns the payment_method as @payment_method' do
         payment_method = PaymentMethod.create! valid_attributes
-        put :update, id: payment_method.to_param, payment_method: invalid_attributes, format: :json
+        put :update, params: { id: payment_method.to_param, payment_method: invalid_attributes }, format: :json
         expect(assigns(:payment_method)).to eq(payment_method)
       end
     end
@@ -102,13 +102,13 @@ RSpec.describe Api::V1::PaymentMethodsController, type: :controller do
     it 'destroys the requested payment_method' do
       payment_method = PaymentMethod.create! valid_attributes
       expect do
-        delete :destroy, id: payment_method.to_param, format: :json
+        delete :destroy, params: { id: payment_method.to_param }, format: :json
       end.to change(PaymentMethod, :count).by(-1)
     end
 
     it 'returns 200 - ok' do
       payment_method = PaymentMethod.create! valid_attributes
-      delete :destroy, id: payment_method.to_param, format: :json
+      delete :destroy, params: { id: payment_method.to_param }, format: :json
       expect(response).to have_http_status(:ok)
     end
   end
