@@ -38,8 +38,8 @@ class Estimate < ApplicationRecord
   end
 
   after_update do
-    unless number == number_was
-      decrease_id if number_was == last_document_number
+    unless number == number_before_last_save
+      decrease_id if number_before_last_save == last_document_number
     end
   end
 
