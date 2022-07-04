@@ -3,12 +3,12 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.6'
+ruby '2.6.10'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2'
 # Use mysql as the database for Active Record
-gem 'mysql2', '~> 0.4.0'
+gem 'mysql2', '~> 0.5.4'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -40,9 +40,10 @@ gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
 gem 'knockoutjs-rails'
+gem 'mimemagic', '~> 0.3.10'
 gem 'nprogress-rails'
 gem 'omniauth-google-oauth2'
-gem 'paperclip', '~> 5.2.0'
+gem 'paperclip', '~> 6.1.0'
 gem 'pdfjs_rails'
 gem 'prawn'
 gem 'prawn-table'

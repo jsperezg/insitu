@@ -104,8 +104,6 @@ GEM
       railties (>= 3.0)
     cli (1.3.1)
     climate_control (0.2.0)
-    cocaine (0.5.8)
-      climate_control (>= 0.0.3, < 1.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     coffee-rails (5.0.0)
@@ -198,10 +196,12 @@ GEM
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
     method_source (1.0.0)
-    mime-types (3.3.1)
+    mime-types (3.4.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2020.0512)
-    mimemagic (0.3.5)
+    mime-types-data (3.2022.0105)
+    mimemagic (0.3.10)
+      nokogiri (~> 1)
+      rake
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.2)
@@ -209,7 +209,7 @@ GEM
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
-    mysql2 (0.4.10)
+    mysql2 (0.5.4)
     net-scp (3.0.0)
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
@@ -234,12 +234,12 @@ GEM
       oauth2 (~> 1.4)
       omniauth (~> 1.9)
     orm_adapter (0.5.0)
-    paperclip (5.2.1)
+    paperclip (6.1.0)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
-      cocaine (~> 0.5.5)
       mime-types
       mimemagic (~> 0.3.0)
+      terrapin (~> 0.6.0)
     parallel (1.19.2)
     parser (2.7.1.4)
       ast (~> 2.4.1)
@@ -384,6 +384,8 @@ GEM
     sshkit (1.21.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    terrapin (0.6.0)
+      climate_control (>= 0.0.3, < 1.0)
     therubyracer (0.12.3)
       libv8 (~> 3.16.14.15)
       ref
@@ -464,10 +466,11 @@ DEPENDENCIES
   jquery-turbolinks
   jquery-ui-rails
   knockoutjs-rails
-  mysql2 (~> 0.4.0)
+  mimemagic (~> 0.3.10)
+  mysql2 (~> 0.5.4)
   nprogress-rails
   omniauth-google-oauth2
-  paperclip (~> 5.2.0)
+  paperclip (~> 6.1.0)
   pdfjs_rails
   prawn
   prawn-table
@@ -496,7 +499,7 @@ DEPENDENCIES
   yajl-ruby
 
 RUBY VERSION
-   ruby 2.6.6p146
+   ruby 2.6.10p210
 
 BUNDLED WITH
    1.17.3
