@@ -425,7 +425,7 @@ GEM
     will_paginate-bootstrap (1.0.2)
       will_paginate (>= 3.0.3)
     wisper (2.0.1)
-    yajl-ruby (1.4.1)
+    yajl-ruby (1.4.3)
 
 PLATFORMS
   ruby
