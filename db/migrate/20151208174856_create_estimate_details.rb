@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateEstimateDetails < ActiveRecord::Migration
+class CreateEstimateDetails < ActiveRecord::Migration[4.2]
   def change
     create_table :estimate_details do |t|
       t.references :estimate, index: true, foreign_key: true, null: false

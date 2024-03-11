@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreatePayments < ActiveRecord::Migration
+class CreatePayments < ActiveRecord::Migration[4.2]
   def change
     create_table :payments do |t|
       t.string :txn_id, limit: 19, null: false, index: true

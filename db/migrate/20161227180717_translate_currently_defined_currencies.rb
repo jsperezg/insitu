@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TranslateCurrentlyDefinedCurrencies < ActiveRecord::Migration
+class TranslateCurrentlyDefinedCurrencies < ActiveRecord::Migration[4.2]
   def change
     User.all.each do |user|
       if user.currency == '$'

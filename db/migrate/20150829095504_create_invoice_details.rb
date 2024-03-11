@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateInvoiceDetails < ActiveRecord::Migration
+class CreateInvoiceDetails < ActiveRecord::Migration[4.2]
   def change
     create_table :invoice_details do |t|
       t.references :invoice, index: true, foreign_key: true, null: false
