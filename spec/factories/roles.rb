@@ -5,7 +5,7 @@ FactoryBot.define do
     description { 'User' }
   end
 
-  factory :admin_role, class: Role do
+  factory :admin_role, class: 'Role' do
     description { 'Administrator' }
   end
 end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe RenewSubscriptionJob, type: :job do
+describe RenewSubscriptionJob, type: :job do
   describe('Generates invoice') do
     let(:payment) { create :payment }
 
@@ -11,34 +11,34 @@ RSpec.describe RenewSubscriptionJob, type: :job do
     end
 
     it 'Creates Paypal payment method' do
-      RenewSubscriptionJob.perform_now payment.id
+      described_class.perform_now payment.id
 
       expect(PaymentMethod.find_by(name: 'Paypal')).not_to be_nil
     end
 
     it 'Registers the customer' do
-      RenewSubscriptionJob.perform_now payment.id
+      described_class.perform_now payment.id
 
       customer = Customer.find_by(tax_id: payment.user.tax_id, country: payment.user.country)
       expect(customer).not_to be_nil
     end
 
     it 'Registers Months as measure unit' do
-      RenewSubscriptionJob.perform_now payment.id
+      described_class.perform_now payment.id
 
       unit = Unit.find_by(label_long: 'Months')
       expect(unit).not_to be_nil
     end
 
     it 'Creates vat rate that fits the plan details' do
-      RenewSubscriptionJob.perform_now payment.id
+      described_class.perform_now payment.id
 
       vat = Vat.find_by(rate: payment.plan.vat_rate)
       expect(vat).not_to be_nil
     end
 
     it 'Creates a service that fits the plan details' do
-      RenewSubscriptionJob.perform_now payment.id
+      described_class.perform_now payment.id
 
       service = Service.find_by(description: payment.plan.description,
                                 vat_id: Vat.find_by(rate: payment.plan.vat_rate).try(:id),
@@ -49,7 +49,7 @@ RSpec.describe RenewSubscriptionJob, type: :job do
     end
 
     it 'Generates a new invoice for the payment' do
-      RenewSubscriptionJob.perform_now payment.id
+      described_class.perform_now payment.id
 
       customer = Customer.find_by(tax_id: payment.user.tax_id, country: payment.user.country)
       expect(customer).not_to be_nil
@@ -95,7 +95,7 @@ RSpec.describe RenewSubscriptionJob, type: :job do
 
     it 'invoice is generated and sent by email' do
       expect(InvoiceMailer).to receive(:send_to_customer)
-      RenewSubscriptionJob.perform_now payment.id
+      described_class.perform_now payment.id
     end
   end
 end

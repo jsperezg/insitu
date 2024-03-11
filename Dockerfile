@@ -1,9 +1,9 @@
-FROM ruby:2.4.4
+FROM ruby:2.6.10
 
 # Required packages
 RUN apt-get update -qq && \
     apt-get upgrade -y && \
-    apt-get install -y build-essential mysql-client default-libmysqlclient-dev imagemagick nodejs libmagickwand-dev sudo unzip vim apt-utils && \
+    apt-get install -y build-essential default-mysql-client default-libmysqlclient-dev imagemagick nodejs libmagickwand-dev sudo unzip vim apt-utils && \
     apt-get clean
 
 # Test requirements

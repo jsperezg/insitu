@@ -50,7 +50,7 @@ Rails.application.configure do
   # Paypal integration
   config.x.paypal_validate_ipn_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_notify-validate'
   config.x.paypal_validate_ipn_verify_mode = OpenSSL::SSL::VERIFY_NONE
-    config.x.paypal_validate_ipn_user_agent = ENV['PAYPAL_USER_AGENT']
+  config.x.paypal_validate_ipn_user_agent = ENV['PAYPAL_USER_AGENT']
   config.x.paypal_receiver_email = ENV['PAYPAL_RECEIVER_EMAIL']
   config.x.paypal_billing_account = ENV['PAYPAL_BILLING_ACCOUNT']
 end

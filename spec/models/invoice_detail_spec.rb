@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe InvoiceDetail, type: :model do
-  subject(:invoice_detail) { InvoiceDetail.new(attributes) }
+describe InvoiceDetail, type: :model do
+  subject(:invoice_detail) { described_class.new(attributes) }
 
   let(:attributes) { attributes_for :invoice_detail }
 
@@ -110,7 +110,7 @@ RSpec.describe InvoiceDetail, type: :model do
   end
 
   describe '#total' do
-    subject(:invoice_detail) { InvoiceDetail.new(quantity: 1.0, price: 100.0, vat_rate: 21.0, discount: 10.0) }
+    subject(:invoice_detail) { described_class.new(quantity: 1.0, price: 100.0, vat_rate: 21.0, discount: 10.0) }
 
     it 'total includes discount, vat, price and quantity' do
       expect(invoice_detail.total).to eq(108.9)

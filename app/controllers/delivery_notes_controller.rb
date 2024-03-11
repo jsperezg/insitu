@@ -137,8 +137,8 @@ class DeliveryNotesController < SecuredController
     invoice.save!
 
     redirect_to edit_user_invoice_path(current_user, invoice)
-  rescue StandardError => error
-    flash[:alert] = t(error.message, default: error.message)
+  rescue StandardError => e
+    flash[:alert] = t(e.message, default: e.message)
     redirect_to user_delivery_notes_path(current_user)
   end
 

@@ -15,6 +15,7 @@ RSpec.describe Api::V1::EstimatesController, type: :routing do
     it 'routes to #print' do
       expect(get: '/api/v1/estimates/1/print').to route_to('api/v1/estimates#print', id: '1')
     end
+
     it 'routes to #invoice' do
       expect(get: '/api/v1/estimates/1/invoice').to route_to('api/v1/estimates#invoice', id: '1')
     end

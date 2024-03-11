@@ -38,7 +38,7 @@ RSpec.describe Api::V1::ProjectsController, type: :controller do
   describe 'GET #show' do
     it 'assigns the requested project as @project' do
       project = Project.create! valid_attributes
-      get :show, params: {id: project.to_param }, format: :json
+      get :show, params: { id: project.to_param }, format: :json
       expect(assigns(:project)).to eq(project)
     end
   end

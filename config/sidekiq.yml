@@ -1,7 +1,7 @@
 ---
 :concurrency: 8
-:pidfile: /opt/insitu/current/tmp/pids/sidekiq.pid
-:logfile: /opt/insitu/current/log/sidekiq.log
+:pidfile: /insitu/tmp/pids/sidekiq.pid
+:logfile: /insitu/log/sidekiq.log
 :queues:
   - default
   - mailers

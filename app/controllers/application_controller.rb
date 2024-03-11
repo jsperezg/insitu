@@ -28,10 +28,10 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(
-      :account_update, 
+      :account_update,
       keys: %i[password password_confirmation current_password
-             tax_id name address city country state postal_code
-             phone_number locale currency logo]
+               tax_id name address city country state postal_code
+               phone_number locale currency logo]
     )
 
     devise_parameter_sanitizer.permit(

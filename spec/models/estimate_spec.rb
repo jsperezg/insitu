@@ -2,27 +2,27 @@
 
 require 'rails_helper'
 
-RSpec.describe Estimate, type: :model do
+describe Estimate, type: :model do
   before do
     Thread.current[:user] = User.first || create(:user)
   end
 
   it 'customer is mandatory' do
-    estimate = Estimate.new
+    estimate = described_class.new
     estimate.save
 
     expect(estimate.errors).to have_key(:customer_id)
   end
 
   it 'date is today by default' do
-    estimate = Estimate.new
+    estimate = described_class.new
     estimate.save
 
     expect(estimate.date).to eq(Date.today)
   end
 
   it 'valid_until must be after date' do
-    estimate = Estimate.new(valid_until: Date.today, date: Date.today + 3.days)
+    estimate = described_class.new(valid_until: Date.today, date: Date.today + 3.days)
     estimate.save
 
     expect(estimate.errors).to have_key(:valid_until)
@@ -40,7 +40,7 @@ RSpec.describe Estimate, type: :model do
       estimate.reload
 
       expect(estimate.errors).to be_empty
-      expect(estimate.number).to start_with(Estimate.model_name.human[0].capitalize)
+      expect(estimate.number).to start_with(described_class.model_name.human[0].capitalize)
     end
 
     it 'do not allow duplicates' do

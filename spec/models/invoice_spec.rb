@@ -2,35 +2,35 @@
 
 require 'rails_helper'
 
-RSpec.describe Invoice, type: :model do
+describe Invoice, type: :model do
   before do
     Thread.current[:user] = User.first || create(:user)
   end
 
   describe 'Validations' do
     it 'date is mandatory' do
-      invoice = Invoice.new
+      invoice = described_class.new
       invoice.save
 
       expect(invoice.errors).to have_key(:date)
     end
 
     it 'payment method is mandatory' do
-      invoice = Invoice.new
+      invoice = described_class.new
       invoice.save
 
       expect(invoice.errors).to have_key(:payment_method_id)
     end
 
     it 'customer is mandatory' do
-      invoice = Invoice.new
+      invoice = described_class.new
       invoice.save
 
       expect(invoice.errors).to have_key(:customer_id)
     end
 
     it 'payment date is mandatory' do
-      invoice = Invoice.new
+      invoice = described_class.new
       invoice.save
 
       expect(invoice.errors).to have_key(:payment_date)
@@ -45,7 +45,7 @@ RSpec.describe Invoice, type: :model do
       invoice.reload
 
       expect(invoice.errors.empty?).to be(true)
-      expect(invoice.number).to start_with(Invoice.model_name.human[0].capitalize)
+      expect(invoice.number).to start_with(described_class.model_name.human[0].capitalize)
     end
 
     it 'custom series' do
@@ -166,7 +166,7 @@ RSpec.describe Invoice, type: :model do
     end
 
     it 'irpf 15%' do
-      invoice = Invoice.create! irpf_15
+      invoice = described_class.create! irpf_15
 
       gross_total = 0
       invoice.invoice_details.each do |detail|
@@ -186,7 +186,7 @@ RSpec.describe Invoice, type: :model do
     end
 
     it 'irpf 0%' do
-      invoice = Invoice.create! irpf_0
+      invoice = described_class.create! irpf_0
 
       gross_total = 0
       invoice.invoice_details.each do |detail|
@@ -209,7 +209,7 @@ RSpec.describe Invoice, type: :model do
     it 'default payment method' do
       default_payment_method = create(:payment_method, default: true)
 
-      invoice = Invoice.new
+      invoice = described_class.new
       expect(invoice.payment_method_id).to eq(default_payment_method.id)
     end
   end
@@ -219,7 +219,7 @@ RSpec.describe Invoice, type: :model do
 
     it 'Last invoice of serie can be deleted' do
       expect(invoice).to be_deletion_allowed
-      expect { invoice.destroy }.to change(Invoice, :count).by(-1)
+      expect { invoice.destroy }.to change(described_class, :count).by(-1)
     end
 
     it 'Deletion of any other invoice will result into an exception' do
