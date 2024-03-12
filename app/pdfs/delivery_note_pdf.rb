@@ -55,7 +55,12 @@ class DeliveryNotePdf < DocumentPdf
 
     totals << [
       header_cell("#{DeliveryNote.human_attribute_name :total}:", default_borders, default_padding, :right),
-      data_cell("#{number_with_precision @delivery_note.total, precision: 2} #{currency_symbol(@current_user)}", default_borders, default_padding, :right)
+      data_cell(
+        "#{number_with_precision @delivery_note.total, precision: 2} #{currency_symbol(@current_user)}",
+        default_borders,
+        default_padding,
+        :right
+      )
     ]
 
     font DEFAULT_FONT, style: :normal

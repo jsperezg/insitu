@@ -16,7 +16,7 @@ class RenewSubscriptionJob < ApplicationJob
   end
 
   def send_invoice(payment)
-    billing_account = User.find_by(email: Rails.configuration.x.paypal_billing_account)
+    billing_account = User.find_by(email: ENV['PAYPAL_RECEIVER_EMAIL'])
     begin
       Apartment::Tenant.switch! billing_account.try(:tenant) unless Rails.env.test?
       invoice = generate_invoice(payment)

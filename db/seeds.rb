@@ -21,15 +21,14 @@ if Apartment::Tenant.current.blank? || Apartment::Tenant.current == config[Rails
     Role.find_or_create_by(description: role)
   end
 
-  admin = User.find_by(email: 'admin@example.org')
-  admin ||= User.create(
-    email: 'admin@example.org',
-    password: 'change_me',
-    password_confirmation: 'change_me',
-    confirmed_at: Time.now,
-    terms_of_service: '1',
-    role: Role.admin
-  )
+  User.find_or_create_by(email: 'admin@example.org') do |admin|
+    admin.email = 'admin@example.org'
+    admin.password = 'change_me'
+    admin.password_confirmation = 'change_me'
+    admin.confirmed_at = Time.now
+    admin.terms_of_service = '1'
+    admin.role = Role.admin
+  end
 else
   init_default_settings
 

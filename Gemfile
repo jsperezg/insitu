@@ -3,12 +3,12 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.6'
+ruby '2.6.10'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1'
+gem 'rails', '~> 5.2'
 # Use mysql as the database for Active Record
-gem 'mysql2', '~> 0.4.0'
+gem 'mysql2', '~> 0.5.5'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -16,7 +16,10 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 5.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'therubyracer', platforms: :ruby
+gem 'mini_racer', '~> 0.6.4'
+
+# Reduces boot times through caching; configured in config/boot.rb
+gem 'bootsnap', '~> 1.4.8', platforms: [:mri]
 
 gem 'apartment'
 gem 'apartment-sidekiq'
@@ -37,9 +40,10 @@ gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
 gem 'knockoutjs-rails'
+gem 'mimemagic', '~> 0.3.10'
 gem 'nprogress-rails'
 gem 'omniauth-google-oauth2'
-gem 'paperclip', '~> 5.2.0'
+gem 'paperclip', '~> 6.1.0'
 gem 'pdfjs_rails'
 gem 'prawn'
 gem 'prawn-table'
@@ -76,7 +80,7 @@ group :development do
   gem 'capistrano-passenger'
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano-rbenv', '~> 2.0'
-
+  gem 'listen'
   gem 'rubocop'
   gem 'rubocop-rspec'
 
@@ -86,6 +90,7 @@ end
 
 group :development, :test do
   gem 'byebug'
+  gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails', '~> 3.0'
@@ -96,5 +101,6 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'rails-controller-testing'
+  gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end

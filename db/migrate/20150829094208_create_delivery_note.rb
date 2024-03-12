@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateDeliveryNote < ActiveRecord::Migration
+class CreateDeliveryNote < ActiveRecord::Migration[4.2]
   def change
     create_table :delivery_notes do |t|
       t.string :number, length: 25, null: false, blank: false

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe DeliveryNote, type: :model do
+describe DeliveryNote, type: :model do
   subject { build :delivery_note, customer: customer, date: date }
 
   let(:customer) { create :customer }
@@ -33,7 +33,7 @@ RSpec.describe DeliveryNote, type: :model do
       delivery_note.reload
 
       expect(delivery_note.errors).to be_empty
-      expect(delivery_note.number).to start_with(DeliveryNote.model_name.human[0].capitalize)
+      expect(delivery_note.number).to start_with(described_class.model_name.human[0].capitalize)
     end
 
     it 'do not allow duplicates' do

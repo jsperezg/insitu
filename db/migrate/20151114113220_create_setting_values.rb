@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateSettingValues < ActiveRecord::Migration
+class CreateSettingValues < ActiveRecord::Migration[4.2]
   def change
     create_table :setting_values do |t|
       t.integer :value_i

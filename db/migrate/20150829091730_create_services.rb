@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateServices < ActiveRecord::Migration
+class CreateServices < ActiveRecord::Migration[4.2]
   def change
     create_table :services do |t|
       t.string :code, length: 10, null: false, blank: false, index: true

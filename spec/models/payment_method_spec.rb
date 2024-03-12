@@ -2,29 +2,29 @@
 
 require 'rails_helper'
 
-RSpec.describe PaymentMethod, type: :model do
+describe PaymentMethod, type: :model do
   before do
     Thread.current[:user] = create(:user)
   end
 
   it 'Name is mandatory: Nil is not a valid value' do
-    payment_method = PaymentMethod.new
+    payment_method = described_class.new
     payment_method.save
 
     expect(payment_method.errors).to be_key :name
   end
 
   it 'Name is mandatory: blank is not a valid value' do
-    payment_method = PaymentMethod.new(name: '')
+    payment_method = described_class.new(name: '')
     payment_method.save
 
     expect(payment_method.errors).to be_key :name
   end
 
   it 'name is unique' do
-    PaymentMethod.create(name: 'one payment method')
+    described_class.create(name: 'one payment method')
 
-    r = PaymentMethod.new(name: 'one payment method')
+    r = described_class.new(name: 'one payment method')
     r.save
 
     expect(r.errors).to be_key :name

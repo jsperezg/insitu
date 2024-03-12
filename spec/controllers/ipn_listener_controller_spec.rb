@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe IpnListenerController, type: :controller do
+describe IpnListenerController, type: :controller do
   describe 'POST #create' do
     context 'when VERIFIED response' do
       before do

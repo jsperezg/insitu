@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateDeliveryNoteDetails < ActiveRecord::Migration
+class CreateDeliveryNoteDetails < ActiveRecord::Migration[4.2]
   def change
     create_table :delivery_note_details do |t|
       t.references :delivery_note, index: true, foreign_key: true, null: false

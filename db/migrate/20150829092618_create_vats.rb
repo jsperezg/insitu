@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateVats < ActiveRecord::Migration
+class CreateVats < ActiveRecord::Migration[4.2]
   def change
     create_table :vats do |t|
       t.string :label, null: false, blank: false, index: true

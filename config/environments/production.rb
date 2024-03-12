@@ -16,6 +16,10 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
+  # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
+  # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
+  # config.require_master_key = true
+
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
@@ -37,21 +41,23 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
+  # Store uploaded files on the local file system (see config/storage.yml for options)
+  config.active_storage.service = :local
+
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
   # config.action_cable.url = 'wss://example.com/cable'
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
-
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  config.force_ssl = ENV['INSITU_FORCE_SSL'].present?
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
   config.log_level = :warn
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -80,9 +86,9 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
     config.action_mailer.perform_deliveries = true
-    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
@@ -99,22 +105,19 @@ Rails.application.configure do
 
   config.action_mailer.default charset: 'utf-8'
   config.action_mailer.smtp_settings = {
-    address: 'mail.your-server.de',
+    address: ENV['MAIL_SMTP_SERVER'],
     port: 587,
-    domain: 'insitu.tools',
-    user_name: ENV['mail_username'],
-    password: ENV['mail_password'],
+    domain: ENV['MAIL_DOMAIN'],
+    user_name: ENV['MAIL_USERNAME'],
+    password: ENV['MAIL_PASSWORD'],
     authentication: :plain,
     enable_starttls_auto: true
   }
 
-  Rails.application.routes.default_url_options[:host] = 'billing.insitu.tools'
-  Rails.application.routes.default_url_options[:protocol] = 'https'
-
   # Paypal integration
   config.x.paypal_validate_ipn_url = 'https://www.paypal.com/cgi-bin/webscr?cmd=_notify-validate'
   config.x.paypal_validate_ipn_verify_mode = OpenSSL::SSL::VERIFY_PEER
-  config.x.paypal_validate_ipn_user_agent = 'Insitu'
-  config.x.paypal_receiver_email = 'jsperezg@gmail.com'
-  config.x.paypal_billing_account = 'billing@insitu.tools'
+  config.x.paypal_validate_ipn_user_agent = ENV['PAYPAL_USER_AGENT']
+  config.x.paypal_receiver_email =  ENV['PAYPAL_RECEIVER_EMAIL']
+  config.x.paypal_billing_account = ENV['PAYPAL_BILLING_ACCOUNT']
 end

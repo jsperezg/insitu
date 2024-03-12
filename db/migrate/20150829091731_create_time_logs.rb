@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateTimeLogs < ActiveRecord::Migration
+class CreateTimeLogs < ActiveRecord::Migration[4.2]
   def change
     create_table :time_logs do |t|
       t.string :description, null: false, blank: false

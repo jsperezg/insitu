@@ -143,8 +143,8 @@ class EstimatesController < SecuredController
     invoice.save!
 
     redirect_to edit_user_invoice_path(current_user, invoice)
-  rescue StandardError => error
-    flash[:alert] = t(error.message)
+  rescue StandardError => e
+    flash[:alert] = t(e.message)
     redirect_to user_estimates_path(current_user)
   end
 
