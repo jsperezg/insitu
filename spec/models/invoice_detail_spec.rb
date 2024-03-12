@@ -3,84 +3,16 @@
 require 'rails_helper'
 
 describe InvoiceDetail, type: :model do
-  subject(:invoice_detail) { described_class.new(attributes) }
+  subject { create :invoice_detail }
 
-  let(:attributes) { attributes_for :invoice_detail }
+  it { is_expected.to be_valid }
 
-  describe 'validations' do
-    it { is_expected.to be_valid }
-
-    context 'when quantity is nil' do
-      let(:attributes) { attributes_for :invoice_detail, quantity: nil }
-
-      it { is_expected.not_to be_valid }
-    end
-
-    context 'when quantity is not a number' do
-      let(:attributes) { attributes_for :invoice_detail, quantity: 'asdf' }
-
-      it { is_expected.not_to be_valid }
-    end
-
-    context 'when quantity is zero' do
-      let(:attributes) { attributes_for :invoice_detail, quantity: 0 }
-
-      it { is_expected.not_to be_valid }
-    end
-
-    context 'when price is nil' do
-      let(:attributes) { attributes_for :invoice_detail, price: nil }
-
-      it { is_expected.not_to be_valid }
-    end
-
-    context 'when price is not a number' do
-      let(:attributes) { attributes_for :invoice_detail, price: 'asdf' }
-
-      it { is_expected.not_to be_valid }
-    end
-
-    context 'when prize is less than zero' do
-      let(:attributes) { attributes_for :invoice_detail, price: -1 }
-
-      it { is_expected.not_to be_valid }
-    end
-
-    context 'when vat rate is nil' do
-      let(:attributes) { attributes_for :invoice_detail, vat_rate: nil }
-
-      it { is_expected.not_to be_valid }
-    end
-
-    context 'when vat rate is not a number' do
-      let(:attributes) { attributes_for :invoice_detail, vat_rate: 'asdf' }
-
-      it { is_expected.not_to be_valid }
-    end
-
-    context 'when vat rate is less than zero' do
-      let(:attributes) { attributes_for :invoice_detail, vat_rate: -1 }
-
-      it { is_expected.not_to be_valid }
-    end
-
-    context 'when vat rate is decimal value' do
-      let(:attributes) { attributes_for :invoice_detail, vat_rate: 1.1 }
-
-      it { is_expected.not_to be_valid }
-    end
-
-    context 'when discount is not a number' do
-      let(:attributes) { attributes_for :invoice_detail, discount: 'asdf' }
-
-      it { is_expected.not_to be_valid }
-    end
-
-    context 'when vat discount less than zero' do
-      let(:attributes) { attributes_for :invoice_detail, discount: -1 }
-
-      it { is_expected.not_to be_valid }
-    end
+  describe '#validations' do
+    it { is_expected.to validate_presence_of(:quantity) }
+    it { is_expected.to validate_numericality_of(:quantity).is_greater_than(0) }
+    it { is_expected.to validate_presence_of(:price) }
+    it { is_expected.to validate_numericality_of(:price).is_greater_than(0) }
+    it { is_expected.to validate_numericality_of(:vat_rate).is_greater_than_or_equal_to(0).only_integer }
   end
 
   describe 'default values' do

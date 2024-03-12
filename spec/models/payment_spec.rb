@@ -45,6 +45,7 @@ describe Payment, type: :model do
         payment = described_class.create(receiver_email: (0...127).map { ('a'..'z').to_a[rand(26)] }.join)
         expect(payment.errors).to be_key :receiver_email
 
+        Rails.configuration.x.paypal_receiver_email = Faker::Internet.email
         payment = described_class.create(receiver_email: Rails.configuration.x.paypal_receiver_email)
         expect(payment.errors).not_to be_key :receiver_email
       end

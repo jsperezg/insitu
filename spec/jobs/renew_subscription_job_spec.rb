@@ -3,6 +3,10 @@
 require 'rails_helper'
 
 describe RenewSubscriptionJob, type: :job do
+  before do
+    create :user, email: ENV['PAYPAL_RECEIVER_EMAIL']
+  end
+
   describe('Generates invoice') do
     let(:payment) { create :payment }
 
@@ -88,8 +92,6 @@ describe RenewSubscriptionJob, type: :job do
     let(:payment) { create :payment }
 
     before do
-      User.find_by(email: Rails.configuration.x.paypal_billing_account) || create(:user, email: Rails.configuration.x.paypal_billing_account)
-
       InvoiceStatus.paid || InvoiceStatus.create!(name: 'invoice_status.paid')
     end
 

@@ -139,6 +139,10 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.4.4)
     docile (1.3.2)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     email_validator (2.0.1)
       activemodel
     equalizer (0.0.11)
@@ -357,6 +361,8 @@ GEM
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    shoulda-matchers (5.3.0)
+      activesupport (>= 5.2.0)
     sidekiq (5.2.8)
       connection_pool (~> 2.2, >= 2.2.2)
       rack (< 2.1.0)
@@ -457,6 +463,7 @@ DEPENDENCIES
   data-confirm-modal
   database_cleaner
   devise (~> 4.7.1)
+  dotenv-rails
   email_validator
   factory_bot_rails
   faker
@@ -487,6 +494,7 @@ DEPENDENCIES
   rubocop-rspec
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  shoulda-matchers
   sidekiq
   sidekiq-client-cli
   simple_token_authentication (~> 1.0)

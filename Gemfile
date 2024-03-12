@@ -90,6 +90,7 @@ end
 
 group :development, :test do
   gem 'byebug'
+  gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails', '~> 3.0'
@@ -100,5 +101,6 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'rails-controller-testing'
+  gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end
