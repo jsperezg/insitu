@@ -88,7 +88,7 @@ class RenewSubscriptionJob < ApplicationJob
   end
 
   def update_customer(customer, user)
-    customer.update_attributes!(
+    customer.update(
       name: user.name,
       address: user.address,
       city: user.city,

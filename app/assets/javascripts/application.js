@@ -22,7 +22,6 @@
 //= require jquery-ui
 //= require jquery.inputmask.bundle.min
 //= require jquery.slimscroll
-//= require filterrific/filterrific-jquery
 //= require fastclick
 //= require AdminLTE
 //= require nprogress

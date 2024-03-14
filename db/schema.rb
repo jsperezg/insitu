@@ -2,17 +2,17 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2017_12_28_083540) do
+ActiveRecord::Schema.define(version: 2024_03_14_092915) do
 
-  create_table "customers", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "customers", id: :integer, charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "tax_id"
     t.string "billing_serie"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2017_12_28_083540) do
     t.string "send_invoices_to"
   end
 
-  create_table "delivery_note_details", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "delivery_note_details", id: :integer, charset: "utf8", force: :cascade do |t|
     t.integer "delivery_note_id", null: false
     t.integer "service_id"
     t.decimal "quantity", precision: 7, scale: 2, null: false
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2017_12_28_083540) do
     t.index ["service_id"], name: "index_delivery_note_details_on_service_id"
   end
 
-  create_table "delivery_notes", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "delivery_notes", id: :integer, charset: "utf8", force: :cascade do |t|
     t.string "number", null: false
     t.integer "customer_id", null: false
     t.date "date", null: false
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2017_12_28_083540) do
     t.index ["number"], name: "index_delivery_notes_on_number"
   end
 
-  create_table "estimate_details", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "estimate_details", id: :integer, charset: "utf8", force: :cascade do |t|
     t.integer "estimate_id", null: false
     t.integer "service_id"
     t.string "description"
@@ -69,13 +69,13 @@ ActiveRecord::Schema.define(version: 2017_12_28_083540) do
     t.index ["service_id"], name: "index_estimate_details_on_service_id"
   end
 
-  create_table "estimate_statuses", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "estimate_statuses", id: :integer, charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "estimates", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "estimates", id: :integer, charset: "utf8", force: :cascade do |t|
     t.string "number", null: false
     t.integer "customer_id", null: false
     t.integer "estimate_status_id", null: false
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 2017_12_28_083540) do
     t.index ["number"], name: "index_estimates_on_number"
   end
 
-  create_table "invoice_details", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "invoice_details", id: :integer, charset: "utf8", force: :cascade do |t|
     t.integer "invoice_id", null: false
     t.integer "service_id"
     t.string "description"
@@ -102,13 +102,13 @@ ActiveRecord::Schema.define(version: 2017_12_28_083540) do
     t.index ["service_id"], name: "index_invoice_details_on_service_id"
   end
 
-  create_table "invoice_statuses", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "invoice_statuses", id: :integer, charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "invoices", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "invoices", id: :integer, charset: "utf8", force: :cascade do |t|
     t.string "number", null: false
     t.date "date", null: false
     t.integer "payment_method_id"
@@ -126,7 +126,7 @@ ActiveRecord::Schema.define(version: 2017_12_28_083540) do
     t.index ["payment_method_id"], name: "index_invoices_on_payment_method_id"
   end
 
-  create_table "payment_methods", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "payment_methods", id: :integer, charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.text "note_for_invoice"
     t.boolean "default", default: false, null: false
@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(version: 2017_12_28_083540) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "payments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "payments", id: :integer, charset: "utf8", force: :cascade do |t|
     t.string "txn_id", limit: 19, null: false
     t.string "business", limit: 127, null: false
     t.string "receiver_email", limit: 127, null: false
@@ -167,7 +167,7 @@ ActiveRecord::Schema.define(version: 2017_12_28_083540) do
     t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
-  create_table "plans", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "plans", id: :integer, charset: "utf8", force: :cascade do |t|
     t.string "description"
     t.decimal "price", precision: 7, scale: 2, null: false
     t.integer "months", null: false
@@ -177,13 +177,13 @@ ActiveRecord::Schema.define(version: 2017_12_28_083540) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "project_statuses", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "project_statuses", id: :integer, charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "projects", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "projects", id: :integer, charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.integer "project_status_id", null: false
     t.integer "customer_id", null: false
@@ -193,14 +193,14 @@ ActiveRecord::Schema.define(version: 2017_12_28_083540) do
     t.index ["project_status_id"], name: "index_projects_on_project_status_id"
   end
 
-  create_table "roles", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "roles", id: :integer, charset: "utf8", force: :cascade do |t|
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["description"], name: "index_roles_on_description"
   end
 
-  create_table "services", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "services", id: :integer, charset: "utf8", force: :cascade do |t|
     t.string "code", null: false
     t.string "description", null: false
     t.integer "vat_id", null: false
@@ -214,7 +214,7 @@ ActiveRecord::Schema.define(version: 2017_12_28_083540) do
     t.index ["vat_id"], name: "index_services_on_vat_id"
   end
 
-  create_table "setting_keys", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "setting_keys", id: :integer, charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.integer "data_type", null: false
     t.datetime "created_at", null: false
@@ -222,7 +222,7 @@ ActiveRecord::Schema.define(version: 2017_12_28_083540) do
     t.index ["name"], name: "index_setting_keys_on_name"
   end
 
-  create_table "setting_values", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "setting_values", id: :integer, charset: "utf8", force: :cascade do |t|
     t.integer "value_i"
     t.string "value_s"
     t.boolean "value_b"
@@ -233,7 +233,7 @@ ActiveRecord::Schema.define(version: 2017_12_28_083540) do
     t.index ["setting_key_id"], name: "index_setting_values_on_setting_key_id"
   end
 
-  create_table "tasks", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "tasks", id: :integer, charset: "utf8", force: :cascade do |t|
     t.string "name"
     t.string "description", limit: 4096
     t.integer "project_id", null: false
@@ -245,7 +245,7 @@ ActiveRecord::Schema.define(version: 2017_12_28_083540) do
     t.index ["project_id"], name: "index_tasks_on_project_id"
   end
 
-  create_table "time_logs", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "time_logs", id: :integer, charset: "utf8", force: :cascade do |t|
     t.string "description", null: false
     t.date "date", null: false
     t.integer "time_spent", null: false
@@ -259,7 +259,7 @@ ActiveRecord::Schema.define(version: 2017_12_28_083540) do
     t.index ["task_id"], name: "index_time_logs_on_task_id"
   end
 
-  create_table "units", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "units", id: :integer, charset: "utf8", force: :cascade do |t|
     t.string "label_short", null: false
     t.string "label_long"
     t.datetime "created_at", null: false
@@ -267,7 +267,7 @@ ActiveRecord::Schema.define(version: 2017_12_28_083540) do
     t.index ["label_short"], name: "index_units_on_label_short"
   end
 
-  create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", id: :integer, charset: "utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -312,7 +312,7 @@ ActiveRecord::Schema.define(version: 2017_12_28_083540) do
     t.index ["role_id"], name: "fk_rails_642f17018b"
   end
 
-  create_table "vats", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "vats", id: :integer, charset: "utf8", force: :cascade do |t|
     t.integer "rate", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
