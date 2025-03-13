@@ -82,7 +82,7 @@ class Estimate < ApplicationRecord
   scope :with_number, ->(number) { where('number like :number', number: "#{number}%") }
 
   scope :with_date_ge, lambda { |date|
-    match = date.match(%r((\d{2})\/(\d{2})\/(\d{4}))i)
+    match = date.match(%r((\d{2})/(\d{2})/(\d{4}))i)
     date = "#{match[3]}-#{match[2]}-#{match[1]}" if match
     where('date >= :date', date: date)
   }
