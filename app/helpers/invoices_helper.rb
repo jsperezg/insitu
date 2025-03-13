@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 module InvoicesHelper
-  def invoice_tr(invoice)
-    content_tag(:tr, class: tr_class_for(invoice)) do
-      yield
-    end
+  def invoice_tr(invoice, &block)
+    content_tag(:tr, class: tr_class_for(invoice), &block)
   end
 
   def tr_class_for(invoice)

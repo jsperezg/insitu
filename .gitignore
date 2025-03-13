@@ -24,5 +24,4 @@
 /public/system/*
 /public/assets
 
-.idea
-/vendor/assets/bower_components/
+node_modules

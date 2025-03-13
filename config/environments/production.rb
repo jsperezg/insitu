@@ -60,7 +60,7 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
-  config.cache_store = :dalli_store, '127.0.0.1', { namespace: -> { Apartment::Tenant.current }, expires_in: 1.day, compress: true }
+  config.cache_store = :mem_cache_store, '127.0.0.1', { namespace: -> { Apartment::Tenant.current }, expires_in: 1.day, compress: true }
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
@@ -84,7 +84,6 @@ Rails.application.configure do
   # Tell Active Support which deprecation messages to disallow.
   config.active_support.disallowed_deprecation_warnings = []
 
-
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
@@ -94,7 +93,7 @@ Rails.application.configure do
 
   if ENV['RAILS_LOG_TO_STDOUT'].present?
     config.action_mailer.perform_deliveries = true
-    logger = ActiveSupport::Logger.new(STDOUT)
+    logger = ActiveSupport::Logger.new($stdout)
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end

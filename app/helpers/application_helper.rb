@@ -13,40 +13,23 @@ module ApplicationHelper
   def content_header
     controller_name_sym = controller_name.to_sym
     action_name_sym = action_name.to_sym
-    tag_content = []
+    tag_content = [content_title]
     nav_content = []
 
     content_tag(:section, class: 'content-header') do
-      # Generate the tittle.
-      tag_content << content_tag(:h1) do
-        begin
-          I18n.t(NAVIGATION_RULES[controller_name_sym][action_name_sym][:title])
-        rescue StandardError => e
-          Rails.logger.error e
-          "#{controller_name}.#{action_name}"
-        end
-      end
-
-      # Generate the navigation bar: Only for elements with > 1 level depth
       begin
         if NAVIGATION_RULES[controller_name_sym][action_name_sym].key? :parent
           tag_content << content_tag(:ol, class: 'breadcrumb') do
             # Active element.
-            nav_content << content_tag(:li, class: 'active') do
-              begin
-                I18n.t(NAVIGATION_RULES[controller_name_sym][action_name_sym][:title])
-              rescue StandardError => e
-                Rails.logger.error e
-                "#{controller_name}.#{action_name}"
-              end
-            end
+            nav_content << active_element
 
             # Iterate over parents
             parent_key = NAVIGATION_RULES[controller_name_sym][action_name_sym][:parent]
 
-            element = if parent_key.is_a? Symbol
+            element = case parent_key
+                      when Symbol
                         NAVIGATION_RULES[parent_key]
-                      elsif parent_key.is_a? Hash
+                      when Hash
                         NAVIGATION_RULES[parent_key[:controller]][parent_key[:action]]
                       end
 
@@ -69,9 +52,10 @@ module ApplicationHelper
 
               parent_key = element[:parent]
 
-              element = if parent_key.is_a? Symbol
+              element = case parent_key
+                        when Symbol
                           NAVIGATION_RULES[parent_key]
-                        elsif parent_key.is_a? Hash
+                        when Hash
                           NAVIGATION_RULES[parent_key[:controller]][parent_key[:action]]
                         end
             end
@@ -84,6 +68,18 @@ module ApplicationHelper
       end
 
       raw(tag_content.join(''))
+    end
+  end
+
+  def content_title
+    content_tag(:h1) do
+      I18n.t(NAVIGATION_RULES[controller_name.to_sym][action_name.to_sym][:title])
+    end
+  end
+
+  def active_element
+    content_tag(:li, class: 'active') do
+      I18n.t(NAVIGATION_RULES[controller_name.to_sym][action_name.to_sym][:title])
     end
   end
 

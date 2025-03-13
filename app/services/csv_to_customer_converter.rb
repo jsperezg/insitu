@@ -3,6 +3,8 @@
 require 'csv'
 class CsvToCustomerConverter < CsvToModelConverter
   def initialize
+    super
+
     @model = Customer
     @attributes = %i[tax_id name contact_name contact_phone contact_email address city country postal_code state send_invoices_to]
   end
