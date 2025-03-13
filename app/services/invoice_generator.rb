@@ -9,6 +9,8 @@ class InvoiceGenerator
   end
 
   def from_estimate(estimate)
+    invoice = nil
+
     Invoice.transaction do
       unless estimate.accepted?
         estimate.estimate_status = EstimateStatus.find_by(name: 'estimate_status.accepted')
@@ -37,12 +39,14 @@ class InvoiceGenerator
       end
 
       raise 'estimates.nothing_to_invoice' if invoice.invoice_details.empty?
-
-      return invoice
     end
+
+    invoice
   end
 
   def from_delivery_note(delivery_note)
+    invoice = nil
+
     Invoice.transaction do
       invoice = create_invoice_header(delivery_note.customer_id)
 
@@ -66,9 +70,9 @@ class InvoiceGenerator
       end
 
       raise 'delivery_notes.nothing_to_invoice' if invoice.invoice_details.empty?
-
-      return invoice
     end
+
+    invoice
   end
 
   private

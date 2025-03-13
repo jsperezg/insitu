@@ -150,7 +150,7 @@ RSpec.describe CustomersController, type: :controller do
   end
 
   describe 'POST #csv_import' do
-    let(:file) { fixture_file_upload('csv/customers.csv', 'text/csv') }
+    let(:file) { fixture_file_upload('customers.csv', 'text/csv') }
 
     it 'Creates a new customer' do
       expect do

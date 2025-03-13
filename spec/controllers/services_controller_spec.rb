@@ -148,7 +148,7 @@ RSpec.describe ServicesController, type: :controller do
   end
 
   describe 'POST #csv_import' do
-    let(:file) { fixture_file_upload('csv/services.csv', 'text/csv') }
+    let(:file) { fixture_file_upload('services.csv', 'text/csv') }
 
     it 'Creates a new service' do
       expect do
