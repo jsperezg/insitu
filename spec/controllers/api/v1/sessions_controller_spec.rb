@@ -2,11 +2,11 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::SessionsController, type: :controller do
+describe Api::V1::SessionsController, type: :controller do
   let!(:user) { create(:user, password: 'Abcd1234', password_confirmation: 'Abcd1234') }
 
   before do
-    @request.env['devise.mapping'] = Devise.mappings[:user]
+    request.env['devise.mapping'] = Devise.mappings[:user]
   end
 
   it 'login' do

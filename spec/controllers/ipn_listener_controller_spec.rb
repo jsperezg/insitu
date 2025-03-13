@@ -35,8 +35,9 @@ describe IpnListenerController, type: :controller do
       it 'Invoicing task is invoked' do
         user = create(:user, :expired)
 
-        expect(RenewSubscriptionJob).to receive(:perform_now)
+        allow(RenewSubscriptionJob).to receive(:perform_now)
         post :create, params: paypal_renewal_request(user)
+        expect(RenewSubscriptionJob).to have_received(:perform_now)
       end
     end
 

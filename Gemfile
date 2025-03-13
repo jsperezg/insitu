@@ -82,6 +82,7 @@ group :development do
   gem 'capistrano-rbenv', '~> 2.0'
   gem 'listen'
   gem 'rubocop'
+  gem 'rubocop-rails'
   gem 'rubocop-rspec'
 
   # Access an IRB console on exception pages or by using <%= console %> in views

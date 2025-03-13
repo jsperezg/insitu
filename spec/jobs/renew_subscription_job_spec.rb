@@ -93,11 +93,12 @@ describe RenewSubscriptionJob, type: :job do
 
     before do
       InvoiceStatus.paid || InvoiceStatus.create!(name: 'invoice_status.paid')
+      alllow(InvoiceMailer).to receive(:send_to_customer)
     end
 
     it 'invoice is generated and sent by email' do
-      expect(InvoiceMailer).to receive(:send_to_customer)
       described_class.perform_now payment.id
+      expect(InvoiceMailer).to have_received(:send_to_customer)
     end
   end
 end
