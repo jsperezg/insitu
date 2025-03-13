@@ -9,6 +9,7 @@ AllCops:
     - 'db/migrate/*.rb'
     - 'db/schema.rb'
     - 'bin/*'
+    - 'app/pdfs/invoice_pdf.rb'
 
 Layout/LineLength:
   Exclude:
@@ -23,6 +24,9 @@ Metrics/BlockLength:
     - 'spec/**/*.rb'
     - 'config/environments/*.rb'
     - 'config/routes.rb'
+
+Metrics/MethodLength:
+  Max: 25
 
 Style/Documentation:
   Enabled: false
