@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-include Settings
-
 config = Rails.configuration.database_configuration
 
 if Apartment::Tenant.current.blank? || Apartment::Tenant.current == config[Rails.env]['database']

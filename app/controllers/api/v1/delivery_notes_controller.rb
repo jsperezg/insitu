@@ -3,8 +3,6 @@
 module Api
   module V1
     class DeliveryNotesController < ApiController
-      include Api
-
       before_action :set_delivery_note, only: %i[show print update destroy invoice]
 
       # GET /delivery_notes
@@ -37,7 +35,7 @@ module Api
           if @delivery_note.save
             render 'show'
           else
-            render json: ResponseFactory.get_response_for(@delivery_note)
+            render json: get_response_for(@delivery_note)
           end
         end
       end
@@ -49,7 +47,7 @@ module Api
           if @delivery_note.update(delivery_note_params)
             render 'show'
           else
-            render json: ResponseFactory.get_response_for(@delivery_note)
+            render json: get_response_for(@delivery_note)
           end
         end
       end
@@ -58,13 +56,13 @@ module Api
       # DELETE /delivery_notes/1.json
       def destroy
         @delivery_note.destroy
-        render json: ResponseFactory.get_response_for(@delivery_note)
+        render json: get_response_for(@delivery_note)
       end
 
       def invoice
         payment_method = PaymentMethod.find_by(default: true) || PaymentMethod.first
         unless payment_method
-          render json: ResponseFactory.error_response(t('payment_methods.not_found'))
+          render json: error_response(t('payment_methods.not_found'))
           return
         end
 
@@ -96,10 +94,10 @@ module Api
           end
 
           if invoice.invoice_details.empty?
-            render json: ResponseFactory.error_response(t('delivery_notes.nothing_to_invoice'))
+            render json: error_response(t('delivery_notes.nothing_to_invoice'))
             raise ActiveRecord::Rollback
           else
-            render json: ResponseFactory.get_response_for(invoice)
+            render json: get_response_for(invoice)
           end
         end
       end

@@ -93,7 +93,7 @@ describe RenewSubscriptionJob, type: :job do
 
     before do
       InvoiceStatus.paid || InvoiceStatus.create!(name: 'invoice_status.paid')
-      alllow(InvoiceMailer).to receive(:send_to_customer)
+      allow(InvoiceMailer).to receive(:send_to_customer)
     end
 
     it 'invoice is generated and sent by email' do

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe EstimatesController, type: :controller do
+describe EstimatesController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Estimate. As you add validations to Estimate, be sure to
   # adjust the attributes here as well.

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# Controller that manages invoice actions from the UI.
 class InvoicesController < SecuredController
   include InvoicingNotifications
   include VatSelector

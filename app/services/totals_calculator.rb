@@ -40,18 +40,15 @@ class TotalsCalculator
   end
 
   def calculate_period_totals(interval)
-    result = {
+    {
       vat: ::Dashboard::VatTotals.for_interval(interval),
       totals: {
         net: Dashboard::NetTotals.for_interval(interval),
         discounts: Dashboard::DiscountTotals.for_interval(interval),
         services: Dashboard::ServiceTotals.for_interval(interval),
-        customers: Dashboard::CustomerTotals.for_interval(interval)
+        customers: Dashboard::CustomerTotals.for_interval(interval),
+        tax: user.show_irpf? ? Dashboard::TaxTotals.for_interval(interval) : nil
       }
     }
-
-    result[:totals][:tax] = Dashboard::TaxTotals.for_interval(interval) if user.show_irpf?
-
-    result
   end
 end

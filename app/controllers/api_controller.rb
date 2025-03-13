@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ApiController < ActionController::Base
+  include ResponseFactory
+
   acts_as_token_authentication_handler_for User, fallback: :none
   before_action :set_locale, :switch_tenant, :store_user
 

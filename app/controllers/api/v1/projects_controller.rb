@@ -3,8 +3,6 @@
 module Api
   module V1
     class ProjectsController < ApiController
-      include Api
-
       before_action :set_project, only: %i[show update destroy]
 
       def index
@@ -18,7 +16,7 @@ module Api
         if @project.save
           render 'show'
         else
-          render json: ResponseFactory.get_response_for(@project)
+          render json: get_response_for(@project)
         end
       end
 
@@ -26,13 +24,13 @@ module Api
         if @project.update(project_params)
           render 'show'
         else
-          render json: ResponseFactory.get_response_for(@project)
+          render json: get_response_for(@project)
         end
       end
 
       def destroy
         @project.destroy
-        render json: ResponseFactory.get_response_for(@project)
+        render json: get_response_for(@project)
       end
 
       private

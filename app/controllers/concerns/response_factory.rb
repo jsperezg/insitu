@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
-module Api
-  class ResponseFactory
-    def self.get_response_for(model)
+module ResponseFactory
+  extend ActiveSupport::Concern
+
+  included do
+    def get_response_for(model)
       if model.valid?
         { error: false }
       else
@@ -10,7 +12,7 @@ module Api
       end
     end
 
-    def self.error_response(message)
+    def error_response(message)
       { error: true, errors: [message] }
     end
   end

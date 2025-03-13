@@ -3,8 +3,6 @@
 module Api
   module V1
     class CustomersController < ApiController
-      include Api
-
       before_action :set_customer, only: %i[show update destroy]
 
       def index
@@ -18,7 +16,7 @@ module Api
         if @customer.save
           render 'show'
         else
-          render json: ResponseFactory.get_response_for(@customer)
+          render json: get_response_for(@customer)
         end
       end
 
@@ -26,13 +24,13 @@ module Api
         if @customer.update(customer_params)
           render 'show'
         else
-          render json: ResponseFactory.get_response_for(@customer)
+          render json: get_response_for(@customer)
         end
       end
 
       def destroy
         @customer.destroy
-        render json: ResponseFactory.get_response_for(@customer)
+        render json: get_response_for(@customer)
       end
 
       private

@@ -12,11 +12,7 @@ class InvoiceGenerator
     invoice = nil
 
     Invoice.transaction do
-      unless estimate.accepted?
-        estimate.estimate_status = EstimateStatus.find_by(name: 'estimate_status.accepted')
-        estimate.save!
-      end
-
+      estimate.update!(estimate_status: EstimateStatus.accepted) unless estimate.accepted?
       invoice = create_invoice_header(estimate.customer_id)
 
       # Iterate over estimate details.
@@ -24,18 +20,7 @@ class InvoiceGenerator
                 .includes(service: [:vat])
                 .where(estimate_id: estimate.id, invoice_detail_id: nil)
       details.each do |detail|
-        invoice_detail = InvoiceDetail.create(
-          invoice_id: invoice.id,
-          service_id: detail.service_id,
-          vat_rate: detail.service.vat.rate,
-          price: detail.price,
-          discount: detail.discount,
-          description: detail.description,
-          quantity: detail.quantity
-        )
-
-        detail.invoice_detail_id = invoice_detail.id
-        detail.save!
+        generate_invoice_detail(invoice, detail, detail.discount || 0)
       end
 
       raise 'estimates.nothing_to_invoice' if invoice.invoice_details.empty?
@@ -55,18 +40,7 @@ class InvoiceGenerator
                 .includes(service: [:vat])
                 .where(delivery_note_id: delivery_note.id, invoice_detail_id: nil)
       details.each do |detail|
-        invoice_detail = InvoiceDetail.create(
-          invoice_id: invoice.id,
-          service_id: detail.service_id,
-          vat_rate: detail.service.vat.rate,
-          price: detail.price,
-          discount: 0,
-          description: detail.description,
-          quantity: detail.quantity
-        )
-
-        detail.invoice_detail_id = invoice_detail.id
-        detail.save!
+        generate_invoice_detail(invoice, detail)
       end
 
       raise 'delivery_notes.nothing_to_invoice' if invoice.invoice_details.empty?
@@ -76,6 +50,20 @@ class InvoiceGenerator
   end
 
   private
+
+  def generate_invoice_detail(invoice, detail, discount = 0)
+    invoice_detail = InvoiceDetail.create!(
+      invoice_id: invoice.id,
+      service_id: detail.service.id,
+      vat_rate: detail.service.vat.rate,
+      price: detail.price,
+      discount: discount,
+      description: detail.description,
+      quantity: detail.quantity
+    )
+
+    detail.update!(invoice_detail_id: invoice_detail.id)
+  end
 
   def create_invoice_header(customer_id)
     invoice = Invoice.create(

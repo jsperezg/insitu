@@ -3,8 +3,6 @@
 module Api
   module V1
     class EstimatesController < ApiController
-      include Api
-
       before_action :set_estimate, only: %i[show print update destroy invoice]
 
       # GET /estimates
@@ -36,7 +34,7 @@ module Api
           if @estimate.save
             render 'show'
           else
-            render json: ResponseFactory.get_response_for(@estimate)
+            render json: get_response_for(@estimate)
           end
         end
       end
@@ -48,7 +46,7 @@ module Api
           if @estimate.update(estimate_params)
             render 'show'
           else
-            render json: ResponseFactory.get_response_for(@estimate)
+            render json: get_response_for(@estimate)
           end
         end
       end
@@ -57,13 +55,13 @@ module Api
       # DELETE /estimates/1.json
       def destroy
         @estimate.destroy
-        render json: ResponseFactory.get_response_for(@estimate)
+        render json: get_response_for(@estimate)
       end
 
       def invoice
         payment_method = PaymentMethod.find_by(default: true) || PaymentMethod.first
         unless payment_method
-          render json: ResponseFactory.error_response(t('payment_methods.not_found'))
+          render json: error_response(t('payment_methods.not_found'))
           return
         end
 
@@ -101,10 +99,10 @@ module Api
           end
 
           if invoice.invoice_details.empty?
-            render json: ResponseFactory.error_response(t('estimates.nothing_to_invoice'))
+            render json: error_response(t('estimates.nothing_to_invoice'))
             raise ActiveRecord::Rollback
           else
-            render json: ResponseFactory.get_response_for(invoice)
+            render json: get_response_for(invoice)
           end
         end
       end

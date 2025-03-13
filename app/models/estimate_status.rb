@@ -5,6 +5,7 @@ class EstimateStatus < ApplicationRecord
 
   scope :created, -> { find_by(name: 'estimate_status.created') }
   scope :sent, -> { find_by(name: 'estimate_status.sent') }
+  scope :accepted, -> { find_by(name: 'estimate_status.accepted') }
 
   def locale_name
     I18n.t(name)
