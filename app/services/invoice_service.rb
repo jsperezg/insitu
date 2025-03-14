@@ -1,21 +1,25 @@
 # frozen_string_literal: true
 
+# TODO: Fix duplication with invoice generator service
 class InvoiceService < ApplicationService
-  def initialize(document, user, discount = 0)
+  def initialize(document, user)
     super()
     @document = document
     @user = user
-    @discount = discount
   end
 
   def call
     raise I18n.t('payment_methods.not_found') unless payment_method
 
     Invoice.transaction do
+      update_document_status
+
       invoice.apply_irpf(@user)
+      invoice.save!
+
       create_invoice_details
 
-      raise I18n.t('delivery_notes.nothing_to_invoice') if invoice.invoice_details.empty?
+      raise NothingToInvoiceException if invoice.invoice_details.empty?
     end
 
     invoice
@@ -25,19 +29,22 @@ class InvoiceService < ApplicationService
 
   def create_invoice_details
     details.each do |detail|
-      invoice_detail = InvoiceDetail.create(
-        invoice_id: invoice.id,
-        service_id: detail.service_id,
-        vat_rate: detail.service.vat.rate,
-        price: detail.price,
-        discount: @discount,
-        description: detail.description,
-        quantity: detail.quantity
-      )
-
+      invoice_detail = invoice_detail_for(detail)
       detail.invoice_detail_id = invoice_detail.id
       detail.save!
     end
+  end
+
+  def invoice_detail_for(detail)
+    InvoiceDetail.create(
+      invoice_id: invoice.id,
+      service_id: detail.service_id,
+      vat_rate: detail.service.vat.rate,
+      price: detail.price,
+      discount: detail.respond_to?(:discount) ? detail.discount : 0,
+      description: detail.description,
+      quantity: detail.quantity
+    )
   end
 
   def payment_method
@@ -56,11 +63,19 @@ class InvoiceService < ApplicationService
   def details
     case @document
     when DeliveryNote
-      DeliveryNoteDetail.where(delivery_note_id: @delivery_note.id, invoice_detail_id: nil)
+      DeliveryNoteDetail.where(delivery_note_id: @document.id, invoice_detail_id: nil)
     when Estimate
       EstimateDetail.where(estimate_id: @document.id, invoice_detail_id: nil)
     else
       []
     end
+  end
+
+  def update_document_status
+    return unless @document.is_a?(Estimate)
+    return if @document.accepted?
+
+    @document.estimate_status = EstimateStatus.accepted
+    @document.save!
   end
 end

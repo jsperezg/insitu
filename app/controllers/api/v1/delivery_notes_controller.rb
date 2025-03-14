@@ -62,6 +62,8 @@ module Api
       def invoice
         invoice = InvoiceService.call(@delivery_note, current_user)
         render json: get_response_for(invoice)
+      rescue NothingToInvoiceException
+        render json: error_response(I18n.t('delivery_notes.nothing_to_invoice'))
       rescue StandardError => e
         render json: error_response(e)
       end
