@@ -63,38 +63,14 @@ class TasksController < SecuredController
 
   # Generate invoice for finished tasks.
   def invoice_finished
-    payment_method = PaymentMethod.find_by(default: true) || PaymentMethod.first
-    unless payment_method
-      flash[:alert] = t('payment_methods.not_found')
-      redirect_to user_project_tasks_path(current_user, @project)
-      return
-    end
-
-    Invoice.transaction do
-      invoice = Invoice.create(
-        date: Date.today,
-        payment_date: Date.today + 15.days,
-        customer_id: @project.customer_id,
-        payment_method_id: payment_method.id,
-        irpf: 0
-      )
-
-      invoice.apply_irpf(current_user)
-
-      # Iterate over finished tasks.
-      tasks = Task.retrieve_finished_tasks(@project.id)
-      tasks.each do |task|
-        task.invoice_timelogs_into(invoice)
-      end
-
-      if invoice.invoice_details.empty?
-        flash[:alert] = t('tasks.no_pending_tasks')
-        redirect_to user_project_tasks_path(current_user, @project)
-        raise ActiveRecord::Rollback
-      else
-        redirect_to edit_user_invoice_path(current_user, invoice)
-      end
-    end
+    invoice = InvoiceService.call(@project, current_user)
+    redirect_to edit_user_invoice_path(current_user, invoice)
+  rescue NothingToInvoiceException
+    flash[:alert] = t('tasks.no_pending_tasks')
+    redirect_to user_project_tasks_path(current_user, @project)
+  rescue StandardError => e
+    flash[:alert] = e.message
+    redirect_to user_project_tasks_path(current_user, @project)
   end
 
   private

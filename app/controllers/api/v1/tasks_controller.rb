@@ -46,36 +46,12 @@ module Api
 
       # Generate invoice for finished tasks.
       def invoice_finished
-        payment_method = PaymentMethod.find_by(default: true) || PaymentMethod.first
-        unless payment_method
-          render json: error_response(t('payment_methods.not_found'))
-          return
-        end
-
-        Invoice.transaction do
-          invoice = Invoice.create(
-            date: Date.today,
-            payment_date: Date.today + 15.days,
-            customer_id: @project.customer_id,
-            payment_method_id: payment_method.id,
-            irpf: 0
-          )
-
-          invoice.apply_irpf(current_user)
-
-          # Iterate over finished tasks.
-          tasks = Task.retrieve_project_tasks(@project.id).where.not(finish_date: nil)
-          tasks.each do |task|
-            task.invoice_timelogs_into(invoice)
-          end
-
-          if invoice.invoice_details.empty?
-            render json: error_response(t('tasks.no_pending_tasks'))
-            raise ActiveRecord::Rollback
-          else
-            render json: get_response_for(invoice)
-          end
-        end
+        invoice = InvoiceService.call(@project, current_user)
+        render json: get_response_for(invoice)
+      rescue NothingToInvoiceException
+        render json: error_response(t('tasks.no_pending_tasks'))
+      rescue StandardError => e
+        render json: error_response(e.message)
       end
 
       private

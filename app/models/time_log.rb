@@ -9,4 +9,6 @@ class TimeLog < ApplicationRecord
   validates :time_spent, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :service_id, presence: true
   validates :date, presence: true
+
+  delegate :price, to: :service
 end

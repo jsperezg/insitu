@@ -42,8 +42,14 @@ class InvoiceService < ApplicationService
       price: detail.price,
       discount: detail.respond_to?(:discount) ? detail.discount : 0,
       description: detail.description,
-      quantity: detail.quantity
+      quantity: quantity_for(detail)
     )
+  end
+
+  def quantity_for(detail)
+    return detail.time_spent / 60.0 if detail.is_a? TimeLog
+
+    detail.quantity
   end
 
   def payment_method
@@ -65,6 +71,9 @@ class InvoiceService < ApplicationService
       DeliveryNoteDetail.where(delivery_note_id: @document.id, invoice_detail_id: nil)
     when Estimate
       EstimateDetail.where(estimate_id: @document.id, invoice_detail_id: nil)
+    when Project
+      task_ids = Task.joins(:project).where(project_id: @document.id).where.not(finish_date: nil).pluck(:id)
+      TimeLog.includes(:service).where(task_id: task_ids, invoice_detail_id: nil)
     else
       []
     end
