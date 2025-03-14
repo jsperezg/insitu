@@ -82,7 +82,7 @@ module ApplicationHelper
     result = [active_element]
 
     # Iterate over parents
-    parent_key = NAVIGATION_RULES[controller_name_sym][action_name_sym][:parent]
+    parent_key = NAVIGATION_RULES[controller_name.to_sym][action_name.to_sym][:parent]
     element = element_for(parent_key)
 
     while element.present?
