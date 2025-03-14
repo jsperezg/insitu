@@ -130,15 +130,13 @@ class DeliveryNotesController < SecuredController
   end
 
   def invoice
-    invoice_generator = InvoiceGenerator.new
-    invoice = invoice_generator.from_delivery_note(@delivery_note)
-
-    invoice.apply_irpf(current_user)
-    invoice.save!
-
+    invoice = InvoiceService.call(@delivery_note, current_user)
     redirect_to edit_user_invoice_path(current_user, invoice)
+  rescue NothingToInvoiceException
+    flash[:alert] = t('delivery_notes.nothing_to_invoice')
+    redirect_to user_delivery_notes_path(current_user)
   rescue StandardError => e
-    flash[:alert] = t(e.message, default: e.message)
+    flash[:alert] = e.message
     redirect_to user_delivery_notes_path(current_user)
   end
 

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# TODO: Fix duplication with invoice generator service
 class InvoiceService < ApplicationService
   def initialize(document, user)
     super()

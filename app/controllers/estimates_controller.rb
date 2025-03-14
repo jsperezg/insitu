@@ -136,15 +136,13 @@ class EstimatesController < SecuredController
   end
 
   def invoice
-    invoice_generator = InvoiceGenerator.new
-    invoice = invoice_generator.from_estimate(@estimate)
-
-    invoice.apply_irpf(current_user)
-    invoice.save!
-
+    invoice = InvoiceService.call(@estimate, current_user)
     redirect_to edit_user_invoice_path(current_user, invoice)
+  rescue NothingToInvoiceException
+    flash[:alert] = t('estimates.nothing_to_invoice')
+    redirect_to user_estimates_path(current_user)
   rescue StandardError => e
-    flash[:alert] = t(e.message)
+    flash[:alert] = e.message
     redirect_to user_estimates_path(current_user)
   end
 
