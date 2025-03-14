@@ -19,12 +19,6 @@ class InvoicesController < SecuredController
     ) || return
 
     @invoices = @filterrific.find.page(params[:page])
-
-    respond_to do |format|
-      format.html
-      format.json
-      format.js
-    end
   end
 
   # GET /invoices/1
@@ -78,23 +72,12 @@ class InvoicesController < SecuredController
       current_user.reload if params.key?(:user) && current_user.update(user_params)
 
       @invoice = Invoice.new(invoice_params)
-
       @invoice.apply_irpf(current_user)
 
-      respond_to do |format|
-        if @invoice.save
-          format.html do
-            redirect_to edit_user_invoice_url(current_user, @invoice),
-                        notice: t(:successfully_created, item: t('invoices.invoice'))
-          end
-
-          format.json { render :show, status: :created, location: @invoice }
-        else
-          format.html { render :new }
-          format.json do
-            render json: @invoice.errors, status: :unprocessable_entity
-          end
-        end
+      if @invoice.save
+        redirect_to edit_user_invoice_url(current_user, @invoice), notice: t(:successfully_created, item: t('invoices.invoice'))
+      else
+        render :new
       end
     end
   end
@@ -106,23 +89,12 @@ class InvoicesController < SecuredController
       current_user.reload if params.key?(:user) && current_user.update(user_params)
 
       @invoice.apply_irpf(current_user)
-
-      respond_to do |format|
-        if @invoice.update(invoice_params)
-          format.html do
-            redirect_to edit_user_invoice_path(current_user, @invoice),
-                        notice: t(:successfully_updated, item: t('invoices.invoice'))
-          end
-          format.json { render :show, status: :ok, location: @invoice }
-        else
-          format.html do
-            @invoice.invoice_details.build
-            render :edit
-          end
-          format.json do
-            render json: @invoice.errors, status: :unprocessable_entity
-          end
-        end
+      if @invoice.update(invoice_params)
+        redirect_to edit_user_invoice_path(current_user, @invoice),
+                    notice: t(:successfully_updated, item: t('invoices.invoice'))
+      else
+        @invoice.invoice_details.build
+        render :edit
       end
     end
   end
@@ -131,22 +103,10 @@ class InvoicesController < SecuredController
   # DELETE /invoices/1.json
   def destroy
     @invoice.destroy
-    respond_to do |format|
-      format.html do
-        redirect_to user_invoices_url(current_user),
-                    notice: t(:successfully_destroyed, item: t('invoices.invoice'))
-      end
-      format.json { head :no_content }
-    end
+    redirect_to user_invoices_url(current_user),
+                notice: t(:successfully_destroyed, item: t('invoices.invoice'))
   rescue StandardError => e
-    respond_to do |format|
-      format.html do
-        redirect_to user_invoices_url(current_user), alert: e.message
-      end
-      format.json do
-        render json: { error: e.message }, status: :not_acceptable
-      end
-    end
+    redirect_to user_invoices_url(current_user), alert: e.message
   end
 
   def cancel
@@ -154,18 +114,10 @@ class InvoicesController < SecuredController
     service = InvoiceCorrector.new(original_invoice)
     begin
       @invoice = service.cancel
-      respond_to do |format|
-        format.html do
-          redirect_to edit_user_invoice_path(current_user, @invoice),
-                      notice: t('.success')
-        end
-        format.json { render :show, status: :ok, location: @invoice }
-      end
+      redirect_to edit_user_invoice_path(current_user, @invoice),
+                  notice: t('.success')
     rescue StandardError => e
-      respond_to do |format|
-        format.html { redirect_to user_invoices_url(current_user), alert: e.record.errors.full_messages.join('<br>') }
-        format.json { render json: { error: e.record.errors.full_messages }, status: :not_acceptable }
-      end
+      redirect_to user_invoices_url(current_user), alert: e.record.errors.full_messages.join('<br>')
     end
   end
 

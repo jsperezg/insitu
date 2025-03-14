@@ -11,62 +11,9 @@ module ApplicationHelper
 
   # Helper that generates the navigation breadcrumb for each page.
   def content_header
-    controller_name_sym = controller_name.to_sym
-    action_name_sym = action_name.to_sym
-    tag_content = [content_title]
-    nav_content = []
+    tag_content = [content_title, breadcrumb_content].compact
 
     content_tag(:section, class: 'content-header') do
-      begin
-        if NAVIGATION_RULES[controller_name_sym][action_name_sym].key? :parent
-          tag_content << content_tag(:ol, class: 'breadcrumb') do
-            # Active element.
-            nav_content << active_element
-
-            # Iterate over parents
-            parent_key = NAVIGATION_RULES[controller_name_sym][action_name_sym][:parent]
-
-            element = case parent_key
-                      when Symbol
-                        NAVIGATION_RULES[parent_key]
-                      when Hash
-                        NAVIGATION_RULES[parent_key[:controller]][parent_key[:action]]
-                      end
-
-            until element.nil?
-              current_content = []
-
-              begin
-                nav_content << content_tag(:li) do
-                  link_to(link_details(parent_key)) do
-                    current_content << content_tag(:i, nil, class: element[:icon]) unless element[:icon].blank?
-
-                    current_content << I18n.t(element[:title])
-
-                    raw(current_content.join(''))
-                  end
-                end
-              rescue StandardError => e
-                Rails.logger.error e
-              end
-
-              parent_key = element[:parent]
-
-              element = case parent_key
-                        when Symbol
-                          NAVIGATION_RULES[parent_key]
-                        when Hash
-                          NAVIGATION_RULES[parent_key[:controller]][parent_key[:action]]
-                        end
-            end
-
-            raw(nav_content.reverse.join(''))
-          end
-        end
-      rescue StandardError => e
-        Rails.logger.error e
-      end
-
       raw(tag_content.join(''))
     end
   end
@@ -117,5 +64,57 @@ module ApplicationHelper
 
   def previous_url
     session[:previous_url] || user_dashboard_index_url(current_user.id)
+  end
+
+  private
+
+  def breadcrumb_content
+    controller_name_sym = controller_name.to_sym
+    action_name_sym = action_name.to_sym
+    return unless NAVIGATION_RULES[controller_name_sym][action_name_sym].key? :parent
+
+    content_tag(:ol, class: 'breadcrumb') do
+      raw(nav_content)
+    end
+  end
+
+  def nav_content
+    result = [active_element]
+
+    # Iterate over parents
+    parent_key = NAVIGATION_RULES[controller_name_sym][action_name_sym][:parent]
+    element = element_for(parent_key)
+
+    while element.present?
+      result << parent_link(element, parent_key)
+
+      parent_key = element[:parent]
+      element = element_for(parent_key)
+    end
+
+    result.reverse.join('')
+  end
+
+  def parent_link(element, parent_key)
+    current_content = []
+
+    content_tag(:li) do
+      link_to(link_details(parent_key)) do
+        current_content << content_tag(:i, nil, class: element[:icon]) unless element[:icon].blank?
+
+        current_content << I18n.t(element[:title])
+
+        raw(current_content.join(''))
+      end
+    end
+  end
+
+  def element_for(key)
+    case key
+    when Symbol
+      NAVIGATION_RULES[key]
+    when Hash
+      NAVIGATION_RULES[key[:controller]][key[:action]]
+    end
   end
 end

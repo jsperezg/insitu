@@ -115,6 +115,4 @@ Rails.application.routes.draw do
       end
     end
   end
-
-  resources :ipn_listener, only: [:create]
 end
