@@ -60,46 +60,10 @@ module Api
       end
 
       def invoice
-        payment_method = PaymentMethod.find_by(default: true) || PaymentMethod.first
-        unless payment_method
-          render json: error_response(t('payment_methods.not_found'))
-          return
-        end
-
-        Invoice.transaction do
-          invoice = Invoice.create(
-            date: Date.today,
-            payment_date: Date.today + 15.days,
-            customer_id: @delivery_note.customer_id,
-            payment_method_id: PaymentMethod.first.id
-          )
-
-          invoice.apply_irpf(current_user)
-
-          # Iterate over estimate details.
-          details = DeliveryNoteDetail.where(delivery_note_id: @delivery_note.id, invoice_detail_id: nil)
-          details.each do |detail|
-            invoice_detail = InvoiceDetail.create(
-              invoice_id: invoice.id,
-              service_id: detail.service_id,
-              vat_rate: detail.service.vat.rate,
-              price: detail.price,
-              discount: 0,
-              description: detail.description,
-              quantity: detail.quantity
-            )
-
-            detail.invoice_detail_id = invoice_detail.id
-            detail.save
-          end
-
-          if invoice.invoice_details.empty?
-            render json: error_response(t('delivery_notes.nothing_to_invoice'))
-            raise ActiveRecord::Rollback
-          else
-            render json: get_response_for(invoice)
-          end
-        end
+        invoice = InvoiceService.call(@delivery_note, current_user)
+        render json: get_response_for(invoice)
+      rescue StandardError => e
+        render json: error_response(e)
       end
 
       private
