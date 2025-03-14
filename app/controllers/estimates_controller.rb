@@ -81,19 +81,11 @@ class EstimatesController < SecuredController
     Estimate.transaction do
       @estimate = Estimate.new(estimate_params)
 
-      respond_to do |format|
-        if @estimate.save
-          format.html do
-            redirect_to edit_user_estimate_url(current_user, @estimate),
-                        notice: t(:successfully_created, item: t('estimates.estimate'))
-          end
-          format.json { render :show, status: :created, location: @estimate }
-        else
-          format.html { render :new }
-          format.json do
-            render json: @estimate.errors, status: :unprocessable_entity
-          end
-        end
+      if @estimate.save
+        redirect_to edit_user_estimate_url(current_user, @estimate),
+                    notice: t(:successfully_created, item: t('estimates.estimate'))
+      else
+        render :new
       end
     end
   end
@@ -102,22 +94,12 @@ class EstimatesController < SecuredController
   # PATCH/PUT /estimates/1.json
   def update
     Estimate.transaction do
-      respond_to do |format|
-        if @estimate.update(estimate_params)
-          format.html do
-            redirect_to edit_user_estimate_url(current_user, @estimate),
-                        notice: t(:successfully_updated, item: t('estimates.estimate'))
-          end
-          format.json { render :show, status: :ok, location: @estimate }
-        else
-          format.html do
-            @estimate.estimate_details.includes(service: %i[unit vat]).build
-            render :edit
-          end
-          format.json do
-            render json: @estimate.errors, status: :unprocessable_entity
-          end
-        end
+      if @estimate.update(estimate_params)
+        redirect_to edit_user_estimate_url(current_user, @estimate),
+                    notice: t(:successfully_updated, item: t('estimates.estimate'))
+      else
+        @estimate.estimate_details.includes(service: %i[unit vat]).build
+        render :edit
       end
     end
   end
@@ -126,13 +108,8 @@ class EstimatesController < SecuredController
   # DELETE /estimates/1.json
   def destroy
     @estimate.destroy
-    respond_to do |format|
-      format.html do
-        redirect_to user_estimates_url(current_user),
-                    notice: t(:successfully_destroyed, item: t('estimates.estimate'))
-      end
-      format.json { head :no_content }
-    end
+    redirect_to user_estimates_url(current_user),
+                notice: t(:successfully_destroyed, item: t('estimates.estimate'))
   end
 
   def invoice

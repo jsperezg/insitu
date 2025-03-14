@@ -44,15 +44,12 @@ class ProjectsController < SecuredController
   # POST /projects.json
   def create
     authorize! :create, Project
-    @project = Project.new(project_params)
-
-    respond_to do |format|
+    Project.transaction do
+      @project = Project.new(project_params)
       if @project.save
-        format.html { redirect_to user_projects_path(current_user), notice: t(:successfully_created, item: t('projects.project')) }
-        format.json { render :show, status: :created, location: @project }
+        redirect_to user_projects_path(current_user), notice: t(:successfully_created, item: t('projects.project'))
       else
-        format.html { render :new }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+        render :new
       end
     end
   end
@@ -73,10 +70,7 @@ class ProjectsController < SecuredController
   def destroy
     authorize! :destroy, @project
     @project.destroy
-    respond_to do |format|
-      format.html { redirect_to user_projects_url(current_user), notice: t(:successfully_destroyed, item: t('projects.project')) }
-      format.json { head :no_content }
-    end
+    redirect_to user_projects_url(current_user), notice: t(:successfully_destroyed, item: t('projects.project'))
   end
 
   private

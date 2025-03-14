@@ -181,7 +181,7 @@ class Invoice < ApplicationRecord
 
   def set_default_values
     if !paid? && paid_on.present?
-      self.invoice_status_id = InvoiceStatus.paid&.id
+      InvoiceStatus.paid&.id
     elsif default?
       self.invoice_status_id = InvoiceStatus.default&.id
     else

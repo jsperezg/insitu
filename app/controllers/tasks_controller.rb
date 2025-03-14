@@ -29,15 +29,10 @@ class TasksController < SecuredController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
-
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to edit_user_project_task_url(current_user, @project, @task), notice: t(:successfully_created, item: t('tasks.task')) }
-        format.json { render :show, status: :created, location: @task }
-      else
-        format.html { render :new }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    if @task.save
+      redirect_to edit_user_project_task_url(current_user, @project, @task), notice: t(:successfully_created, item: t('tasks.task'))
+    else
+      render :new
     end
   end
 
@@ -55,10 +50,7 @@ class TasksController < SecuredController
   # DELETE /tasks/1.json
   def destroy
     @task.destroy
-    respond_to do |format|
-      format.html { redirect_to user_project_tasks_url(current_user, @project), notice: t(:successfully_destroyed, item: t('tasks.task')) }
-      format.json { head :no_content }
-    end
+    redirect_to user_project_tasks_url(current_user, @project), notice: t(:successfully_destroyed, item: t('tasks.task'))
   end
 
   # Generate invoice for finished tasks.

@@ -76,17 +76,11 @@ class DeliveryNotesController < SecuredController
     DeliveryNote.transaction do
       @delivery_note = DeliveryNote.new(delivery_note_params)
 
-      respond_to do |format|
-        if @delivery_note.save
-          format.html do
-            redirect_to edit_user_delivery_note_path(current_user, @delivery_note),
-                        notice: t(:successfully_created, item: t('delivery_notes.delivery_note'))
-          end
-          format.json { render :show, status: :created, location: @delivery_note }
-        else
-          format.html { render :new }
-          format.json { render json: @delivery_note.errors, status: :unprocessable_entity }
-        end
+      if @delivery_note.save
+        redirect_to edit_user_delivery_note_path(current_user, @delivery_note),
+                    notice: t(:successfully_created, item: t('delivery_notes.delivery_note'))
+      else
+        render :new
       end
     end
   end
@@ -95,23 +89,12 @@ class DeliveryNotesController < SecuredController
   # PATCH/PUT /delivery_notes/1.json
   def update
     DeliveryNote.transaction do
-      respond_to do |format|
-        if @delivery_note.update(delivery_note_params)
-          format.html do
-            redirect_to edit_user_delivery_note_path(current_user, @delivery_note),
-                        notice: t(:successfully_updated, item: t('delivery_notes.delivery_note'))
-          end
-          format.json { render :show, status: :ok, location: @delivery_note }
-        else
-          format.html do
-            @delivery_note.delivery_note_details.build
-            render :edit
-          end
-
-          format.json do
-            render json: @delivery_note.errors, status: :unprocessable_entity
-          end
-        end
+      if @delivery_note.update(delivery_note_params)
+        redirect_to edit_user_delivery_note_path(current_user, @delivery_note),
+                    notice: t(:successfully_updated, item: t('delivery_notes.delivery_note'))
+      else
+        @delivery_note.delivery_note_details.build
+        render :edit
       end
     end
   end
@@ -120,13 +103,8 @@ class DeliveryNotesController < SecuredController
   # DELETE /delivery_notes/1.json
   def destroy
     @delivery_note.destroy
-    respond_to do |format|
-      format.html do
-        redirect_to user_delivery_notes_url(current_user),
-                    notice: t(:successfully_destroyed, item: t('delivery_notes.delivery_note'))
-      end
-      format.json { head :no_content }
-    end
+    redirect_to user_delivery_notes_url(current_user),
+                notice: t(:successfully_destroyed, item: t('delivery_notes.delivery_note'))
   end
 
   def invoice
