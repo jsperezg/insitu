@@ -9,6 +9,7 @@ describe InvoiceCorrector do
     let(:amending_invoice) { service.cancel }
 
     before do
+      create(:payment_method, :default)
       create(:invoice_detail, invoice_id: invoice.id)
     end
 

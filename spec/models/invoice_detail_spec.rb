@@ -7,6 +7,10 @@ describe InvoiceDetail, type: :model do
 
   it { is_expected.to be_valid }
 
+  before do
+    create(:payment_method, :default)
+  end
+
   describe '#validations' do
     it { is_expected.to validate_presence_of(:quantity) }
     it { is_expected.to validate_numericality_of(:quantity).is_greater_than(0) }

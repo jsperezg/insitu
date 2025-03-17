@@ -37,15 +37,19 @@ class InvoiceDetail < ApplicationRecord
   end
 
   def tax
-    return unless price.present? && quantity.present? && discount.present? && vat_rate.present?
+    return unless valid_for_invoice?
 
     (1 - (discount / 100.0)) * price * quantity * (vat_rate / 100.0)
   end
 
   def total
-    return unless price.present? && quantity.present? && discount.present? && vat_rate.present?
+    return unless valid_for_invoice?
 
     (1 - (discount / 100.0)) * price * quantity * (1 + (vat_rate / 100.0))
+  end
+
+  def valid_for_invoice?
+    price.present? && quantity.present? && discount.present? && vat_rate.present?
   end
 
   def amending_invoice?

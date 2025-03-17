@@ -2,13 +2,14 @@
 
 require 'rails_helper'
 
-RSpec.describe 'invoices/show', type: :view do
+describe 'invoices/show', type: :view do
   let(:user) { create :user }
 
   before do
     sign_in user
 
     Thread.current[:user] = user
+    create(:payment_method, :default)
 
     @invoice = assign(:invoice, create(:invoice))
   end

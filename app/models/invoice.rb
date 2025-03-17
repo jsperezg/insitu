@@ -132,7 +132,7 @@ class Invoice < ApplicationRecord
   end
 
   def paid?
-    invoice_status&.name == 'invoice_status.paid' || !paid_on.nil?
+    invoice_status&.name == 'invoice_status.paid' || paid_on.present?
   end
 
   def default?
@@ -180,21 +180,23 @@ class Invoice < ApplicationRecord
   private
 
   def set_default_values
-    if !paid? && paid_on.present?
-      InvoiceStatus.paid&.id
-    elsif default?
-      self.invoice_status_id = InvoiceStatus.default&.id
-    else
-      self.invoice_status_id ||= InvoiceStatus.created&.id
-    end
+    self.invoice_status_id ||= inferred_invoice_status
 
-    # By default: payment date is the invoice date + 15 days.
-    self.payment_date = date + 15.days if date.present? && !payment_date.present?
+    self.payment_date ||= date + 15.days if date.present?
 
     # Establish the default payment method
-    self.payment_method_id ||= PaymentMethod.default&.id
+    self.payment_method_id ||= PaymentMethod.default.id
+    self.irpf ||= 0
+  end
 
-    self.irpf = 0 if irpf.nil?
+  def inferred_invoice_status
+    if paid?
+      InvoiceStatus.paid.id
+    elsif default?
+      InvoiceStatus.default.id
+    else
+      InvoiceStatus.created.id
+    end
   end
 
   def set_invoice_number

@@ -4,6 +4,7 @@ require 'rails_helper'
 
 describe Invoice, type: :model do
   before do
+    create(:payment_method, :default)
     Thread.current[:user] = User.first || create(:user)
   end
 
@@ -13,13 +14,6 @@ describe Invoice, type: :model do
       invoice.save
 
       expect(invoice.errors).to have_key(:date)
-    end
-
-    it 'payment method is mandatory' do
-      invoice = described_class.new
-      invoice.save
-
-      expect(invoice.errors).to have_key(:payment_method_id)
     end
 
     it 'customer is mandatory' do

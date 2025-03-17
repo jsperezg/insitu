@@ -12,7 +12,11 @@ require 'rails_helper'
 #     end
 #   end
 # end
-RSpec.describe InvoicesHelper, type: :helper do
+describe InvoicesHelper, type: :helper do
+  before do
+    create(:payment_method, :default)
+  end
+
   describe 'invoice_tr' do
     it 'on invoice paid' do
       invoice = create(:invoice, invoice_status_id: create(:invoice_status, name: 'invoice_status.paid').try(:id))

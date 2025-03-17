@@ -7,5 +7,9 @@ FactoryBot.define do
     end
 
     note_for_invoice { 'Note  for invoice' }
+
+    trait :default do
+      name { 'invoice_status.default' }
+    end
   end
 end
