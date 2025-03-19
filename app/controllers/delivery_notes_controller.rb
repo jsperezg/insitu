@@ -42,24 +42,13 @@ class DeliveryNotesController < SecuredController
   end
 
   def forward_email
-    return_url = request.referer || user_delivery_note_path(current_user.id, @delivery_note.id)
-
     if @delivery_note.customer.contact_email.blank? && @delivery_note.customer.send_invoices_to.blank?
       flash[:error] = t('helpers.customer_mail_missing')
-      redirect_to return_url
-      return
+      redirect_to forward_email_return_url and return
     end
 
-    file_name = Rails.root.join(
-      'tmp',
-      "delivery_note_#{current_user.id}_#{@delivery_note.number.tr('/', '_')}_#{Time.now.to_i}.pdf"
-    )
-
-    pdf = DeliveryNotePdf.new current_user, @delivery_note
-    pdf.render_file(file_name)
-
-    DeliveryNoteMailer.send_to_customer(current_user, @delivery_note, file_name.to_s, I18n.locale.to_s).deliver_later
-    redirect_to return_url, notice: t('helpers.email_successfully_sent')
+    DeliveryNoteNotifications.call(current_user, @delivery_note)
+    redirect_to forward_email_return_url, notice: t('helpers.email_successfully_sent')
   end
 
   # GET /delivery_notes/new
@@ -128,8 +117,6 @@ class DeliveryNotesController < SecuredController
     @delivery_note = DeliveryNote.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet,
-  # only allow the white list through.
   def delivery_note_params
     params.require(:delivery_note).permit(
       :number,
@@ -139,5 +126,9 @@ class DeliveryNotesController < SecuredController
         id delivery_note_id service_id quantity price description _destroy
       ]
     )
+  end
+
+  def forward_email_return_url
+    @forward_email_return_url ||= request.referer || user_delivery_note_path(current_user.id, @delivery_note.id)
   end
 end
