@@ -1,43 +1,18 @@
 # frozen_string_literal: true
 
 module CustomersHelper
-  def customer_field(form, method, options)
-    content = []
+  def customer_field(form, method, options = {})
+    options[:class] = "form-group customer-selector #{options[:class]}".strip
+    options[:input_class] = "form-control input-sm #{options[:input_class]}".strip
+    hidden_class = options[:filterrific] ? 'filterrific-periodically-observed' : ''
 
-    create_customer_button = true
-    create_customer_button = options[:create_customer_button] if options.key? :create_customer_button
-
-    # class for input.
-    options[:class] = if options.key? :class
-                        "form-group customer-selector #{options[:class]} "
-                      else
-                        'form-group customer-selector'
-                      end
-
-    options[:input_class] = if options.key? :input_class
-                              "form-control input-sm #{options[:input_class]}"
-                            else
-                              'form-control input-sm'
-                            end
-
-    hidden_class = ''
-    hidden_class = 'filterrific-periodically-observed' if options[:filterrific]
+    content = [
+      customer_label_tag(form, method, options),
+      customer_field_tag(form, method, options),
+      form.hidden_field(method, class: hidden_class)
+    ]
 
     content_tag(:div, class: options[:class], url_source: api_v1_customers_path(format: :json)) do
-      content << customer_label_tag(form, method, options)
-
-      content << if create_customer_button
-                   content_tag(:div, class: 'input-group') do
-                     button_group = []
-                     button_group << find_customer_tag(form, method, options)
-                     button_group << create_customer_tag
-                     raw(button_group.join(''))
-                   end
-                 else
-                   find_customer_tag(form, method, options)
-                 end
-
-      content << form.hidden_field(method, class: hidden_class)
       raw(content.join(''))
     end
   end
@@ -85,5 +60,23 @@ module CustomersHelper
     end
 
     value
+  end
+
+  def customer_field_tag(form, method, options)
+    create_customer_button = if options.key?(:create_customer_button)
+                               options[:create_customer_button]
+                             else
+                               true
+                             end
+
+    return create_customer_button_tag(form, method, options) if create_customer_button
+
+    find_customer_tag(form, method, options)
+  end
+
+  def create_customer_button_tag(form, method, options)
+    content_tag(:div, class: 'input-group') do
+      raw([find_customer_tag(form, method, options), create_customer_tag].join(''))
+    end
   end
 end
