@@ -3,10 +3,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.8'
+ruby '3.4.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0', '>= 6.0.6.1'
+gem 'rails', '~> 7.0', '>= 7.0.8.7'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.5.6'
 # Use SCSS for stylesheets
@@ -30,7 +30,7 @@ gem 'country_select', '~> 5.1'
 gem 'currencies', require: 'iso4217'
 gem 'dalli', group: :production
 gem 'data-confirm-modal'
-gem 'devise', '~> 4.7.1'
+gem 'devise', '~> 4.9', '>= 4.9.4'
 gem 'email_validator'
 gem 'figaro'
 gem 'filterrific', '~> 5.2.1'
@@ -45,6 +45,7 @@ gem 'paperclip', '~> 6.1.0'
 gem 'pdfjs_rails'
 gem 'prawn'
 gem 'prawn-table'
+gem 'puma', '~> 6.6'
 gem 'rack-cors', require: 'rack/cors'
 gem 'rectify'
 gem 'ros-apartment', require: 'apartment'

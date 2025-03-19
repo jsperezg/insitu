@@ -16,9 +16,12 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+  # Enable server timing
+  config.server_timing = true
+
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp', 'caching-dev.txt').exist?
+  if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
@@ -68,34 +71,8 @@ Rails.application.configure do
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
 
-  # Use an evented file watcher to asynchronously detect changes in source code,
-  # routes, locales, etc. This feature depends on the listen gem.
-  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-
   # Uncomment if you wish to allow Action Cable access from any origin.
-  # # config.action_cable.disable_request_forgery_protection = true
-
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.logger = Logger.new 'log/ActionMailer.log'
-  config.action_mailer.logger.level = Logger::DEBUG
-
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: 'mail.your-server.de',
-    port: 587,
-    domain: 'insitu.tools',
-    user_name: ENV['mail_username'],
-    password: ENV['mail_password'],
-    authentication: :plain,
-    enable_starttls_auto: true
-  }
+  # config.action_cable.disable_request_forgery_protection = true
 
   Rails.application.routes.default_url_options[:host] = 'localhost:3000'
-
-  # Paypal integration
-  config.x.paypal_validate_ipn_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_notify-validate'
-  config.x.paypal_validate_ipn_verify_mode = OpenSSL::SSL::VERIFY_NONE
-  config.x.paypal_validate_ipn_user_agent = 'Insitu development'
-  config.x.paypal_receiver_email = 'jsperezg_facilitator@gmail.com'
-  config.x.paypal_billing_account = 'jsperezg@gmail.com'
 end

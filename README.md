@@ -201,3 +201,11 @@ OK
 127.0.0.1:6379> lrange queue:mailer 0 -1
 1) "{\"retry\":true,\"queue\":\"mailer\",\"class\":\"Devise::Async::Backend::Sidekiq\",\"args\":[\"confirmation_instructions\",\"User\",\"3\",\"ynjZ1qSYP5ZjuUBq4Vb3\",{\"to\":\"billing@insitu.tools\",\"locale\":\"en\"}],\"jid\":\"a4ecb4f855f062a58be09f44\",\"enqueued_at\":1464031514.381195,\"apartment\":\"fges_production\"}"
 2) "{\"retry\":true,\"queue\":\"mailer\",\"class\":\"Devise::Async::Backend::Sidekiq\",\"args\":[\"confirmation_instructions\",\"User\",\"3\",\"ynjZ1qSYP5ZjuUBq4Vb3\",{\"to\":\"billing@insitu.tools\",\"locale\":\"en\"}],\"jid\":\"a14a182ca1c2665048b2ee29\",\"enqueued_at\":1464030503.598324,\"apartment\":\"fges_production\"}"
+
+
+
+## TODO: Rails 7 upgrade
+sprokets?
+letter opener en desarrollo
+
+https://github.com/heartcombo/devise/wiki/How-To:-Upgrade-to-Devise-4.9.0-%5BHotwire-Turbo-integration%5D
