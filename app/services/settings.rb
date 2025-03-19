@@ -24,7 +24,7 @@ module Settings
   end
 
   def init_default_settings
-    year = Date.today.year
+    year = Date.current.year
 
     [DeliveryNote.model_name, Invoice.model_name, Estimate.model_name].each do |model|
       initialize_key(model)

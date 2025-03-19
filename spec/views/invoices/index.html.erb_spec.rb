@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'invoices/index', type: :view do
+describe 'invoices/index', type: :view do
   let(:user) { create :user }
 
   before do
@@ -10,20 +10,16 @@ RSpec.describe 'invoices/index', type: :view do
 
     Thread.current[:user] = user
 
-    assign(:invoices, [
-             create(:invoice),
-             create(:invoice)
-           ])
+    assign(:invoices, create_list(:invoice, 2))
 
-    allow(view).to receive(:form_for_filterrific).and_return('filterrific form')
-    allow(view).to receive(:will_paginate).and_return('filterrific paginator')
+    allow(view).to receive_messages(form_for_filterrific: 'filterrific form', will_paginate: 'filterrific paginator')
   end
 
   after do
     sign_out user
   end
 
-  skip 'renders a list of invoices' do
+  it 'renders a list of invoices', skip: 'not implemented' do
     render
   end
 end

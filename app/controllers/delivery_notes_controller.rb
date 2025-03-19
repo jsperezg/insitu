@@ -11,7 +11,7 @@ class DeliveryNotesController < SecuredController
       DeliveryNote,
       params[:filterrific],
       default_filter_params: {
-        with_date_ge: Date.today.beginning_of_year.strftime('%Y-%m-%d'),
+        with_date_ge: Date.current.beginning_of_year.strftime('%Y-%m-%d'),
         sorted_by: 'date_desc'
       }
     ) || return
@@ -53,7 +53,7 @@ class DeliveryNotesController < SecuredController
 
   # GET /delivery_notes/new
   def new
-    @delivery_note = DeliveryNote.new(date: Date.today)
+    @delivery_note = DeliveryNote.new(date: Date.current)
   end
 
   # GET /delivery_notes/1/edit

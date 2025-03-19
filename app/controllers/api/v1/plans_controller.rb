@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class PlansController < ActionController::Base
+    class PlansController < ApiController
       def index
         @plans = Plan.where(is_active: true).order(months: :asc)
       end

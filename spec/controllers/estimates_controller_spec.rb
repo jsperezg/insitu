@@ -98,7 +98,7 @@ describe EstimatesController, type: :controller do
         {
           date: Date.current.beginning_of_year + 10.days,
           customer_id: create(:customer).id,
-          valid_until: Date.today + 60.days,
+          valid_until: Date.current + 60.days,
           estimate_status_id: EstimateStatus.sent.id
         }
       end

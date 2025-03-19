@@ -2,11 +2,11 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::DeliveryNotesController, type: :controller do
+describe Api::V1::DeliveryNotesController, type: :controller do
   let(:valid_attributes) do
     {
       customer_id: create(:customer).id,
-      date: Time.now,
+      date: Time.current,
       delivery_note_details_attributes: [attributes_for(:delivery_note_detail, delivery_note_id: nil)]
     }
   end
@@ -147,7 +147,7 @@ RSpec.describe Api::V1::DeliveryNotesController, type: :controller do
       expect(json['errors'][0]).to eq(I18n.t('delivery_notes.nothing_to_invoice'))
     end
 
-    it 'Generates invoice ' do
+    it 'Generates invoice' do
       delivery_note = create(:delivery_note)
 
       get :invoice, params: { user_id: user.to_param, id: delivery_note.to_param }, format: :json

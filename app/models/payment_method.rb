@@ -6,7 +6,7 @@ class PaymentMethod < ApplicationRecord
 
   after_save :maintain_default_flag
 
-  has_many :invoices
+  has_many :invoices, dependent: :restrict_with_error
   before_destroy :validate_referential_integrity
 
   def self.default
@@ -18,7 +18,7 @@ class PaymentMethod < ApplicationRecord
   def maintain_default_flag
     return unless default
 
-    PaymentMethod.where(default: true).where.not(id: id).each do |payment_method|
+    PaymentMethod.where(default: true).where.not(id: id).find_each do |payment_method|
       payment_method.update(default: false)
     end
   end

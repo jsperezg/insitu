@@ -18,7 +18,7 @@ class Invoice < ApplicationRecord
   belongs_to :invoice_status
   has_many :invoice_details, dependent: :destroy
 
-  has_many :amending_invoices, class_name: 'Invoice', foreign_key: 'amended_invoice_id'
+  has_many :amending_invoices, class_name: 'Invoice', foreign_key: 'amended_invoice_id', dependent: :restrict_with_error, inverse_of: :amended_invoice
   belongs_to :amended_invoice, class_name: 'Invoice', optional: true
 
   validates :date, presence: true
@@ -35,7 +35,7 @@ class Invoice < ApplicationRecord
 
     attrs = %i[date payment_method_id customer_id payment_date price quantity]
     attrs.each do |id|
-      result = false unless attr[id].blank?
+      result = false if attr[id].present?
     end
 
     result
@@ -78,8 +78,7 @@ class Invoice < ApplicationRecord
   end
 
   def tax
-    result = {
-    }
+    result = {}
 
     invoice_details.each do |detail|
       result[detail.vat_rate] = 0 unless result.key?(detail.vat_rate)
@@ -217,7 +216,7 @@ class Invoice < ApplicationRecord
 
   def billing_series
     return AMENDING_INVOICE_SERIES if amending_invoice?
-    return customer.billing_serie.capitalize unless customer&.billing_serie.blank?
+    return customer.billing_serie.capitalize if customer&.billing_serie.present?
 
     model_name.human
   end
@@ -225,7 +224,7 @@ class Invoice < ApplicationRecord
   def number_format
     return if number_valid?(date)
 
-    year = date&.year || Date.today.year
+    year = date&.year || Date.current.year
     errors.add(:number, I18n.t('activerecord.errors.models.invoice.attributes.number.invalid_format', year: year))
   end
 

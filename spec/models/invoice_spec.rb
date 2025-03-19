@@ -62,12 +62,12 @@ describe Invoice, type: :model do
     end
 
     it 'do not allow duplicates' do
-      invoice = build(:invoice, number: "I/#{Date.today.year}/000001")
+      invoice = build(:invoice, number: "I/#{Date.current.year}/000001")
       invoice.save
 
       expect(invoice.errors).to be_empty
 
-      another_invoice = build(:invoice, number: "I/#{Date.today.year}/000001")
+      another_invoice = build(:invoice, number: "I/#{Date.current.year}/000001")
       another_invoice.save
 
       expect(another_invoice.errors).to have_key(:number)
@@ -76,7 +76,7 @@ describe Invoice, type: :model do
     it 'update default series for invoices' do
       customer = create(:customer, billing_serie: nil)
 
-      invoice = build(:invoice, number: "X/#{Date.today.year}/000001", customer_id: customer.id)
+      invoice = build(:invoice, number: "X/#{Date.current.year}/000001", customer_id: customer.id)
       invoice.save
 
       expect(invoice.errors).to be_empty
@@ -84,14 +84,14 @@ describe Invoice, type: :model do
       another_invoice = create(:invoice, customer_id: customer.id)
       another_invoice.reload
 
-      expect(another_invoice.number).to eq("X/#{Date.today.year}/000002")
+      expect(another_invoice.number).to eq("X/#{Date.current.year}/000002")
     end
 
     it 'Sequence is updated after updating invoices' do
-      invoice = create(:invoice, number: "A/#{Date.today.year}/000002")
+      invoice = create(:invoice, number: "A/#{Date.current.year}/000002")
       expect(invoice.number).to end_with('000002')
 
-      invoice.number = "A/#{Date.today.year}/000001"
+      invoice.number = "A/#{Date.current.year}/000001"
       expect(invoice.save).to be_truthy
 
       other_invoice = create(:invoice)
@@ -115,21 +115,21 @@ describe Invoice, type: :model do
 
   describe 'Number format validation' do
     it 'First capital letter' do
-      invoice = build(:invoice, number: "i/#{Date.today.year}/000001")
+      invoice = build(:invoice, number: "i/#{Date.current.year}/000001")
       invoice.save
 
       expect(invoice.errors).to have_key(:number)
     end
 
     it 'Same year as bill' do
-      invoice = build(:invoice, number: "i/#{Date.today.year + 1}/000001")
+      invoice = build(:invoice, number: "i/#{Date.current.year + 1}/000001")
       invoice.save
 
       expect(invoice.errors).to have_key(:number)
     end
 
     it '6 digits' do
-      invoice = build(:invoice, number: "i/#{Date.today.year}/xxxxxx")
+      invoice = build(:invoice, number: "i/#{Date.current.year}/xxxxxx")
       invoice.save
 
       expect(invoice.errors).to have_key(:number)
@@ -172,7 +172,7 @@ describe Invoice, type: :model do
       expect(invoice.applied_irpf).to eq(gross_total * invoice.irpf / 100)
 
       tax_total = 0
-      invoice.tax.each do |key, _value|
+      invoice.tax.each_key do |key|
         tax_total += invoice.tax[key]
       end
 
@@ -191,7 +191,7 @@ describe Invoice, type: :model do
       expect(invoice.applied_irpf).to eq(0)
 
       tax_total = 0
-      invoice.tax.each do |key, _value|
+      invoice.tax.each_key do |key|
         tax_total += invoice.tax[key]
       end
 

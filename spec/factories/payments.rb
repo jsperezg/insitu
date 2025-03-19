@@ -13,7 +13,7 @@ FactoryBot.define do
     payer_status { 'verified' }
     last_name { Faker::Name.last_name }
     first_name { Faker::Name.first_name }
-    payment_date { Date.today }
+    payment_date { Date.current }
     payment_status { 'Completed' }
     payment_type { 'instant' }
     txn_type { 'web_accept' }

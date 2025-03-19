@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :delivery_note do
     association :customer
-    date { Time.now }
+    date { Date.current }
   end
 end

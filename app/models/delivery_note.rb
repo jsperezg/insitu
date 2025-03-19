@@ -87,7 +87,7 @@ class DeliveryNote < ApplicationRecord
   def number_format
     return if number_valid?(date)
 
-    year = date&.year || Date.today.year
+    year = date&.year || Date.current.year
     errors.add(:number, I18n.t('activerecord.errors.models.delivery_note.attributes.number.invalid_format', year: year))
   end
 

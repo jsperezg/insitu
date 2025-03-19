@@ -39,7 +39,7 @@ class Customer < ApplicationRecord
 
   before_destroy :validate_referential_integrity
 
-  scope :with_name, ->(name) { where('name like ?', "%#{name}%") unless name.blank? }
+  scope :with_name, ->(name) { where('name like ?', "%#{name}%") if name.present? }
 
   def country_name
     return if country.blank?

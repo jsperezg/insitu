@@ -20,7 +20,7 @@ class Vat < ApplicationRecord
   def maintain_default_flag
     return unless default
 
-    Vat.where(default: true).where.not(id: id).each do |vat|
+    Vat.where(default: true).where.not(id: id).find_each do |vat|
       vat.update(default: false)
     end
   end

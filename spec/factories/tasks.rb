@@ -13,6 +13,6 @@ FactoryBot.define do
     priority { 1 }
 
     project_id { Project.first.try(:id) || create(:project).id }
-    dead_line { Date.today + 7.days }
+    dead_line { Date.current + 7.days }
   end
 end

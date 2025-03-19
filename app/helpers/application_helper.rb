@@ -100,7 +100,7 @@ module ApplicationHelper
 
     content_tag(:li) do
       link_to(link_details(parent_key)) do
-        current_content << content_tag(:i, nil, class: element[:icon]) unless element[:icon].blank?
+        current_content << content_tag(:i, nil, class: element[:icon]) if element[:icon].present?
 
         current_content << I18n.t(element[:title])
 

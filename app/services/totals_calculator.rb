@@ -24,19 +24,19 @@ class TotalsCalculator
   private
 
   def past_year_interval
-    (Date.today - 1.year).beginning_of_year..(Date.today - 1.year).end_of_year
+    (Date.current - 1.year).beginning_of_year..(Date.current - 1.year).end_of_year
   end
 
   def current_year_interval
-    Date.today.beginning_of_year..Date.today.end_of_year
+    Date.current.beginning_of_year..Date.current.end_of_year
   end
 
   def current_month_interval
-    Date.today.beginning_of_month..Date.today.end_of_month
+    Date.current.beginning_of_month..Date.current.end_of_month
   end
 
   def last_year_interval
-    (Time.now - 12.months).beginning_of_day..Time.now
+    (Date.current - 12.months).beginning_of_day..Date.current
   end
 
   def calculate_period_totals(interval)

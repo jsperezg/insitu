@@ -3,7 +3,7 @@
 module HasDocumentNumber
   extend ActiveSupport::Concern
 
-  DOCUMENT_REGEXP = %r(^([A-Z]+)/(\d{4})/(\d{6})$).freeze
+  DOCUMENT_REGEXP = %r(^([A-Z]+)/(\d{4})/(\d{6})$)
 
   included do
     def number_valid?(date)

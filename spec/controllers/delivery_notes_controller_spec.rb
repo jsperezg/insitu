@@ -2,11 +2,11 @@
 
 require 'rails_helper'
 
-RSpec.describe DeliveryNotesController, type: :controller do
+describe DeliveryNotesController, type: :controller do
   let(:valid_attributes) do
     {
       customer_id: create(:customer).id,
-      date: Time.now,
+      date: Date.current,
       delivery_note_details_attributes: [attributes_for(:delivery_note_detail, delivery_note_id: nil)]
     }
   end

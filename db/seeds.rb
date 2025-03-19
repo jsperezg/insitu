@@ -23,7 +23,7 @@ if Apartment::Tenant.current.blank? || Apartment::Tenant.current == config[Rails
     admin.email = 'admin@example.org'
     admin.password = 'change_me'
     admin.password_confirmation = 'change_me'
-    admin.confirmed_at = Time.now
+    admin.confirmed_at = Time.current
     admin.terms_of_service = '1'
     admin.role = Role.admin
   end

@@ -8,9 +8,9 @@ module TasksHelper
   def task_tr_class(task)
     if !task.finish_date.nil?
       'success'
-    elsif task.dead_line.nil? || task.dead_line > Date.today
+    elsif task.dead_line.nil? || task.dead_line > Date.current
       'active'
-    elsif task.dead_line == Date.today
+    elsif task.dead_line == Date.current
       'warning'
     else
       'danger'

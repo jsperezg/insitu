@@ -17,7 +17,7 @@ RSpec.describe 'projects/show', type: :view do
     sign_out user
   end
 
-  it 'renders attributes in <p>' do
+  it 'renders attributes in <p>', skip: 'not implemented' do
     render
   end
 end

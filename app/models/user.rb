@@ -48,8 +48,8 @@ class User < ApplicationRecord
   scope :with_active_criteria, lambda { |filter|
     case filter
     when 'vip' then where(valid_until: nil)
-    when 'free' then where('valid_until <= ?', Date.today)
-    when 'premium' then where('valid_until > ? or valid_until is null', Date.today)
+    when 'free' then where('valid_until <= ?', Date.current)
+    when 'premium' then where('valid_until > ? or valid_until is null', Date.current)
     else all
     end
   }
@@ -82,7 +82,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :role, optional: true
-  has_many :payments
+  has_many :payments, dependent: :restrict_with_error
 
   after_save :init_tenant_name
   after_commit :init_tenant, on: :create
@@ -113,7 +113,7 @@ class User < ApplicationRecord
   end
 
   def premium?
-    valid_until.nil? || valid_until > Date.today
+    valid_until.nil? || valid_until > Date.current
   end
 
   def administrator?
@@ -129,11 +129,11 @@ class User < ApplicationRecord
   end
 
   def skip_confirmation!
-    self.confirmed_at = Time.now
+    self.confirmed_at = Time.zone.now
   end
 
   def to_s
-    return name unless name.blank?
+    return name if name.present?
 
     email
   end
@@ -158,7 +158,7 @@ class User < ApplicationRecord
   private
 
   def init_tenant_name
-    return unless self[:tenant].blank?
+    return if self[:tenant].present?
 
     self[:tenant] = if Rails.env.production?
                       "user_#{self[:id]}"
@@ -188,7 +188,7 @@ class User < ApplicationRecord
     if administrator?
       self.valid_until = nil
     else
-      self.valid_until ||= Date.today
+      self.valid_until ||= Date.current
     end
   end
 
@@ -200,8 +200,8 @@ class User < ApplicationRecord
   end
 
   def correct_logo_mime_type
-    if logo.attached? && !logo.content_type.match?(/\Aimage\/.*\z/)
-      errors.add(:document, I18n.t('activerecord.errors.models.user.attributes.logo.invalid'))
-    end
+    return if !logo.attached? || logo.content_type.match?(%r{\Aimage/.*\z})
+
+    errors.add(:document, I18n.t('activerecord.errors.models.user.attributes.logo.invalid'))
   end
 end

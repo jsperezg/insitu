@@ -58,8 +58,8 @@ class InvoiceService < ApplicationService
 
   def invoice
     @invoice ||= Invoice.create(
-      date: Date.today,
-      payment_date: Date.today + 15.days,
+      date: Date.current,
+      payment_date: Date.current + 15.days,
       customer_id: @document.customer_id,
       payment_method_id: payment_method.id
     )

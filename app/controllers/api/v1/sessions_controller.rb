@@ -19,12 +19,12 @@ module Api
 
         # Validations
         if request.format != :json
-          render status: 406, json: { message: 'The request must be JSON.' }
+          render status: :not_acceptable, json: { message: 'The request must be JSON.' }
           return
         end
 
         if email.blank? || password.blank?
-          render status: 400, json: { message: 'The request MUST contain the user email and password.' }
+          render status: :bad_request, json: { message: 'The request MUST contain the user email and password.' }
           return
         end
 
@@ -39,12 +39,12 @@ module Api
             user.last_sign_in_at = user.current_sign_in_at
             user.last_sign_in_ip =  user.current_sign_in_ip
 
-            user.current_sign_in_at = Time.now
+            user.current_sign_in_at = Time.zone.now
             user.current_sign_in_ip = request.remote_ip
 
             if user.save
-              # Note that the data which should be returned depends heavily of the API client needs.
-              render status: 200, json: {
+              # Note that the data which should be returned depends heavily on the API client needs.
+              render status: :ok, json: {
                 email: user.email,
                 authentication_token: user.authentication_token,
                 id: user.id,
@@ -61,29 +61,29 @@ module Api
                 currency: user.currency
               }
             else
-              render status: 500, json: { error: user.errors.messages }
+              render status: :internal_server_error, json: { error: user.errors.messages }
             end
           else
-            render status: 401, json: { message: 'Invalid email or password.' }
+            render status: :unauthorized, json: { message: 'Invalid email or password.' }
           end
         else
-          render status: 401, json: { message: 'Invalid email or password.' }
+          render status: :unauthorized, json: { message: 'Invalid email or password.' }
         end
       end
 
       def destroy
         if params[:user_token].blank?
-          render status: 404, json: { message: 'Invalid token.' }
+          render status: :not_found, json: { message: 'Invalid token.' }
           return
         end
 
         # Fetch params
         user = User.find_by(authentication_token: params[:user_token])
         if user.nil?
-          render status: 404, json: { message: 'Invalid token.' }
+          render status: :not_found, json: { message: 'Invalid token.' }
         else
           user.update_attribute(:authentication_token, nil)
-          render status: 200, json: { message: 'logout successful' }
+          render status: :ok, json: { message: 'logout successful' }
         end
       end
     end

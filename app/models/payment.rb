@@ -68,7 +68,7 @@ class Payment < ApplicationRecord
     user.valid_until = payment_date + plan.months.months
     user.save!
 
-    self.processed_at = Time.now
+    self.processed_at = Time.zone.now
     save!
   end
 

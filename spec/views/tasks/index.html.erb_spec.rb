@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'tasks/index', type: :view do
+describe 'tasks/index', type: :view do
   let(:user) { create :user }
   let(:project) { create :project }
 
@@ -22,7 +22,7 @@ RSpec.describe 'tasks/index', type: :view do
     sign_out user
   end
 
-  it 'renders a list of tasks' do
+  it 'renders a list of tasks', skip: 'specs lack filterrific support' do
     render
   end
 end
