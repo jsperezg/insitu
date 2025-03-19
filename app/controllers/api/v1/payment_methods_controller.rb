@@ -3,8 +3,6 @@
 module Api
   module V1
     class PaymentMethodsController < ApiController
-      include Api
-
       before_action :set_payment_method, only: %i[show update destroy]
 
       # GET /payment_methods
@@ -24,7 +22,7 @@ module Api
         if @payment_method.save
           render 'show'
         else
-          render json: ResponseFactory.get_response_for(@payment_method)
+          render json: get_response_for(@payment_method)
         end
       end
 
@@ -34,7 +32,7 @@ module Api
         if @payment_method.update(payment_method_params)
           render 'show'
         else
-          render json: ResponseFactory.get_response_for(@payment_method)
+          render json: get_response_for(@payment_method)
         end
       end
 
@@ -42,7 +40,7 @@ module Api
       # DELETE /payment_methods/1.json
       def destroy
         @payment_method.destroy
-        render json: ResponseFactory.get_response_for(@payment_method)
+        render json: get_response_for(@payment_method)
       end
 
       private

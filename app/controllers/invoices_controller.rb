@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-# Controller that manages invoice actions from the UI.
 class InvoicesController < SecuredController
-  include InvoicingNotifications
   include VatSelector
 
   before_action :set_invoice, only: %i[show print forward_email edit update destroy]
@@ -20,12 +18,6 @@ class InvoicesController < SecuredController
     ) || return
 
     @invoices = @filterrific.find.page(params[:page])
-
-    respond_to do |format|
-      format.html
-      format.json
-      format.js
-    end
   end
 
   # GET /invoices/1
@@ -45,22 +37,15 @@ class InvoicesController < SecuredController
   end
 
   def forward_email
-    if @invoice.created?
-      @invoice.invoice_status = InvoiceStatus.sent
-      @invoice.save
-    end
-
-    return_url = request.referer || user_invoice_path(current_user.id, @invoice.id)
-
-    if @invoice.customer.contact_email.blank? && @invoice.customer.send_invoices_to.blank?
+    unless @invoice.customer.email?
       flash[:error] = t('helpers.customer_mail_missing')
-      redirect_to return_url
+      redirect_to invoice_return_url
       return
     end
 
-    send_invoice_by_email(current_user, @invoice)
+    InvoicingNotifications.call(current_user, @invoice)
 
-    redirect_to return_url, notice: t('helpers.email_successfully_sent')
+    redirect_to invoice_return_url, notice: t('helpers.email_successfully_sent')
   end
 
   # GET /invoices/new
@@ -75,79 +60,38 @@ class InvoicesController < SecuredController
   # POST /invoices
   # POST /invoices.json
   def create
-    Invoice.transaction do
-      current_user.reload if params.key?(:user) && current_user.update(user_params)
+    update_user
 
-      @invoice = Invoice.new(invoice_params)
-
-      @invoice.apply_irpf(current_user)
-
-      respond_to do |format|
-        if @invoice.save
-          format.html do
-            redirect_to edit_user_invoice_url(current_user, @invoice),
-                        notice: t(:successfully_created, item: t('invoices.invoice'))
-          end
-
-          format.json { render :show, status: :created, location: @invoice }
-        else
-          format.html { render :new }
-          format.json do
-            render json: @invoice.errors, status: :unprocessable_entity
-          end
-        end
-      end
+    @invoice = Invoice.new(invoice_params)
+    @invoice.apply_irpf(current_user)
+    if @invoice.save
+      redirect_to edit_user_invoice_url(current_user, @invoice), notice: t(:successfully_created, item: t('invoices.invoice'))
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /invoices/1
   # PATCH/PUT /invoices/1.json
   def update
-    Invoice.transaction do
-      current_user.reload if params.key?(:user) && current_user.update(user_params)
+    update_user
 
-      @invoice.apply_irpf(current_user)
-
-      respond_to do |format|
-        if @invoice.update(invoice_params)
-          format.html do
-            redirect_to edit_user_invoice_path(current_user, @invoice),
-                        notice: t(:successfully_updated, item: t('invoices.invoice'))
-          end
-          format.json { render :show, status: :ok, location: @invoice }
-        else
-          format.html do
-            @invoice.invoice_details.build
-            render :edit
-          end
-          format.json do
-            render json: @invoice.errors, status: :unprocessable_entity
-          end
-        end
-      end
+    if invoice_updated?
+      redirect_to edit_user_invoice_path(current_user, @invoice), notice: t(:successfully_updated, item: t('invoices.invoice')) and return
     end
+
+    @invoice.invoice_details.build
+    render :edit
   end
 
   # DELETE /invoices/1
   # DELETE /invoices/1.json
   def destroy
     @invoice.destroy
-    respond_to do |format|
-      format.html do
-        redirect_to user_invoices_url(current_user),
-                    notice: t(:successfully_destroyed, item: t('invoices.invoice'))
-      end
-      format.json { head :no_content }
-    end
+    redirect_to user_invoices_url(current_user),
+                notice: t(:successfully_destroyed, item: t('invoices.invoice'))
   rescue StandardError => e
-    respond_to do |format|
-      format.html do
-        redirect_to user_invoices_url(current_user), alert: e.message
-      end
-      format.json do
-        render json: { error: e.message }, status: :not_acceptable
-      end
-    end
+    redirect_to user_invoices_url(current_user), alert: e.message
   end
 
   def cancel
@@ -155,18 +99,10 @@ class InvoicesController < SecuredController
     service = InvoiceCorrector.new(original_invoice)
     begin
       @invoice = service.cancel
-      respond_to do |format|
-        format.html do
-          redirect_to edit_user_invoice_path(current_user, @invoice),
-                      notice: t('.success')
-        end
-        format.json { render :show, status: :ok, location: @invoice }
-      end
+      redirect_to edit_user_invoice_path(current_user, @invoice),
+                  notice: t('.success')
     rescue StandardError => e
-      respond_to do |format|
-        format.html { redirect_to user_invoices_url(current_user), alert: e.record.errors.full_messages.join('<br>') }
-        format.json { render json: { error: e.record.errors.full_messages }, status: :not_acceptable }
-      end
+      redirect_to user_invoices_url(current_user), alert: e.record.errors.full_messages.join('<br>')
     end
   end
 
@@ -204,6 +140,21 @@ class InvoicesController < SecuredController
         price discount description _destroy
       ]
     )
+  end
+
+  def invoice_return_url
+    @invoice_return_url ||= request.referer || user_invoice_path(current_user.id, @invoice.id)
+  end
+
+  def invoice_updated?
+    @invoice.apply_irpf(current_user)
+    @invoice.update(invoice_params)
+  end
+
+  def update_user
+    return unless params.key?(:user)
+
+    current_user.update(user_params)
   end
 
   def user_params

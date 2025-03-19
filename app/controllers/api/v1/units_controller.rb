@@ -24,7 +24,7 @@ module Api
         if @unit.save
           render 'show'
         else
-          render json: ResponseFactory.get_response_for(@unit)
+          render json: get_response_for(@unit)
         end
       end
 
@@ -34,7 +34,7 @@ module Api
         if @unit.update(unit_params)
           render 'show'
         else
-          render json: ResponseFactory.get_response_for(@unit)
+          render json: get_response_for(@unit)
         end
       end
 
@@ -42,7 +42,7 @@ module Api
       # DELETE /units/1.json
       def destroy
         @unit.destroy
-        render json: ResponseFactory.get_response_for(@unit)
+        render json: get_response_for(@unit)
       end
 
       private

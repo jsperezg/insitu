@@ -45,26 +45,13 @@ class EstimatesController < SecuredController
   end
 
   def forward_email
-    return_url = request.referer || user_estimate_path(current_user.id, @estimate.id)
-
-    if @estimate.customer.contact_email.blank? && @estimate.customer.send_invoices_to.blank?
+    unless @estimate.customer.email?
       flash[:error] = t('helpers.customer_mail_missing')
-      redirect_to return_url
-      return
+      redirect_to forward_email_return_url and return
     end
 
-    @estimate.sent!
-
-    file_name = Rails.root.join(
-      'tmp',
-      "estimate_#{current_user.id}_#{@estimate.number.tr('/', '_')}_#{Time.now.to_i}.pdf"
-    )
-
-    pdf = EstimatePdf.new current_user, @estimate
-    pdf.render_file(file_name)
-
-    EstimateMailer.send_to_customer(current_user, @estimate, file_name.to_s, I18n.locale.to_s).deliver_later
-    redirect_to return_url, notice: t('helpers.email_successfully_sent')
+    EstimateNotifications.call(current_user, @estimate)
+    redirect_to forward_email_return_url, notice: t('helpers.email_successfully_sent')
   end
 
   # GET /estimates/new
@@ -81,19 +68,11 @@ class EstimatesController < SecuredController
     Estimate.transaction do
       @estimate = Estimate.new(estimate_params)
 
-      respond_to do |format|
-        if @estimate.save
-          format.html do
-            redirect_to edit_user_estimate_url(current_user, @estimate),
-                        notice: t(:successfully_created, item: t('estimates.estimate'))
-          end
-          format.json { render :show, status: :created, location: @estimate }
-        else
-          format.html { render :new }
-          format.json do
-            render json: @estimate.errors, status: :unprocessable_entity
-          end
-        end
+      if @estimate.save
+        redirect_to edit_user_estimate_url(current_user, @estimate),
+                    notice: t(:successfully_created, item: t('estimates.estimate'))
+      else
+        render :new
       end
     end
   end
@@ -102,22 +81,12 @@ class EstimatesController < SecuredController
   # PATCH/PUT /estimates/1.json
   def update
     Estimate.transaction do
-      respond_to do |format|
-        if @estimate.update(estimate_params)
-          format.html do
-            redirect_to edit_user_estimate_url(current_user, @estimate),
-                        notice: t(:successfully_updated, item: t('estimates.estimate'))
-          end
-          format.json { render :show, status: :ok, location: @estimate }
-        else
-          format.html do
-            @estimate.estimate_details.includes(service: %i[unit vat]).build
-            render :edit
-          end
-          format.json do
-            render json: @estimate.errors, status: :unprocessable_entity
-          end
-        end
+      if @estimate.update(estimate_params)
+        redirect_to edit_user_estimate_url(current_user, @estimate),
+                    notice: t(:successfully_updated, item: t('estimates.estimate'))
+      else
+        @estimate.estimate_details.includes(service: %i[unit vat]).build
+        render :edit
       end
     end
   end
@@ -126,29 +95,29 @@ class EstimatesController < SecuredController
   # DELETE /estimates/1.json
   def destroy
     @estimate.destroy
-    respond_to do |format|
-      format.html do
-        redirect_to user_estimates_url(current_user),
-                    notice: t(:successfully_destroyed, item: t('estimates.estimate'))
-      end
-      format.json { head :no_content }
-    end
+    redirect_to user_estimates_url(current_user),
+                notice: t(:successfully_destroyed, item: t('estimates.estimate'))
   end
 
   def invoice
-    invoice_generator = InvoiceGenerator.new
-    invoice = invoice_generator.from_estimate(@estimate)
-
-    invoice.apply_irpf(current_user)
-    invoice.save!
-
+    invoice = InvoiceService.call(@estimate, current_user)
     redirect_to edit_user_invoice_path(current_user, invoice)
+  rescue NothingToInvoiceException
+    handle_invoicing_error(t('estimates.nothing_to_invoice'))
   rescue StandardError => e
-    flash[:alert] = t(e.message)
-    redirect_to user_estimates_path(current_user)
+    handle_invoicing_error(e.message)
   end
 
   private
+
+  def handle_invoicing_error(message)
+    flash[:alert] = message
+    redirect_to user_estimates_path(current_user)
+  end
+
+  def forward_email_return_url
+    @forward_email_return_url ||= request.referer || user_estimate_path(current_user.id, @estimate.id)
+  end
 
   def set_estimate
     @estimate = Estimate.find(params[:id])

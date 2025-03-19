@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 module TasksHelper
-  def task_tr(task)
-    content_tag(:tr, class: task_tr_class(task)) do
-      yield
-    end
+  def task_tr(task, &block)
+    content_tag(:tr, class: task_tr_class(task), &block)
   end
 
   def task_tr_class(task)

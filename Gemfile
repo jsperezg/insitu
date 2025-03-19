@@ -3,12 +3,12 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.10'
+ruby '2.7.8'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2'
+gem 'rails', '~> 6.0', '>= 6.0.6.1'
 # Use mysql as the database for Active Record
-gem 'mysql2', '~> 0.5.5'
+gem 'mysql2', '~> 0.5.6'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -19,16 +19,14 @@ gem 'coffee-rails', '~> 5.0'
 gem 'mini_racer', '~> 0.6.4'
 
 # Reduces boot times through caching; configured in config/boot.rb
-gem 'bootsnap', '~> 1.4.8', platforms: [:mri]
+gem 'bootsnap', require: false
 
-gem 'apartment'
-gem 'apartment-sidekiq'
 gem 'bootstrap-filestyle-rails'
 gem 'cancancan', '~> 2.0'
 gem 'chartkick'
 gem 'ckeditor_rails'
 gem 'cookies_eu'
-gem 'country_select', github: 'stefanpenner/country_select'
+gem 'country_select', '~> 5.1'
 gem 'currencies', require: 'iso4217'
 gem 'dalli', group: :production
 gem 'data-confirm-modal'
@@ -41,14 +39,16 @@ gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
 gem 'knockoutjs-rails'
 gem 'mimemagic', '~> 0.3.10'
+gem 'multi_json', '~> 1.15'
 gem 'nprogress-rails'
-gem 'omniauth-google-oauth2'
 gem 'paperclip', '~> 6.1.0'
 gem 'pdfjs_rails'
 gem 'prawn'
 gem 'prawn-table'
 gem 'rack-cors', require: 'rack/cors'
 gem 'rectify'
+gem 'ros-apartment', require: 'apartment'
+gem 'ros-apartment-sidekiq', '~> 1.2'
 gem 'sidekiq'
 gem 'sidekiq-client-cli'
 gem 'simple_token_authentication', '~> 1.0'
@@ -62,7 +62,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'yajl-ruby'
 
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', '~> 2.6', '>= 2.6.1', group: :doc
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -82,6 +82,7 @@ group :development do
   gem 'capistrano-rbenv', '~> 2.0'
   gem 'listen'
   gem 'rubocop'
+  gem 'rubocop-rails'
   gem 'rubocop-rspec'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
@@ -93,7 +94,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'rspec-rails', '~> 3.0'
+  gem 'rspec-rails', '~> 6.1', '>= 6.1.1'
   gem 'rspec-sidekiq'
   gem 'spring'
 end

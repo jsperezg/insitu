@@ -5,6 +5,10 @@ require 'rails_helper'
 describe InvoiceDetail, type: :model do
   subject { create :invoice_detail }
 
+  before do
+    create(:payment_method, :default)
+  end
+
   it { is_expected.to be_valid }
 
   describe '#validations' do

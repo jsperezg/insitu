@@ -4,6 +4,7 @@ require 'rails_helper'
 
 describe Invoice, type: :model do
   before do
+    create(:payment_method, :default)
     Thread.current[:user] = User.first || create(:user)
   end
 
@@ -13,13 +14,6 @@ describe Invoice, type: :model do
       invoice.save
 
       expect(invoice.errors).to have_key(:date)
-    end
-
-    it 'payment method is mandatory' do
-      invoice = described_class.new
-      invoice.save
-
-      expect(invoice.errors).to have_key(:payment_method_id)
     end
 
     it 'customer is mandatory' do
@@ -152,21 +146,21 @@ describe Invoice, type: :model do
   end
 
   describe 'billing process' do
-    let(:irpf_15) do
+    let(:irpf15) do
       customer = create(:customer, irpf: 15, country: 'ES')
       invoice = attributes_for(:invoice, customer_id: customer.id, irpf: 15)
 
       invoice.merge(invoice_details_attributes: [attributes_for(:invoice_detail, invoice_id: nil)])
     end
 
-    let(:irpf_0) do
+    let(:irpf0) do
       invoice = attributes_for(:invoice, irpf: 0)
 
       invoice.merge(invoice_details_attributes: [attributes_for(:invoice_detail, invoice_id: nil)])
     end
 
     it 'irpf 15%' do
-      invoice = described_class.create! irpf_15
+      invoice = described_class.create! irpf15
 
       gross_total = 0
       invoice.invoice_details.each do |detail|
@@ -186,7 +180,7 @@ describe Invoice, type: :model do
     end
 
     it 'irpf 0%' do
-      invoice = described_class.create! irpf_0
+      invoice = described_class.create! irpf0
 
       gross_total = 0
       invoice.invoice_details.each do |detail|

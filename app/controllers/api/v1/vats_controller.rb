@@ -24,7 +24,7 @@ module Api
         if @vat.save
           render 'show'
         else
-          render json: ResponseFactory.get_response_for(@vat)
+          render json: get_response_for(@vat)
         end
       end
 
@@ -34,7 +34,7 @@ module Api
         if @vat.update(vat_params)
           render 'show'
         else
-          render json: ResponseFactory.get_response_for(@vat)
+          render json: get_response_for(@vat)
         end
       end
 
@@ -42,7 +42,7 @@ module Api
       # DELETE /vats/1.json
       def destroy
         @vat.destroy
-        render json: ResponseFactory.get_response_for(@vat)
+        render json: get_response_for(@vat)
       end
 
       private

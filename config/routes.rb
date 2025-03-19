@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   root to: 'invoices#index'
 
-  devise_for :users, controllers: { sessions: 'users/sessions', omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: { sessions: 'users/sessions' }
 
   resources :users, only: %i[index edit update] do
     member do
@@ -115,6 +115,4 @@ Rails.application.routes.draw do
       end
     end
   end
-
-  resources :ipn_listener, only: [:create]
 end

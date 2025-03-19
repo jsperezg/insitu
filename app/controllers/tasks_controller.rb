@@ -29,15 +29,10 @@ class TasksController < SecuredController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
-
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to edit_user_project_task_url(current_user, @project, @task), notice: t(:successfully_created, item: t('tasks.task')) }
-        format.json { render :show, status: :created, location: @task }
-      else
-        format.html { render :new }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    if @task.save
+      redirect_to edit_user_project_task_url(current_user, @project, @task), notice: t(:successfully_created, item: t('tasks.task'))
+    else
+      render :new
     end
   end
 
@@ -55,49 +50,30 @@ class TasksController < SecuredController
   # DELETE /tasks/1.json
   def destroy
     @task.destroy
-    respond_to do |format|
-      format.html { redirect_to user_project_tasks_url(current_user, @project), notice: t(:successfully_destroyed, item: t('tasks.task')) }
-      format.json { head :no_content }
-    end
+    redirect_to user_project_tasks_url(current_user, @project), notice: t(:successfully_destroyed, item: t('tasks.task'))
   end
 
   # Generate invoice for finished tasks.
   def invoice_finished
-    payment_method = PaymentMethod.find_by(default: true) || PaymentMethod.first
-    unless payment_method
-      flash[:alert] = t('payment_methods.not_found')
-      redirect_to user_project_tasks_path(current_user, @project)
-      return
-    end
-
-    Invoice.transaction do
-      invoice = Invoice.create(
-        date: Date.today,
-        payment_date: Date.today + 15.days,
-        customer_id: @project.customer_id,
-        payment_method_id: payment_method.id,
-        irpf: 0
-      )
-
-      invoice.apply_irpf(current_user)
-
-      # Iterate over finished tasks.
-      tasks = Task.retrieve_finished_tasks(@project.id)
-      tasks.each do |task|
-        task.invoice_timelogs_into(invoice)
-      end
-
-      if invoice.invoice_details.empty?
-        flash[:alert] = t('tasks.no_pending_tasks')
-        redirect_to user_project_tasks_path(current_user, @project)
-        raise ActiveRecord::Rollback
-      else
-        redirect_to edit_user_invoice_path(current_user, invoice)
-      end
-    end
+    invoice = InvoiceService.call(@project, current_user)
+    redirect_to edit_user_invoice_path(current_user, invoice)
+  rescue NothingToInvoiceException
+    handle_nothing_to_invoice_error
+  rescue StandardError => e
+    handle_standard_error(e.message)
   end
 
   private
+
+  def handle_standard_error(message)
+    flash[:alert] = message
+    redirect_to user_project_tasks_path(current_user, @project)
+  end
+
+  def handle_nothing_to_invoice_error
+    flash[:alert] = t('tasks.no_pending_tasks')
+    redirect_to user_project_tasks_path(current_user, @project)
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_task

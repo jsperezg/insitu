@@ -155,53 +155,68 @@ class InvoicePdf < DocumentPdf
   private
 
   def subtotal
-    [
-      header_cell(
-        "#{Invoice.human_attribute_name :subtotal}:",
-        [:top],
-        DEFAULT_PADDING,
-        :right
-      ),
-      data_cell(
-        "#{number_with_precision(@invoice.subtotal, precision: 2)} #{currency_symbol(@current_user)}",
-        [:top], DEFAULT_PADDING, :right
-      )
-    ]
+    [subtotal_header, subtotal_value]
+  end
+
+  def subtotal_value
+    data_cell(
+      "#{number_with_precision(@invoice.subtotal, precision: 2)} #{currency_symbol(@current_user)}",
+      [:top], DEFAULT_PADDING, :right
+    )
+  end
+
+  def subtotal_header
+    header_cell(
+      "#{Invoice.human_attribute_name :subtotal}:",
+      [:top],
+      DEFAULT_PADDING,
+      :right
+    )
   end
 
   def discount
-    [
-      header_cell(
-        "#{Invoice.human_attribute_name :discount}:",
-        DEFAULT_BORDERS,
-        DEFAULT_PADDING,
-        :right
-      ),
-      data_cell(
-        "#{number_with_precision(@invoice.discount, precision: 2)} #{currency_symbol(@current_user)}",
-        DEFAULT_BORDERS,
-        DEFAULT_PADDING,
-        :right
-      )
-    ]
+    [discount_header, discount_value]
+  end
+
+  def discount_value
+    data_cell(
+      "#{number_with_precision(@invoice.discount, precision: 2)} #{currency_symbol(@current_user)}",
+      DEFAULT_BORDERS,
+      DEFAULT_PADDING,
+      :right
+    )
+  end
+
+  def discount_header
+    header_cell(
+      "#{Invoice.human_attribute_name :discount}:",
+      DEFAULT_BORDERS,
+      DEFAULT_PADDING,
+      :right
+    )
   end
 
   def irpf
+    [tax_header, tax_value]
+  end
+
+  def tax_value
+    data_cell(
+      "#{number_with_precision(-1 * @invoice.applied_irpf, precision: 2)} #{currency_symbol(@current_user)}",
+      DEFAULT_BORDERS,
+      DEFAULT_PADDING,
+      :right
+    )
+  end
+
+  def tax_header
     sign = @invoice.amending_invoice? ? '+' : '-'
 
-    [
-      header_cell(
-        "#{Invoice.human_attribute_name :irpf} (#{sign} #{@invoice.irpf}%):",
-        DEFAULT_BORDERS,
-        DEFAULT_PADDING,
-        :right
-      ),
-      data_cell(
-        "#{number_with_precision(-1 * @invoice.applied_irpf, precision: 2)} #{currency_symbol(@current_user)}",
-        DEFAULT_BORDERS,
-        DEFAULT_PADDING,
-        :right
-      )
-    ]
+    header_cell(
+      "#{Invoice.human_attribute_name :irpf} (#{sign} #{@invoice.irpf}%):",
+      DEFAULT_BORDERS,
+      DEFAULT_PADDING,
+      :right
+    )
   end
 end

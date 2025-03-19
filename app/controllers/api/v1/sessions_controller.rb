@@ -2,6 +2,7 @@
 
 module Api
   module V1
+    # TODO: Revamp this controller to use the new API
     class SessionsController < Devise::SessionsController
       skip_before_action :verify_signed_out_user
 

@@ -10,7 +10,7 @@ class PaymentMethod < ApplicationRecord
   before_destroy :validate_referential_integrity
 
   def self.default
-    PaymentMethod.find_by(default: true)
+    PaymentMethod.find_by(default: true) || PaymentMethod.first
   end
 
   private

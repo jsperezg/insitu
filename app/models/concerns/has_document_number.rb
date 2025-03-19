@@ -3,6 +3,8 @@
 module HasDocumentNumber
   extend ActiveSupport::Concern
 
+  DOCUMENT_REGEXP = %r(^([A-Z]+)/(\d{4})/(\d{6})$).freeze
+
   included do
     def number_valid?(date)
       return false if number.blank?
@@ -18,7 +20,7 @@ module HasDocumentNumber
     def number_parts
       return nil if number.blank?
 
-      parts = number.match(%r(^([A-Z]+)\/(\d{4})\/(\d{6})$))
+      parts = number.match(DOCUMENT_REGEXP)
       return nil unless parts
 
       {

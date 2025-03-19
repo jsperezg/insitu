@@ -42,24 +42,13 @@ class DeliveryNotesController < SecuredController
   end
 
   def forward_email
-    return_url = request.referer || user_delivery_note_path(current_user.id, @delivery_note.id)
-
     if @delivery_note.customer.contact_email.blank? && @delivery_note.customer.send_invoices_to.blank?
       flash[:error] = t('helpers.customer_mail_missing')
-      redirect_to return_url
-      return
+      redirect_to forward_email_return_url and return
     end
 
-    file_name = Rails.root.join(
-      'tmp',
-      "delivery_note_#{current_user.id}_#{@delivery_note.number.tr('/', '_')}_#{Time.now.to_i}.pdf"
-    )
-
-    pdf = DeliveryNotePdf.new current_user, @delivery_note
-    pdf.render_file(file_name)
-
-    DeliveryNoteMailer.send_to_customer(current_user, @delivery_note, file_name.to_s, I18n.locale.to_s).deliver_later
-    redirect_to return_url, notice: t('helpers.email_successfully_sent')
+    DeliveryNoteNotifications.call(current_user, @delivery_note)
+    redirect_to forward_email_return_url, notice: t('helpers.email_successfully_sent')
   end
 
   # GET /delivery_notes/new
@@ -76,17 +65,11 @@ class DeliveryNotesController < SecuredController
     DeliveryNote.transaction do
       @delivery_note = DeliveryNote.new(delivery_note_params)
 
-      respond_to do |format|
-        if @delivery_note.save
-          format.html do
-            redirect_to edit_user_delivery_note_path(current_user, @delivery_note),
-                        notice: t(:successfully_created, item: t('delivery_notes.delivery_note'))
-          end
-          format.json { render :show, status: :created, location: @delivery_note }
-        else
-          format.html { render :new }
-          format.json { render json: @delivery_note.errors, status: :unprocessable_entity }
-        end
+      if @delivery_note.save
+        redirect_to edit_user_delivery_note_path(current_user, @delivery_note),
+                    notice: t(:successfully_created, item: t('delivery_notes.delivery_note'))
+      else
+        render :new
       end
     end
   end
@@ -95,23 +78,12 @@ class DeliveryNotesController < SecuredController
   # PATCH/PUT /delivery_notes/1.json
   def update
     DeliveryNote.transaction do
-      respond_to do |format|
-        if @delivery_note.update(delivery_note_params)
-          format.html do
-            redirect_to edit_user_delivery_note_path(current_user, @delivery_note),
-                        notice: t(:successfully_updated, item: t('delivery_notes.delivery_note'))
-          end
-          format.json { render :show, status: :ok, location: @delivery_note }
-        else
-          format.html do
-            @delivery_note.delivery_note_details.build
-            render :edit
-          end
-
-          format.json do
-            render json: @delivery_note.errors, status: :unprocessable_entity
-          end
-        end
+      if @delivery_note.update(delivery_note_params)
+        redirect_to edit_user_delivery_note_path(current_user, @delivery_note),
+                    notice: t(:successfully_updated, item: t('delivery_notes.delivery_note'))
+      else
+        @delivery_note.delivery_note_details.build
+        render :edit
       end
     end
   end
@@ -120,37 +92,31 @@ class DeliveryNotesController < SecuredController
   # DELETE /delivery_notes/1.json
   def destroy
     @delivery_note.destroy
-    respond_to do |format|
-      format.html do
-        redirect_to user_delivery_notes_url(current_user),
-                    notice: t(:successfully_destroyed, item: t('delivery_notes.delivery_note'))
-      end
-      format.json { head :no_content }
-    end
+    redirect_to user_delivery_notes_url(current_user),
+                notice: t(:successfully_destroyed, item: t('delivery_notes.delivery_note'))
   end
 
   def invoice
-    invoice_generator = InvoiceGenerator.new
-    invoice = invoice_generator.from_delivery_note(@delivery_note)
-
-    invoice.apply_irpf(current_user)
-    invoice.save!
-
+    invoice = InvoiceService.call(@delivery_note, current_user)
     redirect_to edit_user_invoice_path(current_user, invoice)
+  rescue NothingToInvoiceException
+    handle_invoicing_error(t('delivery_notes.nothing_to_invoice'))
   rescue StandardError => e
-    flash[:alert] = t(e.message, default: e.message)
-    redirect_to user_delivery_notes_path(current_user)
+    handle_invoicing_error(e.message)
   end
 
   private
+
+  def handle_invoicing_error(message)
+    flash[:alert] = message
+    redirect_to user_delivery_notes_path(current_user)
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_delivery_note
     @delivery_note = DeliveryNote.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet,
-  # only allow the white list through.
   def delivery_note_params
     params.require(:delivery_note).permit(
       :number,
@@ -160,5 +126,9 @@ class DeliveryNotesController < SecuredController
         id delivery_note_id service_id quantity price description _destroy
       ]
     )
+  end
+
+  def forward_email_return_url
+    @forward_email_return_url ||= request.referer || user_delivery_note_path(current_user.id, @delivery_note.id)
   end
 end

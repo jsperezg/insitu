@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 module EstimatesHelper
-  def estimate_tr(estimate)
-    content_tag(:tr, class: estimate_tr_class(estimate)) do
-      yield
-    end
+  def estimate_tr(estimate, &block)
+    content_tag(:tr, class: estimate_tr_class(estimate), &block)
   end
 
   def estimate_tr_class(estimate)

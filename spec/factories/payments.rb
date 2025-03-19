@@ -9,7 +9,7 @@ FactoryBot.define do
     residence_country { 'ES' }
     user_id { create(:user, :expired)&.id }
     payer_id { 'RYG2VVDDN76XA' }
-    payer_email { Faker::Internet.free_email }
+    payer_email { Faker::Internet.email }
     payer_status { 'verified' }
     last_name { Faker::Name.last_name }
     first_name { Faker::Name.first_name }

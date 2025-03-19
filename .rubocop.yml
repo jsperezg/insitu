@@ -3,12 +3,13 @@ inherit_from: .rubocop_todo.yml
 require: rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 2.4.4
+  TargetRubyVersion: 2.7.8
   NewCops: disable
   Exclude:
     - 'db/migrate/*.rb'
     - 'db/schema.rb'
     - 'bin/*'
+    - 'app/pdfs/*.rb'
 
 Layout/LineLength:
   Exclude:
@@ -23,6 +24,12 @@ Metrics/BlockLength:
     - 'spec/**/*.rb'
     - 'config/environments/*.rb'
     - 'config/routes.rb'
+
+Metrics/MethodLength:
+  Max: 25
+
+Metrics/ClassLength:
+  Max: 250
 
 Style/Documentation:
   Enabled: false

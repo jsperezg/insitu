@@ -3,8 +3,6 @@
 module Api
   module V1
     class ServicesController < ApiController
-      include Api
-
       before_action :set_service, only: %i[show update destroy]
 
       # GET /services
@@ -24,7 +22,7 @@ module Api
         if @service.save
           render 'show'
         else
-          render json: ResponseFactory.get_response_for(@service)
+          render json: get_response_for(@service)
         end
       end
 
@@ -34,7 +32,7 @@ module Api
         if @service.update(service_params)
           render 'show'
         else
-          render json: ResponseFactory.get_response_for(@service)
+          render json: get_response_for(@service)
         end
       end
 
@@ -42,7 +40,7 @@ module Api
       # DELETE /services/1.json
       def destroy
         @service.destroy
-        render json: ResponseFactory.get_response_for(@service)
+        render json: get_response_for(@service)
       end
 
       private

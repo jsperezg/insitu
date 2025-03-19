@@ -3,10 +3,6 @@
 module Api
   module V1
     class InvoicesController < ApiController
-      include Api
-
-      include InvoicingNotifications
-
       before_action :set_invoice, only: %i[show print update destroy]
 
       # GET /invoices
@@ -47,7 +43,7 @@ module Api
           if @invoice.save
             render 'show'
           else
-            render json: ResponseFactory.get_response_for(@invoice)
+            render json: get_response_for(@invoice)
           end
         end
       end
@@ -61,7 +57,7 @@ module Api
           if @invoice.update(invoice_params)
             render 'show'
           else
-            render json: ResponseFactory.get_response_for(@invoice)
+            render json: get_response_for(@invoice)
           end
         end
       end
@@ -70,9 +66,9 @@ module Api
       # DELETE /invoices/1.json
       def destroy
         @invoice.destroy
-        render json: ResponseFactory.get_response_for(@invoice)
+        render json: get_response_for(@invoice)
       rescue StandardError => e
-        render json: ResponseFactory.error_response(e.message)
+        render json: error_response(e.message)
       end
 
       def cancel
@@ -80,9 +76,9 @@ module Api
         service = InvoiceCorrector.new(original_invoice)
         begin
           @invoice = service.cancel
-          render json: ResponseFactory.get_response_for(@invoice)
+          render json: get_response_for(@invoice)
         rescue StandardError => e
-          render json: ResponseFactory.error_response(e.message)
+          render json: error_response(e.message)
         end
       end
 

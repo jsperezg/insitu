@@ -38,9 +38,7 @@ class Estimate < ApplicationRecord
   end
 
   after_update do
-    unless number == number_before_last_save
-      decrease_id if number_before_last_save == last_document_number
-    end
+    decrease_id if number != number_before_last_save && number_before_last_save == last_document_number
   end
 
   after_destroy do
@@ -82,7 +80,7 @@ class Estimate < ApplicationRecord
   scope :with_number, ->(number) { where('number like :number', number: "#{number}%") }
 
   scope :with_date_ge, lambda { |date|
-    match = date.match(%r((\d{2})\/(\d{2})\/(\d{4}))i)
+    match = date.match(%r((\d{2})/(\d{2})/(\d{4}))i)
     date = "#{match[3]}-#{match[2]}-#{match[1]}" if match
     where('date >= :date', date: date)
   }

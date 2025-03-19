@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe InvoicesController, type: :controller do
+describe InvoicesController, type: :controller do
   let(:valid_attributes) do
     invoice = attributes_for(:invoice)
     invoice.merge(invoice_details_attributes: [attributes_for(:invoice_detail, invoice_id: nil)])
@@ -15,8 +15,9 @@ RSpec.describe InvoicesController, type: :controller do
   let(:user) { User.first || create(:user) }
 
   before do
-    sign_in user
+    create(:payment_method, :default)
 
+    sign_in user
     Thread.current[:user] = user
   end
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe EstimatesController, type: :controller do
+describe EstimatesController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Estimate. As you add validations to Estimate, be sure to
   # adjust the attributes here as well.
@@ -190,10 +190,10 @@ RSpec.describe EstimatesController, type: :controller do
     end
 
     it 'Generates the invoice for spanish customers' do
-      user.update_attributes(country: 'ES', tax_id: '48299472R')
+      user.update(country: 'ES', tax_id: '48299472R')
 
       estimate = Estimate.create! valid_attributes
-      estimate.customer.update_attributes(irpf: 16)
+      estimate.customer.update(irpf: 16)
 
       get :invoice, params: { user_id: user, id: estimate.to_param }
 

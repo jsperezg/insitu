@@ -3,8 +3,6 @@
 module Api
   module V1
     class EstimatesController < ApiController
-      include Api
-
       before_action :set_estimate, only: %i[show print update destroy invoice]
 
       # GET /estimates
@@ -36,7 +34,7 @@ module Api
           if @estimate.save
             render 'show'
           else
-            render json: ResponseFactory.get_response_for(@estimate)
+            render json: get_response_for(@estimate)
           end
         end
       end
@@ -48,7 +46,7 @@ module Api
           if @estimate.update(estimate_params)
             render 'show'
           else
-            render json: ResponseFactory.get_response_for(@estimate)
+            render json: get_response_for(@estimate)
           end
         end
       end
@@ -57,56 +55,16 @@ module Api
       # DELETE /estimates/1.json
       def destroy
         @estimate.destroy
-        render json: ResponseFactory.get_response_for(@estimate)
+        render json: get_response_for(@estimate)
       end
 
       def invoice
-        payment_method = PaymentMethod.find_by(default: true) || PaymentMethod.first
-        unless payment_method
-          render json: ResponseFactory.error_response(t('payment_methods.not_found'))
-          return
-        end
-
-        Invoice.transaction do
-          unless @estimate.accepted?
-            @estimate.estimate_status = EstimateStatus.find_by(name: 'estimate_status.accepted')
-            @estimate.save
-          end
-
-          invoice = Invoice.create(
-            date: Date.today,
-            payment_date: Date.today + 15.days,
-            customer_id: @estimate.customer_id,
-            payment_method_id: payment_method.id
-          )
-
-          invoice.apply_irpf(current_user)
-          invoice.save!
-
-          # Iterate over estimate details.
-          details = EstimateDetail.where(estimate_id: @estimate.id, invoice_detail_id: nil)
-          details.each do |detail|
-            invoice_detail = InvoiceDetail.create(
-              invoice_id: invoice.id,
-              service_id: detail.service_id,
-              vat_rate: detail.service.vat.rate,
-              price: detail.price,
-              discount: detail.discount,
-              description: detail.description,
-              quantity: detail.quantity
-            )
-
-            detail.invoice_detail_id = invoice_detail.id
-            detail.save
-          end
-
-          if invoice.invoice_details.empty?
-            render json: ResponseFactory.error_response(t('estimates.nothing_to_invoice'))
-            raise ActiveRecord::Rollback
-          else
-            render json: ResponseFactory.get_response_for(invoice)
-          end
-        end
+        invoice = InvoiceService.call(@estimate, current_user)
+        render json: get_response_for(invoice)
+      rescue NothingToInvoiceException
+        render json: error_response(I18n.t('estimates.nothing_to_invoice'))
+      rescue StandardError => e
+        render json: error_response(e)
       end
 
       private

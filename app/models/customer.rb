@@ -62,6 +62,10 @@ class Customer < ApplicationRecord
     false
   end
 
+  def email?
+    contact_email.present? || send_invoices_to.present?
+  end
+
   def to_s
     name
   end

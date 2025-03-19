@@ -9,7 +9,7 @@ module UsersHelper
     end
   end
 
-  def user_tr(user)
+  def user_tr(user, &block)
     tr_class = if user.banned?
                  'danger'
                elsif user.premium?
@@ -18,9 +18,7 @@ module UsersHelper
                  'warning'
                end
 
-    content_tag(:tr, class: tr_class) do
-      yield
-    end
+    content_tag(:tr, class: tr_class, &block)
   end
 
   def premium_subscription_link_tag
