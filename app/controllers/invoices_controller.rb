@@ -38,22 +38,15 @@ class InvoicesController < SecuredController
   end
 
   def forward_email
-    if @invoice.created?
-      @invoice.invoice_status = InvoiceStatus.sent
-      @invoice.save
-    end
-
-    return_url = request.referer || user_invoice_path(current_user.id, @invoice.id)
-
-    if @invoice.customer.contact_email.blank? && @invoice.customer.send_invoices_to.blank?
+    unless @invoice.customer.email?
       flash[:error] = t('helpers.customer_mail_missing')
-      redirect_to return_url
+      redirect_to invoice_return_url
       return
     end
 
     send_invoice_by_email(current_user, @invoice)
 
-    redirect_to return_url, notice: t('helpers.email_successfully_sent')
+    redirect_to invoice_return_url, notice: t('helpers.email_successfully_sent')
   end
 
   # GET /invoices/new
@@ -155,6 +148,10 @@ class InvoicesController < SecuredController
         price discount description _destroy
       ]
     )
+  end
+
+  def invoice_return_url
+    @invoice_return_url ||= request.referer || user_invoice_path(current_user.id, @invoice.id)
   end
 
   def user_params

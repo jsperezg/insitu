@@ -2,6 +2,10 @@
 
 module InvoicingNotifications
   def send_invoice_by_email(from, invoice)
+    if invoice.created?
+      invoice.update(invoice_status: InvoiceStatus.sent)
+    end
+
     file_name = Rails.root.join('tmp', "invoice_#{from.id}_#{invoice.number.tr('/', '_')}_#{Time.now.to_i}.pdf")
 
     pdf = InvoicePdf.new from, invoice

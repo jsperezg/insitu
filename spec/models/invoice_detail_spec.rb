@@ -9,7 +9,6 @@ describe InvoiceDetail, type: :model do
     create(:payment_method, :default)
   end
 
-
   it { is_expected.to be_valid }
 
   describe '#validations' do
