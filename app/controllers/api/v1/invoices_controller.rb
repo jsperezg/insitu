@@ -3,8 +3,6 @@
 module Api
   module V1
     class InvoicesController < ApiController
-      include InvoicingNotifications
-
       before_action :set_invoice, only: %i[show print update destroy]
 
       # GET /invoices

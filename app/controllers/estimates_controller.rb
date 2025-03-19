@@ -45,26 +45,13 @@ class EstimatesController < SecuredController
   end
 
   def forward_email
-    return_url = request.referer || user_estimate_path(current_user.id, @estimate.id)
-
-    if @estimate.customer.contact_email.blank? && @estimate.customer.send_invoices_to.blank?
+    unless @estimate.customer.email?
       flash[:error] = t('helpers.customer_mail_missing')
-      redirect_to return_url
-      return
+      redirect_to forward_email_return_url and return
     end
 
-    @estimate.sent!
-
-    file_name = Rails.root.join(
-      'tmp',
-      "estimate_#{current_user.id}_#{@estimate.number.tr('/', '_')}_#{Time.now.to_i}.pdf"
-    )
-
-    pdf = EstimatePdf.new current_user, @estimate
-    pdf.render_file(file_name)
-
-    EstimateMailer.send_to_customer(current_user, @estimate, file_name.to_s, I18n.locale.to_s).deliver_later
-    redirect_to return_url, notice: t('helpers.email_successfully_sent')
+    EstimateNotifications.call(current_user, @estimate)
+    redirect_to forward_email_return_url, notice: t('helpers.email_successfully_sent')
   end
 
   # GET /estimates/new
@@ -116,14 +103,21 @@ class EstimatesController < SecuredController
     invoice = InvoiceService.call(@estimate, current_user)
     redirect_to edit_user_invoice_path(current_user, invoice)
   rescue NothingToInvoiceException
-    flash[:alert] = t('estimates.nothing_to_invoice')
-    redirect_to user_estimates_path(current_user)
+    handle_invoicing_error(t('estimates.nothing_to_invoice'))
   rescue StandardError => e
-    flash[:alert] = e.message
-    redirect_to user_estimates_path(current_user)
+    handle_invoicing_error(e.message)
   end
 
   private
+
+  def handle_invoicing_error(message)
+    flash[:alert] = message
+    redirect_to user_estimates_path(current_user)
+  end
+
+  def forward_email_return_url
+    @forward_email_return_url ||= request.referer || user_estimate_path(current_user.id, @estimate.id)
+  end
 
   def set_estimate
     @estimate = Estimate.find(params[:id])

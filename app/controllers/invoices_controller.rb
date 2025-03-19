@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class InvoicesController < SecuredController
-  include InvoicingNotifications
   include VatSelector
 
   before_action :set_invoice, only: %i[show print forward_email edit update destroy]
@@ -44,7 +43,7 @@ class InvoicesController < SecuredController
       return
     end
 
-    send_invoice_by_email(current_user, @invoice)
+    InvoicingNotifications.call(current_user, @invoice)
 
     redirect_to invoice_return_url, notice: t('helpers.email_successfully_sent')
   end
@@ -61,35 +60,28 @@ class InvoicesController < SecuredController
   # POST /invoices
   # POST /invoices.json
   def create
-    Invoice.transaction do
-      current_user.reload if params.key?(:user) && current_user.update(user_params)
+    update_user
 
-      @invoice = Invoice.new(invoice_params)
-      @invoice.apply_irpf(current_user)
-
-      if @invoice.save
-        redirect_to edit_user_invoice_url(current_user, @invoice), notice: t(:successfully_created, item: t('invoices.invoice'))
-      else
-        render :new
-      end
+    @invoice = Invoice.new(invoice_params)
+    @invoice.apply_irpf(current_user)
+    if @invoice.save
+      redirect_to edit_user_invoice_url(current_user, @invoice), notice: t(:successfully_created, item: t('invoices.invoice'))
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /invoices/1
   # PATCH/PUT /invoices/1.json
   def update
-    Invoice.transaction do
-      current_user.reload if params.key?(:user) && current_user.update(user_params)
+    update_user
 
-      @invoice.apply_irpf(current_user)
-      if @invoice.update(invoice_params)
-        redirect_to edit_user_invoice_path(current_user, @invoice),
-                    notice: t(:successfully_updated, item: t('invoices.invoice'))
-      else
-        @invoice.invoice_details.build
-        render :edit
-      end
+    if invoice_updated?
+      redirect_to edit_user_invoice_path(current_user, @invoice), notice: t(:successfully_updated, item: t('invoices.invoice')) and return
     end
+
+    @invoice.invoice_details.build
+    render :edit
   end
 
   # DELETE /invoices/1
@@ -152,6 +144,17 @@ class InvoicesController < SecuredController
 
   def invoice_return_url
     @invoice_return_url ||= request.referer || user_invoice_path(current_user.id, @invoice.id)
+  end
+
+  def invoice_updated?
+    @invoice.apply_irpf(current_user)
+    @invoice.update(invoice_params)
+  end
+
+  def update_user
+    return unless params.key?(:user)
+
+    current_user.update(user_params)
   end
 
   def user_params

@@ -111,14 +111,17 @@ class DeliveryNotesController < SecuredController
     invoice = InvoiceService.call(@delivery_note, current_user)
     redirect_to edit_user_invoice_path(current_user, invoice)
   rescue NothingToInvoiceException
-    flash[:alert] = t('delivery_notes.nothing_to_invoice')
-    redirect_to user_delivery_notes_path(current_user)
+    handle_invoicing_error(t('delivery_notes.nothing_to_invoice'))
   rescue StandardError => e
-    flash[:alert] = e.message
-    redirect_to user_delivery_notes_path(current_user)
+    handle_invoicing_error(e.message)
   end
 
   private
+
+  def handle_invoicing_error(message)
+    flash[:alert] = message
+    redirect_to user_delivery_notes_path(current_user)
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_delivery_note

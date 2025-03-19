@@ -58,14 +58,22 @@ class TasksController < SecuredController
     invoice = InvoiceService.call(@project, current_user)
     redirect_to edit_user_invoice_path(current_user, invoice)
   rescue NothingToInvoiceException
-    flash[:alert] = t('tasks.no_pending_tasks')
-    redirect_to user_project_tasks_path(current_user, @project)
+    handle_nothing_to_invoice_error
   rescue StandardError => e
-    flash[:alert] = e.message
-    redirect_to user_project_tasks_path(current_user, @project)
+    handle_standard_error(e.message)
   end
 
   private
+
+  def handle_standard_error(message)
+    flash[:alert] = message
+    redirect_to user_project_tasks_path(current_user, @project)
+  end
+
+  def handle_nothing_to_invoice_error
+    flash[:alert] = t('tasks.no_pending_tasks')
+    redirect_to user_project_tasks_path(current_user, @project)
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_task
