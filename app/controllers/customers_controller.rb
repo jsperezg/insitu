@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'csv_import_service'
-require 'csv_to_customer_converter'
-
 # Controller for customer related actions
 class CustomersController < SecuredController
   before_action :set_customer, only: %i[show edit update destroy]
@@ -67,7 +64,7 @@ class CustomersController < SecuredController
     csv = params[:csv_file]
 
     customer_converter = CsvToCustomerConverter.new
-    import_service = CSVImportService.new(customer_converter)
+    import_service = CsvImportService.new(customer_converter)
 
     result = import_service.import Rails.root.join('public', 'uploads', csv.path)
     redirect_to user_customers_path(current_user), flash: { error: result.join('<br>') }

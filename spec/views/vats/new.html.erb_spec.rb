@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+# require 'spec_helper'
 
-RSpec.describe 'vats/new', type: :view do
+describe 'vats/new', type: :view do
   let(:user) { create(:user) }
   let(:vat) { Vat.new }
 

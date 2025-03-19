@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_03_19_102727) do
+ActiveRecord::Schema[7.0].define(version: 2025_03_19_181813) do
   create_table "customers", id: :integer, charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "tax_id"
@@ -300,10 +300,6 @@ ActiveRecord::Schema[7.0].define(version: 2025_03_19_102727) do
     t.string "authentication_token", limit: 30
     t.string "provider"
     t.string "uid"
-    t.string "logo_file_name"
-    t.string "logo_content_type"
-    t.bigint "logo_file_size"
-    t.datetime "logo_updated_at", precision: nil
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

@@ -10,7 +10,9 @@ Bundler.require(*Rails.groups)
 module Fges
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.0
+    config.load_defaults 7.0
+    config.autoloader = :zeitwerk
+
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -18,13 +20,11 @@ module Fges
     # in config/environments, which are processed later.
     #
     # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
+    config.eager_load_paths << Rails.root.join('spec/mailers/previews')
 
     I18n.config.enforce_available_locales = false
     config.i18n.default_locale = :en
 
     config.active_job.queue_adapter = :sidekiq
-
-    config.middleware.use Rack::Deflater
   end
 end

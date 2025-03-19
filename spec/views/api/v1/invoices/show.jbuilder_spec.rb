@@ -13,7 +13,7 @@ describe 'api/v1/invoices/show/', type: :view do
   end
 
   it 'Renders the requested invoice' do
-    render
+    render template: 'api/v1/invoices/show', formats: %i[json]
 
     invoice = JSON.parse(rendered)
     expect(invoice).to be_key('id')

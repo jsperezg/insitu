@@ -8,7 +8,7 @@ describe 'api/v1/units/show/', type: :view do
   end
 
   it 'Renders the requested status' do
-    render
+    render template: 'api/v1/units/show', formats: :json
 
     unit = JSON.parse(rendered)
     expect(unit).to be_key('id')

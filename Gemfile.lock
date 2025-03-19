@@ -66,8 +66,6 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-    airbrussh (1.5.1)
-      sshkit (>= 1.6.1, != 1.7.0)
     ast (2.4.2)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -75,6 +73,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     base64 (0.2.0)
     bcrypt (3.1.20)
+    benchmark (0.4.0)
     bigdecimal (3.1.6)
     binding_of_caller (1.0.1)
       debug_inspector (>= 1.2.0)
@@ -87,32 +86,10 @@ GEM
       thor (~> 1.0)
     byebug (11.1.3)
     cancancan (2.3.0)
-    capistrano (3.18.1)
-      airbrussh (>= 1.0.0)
-      i18n
-      rake (>= 10.0.0)
-      sshkit (>= 1.9.0)
-    capistrano-bundler (1.1.4)
-      capistrano (~> 3.1)
-      sshkit (~> 1.2)
-    capistrano-figaro-yml (1.0.5)
-      capistrano (~> 3.1)
-      sshkit (~> 1.2, >= 1.2.0)
-    capistrano-linked-files (1.2.0)
-      capistrano (~> 3.1)
-    capistrano-passenger (0.2.1)
-      capistrano (~> 3.0)
-    capistrano-rails (1.6.3)
-      capistrano (~> 3.1)
-      capistrano-bundler (>= 1.1, < 3)
-    capistrano-rbenv (2.2.0)
-      capistrano (~> 3.1)
-      sshkit (~> 1.3)
     chartkick (5.0.6)
     ckeditor_rails (4.17.0)
       railties (>= 3.0)
     cli (1.4.0)
-    climate_control (0.2.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     coffee-rails (5.0.0)
@@ -135,6 +112,7 @@ GEM
       countries (~> 3.0)
       sort_alphabetical (~> 1.1)
     crass (1.0.6)
+    csv (3.3.2)
     currencies (0.4.2)
     dalli (3.2.8)
     data-confirm-modal (1.6.3)
@@ -155,12 +133,13 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    diff-lcs (1.5.1)
+    diff-lcs (1.6.0)
     docile (1.4.0)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
       railties (>= 3.2)
+    drb (2.2.1)
     email_validator (2.2.4)
       activemodel
     equalizer (0.0.11)
@@ -197,8 +176,10 @@ GEM
       railties (>= 3.2.16)
     js_cookie_rails (2.2.0)
       railties (>= 3.1)
+    json (2.10.2)
     knockoutjs-rails (3.5.1.1)
       railties (>= 3.1)
+    language_server-protocol (3.17.0.4)
     less (2.6.0)
       commonjs (~> 0.2.7)
     less-rails (4.0.0)
@@ -206,6 +187,7 @@ GEM
       less (~> 2.6.0)
       sprockets (>= 2)
     libv8-node (16.19.0.1)
+    lint_roller (1.1.0)
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -220,9 +202,6 @@ GEM
     marcel (1.0.4)
     matrix (0.4.2)
     method_source (1.1.0)
-    mime-types (3.5.2)
-      mime-types-data (~> 3.2015)
-    mime-types-data (3.2024.0305)
     mimemagic (0.3.10)
       nokogiri (~> 1)
       rake
@@ -233,7 +212,6 @@ GEM
     minitest (5.25.5)
     msgpack (1.8.0)
     multi_json (1.15.0)
-    mutex_m (0.2.0)
     mysql2 (0.5.6)
     net-imap (0.5.6)
       date
@@ -242,27 +220,16 @@ GEM
       net-protocol
     net-protocol (0.2.2)
       timeout
-    net-scp (4.0.0)
-      net-ssh (>= 2.6.5, < 8.0.0)
-    net-sftp (4.0.0)
-      net-ssh (>= 5.0.0, < 8.0.0)
     net-smtp (0.5.1)
       net-protocol
-    net-ssh (7.2.1)
     nio4r (2.7.4)
     nokogiri (1.18.4)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     nprogress-rails (0.2.0.2)
     orm_adapter (0.5.0)
-    paperclip (6.1.0)
-      activemodel (>= 4.2.0)
-      activesupport (>= 4.2.0)
-      mime-types
-      mimemagic (~> 0.3.0)
-      terrapin (~> 0.6.0)
-    parallel (1.24.0)
-    parser (3.3.0.5)
+    parallel (1.26.3)
+    parser (3.3.7.1)
       ast (~> 2.4.1)
       racc
     pdf-core (0.10.0)
@@ -332,11 +299,10 @@ GEM
       wisper (>= 1.6.1)
     redis-client (0.21.0)
       connection_pool
-    regexp_parser (2.9.0)
+    regexp_parser (2.10.0)
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
-    rexml (3.2.6)
     ros-apartment (2.11.0)
       activerecord (>= 5.0.0, < 7.1)
       parallel (< 2.0)
@@ -345,45 +311,57 @@ GEM
     ros-apartment-sidekiq (1.2.0)
       ros-apartment (>= 1.0)
       sidekiq (>= 2.11)
-    rspec-core (3.13.0)
+    rspec-core (3.13.3)
       rspec-support (~> 3.13.0)
-    rspec-expectations (3.13.0)
+    rspec-expectations (3.13.3)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
-    rspec-mocks (3.13.0)
+    rspec-mocks (3.13.2)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
-    rspec-rails (6.1.1)
-      actionpack (>= 6.1)
-      activesupport (>= 6.1)
-      railties (>= 6.1)
-      rspec-core (~> 3.12)
-      rspec-expectations (~> 3.12)
-      rspec-mocks (~> 3.12)
-      rspec-support (~> 3.12)
+    rspec-rails (7.1.1)
+      actionpack (>= 7.0)
+      activesupport (>= 7.0)
+      railties (>= 7.0)
+      rspec-core (~> 3.13)
+      rspec-expectations (~> 3.13)
+      rspec-mocks (~> 3.13)
+      rspec-support (~> 3.13)
     rspec-sidekiq (4.1.0)
       rspec-core (~> 3.0)
       rspec-expectations (~> 3.0)
       rspec-mocks (~> 3.0)
       sidekiq (>= 5, < 8)
-    rspec-support (3.13.1)
-    rubocop (1.31.0)
+    rspec-support (3.13.2)
+    rubocop (1.74.0)
+      json (~> 2.3)
+      language_server-protocol (~> 3.17.0.2)
+      lint_roller (~> 1.1.0)
       parallel (~> 1.10)
-      parser (>= 3.1.0.0)
+      parser (>= 3.3.0.2)
       rainbow (>= 2.2.2, < 4.0)
-      regexp_parser (>= 1.8, < 3.0)
-      rexml (>= 3.2.5, < 4.0)
-      rubocop-ast (>= 1.18.0, < 2.0)
+      regexp_parser (>= 2.9.3, < 3.0)
+      rubocop-ast (>= 1.38.0, < 2.0)
       ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.31.2)
-      parser (>= 3.3.0.4)
-    rubocop-rails (2.15.2)
+      unicode-display_width (>= 2.4.0, < 4.0)
+    rubocop-ast (1.40.0)
+      parser (>= 3.3.1.0)
+    rubocop-factory_bot (2.27.1)
+      lint_roller (~> 1.1)
+      rubocop (~> 1.72, >= 1.72.1)
+    rubocop-rails (2.30.3)
       activesupport (>= 4.2.0)
+      lint_roller (~> 1.1)
       rack (>= 1.1)
-      rubocop (>= 1.7.0, < 2.0)
-    rubocop-rspec (2.12.1)
-      rubocop (~> 1.31)
+      rubocop (>= 1.72.1, < 2.0)
+      rubocop-ast (>= 1.38.0, < 2.0)
+    rubocop-rspec (3.5.0)
+      lint_roller (~> 1.1)
+      rubocop (~> 1.72, >= 1.72.1)
+    rubocop-rspec_rails (2.31.0)
+      lint_roller (~> 1.1)
+      rubocop (~> 1.72, >= 1.72.1)
+      rubocop-rspec (~> 3.5)
     ruby-progressbar (1.13.0)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
@@ -430,14 +408,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sshkit (1.22.0)
-      mutex_m
-      net-scp (>= 1.1.2)
-      net-sftp (>= 2.1.2)
-      net-ssh (>= 2.8.0)
     stringio (3.1.5)
-    terrapin (0.6.0)
-      climate_control (>= 0.0.3, < 1.0)
     thor (1.3.2)
     thread_safe (0.3.6)
     tilt (2.3.0)
@@ -456,7 +427,9 @@ GEM
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
-    unicode-display_width (2.5.0)
+    unicode-display_width (3.1.4)
+      unicode-emoji (~> 4.0, >= 4.0.4)
+    unicode-emoji (4.0.4)
     unicode_utils (1.4.0)
     virtus (1.0.5)
       axiom-types (~> 0.1)
@@ -485,29 +458,25 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  benchmark (~> 0.4.0)
   bootsnap
   bootstrap-filestyle-rails
   bundler-audit
   byebug
   cancancan (~> 2.0)
-  capistrano (~> 3.9)
-  capistrano-bundler (~> 1.1.2)
-  capistrano-figaro-yml (~> 1.0.2)
-  capistrano-linked-files
-  capistrano-passenger
-  capistrano-rails (~> 1.1)
-  capistrano-rbenv (~> 2.0)
   chartkick
   ckeditor_rails
   coffee-rails (~> 5.0)
   cookies_eu
   country_select (~> 5.1)
+  csv
   currencies
   dalli
   data-confirm-modal
   database_cleaner
   devise (~> 4.9, >= 4.9.4)
   dotenv-rails
+  drb (~> 2.2, >= 2.2.1)
   email_validator
   factory_bot_rails
   faker
@@ -524,7 +493,6 @@ DEPENDENCIES
   multi_json (~> 1.15)
   mysql2 (~> 0.5.6)
   nprogress-rails
-  paperclip (~> 6.1.0)
   pdfjs_rails
   prawn
   prawn-table
@@ -535,11 +503,13 @@ DEPENDENCIES
   rectify
   ros-apartment
   ros-apartment-sidekiq (~> 1.2)
-  rspec-rails (~> 6.1, >= 6.1.1)
+  rspec-rails (~> 7.1, >= 7.1.1)
   rspec-sidekiq
   rubocop
+  rubocop-factory_bot
   rubocop-rails
   rubocop-rspec
+  rubocop-rspec_rails
   sass-rails (~> 5.0)
   sdoc (~> 2.6, >= 2.6.1)
   shoulda-matchers
@@ -560,4 +530,4 @@ RUBY VERSION
    ruby 3.4.2p28
 
 BUNDLED WITH
-   2.4.6
+   2.6.6

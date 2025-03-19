@@ -77,7 +77,7 @@ class ServicesController < SecuredController
     csv = params[:csv_file]
 
     converter = CsvToServiceConverter.new
-    import_service = CSVImportService.new(converter)
+    import_service = CsvImportService.new(converter)
 
     result = import_service.import Rails.root.join('public', 'uploads', csv.path)
     redirect_to user_services_path(current_user), flash: { error: result.join('<br>') }

@@ -27,6 +27,7 @@ gem 'chartkick'
 gem 'ckeditor_rails'
 gem 'cookies_eu'
 gem 'country_select', '~> 5.1'
+gem 'csv'
 gem 'currencies', require: 'iso4217'
 gem 'dalli', group: :production
 gem 'data-confirm-modal'
@@ -41,7 +42,6 @@ gem 'knockoutjs-rails'
 gem 'mimemagic', '~> 0.3.10'
 gem 'multi_json', '~> 1.15'
 gem 'nprogress-rails'
-gem 'paperclip', '~> 6.1.0'
 gem 'pdfjs_rails'
 gem 'prawn'
 gem 'prawn-table'
@@ -72,19 +72,14 @@ gem 'sdoc', '~> 2.6', '>= 2.6.1', group: :doc
 # gem 'unicorn'
 
 group :development do
+  gem 'benchmark', '~> 0.4.0'
   gem 'bundler-audit'
-
-  gem 'capistrano', '~> 3.9'
-  gem 'capistrano-bundler', '~> 1.1.2'
-  gem 'capistrano-figaro-yml', '~> 1.0.2'
-  gem 'capistrano-linked-files'
-  gem 'capistrano-passenger'
-  gem 'capistrano-rails', '~> 1.1'
-  gem 'capistrano-rbenv', '~> 2.0'
   gem 'listen'
   gem 'rubocop'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'rubocop-rspec_rails'
+  gem 'rubocop-factory_bot'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
@@ -93,9 +88,10 @@ end
 group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
+  gem 'drb', '~> 2.2', '>= 2.2.1'
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'rspec-rails', '~> 6.1', '>= 6.1.1'
+  gem 'rspec-rails', '~> 7.1', '>= 7.1.1'
   gem 'rspec-sidekiq'
   gem 'spring'
 end

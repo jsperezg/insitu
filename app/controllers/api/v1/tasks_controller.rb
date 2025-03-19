@@ -49,7 +49,7 @@ module Api
         invoice = InvoiceService.call(@project, current_user)
         render json: get_response_for(invoice)
       rescue NothingToInvoiceException
-        render json: error_response(t('tasks.no_pending_tasks'))
+        render json: error_response(I18n.t('tasks.no_pending_tasks'))
       rescue StandardError => e
         render json: error_response(e.message)
       end

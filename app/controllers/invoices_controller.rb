@@ -112,7 +112,7 @@ class InvoicesController < SecuredController
     invoices = Invoice
                .includes(:customer, :invoice_details)
                .where(date: from_date..to_date)
-    exporter = CSVExport.new(%i[
+    exporter = CsvExport.new(%i[
                                number customer date paid_on applied_irpf accumulated_tax subtotal
                              ])
     send_data exporter.run(invoices), type: Mime::CSV, filename: 'invoices.csv'

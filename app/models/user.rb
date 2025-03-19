@@ -12,10 +12,16 @@ class User < ApplicationRecord
     available_filters: %i[with_filter_criteria with_active_criteria sorted_by]
   )
 
-  has_attached_file :logo,
-                    styles: { medium: '300x100', reduced: '222x74' },
-                    default_url: '/images/:style/missing.png'
-  validates_attachment_content_type :logo, content_type: %r{\Aimage/.*\z}
+  has_one_attached :logo do |attachable|
+    attachable.variant :medium, resize_to_limit: [300, 100]
+    attachable.variant :reduced, resize_to_limit: [222, 74]
+  end
+
+  validate :correct_logo_mime_type
+  # has_attached_file :logo,
+  #                   styles: { medium: '300x100', reduced: '222x74' },
+  #                   default_url: '/images/:style/missing.png'
+  # validates_attachment_content_type :logo, content_type: %r{\Aimage/.*\z}
 
   self.per_page = DEFAULT_ITEMS_PER_PAGE
 
@@ -191,5 +197,11 @@ class User < ApplicationRecord
     return unless banned?
 
     errors.add(:role_id, I18n.t('activerecord.errors.models.user.attributes.role_id.admin_banned'))
+  end
+
+  def correct_logo_mime_type
+    if logo.attached? && !logo.content_type.match?(/\Aimage\/.*\z/)
+      errors.add(:document, I18n.t('activerecord.errors.models.user.attributes.logo.invalid'))
+    end
   end
 end

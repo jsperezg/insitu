@@ -5,8 +5,8 @@ module ApplicationHelper
     capture(&block) if role_name.split('|').include? current_user.role.try(:description)
   end
 
-  def ldate(object, options = {})
-    object.present? ? localize(object, options) : ''
+  def ldate(object)
+    object.present? ? localize(object) : ''
   end
 
   # Helper that generates the navigation breadcrumb for each page.

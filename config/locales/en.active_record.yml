@@ -235,10 +235,10 @@ en:
               blank: is mandatory.
             reset_password_token:
               invalid: has expired. Request a new password reset and try again.
-            logo_content_type:
-              invalid: Invalid file type. An image file was expected.
             terms_of_service:
               accepted: must be checked.
+            logo:
+              invalid: Invalid file type. An image file was expected.
         service:
           used_elsewhere: This service is being referenced from one or more documents and can not be deleted.
           attributes:

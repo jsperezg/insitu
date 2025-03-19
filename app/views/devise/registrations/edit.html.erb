@@ -7,7 +7,7 @@
       <div class="row">
         <div class="form-group col-lg-4 hidden-xs">
           <%= f.label :logo, class: 'control-label' %>
-          <%= f.file_field :logo, class: 'filestyle', data:{ buttonText: t(:open), icon: false } %>
+          <%= f.file_field :logo, class: 'filestyle', data:{ buttonText: t(:open), icon: false }, direct_upload: true %>
         </div>
 
         <div class="col-lg-8 hidden-xs">
