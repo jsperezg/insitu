@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ApiController < ActionController::API
+  include ActionController::Caching
   include ResponseFactory
 
   acts_as_token_authentication_handler_for User, fallback: :none

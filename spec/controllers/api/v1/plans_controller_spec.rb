@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Api::V1::PlansController, type: :controller do
+describe Api::V1::PlansController, type: :controller do
   render_views
 
   let(:valid_attributes) do
