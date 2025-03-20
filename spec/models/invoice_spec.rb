@@ -146,21 +146,21 @@ describe Invoice, type: :model do
   end
 
   describe 'billing process' do
-    let(:irpf15) do
+    let(:taxes_invoice) do
       customer = create(:customer, irpf: 15, country: 'ES')
       invoice = attributes_for(:invoice, customer_id: customer.id, irpf: 15)
 
       invoice.merge(invoice_details_attributes: [attributes_for(:invoice_detail, invoice_id: nil)])
     end
 
-    let(:irpf0) do
+    let(:no_taxes_invoice) do
       invoice = attributes_for(:invoice, irpf: 0)
 
       invoice.merge(invoice_details_attributes: [attributes_for(:invoice_detail, invoice_id: nil)])
     end
 
     it 'irpf 15%' do
-      invoice = described_class.create! irpf15
+      invoice = described_class.create! taxes_invoice
 
       gross_total = 0
       invoice.invoice_details.each do |detail|
@@ -180,7 +180,7 @@ describe Invoice, type: :model do
     end
 
     it 'irpf 0%' do
-      invoice = described_class.create! irpf0
+      invoice = described_class.create! no_taxes_invoice
 
       gross_total = 0
       invoice.invoice_details.each do |detail|

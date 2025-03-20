@@ -35,15 +35,15 @@ describe Vat, type: :model do
   end
 
   describe 'default' do
-    let!(:vat21) { described_class.create(rate: 21, default: true) }
-    let!(:vat4) { described_class.create(rate: 4, default: false) }
+    let!(:vat_standard) { described_class.create(rate: 21, default: true) }
+    let!(:vat_reduced) { described_class.create(rate: 4, default: false) }
 
     it 'just one record can by the default value' do
-      vat4.default = true
-      expect(vat4.save).to be_truthy
+      vat_reduced.default = true
+      expect(vat_reduced.save).to be_truthy
 
-      vat21.reload
-      expect(vat21.default).to be_falsey
+      vat_standard.reload
+      expect(vat_standard.default).to be_falsey
     end
   end
 end
