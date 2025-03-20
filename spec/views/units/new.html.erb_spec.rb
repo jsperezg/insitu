@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'units/new', type: :view do
+describe 'units/new', type: :view do
   let(:user) { create :user }
 
   before do

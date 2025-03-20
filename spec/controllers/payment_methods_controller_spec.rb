@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe PaymentMethodsController, type: :controller do
+describe PaymentMethodsController, type: :controller do
   let(:valid_attributes) do
     attributes_for :payment_method
   end

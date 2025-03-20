@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_03_19_195606) do
+ActiveRecord::Schema[7.0].define(version: 2025_03_20_181223) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -159,39 +159,6 @@ ActiveRecord::Schema[7.0].define(version: 2025_03_19_195606) do
     t.boolean "default", default: false, null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-  end
-
-  create_table "payments", id: :integer, charset: "utf8", force: :cascade do |t|
-    t.string "txn_id", limit: 19, null: false
-    t.string "business", limit: 127, null: false
-    t.string "receiver_email", limit: 127, null: false
-    t.string "receiver_id", limit: 13, null: false
-    t.string "residence_country", limit: 2
-    t.integer "user_id", null: false
-    t.string "payer_id", limit: 13, null: false
-    t.string "payer_email", limit: 127, null: false
-    t.string "payer_status", limit: 10, null: false
-    t.string "last_name", limit: 64
-    t.string "first_name", limit: 64
-    t.datetime "payment_date", precision: nil, null: false
-    t.string "payment_status", limit: 25, null: false
-    t.string "payment_type", limit: 7, null: false
-    t.string "txn_type", limit: 50, null: false
-    t.decimal "mc_gross", precision: 5, scale: 2, null: false
-    t.decimal "tax", precision: 5, scale: 2, null: false
-    t.decimal "mc_fee", precision: 5, scale: 2, null: false
-    t.integer "quantity", null: false
-    t.integer "plan_id", null: false
-    t.string "mc_currency", limit: 5, null: false
-    t.string "charset"
-    t.string "notify_version", limit: 25
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.datetime "processed_at", precision: nil
-    t.index ["payment_status"], name: "index_payments_on_payment_status"
-    t.index ["plan_id"], name: "index_payments_on_plan_id"
-    t.index ["txn_id"], name: "index_payments_on_txn_id"
-    t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
   create_table "plans", id: :integer, charset: "utf8", force: :cascade do |t|
@@ -357,8 +324,6 @@ ActiveRecord::Schema[7.0].define(version: 2025_03_19_195606) do
   add_foreign_key "invoice_details", "services"
   add_foreign_key "invoices", "customers"
   add_foreign_key "invoices", "payment_methods"
-  add_foreign_key "payments", "plans"
-  add_foreign_key "payments", "users"
   add_foreign_key "setting_values", "setting_keys"
   add_foreign_key "tasks", "projects"
   add_foreign_key "time_logs", "services"

@@ -94,14 +94,14 @@ group :development, :test do
   gem 'drb', '~> 2.2', '>= 2.2.1'
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'rspec-rails', '~> 7.1', '>= 7.1.1'
-  gem 'rspec-sidekiq'
   gem 'spring'
 end
 
 group :test do
   gem 'database_cleaner'
   gem 'rails-controller-testing'
+  gem 'rspec-rails', '~> 7.1', '>= 7.1.1'
+  gem 'rspec-sidekiq'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end
