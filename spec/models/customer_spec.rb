@@ -28,6 +28,15 @@ describe Customer, type: :model do
     expect(customer.errors).to be_key :contact_email
   end
 
+  it 'tax id accepts nils' do
+    described_class.create(name: 'One customer', tax_id: nil)
+
+    customer = described_class.new(name: 'another customer', tax_id: nil)
+    customer.save
+
+    expect(customer.errors).to satisfy(&:empty?)
+  end
+
   it 'tax id accepts blanks' do
     described_class.create(name: 'One customer', tax_id: '')
 

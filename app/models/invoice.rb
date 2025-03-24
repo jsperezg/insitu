@@ -30,6 +30,8 @@ class Invoice < ApplicationRecord
   validate :number_format
   validate :valid_customer
 
+  before_destroy :check_deletion_allowed
+
   accepts_nested_attributes_for :invoice_details, reject_if: proc { |attr|
     result = true
 
@@ -135,7 +137,7 @@ class Invoice < ApplicationRecord
   end
 
   def default?
-    invoice_status&.name == 'invoice_status.default' || (!created? && payment_date < Date.today)
+    invoice_status&.name == 'invoice_status.default' || (!created? && payment_date < Date.current)
   end
 
   def amending_invoice?
@@ -166,17 +168,15 @@ class Invoice < ApplicationRecord
     end
   }
 
-  def destroy
-    raise I18n.t('activerecord.errors.models.invoice.deletion_is_not_allowed') unless deletion_allowed?
-
-    super
-  end
-
   def deletion_allowed?
     number == last_invoice_number && !paid?
   end
 
   private
+
+  def check_deletion_allowed
+    raise I18n.t('activerecord.errors.models.invoice.deletion_is_not_allowed') unless deletion_allowed?
+  end
 
   def set_default_values
     self.invoice_status_id ||= inferred_invoice_status

@@ -14,7 +14,7 @@ module ApplicationHelper
     tag_content = [content_title, breadcrumb_content].compact
 
     content_tag(:section, class: 'content-header') do
-      raw(tag_content.join(''))
+      safe_join(tag_content)
     end
   end
 
@@ -74,7 +74,7 @@ module ApplicationHelper
     return unless NAVIGATION_RULES[controller_name_sym][action_name_sym].key? :parent
 
     content_tag(:ol, class: 'breadcrumb') do
-      raw(nav_content)
+      nav_content
     end
   end
 
@@ -92,7 +92,7 @@ module ApplicationHelper
       element = element_for(parent_key)
     end
 
-    result.reverse.join('')
+    safe_join(result.reverse)
   end
 
   def parent_link(element, parent_key)
@@ -104,7 +104,7 @@ module ApplicationHelper
 
         current_content << I18n.t(element[:title])
 
-        raw(current_content.join(''))
+        safe_join(current_content)
       end
     end
   end

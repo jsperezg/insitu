@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_03_20_181223) do
+ActiveRecord::Schema[7.0].define(version: 2025_03_24_161853) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -55,6 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_03_20_181223) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.string "send_invoices_to"
+    t.index ["tax_id"], name: "index_customers_on_tax_id", unique: true
   end
 
   create_table "delivery_note_details", id: :integer, charset: "utf8", force: :cascade do |t|
@@ -78,7 +79,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_03_20_181223) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.index ["customer_id"], name: "index_delivery_notes_on_customer_id"
-    t.index ["number"], name: "index_delivery_notes_on_number"
+    t.index ["number"], name: "index_delivery_notes_on_number", unique: true
   end
 
   create_table "estimate_details", id: :integer, charset: "utf8", force: :cascade do |t|
@@ -112,7 +113,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_03_20_181223) do
     t.datetime "updated_at", precision: nil, null: false
     t.index ["customer_id"], name: "index_estimates_on_customer_id"
     t.index ["estimate_status_id"], name: "index_estimates_on_estimate_status_id"
-    t.index ["number"], name: "index_estimates_on_number"
+    t.index ["number"], name: "index_estimates_on_number", unique: true
   end
 
   create_table "invoice_details", id: :integer, charset: "utf8", force: :cascade do |t|
@@ -149,7 +150,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_03_20_181223) do
     t.integer "amended_invoice_id"
     t.index ["customer_id"], name: "index_invoices_on_customer_id"
     t.index ["invoice_status_id"], name: "index_invoices_on_invoice_status_id"
-    t.index ["number"], name: "index_invoices_on_number"
+    t.index ["number"], name: "index_invoices_on_number", unique: true
     t.index ["payment_method_id"], name: "index_invoices_on_payment_method_id"
   end
 
@@ -159,6 +160,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_03_20_181223) do
     t.boolean "default", default: false, null: false
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.index ["name"], name: "index_payment_methods_on_name", unique: true
   end
 
   create_table "plans", id: :integer, charset: "utf8", force: :cascade do |t|
@@ -203,7 +205,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_03_20_181223) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.boolean "active", default: true
-    t.index ["code"], name: "index_services_on_code"
+    t.index ["code"], name: "index_services_on_code", unique: true
     t.index ["unit_id"], name: "index_services_on_unit_id"
     t.index ["vat_id"], name: "index_services_on_vat_id"
   end
@@ -258,7 +260,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_03_20_181223) do
     t.string "label_long"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.index ["label_short"], name: "index_units_on_label_short"
+    t.index ["label_short"], name: "index_units_on_label_short", unique: true
   end
 
   create_table "users", id: :integer, charset: "utf8", force: :cascade do |t|

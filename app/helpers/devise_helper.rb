@@ -4,17 +4,11 @@ module DeviseHelper
   def devise_error_messages!
     return '' if resource.errors.empty?
 
-    html = <<-HTML
-    <div class="alert alert-error alert-block">
-      <button type="button" class="close" data-dismiss="alert">x</button>
-      <h4>#{localized_devise_error_title}</h4>
-      <ul>
-      #{resource_error_messages}
-      </ul>
-    </div>
-    HTML
-
-    html.html_safe
+    content_tag :div, class: 'alert alert-error alert-block' do
+      content_tag(:button, 'x', class: 'close', 'data-dismiss' => 'alert') +
+        content_tag(:h4, localized_devise_error_title) +
+        content_tag(:ul, resource_error_messages)
+    end
   end
 
   private
