@@ -3,76 +3,20 @@
 require 'rails_helper'
 
 describe Customer, type: :model do
+  subject(:customer) { build(:customer) }
+
   before do
     Thread.current[:user] = create(:user)
   end
 
-  it 'name is mandatory' do
-    customer = described_class.new
-    customer.save
+  it { is_expected.to validate_presence_of(:name) }
+  it { is_expected.not_to validate_presence_of(:contact_email) }
+  it { is_expected.to validate_numericality_of(:irpf).only_integer.is_greater_than_or_equal_to(0) }
 
-    expect(customer.errors).to be_key :name
-  end
+  it { is_expected.to allow_value(nil).for(:tax_id) }
+  it { is_expected.to allow_value('').for(:tax_id) }
+  it { is_expected.to validate_uniqueness_of(:tax_id).case_insensitive.allow_blank }
 
-  it 'email is not mandatory' do
-    customer = described_class.new(name: 'One customer', contact_email: '')
-    customer.save
-
-    expect(customer.errors).to satisfy(&:empty?)
-  end
-
-  it 'email must be valid' do
-    customer = described_class.new(name: 'Another customer', contact_email: 'bwaaa')
-    customer.save
-
-    expect(customer.errors).to be_key :contact_email
-  end
-
-  it 'tax id accepts nils' do
-    described_class.create(name: 'One customer', tax_id: nil)
-
-    customer = described_class.new(name: 'another customer', tax_id: nil)
-    customer.save
-
-    expect(customer.errors).to satisfy(&:empty?)
-  end
-
-  it 'tax id accepts blanks' do
-    described_class.create(name: 'One customer', tax_id: '')
-
-    customer = described_class.new(name: 'another customer', tax_id: '')
-    customer.save
-
-    expect(customer.errors).to satisfy(&:empty?)
-  end
-
-  it 'tax id do not accept duplicates' do
-    described_class.create!(name: 'One customer', tax_id: '1234')
-
-    customer = described_class.new(name: 'another customer', tax_id: '1234')
-    customer.save
-
-    expect(customer.errors).to be_key :tax_id
-  end
-
-  it 'irpf must be a number' do
-    c = described_class.new(irpf: 'asdfasdfasdf')
-    c.save
-
-    expect(c.errors).to be_key :irpf
-  end
-
-  it 'irpf must be an integer' do
-    c = described_class.new(irpf: 1.2)
-    c.save
-
-    expect(c.errors).to be_key :irpf
-  end
-
-  it 'irpf must be great or equal to zero' do
-    c = described_class.new(irpf: -1)
-    c.save
-
-    expect(c.errors).to be_key :irpf
-  end
+  it { is_expected.not_to allow_value('bwaaa').for(:contact_email) }
+  it { is_expected.to allow_value('user@domain.com').for(:contact_email) }
 end
