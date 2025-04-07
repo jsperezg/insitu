@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.4.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 7.0', '>= 7.0.8.7'
+gem 'rails', '~> 7.1', '>= 7.1.5.1'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.5.6'
 # Use SCSS for stylesheets
@@ -26,7 +26,7 @@ gem 'cancancan', '~> 2.0'
 gem 'chartkick'
 gem 'ckeditor_rails'
 gem 'cookies_eu'
-gem 'country_select', '~> 5.1'
+gem 'country_select', '~> 10.0', '>= 10.0.1'
 gem 'csv'
 gem 'currencies', require: 'iso4217'
 gem 'dalli', group: :production
