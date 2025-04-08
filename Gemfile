@@ -3,10 +3,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.8'
+ruby '3.4.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0', '>= 6.0.6.1'
+gem 'rails', '~> 7.1', '>= 7.1.5.1'
 # Use mysql as the database for Active Record
 gem 'mysql2', '~> 0.5.6'
 # Use SCSS for stylesheets
@@ -26,11 +26,12 @@ gem 'cancancan', '~> 2.0'
 gem 'chartkick'
 gem 'ckeditor_rails'
 gem 'cookies_eu'
-gem 'country_select', '~> 5.1'
+gem 'country_select', '~> 10.0', '>= 10.0.1'
+gem 'csv'
 gem 'currencies', require: 'iso4217'
 gem 'dalli', group: :production
 gem 'data-confirm-modal'
-gem 'devise', '~> 4.7.1'
+gem 'devise', '~> 4.9', '>= 4.9.4'
 gem 'email_validator'
 gem 'figaro'
 gem 'filterrific', '~> 5.2.1'
@@ -38,13 +39,16 @@ gem 'jquery-rails'
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
 gem 'knockoutjs-rails'
+gem 'logger', '~> 1.6', '>= 1.6.6'
 gem 'mimemagic', '~> 0.3.10'
 gem 'multi_json', '~> 1.15'
+gem 'mutex_m', '~> 0.3.0'
 gem 'nprogress-rails'
-gem 'paperclip', '~> 6.1.0'
+gem 'ostruct'
 gem 'pdfjs_rails'
 gem 'prawn'
 gem 'prawn-table'
+gem 'puma', '~> 6.6'
 gem 'rack-cors', require: 'rack/cors'
 gem 'rectify'
 gem 'ros-apartment', require: 'apartment'
@@ -71,19 +75,14 @@ gem 'sdoc', '~> 2.6', '>= 2.6.1', group: :doc
 # gem 'unicorn'
 
 group :development do
+  gem 'benchmark', '~> 0.4.0'
   gem 'bundler-audit'
-
-  gem 'capistrano', '~> 3.9'
-  gem 'capistrano-bundler', '~> 1.1.2'
-  gem 'capistrano-figaro-yml', '~> 1.0.2'
-  gem 'capistrano-linked-files'
-  gem 'capistrano-passenger'
-  gem 'capistrano-rails', '~> 1.1'
-  gem 'capistrano-rbenv', '~> 2.0'
   gem 'listen'
   gem 'rubocop'
+  gem 'rubocop-factory_bot'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'rubocop-rspec_rails'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
@@ -92,16 +91,17 @@ end
 group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
+  gem 'drb', '~> 2.2', '>= 2.2.1'
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'rspec-rails', '~> 6.1', '>= 6.1.1'
-  gem 'rspec-sidekiq'
   gem 'spring'
 end
 
 group :test do
   gem 'database_cleaner'
   gem 'rails-controller-testing'
+  gem 'rspec-rails', '~> 7.1', '>= 7.1.1'
+  gem 'rspec-sidekiq'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end

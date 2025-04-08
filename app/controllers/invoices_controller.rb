@@ -12,7 +12,7 @@ class InvoicesController < SecuredController
       Invoice,
       params[:filterrific],
       default_filter_params: {
-        with_date_ge: Date.today.beginning_of_year.strftime('%Y-%m-%d'),
+        with_date_ge: Date.current.beginning_of_year.strftime('%Y-%m-%d'),
         sorted_by: 'date_desc'
       }
     ) || return
@@ -51,7 +51,7 @@ class InvoicesController < SecuredController
   # GET /invoices/new
   def new
     payment_method = PaymentMethod.find_by(default: true)
-    @invoice = Invoice.new(date: Date.today, payment_method: payment_method)
+    @invoice = Invoice.new(date: Date.current, payment_method: payment_method)
   end
 
   # GET /invoices/1/edit
@@ -112,7 +112,7 @@ class InvoicesController < SecuredController
     invoices = Invoice
                .includes(:customer, :invoice_details)
                .where(date: from_date..to_date)
-    exporter = CSVExport.new(%i[
+    exporter = CsvExport.new(%i[
                                number customer date paid_on applied_irpf accumulated_tax subtotal
                              ])
     send_data exporter.run(invoices), type: Mime::CSV, filename: 'invoices.csv'

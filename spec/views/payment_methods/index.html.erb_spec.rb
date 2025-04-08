@@ -15,7 +15,7 @@ RSpec.describe 'payment_methods/index', type: :view do
     sign_out user
   end
 
-  xit 'renders a list of payment_methods' do
+  it 'renders a list of payment_methods', skip: 'failing since a long time' do
     render
 
     payment_methods.each do |i|

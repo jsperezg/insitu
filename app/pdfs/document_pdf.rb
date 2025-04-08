@@ -26,7 +26,9 @@ class DocumentPdf < Prawn::Document
   end
 
   def generate_header
-    image @current_user.logo.path(:medium), at: bounds.top_left, fit: [75, 25] if @current_user.logo.present?
+    if @current_user.logo.present?
+      image StringIO.open(@current_user.logo.variant(:medium).download), at: bounds.top_left, fit: [75, 25]
+    end
 
     bounding_box([0, header_top], width: header_width, height: HEADER_HEIGHT + DOCUMENT_DATA_HEIGHT + DOCUMENT_CONDITIONS) do
       document_data

@@ -10,12 +10,12 @@ Bundler.require(*Rails.groups)
 module Fges
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.0
+    config.load_defaults 7.0
 
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
-
+    # in config/environments, which are processed later.
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
@@ -23,11 +23,6 @@ module Fges
     I18n.config.enforce_available_locales = false
     config.i18n.default_locale = :en
 
-    # Autoload libraries in lib folder
-    config.autoload_paths << Rails.root.join('lib')
-
     config.active_job.queue_adapter = :sidekiq
-
-    config.middleware.use Rack::Deflater
   end
 end

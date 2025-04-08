@@ -8,7 +8,7 @@ describe 'api/v1/customers/show/', type: :view do
   end
 
   it 'Renders the requested status' do
-    render
+    render template: 'api/v1/customers/show', formats: :json
 
     customer = JSON.parse(rendered)
     expect(customer).to be_key('id')

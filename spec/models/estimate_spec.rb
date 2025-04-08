@@ -18,11 +18,11 @@ describe Estimate, type: :model do
     estimate = described_class.new
     estimate.save
 
-    expect(estimate.date).to eq(Date.today)
+    expect(estimate.date).to eq(Date.current)
   end
 
   it 'valid_until must be after date' do
-    estimate = described_class.new(valid_until: Date.today, date: Date.today + 3.days)
+    estimate = described_class.new(valid_until: Date.current, date: Date.current + 3.days)
     estimate.save
 
     expect(estimate.errors).to have_key(:valid_until)
@@ -44,19 +44,19 @@ describe Estimate, type: :model do
     end
 
     it 'do not allow duplicates' do
-      estimate = build(:estimate, number: "I/#{Date.today.year}/000001")
+      estimate = build(:estimate, number: "I/#{Date.current.year}/000001")
       estimate.save
 
       expect(estimate.errors).to be_empty
 
-      another_estimate = build(:estimate, number: "I/#{Date.today.year}/000001")
+      another_estimate = build(:estimate, number: "I/#{Date.current.year}/000001")
       another_estimate.save
 
       expect(another_estimate.errors).to have_key(:number)
     end
 
     it 'update default series for estimates' do
-      estimate = build(:estimate, number: "X/#{Date.today.year}/000001")
+      estimate = build(:estimate, number: "X/#{Date.current.year}/000001")
       estimate.save
 
       expect(estimate.errors).to be_empty
@@ -64,7 +64,7 @@ describe Estimate, type: :model do
       another_estimate = create(:estimate)
       another_estimate.reload
 
-      expect(another_estimate.number).to eq("X/#{Date.today.year}/000002")
+      expect(another_estimate.number).to eq("X/#{Date.current.year}/000002")
     end
 
     it 'Sequence is updated after updating the document' do
@@ -99,21 +99,21 @@ describe Estimate, type: :model do
 
   describe 'Number format validation' do
     it 'First capital letter' do
-      estimate = build(:estimate, number: "i/#{Date.today.year}/000001")
+      estimate = build(:estimate, number: "i/#{Date.current.year}/000001")
       estimate.save
 
       expect(estimate.errors).to have_key(:number)
     end
 
     it 'Same year as bill' do
-      estimate = build(:estimate, number: "i/#{Date.today.year + 1}/000001")
+      estimate = build(:estimate, number: "i/#{Date.current.year + 1}/000001")
       estimate.save
 
       expect(estimate.errors).to have_key(:number)
     end
 
     it '6 digits' do
-      estimate = build(:estimate, number: "i/#{Date.today.year}/xxxxxx")
+      estimate = build(:estimate, number: "i/#{Date.current.year}/xxxxxx")
       estimate.save
 
       expect(estimate.errors).to have_key(:number)

@@ -3,7 +3,7 @@
 # Class that represents the invoice status
 class InvoiceStatus < ApplicationRecord
   validates :name, presence: true
-  has_many :invoices
+  has_many :invoices, dependent: :restrict_with_error
 
   def locale_name
     I18n.t(name)

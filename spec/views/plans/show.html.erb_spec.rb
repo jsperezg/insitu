@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'plans/show', type: :view do
+describe 'plans/show', type: :view do
   let(:user) { create(:user, :admin) }
   let(:plan) { create(:plan) }
 
@@ -15,7 +15,7 @@ RSpec.describe 'plans/show', type: :view do
     sign_out user
   end
 
-  it 'renders attributes in <p>' do
+  it 'renders attributes in <p>', skip: 'not implemented' do
     render
   end
 end

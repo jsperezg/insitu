@@ -13,7 +13,7 @@ describe 'api/v1/delivery_notes/show/', type: :view do
   end
 
   it 'Renders the requested delivery note' do
-    render
+    render template: 'api/v1/delivery_notes/show', formats: :json
 
     delivery_note = JSON.parse(rendered)
     expect(delivery_note).to be_key('id')

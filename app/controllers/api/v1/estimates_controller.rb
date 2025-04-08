@@ -11,6 +11,10 @@ module Api
         @estimates = Estimate.all
       end
 
+      def show
+        # renders show.json.jbuilder
+      end
+
       # GET /estimates/1/print
       def print
         @estimate.sent!

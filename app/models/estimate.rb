@@ -63,7 +63,7 @@ class Estimate < ApplicationRecord
   end
 
   def rejected?
-    (!accepted? && (valid_until.nil? || valid_until <= Date.today)) || estimate_status&.name == 'estimate_status.rejected'
+    (!accepted? && (valid_until.nil? || valid_until <= Date.current)) || estimate_status&.name == 'estimate_status.rejected'
   end
 
   def sent?
@@ -105,7 +105,7 @@ class Estimate < ApplicationRecord
 
   def set_default_values
     self.estimate_status_id ||= EstimateStatus.created.id
-    self.date ||= Date.today
+    self.date ||= Date.current
     self.number ||= generate_id(model_name.human, date.year)
   end
 
@@ -118,7 +118,7 @@ class Estimate < ApplicationRecord
   def number_format
     return if number_valid?(self.date)
 
-    year = self.date&.year || Date.today.year
+    year = self.date&.year || Date.current.year
     errors.add(:number, I18n.t('activerecord.errors.models.estimate.attributes.number.invalid_format', year: year))
   end
 

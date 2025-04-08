@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'delivery_notes/index', type: :view do
+describe 'delivery_notes/index', type: :view do
   let(:user) { create :user }
   let(:delivery_note) { create :delivery_note }
 
@@ -14,15 +14,14 @@ RSpec.describe 'delivery_notes/index', type: :view do
 
     assign(:delivery_notes, [delivery_note])
 
-    allow(view).to receive(:form_for_filterrific).and_return('filterrific form')
-    allow(view).to receive(:will_paginate).and_return('filterrific paginator')
+    allow(view).to receive_messages(form_for_filterrific: 'filterrific form', will_paginate: 'filterrific paginator')
   end
 
   after do
     sign_out user
   end
 
-  skip 'renders a list of delivery_notes' do
+  it 'renders a list of delivery_notes', skip: 'failing for a long time' do
     render
     assert_select 'tr>th', text: DeliveryNote.human_attribute_name(:number), count: 1
     assert_select 'tr>td', text: delivery_note.number, count: 1

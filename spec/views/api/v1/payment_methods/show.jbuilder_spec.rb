@@ -8,7 +8,7 @@ describe 'api/v1/payment_methods/show/', type: :view do
   end
 
   it 'Renders the requested payment method' do
-    render
+    render template: 'api/v1/payment_methods/show', formats: :json
 
     payment_method = JSON.parse(rendered)
     expect(payment_method).to be_key('id')

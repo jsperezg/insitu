@@ -12,10 +12,11 @@ class User < ApplicationRecord
     available_filters: %i[with_filter_criteria with_active_criteria sorted_by]
   )
 
-  has_attached_file :logo,
-                    styles: { medium: '300x100', reduced: '222x74' },
-                    default_url: '/images/:style/missing.png'
-  validates_attachment_content_type :logo, content_type: %r{\Aimage/.*\z}
+  has_one_attached :logo do |attachable|
+    attachable.variant :medium, resize_to_limit: [300, 100]
+    attachable.variant :reduced, resize_to_limit: [222, 74]
+  end
+  validate :correct_logo_mime_type
 
   self.per_page = DEFAULT_ITEMS_PER_PAGE
 
@@ -42,8 +43,8 @@ class User < ApplicationRecord
   scope :with_active_criteria, lambda { |filter|
     case filter
     when 'vip' then where(valid_until: nil)
-    when 'free' then where('valid_until <= ?', Date.today)
-    when 'premium' then where('valid_until > ? or valid_until is null', Date.today)
+    when 'free' then where('valid_until <= ?', Date.current)
+    when 'premium' then where('valid_until > ? or valid_until is null', Date.current)
     else all
     end
   }
@@ -76,7 +77,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :role, optional: true
-  has_many :payments
 
   after_save :init_tenant_name
   after_commit :init_tenant, on: :create
@@ -107,7 +107,7 @@ class User < ApplicationRecord
   end
 
   def premium?
-    valid_until.nil? || valid_until > Date.today
+    valid_until.nil? || valid_until > Date.current
   end
 
   def administrator?
@@ -123,11 +123,11 @@ class User < ApplicationRecord
   end
 
   def skip_confirmation!
-    self.confirmed_at = Time.now
+    self.confirmed_at = Time.zone.now
   end
 
   def to_s
-    return name unless name.blank?
+    return name if name.present?
 
     email
   end
@@ -152,7 +152,7 @@ class User < ApplicationRecord
   private
 
   def init_tenant_name
-    return unless self[:tenant].blank?
+    return if self[:tenant].present?
 
     self[:tenant] = if Rails.env.production?
                       "user_#{self[:id]}"
@@ -182,7 +182,7 @@ class User < ApplicationRecord
     if administrator?
       self.valid_until = nil
     else
-      self.valid_until ||= Date.today
+      self.valid_until ||= Date.current
     end
   end
 
@@ -191,5 +191,11 @@ class User < ApplicationRecord
     return unless banned?
 
     errors.add(:role_id, I18n.t('activerecord.errors.models.user.attributes.role_id.admin_banned'))
+  end
+
+  def correct_logo_mime_type
+    return if !logo.attached? || logo.content_type.match?(%r{\Aimage/.*\z})
+
+    errors.add(:document, I18n.t('activerecord.errors.models.user.attributes.logo.invalid'))
   end
 end

@@ -5,8 +5,8 @@ module ApplicationHelper
     capture(&block) if role_name.split('|').include? current_user.role.try(:description)
   end
 
-  def ldate(object, options = {})
-    object.present? ? localize(object, options) : ''
+  def ldate(object)
+    object.present? ? localize(object) : ''
   end
 
   # Helper that generates the navigation breadcrumb for each page.
@@ -14,7 +14,7 @@ module ApplicationHelper
     tag_content = [content_title, breadcrumb_content].compact
 
     content_tag(:section, class: 'content-header') do
-      raw(tag_content.join(''))
+      safe_join(tag_content)
     end
   end
 
@@ -74,7 +74,7 @@ module ApplicationHelper
     return unless NAVIGATION_RULES[controller_name_sym][action_name_sym].key? :parent
 
     content_tag(:ol, class: 'breadcrumb') do
-      raw(nav_content)
+      nav_content
     end
   end
 
@@ -92,7 +92,7 @@ module ApplicationHelper
       element = element_for(parent_key)
     end
 
-    result.reverse.join('')
+    safe_join(result.reverse)
   end
 
   def parent_link(element, parent_key)
@@ -100,11 +100,11 @@ module ApplicationHelper
 
     content_tag(:li) do
       link_to(link_details(parent_key)) do
-        current_content << content_tag(:i, nil, class: element[:icon]) unless element[:icon].blank?
+        current_content << content_tag(:i, nil, class: element[:icon]) if element[:icon].present?
 
         current_content << I18n.t(element[:title])
 
-        raw(current_content.join(''))
+        safe_join(current_content)
       end
     end
   end

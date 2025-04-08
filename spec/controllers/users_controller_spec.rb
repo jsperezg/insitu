@@ -43,7 +43,7 @@ RSpec.describe UsersController, type: :controller do
     context 'with valid params' do
       let(:new_attributes) do
         {
-          valid_until: Date.today + 365.days,
+          valid_until: Date.current + 365.days,
           role_id: Role.find_by(description: 'User').try(:id) || create(:role).try(:id)
         }
       end

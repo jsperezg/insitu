@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CSVExport
+class CsvExport
   def initialize(attributes)
     @attributes = attributes
   end

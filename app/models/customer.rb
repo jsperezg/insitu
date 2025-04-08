@@ -38,8 +38,9 @@ class Customer < ApplicationRecord
   has_many :projects, dependent: :restrict_with_error
 
   before_destroy :validate_referential_integrity
+  before_validation :nullify_tax_id
 
-  scope :with_name, ->(name) { where('name like ?', "%#{name}%") unless name.blank? }
+  scope :with_name, ->(name) { where('name like ?', "%#{name}%") if name.present? }
 
   def country_name
     return if country.blank?
@@ -64,6 +65,10 @@ class Customer < ApplicationRecord
 
   def email?
     contact_email.present? || send_invoices_to.present?
+  end
+
+  def nullify_tax_id
+    self.tax_id = nil if tax_id.blank?
   end
 
   def to_s

@@ -10,7 +10,7 @@ describe 'api/v1/vats/show/', type: :view do
   end
 
   it 'Renders the requested vat' do
-    render
+    render template: 'api/v1/vats/show', formats: :json
 
     vat = JSON.parse(rendered)
     expect(vat).to have_key('id')

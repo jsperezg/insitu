@@ -6,6 +6,8 @@ module Api
     class SessionsController < Devise::SessionsController
       skip_before_action :verify_signed_out_user
 
+      before_action :check_request_format
+
       respond_to :json
 
       # This controller provides a JSON version of the Devise::SessionsController and
@@ -14,77 +16,78 @@ module Api
 
       def create
         # Fetch params
-        email = params[:session][:email] if params[:session]
-        password = params[:session][:password] if params[:session]
-
-        # Validations
-        if request.format != :json
-          render status: 406, json: { message: 'The request must be JSON.' }
-          return
-        end
+        email = params.dig(:session, :email)
+        password = params.dig(:session, :password)
 
         if email.blank? || password.blank?
-          render status: 400, json: { message: 'The request MUST contain the user email and password.' }
+          render status: :bad_request, json: { message: 'The request MUST contain the user email and password.' }
           return
         end
 
         # Authentication
         user = User.find_by(email: email)
-
-        if user
-          if user.valid_password? password
-            user.restore_authentication_token!
-
-            user.sign_in_count += 1
-            user.last_sign_in_at = user.current_sign_in_at
-            user.last_sign_in_ip =  user.current_sign_in_ip
-
-            user.current_sign_in_at = Time.now
-            user.current_sign_in_ip = request.remote_ip
-
-            if user.save
-              # Note that the data which should be returned depends heavily of the API client needs.
-              render status: 200, json: {
-                email: user.email,
-                authentication_token: user.authentication_token,
-                id: user.id,
-                tax_id: user.tax_id,
-                name: user.name,
-                address: user.address,
-                city: user.city,
-                state: user.state,
-                country: user.country,
-                locale: user.locale,
-                phone_number: user.phone_number,
-                valid_until: user.valid_until,
-                banned: user.banned,
-                currency: user.currency
-              }
-            else
-              render status: 500, json: { error: user.errors.messages }
-            end
-          else
-            render status: 401, json: { message: 'Invalid email or password.' }
-          end
-        else
-          render status: 401, json: { message: 'Invalid email or password.' }
+        unless user&.valid_password?(password)
+          render status: :unauthorized, json: { message: 'Invalid email or password.' }
+          return
         end
+
+        track_user_sign_in(user)
+        render status: :ok, json: sign_in_response_for(user: user)
       end
 
       def destroy
         if params[:user_token].blank?
-          render status: 404, json: { message: 'Invalid token.' }
+          render status: :not_found, json: { message: 'Invalid token.' }
           return
         end
 
         # Fetch params
         user = User.find_by(authentication_token: params[:user_token])
         if user.nil?
-          render status: 404, json: { message: 'Invalid token.' }
+          render status: :not_found, json: { message: 'Invalid token.' }
         else
-          user.update_attribute(:authentication_token, nil)
-          render status: 200, json: { message: 'logout successful' }
+          user.update(authentication_token: nil)
+          render status: :ok, json: { message: 'logout successful' }
         end
+      end
+
+      private
+
+      def track_user_sign_in(user)
+        user.restore_authentication_token!
+
+        user.sign_in_count += 1
+        user.last_sign_in_at = user.current_sign_in_at
+        user.last_sign_in_ip = user.current_sign_in_ip
+
+        user.current_sign_in_at = Time.zone.now
+        user.current_sign_in_ip = request.remote_ip
+        user.save!
+      end
+
+      def check_request_format
+        return if request.format == :json
+
+        render status: :not_acceptable, json: { message: 'The request must be JSON.' }
+      end
+
+      def sign_in_response_for(user:)
+        {
+          email: user.email,
+          authentication_token: user.authentication_token,
+          id: user.id,
+          tax_id: user.tax_id,
+          name: user.name,
+          address: user.address,
+          city: user.city,
+          state: user.state,
+          country: user.country,
+          locale: user.locale,
+          phone_number: user.phone_number,
+          valid_until: user.valid_until,
+          banned: user.banned,
+          currency: user.currency
+        }
       end
     end
   end

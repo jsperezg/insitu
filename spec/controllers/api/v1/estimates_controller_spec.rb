@@ -79,7 +79,7 @@ RSpec.describe Api::V1::EstimatesController, type: :controller do
         {
           date: Date.current.beginning_of_year + 10.days,
           customer_id: create(:customer).id,
-          valid_until: Date.today + 60.days,
+          valid_until: Date.current + 60.days,
           estimate_status_id: EstimateStatus.sent.id
         }
       end
@@ -146,7 +146,7 @@ RSpec.describe Api::V1::EstimatesController, type: :controller do
       expect(json['errors'][0]).to eq(I18n.t('estimates.nothing_to_invoice'))
     end
 
-    it 'Generates invoice ' do
+    it 'Generates invoice' do
       estimate = Estimate.create! valid_attributes
 
       get :invoice, params: { user_id: user, id: estimate.to_param }, format: :json

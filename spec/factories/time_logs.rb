@@ -7,7 +7,7 @@ FactoryBot.define do
     end
 
     time_spent { 120 }
-    date { Date.today }
+    date { Date.current }
     task_id { Task.first.try(:id) || create(:task).id }
     service_id { Service.first.try(:id) || create(:service).id }
   end

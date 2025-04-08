@@ -21,7 +21,7 @@ FactoryBot.define do
     end
 
     trait :expired do
-      valid_until { Date.today - 7.days }
+      valid_until { Date.current - 7.days }
     end
   end
 end

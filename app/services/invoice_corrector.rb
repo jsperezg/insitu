@@ -19,7 +19,7 @@ class InvoiceCorrector
   private
 
   def create_cancellation_header
-    date = Date.today
+    date = Date.current
 
     Invoice.create!(
       number: generate_id(AMENDING_INVOICE_SERIES, date.year, 2),

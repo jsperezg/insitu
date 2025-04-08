@@ -147,14 +147,14 @@ RSpec.describe Api::V1::TasksController, type: :controller do
       2.times do |i|
         TimeLog.create!(
           description: "time log #{i + 1}",
-          date: Date.today,
+          date: Date.current,
           time_spent: (i + 1) * 60,
           task_id: task.id,
           service_id: Service.first.id
         )
       end
 
-      task.finish_date = Date.today
+      task.finish_date = Date.current
       task.save
 
       get :invoice_finished, params: { user_id: user.to_param, project_id: project.to_param }, format: :json
@@ -180,14 +180,14 @@ RSpec.describe Api::V1::TasksController, type: :controller do
       2.times do |i|
         TimeLog.create!(
           description: "time log #{i + 1}",
-          date: Date.today,
+          date: Date.current,
           time_spent: (i + 1) * 60,
           task_id: task.id,
           service_id: Service.first.id
         )
       end
 
-      task.finish_date = Date.today
+      task.finish_date = Date.current
       task.save
 
       get :invoice_finished, params: { user_id: user.to_param, project_id: project.to_param }, format: :json

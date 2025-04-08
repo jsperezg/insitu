@@ -13,7 +13,7 @@ module CustomersHelper
     ]
 
     content_tag(:div, class: options[:class], url_source: api_v1_customers_path(format: :json)) do
-      raw(content.join(''))
+      safe_join(content)
     end
   end
 
@@ -76,7 +76,7 @@ module CustomersHelper
 
   def create_customer_button_tag(form, method, options)
     content_tag(:div, class: 'input-group') do
-      raw([find_customer_tag(form, method, options), create_customer_tag].join(''))
+      safe_join([find_customer_tag(form, method, options), create_customer_tag])
     end
   end
 end

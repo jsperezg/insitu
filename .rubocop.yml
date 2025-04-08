@@ -1,9 +1,14 @@
 inherit_from: .rubocop_todo.yml
 
-require: rubocop-rspec
+plugins:
+  - rubocop-rspec
+  - rubocop-factory_bot
+  - rubocop-rails
+  - rubocop-rspec_rails
 
 AllCops:
-  TargetRubyVersion: 2.7.8
+  UseCache: false
+  TargetRubyVersion: 3.4.2
   NewCops: disable
   Exclude:
     - 'db/migrate/*.rb'

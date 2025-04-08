@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'customers/index', type: :view do
+describe 'customers/index', type: :view do
   let(:user) { User.first || create(:user) }
   let(:customers) { create_list :customers, 2 }
 
@@ -13,15 +13,14 @@ RSpec.describe 'customers/index', type: :view do
 
     assign(:customers, customers)
 
-    allow(view).to receive(:form_for_filterrific).and_return('filterrific form')
-    allow(view).to receive(:will_paginate).and_return('filterrific paginator')
+    allow(view).to receive_messages(form_for_filterrific: 'filterrific form', will_paginate: 'filterrific paginator')
   end
 
   after do
     sign_out user
   end
 
-  skip 'renders a list of customers' do
+  it 'renders a list of customers', skip: 'failing for a long time' do
     render
 
     customers.each do |c|

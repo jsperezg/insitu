@@ -11,7 +11,7 @@ class EstimatesController < SecuredController
       Estimate,
       params[:filterrific],
       default_filter_params: {
-        with_date_ge: Date.today.beginning_of_year.strftime('%Y-%m-%d'),
+        with_date_ge: Date.current.beginning_of_year.strftime('%Y-%m-%d'),
         sorted_by: 'date_desc'
       }
     ) || return

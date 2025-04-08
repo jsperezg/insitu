@@ -2,7 +2,7 @@
 
 require 'smarter_csv'
 
-class CSVImportService
+class CsvImportService
   def initialize(converter)
     @converter = converter
   end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'services/index', type: :view do
+describe 'services/index', type: :view do
   let(:user) { create :user }
 
   before do
@@ -10,20 +10,15 @@ RSpec.describe 'services/index', type: :view do
 
     Thread.current[:user] = user
 
-    assign(:services, [
-             create(:service),
-             create(:service)
-           ])
-
-    allow(view).to receive(:form_for_filterrific).and_return('filterrific form')
-    allow(view).to receive(:will_paginate).and_return('filterrific paginator')
+    assign(:services, create_list(:service, 2))
+    allow(view).to receive_messages(form_for_filterrific: 'filterrific form', will_paginate: 'filterrific paginator')
   end
 
   after do
     sign_out user
   end
 
-  skip 'renders a list of services' do
+  it 'renders a list of services', skip: 'no filterrific support' do
     render
     assert_select 'tr>th', text: Service.human_attribute_name(:code), count: 1
   end

@@ -16,7 +16,7 @@ class Task < ApplicationRecord
     result = true
 
     %i[description time_spent date].each do |attr_id|
-      result = false unless attr[attr_id].blank?
+      result = false if attr[attr_id].present?
     end
 
     result

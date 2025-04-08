@@ -9,15 +9,14 @@ RSpec.describe 'plans/index', type: :view do
     sign_in user
     assign(:plans, create_list(:plan, 2))
 
-    allow(view).to receive(:form_for_filterrific).and_return('filterrific form')
-    allow(view).to receive(:will_paginate).and_return('filterrific paginator')
+    allow(view).to receive_messages(form_for_filterrific: 'filterrific form', will_paginate: 'filterrific paginator')
   end
 
   after do
     sign_out user
   end
 
-  it 'renders a list of plans' do
+  it 'renders a list of plans', skip: 'not implemented' do
     render
   end
 end

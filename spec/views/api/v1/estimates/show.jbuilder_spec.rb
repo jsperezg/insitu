@@ -13,7 +13,7 @@ describe 'api/v1/estimates/show/', type: :view do
   end
 
   it 'Renders the requested estimate' do
-    render
+    render template: 'api/v1/estimates/show', formats: :json
 
     estimate = JSON.parse(rendered)
     expect(estimate).to be_key('id')
